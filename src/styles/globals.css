@@ -88,6 +88,6 @@
   }
 
   .button {
-    @apply text-button-text text-white font-bold tracking-wide rounded-1;
+    @apply w-full text-button-text text-white font-bold tracking-wide rounded-1;
   }
 }

@@ -8,7 +8,7 @@ const ImageContainer = ({
   loading = 'lazy',
 }: ImageContainerProps) => {
   return (
-    <div className='h-full w-full'>
+    <div className={className + ' h-full w-full'}>
       <Image
         src={src}
         alt={alt}

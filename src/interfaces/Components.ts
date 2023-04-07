@@ -15,7 +15,7 @@ export interface TextProps {
 export interface ImageContainerProps {
   src: string;
   alt: string;
-  className: string;
+  className?: string;
   loading?: 'lazy' | 'eager';
 }
 
@@ -34,4 +34,12 @@ export interface ButtonProps {
   className?: string;
   text: string;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+}
+
+export interface ProgramCardProps {
+  image: string;
+  imageAltText: string;
+  title: string;
+  content: string;
+  buttonText: string;
 }

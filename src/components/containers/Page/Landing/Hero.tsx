@@ -1,8 +1,8 @@
-import { LinkButton, Text } from '@/components';
+import { LinkButton, Section, Text } from '@/components';
 
 const LandingPageHero = () => {
   return (
-    <section className='px-8 py-16'>
+    <Section>
       <div className='flex justify-center'>
         <div className='flex flex-col items-center'>
           <div className='flex flex-col items-center'>
@@ -26,7 +26,7 @@ const LandingPageHero = () => {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

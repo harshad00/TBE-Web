@@ -1,13 +1,6 @@
-import Image from 'next/image';
 import { useId } from 'react';
-import { Header, LandingPageHero } from '@/components';
-import {
-  FOOTER_NAVIGATION,
-  PROGRAMS,
-  SKILLS,
-  TESTIMONIALS,
-  USP,
-} from '@/constant';
+import { Header, Image, LandingPageHero, OurPrograms } from '@/components';
+import { FOOTER_NAVIGATION, SKILLS, TESTIMONIALS, USP } from '@/constant';
 
 export default function Home() {
   const uid = useId();
@@ -16,45 +9,8 @@ export default function Home() {
     <main className='gradient-bg'>
       <Header />
       <LandingPageHero />
-      <h1 className='flex w-full items-center justify-center text-4xl'>
-        <span className=''>Our</span>
-        <span className='text-red'>Programs</span>
-      </h1>
-      <div className='flex w-full items-center justify-center '>
-        {PROGRAMS.map((program) => (
-          <div
-            key={uid}
-            className='lg:px- my-1 w-full px-1 md:w-full lg:my-4 lg:w-1/3'
-          >
-            <div className='block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700'>
-              <a href='#!'>
-                <Image
-                  className='rounded-t-lg'
-                  src={`../svg/${program.image}`}
-                  alt={program.image_alt}
-                  width={100}
-                  height={100}
-                />
-              </a>
-              <div className='p-6'>
-                <h5 className='mb-2 text-xl font-medium leading-tight text-black'>
-                  {program.title}
-                </h5>
-                <p className='text-gray mb-4 text-base'>{program.content}</p>
-                <button
-                  type='button'
-                  className='hover:bg-primary-600 focus:bg-primary-600 active:bg-primary-700 bg-red inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal  shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]'
-                  data-te-ripple-init
-                  data-te-ripple-color='light'
-                >
-                  {program.button_title}
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <section></section>
+      <OurPrograms />
+
       <div className='flex w-full flex-col items-center justify-center p-10  '>
         <h1 className='text-4xl'>
           <span className='text-red'>Skill</span>
@@ -74,9 +30,7 @@ export default function Home() {
                       <Image
                         className='rounded-t-lg'
                         src={`../svg/${detail.image}`}
-                        alt={detail.image_alt}
-                        width={100}
-                        height={100}
+                        alt={detail.imageAltText}
                       />
 
                       <span>{detail.name}</span>
@@ -108,9 +62,7 @@ export default function Home() {
                   <Image
                     className='d-flex w-full items-center justify-center rounded-t-lg'
                     src={`../svg/${item.image}`}
-                    alt={item.image_alt}
-                    width={100}
-                    height={100}
+                    alt={item.imageAltText}
                   />
                 </a>
                 <div className='p-6'>
@@ -126,7 +78,7 @@ export default function Home() {
       </div>
       <div className='relative isolate px-6 pt-14 lg:px-8'>
         <div className='mx-auto max-w-2xl py-32 sm:py-48 lg:py-52'>
-          <Image src='../svg/programmer.svg' alt='' width={100} height={100} />
+          <Image src='../svg/programmer.svg' alt='' />
           <div className='text-center'>
             <h1 className='text-4xl font-bold tracking-tight   sm:text-6xl '>
               {/* <p className=' leading-loose '>Tech Learning for</p>
@@ -168,11 +120,9 @@ export default function Home() {
                   <p className='mb-6 leading-relaxed'>{item.content}</p>
                   <a className='inline-flex items-center'>
                     <Image
-                      alt={item.image_alt}
+                      alt={item.imageAltText}
                       src={`../svg/${item.image}`}
                       className='h-12 w-12 flex-shrink-0 rounded-full object-cover object-center'
-                      width={100}
-                      height={100}
                     />
                     <span className='flex flex-grow flex-col pl-4'>
                       <span className='title-font font-medium text-gray-900'>
@@ -193,12 +143,7 @@ export default function Home() {
         <div className='flex h-auto w-full flex-col gap-y-[45px] bg-black px-[15px] py-[30px]  sm:px-[30px] md:px-[40px] lg:h-[380px] lg:flex-row lg:items-center lg:justify-between lg:px-[50px] lg:py-0 xl:px-[75px]'>
           <div className='lg:w-4/12'>
             <div className='mb-[30px] flex items-center justify-center gap-x-[8px] text-gray-900'>
-              <Image
-                src='../svg/logo.svg'
-                alt='logo-footer'
-                width={100}
-                height={100}
-              />
+              <Image src='../svg/logo.svg' alt='logo-footer' />
               <span className=''>The Boring</span>
               <span className='text-red'>Education</span>
             </div>
