@@ -6,7 +6,7 @@ const routes = {
   microCampLanding: function (microCampSlug: PageSlug | string) {
     return this.microCamps + microCampSlug;
   },
-  contactUs: 'tel:+918072937581',
+  contactUs: '/contact',
   internals: {
     landing: {
       programs: 'programs',
