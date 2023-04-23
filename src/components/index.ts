@@ -43,6 +43,7 @@ import WhatWeDoForYou from './containers/Cards/WhatWeDoForYou';
 import WeToughtAt from './containers/Cards/WeToughtAt';
 import WeToughtAtCard from './containers/Cards/Items/WeToughtAtCard';
 import MicrocampRegisterForm from './containers/Forms/MicrocampRegisterForm';
+import ContactCard from './containers/Cards/ContactCard';
 import SEO from './layout/SEO';
 
 export {
@@ -92,4 +93,5 @@ export {
   WeToughtAtCard,
   MicrocampRegisterForm,
   SEO,
+  ContactCard,
 };
