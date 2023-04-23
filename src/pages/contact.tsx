@@ -1,16 +1,11 @@
 import React from 'react';
-import { ContactCard, Footer } from '@/components';
+import { ContactCard } from '@/components';
 
 
 const Contact = () => {
     return (
-        <>
-            <ContactCard />
-            <Footer />
-        </>
+        <ContactCard />
+    );
+};
 
-
-    )
-}
-
-export default Contact
+export default Contact;
