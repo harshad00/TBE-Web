@@ -1,33 +1,43 @@
 import React from 'react';
-
-import { Text } from '@/components';
+import { FlexContainer, LinkButton, Section, Text } from '@/components';
+import LinkText from '@/components/common/typography/Link';
 
 const Contact = () => {
-    return (
-        <div className="px-96 h-screen flex items-center -mt-24 ">
-            <div className=" w-full rounded-lg  gradient-5   mx-auto  overflow-hidden bg-dark text-white shadow-lg">
-                <div className="flex flex-col items-center justify-center p-4 divide-y ">
-                    <Text level="h3" className="heading-3">Get In Touch With Us</Text>
+  return (
+    <Section>
+      <FlexContainer itemCenter={true}>
+        <FlexContainer
+          direction='col'
+          className='gradient-5 mx-auto w-full overflow-hidden rounded-2 py-6 px-4 sm:w-2/3 sm:px-6 sm:py-6 lg:w-2/5'
+          itemCenter={false}
+        >
+          <Text level='h4' className='heading-4' textCenter={true}>
+            Get In Touch With Us
+          </Text>
+          <FlexContainer
+            itemCenter={true}
+            justifyCenter={true}
+            className='mt-2 w-full justify-start gap-2'
+          >
+            <LinkButton
+              buttonProps={{
+                variant: 'PRIMARY',
+                text: 'Email',
+              }}
+              href='mailto:theboringeducation@gmail.com'
+            ></LinkButton>
+            <LinkButton
+              buttonProps={{
+                variant: 'PRIMARY',
+                text: 'Call',
+              }}
+              href='tel:+91-8884966267'
+            ></LinkButton>
+          </FlexContainer>
+        </FlexContainer>
+      </FlexContainer>
+    </Section>
+  );
+};
 
-                </div>
-                <hr />
-                <div className="w-full flex justify-center items-center p-24">
-                    <div className="flex flex-col items-center space-y-4">
-                        <Text level="h4" className="heading-4">
-                            Email: theboringeducation@gmail.com
-                        </Text>
-                        <Text level="h4" className="heading-4">
-                            Mobile: +91-8884966267
-                        </Text>
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    )
-}
-
-export default Contact
+export default Contact;
