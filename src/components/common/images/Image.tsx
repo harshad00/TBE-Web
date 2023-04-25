@@ -6,9 +6,15 @@ const ImageContainer = ({
   alt,
   className,
   loading = 'lazy',
+  fullWidth = true,
+  fullHeight = true,
 }: ImageContainerProps) => {
   return (
-    <div className='h-full w-full'>
+    <div
+      className={`${className} ${fullWidth && 'w-full'} ${
+        fullHeight && 'h-full'
+      }`}
+    >
       <Image
         src={src}
         alt={alt}

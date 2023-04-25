@@ -1,6 +1,14 @@
-import * as React from 'react';
+import { Footer, Navbar } from '@/components';
+import { PageLayoutProps } from '@/interfaces';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  // Put Header or Footer Here
-  return <>{children}</>;
-}
+const PageLayout = ({ children }: PageLayoutProps) => {
+  return (
+    <main className='gradient-bg'>
+      <Navbar />
+      {children}
+      <Footer />
+    </main>
+  );
+};
+
+export default PageLayout;
