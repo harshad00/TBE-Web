@@ -1,16 +1,20 @@
 import { AppProps } from 'next/app';
-
+import Script from 'next/script';
+import { PageLayout } from '@/components';
 import '@/styles/globals.css';
-// !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
+import { googleAnalyticsScript, gtag } from '@/constant';
 
-/**
- * !STARTERCONF info
- * ? `Layout` component is called in every page using `np` snippets. If you have consistent layout across all page, you can add it here too
- */
+const TheBoringEducation = ({ Component, pageProps }: AppProps) => {
+  return (
+    <>
+      <Script async src={gtag}></Script>
+      <Script id='google-analytics'>{googleAnalyticsScript}</Script>
+      <PageLayout>
+        <Component {...pageProps} />
+      </PageLayout>
+    </>
+  );
+};
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
-
-export default MyApp;
+export default TheBoringEducation;
