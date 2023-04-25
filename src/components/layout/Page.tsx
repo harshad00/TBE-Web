@@ -1,4 +1,4 @@
-import { Navbar } from '@/components';
+import { Footer, Navbar } from '@/components';
 import { PageLayoutProps } from '@/interfaces';
 
 const PageLayout = ({ children }: PageLayoutProps) => {
@@ -6,6 +6,7 @@ const PageLayout = ({ children }: PageLayoutProps) => {
     <main className='gradient-bg'>
       <Navbar />
       {children}
+      <Footer />
     </main>
   );
 };

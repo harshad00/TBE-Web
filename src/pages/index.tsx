@@ -24,7 +24,6 @@ const Home = () => {
       <WeGuideDifferently />
       <CanYouBeAProgrammer />
       <Testimonials />
-      <Footer />
     </React.Fragment>
   );
 };
