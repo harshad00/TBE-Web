@@ -1,12 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 /* Custom Classes */
 @layer components {
+
+  body {
+    @apply font-primary scroll-smooth;
+  }
+
   /* 1. Gradients */
   .gradient-1 {
-    @apply bg-gradient-to-b from-[#F6FFBE] to-[#F99156];
+    @apply bg-gradient-to-r from-[#F6FFBE] to-[#F99156];
   }
 
   .gradient-2 {
@@ -35,43 +41,43 @@
 
   /* 2. Fonts */
   .heading-1 {
-    @apply text-header-1 text-white font-black tracking-wide;
+    @apply text-header-1 text-white font-black;
   }
 
   .heading-2 {
-    @apply text-header-2 text-white font-bold tracking-wide;
+    @apply text-header-2 text-white font-bold;
   }
 
   .heading-3 {
-    @apply text-header-3 text-white font-bold tracking-wide;
+    @apply text-header-3 text-white font-bold;
   }
 
   .heading-4 {
-    @apply text-header-4 text-white font-bold tracking-wide;
+    @apply text-header-4 text-white font-semibold;
   }
 
   .heading-5 {
-    @apply text-header-5 text-white font-bold tracking-wide;
+    @apply text-header-5 text-white font-semibold;
   }
 
   .subtitle {
-    @apply text-subtitle text-white font-normal tracking-normal;
+    @apply text-subtitle text-white font-normal;
   }
 
   .paragraph {
-    @apply text-paragraph text-white font-normal tracking-normal;
+    @apply text-paragraph text-white font-normal;
   }
 
   .strong-text {
-    @apply text-strong-text text-white font-semibold tracking-wide;
+    @apply text-strong-text text-white font-semibold;
   }
 
   .pre-title {
-    @apply text-pre-title text-white font-medium tracking-wide;
+    @apply text-pre-title text-white font-medium;
   }
 
   .button-text {
-    @apply text-button-text text-white font-bold tracking-wide;
+    @apply text-button-text text-white font-bold;
   }
 
   /* Image */
@@ -84,10 +90,14 @@
 
   /* Link */
   .link {
-    @apply text-button-text text-white font-bold tracking-wide;
+    @apply text-button-text text-white font-bold;
   }
 
   .button {
-    @apply w-full text-button-text text-white font-bold tracking-wide rounded-1;
+    @apply w-full text-button-text text-white font-bold rounded-1;
+  }
+
+  .disabled {
+    pointer-events: none;
   }
 }

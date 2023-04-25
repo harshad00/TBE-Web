@@ -28,10 +28,19 @@ const nextConfig = {
           },
         },
       ],
-    });
+    })
 
-    return config;
+    return config
   },
-};
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/micro-camps/:microCamp',
+  //       destination: '/',
+  //       permanent: true,
+  //     },
+  //   ]
+  // },
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

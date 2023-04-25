@@ -1,7 +1,16 @@
+import { SectionProps } from '@/interfaces';
 import React from 'react';
 
-const Section = ({ children }: { children: React.ReactNode }) => {
-  return <section className='px-8 py-12'>{children}</section>;
+const Section = ({
+  children,
+  className = 'md:px-8 md:py-12 px-4 py-6',
+  id = '',
+}: SectionProps) => {
+  return (
+    <section className={className} id={id}>
+      {children}
+    </section>
+  );
 };
 
 export default Section;
