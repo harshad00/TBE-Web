@@ -29,7 +29,6 @@ const MicroCampLanding = () => {
       <MicrocampPricing />
       <WeToughtAt />
       <Testimonials />
-      <Footer />
     </React.Fragment>
   );
 };
