@@ -33,6 +33,12 @@ const programs = {
     description:
       'Learn to build In-Demand Tech & Design skills over a weekend, that stays for life!',
   },
+  isProgrammingForYou: {
+    label: 'Is Programming For You',
+    slug: '/is-programming-for-you',
+    description:
+      'Understand why everybody want to be in Tech and should learn Tech or not.',
+  },
 };
 
 // Skills

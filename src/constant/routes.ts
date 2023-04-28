@@ -6,6 +6,7 @@ const routes = {
   microCampLanding: function (microCampSlug: PageSlug | string) {
     return this.microCamps + microCampSlug;
   },
+
   contactUs: '/contact',
   internals: {
     landing: {
@@ -16,6 +17,7 @@ const routes = {
     },
   },
   404: '/404',
+  isProgrammingForYou: '/is-programming-for-you',
 };
 
 const generateSectionPath = ({

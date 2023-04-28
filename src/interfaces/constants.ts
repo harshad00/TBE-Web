@@ -26,6 +26,7 @@ export interface MicroCampFeatureCardContentProps
 export type PageSlug =
   | '/'
   | '/junior-in-web-engineering'
+  | '/is-programming-for-you'
   | '/be-frontend-master'
   | '/be-backend-master'
   | '/the-boring-workshops'

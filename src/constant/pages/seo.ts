@@ -38,6 +38,14 @@ const getSEOMeta = function (basePath: PageSlug) {
       url: routes.microCampLanding(programs.beBackendMaster.slug),
       ...commonMeta,
     },
+    [programs.isProgrammingForYou.slug]: {
+      title: `${programs.beBackendMaster.label} | The Boring Education`,
+      siteName: programs.beBackendMaster.label,
+      description: programs.beBackendMaster.description,
+      url: routes.microCampLanding(programs.beBackendMaster.slug),
+      ...commonMeta,
+    },
+
     '/404': {
       title: 'Lost in Boring Space | The Boring Education',
       siteName: 'Lost in Boring Space',

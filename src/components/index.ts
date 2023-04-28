@@ -40,10 +40,11 @@ import OpportunityCard from './containers/Cards/Items/OpportunityCard';
 import Opportunities from './containers/Cards/Opportunities';
 import WhatWeDoForYouCard from './containers/Cards/Items/WhatWeDoForYouCard';
 import WhatWeDoForYou from './containers/Cards/WhatWeDoForYou';
-import WeToughtAt from './containers/Cards/WeToughtAt';
-import WeToughtAtCard from './containers/Cards/Items/WeToughtAtCard';
+import WeTaughtAt from './containers/Cards/WeTaughtAt';
+import WeTaughtAtCard from './containers/Cards/Items/WeTaughtAtCard';
 import MicrocampRegisterForm from './containers/Forms/MicrocampRegisterForm';
 import ContactCard from './containers/Cards/ContactCard';
+import IsProgrammingForYouLandingHeader from './containers/Page/common/IsProgrammingForYouLandingHeader';
 import SEO from './layout/SEO';
 
 export {
@@ -89,9 +90,10 @@ export {
   Opportunities,
   WhatWeDoForYouCard,
   WhatWeDoForYou,
-  WeToughtAt,
-  WeToughtAtCard,
+  WeTaughtAt,
+  WeTaughtAtCard,
   MicrocampRegisterForm,
   SEO,
   ContactCard,
+  IsProgrammingForYouLandingHeader,
 };

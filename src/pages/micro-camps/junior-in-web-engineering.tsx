@@ -9,7 +9,7 @@ import {
   ContextBasedLearning,
   MicrocampPricing,
   WhatWeDoForYou,
-  WeToughtAt,
+  WeTaughtAt,
   SEO,
 } from '@/components';
 import { getSkillsBySlug } from '@/constant';
@@ -27,7 +27,7 @@ const MicroCampLanding = () => {
       <NotAnotherTechCourse />
       <ContextBasedLearning />
       <MicrocampPricing />
-      <WeToughtAt />
+      <WeTaughtAt />
       <Testimonials />
     </React.Fragment>
   );

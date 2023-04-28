@@ -1,8 +1,8 @@
-import { Section, Text, WeToughtAtCard } from '@/components';
+import { Section, Text, WeTaughtAtCard } from '@/components';
 import { WE_TAUGHT } from '@/constant';
 
 // TODO: refactor
-const WeToughtAt = () => {
+const WeTaughtAt = () => {
   return (
     <Section>
       <div className='flex w-full flex-col items-center justify-center'>
@@ -14,7 +14,7 @@ const WeToughtAt = () => {
         <div className='flex flex-wrap items-center justify-between gap-2 md:gap-4'>
           {WE_TAUGHT.map((item) => {
             const { id } = item;
-            return <WeToughtAtCard key={id} {...item} />;
+            return <WeTaughtAtCard key={id} {...item} />;
           })}
         </div>
       </div>
@@ -22,4 +22,4 @@ const WeToughtAt = () => {
   );
 };
 
-export default WeToughtAt;
+export default WeTaughtAt;
