@@ -2,7 +2,7 @@ import { Section, Text } from '@/components';
 import { TALK_ABOUT_OPPORTUNITIES } from '@/constant';
 
 const TalkAboutOpportunities = () => {
-  retunr(
+  return (
     <Section>
       <div className='flex w-full flex-col items-center justify-center px-10  '>
         <div className='flex flex-col items-center justify-center'>

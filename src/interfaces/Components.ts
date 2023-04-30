@@ -220,3 +220,8 @@ export interface WebinarAboutInstructorProps {
   position: string;
   linkedInURL?: string;
 }
+
+export interface WeTaughtAtCardProps {
+  image: string;
+  imageAltText: string;
+}
