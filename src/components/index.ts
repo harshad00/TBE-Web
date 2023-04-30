@@ -28,11 +28,11 @@ import Testimonials from '@/components/containers/Cards/Testimonials';
 import Footer from '@/components/layout/Footer';
 import FooterLink from '@/components/common/typography/FooterLink';
 import FooterLinksContainer from '@/components/containers/Page/common/FooterLinksContainer';
-import MicroCampBGGradientContainer from '@/components/containers/Page/common/MicroCampBGGradientContainer';
-import MicroCampLandingHeader from '@/components/containers/Page/common/MicroCampLandingHeader';
+import MicroCampBGGradientContainer from '@/components/containers/Page/Microcamp/MicroCampBGGradientContainer';
+import MicroCampLandingHeader from '@/components/containers/Page/Microcamp/MicroCampLandingHeader';
 import MicroCampFeatureCard from '@/components/containers/Cards/Items/MicroCampFeatureCard';
 import GridContainer from '@/components/containers/Page/common/GridContainer';
-import InThisCohortContainer from '@/components/containers/Page/common/InThisCohortContainer';
+import InThisCohortContainer from '@/components/containers/Page/Microcamp/InThisCohortContainer';
 import ContextBasedLearning from '@/components/containers/Page/common/ContextBasedLearning';
 import MicrocampPricing from './containers/Cards/Items/MicrocampPricing';
 import PricingFeatureCard from './containers/Cards/Items/PricingFeatureCard';
@@ -44,7 +44,7 @@ import WeTaughtAt from './containers/Cards/WeTaughtAt';
 import WeTaughtAtCard from './containers/Cards/Items/WeTaughtAtCard';
 import MicrocampRegisterForm from './containers/Forms/MicrocampRegisterForm';
 import ContactCard from './containers/Cards/ContactCard';
-import IsProgrammingForYouLandingHeader from './containers/Page/common/IsProgrammingForYouLandingHeader';
+import WebinarHeader from './containers/Page/Webinar/WebinarHeader';
 import SEO from './layout/SEO';
 
 export {
@@ -95,5 +95,5 @@ export {
   MicrocampRegisterForm,
   SEO,
   ContactCard,
-  IsProgrammingForYouLandingHeader,
+  WebinarHeader,
 };

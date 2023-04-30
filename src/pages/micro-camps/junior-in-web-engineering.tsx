@@ -4,7 +4,6 @@ import {
   MicroCampLandingHeader,
   InThisCohortContainer,
   Testimonials,
-  Footer,
   NotAnotherTechCourse,
   ContextBasedLearning,
   MicrocampPricing,
