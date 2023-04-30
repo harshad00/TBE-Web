@@ -1,5 +1,5 @@
 import { FlexContainer, Image, LinkButton, Section, Text } from '@/components';
-import { LINKS, routes } from '@/constant';
+import { routes } from '@/constant';
 
 const AboutTheBoringEducation = () => {
   return (

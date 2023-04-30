@@ -1,1 +1,6 @@
-{"functions":[{"function":"next-dev","name":"netlify dev handler","path":"/*"}],"version":1}
+{
+  "functions": [
+    { "function": "next-dev", "name": "netlify dev handler", "path": "/*" }
+  ],
+  "version": 1
+}

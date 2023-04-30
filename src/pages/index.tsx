@@ -6,7 +6,6 @@ import {
   WeGuideDifferently,
   CanYouBeAProgrammer,
   Testimonials,
-  Footer,
   SEO,
 } from '@/components';
 import { getSkillsBySlug } from '@/constant';

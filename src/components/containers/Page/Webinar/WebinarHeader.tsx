@@ -7,11 +7,8 @@ import {
   CountdownTimerContainer,
   WebinarRegisterContainer,
   IconPill,
-  Link,
-  ImageLink,
   WebinarInstructor,
 } from '@/components';
-import { ImageContainerProps, LinkProps } from '@/interfaces';
 
 const WebinarHeader = () => {
   return (
