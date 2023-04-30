@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const ImageContainer = ({
   src,
-  alt,
+  alt = '',
   className,
   loading = 'lazy',
   fullWidth = true,

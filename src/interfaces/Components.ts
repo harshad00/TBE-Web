@@ -211,3 +211,12 @@ export interface IconPillProps {
   backgroundColor?: string;
   labelColor?: string;
 }
+
+export interface WebinarAboutInstructorProps {
+  containerClasses?: string;
+  imagePath: string;
+  imageAltText: string;
+  name: string;
+  position: string;
+  linkedInURL?: string;
+}

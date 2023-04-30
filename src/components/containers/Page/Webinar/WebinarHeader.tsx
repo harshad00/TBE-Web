@@ -7,7 +7,11 @@ import {
   CountdownTimerContainer,
   WebinarRegisterContainer,
   IconPill,
+  Link,
+  ImageLink,
+  WebinarInstructor,
 } from '@/components';
+import { ImageContainerProps, LinkProps } from '@/interfaces';
 
 const WebinarHeader = () => {
   return (
@@ -40,25 +44,12 @@ const WebinarHeader = () => {
                   learn Tech or not.
                 </Text>
               </FlexContainer>
-              <FlexContainer className='mt-6 gap-2'>
-                <Image
-                  src='/images/sachin_shukla.png'
-                  alt='Co-founder Sachin Shukla'
-                  className='w-20'
-                />
-                <FlexContainer
-                  direction='col'
-                  itemCenter={false}
-                  className='items-start'
-                >
-                  <Text level='h5' className='heading-5 font-bold text-white'>
-                    Sachin Kr. Shukla
-                  </Text>
-                  <Text level='p' className='paragraph'>
-                    Co-founder at The Boring Education
-                  </Text>
-                </FlexContainer>
-              </FlexContainer>
+              <WebinarInstructor
+                imagePath='/images/sachin_shukla.png'
+                imageAltText='Co-founder Sachin Shukla'
+                name='Sachin Kr. Shukla'
+                position='Co-founder The Boring Education'
+              />
               <FlexContainer className='mt-6 gap-4'>
                 <IconPill
                   iconPath='/svg/calendar.svg'

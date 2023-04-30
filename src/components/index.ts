@@ -49,10 +49,14 @@ import SEO from './layout/SEO';
 import Pill from './common/Pill';
 import IconPill from './common/Pill/IconPill';
 import TimerItem from './common/Timer';
+import ImageLink from './common/Images/ImageLink';
 import WebinarRegisterContainer from './containers/Page/Webinar/WebinarRegisterContainer';
 import CountdownTimerContainer from './containers/Page/Webinar/CountdownTimerContainer';
 import AboutWebinarContainer from './containers/Page/Webinar/AboutWebinarContainer';
 import WebinarDescription from './containers/Page/Webinar/WebinarDescription';
+import AboutTheBoringEducation from './containers/Page/Webinar/AboutTheBoringEducation';
+import WebinarInstructor from './containers/Page/Webinar/WebinarInstructor';
+import AboutWebinarInstructorContainer from './containers/Page/Webinar/AboutWebinarInstructorContainer';
 
 export {
   Navbar,
@@ -110,4 +114,8 @@ export {
   AboutWebinarContainer,
   IconPill,
   WebinarDescription,
+  AboutTheBoringEducation,
+  ImageLink,
+  WebinarInstructor,
+  AboutWebinarInstructorContainer,
 };
