@@ -202,3 +202,12 @@ export interface CountdownTimerContainerProps {
 export interface TimerItemProps {
   timer: string;
 }
+
+export interface IconPillProps {
+  iconPath: string;
+  iconAltText: string;
+  label: string;
+  className?: string;
+  backgroundColor?: string;
+  labelColor?: string;
+}

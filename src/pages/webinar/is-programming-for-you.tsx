@@ -6,6 +6,8 @@ import {
   Text,
   LinkButton,
   Image,
+  WebinarRegisterContainer,
+  AboutWebinarContainer,
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { LINKS } from '@/constant';
@@ -16,85 +18,9 @@ const IsProgrammingForYouLanding = () => {
     <React.Fragment>
       <SEO slug={slug} />
       <WebinarHeader />
-      <FlexContainer>
-        <FlexContainer
-          className='gradient-4 w-96 space-y-2 rounded-xl p-4'
-          direction='col'
-          itemCenter={true}
-          justifyCenter={true}
-        >
-          <Text level='p' className='paragraph font-bold text-contentLight'>
-            Register Now
-          </Text>
-          <LinkButton
-            href={LINKS.juniorInWebEngineeringRegistrationLink}
-            target='BLANK'
-            buttonProps={{ variant: 'PRIMARY', text: 'Join Webinar' }}
-            className='w-full md:w-auto'
-          />
-          <Text level='p' className='paragraph font-bold text-contentLight'>
-            25 Slots only, Few seats left.
-          </Text>
-        </FlexContainer>
-      </FlexContainer>
+      <AboutWebinarContainer />
 
-      <FlexContainer className='mt-5' direction='col'>
-        <FlexContainer direction='col'>
-          <Text level='h4' className='heading-4'>
-            About Webinar
-          </Text>
-          <FlexContainer
-            justifyCenter={false}
-            className=' w-68 justify-between py-2 '
-          >
-            <FlexContainer className='w-full  px-1 '>
-              <Image
-                src='/svg/calendar_grey.svg'
-                className='w-4  '
-                alt='calendar'
-              />
-              <Text level='p' className='paragraph px-2 text-greyDark'>
-                29Apr,Saturday
-              </Text>
-            </FlexContainer>
-            <FlexContainer className='w-full px-1 '>
-              <Image src='/svg/clock_grey.svg' className='w-4' alt='clock' />
-              <Text level='p' className='paragraph px-2 text-greyDark'>
-                11 AM
-              </Text>
-            </FlexContainer>
-          </FlexContainer>
-        </FlexContainer>
-        <FlexContainer
-          className='w-96  space-y-3 pt-4'
-          direction='col'
-          itemCenter={false}
-        >
-          <Text level='p' className='paragraph'>
-            Programming is becoming everyone’s need these days. You want to
-            build a software, You need programming. You want to get a job, you
-            need programming.
-          </Text>
-          <Text level='p' className='paragraph'>
-            First thing as a learner you do, is look for an online programs.
-            There are so many programs available in the market.
-          </Text>
-          <Text level='p' className='paragraph'>
-            With lot of options in market, You will be confused to choose an
-            option.. and with that you’ll choose an expensive program that’ll
-            cost you lakhs.
-          </Text>
-          <Text level='p' className='paragraph'>
-            Everybody has a spending capacity and with a “Job in 6 Months”
-            scheme, you’ll be prompted to buy a program.
-          </Text>
-          <Text level='p' className='paragraph'>
-            Should you buy or should you not? We’ll discuss it in our programs.
-          </Text>
-        </FlexContainer>
-      </FlexContainer>
-
-      <FlexContainer className='mt-5' direction='col'>
+      <FlexContainer direction='col'>
         <FlexContainer direction='col'>
           <Text level='h4' className='heading-4'>
             What will you learn
@@ -118,7 +44,7 @@ const IsProgrammingForYouLanding = () => {
         </FlexContainer>
       </FlexContainer>
 
-      <FlexContainer className='mt-5' direction='col'>
+      <FlexContainer direction='col'>
         <FlexContainer direction='col' className='py-2'>
           <Text level='h4' className='heading-4'>
             Meet your instructor

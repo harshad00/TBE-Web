@@ -47,8 +47,11 @@ import ContactCard from './containers/Cards/ContactCard';
 import WebinarHeader from './containers/Page/Webinar/WebinarHeader';
 import SEO from './layout/SEO';
 import Pill from './common/Pill';
-import CountdownTimerContainer from './containers/Page/Webinar/CountdownTimerContainer';
+import IconPill from './common/Pill/IconPill';
 import TimerItem from './common/Timer';
+import WebinarRegisterContainer from './containers/Page/Webinar/WebinarRegisterContainer';
+import CountdownTimerContainer from './containers/Page/Webinar/CountdownTimerContainer';
+import AboutWebinarContainer from './containers/Page/Webinar/AboutWebinarContainer';
 
 export {
   Navbar,
@@ -102,4 +105,7 @@ export {
   Pill,
   CountdownTimerContainer,
   TimerItem,
+  WebinarRegisterContainer,
+  AboutWebinarContainer,
+  IconPill,
 };

@@ -5,6 +5,8 @@ import {
   Image,
   Pill,
   CountdownTimerContainer,
+  WebinarRegisterContainer,
+  IconPill,
 } from '@/components';
 
 const WebinarHeader = () => {
@@ -58,28 +60,18 @@ const WebinarHeader = () => {
                 </FlexContainer>
               </FlexContainer>
               <FlexContainer className='mt-6 gap-4'>
-                <FlexContainer className='gap-2'>
-                  <Image
-                    src='/svg/calendar.svg'
-                    className='w-4'
-                    fullWidth={false}
-                    alt='calendar'
-                  />
-                  <Text level='p' className='strong-text'>
-                    29 Apr, Saturday
-                  </Text>
-                </FlexContainer>
-                <FlexContainer className='gap-2'>
-                  <Image
-                    src='/svg/clock.svg'
-                    className='w-4'
-                    fullWidth={false}
-                    alt='clock'
-                  />
-                  <Text level='p' className='strong-text'>
-                    11 AM
-                  </Text>
-                </FlexContainer>
+                <IconPill
+                  iconPath='/svg/calendar.svg'
+                  iconAltText='webinar-calendar'
+                  label='29 Apr, Saturday'
+                  backgroundColor=''
+                />
+                <IconPill
+                  iconPath='/svg/clock.svg'
+                  iconAltText='webinar-clock'
+                  label='5 PM'
+                  backgroundColor=''
+                />
               </FlexContainer>
               <CountdownTimerContainer
                 labelText='Starts in'
@@ -89,6 +81,7 @@ const WebinarHeader = () => {
           </div>
         </FlexContainer>
       </FlexContainer>
+      <WebinarRegisterContainer />
     </Section>
   );
 };
