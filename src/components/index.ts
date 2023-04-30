@@ -47,6 +47,8 @@ import ContactCard from './containers/Cards/ContactCard';
 import WebinarHeader from './containers/Page/Webinar/WebinarHeader';
 import SEO from './layout/SEO';
 import Pill from './common/Pill';
+import CountdownTimerContainer from './containers/Page/Webinar/CountdownTimerContainer';
+import TimerItem from './common/Timer';
 
 export {
   Navbar,
@@ -98,4 +100,6 @@ export {
   ContactCard,
   WebinarHeader,
   Pill,
+  CountdownTimerContainer,
+  TimerItem,
 };

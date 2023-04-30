@@ -1,4 +1,11 @@
-import { FlexContainer, Section, Text, Image, Pill } from '@/components';
+import {
+  FlexContainer,
+  Section,
+  Text,
+  Image,
+  Pill,
+  CountdownTimerContainer,
+} from '@/components';
 
 const WebinarHeader = () => {
   return (
@@ -13,7 +20,7 @@ const WebinarHeader = () => {
             <Image
               className='absolute object-cover'
               src='/images/coding_bg.png'
-              alt=''
+              alt='is-programming-for-you'
             />
             <FlexContainer direction='col' className='p-8'>
               <Pill
@@ -21,7 +28,7 @@ const WebinarHeader = () => {
                 variant='SECONDARY'
                 textStyleClasses='text-contentLight'
               />
-              <FlexContainer direction='col' className='mt-5 w-full gap-1'>
+              <FlexContainer direction='col' className='mt-6 w-full gap-1'>
                 <Text level='h3' textCenter={true} className='heading-3'>
                   Is Programming for you?
                 </Text>
@@ -31,7 +38,7 @@ const WebinarHeader = () => {
                   learn Tech or not.
                 </Text>
               </FlexContainer>
-              <FlexContainer className='mt-5 gap-2'>
+              <FlexContainer className='mt-6 gap-2'>
                 <Image
                   src='/images/sachin_shukla.png'
                   alt='Co-founder Sachin Shukla'
@@ -50,7 +57,7 @@ const WebinarHeader = () => {
                   </Text>
                 </FlexContainer>
               </FlexContainer>
-              <FlexContainer className='mt-5 gap-4'>
+              <FlexContainer className='mt-6 gap-4'>
                 <FlexContainer className='gap-2'>
                   <Image
                     src='/svg/calendar.svg'
@@ -74,6 +81,10 @@ const WebinarHeader = () => {
                   </Text>
                 </FlexContainer>
               </FlexContainer>
+              <CountdownTimerContainer
+                labelText='Starts in'
+                timerList={['03 d', '02 h', '01 m']}
+              />
             </FlexContainer>
           </div>
         </FlexContainer>

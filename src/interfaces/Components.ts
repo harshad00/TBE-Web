@@ -193,3 +193,12 @@ export interface PillProps {
   variant: 'PRIMARY' | 'SECONDARY';
   textStyleClasses?: string;
 }
+
+export interface CountdownTimerContainerProps {
+  labelText: string;
+  timerList: string[];
+}
+
+export interface TimerItemProps {
+  timer: string;
+}
