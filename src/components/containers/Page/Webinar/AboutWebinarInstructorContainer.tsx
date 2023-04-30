@@ -15,7 +15,7 @@ const aboutInstructor = [
 const AboutWebinarInstructorContainer = () => {
   return (
     <Section className='py-6 md:py-8'>
-      <FlexContainer direction='col' className='m-auto w-1/3 gap-5'>
+      <FlexContainer direction='col' className='m-auto w-3/4 gap-5 lg:w-1/3'>
         <Text level='h4' className='heading-4'>
           Meet your instructor
         </Text>

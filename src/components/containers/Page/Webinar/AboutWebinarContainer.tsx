@@ -21,7 +21,7 @@ const webinarAudiences = [
 
 const AboutWebinarContainer = () => {
   return (
-    <FlexContainer direction='col'>
+    <FlexContainer direction='col' className='m-auto w-3/4 lg:w-1/3'>
       <FlexContainer direction='col'>
         <Text level='h4' className='heading-4'>
           About Webinar
@@ -32,16 +32,18 @@ const AboutWebinarContainer = () => {
             iconAltText='webinar-calendar'
             label='29 Apr, Saturday'
             labelColor='text-greyDark'
+            className='w-full md:w-fit'
           />
           <IconPill
             iconPath='/svg/clock_grey.svg'
             iconAltText='webinar-clock'
             label='5 PM'
             labelColor='text-greyDark'
+            className='w-full md:w-fit'
           />
         </FlexContainer>
       </FlexContainer>
-      <FlexContainer direction='col' className='m-auto w-1/3 gap-8 pt-4'>
+      <FlexContainer direction='col' className='m-auto  gap-8 pt-4 '>
         <WebinarDescription
           flexProps={{ direction: 'col' }}
           paragraphs={webinarDescriptions}

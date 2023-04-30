@@ -20,7 +20,7 @@ const ImageContainer = ({
         alt={alt}
         fill={true}
         loading={loading}
-        className={className + ' image'}
+        className={`${className} image`}
       />
     </div>
   );

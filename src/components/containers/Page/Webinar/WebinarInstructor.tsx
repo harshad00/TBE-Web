@@ -20,7 +20,7 @@ const WebinarInstructor = ({
       <FlexContainer
         direction='col'
         itemCenter={false}
-        className='items-start gap-1'
+        className='items-center gap-1 sm:items-start'
       >
         <FlexContainer className='gap-1'>
           <Text level='h5' className='heading-5'>
@@ -38,7 +38,7 @@ const WebinarInstructor = ({
             />
           )}
         </FlexContainer>
-        <Text level='p' className='paragraph'>
+        <Text level='p' className='paragraph' textCenter={true}>
           {position}
         </Text>
       </FlexContainer>

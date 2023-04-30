@@ -17,7 +17,7 @@ const WebinarHeader = () => {
         <FlexContainer
           itemCenter={true}
           justifyCenter={true}
-          className='m-auto w-3/4'
+          className='m-auto w-full lg:w-3/4'
         >
           <div className='relative w-full overflow-hidden rounded-2'>
             <Image
@@ -25,7 +25,7 @@ const WebinarHeader = () => {
               src='/images/coding_bg.png'
               alt='is-programming-for-you'
             />
-            <FlexContainer direction='col' className='p-8'>
+            <FlexContainer direction='col' className='p-4 md:p-8'>
               <Pill
                 text='Free Webinar'
                 variant='SECONDARY'
@@ -47,7 +47,10 @@ const WebinarHeader = () => {
                 name='Sachin Kr. Shukla'
                 position='Co-founder The Boring Education'
               />
-              <FlexContainer className='mt-6 gap-4'>
+              <FlexContainer
+                className='mt-4 gap-4 md:mt-6'
+                justifyCenter={false}
+              >
                 <IconPill
                   iconPath='/svg/calendar.svg'
                   iconAltText='webinar-calendar'

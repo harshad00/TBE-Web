@@ -5,10 +5,14 @@ const AboutTheBoringEducation = () => {
   return (
     <Section>
       <FlexContainer
-        className='gradient-6 m-auto w-1/2 gap-4 rounded-2 px-4 py-4'
+        className='gradient-6 m-auto w-full gap-4 rounded-2 px-4 py-4 lg:w-1/3'
         direction='col'
       >
-        <Text level='h5' className='heading-5 text-contentLight'>
+        <Text
+          level='h5'
+          className='heading-5 text-contentLight'
+          textCenter={true}
+        >
           About The Boring Education
         </Text>
         <FlexContainer direction='col' itemCenter={false} className='gap-2'>
