@@ -187,3 +187,9 @@ export interface SEOProps {
 export interface SkillsContainerProps {
   skills: SkillsProps[];
 }
+
+export interface PillProps {
+  text: string;
+  variant: 'PRIMARY' | 'SECONDARY';
+  textStyleClasses?: string;
+}

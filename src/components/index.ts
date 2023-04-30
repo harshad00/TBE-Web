@@ -1,11 +1,11 @@
 import Navbar from '@/components/layout/Navbar';
-import LinkText from '@/components/common/typography/Link';
-import Text from '@/components/common/typography/Text';
-import ScreenReader from '@/components/common/typography/ScreenReader';
-import ImageContainer from '@/components/common/images/Image';
-import Logo from '@/components/common/images/Logo';
-import Button from '@/components/common/buttons/Button';
-import LinkButton from '@/components/common/buttons/LinkButton';
+import LinkText from '@/components/common/Typography/Link';
+import Text from '@/components/common/Typography/Text';
+import ScreenReader from '@/components/common/Typography/ScreenReader';
+import ImageContainer from '@/components/common/Images/Image';
+import Logo from '@/components/common/Images/Logo';
+import Button from '@/components/common/Buttons/Button';
+import LinkButton from '@/components/common/Buttons/LinkButton';
 import LandingPageHero from '@/components/containers/Page/Landing/Hero';
 import Section from '@/components/layout/Section';
 import OurPrograms from '@/components/containers/Cards/OurPrograms';
@@ -26,7 +26,7 @@ import CanYouBeAProgrammer from '@/components/containers/Page/Landing/CanYouBeAP
 import TestimonialCard from '@/components/containers/Cards/Items/TestimonialCard';
 import Testimonials from '@/components/containers/Cards/Testimonials';
 import Footer from '@/components/layout/Footer';
-import FooterLink from '@/components/common/typography/FooterLink';
+import FooterLink from '@/components/common/Typography/FooterLink';
 import FooterLinksContainer from '@/components/containers/Page/common/FooterLinksContainer';
 import MicroCampBGGradientContainer from '@/components/containers/Page/Microcamp/MicroCampBGGradientContainer';
 import MicroCampLandingHeader from '@/components/containers/Page/Microcamp/MicroCampLandingHeader';
@@ -46,6 +46,7 @@ import MicrocampRegisterForm from './containers/Forms/MicrocampRegisterForm';
 import ContactCard from './containers/Cards/ContactCard';
 import WebinarHeader from './containers/Page/Webinar/WebinarHeader';
 import SEO from './layout/SEO';
+import Pill from './common/Pill';
 
 export {
   Navbar,
@@ -96,4 +97,5 @@ export {
   SEO,
   ContactCard,
   WebinarHeader,
+  Pill,
 };
