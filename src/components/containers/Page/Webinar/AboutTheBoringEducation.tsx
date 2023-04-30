@@ -1,38 +1,42 @@
-import { FlexContainer, Image, LinkButton, Text } from '@/components';
-import { LINKS } from '@/constant';
+import { FlexContainer, Image, LinkButton, Section, Text } from '@/components';
+import { LINKS, routes } from '@/constant';
 
 const AboutTheBoringEducation = () => {
   return (
-    <FlexContainer className='py-5'>
+    <Section>
       <FlexContainer
-        className='gradient-6 w-96 space-y-2 rounded-xl p-4'
+        className='gradient-6 m-auto w-1/2 gap-4 rounded-2 px-4 py-4'
         direction='col'
-        itemCenter={false}
-        justifyCenter={true}
       >
-        <Text level='p' className='paragraph px-2 font-bold text-contentLight'>
+        <Text level='h5' className='heading-5 text-contentLight'>
           About The Boring Education
         </Text>
-        <Image
-          src='/svg/tbe_logo.svg'
-          className=' w-5'
-          alt='Co-founder Sachin Shukla'
-        />
-        <Text
-          level='p'
-          className='paragraph text-justify font-bold text-contentLight'
-        >
-          We at TBE, building the most affordable Tech courses that doesn't cost
-          you lakhs in an environment like we taught ourselves.
-        </Text>
-        <LinkButton
-          href={LINKS.juniorInWebEngineeringRegistrationLink}
-          target='BLANK'
-          buttonProps={{ variant: 'PRIMARY', text: 'Explore cohorts' }}
-          className='w-full md:w-auto '
-        />
+        <FlexContainer direction='col' itemCenter={false} className='gap-2'>
+          <Image
+            src='/svg/tbe_logo.svg'
+            className='w-16'
+            fullWidth={false}
+            alt='Co-founder Sachin Shukla'
+          />
+          <FlexContainer
+            direction='col'
+            className='gap-3'
+            justifyCenter={false}
+            itemCenter={false}
+          >
+            <Text level='p' className='strong-text text-contentLight'>
+              We at TBE, building the most affordable Tech courses that doesn't
+              cost you lakhs in an environment like we taught ourselves.
+            </Text>
+            <LinkButton
+              href={routes.home}
+              buttonProps={{ variant: 'PRIMARY', text: 'Explore cohorts' }}
+              className='w-full md:w-auto '
+            />
+          </FlexContainer>
+        </FlexContainer>
       </FlexContainer>
-    </FlexContainer>
+    </Section>
   );
 };
 
