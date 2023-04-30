@@ -52,6 +52,7 @@ import TimerItem from './common/Timer';
 import WebinarRegisterContainer from './containers/Page/Webinar/WebinarRegisterContainer';
 import CountdownTimerContainer from './containers/Page/Webinar/CountdownTimerContainer';
 import AboutWebinarContainer from './containers/Page/Webinar/AboutWebinarContainer';
+import WebinarDescription from './containers/Page/Webinar/WebinarDescription';
 
 export {
   Navbar,
@@ -108,4 +109,5 @@ export {
   WebinarRegisterContainer,
   AboutWebinarContainer,
   IconPill,
+  WebinarDescription,
 };

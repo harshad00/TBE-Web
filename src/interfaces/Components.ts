@@ -103,7 +103,7 @@ export interface NotAnotherTechCourseCardProps {
 }
 
 export interface FlexContainerProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   itemCenter?: boolean;
   justifyCenter?: boolean;
   className?: string;

@@ -19,31 +19,6 @@ const IsProgrammingForYouLanding = () => {
       <SEO slug={slug} />
       <WebinarHeader />
       <AboutWebinarContainer />
-
-      <FlexContainer direction='col'>
-        <FlexContainer direction='col'>
-          <Text level='h4' className='heading-4'>
-            What will you learn
-          </Text>
-        </FlexContainer>
-        <FlexContainer
-          direction='col'
-          className='w-96  space-y-3 pt-4'
-          itemCenter={false}
-        >
-          <Text level='p' className='paragraph'>
-            1. You’ll learn with your background, will programming be helpful
-            for you?
-          </Text>
-          <Text level='p' className='paragraph'>
-            2. Decide if you should be okay buying expensive bootcamps
-          </Text>
-          <Text level='p' className='paragraph'>
-            3. Understand what it takes to break into Tech
-          </Text>
-        </FlexContainer>
-      </FlexContainer>
-
       <FlexContainer direction='col'>
         <FlexContainer direction='col' className='py-2'>
           <Text level='h4' className='heading-4'>
