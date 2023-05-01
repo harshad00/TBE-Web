@@ -9,10 +9,13 @@ import {
   IconPill,
   WebinarInstructor,
 } from '@/components';
+import { Webinar } from '@/Data'
 
 const WebinarHeader = () => {
+  console.log(Webinar)
   return (
     <Section>
+
       <FlexContainer direction='col'>
         <FlexContainer
           itemCenter={true}
