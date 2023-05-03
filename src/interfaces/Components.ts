@@ -49,6 +49,92 @@ export interface ButtonProps {
   active?: boolean;
 }
 
+export interface WebinarHeaderProps {
+  id: string;
+  mainHeading: string;
+  pillText: string;
+  image: string;
+  imageAltText: string;
+  content: string;
+  cardContent: WebinarHeaderCardProps;
+}
+
+export interface WebinarHeaderCardProps {
+  id: string;
+  image: string;
+  imageAltText: string;
+  name: string;
+  designation: string;
+  date: string;
+  dateIcon: string;
+  dateIconAltText: string;
+  time: string;
+  timeIcon: string;
+  timeIconAltText: string;
+}
+export interface WebinarHeaderCountDownProps {
+  id: string;
+  heading: string;
+  timerList: string;
+}
+
+export interface WebinarRegisterCardProps {
+  id: string;
+  heading: string;
+  ctaText: string;
+  infoText: string;
+}
+
+export interface WebinarAboutProps {
+  id: string;
+  heading: string;
+  schedule: WebinarAboutScheduleProps;
+  aboutText: WebinarAboutTextProps;
+  whatWillYouLearn: string;
+}
+
+export interface WebinarAboutScheduleProps {
+  id: string;
+  date: string;
+  dateIcon: string;
+  dateIconAltText: string;
+  time: string;
+  timeIcon: string;
+  timeIconAltText: string;
+}
+
+export interface WebinarAboutTextProps {
+  id: string;
+  content: string;
+}
+
+export interface WebinarWhatWillYouLearnProps {
+  id: string;
+  heading: string;
+  content: WebinarWhatWillYouLearnContentProps[];
+}
+
+export interface WebinarWhatWillYouLearnContentProps {
+  id: string;
+  paragraph: string;
+}
+
+export interface WebinarInstructorCardProps {
+  id: string;
+  heading: string;
+  image: string;
+  imageAltText: string;
+  name: string;
+  socialIcon: string;
+  designation: string;
+  instructorDetails: WebinarInstructorDetailsProps;
+}
+
+export interface WebinarInstructorDetailsProps {
+  id: string;
+  paragraph: string;
+}
+
 export interface ProgramCardProps {
   image: string;
   imageAltText: string;

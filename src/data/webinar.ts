@@ -4,11 +4,11 @@ const IMAGE_BASE_PATH = '/images';
 const SVG_BASE_PATH = '/svg';
 
 const webinar = {
-  Header: {
+  header: {
     id: v4(),
     image: `${IMAGE_BASE_PATH}/coding_bg.png`,
     imageAltText: `is programming for you`,
-    heading: `Free Webinar`,
+    pillText: `Free Webinar`,
     mainHeading: `Is Programming for you?`,
     content: `Understand why everybody wants to be in Tech and should you learn Tech or not.`,
     cardContent: {
@@ -27,16 +27,16 @@ const webinar = {
     countdown: {
       id: v4(),
       heading: `Starts In`,
-      date: ``,
+      timerList: ``,
     },
   },
-  Register: {
+  register: {
     id: v4(),
     heading: `Register Now`,
     ctaText: `Join Webinar`,
     infoText: `25 Slots only, Few seats left.`,
   },
-  AboutWebinar: {
+  aboutWebinar: {
     id: v4(),
     heading: `About Webinar`,
     schedule: {
@@ -70,32 +70,35 @@ const webinar = {
         p1: `Should you buy or should you not? We'll discuss it in our programs.`,
       },
     ],
-  },
-  whatWillYouLearn: {
-    id: v4(),
-    heading: `What will you learn`,
-    content: [
+    whatWillYouLearn: [
       {
         id: v4(),
-        p1: `1. You'll learn with your background, will programming be helpful for you?`,
-      },
-      {
-        id: v4(),
-        p1: `2. Decide if you should be okay buying expensive bootcamps`,
-      },
-      {
-        id: v4(),
-        p1: `3. Understand what it takes to break into Tech`,
+        heading: `What will you learn`,
+        content: [
+          {
+            id: v4(),
+            p1: `1. You'll learn with your background, will programming be helpful for you?`,
+          },
+          {
+            id: v4(),
+            p1: `2. Decide if you should be okay buying expensive bootcamps`,
+          },
+          {
+            id: v4(),
+            p1: `3. Understand what it takes to break into Tech`,
+          },
+        ],
       },
     ],
   },
+
   instructorCard: {
     id: v4(),
     heading: `Meet your instructor`,
-    image: ``,
-    imageAltText: ``,
+    image: `${IMAGE_BASE_PATH}/sachin_shukla.png`,
+    imageAltText: `sachin shukla`,
     name: `Sachin Kr. Shukla`,
-    socialIcon: ``,
+    socialIcon: `Linkdin`,
     designation: `Co-Founder, The Boring Education`,
     instructorDetail: [
       {

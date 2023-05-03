@@ -9,13 +9,18 @@ import {
   IconPill,
   WebinarInstructor,
 } from '@/components';
+import { WebinarHeaderProps } from '@/interfaces';
 import { webinar } from '@/data';
 
-const WebinarHeader = () => {
-  console.log(webinar);
+const WebinarHeader = ({ id, mainHeading, pillText,
+  image,
+  imageAltText,
+  content,
+  cardContent, }: WebinarHeaderProps) => {
+
   return (
     <Section>
-      <FlexContainer direction='col'>
+      <FlexContainer key={id} direction='col'>
         <FlexContainer
           itemCenter={true}
           justifyCenter={true}
@@ -24,45 +29,44 @@ const WebinarHeader = () => {
           <div className='relative w-full overflow-hidden rounded-2'>
             <Image
               className='absolute object-cover'
-              src='/images/coding_bg.png'
-              alt='is-programming-for-you'
+              src={image}
+              alt={imageAltText}
             />
             <FlexContainer direction='col' className='p-4 md:p-8'>
               <Pill
-                text='Free Webinar'
+                text={pillText}
                 variant='SECONDARY'
                 textStyleClasses='text-contentLight'
               />
               <FlexContainer direction='col' className='mt-6 w-full gap-1'>
                 <Text level='h3' textCenter={true} className='heading-3'>
-                  Is Programming for you?
+                  {mainHeading}
                 </Text>
 
                 <Text level='p' className='paragraph' textCenter={true}>
-                  Understand why everybody wants to be in Tech and should you
-                  learn Tech or not.
+                  {content}
                 </Text>
               </FlexContainer>
               <WebinarInstructor
-                imagePath='/images/sachin_shukla.png'
-                imageAltText='Co-founder Sachin Shukla'
-                name='Sachin Kr. Shukla'
-                position='Co-founder The Boring Education'
+                imagePath={cardContent.image}
+                imageAltText={cardContent.imageAltText}
+                name={cardContent.name}
+                position={cardContent.designation}
               />
               <FlexContainer
                 className='mt-4 gap-4 md:mt-6'
                 justifyCenter={false}
               >
                 <IconPill
-                  iconPath='/svg/calendar.svg'
-                  iconAltText='webinar-calendar'
-                  label='29 Apr, Saturday'
+                  iconPath={cardContent.dateIcon}
+                  iconAltText={cardContent.dateIconAltText}
+                  label={cardContent.date}
                   backgroundColor=''
                 />
                 <IconPill
-                  iconPath='/svg/clock.svg'
-                  iconAltText='webinar-clock'
-                  label='5 PM'
+                  iconPath={cardContent.timeIcon}
+                  iconAltText={cardContent.timeIconAltText}
+                  label={cardContent.time}
                   backgroundColor=''
                 />
               </FlexContainer>
@@ -74,7 +78,7 @@ const WebinarHeader = () => {
           </div>
         </FlexContainer>
       </FlexContainer>
-      <WebinarRegisterContainer />
+      <WebinarRegisterContainer id={webinar.register.id} heading={webinar.register.heading} ctaText={webinar.register.ctaText} infoText={webinar.register.infoText} />
     </Section>
   );
 };
