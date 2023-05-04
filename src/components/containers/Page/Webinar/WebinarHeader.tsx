@@ -10,6 +10,7 @@ import {
   WebinarInstructor,
 } from '@/components';
 import { WebinarHeaderProps } from '@/interfaces';
+import { webinar } from '@/data'
 
 const WebinarHeader = ({
   mainHeading,
@@ -19,6 +20,8 @@ const WebinarHeader = ({
   content,
   cardContent,
 }: WebinarHeaderProps) => {
+  const startDate = new Date();
+  const endDate = new Date(webinar.meta.date);
   return (
     <Section>
       <FlexContainer direction='col'>
@@ -71,7 +74,7 @@ const WebinarHeader = ({
                   backgroundColor=''
                 />
               </FlexContainer>
-              <CountdownTimerContainer countdownTime={['12', '07', '2023']} />
+              <CountdownTimerContainer startDate={startDate} endDate={endDate} />
             </FlexContainer>
           </div>
         </FlexContainer>

@@ -280,7 +280,8 @@ export interface PillProps {
 }
 
 export interface CountdownTimerContainerProps {
-  countdownTime: string[];
+  startDate: Date;
+  endDate: Date;
 }
 
 export interface TimerItemProps {

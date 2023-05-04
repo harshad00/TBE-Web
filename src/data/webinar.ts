@@ -14,7 +14,7 @@ const webinar: WebinarDataProps = {
   meta: {
     title: 'Is Programming for you?',
     description: `Understand why everybody wants to be in Tech and should you learn Tech or not.`,
-    date: `29 Apr, Saturday`,
+    date: `2023-05-10`,
     time: `5 PM`,
   },
   header: {
@@ -28,7 +28,7 @@ const webinar: WebinarDataProps = {
       imageAltText: `sachin shukla`,
       name: `Sachin Kr. Shukla`,
       designation: `Co-Founder, The Boring Education`,
-      date: `29 Apr, Saturday`,
+      date: `2023-05-10`,
       dateIcon: `${SVG_BASE_PATH}/calendar.svg`,
       dateIconAltText: `Calendar`,
       time: `5 PM`,
@@ -41,7 +41,7 @@ const webinar: WebinarDataProps = {
     heading: `About Webinar`,
     schedule: {
       id: v4(),
-      date: `29 Apr, Saturday`,
+      date: `2023-05-10`,
       dateIcon: `${SVG_BASE_PATH}/calendar.svg`,
       dateIconAltText: `Calendar`,
       time: `5 PM`,
