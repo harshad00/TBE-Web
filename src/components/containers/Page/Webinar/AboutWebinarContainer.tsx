@@ -5,8 +5,7 @@ import {
   WebinarDescription,
 } from '@/components';
 
-
-import { WebinarAboutProps } from '@/interfaces'
+import { WebinarAboutProps } from '@/interfaces';
 
 const webinarDescriptions = [
   "Programming is becoming everyone's need these days. You want to build a software, You need programming. You want to get a job, you need programming.",
@@ -22,12 +21,14 @@ const webinarAudiences = [
   '3. Understand what it takes to break into Tech',
 ];
 
-const AboutWebinarContainer = ({ id, heading,
+const AboutWebinarContainer = ({
+  heading,
   schedule,
   aboutText,
-  whatWillYouLearn, }: WebinarAboutProps) => {
+  whatWillYouLearn,
+}: WebinarAboutProps) => {
   return (
-    <FlexContainer key={id} direction='col' className='m-auto w-3/4 lg:w-1/3'>
+    <FlexContainer direction='col' className='m-auto w-3/4 lg:w-1/3'>
       <FlexContainer direction='col'>
         <Text level='h4' className='heading-4'>
           {heading}

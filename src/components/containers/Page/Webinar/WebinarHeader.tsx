@@ -10,17 +10,18 @@ import {
   WebinarInstructor,
 } from '@/components';
 import { WebinarHeaderProps } from '@/interfaces';
-import { webinar } from '@/data';
 
-const WebinarHeader = ({ id, mainHeading, pillText,
+const WebinarHeader = ({
+  mainHeading,
+  pillText,
   image,
   imageAltText,
   content,
-  cardContent, }: WebinarHeaderProps) => {
-
+  cardContent,
+}: WebinarHeaderProps) => {
   return (
     <Section>
-      <FlexContainer key={id} direction='col'>
+      <FlexContainer direction='col'>
         <FlexContainer
           itemCenter={true}
           justifyCenter={true}
@@ -70,15 +71,12 @@ const WebinarHeader = ({ id, mainHeading, pillText,
                   backgroundColor=''
                 />
               </FlexContainer>
-              <CountdownTimerContainer
-                labelText='Starts in'
-                timerList={['03 d', '02 h', '01 m']}
-              />
+              <CountdownTimerContainer countdownTime={['12', '07', '2023']} />
             </FlexContainer>
           </div>
         </FlexContainer>
       </FlexContainer>
-      <WebinarRegisterContainer id={webinar.register.id} heading={webinar.register.heading} ctaText={webinar.register.ctaText} infoText={webinar.register.infoText} />
+      <WebinarRegisterContainer />
     </Section>
   );
 };

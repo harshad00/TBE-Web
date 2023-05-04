@@ -1,10 +1,5 @@
 import { FlexContainer, Text } from '@/components';
-import { FlexContainerProps } from '@/interfaces';
-
-interface WebinarDescriptionProps {
-  paragraphs: string[];
-  flexProps: FlexContainerProps;
-}
+import { WebinarDescriptionProps } from '@/interfaces';
 
 const WebinarDescription = ({
   paragraphs,
