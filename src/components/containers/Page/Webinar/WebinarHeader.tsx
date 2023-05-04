@@ -10,7 +10,6 @@ import {
   WebinarInstructor,
 } from '@/components';
 import { WebinarHeaderProps } from '@/interfaces';
-import { webinar } from '@/data';
 
 const WebinarHeader = ({
   mainHeading,
@@ -79,12 +78,7 @@ const WebinarHeader = ({
           </div>
         </FlexContainer>
       </FlexContainer>
-      <WebinarRegisterContainer
-        id={webinar.register.id}
-        heading={webinar.register.heading}
-        ctaText={webinar.register.ctaText}
-        infoText={webinar.register.infoText}
-      />
+      <WebinarRegisterContainer />
     </Section>
   );
 };

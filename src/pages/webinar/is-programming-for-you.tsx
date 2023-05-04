@@ -5,6 +5,7 @@ import {
   AboutWebinarContainer,
   AboutTheBoringEducation,
   AboutWebinarInstructorContainer,
+  Testimonials,
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { webinar } from '@/data';
@@ -12,14 +13,15 @@ import { webinar } from '@/data';
 const IsProgrammingForYouLanding = () => {
   const slug: PageSlug = '/is-programming-for-you';
 
-  const { header, aboutWebinar } = webinar;
+  const { header, aboutWebinar, instructor } = webinar;
 
   return (
     <React.Fragment>
       <SEO slug={slug} />
       <WebinarHeader {...header} />
       <AboutWebinarContainer {...aboutWebinar} />
-      {/* <AboutWebinarInstructorContainer /> */}
+      <AboutWebinarInstructorContainer {...instructor} />
+      <Testimonials />
       <AboutTheBoringEducation />
     </React.Fragment>
   );

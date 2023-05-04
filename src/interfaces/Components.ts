@@ -78,18 +78,11 @@ export interface WebinarHeaderCountDownProps {
   timerList: string;
 }
 
-export interface WebinarRegisterCardProps {
-  id: string;
-  heading: string;
-  ctaText: string;
-  infoText: string;
-}
-
 export interface WebinarAboutProps {
   heading: string;
   schedule: WebinarAboutScheduleProps;
-  aboutText: WebinarAboutTextProps;
-  whatWillYouLearn: string;
+  aboutText: string[];
+  whatWillYouLearn: string[];
 }
 
 export interface WebinarAboutScheduleProps {
@@ -100,11 +93,6 @@ export interface WebinarAboutScheduleProps {
   time: string;
   timeIcon: string;
   timeIconAltText: string;
-}
-
-export interface WebinarAboutTextProps {
-  id: string;
-  content: string;
 }
 
 export interface WebinarWhatWillYouLearnProps {
@@ -119,19 +107,13 @@ export interface WebinarWhatWillYouLearnContentProps {
 }
 
 export interface WebinarInstructorCardProps {
-  id: string;
   heading: string;
   image: string;
   imageAltText: string;
   name: string;
-  socialIcon: string;
+  // socialIcon: string;
   designation: string;
-  instructorDetails: WebinarInstructorDetailsProps;
-}
-
-export interface WebinarInstructorDetailsProps {
-  id: string;
-  paragraph: string;
+  about: string[];
 }
 
 export interface ProgramCardProps {
@@ -193,6 +175,11 @@ export interface FlexContainerProps {
   justifyCenter?: boolean;
   className?: string;
   direction?: 'row' | 'col';
+}
+
+export interface WebinarDescriptionProps {
+  paragraphs: string[];
+  flexProps: FlexContainerProps;
 }
 
 export interface TestimonialCardProps {
@@ -308,4 +295,10 @@ export interface WebinarAboutInstructorProps {
 export interface WeTaughtAtCardProps {
   image: string;
   imageAltText: string;
+}
+
+export interface WebinarDataProps {
+  header: WebinarHeaderProps;
+  aboutWebinar: WebinarAboutProps;
+  instructor: WebinarInstructorCardProps;
 }
