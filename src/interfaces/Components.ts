@@ -50,13 +50,13 @@ export interface ButtonProps {
 }
 
 export interface WebinarHeaderProps {
-  id: string;
   mainHeading: string;
   pillText: string;
   image: string;
   imageAltText: string;
   content: string;
   cardContent: WebinarHeaderCardProps;
+  countdownTime: string[];
 }
 
 export interface WebinarHeaderCardProps {
@@ -86,7 +86,6 @@ export interface WebinarRegisterCardProps {
 }
 
 export interface WebinarAboutProps {
-  id: string;
   heading: string;
   schedule: WebinarAboutScheduleProps;
   aboutText: WebinarAboutTextProps;
@@ -281,8 +280,7 @@ export interface PillProps {
 }
 
 export interface CountdownTimerContainerProps {
-  labelText: string;
-  timerList: string[];
+  countdownTime: string[];
 }
 
 export interface TimerItemProps {

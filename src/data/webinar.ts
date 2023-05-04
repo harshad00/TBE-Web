@@ -1,11 +1,18 @@
+import { WebinarHeaderProps } from '@/interfaces';
 import { v4 } from 'uuid';
 
 const IMAGE_BASE_PATH = '/images';
 const SVG_BASE_PATH = '/svg';
 
-const webinar = {
+interface WebinarDataProps {
+  header: WebinarHeaderProps;
+  register: any;
+  aboutWebinar: any;
+  instructorCard: any;
+}
+
+const webinar: WebinarDataProps = {
   header: {
-    id: v4(),
     image: `${IMAGE_BASE_PATH}/coding_bg.png`,
     imageAltText: `is programming for you`,
     pillText: `Free Webinar`,
@@ -24,11 +31,7 @@ const webinar = {
       timeIcon: `${SVG_BASE_PATH}/clock.svg`,
       timeIconAltText: `Clock`,
     },
-    countdown: {
-      id: v4(),
-      heading: `Starts In`,
-      timerList: ``,
-    },
+    countdownTime: ['03 d', '02 h', '01 m'],
   },
   register: {
     id: v4(),
@@ -91,7 +94,6 @@ const webinar = {
       },
     ],
   },
-
   instructorCard: {
     id: v4(),
     heading: `Meet your instructor`,
