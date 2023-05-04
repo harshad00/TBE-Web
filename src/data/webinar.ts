@@ -1,20 +1,22 @@
 import {
   WebinarAboutProps,
+  WebinarDataProps,
   WebinarHeaderProps,
   WebinarInstructorCardProps,
+  WebinarMetaDataProps,
 } from '@/interfaces';
 import { v4 } from 'uuid';
 
 const IMAGE_BASE_PATH = '/images';
 const SVG_BASE_PATH = '/svg';
 
-interface WebinarDataProps {
-  header: WebinarHeaderProps;
-  aboutWebinar: WebinarAboutProps;
-  instructor: WebinarInstructorCardProps;
-}
-
 const webinar: WebinarDataProps = {
+  meta: {
+    title: 'Is Programming for you?',
+    description: `Understand why everybody wants to be in Tech and should you learn Tech or not.`,
+    date: `29 Apr, Saturday`,
+    time: `5 PM`,
+  },
   header: {
     image: `${IMAGE_BASE_PATH}/coding_bg.png`,
     imageAltText: `is programming for you`,
@@ -22,7 +24,6 @@ const webinar: WebinarDataProps = {
     mainHeading: `Is Programming for you?`,
     content: `Understand why everybody wants to be in Tech and should you learn Tech or not.`,
     cardContent: {
-      id: v4(),
       image: `${IMAGE_BASE_PATH}/sachin_shukla.png`,
       imageAltText: `sachin shukla`,
       name: `Sachin Kr. Shukla`,

@@ -49,6 +49,20 @@ export interface ButtonProps {
   active?: boolean;
 }
 
+export interface WebinarMetaDataProps {
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+}
+
+export interface WebinarDataProps {
+  meta: WebinarMetaDataProps;
+  header: WebinarHeaderProps;
+  aboutWebinar: WebinarAboutProps;
+  instructor: WebinarInstructorCardProps;
+}
+
 export interface WebinarHeaderProps {
   mainHeading: string;
   pillText: string;
@@ -60,7 +74,6 @@ export interface WebinarHeaderProps {
 }
 
 export interface WebinarHeaderCardProps {
-  id: string;
   image: string;
   imageAltText: string;
   name: string;

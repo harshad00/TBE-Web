@@ -71,9 +71,7 @@ const WebinarHeader = ({
                   backgroundColor=''
                 />
               </FlexContainer>
-              <CountdownTimerContainer
-                countdownTime={['03 d', '02 h', '01 m']}
-              />
+              <CountdownTimerContainer countdownTime={['12', '07', '2023']} />
             </FlexContainer>
           </div>
         </FlexContainer>
