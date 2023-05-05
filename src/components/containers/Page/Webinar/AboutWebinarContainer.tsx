@@ -5,7 +5,7 @@ import {
   WebinarDescription,
 } from '@/components';
 import { AboutWebinarContainerProps } from '@/interfaces';
-import { SVG_BASE_PATH, IMAGE_BASE_PATH } from '@/data';
+import { SVG_BASE_PATH } from '@/data';
 import { formatDate } from '@/utils';
 
 const AboutWebinarContainer = ({
