@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { FlexContainer, Text, TimerItem } from '@/components';
 import { CountdownTimerContainerProps } from '@/interfaces';
 
-const CountdownTimerContainer = ({
-  startDate, endDate,
-}: CountdownTimerContainerProps) => {
-
+const CountdownTimerContainer = ({ date }: CountdownTimerContainerProps) => {
   const calculateTimeLeft = () => {
-    const difference = +new Date(endDate) - +new Date();
+    const difference = +new Date(date) - +new Date();
     let timeLeft = {
       days: 0,
       hours: 0,
@@ -33,9 +30,9 @@ const CountdownTimerContainer = ({
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [endDate]);
+  }, [calculateTimeLeft, date]);
 
-  const formatTime = (time: number) => time.toString().padStart(2, "0");
+  const formatTime = (time: number) => time.toString().padStart(2, '0');
   return (
     <FlexContainer direction='col' className='mt-6 gap-2'>
       <Text level='p' className='strong-text'>
@@ -44,13 +41,19 @@ const CountdownTimerContainer = ({
       <FlexContainer className='gap-2'>
         {timeLeft.days > 0 ? (
           <TimerItem timer={`${formatTime(timeLeft.days)} D`} />
-        ) : '0'}
+        ) : (
+          '0'
+        )}
         {timeLeft.hours > 0 ? (
           <TimerItem timer={`${formatTime(timeLeft.hours)} H`} />
-        ) : '0'}
+        ) : (
+          '0'
+        )}
         {timeLeft.minutes > 0 ? (
           <TimerItem timer={`${formatTime(timeLeft.hours)} M`} />
-        ) : '0'}
+        ) : (
+          '0'
+        )}
       </FlexContainer>
     </FlexContainer>
   );

@@ -49,42 +49,30 @@ export interface ButtonProps {
   active?: boolean;
 }
 
+export interface WebinarDataProps {
+  meta: WebinarMetaDataProps;
+  // header: WebinarMetaDataProps;
+  aboutWebinar: WebinarAboutProps;
+  instructor: WebinarInstructorCardProps;
+}
+
 export interface WebinarMetaDataProps {
   title: string;
   description: string;
   date: string;
   time: string;
-}
-
-export interface WebinarDataProps {
-  meta: WebinarMetaDataProps;
-  header: WebinarHeaderProps;
-  aboutWebinar: WebinarAboutProps;
-  instructor: WebinarInstructorCardProps;
-}
-
-export interface WebinarHeaderProps {
-  mainHeading: string;
-  pillText: string;
   image: string;
   imageAltText: string;
-  content: string;
-  cardContent: WebinarHeaderCardProps;
-  countdownTime: string[];
+  instructor: WebinarInstructorDataProps;
 }
 
-export interface WebinarHeaderCardProps {
-  image: string;
-  imageAltText: string;
+interface WebinarInstructorDataProps {
   name: string;
   designation: string;
-  date: string;
-  dateIcon: string;
-  dateIconAltText: string;
-  time: string;
-  timeIcon: string;
-  timeIconAltText: string;
+  image: string;
+  imageAltText: string;
 }
+
 export interface WebinarHeaderCountDownProps {
   id: string;
   heading: string;
@@ -99,7 +87,6 @@ export interface WebinarAboutProps {
 }
 
 export interface WebinarAboutScheduleProps {
-  id: string;
   date: string;
   dateIcon: string;
   dateIconAltText: string;
@@ -280,8 +267,7 @@ export interface PillProps {
 }
 
 export interface CountdownTimerContainerProps {
-  startDate: Date;
-  endDate: Date;
+  date: Date;
 }
 
 export interface TimerItemProps {
@@ -311,8 +297,8 @@ export interface WeTaughtAtCardProps {
   imageAltText: string;
 }
 
-export interface WebinarDataProps {
-  header: WebinarHeaderProps;
-  aboutWebinar: WebinarAboutProps;
-  instructor: WebinarInstructorCardProps;
-}
+// export interface WebinarDataProps {
+//   header: WebinarHeaderProps;
+//   aboutWebinar: WebinarAboutProps;
+//   instructor: WebinarInstructorCardProps;
+// }

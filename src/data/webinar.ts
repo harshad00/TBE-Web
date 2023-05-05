@@ -1,46 +1,27 @@
-import {
-  WebinarAboutProps,
-  WebinarDataProps,
-  WebinarHeaderProps,
-  WebinarInstructorCardProps,
-  WebinarMetaDataProps,
-} from '@/interfaces';
-import { v4 } from 'uuid';
+import { WebinarDataProps } from '@/interfaces';
 
-const IMAGE_BASE_PATH = '/images';
-const SVG_BASE_PATH = '/svg';
+export const IMAGE_BASE_PATH = '/images';
+export const SVG_BASE_PATH = '/svg';
 
 const webinar: WebinarDataProps = {
   meta: {
     title: 'Is Programming for you?',
-    description: `Understand why everybody wants to be in Tech and should you learn Tech or not.`,
-    date: `2023-05-10`,
-    time: `5 PM`,
-  },
-  header: {
     image: `${IMAGE_BASE_PATH}/coding_bg.png`,
     imageAltText: `is programming for you`,
-    pillText: `Free Webinar`,
-    mainHeading: `Is Programming for you?`,
-    content: `Understand why everybody wants to be in Tech and should you learn Tech or not.`,
-    cardContent: {
-      image: `${IMAGE_BASE_PATH}/sachin_shukla.png`,
-      imageAltText: `sachin shukla`,
+    description:
+      'Understand why everybody wants to be in Tech and should you learn Tech or not.',
+    date: '2023-05-10',
+    time: '5 PM',
+    instructor: {
       name: `Sachin Kr. Shukla`,
       designation: `Co-Founder, The Boring Education`,
-      date: `2023-05-10`,
-      dateIcon: `${SVG_BASE_PATH}/calendar.svg`,
-      dateIconAltText: `Calendar`,
-      time: `5 PM`,
-      timeIcon: `${SVG_BASE_PATH}/clock.svg`,
-      timeIconAltText: `Clock`,
+      image: `${IMAGE_BASE_PATH}/sachin_shukla.png`,
+      imageAltText: 'sachin shukla',
     },
-    countdownTime: ['03 d', '02 h', '01 m'],
   },
   aboutWebinar: {
     heading: `About Webinar`,
     schedule: {
-      id: v4(),
       date: `2023-05-10`,
       dateIcon: `${SVG_BASE_PATH}/calendar.svg`,
       dateIconAltText: `Calendar`,

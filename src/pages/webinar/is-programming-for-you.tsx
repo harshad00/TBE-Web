@@ -13,12 +13,12 @@ import { webinar } from '@/data';
 const IsProgrammingForYouLanding = () => {
   const slug: PageSlug = '/is-programming-for-you';
 
-  const { header, aboutWebinar, instructor } = webinar;
+  const { meta, aboutWebinar, instructor } = webinar;
 
   return (
     <React.Fragment>
       <SEO slug={slug} />
-      <WebinarHeader {...header} />
+      <WebinarHeader {...meta} />
       <AboutWebinarContainer {...aboutWebinar} />
       <AboutWebinarInstructorContainer {...instructor} />
       <Testimonials />

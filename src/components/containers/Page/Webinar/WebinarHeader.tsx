@@ -9,19 +9,21 @@ import {
   IconPill,
   WebinarInstructor,
 } from '@/components';
-import { WebinarHeaderProps } from '@/interfaces';
-import { webinar } from '@/data'
+import { WebinarMetaDataProps } from '@/interfaces';
+import { webinar } from '@/data';
+import { SVG_BASE_PATH } from '@/data';
 
 const WebinarHeader = ({
-  mainHeading,
-  pillText,
+  title,
   image,
   imageAltText,
-  content,
-  cardContent,
-}: WebinarHeaderProps) => {
-  const startDate = new Date();
+  description,
+  instructor,
+  date,
+  time,
+}: WebinarMetaDataProps) => {
   const endDate = new Date(webinar.meta.date);
+
   return (
     <Section>
       <FlexContainer direction='col'>
@@ -38,43 +40,43 @@ const WebinarHeader = ({
             />
             <FlexContainer direction='col' className='p-4 md:p-8'>
               <Pill
-                text={pillText}
+                text='Free Webinar'
                 variant='SECONDARY'
                 textStyleClasses='text-contentLight'
               />
               <FlexContainer direction='col' className='mt-6 w-full gap-1'>
                 <Text level='h3' textCenter={true} className='heading-3'>
-                  {mainHeading}
+                  {title}
                 </Text>
 
                 <Text level='p' className='paragraph' textCenter={true}>
-                  {content}
+                  {description}
                 </Text>
               </FlexContainer>
               <WebinarInstructor
-                imagePath={cardContent.image}
-                imageAltText={cardContent.imageAltText}
-                name={cardContent.name}
-                position={cardContent.designation}
+                imagePath={instructor.image}
+                imageAltText={instructor.imageAltText}
+                name={instructor.name}
+                position={instructor.designation}
               />
               <FlexContainer
                 className='mt-4 gap-4 md:mt-6'
                 justifyCenter={false}
               >
                 <IconPill
-                  iconPath={cardContent.dateIcon}
-                  iconAltText={cardContent.dateIconAltText}
-                  label={cardContent.date}
+                  iconPath={`${SVG_BASE_PATH}/calendar.svg`}
+                  iconAltText='Calendar'
+                  label={date}
                   backgroundColor=''
                 />
                 <IconPill
-                  iconPath={cardContent.timeIcon}
-                  iconAltText={cardContent.timeIconAltText}
-                  label={cardContent.time}
+                  iconPath={`${SVG_BASE_PATH}/clock.svg`}
+                  iconAltText='Clock'
+                  label={time}
                   backgroundColor=''
                 />
               </FlexContainer>
-              <CountdownTimerContainer startDate={startDate} endDate={endDate} />
+              <CountdownTimerContainer date={endDate} />
             </FlexContainer>
           </div>
         </FlexContainer>
