@@ -7,22 +7,16 @@ import {
   AboutWebinarInstructorContainer,
   Testimonials,
 } from '@/components';
-import { PageSlug } from '@/interfaces';
+import { PageProps } from '@/interfaces';
 import { webinar } from '@/data';
-import { NextPageContext } from 'next';
+import { getPreFetchProps } from '@/utils';
 
-interface PageProps {
-  slug: PageSlug;
-}
-
-const IsProgrammingForYouLanding = ({ slug }: PageProps) => {
+const IsProgrammingForYouLanding = ({ seoMeta }: PageProps) => {
   const { meta, aboutWebinar } = webinar;
-
-  console.log('HERE', slug);
 
   return (
     <React.Fragment>
-      <SEO slug={slug} />
+      <SEO seoMeta={seoMeta} />
       <WebinarHeader {...meta} />
       <AboutWebinarContainer {...aboutWebinar} {...meta} />
       <AboutWebinarInstructorContainer {...meta} />
@@ -31,15 +25,6 @@ const IsProgrammingForYouLanding = ({ slug }: PageProps) => {
     </React.Fragment>
   );
 };
-
-export async function getPreFetchProps({ query }: NextPageContext) {
-  const { webinar, microCamp } = query;
-  console.log(query);
-
-  return {
-    props: { slug: '/' + webinar },
-  };
-}
 
 export const getServerSideProps = getPreFetchProps;
 

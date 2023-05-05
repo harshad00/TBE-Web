@@ -26,8 +26,19 @@ export interface MicroCampFeatureCardContentProps
 export type PageSlug =
   | '/'
   | '/404'
+  | '/contact'
   | '/junior-in-web-engineering'
   | '/is-programming-for-you'
   | '/be-frontend-master'
   | '/be-backend-master'
   | '/is-programming-for-you';
+
+export type GetSEOMetaResponseType = {
+  title: string;
+  siteName: string;
+  description: string;
+  url: string;
+  type: string;
+  robots: string;
+  image: string;
+};
