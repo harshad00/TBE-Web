@@ -20,15 +20,14 @@ const webinar: WebinarDataProps = {
     },
   },
   aboutWebinar: {
-    heading: `About Webinar`,
-    schedule: {
-      date: `2023-05-10`,
-      dateIcon: `${SVG_BASE_PATH}/calendar.svg`,
-      dateIconAltText: `Calendar`,
-      time: `5 PM`,
-      timeIcon: `${SVG_BASE_PATH}/clock.svg`,
-      timeIconAltText: `Clock`,
-    },
+    // schedule: {
+    //   date: `2023-05-10`,
+    //   dateIcon: `${SVG_BASE_PATH}/calendar.svg`,
+    //   dateIconAltText: `Calendar`,
+    //   time: `5 PM`,
+    //   timeIcon: `${SVG_BASE_PATH}/clock.svg`,
+    //   timeIconAltText: `Clock`,
+    // },
     aboutText: [
       "Programming is becoming everyone's need these days. You want to build a software, You need programming. You want to get a job, you need programming.",
       'First thing as a learner you do, is look for an online programs. There are so many programs available in the market.',

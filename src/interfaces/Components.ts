@@ -79,9 +79,9 @@ export interface WebinarHeaderCountDownProps {
   timerList: string;
 }
 
-export interface WebinarAboutProps {
-  heading: string;
-  schedule: WebinarAboutScheduleProps;
+export interface WebinarAboutProps extends WebinarMetaDataProps {
+  // heading: string;
+  // schedule: WebinarAboutScheduleProps;
   aboutText: string[];
   whatWillYouLearn: string[];
 }
@@ -267,7 +267,7 @@ export interface PillProps {
 }
 
 export interface CountdownTimerContainerProps {
-  date: Date;
+  date: string;
 }
 
 export interface TimerItemProps {
@@ -297,8 +297,9 @@ export interface WeTaughtAtCardProps {
   imageAltText: string;
 }
 
-// export interface WebinarDataProps {
-//   header: WebinarHeaderProps;
-//   aboutWebinar: WebinarAboutProps;
-//   instructor: WebinarInstructorCardProps;
-// }
+export interface CountdownTimerProps {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}

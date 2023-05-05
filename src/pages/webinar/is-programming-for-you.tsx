@@ -19,7 +19,7 @@ const IsProgrammingForYouLanding = () => {
     <React.Fragment>
       <SEO slug={slug} />
       <WebinarHeader {...meta} />
-      <AboutWebinarContainer {...aboutWebinar} />
+      <AboutWebinarContainer {...aboutWebinar} {...meta} />
       <AboutWebinarInstructorContainer {...instructor} />
       <Testimonials />
       <AboutTheBoringEducation />

@@ -22,8 +22,6 @@ const WebinarHeader = ({
   date,
   time,
 }: WebinarMetaDataProps) => {
-  const endDate = new Date(webinar.meta.date);
-
   return (
     <Section>
       <FlexContainer direction='col'>
@@ -76,7 +74,7 @@ const WebinarHeader = ({
                   backgroundColor=''
                 />
               </FlexContainer>
-              <CountdownTimerContainer date={endDate} />
+              <CountdownTimerContainer date={date} />
             </FlexContainer>
           </div>
         </FlexContainer>
