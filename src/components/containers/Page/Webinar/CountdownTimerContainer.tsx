@@ -4,6 +4,7 @@ import {
   CountdownTimerContainerProps,
   CountdownTimerProps,
 } from '@/interfaces';
+import { formatTime } from '@/utils';
 
 const CountdownTimerContainer = ({ date }: CountdownTimerContainerProps) => {
   const [timeLeft, setTimeLeft] = useState<CountdownTimerProps>({
@@ -39,8 +40,6 @@ const CountdownTimerContainer = ({ date }: CountdownTimerContainerProps) => {
     return () => clearTimeout(timer);
   }, [calculateTimeLeft]);
 
-  const formatTime = (time: number) => time.toString().padStart(2, '0');
-
   return (
     <FlexContainer direction='col' className='mt-6 gap-2'>
       <Text level='p' className='strong-text'>
@@ -50,22 +49,22 @@ const CountdownTimerContainer = ({ date }: CountdownTimerContainerProps) => {
         {timeLeft.days > 0 ? (
           <TimerItem timer={`${formatTime(timeLeft.days)} d`} />
         ) : (
-          '0'
+          '0d'
         )}
         {timeLeft.hours > 0 ? (
           <TimerItem timer={`${formatTime(timeLeft.hours)} h`} />
         ) : (
-          '0'
+          '0h'
         )}
         {timeLeft.minutes > 0 ? (
           <TimerItem timer={`${formatTime(timeLeft.minutes)} m`} />
         ) : (
-          '0'
+          '0m'
         )}
         {timeLeft.seconds > 0 ? (
           <TimerItem timer={`${formatTime(timeLeft.seconds)} s`} />
         ) : (
-          '0'
+          '0s'
         )}
       </FlexContainer>
     </FlexContainer>

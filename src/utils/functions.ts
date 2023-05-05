@@ -6,4 +6,6 @@ const formatDate = (date: string) => {
   });
 };
 
-export { formatDate };
+const formatTime = (time: number) => time.toString().padStart(2, '0');
+
+export { formatDate, formatTime };

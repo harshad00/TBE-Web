@@ -36,7 +36,7 @@ const WebinarHeader = ({
               src={image}
               alt={imageAltText}
             />
-            <FlexContainer direction='col' className='p-4 md:p-8'>
+            <FlexContainer direction='col' className='px-2 py-4 md:p-8'>
               <Pill
                 text='Free Webinar'
                 variant='SECONDARY'
