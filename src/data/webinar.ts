@@ -10,7 +10,7 @@ const webinar: WebinarDataProps = {
     imageAltText: `is programming for you`,
     description:
       'Understand why everybody wants to be in Tech and should you learn Tech or not.',
-    date: '2023-05-10',
+    date: '2023-05-14', // YYYY-MM-DD
     time: '5 PM',
     instructor: {
       name: `Sachin Kr. Shukla`,

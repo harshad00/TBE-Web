@@ -6,6 +6,7 @@ import {
 } from '@/components';
 import { AboutWebinarContainerProps } from '@/interfaces';
 import { SVG_BASE_PATH, IMAGE_BASE_PATH } from '@/data';
+import { formatDate } from '@/utils';
 
 const AboutWebinarContainer = ({
   descriptions,
@@ -23,12 +24,12 @@ const AboutWebinarContainer = ({
           <IconPill
             iconPath={`${SVG_BASE_PATH}/calendar_grey.svg`}
             iconAltText='webinar-calendar'
-            label={date}
+            label={formatDate(date)}
             labelColor='text-greyDark'
             className='w-full md:w-fit'
           />
           <IconPill
-            iconPath={`${IMAGE_BASE_PATH}/clock_grey.svg`}
+            iconPath={`${SVG_BASE_PATH}/clock_grey.svg`}
             iconAltText='webinar-clock'
             label={time}
             labelColor='text-greyDark'

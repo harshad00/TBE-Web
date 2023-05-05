@@ -30,7 +30,7 @@ const CountdownTimerContainer = ({ date }: CountdownTimerContainerProps) => {
   }, [date, timeLeft]);
 
   useEffect(() => {
-    calculateTimeLeft();
+    // calculateTimeLeft();
 
     const timer = setTimeout(() => {
       calculateTimeLeft();

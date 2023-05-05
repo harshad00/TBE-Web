@@ -11,6 +11,7 @@ import {
 } from '@/components';
 import { WebinarMetaDataProps } from '@/interfaces';
 import { SVG_BASE_PATH } from '@/data';
+import { formatDate } from '@/utils';
 
 const WebinarHeader = ({
   title,
@@ -63,7 +64,7 @@ const WebinarHeader = ({
                 <IconPill
                   iconPath={`${SVG_BASE_PATH}/calendar.svg`}
                   iconAltText='Calendar'
-                  label={date}
+                  label={formatDate(date)}
                   backgroundColor=''
                 />
                 <IconPill
