@@ -4,16 +4,14 @@ import {
   Text,
   WebinarDescription,
 } from '@/components';
-import { WebinarAboutProps } from '@/interfaces';
+import { AboutWebinarContainerProps } from '@/interfaces';
 
 const AboutWebinarContainer = ({
-  // heading,
   aboutText,
   whatWillYouLearn,
-  title,
   date,
   time,
-}: WebinarAboutProps) => {
+}: AboutWebinarContainerProps) => {
   return (
     <FlexContainer direction='col' className='m-auto w-3/4 lg:w-1/3'>
       <FlexContainer direction='col'>
@@ -31,7 +29,7 @@ const AboutWebinarContainer = ({
           <IconPill
             iconPath='/svg/clock_grey.svg'
             iconAltText='webinar-clock'
-            label='5 PM'
+            label={time}
             labelColor='text-greyDark'
             className='w-full md:w-fit'
           />

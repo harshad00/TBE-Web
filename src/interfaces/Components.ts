@@ -79,7 +79,7 @@ export interface WebinarHeaderCountDownProps {
   timerList: string;
 }
 
-export interface WebinarAboutProps extends WebinarMetaDataProps {
+export interface WebinarAboutProps {
   // heading: string;
   // schedule: WebinarAboutScheduleProps;
   aboutText: string[];
@@ -303,3 +303,7 @@ export interface CountdownTimerProps {
   minutes: number;
   seconds: number;
 }
+
+export interface AboutWebinarContainerProps
+  extends WebinarAboutProps,
+    WebinarMetaDataProps {}
