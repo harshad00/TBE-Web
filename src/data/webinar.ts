@@ -23,6 +23,7 @@ const webinar: WebinarDataProps = {
         '3. Senior Software Engineer @PW.',
       ],
     },
+    link: '#',
   },
   aboutWebinar: {
     descriptions: [

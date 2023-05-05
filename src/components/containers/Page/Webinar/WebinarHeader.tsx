@@ -21,6 +21,7 @@ const WebinarHeader = ({
   instructor,
   date,
   time,
+  link,
 }: WebinarMetaDataProps) => {
   return (
     <Section>
@@ -79,7 +80,7 @@ const WebinarHeader = ({
           </div>
         </FlexContainer>
       </FlexContainer>
-      <WebinarRegisterContainer />
+      <WebinarRegisterContainer link={link} />
     </Section>
   );
 };

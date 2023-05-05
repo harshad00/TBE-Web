@@ -63,6 +63,7 @@ export interface WebinarMetaDataProps {
   image: string;
   imageAltText: string;
   instructor: WebinarInstructorDataProps;
+  link: string;
 }
 
 export interface WebinarInstructorDataProps {
@@ -296,3 +297,7 @@ export interface CountdownTimerProps {
 export interface AboutWebinarContainerProps
   extends WebinarAboutProps,
     WebinarMetaDataProps {}
+
+export interface WebinarRegisterContainerProps {
+  link: string;
+}
