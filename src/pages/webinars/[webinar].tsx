@@ -9,11 +9,16 @@ import {
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { webinar } from '@/data';
+import { NextPageContext } from 'next';
 
-const IsProgrammingForYouLanding = () => {
-  const slug: PageSlug = '/is-programming-for-you';
+interface PageProps {
+  slug: PageSlug;
+}
 
+const IsProgrammingForYouLanding = ({ slug }: PageProps) => {
   const { meta, aboutWebinar } = webinar;
+
+  console.log('HERE', slug);
 
   return (
     <React.Fragment>
@@ -26,5 +31,16 @@ const IsProgrammingForYouLanding = () => {
     </React.Fragment>
   );
 };
+
+export async function getPreFetchProps({ query }: NextPageContext) {
+  const { webinar, microCamp } = query;
+  console.log(query);
+
+  return {
+    props: { slug: '/' + webinar },
+  };
+}
+
+export const getServerSideProps = getPreFetchProps;
 
 export default IsProgrammingForYouLanding;

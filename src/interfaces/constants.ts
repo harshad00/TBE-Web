@@ -29,4 +29,5 @@ export type PageSlug =
   | '/junior-in-web-engineering'
   | '/is-programming-for-you'
   | '/be-frontend-master'
-  | '/be-backend-master';
+  | '/be-backend-master'
+  | '/is-programming-for-you';
