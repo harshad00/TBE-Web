@@ -17,10 +17,15 @@ const webinar: WebinarDataProps = {
       designation: `Co-Founder, The Boring Education`,
       image: `${IMAGE_BASE_PATH}/sachin_shukla.png`,
       imageAltText: 'sachin shukla',
+      about: [
+        '1. Built Ed-tech startups since college.',
+        '2. Worked with Newton School, Masai, Pesto & CueMath.',
+        '3. Senior Software Engineer @PW.',
+      ],
     },
   },
   aboutWebinar: {
-    aboutText: [
+    descriptions: [
       "Programming is becoming everyone's need these days. You want to build a software, You need programming. You want to get a job, you need programming.",
       'First thing as a learner you do, is look for an online programs. There are so many programs available in the market.',
       "With lot of options in market, You will be confused to choose an option, and with that you'll choose an expensive program that'll cost you lakhs.",
@@ -31,18 +36,6 @@ const webinar: WebinarDataProps = {
       "1. You'll learn with your background, will programming be helpful for you?",
       '2. Decide if you should be okay buying expensive bootcamps',
       '3. Understand what it takes to break into Tech',
-    ],
-  },
-  instructor: {
-    heading: `Meet your instructor`,
-    image: `${IMAGE_BASE_PATH}/sachin_shukla.png`,
-    imageAltText: `sachin shukla`,
-    name: `Sachin Kr. Shukla`,
-    designation: `Co-Founder, The Boring Education`,
-    about: [
-      '1. Built Ed-tech startups since college.',
-      '2. Worked with Newton School, Masai, Pesto & CueMath.',
-      '3. Senior Software Engineer @PW.',
     ],
   },
 };

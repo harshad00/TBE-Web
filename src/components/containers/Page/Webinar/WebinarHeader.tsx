@@ -10,7 +10,6 @@ import {
   WebinarInstructor,
 } from '@/components';
 import { WebinarMetaDataProps } from '@/interfaces';
-import { webinar } from '@/data';
 import { SVG_BASE_PATH } from '@/data';
 
 const WebinarHeader = ({

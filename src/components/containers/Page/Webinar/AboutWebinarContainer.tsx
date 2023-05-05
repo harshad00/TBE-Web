@@ -5,9 +5,10 @@ import {
   WebinarDescription,
 } from '@/components';
 import { AboutWebinarContainerProps } from '@/interfaces';
+import { SVG_BASE_PATH, IMAGE_BASE_PATH } from '@/data';
 
 const AboutWebinarContainer = ({
-  aboutText,
+  descriptions,
   whatWillYouLearn,
   date,
   time,
@@ -20,14 +21,14 @@ const AboutWebinarContainer = ({
         </Text>
         <FlexContainer className='mt-2 gap-2'>
           <IconPill
-            iconPath='/svg/calendar_grey.svg'
+            iconPath={`${SVG_BASE_PATH}/calendar_grey.svg`}
             iconAltText='webinar-calendar'
             label={date}
             labelColor='text-greyDark'
             className='w-full md:w-fit'
           />
           <IconPill
-            iconPath='/svg/clock_grey.svg'
+            iconPath={`${IMAGE_BASE_PATH}/clock_grey.svg`}
             iconAltText='webinar-clock'
             label={time}
             labelColor='text-greyDark'
@@ -38,7 +39,7 @@ const AboutWebinarContainer = ({
       <FlexContainer direction='col' className='m-auto  gap-8 pt-4 '>
         <WebinarDescription
           flexProps={{ direction: 'col' }}
-          paragraphs={aboutText}
+          paragraphs={descriptions}
         />
         <FlexContainer direction='col'>
           <FlexContainer direction='col'>

@@ -53,7 +53,6 @@ export interface WebinarDataProps {
   meta: WebinarMetaDataProps;
   // header: WebinarMetaDataProps;
   aboutWebinar: WebinarAboutProps;
-  instructor: WebinarInstructorCardProps;
 }
 
 export interface WebinarMetaDataProps {
@@ -66,11 +65,12 @@ export interface WebinarMetaDataProps {
   instructor: WebinarInstructorDataProps;
 }
 
-interface WebinarInstructorDataProps {
+export interface WebinarInstructorDataProps {
   name: string;
   designation: string;
   image: string;
   imageAltText: string;
+  about: string[];
 }
 
 export interface WebinarHeaderCountDownProps {
@@ -82,7 +82,7 @@ export interface WebinarHeaderCountDownProps {
 export interface WebinarAboutProps {
   // heading: string;
   // schedule: WebinarAboutScheduleProps;
-  aboutText: string[];
+  descriptions: string[];
   whatWillYouLearn: string[];
 }
 
@@ -105,17 +105,6 @@ export interface WebinarWhatWillYouLearnContentProps {
   id: string;
   paragraph: string;
 }
-
-export interface WebinarInstructorCardProps {
-  heading: string;
-  image: string;
-  imageAltText: string;
-  name: string;
-  // socialIcon: string;
-  designation: string;
-  about: string[];
-}
-
 export interface ProgramCardProps {
   image: string;
   imageAltText: string;
