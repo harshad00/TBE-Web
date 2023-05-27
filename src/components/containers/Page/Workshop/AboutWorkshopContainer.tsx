@@ -2,35 +2,35 @@ import {
   FlexContainer,
   IconPill,
   Text,
-  WebinarDescription,
+  WorkshopDescription,
 } from '@/components';
-import { AboutWebinarContainerProps } from '@/interfaces';
+import { AboutWorkshopContainerProps } from '@/interfaces';
 import { SVG_BASE_PATH } from '@/data';
 import { formatDate } from '@/utils';
 
-const AboutWebinarContainer = ({
+const AboutWorkshopContainer = ({
   descriptions,
   whatWillYouLearn,
   date,
   time,
-}: AboutWebinarContainerProps) => {
+}: AboutWorkshopContainerProps) => {
   return (
     <FlexContainer direction='col' className='m-auto w-3/4 lg:w-1/3'>
       <FlexContainer direction='col'>
         <Text level='h4' className='heading-4'>
-          About this webinar
+          About this workshop
         </Text>
         <FlexContainer className='mt-2 gap-2'>
           <IconPill
             iconPath={`${SVG_BASE_PATH}/calendar_grey.svg`}
-            iconAltText='webinar-calendar'
+            iconAltText='workshop-calendar'
             label={formatDate(date)}
             labelColor='text-greyDark'
             className='w-full md:w-fit'
           />
           <IconPill
             iconPath={`${SVG_BASE_PATH}/clock_grey.svg`}
-            iconAltText='webinar-clock'
+            iconAltText='workshop-clock'
             label={time}
             labelColor='text-greyDark'
             className='w-full md:w-fit'
@@ -38,7 +38,7 @@ const AboutWebinarContainer = ({
         </FlexContainer>
       </FlexContainer>
       <FlexContainer direction='col' className='m-auto  gap-8 pt-4 '>
-        <WebinarDescription
+        <WorkshopDescription
           flexProps={{ direction: 'col' }}
           paragraphs={descriptions}
         />
@@ -48,7 +48,7 @@ const AboutWebinarContainer = ({
               What will you learn
             </Text>
           </FlexContainer>
-          <WebinarDescription
+          <WorkshopDescription
             flexProps={{
               direction: 'col',
               className: 'mt-4',
@@ -62,4 +62,4 @@ const AboutWebinarContainer = ({
   );
 };
 
-export default AboutWebinarContainer;
+export default AboutWorkshopContainer;

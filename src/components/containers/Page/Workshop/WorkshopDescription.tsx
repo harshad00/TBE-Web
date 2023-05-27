@@ -1,10 +1,10 @@
 import { FlexContainer, Text } from '@/components';
-import { WebinarDescriptionProps } from '@/interfaces';
+import { WorkshopDescriptionProps } from '@/interfaces';
 
-const WebinarDescription = ({
+const WorkshopDescription = ({
   paragraphs,
   flexProps,
-}: WebinarDescriptionProps) => {
+}: WorkshopDescriptionProps) => {
   return (
     <FlexContainer {...flexProps}>
       {paragraphs.map((paragraph, key) => (
@@ -20,4 +20,4 @@ const WebinarDescription = ({
   );
 };
 
-export default WebinarDescription;
+export default WorkshopDescription;

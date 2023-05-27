@@ -49,24 +49,25 @@ export interface ButtonProps {
   active?: boolean;
 }
 
-export interface WebinarDataProps {
-  meta: WebinarMetaDataProps;
-  // header: WebinarMetaDataProps;
-  aboutWebinar: WebinarAboutProps;
+export interface WorkshopDataProps {
+  meta: WorkshopMetaDataProps;
+  // header: WorkshopMetaDataProps;
+  aboutWorkshop: WorkshopAboutProps;
 }
 
-export interface WebinarMetaDataProps {
+export interface WorkshopMetaDataProps {
+  slug: PageSlug;
   title: string;
   description: string;
   date: string;
   time: string;
   image: string;
   imageAltText: string;
-  instructor: WebinarInstructorDataProps;
+  instructor: WorkshopInstructorDataProps;
   link: string;
 }
 
-export interface WebinarInstructorDataProps {
+export interface WorkshopInstructorDataProps {
   name: string;
   designation: string;
   image: string;
@@ -74,20 +75,20 @@ export interface WebinarInstructorDataProps {
   about: string[];
 }
 
-export interface WebinarHeaderCountDownProps {
+export interface WorkshopHeaderCountDownProps {
   id: string;
   heading: string;
   timerList: string;
 }
 
-export interface WebinarAboutProps {
+export interface WorkshopAboutProps {
   // heading: string;
-  // schedule: WebinarAboutScheduleProps;
+  // schedule: WorkshopAboutScheduleProps;
   descriptions: string[];
   whatWillYouLearn: string[];
 }
 
-export interface WebinarAboutScheduleProps {
+export interface WorkshopAboutScheduleProps {
   date: string;
   dateIcon: string;
   dateIconAltText: string;
@@ -96,13 +97,13 @@ export interface WebinarAboutScheduleProps {
   timeIconAltText: string;
 }
 
-export interface WebinarWhatWillYouLearnProps {
+export interface WorkshopWhatWillYouLearnProps {
   id: string;
   heading: string;
-  content: WebinarWhatWillYouLearnContentProps[];
+  content: WorkshopWhatWillYouLearnContentProps[];
 }
 
-export interface WebinarWhatWillYouLearnContentProps {
+export interface WorkshopWhatWillYouLearnContentProps {
   id: string;
   paragraph: string;
 }
@@ -167,7 +168,7 @@ export interface FlexContainerProps {
   direction?: 'row' | 'col';
 }
 
-export interface WebinarDescriptionProps {
+export interface WorkshopDescriptionProps {
   paragraphs: string[];
   flexProps: FlexContainerProps;
 }
@@ -273,7 +274,7 @@ export interface IconPillProps {
   labelColor?: string;
 }
 
-export interface WebinarAboutInstructorProps {
+export interface WorkshopAboutInstructorProps {
   containerClasses?: string;
   imagePath: string;
   imageAltText: string;
@@ -294,10 +295,10 @@ export interface CountdownTimerProps {
   seconds: number;
 }
 
-export interface AboutWebinarContainerProps
-  extends WebinarAboutProps,
-    WebinarMetaDataProps {}
+export interface AboutWorkshopContainerProps
+  extends WorkshopAboutProps,
+    WorkshopMetaDataProps {}
 
-export interface WebinarRegisterContainerProps {
+export interface WorkshopRegisterContainerProps {
   link: string;
 }

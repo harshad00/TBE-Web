@@ -18,9 +18,9 @@ const routes = {
   },
   404: '/404',
   isProgrammingForYou: '/is-programming-for-you',
-  webinars: '/webinars',
-  webinarLanding: function (webinarSlug: PageSlug | string) {
-    return this.webinars + webinarSlug;
+  workshops: '/workshops',
+  workshopLanding: function (workshopSlug: PageSlug | string) {
+    return this.workshops + workshopSlug;
   },
 };
 

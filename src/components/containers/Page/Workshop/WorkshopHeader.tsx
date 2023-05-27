@@ -5,15 +5,15 @@ import {
   Image,
   Pill,
   CountdownTimerContainer,
-  WebinarRegisterContainer,
+  WorkshopRegisterContainer,
   IconPill,
-  WebinarInstructor,
+  WorkshopInstructor,
 } from '@/components';
-import { WebinarMetaDataProps } from '@/interfaces';
+import { WorkshopMetaDataProps } from '@/interfaces';
 import { SVG_BASE_PATH } from '@/data';
 import { formatDate } from '@/utils';
 
-const WebinarHeader = ({
+const WorkshopHeader = ({
   title,
   image,
   imageAltText,
@@ -22,7 +22,7 @@ const WebinarHeader = ({
   date,
   time,
   link,
-}: WebinarMetaDataProps) => {
+}: WorkshopMetaDataProps) => {
   return (
     <Section>
       <FlexContainer direction='col'>
@@ -39,7 +39,7 @@ const WebinarHeader = ({
             />
             <FlexContainer direction='col' className='px-2 py-4 md:p-8'>
               <Pill
-                text='Free Webinar'
+                text='Free Workshop'
                 variant='SECONDARY'
                 textStyleClasses='text-contentLight'
               />
@@ -52,7 +52,7 @@ const WebinarHeader = ({
                   {description}
                 </Text>
               </FlexContainer>
-              <WebinarInstructor
+              <WorkshopInstructor
                 imagePath={instructor.image}
                 imageAltText={instructor.imageAltText}
                 name={instructor.name}
@@ -80,9 +80,9 @@ const WebinarHeader = ({
           </div>
         </FlexContainer>
       </FlexContainer>
-      <WebinarRegisterContainer link={link} />
+      <WorkshopRegisterContainer link={link} />
     </Section>
   );
 };
 
-export default WebinarHeader;
+export default WorkshopHeader;

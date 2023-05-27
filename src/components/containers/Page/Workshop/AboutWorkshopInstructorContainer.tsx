@@ -2,14 +2,14 @@ import {
   FlexContainer,
   Section,
   Text,
-  WebinarDescription,
-  WebinarInstructor,
+  WorkshopDescription,
+  WorkshopInstructor,
 } from '@/components';
-import { WebinarMetaDataProps } from '@/interfaces';
+import { WorkshopMetaDataProps } from '@/interfaces';
 
-const AboutWebinarInstructorContainer = ({
+const AboutWorkshopInstructorContainer = ({
   instructor: { name, designation, image, imageAltText, about },
-}: WebinarMetaDataProps) => {
+}: WorkshopMetaDataProps) => {
   return (
     <Section className='py-6 md:py-8'>
       <FlexContainer direction='col' className='m-auto w-3/4 gap-5 lg:w-1/3'>
@@ -17,7 +17,7 @@ const AboutWebinarInstructorContainer = ({
           About instructor
         </Text>
         <FlexContainer direction='col' className='gap-3'>
-          <WebinarInstructor
+          <WorkshopInstructor
             imagePath={image}
             imageAltText={imageAltText}
             name={name}
@@ -25,7 +25,7 @@ const AboutWebinarInstructorContainer = ({
             linkedInURL='#'
             containerClasses='gap-2'
           />
-          <WebinarDescription
+          <WorkshopDescription
             flexProps={{
               direction: 'col',
               className: 'mt-2',
@@ -39,4 +39,4 @@ const AboutWebinarInstructorContainer = ({
   );
 };
 
-export default AboutWebinarInstructorContainer;
+export default AboutWorkshopInstructorContainer;
