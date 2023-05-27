@@ -1,3 +1,4 @@
-import webinar from './webinar';
+import workshop from './workshop';
 
-export { webinar };
+export { workshop };
+export * from './workshop';

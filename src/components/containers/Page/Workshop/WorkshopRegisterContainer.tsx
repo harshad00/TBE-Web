@@ -1,6 +1,9 @@
 import { FlexContainer, LinkButton, Text } from '@/components';
+import { WorkshopRegisterContainerProps } from '@/interfaces';
 
-const WebinarRegisterContainer = () => {
+const WorkshopRegisterContainer = ({
+  link,
+}: WorkshopRegisterContainerProps) => {
   return (
     <FlexContainer className='gradient-4 m-auto -mt-1 mb-8 w-full rounded-2 lg:w-1/2'>
       <FlexContainer
@@ -12,8 +15,8 @@ const WebinarRegisterContainer = () => {
         </Text>
         <FlexContainer direction='col' className='w-full gap-2'>
           <LinkButton
-            href=''
-            buttonProps={{ variant: 'PRIMARY', text: 'Join Webinar' }}
+            href={link}
+            buttonProps={{ variant: 'PRIMARY', text: 'Join Workshop' }}
             className='w-full'
           />
           <Text level='p' className='strong-text text-contentLight'>
@@ -25,4 +28,4 @@ const WebinarRegisterContainer = () => {
   );
 };
 
-export default WebinarRegisterContainer;
+export default WorkshopRegisterContainer;

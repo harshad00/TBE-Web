@@ -1,14 +1,14 @@
 import { FlexContainer, Image, ImageLink, Text } from '@/components';
-import { WebinarAboutInstructorProps } from '@/interfaces';
+import { WorkshopAboutInstructorProps } from '@/interfaces';
 
-const WebinarInstructor = ({
+const WorkshopInstructor = ({
   containerClasses = 'mt-6 gap-2',
   imagePath,
   imageAltText,
   name,
   linkedInURL,
   position,
-}: WebinarAboutInstructorProps) => {
+}: WorkshopAboutInstructorProps) => {
   return (
     <FlexContainer className={`${containerClasses} gap-2`}>
       <Image
@@ -46,4 +46,4 @@ const WebinarInstructor = ({
   );
 };
 
-export default WebinarInstructor;
+export default WorkshopInstructor;

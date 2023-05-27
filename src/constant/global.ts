@@ -33,11 +33,15 @@ const programs = {
     description:
       'Learn to build In-Demand Tech & Design skills over a weekend, that stays for life!',
   },
-  isProgrammingForYou: {
-    label: 'Is Programming For You',
-    slug: '/is-programming-for-you',
-    description:
-      'Understand why everybody want to be in Tech and should learn Tech or not.',
+  twoHourDesign: {
+    label: '2 Hour Design',
+    slug: '/2-hour-design',
+    description: 'Learn to Design Tech Products in just 2 Hours.',
+  },
+  theNextWave: {
+    label: 'The Next Wave',
+    slug: '/the-next-wave',
+    description: 'The Fundamentals of Next.js in 90 Min.',
   },
 };
 

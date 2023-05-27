@@ -44,19 +44,19 @@ import WeTaughtAt from './containers/Cards/WeTaughtAt';
 import WeTaughtAtCard from './containers/Cards/Items/WeTaughtAtCard';
 import MicrocampRegisterForm from './containers/Forms/MicrocampRegisterForm';
 import ContactCard from './containers/Cards/ContactCard';
-import WebinarHeader from './containers/Page/Webinar/WebinarHeader';
+import WorkshopHeader from './containers/Page/Workshop/WorkshopHeader';
 import SEO from './layout/SEO';
 import Pill from './common/Pill';
 import IconPill from './common/Pill/IconPill';
 import TimerItem from './common/Timer';
 import ImageLink from './common/Images/ImageLink';
-import WebinarRegisterContainer from './containers/Page/Webinar/WebinarRegisterContainer';
-import CountdownTimerContainer from './containers/Page/Webinar/CountdownTimerContainer';
-import AboutWebinarContainer from './containers/Page/Webinar/AboutWebinarContainer';
-import WebinarDescription from './containers/Page/Webinar/WebinarDescription';
-import AboutTheBoringEducation from './containers/Page/Webinar/AboutTheBoringEducation';
-import WebinarInstructor from './containers/Page/Webinar/WebinarInstructor';
-import AboutWebinarInstructorContainer from './containers/Page/Webinar/AboutWebinarInstructorContainer';
+import WorkshopRegisterContainer from './containers/Page/Workshop/WorkshopRegisterContainer';
+import CountdownTimerContainer from './containers/Page/Workshop/CountdownTimerContainer';
+import AboutWorkshopContainer from './containers/Page/Workshop/AboutWorkshopContainer';
+import WorkshopDescription from './containers/Page/Workshop/WorkshopDescription';
+import AboutTheBoringEducation from './containers/Page/Workshop/AboutTheBoringEducation';
+import WorkshopInstructor from './containers/Page/Workshop/WorkshopInstructor';
+import AboutWorkshopInstructorContainer from './containers/Page/Workshop/AboutWorkshopInstructorContainer';
 
 export {
   Navbar,
@@ -106,16 +106,16 @@ export {
   MicrocampRegisterForm,
   SEO,
   ContactCard,
-  WebinarHeader,
+  WorkshopHeader,
   Pill,
   CountdownTimerContainer,
   TimerItem,
-  WebinarRegisterContainer,
-  AboutWebinarContainer,
+  WorkshopRegisterContainer,
+  AboutWorkshopContainer,
   IconPill,
-  WebinarDescription,
+  WorkshopDescription,
   AboutTheBoringEducation,
   ImageLink,
-  WebinarInstructor,
-  AboutWebinarInstructorContainer,
+  WorkshopInstructor,
+  AboutWorkshopInstructorContainer,
 };

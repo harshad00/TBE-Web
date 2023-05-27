@@ -5,23 +5,24 @@ import {
   Image,
   Pill,
   CountdownTimerContainer,
-  WebinarRegisterContainer,
+  WorkshopRegisterContainer,
   IconPill,
-  WebinarInstructor,
+  WorkshopInstructor,
 } from '@/components';
-import { WebinarHeaderProps } from '@/interfaces';
-import { webinar } from '@/data'
+import { WorkshopMetaDataProps } from '@/interfaces';
+import { SVG_BASE_PATH } from '@/data';
+import { formatDate } from '@/utils';
 
-const WebinarHeader = ({
-  mainHeading,
-  pillText,
+const WorkshopHeader = ({
+  title,
   image,
   imageAltText,
-  content,
-  cardContent,
-}: WebinarHeaderProps) => {
-  const startDate = new Date();
-  const endDate = new Date(webinar.meta.date);
+  description,
+  instructor,
+  date,
+  time,
+  link,
+}: WorkshopMetaDataProps) => {
   return (
     <Section>
       <FlexContainer direction='col'>
@@ -36,52 +37,52 @@ const WebinarHeader = ({
               src={image}
               alt={imageAltText}
             />
-            <FlexContainer direction='col' className='p-4 md:p-8'>
+            <FlexContainer direction='col' className='px-2 py-4 md:p-8'>
               <Pill
-                text={pillText}
+                text='Free Workshop'
                 variant='SECONDARY'
                 textStyleClasses='text-contentLight'
               />
               <FlexContainer direction='col' className='mt-6 w-full gap-1'>
                 <Text level='h3' textCenter={true} className='heading-3'>
-                  {mainHeading}
+                  {title}
                 </Text>
 
                 <Text level='p' className='paragraph' textCenter={true}>
-                  {content}
+                  {description}
                 </Text>
               </FlexContainer>
-              <WebinarInstructor
-                imagePath={cardContent.image}
-                imageAltText={cardContent.imageAltText}
-                name={cardContent.name}
-                position={cardContent.designation}
+              <WorkshopInstructor
+                imagePath={instructor.image}
+                imageAltText={instructor.imageAltText}
+                name={instructor.name}
+                position={instructor.designation}
               />
               <FlexContainer
                 className='mt-4 gap-4 md:mt-6'
                 justifyCenter={false}
               >
                 <IconPill
-                  iconPath={cardContent.dateIcon}
-                  iconAltText={cardContent.dateIconAltText}
-                  label={cardContent.date}
+                  iconPath={`${SVG_BASE_PATH}/calendar.svg`}
+                  iconAltText='Calendar'
+                  label={formatDate(date)}
                   backgroundColor=''
                 />
                 <IconPill
-                  iconPath={cardContent.timeIcon}
-                  iconAltText={cardContent.timeIconAltText}
-                  label={cardContent.time}
+                  iconPath={`${SVG_BASE_PATH}/clock.svg`}
+                  iconAltText='Clock'
+                  label={time}
                   backgroundColor=''
                 />
               </FlexContainer>
-              <CountdownTimerContainer startDate={startDate} endDate={endDate} />
+              <CountdownTimerContainer date={date} />
             </FlexContainer>
           </div>
         </FlexContainer>
       </FlexContainer>
-      <WebinarRegisterContainer />
+      <WorkshopRegisterContainer link={link} />
     </Section>
   );
 };
 
-export default WebinarHeader;
+export default WorkshopHeader;

@@ -3,11 +3,11 @@ import { GenerateSectionPathProps, PageSlug } from '@/interfaces';
 const routes = {
   home: '/',
   microCamps: '/micro-camps',
+  workshops: '/workshops',
+  contactUs: '/contact',
   microCampLanding: function (microCampSlug: PageSlug | string) {
     return this.microCamps + microCampSlug;
   },
-
-  contactUs: '/contact',
   internals: {
     landing: {
       programs: 'programs',
@@ -16,8 +16,10 @@ const routes = {
       explore: 'explore',
     },
   },
+  workshopLanding: function (workshopSlug: PageSlug | string) {
+    return this.workshops + workshopSlug;
+  },
   404: '/404',
-  isProgrammingForYou: '/is-programming-for-you',
 };
 
 const generateSectionPath = ({

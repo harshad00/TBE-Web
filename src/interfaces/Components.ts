@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import { PageSlug, SkillProps, SkillsProps } from '.';
+import { GetSEOMetaResponseType, PageSlug, SkillProps, SkillsProps } from '.';
 
 export interface SectionProps {
   children: React.ReactNode;
@@ -49,57 +49,46 @@ export interface ButtonProps {
   active?: boolean;
 }
 
-export interface WebinarMetaDataProps {
+export interface WorkshopDataProps {
+  meta: WorkshopMetaDataProps;
+  // header: WorkshopMetaDataProps;
+  aboutWorkshop: WorkshopAboutProps;
+}
+
+export interface WorkshopMetaDataProps {
+  slug: PageSlug;
   title: string;
   description: string;
   date: string;
   time: string;
-}
-
-export interface WebinarDataProps {
-  meta: WebinarMetaDataProps;
-  header: WebinarHeaderProps;
-  aboutWebinar: WebinarAboutProps;
-  instructor: WebinarInstructorCardProps;
-}
-
-export interface WebinarHeaderProps {
-  mainHeading: string;
-  pillText: string;
   image: string;
   imageAltText: string;
-  content: string;
-  cardContent: WebinarHeaderCardProps;
-  countdownTime: string[];
+  instructor: WorkshopInstructorDataProps;
+  link: string;
 }
 
-export interface WebinarHeaderCardProps {
-  image: string;
-  imageAltText: string;
+export interface WorkshopInstructorDataProps {
   name: string;
   designation: string;
-  date: string;
-  dateIcon: string;
-  dateIconAltText: string;
-  time: string;
-  timeIcon: string;
-  timeIconAltText: string;
+  image: string;
+  imageAltText: string;
+  about: string[];
 }
-export interface WebinarHeaderCountDownProps {
+
+export interface WorkshopHeaderCountDownProps {
   id: string;
   heading: string;
   timerList: string;
 }
 
-export interface WebinarAboutProps {
-  heading: string;
-  schedule: WebinarAboutScheduleProps;
-  aboutText: string[];
+export interface WorkshopAboutProps {
+  // heading: string;
+  // schedule: WorkshopAboutScheduleProps;
+  descriptions: string[];
   whatWillYouLearn: string[];
 }
 
-export interface WebinarAboutScheduleProps {
-  id: string;
+export interface WorkshopAboutScheduleProps {
   date: string;
   dateIcon: string;
   dateIconAltText: string;
@@ -108,27 +97,16 @@ export interface WebinarAboutScheduleProps {
   timeIconAltText: string;
 }
 
-export interface WebinarWhatWillYouLearnProps {
+export interface WorkshopWhatWillYouLearnProps {
   id: string;
   heading: string;
-  content: WebinarWhatWillYouLearnContentProps[];
+  content: WorkshopWhatWillYouLearnContentProps[];
 }
 
-export interface WebinarWhatWillYouLearnContentProps {
+export interface WorkshopWhatWillYouLearnContentProps {
   id: string;
   paragraph: string;
 }
-
-export interface WebinarInstructorCardProps {
-  heading: string;
-  image: string;
-  imageAltText: string;
-  name: string;
-  // socialIcon: string;
-  designation: string;
-  about: string[];
-}
-
 export interface ProgramCardProps {
   image: string;
   imageAltText: string;
@@ -190,7 +168,7 @@ export interface FlexContainerProps {
   direction?: 'row' | 'col';
 }
 
-export interface WebinarDescriptionProps {
+export interface WorkshopDescriptionProps {
   paragraphs: string[];
   flexProps: FlexContainerProps;
 }
@@ -266,7 +244,7 @@ export type GenerateSectionPathProps = {
 };
 
 export interface SEOProps {
-  slug: PageSlug;
+  seoMeta: GetSEOMetaResponseType;
 }
 
 export interface SkillsContainerProps {
@@ -280,8 +258,7 @@ export interface PillProps {
 }
 
 export interface CountdownTimerContainerProps {
-  startDate: Date;
-  endDate: Date;
+  date: string;
 }
 
 export interface TimerItemProps {
@@ -297,7 +274,7 @@ export interface IconPillProps {
   labelColor?: string;
 }
 
-export interface WebinarAboutInstructorProps {
+export interface WorkshopAboutInstructorProps {
   containerClasses?: string;
   imagePath: string;
   imageAltText: string;
@@ -311,8 +288,17 @@ export interface WeTaughtAtCardProps {
   imageAltText: string;
 }
 
-export interface WebinarDataProps {
-  header: WebinarHeaderProps;
-  aboutWebinar: WebinarAboutProps;
-  instructor: WebinarInstructorCardProps;
+export interface CountdownTimerProps {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+export interface AboutWorkshopContainerProps
+  extends WorkshopAboutProps,
+    WorkshopMetaDataProps {}
+
+export interface WorkshopRegisterContainerProps {
+  link: string;
 }

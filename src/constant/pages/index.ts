@@ -21,16 +21,16 @@ const TOP_NAVIGATION = [
     name: programs.juniorInWebEngineering.label,
     href: routes.microCampLanding(programs.juniorInWebEngineering.slug),
   },
-  // {
-  //   id: v4(),
-  //   name: programs.beFrontendMaster.label,
-  //   href: routes.microCampLanding(programs.beFrontendMaster.slug),
-  // },
-  // {
-  //   id: v4(),
-  //   name: programs.beBackendMaster.label,
-  //   href: routes.microCampLanding(programs.beBackendMaster.slug),
-  // },
+  {
+    id: v4(),
+    name: programs.twoHourDesign.label,
+    href: routes.workshopLanding(programs.twoHourDesign.slug),
+  },
+  {
+    id: v4(),
+    name: programs.theNextWave.label,
+    href: routes.workshopLanding(programs.theNextWave.slug),
+  },
   { id: v4(), name: 'Contact us', href: routes.contactUs },
 ];
 
