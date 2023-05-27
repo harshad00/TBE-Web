@@ -38,11 +38,11 @@ const getSEOMeta = (basePath: PageSlug): GetSEOMetaResponseType => {
       url: routes.microCampLanding(programs.beBackendMaster.slug),
       ...commonMeta,
     },
-    [programs.isProgrammingForYou.slug]: {
-      title: `${programs.isProgrammingForYou.label} | The Boring Education`,
-      siteName: programs.isProgrammingForYou.label,
-      description: programs.isProgrammingForYou.description,
-      url: routes.microCampLanding(programs.isProgrammingForYou.slug),
+    [programs.twoHourDesign.slug]: {
+      title: `${programs.twoHourDesign.label} | The Boring Education`,
+      siteName: programs.twoHourDesign.label,
+      description: programs.twoHourDesign.description,
+      url: routes.workshopLanding(programs.twoHourDesign.slug),
       ...commonMeta,
     },
     '/contact': {

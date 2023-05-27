@@ -6,7 +6,7 @@ export const SVG_BASE_PATH = '/svg';
 const workshops: WorkshopDataProps[] = [
   {
     meta: {
-      slug: '/is-programming-for-you',
+      slug: '/2-hour-design',
       title: 'Is Programming for you?',
       image: `${IMAGE_BASE_PATH}/coding_bg.png`,
       imageAltText: `is programming for you`,
