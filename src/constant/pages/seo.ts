@@ -45,6 +45,13 @@ const getSEOMeta = (basePath: PageSlug): GetSEOMetaResponseType => {
       url: routes.workshopLanding(programs.twoHourDesign.slug),
       ...commonMeta,
     },
+    [programs.theNextWave.slug]: {
+      title: `${programs.theNextWave.label} | The Boring Education`,
+      siteName: programs.theNextWave.label,
+      description: programs.theNextWave.description,
+      url: routes.workshopLanding(programs.theNextWave.slug),
+      ...commonMeta,
+    },
     '/contact': {
       title: 'Contact | The Boring Education',
       siteName: 'The Boring Education',

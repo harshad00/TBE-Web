@@ -30,7 +30,8 @@ export type PageSlug =
   | '/junior-in-web-engineering'
   | '/be-frontend-master'
   | '/be-backend-master'
-  | '/2-hour-design';
+  | '/2-hour-design'
+  | '/the-next-wave';
 
 export type GetSEOMetaResponseType = {
   title: string;
