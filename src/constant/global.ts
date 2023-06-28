@@ -1,6 +1,7 @@
 const imageMeta = {
   logo: {
-    path: '/svg/logo.svg',
+    light: '/svg/logo.svg',
+    dark: '/svg/logo-dark.svg',
     alt: 'the-boring-education-logo',
   },
 };

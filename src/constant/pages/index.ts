@@ -21,16 +21,6 @@ const TOP_NAVIGATION = [
     name: programs.juniorInWebEngineering.label,
     href: routes.microCampLanding(programs.juniorInWebEngineering.slug),
   },
-  {
-    id: v4(),
-    name: programs.twoHourDesign.label,
-    href: routes.workshopLanding(programs.twoHourDesign.slug),
-  },
-  {
-    id: v4(),
-    name: programs.theNextWave.label,
-    href: routes.workshopLanding(programs.theNextWave.slug),
-  },
   { id: v4(), name: 'Contact us', href: routes.contactUs },
 ];
 
@@ -176,29 +166,29 @@ const USP: WeGuideDifferentlyCardProps[] = [
     id: v4(),
     title: `Mentorship`,
     content: `You'll mentored by Industry Experts. From Code Review to 1:1, You'll be in touch them every week.`,
-    image: `${SVG_BASE_PATH}/peer_learning.svg`,
+    image: `${SVG_BASE_PATH}/mentorship.svg`,
     imageAltText: `mentorship`,
   },
   {
     id: v4(),
     title: `Peer Learning`,
     content: `You learn by practicing and also from your batchmates. Do Pair programming in our Discord community.`,
-    image: `${SVG_BASE_PATH}/peer_learning.svg`,
+    image: `${SVG_BASE_PATH}/peer-to-peer-learning.svg`,
     imageAltText: `peer learning`,
   },
   {
     id: v4(),
     title: `Weekend Workshop`,
     content: `Learn skill over weekend that spreads your horizon in Tech Opportunities.`,
-    image: `${SVG_BASE_PATH}/peer_learning.svg`,
+    image: `${SVG_BASE_PATH}/workshop.svg`,
     imageAltText: `weekend workshop`,
   },
   {
     id: v4(),
     title: `Doubt Clearing Sessions`,
-    content: `Clear all your doubts over weekend and discuss any issue you’re facing.`,
-    image: `${SVG_BASE_PATH}/peer_learning.svg`,
-    imageAltText: `weekend workshop`,
+    content: `Clear all your doubts over weekend and discuss any issue you're facing.`,
+    image: `${SVG_BASE_PATH}/doubt-session.svg`,
+    imageAltText: `doubt session`,
   },
 ];
 

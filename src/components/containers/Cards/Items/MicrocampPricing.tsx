@@ -29,22 +29,22 @@ const MicrocampPricing = () => {
             className='subtitle pt-1 text-center text-grey md:w-2/3'
             textCenter={true}
           >
-            We don't believe in variable pricing for our products. We don't sell
-            you anything blindly.
+            We're building for affordibility of our programs. We don't sell you
+            anything blindly.
           </Text>
         </FlexContainer>
 
         <div className='gradient-2 mt-4 w-full rounded-2 px-4 py-4 md:w-10/12 lg:w-2/3'>
           <div className='flex flex-col items-center justify-between'>
-            <Text level='p' className='strong-text'>
+            <Text level='p' className='strong-text text-contentDark'>
               PRICE YOU PAY
             </Text>
-            <Text level='h2' className='heading-2 pt-2'>
+            <Text level='h2' className='heading-2 pt-2 text-contentDark'>
               ₹1999
             </Text>
           </div>
           <div className='flex flex-col items-center justify-between pt-4'>
-            <Text level='p' className='strong-text'>
+            <Text level='p' className='strong-text text-contentDark'>
               VALUE YOU GET
             </Text>
             <GridContainer className='w-full grid-cols-2 grid-cols-[repeat(auto-fit,minmax(100%,1fr))] gap-2 gap-1 rounded-2 pt-2 md:grid-cols-[repeat(auto-fit,minmax(16rem,1fr))]'>
@@ -62,10 +62,18 @@ const MicrocampPricing = () => {
             >
               CAN'T DECIDE?
             </Text>
-            <Text level='h4' className='heading-4 pt-1' textCenter={true}>
+            <Text
+              level='h4'
+              className='heading-4 pt-1 text-contentDark'
+              textCenter={true}
+            >
               Talk to our Founders
             </Text>
-            <Text level='p' className='paragraph mt-1' textCenter={true}>
+            <Text
+              level='p'
+              className='paragraph mt-1 text-contentDark'
+              textCenter={true}
+            >
               Because we don't have a sales team
             </Text>
             <FlexContainer justifyCenter={true} className='mt-3 w-full'>

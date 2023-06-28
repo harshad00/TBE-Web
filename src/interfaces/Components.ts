@@ -33,6 +33,7 @@ export interface ImageContainerProps {
 
 export interface LogoProps {
   className?: string;
+  isDark?: boolean;
 }
 
 export interface LinkButtonProps extends LinkProps {

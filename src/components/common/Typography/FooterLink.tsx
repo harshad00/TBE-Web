@@ -6,7 +6,7 @@ const FooterLink = ({ href, label, target }: FooterLinkProps) => {
     <li>
       <Link
         href={href}
-        className='paragraph text-grey hover:underline'
+        className='paragraph text-contentDark hover:underline'
         target={target}
       >
         {label}

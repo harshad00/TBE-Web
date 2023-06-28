@@ -40,43 +40,43 @@
 
   /* 2. Fonts */
   .heading-1 {
-    @apply text-header-1 font-black text-white;
+    @apply text-header-1 font-black text-contentLight;
   }
 
   .heading-2 {
-    @apply text-header-2 font-bold text-white;
+    @apply text-header-2 font-bold text-contentLight;
   }
 
   .heading-3 {
-    @apply text-header-3 font-bold text-white;
+    @apply text-header-3 font-bold text-contentLight;
   }
 
   .heading-4 {
-    @apply text-header-4 font-semibold text-white;
+    @apply text-header-4 font-semibold text-contentLight;
   }
 
   .heading-5 {
-    @apply text-header-5 font-semibold text-white;
+    @apply text-header-5 font-semibold text-contentLight;
   }
 
   .subtitle {
-    @apply text-subtitle font-normal text-white;
+    @apply text-subtitle font-normal text-contentLight;
   }
 
   .paragraph {
-    @apply text-paragraph font-normal text-white;
+    @apply text-paragraph font-normal text-contentLight;
   }
 
   .strong-text {
-    @apply text-strong-text font-semibold text-white;
+    @apply text-strong-text font-semibold text-contentLight;
   }
 
   .pre-title {
-    @apply text-pre-title font-medium text-white;
+    @apply text-pre-title font-medium text-contentLight;
   }
 
   .button-text {
-    @apply text-button-text font-bold text-white;
+    @apply text-button-text font-bold text-contentLight;
   }
 
   /* Image */
@@ -88,11 +88,11 @@
 
   /* Link */
   .link {
-    @apply text-button-text font-bold text-white;
+    @apply text-button-text font-bold text-contentLight;
   }
 
   .button {
-    @apply w-full rounded-1 text-button-text font-bold text-white;
+    @apply w-full rounded-1 text-button-text font-bold text-contentLight;
   }
 
   .disabled {

@@ -13,7 +13,7 @@ const InThisCohortContainer = () => {
     <Section id={routes.internals.microCampLanding.explore}>
       <FlexContainer direction='col'>
         <FlexContainer direction='col'>
-          <Text level='p' className='strong-text text-grey'>
+          <Text level='p' className='strong-text text-contentLight'>
             IN THIS COHORT
           </Text>
           <SectionHeaderContainer
