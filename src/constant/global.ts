@@ -1,6 +1,3 @@
-import { PageSlug } from '@/interfaces';
-import { landingPageSkills, juniorInWebEngineeringSkills } from './pages';
-
 const imageMeta = {
   logo: {
     path: '/svg/logo.svg',
@@ -45,16 +42,6 @@ const programs = {
   },
 };
 
-// Skills
-const getSkillsBySlug = (slug: PageSlug) => {
-  const skillsBySlug = {
-    '/': landingPageSkills,
-    [programs.juniorInWebEngineering.slug]: juniorInWebEngineeringSkills,
-  };
-
-  return skillsBySlug[slug];
-};
-
 // Global links
 const LINKS = {
   juniorInWebEngineeringRegistrationLink:
@@ -73,11 +60,4 @@ const googleAnalyticsScript = `
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
           `;
 
-export {
-  imageMeta,
-  programs,
-  LINKS,
-  getSkillsBySlug,
-  gtag,
-  googleAnalyticsScript,
-};
+export { imageMeta, programs, LINKS, gtag, googleAnalyticsScript };

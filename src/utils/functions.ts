@@ -1,3 +1,8 @@
+import {
+  juniorInWebEngineeringSkills,
+  landingPageSkills,
+  programs,
+} from '@/constant';
 import workshops from '@/data/workshop';
 import { PageSlug } from '@/interfaces';
 
@@ -15,4 +20,14 @@ const formatTime = (time: number) => time.toString().padStart(2, '0');
 const getWorkshopData = (slug: PageSlug) =>
   workshops.find((workshop) => workshop.meta.slug === slug);
 
-export { formatDate, formatTime, getWorkshopData };
+// Skills
+const getSkillsBySlug = (slug: PageSlug) => {
+  const skillsBySlug = {
+    '/': landingPageSkills,
+    [programs.juniorInWebEngineering.slug]: juniorInWebEngineeringSkills,
+  };
+
+  return skillsBySlug[slug];
+};
+
+export { formatDate, formatTime, getWorkshopData, getSkillsBySlug };

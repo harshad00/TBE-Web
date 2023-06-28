@@ -11,9 +11,8 @@ import {
   WeTaughtAt,
   SEO,
 } from '@/components';
-import { getSkillsBySlug } from '@/constant';
 import { PageProps } from '@/interfaces';
-import { getPreFetchProps } from '@/utils';
+import { getPreFetchProps, getSkillsBySlug } from '@/utils';
 
 const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
   return (
