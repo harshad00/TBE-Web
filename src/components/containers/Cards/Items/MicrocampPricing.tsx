@@ -63,9 +63,12 @@ const MicrocampPricing = () => {
               CAN'T DECIDE?
             </Text>
             <Text level='h4' className='heading-4 pt-1' textCenter={true}>
-              Talk to our counsellors
+              Talk to our Founders
             </Text>
-            <FlexContainer justifyCenter={true} className='w-full pt-2'>
+            <Text level='p' className='paragraph mt-1' textCenter={true}>
+              Because we don't have a sales team
+            </Text>
+            <FlexContainer justifyCenter={true} className='mt-3 w-full'>
               <LinkButton
                 href={LINKS.juniorInWebEngineeringRegistrationLink}
                 buttonProps={{

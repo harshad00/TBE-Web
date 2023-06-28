@@ -4,22 +4,21 @@ import {
   MicroCampLandingHeader,
   InThisCohortContainer,
   Testimonials,
-  Footer,
   NotAnotherTechCourse,
   ContextBasedLearning,
   MicrocampPricing,
   WhatWeDoForYou,
-  WeToughtAt,
+  WeTaughtAt,
   SEO,
 } from '@/components';
 import { getSkillsBySlug } from '@/constant';
-import { PageSlug } from '@/interfaces';
+import { PageProps } from '@/interfaces';
+import { getPreFetchProps } from '@/utils';
 
-const MicroCampLanding = () => {
-  const slug: PageSlug = '/junior-in-web-engineering';
+const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
   return (
     <React.Fragment>
-      <SEO slug={slug} />
+      <SEO seoMeta={seoMeta} />
       <MicroCampLandingHeader />
       <InThisCohortContainer />
       <Skills skills={getSkillsBySlug(slug)} />
@@ -27,10 +26,12 @@ const MicroCampLanding = () => {
       <NotAnotherTechCourse />
       <ContextBasedLearning />
       <MicrocampPricing />
-      <WeToughtAt />
+      <WeTaughtAt />
       <Testimonials />
     </React.Fragment>
   );
 };
+
+export const getServerSideProps = getPreFetchProps;
 
 export default MicroCampLanding;

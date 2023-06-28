@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const ImageContainer = ({
   src,
-  alt,
+  alt = '',
   className,
   loading = 'lazy',
   fullWidth = true,
@@ -20,7 +20,7 @@ const ImageContainer = ({
         alt={alt}
         fill={true}
         loading={loading}
-        className={className + ' image'}
+        className={`${className} image`}
       />
     </div>
   );

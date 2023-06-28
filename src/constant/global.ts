@@ -33,6 +33,16 @@ const programs = {
     description:
       'Learn to build In-Demand Tech & Design skills over a weekend, that stays for life!',
   },
+  twoHourDesign: {
+    label: '2 Hour Design',
+    slug: '/2-hour-design',
+    description: 'Learn to Design Tech Products in just 2 Hours.',
+  },
+  theNextWave: {
+    label: 'The Next Wave',
+    slug: '/the-next-wave',
+    description: 'The Fundamentals of Next.js in 90 Min.',
+  },
 };
 
 // Skills

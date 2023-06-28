@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import { PageSlug, SkillProps, SkillsProps } from '.';
+import { GetSEOMetaResponseType, PageSlug, SkillProps, SkillsProps } from '.';
 
 export interface SectionProps {
   children: React.ReactNode;
@@ -49,6 +49,64 @@ export interface ButtonProps {
   active?: boolean;
 }
 
+export interface WorkshopDataProps {
+  meta: WorkshopMetaDataProps;
+  // header: WorkshopMetaDataProps;
+  aboutWorkshop: WorkshopAboutProps;
+}
+
+export interface WorkshopMetaDataProps {
+  slug: PageSlug;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  image: string;
+  imageAltText: string;
+  instructor: WorkshopInstructorDataProps;
+  link: string;
+}
+
+export interface WorkshopInstructorDataProps {
+  name: string;
+  designation: string;
+  image: string;
+  imageAltText: string;
+  about: string[];
+}
+
+export interface WorkshopHeaderCountDownProps {
+  id: string;
+  heading: string;
+  timerList: string;
+}
+
+export interface WorkshopAboutProps {
+  // heading: string;
+  // schedule: WorkshopAboutScheduleProps;
+  descriptions: string[];
+  whatWillYouLearn: string[];
+}
+
+export interface WorkshopAboutScheduleProps {
+  date: string;
+  dateIcon: string;
+  dateIconAltText: string;
+  time: string;
+  timeIcon: string;
+  timeIconAltText: string;
+}
+
+export interface WorkshopWhatWillYouLearnProps {
+  id: string;
+  heading: string;
+  content: WorkshopWhatWillYouLearnContentProps[];
+}
+
+export interface WorkshopWhatWillYouLearnContentProps {
+  id: string;
+  paragraph: string;
+}
 export interface ProgramCardProps {
   image: string;
   imageAltText: string;
@@ -103,11 +161,16 @@ export interface NotAnotherTechCourseCardProps {
 }
 
 export interface FlexContainerProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   itemCenter?: boolean;
   justifyCenter?: boolean;
   className?: string;
   direction?: 'row' | 'col';
+}
+
+export interface WorkshopDescriptionProps {
+  paragraphs: string[];
+  flexProps: FlexContainerProps;
 }
 
 export interface TestimonialCardProps {
@@ -181,9 +244,61 @@ export type GenerateSectionPathProps = {
 };
 
 export interface SEOProps {
-  slug: PageSlug;
+  seoMeta: GetSEOMetaResponseType;
 }
 
 export interface SkillsContainerProps {
   skills: SkillsProps[];
+}
+
+export interface PillProps {
+  text: string;
+  variant: 'PRIMARY' | 'SECONDARY';
+  textStyleClasses?: string;
+}
+
+export interface CountdownTimerContainerProps {
+  date: string;
+}
+
+export interface TimerItemProps {
+  timer: string;
+}
+
+export interface IconPillProps {
+  iconPath: string;
+  iconAltText: string;
+  label: string;
+  className?: string;
+  backgroundColor?: string;
+  labelColor?: string;
+}
+
+export interface WorkshopAboutInstructorProps {
+  containerClasses?: string;
+  imagePath: string;
+  imageAltText: string;
+  name: string;
+  position: string;
+  linkedInURL?: string;
+}
+
+export interface WeTaughtAtCardProps {
+  image: string;
+  imageAltText: string;
+}
+
+export interface CountdownTimerProps {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+export interface AboutWorkshopContainerProps
+  extends WorkshopAboutProps,
+    WorkshopMetaDataProps {}
+
+export interface WorkshopRegisterContainerProps {
+  link: string;
 }
