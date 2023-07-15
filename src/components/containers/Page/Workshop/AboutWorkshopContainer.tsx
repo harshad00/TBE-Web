@@ -4,8 +4,8 @@ import {
   Text,
   WorkshopDescription,
 } from '@/components';
+import { STATIC_FILE_PATH } from '@/constant';
 import { AboutWorkshopContainerProps } from '@/interfaces';
-import { SVG_BASE_PATH } from '@/data';
 import { formatDate } from '@/utils';
 
 const AboutWorkshopContainer = ({
@@ -22,14 +22,14 @@ const AboutWorkshopContainer = ({
         </Text>
         <FlexContainer className='mt-2 gap-2'>
           <IconPill
-            iconPath={`${SVG_BASE_PATH}/calendar_grey.svg`}
+            iconPath={`${STATIC_FILE_PATH.svg}/calendar_grey.svg`}
             iconAltText='workshop-calendar'
             label={formatDate(date)}
             labelColor='text-greyDark'
             className='w-full md:w-fit'
           />
           <IconPill
-            iconPath={`${SVG_BASE_PATH}/clock_grey.svg`}
+            iconPath={`${STATIC_FILE_PATH.svg}/clock_grey.svg`}
             iconAltText='workshop-clock'
             label={time}
             labelColor='text-greyDark'

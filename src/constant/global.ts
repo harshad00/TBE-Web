@@ -1,3 +1,5 @@
+import { ProgramsDataProps } from '@/interfaces';
+
 const imageMeta = {
   logo: {
     light: '/svg/logo.svg',
@@ -6,7 +8,7 @@ const imageMeta = {
   },
 };
 
-const programs = {
+const programs: ProgramsDataProps = {
   beFrontendMaster: {
     label: 'Be Front-end Master',
     slug: '/be-frontend-master',
@@ -61,4 +63,18 @@ const googleAnalyticsScript = `
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
           `;
 
-export { imageMeta, programs, LINKS, gtag, googleAnalyticsScript };
+// Paths
+const STATIC_FILE_PATH = {
+  svg: '/svg',
+  webp: '/webp',
+  image: '/images',
+};
+
+export {
+  imageMeta,
+  programs,
+  LINKS,
+  gtag,
+  googleAnalyticsScript,
+  STATIC_FILE_PATH,
+};

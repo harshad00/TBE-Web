@@ -30,6 +30,7 @@ export type PageSlug =
   | '/junior-in-web-engineering'
   | '/be-frontend-master'
   | '/be-backend-master'
+  | '/the-boring-workshops'
   | '/2-hour-design'
   | '/the-next-wave';
 
@@ -42,3 +43,36 @@ export type GetSEOMetaResponseType = {
   robots: string;
   image: string;
 };
+
+export interface ProgramsDataProps {
+  beFrontendMaster: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+  beBackendMaster: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+  juniorInWebEngineering: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+  theBoringWorkshops: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+  twoHourDesign: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+  theNextWave: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+}

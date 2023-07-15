@@ -7,13 +7,12 @@ import {
   WeGuideDifferentlyCardProps,
   MicroCampFeaturePricingCardProps,
   SkillProps,
+  WorkshopDataProps,
+  PageSlug,
 } from '@/interfaces';
-import { programs } from '../global';
+import { programs, STATIC_FILE_PATH } from '../global';
 import { routes } from '../routes';
 import { v4 } from 'uuid';
-
-const SVG_BASE_PATH = '/svg';
-const WEBP_BASE_PATH = '/webp';
 
 const TOP_NAVIGATION = [
   {
@@ -27,7 +26,7 @@ const TOP_NAVIGATION = [
 const PROGRAMS = [
   {
     id: v4(),
-    image: `${SVG_BASE_PATH}/junior-in-web-engineering-banner.svg`,
+    image: `${STATIC_FILE_PATH.svg}/junior-in-web-engineering-banner.svg`,
     imageAltText: programs.juniorInWebEngineering.label,
     title: programs.juniorInWebEngineering.label,
     content: programs.juniorInWebEngineering.description,
@@ -36,7 +35,7 @@ const PROGRAMS = [
   },
   {
     id: v4(),
-    image: `${SVG_BASE_PATH}/be-front-end-master-banner.svg`,
+    image: `${STATIC_FILE_PATH.svg}/be-front-end-master-banner.svg`,
     imageAltText: programs.beFrontendMaster.label,
     title: programs.beFrontendMaster.label,
     content: programs.beFrontendMaster.description,
@@ -45,7 +44,7 @@ const PROGRAMS = [
   },
   {
     id: v4(),
-    image: `${SVG_BASE_PATH}/be-back-end-master-banner.svg`,
+    image: `${STATIC_FILE_PATH.svg}/be-back-end-master-banner.svg`,
     imageAltText: programs.beBackendMaster.label,
     title: programs.beBackendMaster.label,
     content: programs.beBackendMaster.description,
@@ -54,7 +53,7 @@ const PROGRAMS = [
   },
   {
     id: v4(),
-    image: `${SVG_BASE_PATH}/the-boring-workshop-banner.svg`,
+    image: `${STATIC_FILE_PATH.svg}/the-boring-workshop-banner.svg`,
     imageAltText: programs.theBoringWorkshops.label,
     title: programs.theBoringWorkshops.label,
     content: programs.theBoringWorkshops.description,
@@ -63,11 +62,128 @@ const PROGRAMS = [
   },
 ];
 
+const WORKSHOPS: WorkshopDataProps[] = [
+  {
+    meta: {
+      slug: programs.twoHourDesign.slug,
+      title: programs.twoHourDesign.label,
+      image: `${STATIC_FILE_PATH.image}/coding_bg.png`,
+      imageAltText: `is programming for you`,
+      description: programs.twoHourDesign.description,
+      date: '2023-05-29', // YYYY-MM-DD
+      time: '5 PM',
+      instructor: {
+        name: `Sachin Kr. Shukla`,
+        designation: `Co-Founder, The Boring Education`,
+        image: `${STATIC_FILE_PATH.image}/sachin_shukla.png`,
+        imageAltText: 'sachin shukla',
+        about: [
+          '1. Built Ed-tech startups since college.',
+          '2. Worked with Newton School, Masai, Pesto & CueMath.',
+          '3. Senior Software Engineer @PW.',
+        ],
+      },
+      link: '#',
+    },
+    aboutWorkshop: {
+      descriptions: [
+        "Programming is becoming everyone's need these days. You want to build a software, You need programming. You want to get a job, you need programming.",
+        'First thing as a learner you do, is look for an online programs. There are so many programs available in the market.',
+        "With lot of options in market, You will be confused to choose an option, and with that you'll choose an expensive program that'll cost you lakhs.",
+        "Everybody has a spending capacity and with a “Job in 6 Months” scheme, you'll be prompted to buy a program.",
+        "Should you buy or should you not? We'll discuss it in our programs.",
+      ],
+      whatWillYouLearn: [
+        "1. You'll learn with your background, will programming be helpful for you?",
+        '2. Decide if you should be okay buying expensive bootcamps',
+        '3. Understand what it takes to break into Tech',
+      ],
+    },
+  },
+  {
+    meta: {
+      slug: '/the-next-wave',
+      title: 'The Next Wave',
+      image: `${STATIC_FILE_PATH.image}/coding_bg.png`,
+      imageAltText: `is programming for you`,
+      description:
+        'Understand why everybody wants to be in Tech and should you learn Tech or not.',
+      date: '2023-05-29', // YYYY-MM-DD
+      time: '5 PM',
+      instructor: {
+        name: `Sachin Kr. Shukla`,
+        designation: `Co-Founder, The Boring Education`,
+        image: `${STATIC_FILE_PATH.image}/sachin_shukla.png`,
+        imageAltText: 'sachin shukla',
+        about: [
+          '1. Built Ed-tech startups since college.',
+          '2. Worked with Newton School, Masai, Pesto & CueMath.',
+          '3. Senior Software Engineer @PW.',
+        ],
+      },
+      link: '#',
+    },
+    aboutWorkshop: {
+      descriptions: [
+        "Programming is becoming everyone's need these days. You want to build a software, You need programming. You want to get a job, you need programming.",
+        'First thing as a learner you do, is look for an online programs. There are so many programs available in the market.',
+        "With lot of options in market, You will be confused to choose an option, and with that you'll choose an expensive program that'll cost you lakhs.",
+        "Everybody has a spending capacity and with a “Job in 6 Months” scheme, you'll be prompted to buy a program.",
+        "Should you buy or should you not? We'll discuss it in our programs.",
+      ],
+      whatWillYouLearn: [
+        "1. You'll learn with your background, will programming be helpful for you?",
+        '2. Decide if you should be okay buying expensive bootcamps',
+        '3. Understand what it takes to break into Tech',
+      ],
+    },
+  },
+];
+
+interface MicrocampDataProps {
+  slug: PageSlug;
+  header: {
+    heading: {
+      primary: string;
+      secondary: string;
+    };
+    subheading: string;
+  };
+}
+
+const MICROCAMPS: MicrocampDataProps[] = [
+  {
+    slug: programs.juniorInWebEngineering.slug,
+    header: {
+      heading: {
+        primary: 'Junior in',
+        secondary: 'Web Engineering',
+      },
+      subheading:
+        'Learn Core of Front-end Engineering with Placement Assistance in 8 Weeks.',
+    },
+  },
+  {
+    slug: programs.beFrontendMaster.slug,
+    header: {
+      heading: {
+        primary: 'Junior in',
+        secondary: 'Web Engineering',
+      },
+      subheading:
+        'Learn Core of Front-end Engineering with Placement Assistance in 8 Weeks.',
+    },
+  },
+];
+
 const [
   HTML,
   CSS,
   JavaScript,
   ReactJS,
+  Redux,
+  Tailwind,
+  Bootstrap,
   NextJS,
   NodeJS,
   MongoDB,
@@ -77,55 +193,73 @@ const [
   {
     id: v4(),
     name: `HTML`,
-    image: `${SVG_BASE_PATH}/html.svg`,
+    image: `${STATIC_FILE_PATH.svg}/html.svg`,
     imageAltText: `HTML`,
   },
   {
     id: v4(),
     name: `CSS`,
-    image: `${SVG_BASE_PATH}/css.svg`,
+    image: `${STATIC_FILE_PATH.svg}/css.svg`,
     imageAltText: `CSS`,
   },
   {
     id: v4(),
     name: `JavaScript`,
-    image: `${SVG_BASE_PATH}/js.svg`,
+    image: `${STATIC_FILE_PATH.svg}/js.svg`,
     imageAltText: `JavaScript`,
   },
   {
     id: v4(),
     name: `ReactJS`,
-    image: `${SVG_BASE_PATH}/reactjs.svg`,
+    image: `${STATIC_FILE_PATH.svg}/reactjs.svg`,
     imageAltText: `ReactJS`,
   },
   {
     id: v4(),
+    name: `Redux`,
+    image: `${STATIC_FILE_PATH.svg}/redux.svg`,
+    imageAltText: `Redux`,
+  },
+  {
+    id: v4(),
+    name: `Tailwind`,
+    image: `${STATIC_FILE_PATH.svg}/tailwind.svg`,
+    imageAltText: `Tailwind`,
+  },
+  {
+    id: v4(),
+    name: `Bootstrap`,
+    image: `${STATIC_FILE_PATH.svg}/bootstrap.svg`,
+    imageAltText: `Bootstrap`,
+  },
+  {
+    id: v4(),
     name: `NextJs`,
-    image: `${SVG_BASE_PATH}/nextjs.svg`,
+    image: `${STATIC_FILE_PATH.svg}/nextjs.svg`,
     imageAltText: `NextJS`,
   },
   {
     id: v4(),
     name: `NodeJS`,
-    image: `${SVG_BASE_PATH}/nodejs.svg`,
+    image: `${STATIC_FILE_PATH.svg}/nodejs.svg`,
     imageAltText: `NodeJS`,
   },
   {
     id: v4(),
     name: `MongoDB`,
-    image: `${SVG_BASE_PATH}/mongodb.svg`,
+    image: `${STATIC_FILE_PATH.svg}/mongodb.svg`,
     imageAltText: `MongoDB`,
   },
   {
     id: v4(),
     name: `Figma`,
-    image: `${SVG_BASE_PATH}/figma.svg`,
+    image: `${STATIC_FILE_PATH.svg}/figma.svg`,
     imageAltText: `Figma`,
   },
   {
     id: v4(),
     name: `TypeScript`,
-    image: `${SVG_BASE_PATH}/typescript.svg`,
+    image: `${STATIC_FILE_PATH.svg}/typescript.svg`,
     imageAltText: `TypeScript`,
   },
 ];
@@ -161,33 +295,52 @@ const juniorInWebEngineeringSkills: SkillsProps[] = [
   },
 ];
 
+const beFrontendMasterSkills: SkillsProps[] = [
+  ...juniorInWebEngineeringSkills,
+  {
+    id: v4(),
+    title: `Front-end Engineering`,
+    details: [ReactJS, Redux, NextJS],
+  },
+  {
+    id: v4(),
+    title: `UI Dev in React`,
+    details: [Tailwind, Bootstrap],
+  },
+  {
+    id: v4(),
+    title: `Extra Skills for Placements`,
+    details: [Figma, TypeScript],
+  },
+];
+
 const USP: WeGuideDifferentlyCardProps[] = [
   {
     id: v4(),
     title: `Mentorship`,
     content: `You'll mentored by Industry Experts. From Code Review to 1:1, You'll be in touch them every week.`,
-    image: `${SVG_BASE_PATH}/mentorship.svg`,
+    image: `${STATIC_FILE_PATH.svg}/mentorship.svg`,
     imageAltText: `mentorship`,
   },
   {
     id: v4(),
     title: `Peer Learning`,
     content: `You learn by practicing and also from your batchmates. Do Pair programming in our Discord community.`,
-    image: `${SVG_BASE_PATH}/peer-to-peer-learning.svg`,
+    image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
     imageAltText: `peer learning`,
   },
   {
     id: v4(),
     title: `Weekend Workshop`,
     content: `Learn skill over weekend that spreads your horizon in Tech Opportunities.`,
-    image: `${SVG_BASE_PATH}/workshop.svg`,
+    image: `${STATIC_FILE_PATH.svg}/workshop.svg`,
     imageAltText: `weekend workshop`,
   },
   {
     id: v4(),
     title: `Doubt Clearing Sessions`,
     content: `Clear all your doubts over weekend and discuss any issue you're facing.`,
-    image: `${SVG_BASE_PATH}/doubt-session.svg`,
+    image: `${STATIC_FILE_PATH.svg}/doubt-session.svg`,
     imageAltText: `doubt session`,
   },
 ];
@@ -205,7 +358,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     two screens and learn techniques, get
     hands on experience and I apply what I
     learned to the projects.`,
-    image: `${WEBP_BASE_PATH}/testimonial-1.webp`,
+    image: `${STATIC_FILE_PATH.webp}/testimonial-1.webp`,
     imageAltText: `profile image`,
   },
   {
@@ -218,7 +371,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     concept is explained easily. in workshop
     they explain very complex things
     easily`,
-    image: `${WEBP_BASE_PATH}/testimonial-2.webp`,
+    image: `${STATIC_FILE_PATH.webp}/testimonial-2.webp`,
     imageAltText: `profile image`,
   },
 ];
@@ -424,35 +577,35 @@ const WHAT_WE_DO_FOR_YOU_MICROCAMP = [
     id: v4(),
     title: `Live Classes`,
     content: `Attend Evening classes after your work and prepare yourself for the future.`,
-    image: `${SVG_BASE_PATH}/live_mock_interview.svg`,
+    image: `${STATIC_FILE_PATH.svg}/live_mock_interview.svg`,
     imageAltText: `Live Classes`,
   },
   {
     id: v4(),
     title: `Sunday Doubt Sessions`,
     content: `Ask any doubt you've while preparing on Sunday. We also have 24x7 Support on our Discord community.`,
-    image: `${SVG_BASE_PATH}/linkedin_optimization.svg`,
+    image: `${STATIC_FILE_PATH.svg}/linkedin_optimization.svg`,
     imageAltText: `Sunday Doubt Sessions`,
   },
   {
     id: v4(),
     title: `Build Projects with Peers`,
     content: `Don't just learn, Apply the coding skills into real-life projects.`,
-    image: `${SVG_BASE_PATH}/live_mock_interview.svg`,
+    image: `${STATIC_FILE_PATH.svg}/live_mock_interview.svg`,
     imageAltText: `Build Projects with Peers`,
   },
   {
     id: v4(),
     title: `Some "Boring" Skills`,
     content: `On Weekend workshops with "The Boring Workshop", You’ll get hands-on experience in Tech topics.`,
-    image: `${SVG_BASE_PATH}/some_boring_skills.svg`,
+    image: `${STATIC_FILE_PATH.svg}/some_boring_skills.svg`,
     imageAltText: `Some Boring Skills`,
   },
   // {
   //   id: v4(),
   //   title: `Some "Boring" Skills`,
   //   content: `On Weekend workshops with “The Boring Workshop”, You’ll get hands-on experience in Tech topics.`,
-  //   image: `${SVG_BASE_PATH}/some_boring_skills.svg`,
+  //   image: `${STATIC_FILE_PATH.svg}/some_boring_skills.svg`,
   //   imageAltText: `Some Boring Skills`,
   // },
 ];
@@ -460,22 +613,22 @@ const WHAT_WE_DO_FOR_YOU_MICROCAMP = [
 const WE_TAUGHT = [
   {
     id: v4(),
-    image: `${SVG_BASE_PATH}/pesto.svg`,
+    image: `${STATIC_FILE_PATH.svg}/pesto.svg`,
     imageAltText: `pesto`,
   },
   {
     id: v4(),
-    image: `${SVG_BASE_PATH}/masai.svg`,
+    image: `${STATIC_FILE_PATH.svg}/masai.svg`,
     imageAltText: `masai`,
   },
   {
     id: v4(),
-    image: `${SVG_BASE_PATH}/cuemath.svg`,
+    image: `${STATIC_FILE_PATH.svg}/cuemath.svg`,
     imageAltText: `cuemath`,
   },
   {
     id: v4(),
-    image: `${SVG_BASE_PATH}/newton.svg`,
+    image: `${STATIC_FILE_PATH.svg}/newton.svg`,
     imageAltText: `newton`,
   },
 ];
@@ -485,21 +638,21 @@ const NOT_ANOTHER_TECH_COURSE = [
     id: v4(),
     title: `Context based learning`,
     content: `ChatGPT writes better code than us so we make sure your learnings are relevant.`,
-    image: `${SVG_BASE_PATH}/context_learning.svg`,
+    image: `${STATIC_FILE_PATH.svg}/context_learning.svg`,
     imageAltText: `context based learning`,
   },
   {
     id: v4(),
     title: `Arjuna Needed Drona.`,
     content: `You can learn anything from Internet but you can’t do it in shortest way possible.`,
-    image: `${SVG_BASE_PATH}/arjun_needed_drona.svg`,
+    image: `${STATIC_FILE_PATH.svg}/arjun_needed_drona.svg`,
     imageAltText: `arjun needed drona`,
   },
   {
     id: v4(),
     title: `Minimal Learning`,
     content: `We make sure you start small, on each topic, every week so you don’t feel to much.`,
-    image: `${SVG_BASE_PATH}/minimal_learning.svg`,
+    image: `${STATIC_FILE_PATH.svg}/minimal_learning.svg`,
     imageAltText: `minimal learning`,
   },
 ];
@@ -523,6 +676,7 @@ export {
   FOOTER_NAVIGATION,
   PROGRAMS,
   juniorInWebEngineeringSkills,
+  beFrontendMasterSkills,
   landingPageSkills,
   TESTIMONIALS,
   TOP_NAVIGATION,
@@ -535,4 +689,6 @@ export {
   NOT_ANOTHER_TECH_COURSE,
   TALK_ABOUT_OPPORTUNITIES,
   JUNIOR_CAMP_CURRICULUM_PRICING,
+  WORKSHOPS,
+  MICROCAMPS,
 };

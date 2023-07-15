@@ -52,12 +52,11 @@ export interface ButtonProps {
 
 export interface WorkshopDataProps {
   meta: WorkshopMetaDataProps;
-  // header: WorkshopMetaDataProps;
   aboutWorkshop: WorkshopAboutProps;
 }
 
 export interface WorkshopMetaDataProps {
-  slug: PageSlug;
+  slug: PageSlug | string;
   title: string;
   description: string;
   date: string;
