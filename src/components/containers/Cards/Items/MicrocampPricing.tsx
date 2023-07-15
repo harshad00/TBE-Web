@@ -80,7 +80,7 @@ const MicrocampPricing = ({
             <Text level='p' className='strong-text text-contentDark'>
               VALUE YOU GET
             </Text>
-            <GridContainer className='w-full grid-cols-2 grid-cols-[repeat(auto-fit,minmax(100%,1fr))] gap-2 gap-1 rounded-2 pt-2 md:grid-cols-[repeat(auto-fit,minmax(16rem,1fr))]'>
+            <GridContainer className='mt-3 w-full grid-cols-2 grid-cols-[repeat(auto-fit,minmax(100%,1fr))] gap-2 gap-1 rounded-2 md:grid-cols-[repeat(auto-fit,minmax(16rem,1fr))]'>
               {valueProvided.map((item) => {
                 const { id } = item;
                 return <PricingFeatureCard key={id} {...item} />;
