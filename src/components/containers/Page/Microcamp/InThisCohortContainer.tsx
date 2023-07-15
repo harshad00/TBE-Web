@@ -6,9 +6,13 @@ import {
   SectionHeaderContainer,
   Text,
 } from '@/components';
-import { JUNIOR_CAMP_CURRICULUM, routes } from '@/constant';
+import { routes } from '@/constant';
+import { MicrocampInThisCohortSectionProps } from '@/interfaces';
 
-const InThisCohortContainer = () => {
+const InThisCohortContainer = ({
+  label,
+  features,
+}: MicrocampInThisCohortSectionProps) => {
   return (
     <Section id={routes.internals.microCampLanding.explore}>
       <FlexContainer direction='col'>
@@ -18,14 +22,14 @@ const InThisCohortContainer = () => {
           </Text>
           <SectionHeaderContainer
             heading='Learn Fundamentals of'
-            focusText='Web Engineering'
+            focusText={label}
             headingLevel={4}
             className='pt-2'
           />
         </FlexContainer>
 
         <GridContainer className='w-full grid-cols-3 grid-cols-[repeat(auto-fit,minmax(100%,1fr))] gap-1 pt-5 md:grid-cols-[repeat(auto-fit,minmax(24rem,1fr))]'>
-          {JUNIOR_CAMP_CURRICULUM.map((item) => {
+          {features.map((item) => {
             const { id } = item;
             return <MicroCampFeatureCard key={id} {...item} />;
           })}

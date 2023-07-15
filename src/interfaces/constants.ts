@@ -76,3 +76,34 @@ export interface ProgramsDataProps {
     description: string;
   };
 }
+
+export interface MicrocampHeaderProps {
+  heading: {
+    primary: string;
+    secondary: string;
+  };
+  subheading: string;
+  cta: {
+    primary: string;
+  };
+}
+
+export interface MicrocampInThisCohortSectionProps {
+  label: string;
+  features: MicroCampFeatureCardContentProps[];
+}
+
+export interface MicrocampDataProps {
+  slug: PageSlug;
+  header: MicrocampHeaderProps;
+  inThisCohort: MicrocampInThisCohortSectionProps;
+  offerings: MicrocampOfferingsProps[];
+}
+
+export interface MicrocampOfferingsProps {
+  id: string;
+  title: string;
+  content: string;
+  image: string;
+  imageAltText: string;
+}

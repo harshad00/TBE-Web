@@ -7,9 +7,14 @@ import {
   Text,
 } from '@/components';
 import { LINKS, generateSectionPath, routes } from '@/constant';
+import { MicrocampHeaderProps } from '@/interfaces';
 import { useRouter } from 'next/router';
 
-const MicroCampLandingHeader = () => {
+const MicroCampLandingHeader = ({
+  heading,
+  subheading,
+  cta,
+}: MicrocampHeaderProps) => {
   const router = useRouter();
 
   return (
@@ -35,9 +40,9 @@ const MicroCampLandingHeader = () => {
                 className='heading-2 text-dark'
                 textCenter={true}
               >
-                Junior in{' '}
+                {heading.primary}{' '}
                 <Text level='span' className='heading-2 text-primary'>
-                  Web Engineering{' '}
+                  {heading.secondary}{' '}
                 </Text>
               </Text>
               <Text
@@ -45,13 +50,12 @@ const MicroCampLandingHeader = () => {
                 className='strong-text pt-1 text-dark'
                 textCenter={true}
               >
-                Learn Fundamentals of Web dev with industry experts in live
-                sessions.
+                {subheading}
               </Text>
             </FlexContainer>
             <FlexContainer justifyCenter={true} className='w-full gap-2 pt-4'>
               <LinkButton
-                href={LINKS.juniorInWebEngineeringRegistrationLink}
+                href={cta.primary}
                 target='BLANK'
                 buttonProps={{ variant: 'PRIMARY', text: 'Register now' }}
                 className='w-full md:w-auto'

@@ -20,16 +20,19 @@ import {
 
 const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
   const microcampData = getMicrocampPageData(slug);
-  console.log(microcampData, slug);
   if (!microcampData) return;
+
+  const { header, inThisCohort, offerings } = microcampData;
+
+  // console.log(offerings);
 
   return (
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
-      <MicroCampLandingHeader />
-      <InThisCohortContainer />
+      <MicroCampLandingHeader {...header} />
+      <InThisCohortContainer {...inThisCohort} />
       <Skills skills={getSkillsBySlug(slug)} />
-      <WhatWeDoForYou />
+      <WhatWeDoForYou offerings={offerings} />
       <NotAnotherTechCourse />
       <ContextBasedLearning />
       <MicrocampPricing />

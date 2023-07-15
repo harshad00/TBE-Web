@@ -9,8 +9,10 @@ import {
   SkillProps,
   WorkshopDataProps,
   PageSlug,
+  MicrocampDataProps,
+  MicrocampOfferingsProps,
 } from '@/interfaces';
-import { programs, STATIC_FILE_PATH } from '../global';
+import { LINKS, programs, STATIC_FILE_PATH } from '../global';
 import { routes } from '../routes';
 import { v4 } from 'uuid';
 
@@ -59,120 +61,6 @@ const PROGRAMS = [
     content: programs.theBoringWorkshops.description,
     href: programs.theBoringWorkshops.slug,
     active: false,
-  },
-];
-
-const WORKSHOPS: WorkshopDataProps[] = [
-  {
-    meta: {
-      slug: programs.twoHourDesign.slug,
-      title: programs.twoHourDesign.label,
-      image: `${STATIC_FILE_PATH.image}/coding_bg.png`,
-      imageAltText: `is programming for you`,
-      description: programs.twoHourDesign.description,
-      date: '2023-05-29', // YYYY-MM-DD
-      time: '5 PM',
-      instructor: {
-        name: `Sachin Kr. Shukla`,
-        designation: `Co-Founder, The Boring Education`,
-        image: `${STATIC_FILE_PATH.image}/sachin_shukla.png`,
-        imageAltText: 'sachin shukla',
-        about: [
-          '1. Built Ed-tech startups since college.',
-          '2. Worked with Newton School, Masai, Pesto & CueMath.',
-          '3. Senior Software Engineer @PW.',
-        ],
-      },
-      link: '#',
-    },
-    aboutWorkshop: {
-      descriptions: [
-        "Programming is becoming everyone's need these days. You want to build a software, You need programming. You want to get a job, you need programming.",
-        'First thing as a learner you do, is look for an online programs. There are so many programs available in the market.',
-        "With lot of options in market, You will be confused to choose an option, and with that you'll choose an expensive program that'll cost you lakhs.",
-        "Everybody has a spending capacity and with a “Job in 6 Months” scheme, you'll be prompted to buy a program.",
-        "Should you buy or should you not? We'll discuss it in our programs.",
-      ],
-      whatWillYouLearn: [
-        "1. You'll learn with your background, will programming be helpful for you?",
-        '2. Decide if you should be okay buying expensive bootcamps',
-        '3. Understand what it takes to break into Tech',
-      ],
-    },
-  },
-  {
-    meta: {
-      slug: '/the-next-wave',
-      title: 'The Next Wave',
-      image: `${STATIC_FILE_PATH.image}/coding_bg.png`,
-      imageAltText: `is programming for you`,
-      description:
-        'Understand why everybody wants to be in Tech and should you learn Tech or not.',
-      date: '2023-05-29', // YYYY-MM-DD
-      time: '5 PM',
-      instructor: {
-        name: `Sachin Kr. Shukla`,
-        designation: `Co-Founder, The Boring Education`,
-        image: `${STATIC_FILE_PATH.image}/sachin_shukla.png`,
-        imageAltText: 'sachin shukla',
-        about: [
-          '1. Built Ed-tech startups since college.',
-          '2. Worked with Newton School, Masai, Pesto & CueMath.',
-          '3. Senior Software Engineer @PW.',
-        ],
-      },
-      link: '#',
-    },
-    aboutWorkshop: {
-      descriptions: [
-        "Programming is becoming everyone's need these days. You want to build a software, You need programming. You want to get a job, you need programming.",
-        'First thing as a learner you do, is look for an online programs. There are so many programs available in the market.',
-        "With lot of options in market, You will be confused to choose an option, and with that you'll choose an expensive program that'll cost you lakhs.",
-        "Everybody has a spending capacity and with a “Job in 6 Months” scheme, you'll be prompted to buy a program.",
-        "Should you buy or should you not? We'll discuss it in our programs.",
-      ],
-      whatWillYouLearn: [
-        "1. You'll learn with your background, will programming be helpful for you?",
-        '2. Decide if you should be okay buying expensive bootcamps',
-        '3. Understand what it takes to break into Tech',
-      ],
-    },
-  },
-];
-
-interface MicrocampDataProps {
-  slug: PageSlug;
-  header: {
-    heading: {
-      primary: string;
-      secondary: string;
-    };
-    subheading: string;
-  };
-}
-
-const MICROCAMPS: MicrocampDataProps[] = [
-  {
-    slug: programs.juniorInWebEngineering.slug,
-    header: {
-      heading: {
-        primary: 'Junior in',
-        secondary: 'Web Engineering',
-      },
-      subheading:
-        'Learn Core of Front-end Engineering with Placement Assistance in 8 Weeks.',
-    },
-  },
-  {
-    slug: programs.beFrontendMaster.slug,
-    header: {
-      heading: {
-        primary: 'Junior in',
-        secondary: 'Web Engineering',
-      },
-      subheading:
-        'Learn Core of Front-end Engineering with Placement Assistance in 8 Weeks.',
-    },
   },
 ];
 
@@ -450,7 +338,7 @@ const FOOTER_NAVIGATION: FooterNavigationDataProps[] = [
   // },
 ];
 
-const FRONTEND_MICROCAMP_CURRICULUM: MicroCampFeatureCardContentProps[] = [
+const FRONTEND_MICROCAMP_FEATURES: MicroCampFeatureCardContentProps[] = [
   {
     id: v4(),
     title: `8 Weeks`,
@@ -516,7 +404,7 @@ const BACKEND_MICROCAMP_CURRICULUM: MicroCampFeatureCardContentProps[] = [
   },
 ];
 
-const JUNIOR_CAMP_CURRICULUM: MicroCampFeatureCardContentProps[] = [
+const JUNIOR_CAMP_FEATURES: MicroCampFeatureCardContentProps[] = [
   {
     id: v4(),
     title: `45 Days`,
@@ -572,7 +460,7 @@ const JUNIOR_CAMP_CURRICULUM_PRICING: MicroCampFeaturePricingCardProps[] = [
   },
 ];
 
-const WHAT_WE_DO_FOR_YOU_MICROCAMP = [
+const JUNIOR_CAMP_OFFERINGS: MicrocampOfferingsProps[] = [
   {
     id: v4(),
     title: `Live Classes`,
@@ -584,14 +472,14 @@ const WHAT_WE_DO_FOR_YOU_MICROCAMP = [
     id: v4(),
     title: `Sunday Doubt Sessions`,
     content: `Ask any doubt you've while preparing on Sunday. We also have 24x7 Support on our Discord community.`,
-    image: `${STATIC_FILE_PATH.svg}/linkedin_optimization.svg`,
+    image: `${STATIC_FILE_PATH.svg}/doubt_session.svg`,
     imageAltText: `Sunday Doubt Sessions`,
   },
   {
     id: v4(),
     title: `Build Projects with Peers`,
     content: `Don't just learn, Apply the coding skills into real-life projects.`,
-    image: `${STATIC_FILE_PATH.svg}/live_mock_interview.svg`,
+    image: `${STATIC_FILE_PATH.svg}/project_with_peers.svg`,
     imageAltText: `Build Projects with Peers`,
   },
   {
@@ -601,13 +489,58 @@ const WHAT_WE_DO_FOR_YOU_MICROCAMP = [
     image: `${STATIC_FILE_PATH.svg}/some_boring_skills.svg`,
     imageAltText: `Some Boring Skills`,
   },
-  // {
-  //   id: v4(),
-  //   title: `Some "Boring" Skills`,
-  //   content: `On Weekend workshops with “The Boring Workshop”, You’ll get hands-on experience in Tech topics.`,
-  //   image: `${STATIC_FILE_PATH.svg}/some_boring_skills.svg`,
-  //   imageAltText: `Some Boring Skills`,
-  // },
+];
+
+const FRONTEND_CAMP_OFFERINGS: MicrocampOfferingsProps[] = [
+  {
+    id: v4(),
+    title: `Live Classes`,
+    content: `Attend Evening classes after your work and prepare yourself for the future.`,
+    image: `${STATIC_FILE_PATH.svg}/live_mock_interview.svg`,
+    imageAltText: `Live Classes`,
+  },
+  {
+    id: v4(),
+    title: `Sunday Doubt Sessions`,
+    content: `Ask any doubt you've while preparing on Sunday. We also have 24x7 Support on our Discord community.`,
+    image: `${STATIC_FILE_PATH.svg}/doubt_session.svg`,
+    imageAltText: `Sunday Doubt Sessions`,
+  },
+  {
+    id: v4(),
+    title: `Build Projects with Peers`,
+    content: `Don't just learn, Apply the coding skills into real-life projects.`,
+    image: `${STATIC_FILE_PATH.svg}/project_with_peers.svg`,
+    imageAltText: `Build Projects with Peers`,
+  },
+  {
+    id: v4(),
+    title: `Resume Building`,
+    content: `We build your resume that gets you shortlisted for the interviews.`,
+    image: `${STATIC_FILE_PATH.svg}/resume_building.svg`,
+    imageAltText: `Resume Building`,
+  },
+  {
+    id: v4(),
+    title: `Job Profile Building`,
+    content: `A good job profile is needed for a good, and we make sure that you've one.`,
+    image: `${STATIC_FILE_PATH.svg}/live_mock_interview.svg`,
+    imageAltText: `Job Profile Building`,
+  },
+  {
+    id: v4(),
+    title: `Linkedin Optimization`,
+    content: `We guide your way of using LinkedIn to get interview calls and pitch yourself in front of HRs.`,
+    image: `${STATIC_FILE_PATH.svg}/linkedin_optimization.svg`,
+    imageAltText: `Linkedin Optimization`,
+  },
+  {
+    id: v4(),
+    title: `Some "Boring" Skills`,
+    content: `On Weekend workshops with "The Boring Workshop", You'll get hands-on experience in Tech topics.`,
+    image: `${STATIC_FILE_PATH.svg}/some_boring_skills.svg`,
+    imageAltText: `Some Boring Skills`,
+  },
 ];
 
 const WE_TAUGHT = [
@@ -672,6 +605,125 @@ const TALK_ABOUT_OPPORTUNITIES: OpportunityCardProps[] = [
   },
 ];
 
+const WORKSHOPS: WorkshopDataProps[] = [
+  {
+    meta: {
+      slug: programs.twoHourDesign.slug,
+      title: programs.twoHourDesign.label,
+      image: `${STATIC_FILE_PATH.image}/coding_bg.png`,
+      imageAltText: `is programming for you`,
+      description: programs.twoHourDesign.description,
+      date: '2023-05-29', // YYYY-MM-DD
+      time: '5 PM',
+      instructor: {
+        name: `Sachin Kr. Shukla`,
+        designation: `Co-Founder, The Boring Education`,
+        image: `${STATIC_FILE_PATH.image}/sachin_shukla.png`,
+        imageAltText: 'sachin shukla',
+        about: [
+          '1. Built Ed-tech startups since college.',
+          '2. Worked with Newton School, Masai, Pesto & CueMath.',
+          '3. Senior Software Engineer @PW.',
+        ],
+      },
+      link: '#',
+    },
+    aboutWorkshop: {
+      descriptions: [
+        "Programming is becoming everyone's need these days. You want to build a software, You need programming. You want to get a job, you need programming.",
+        'First thing as a learner you do, is look for an online programs. There are so many programs available in the market.',
+        "With lot of options in market, You will be confused to choose an option, and with that you'll choose an expensive program that'll cost you lakhs.",
+        "Everybody has a spending capacity and with a “Job in 6 Months” scheme, you'll be prompted to buy a program.",
+        "Should you buy or should you not? We'll discuss it in our programs.",
+      ],
+      whatWillYouLearn: [
+        "1. You'll learn with your background, will programming be helpful for you?",
+        '2. Decide if you should be okay buying expensive bootcamps',
+        '3. Understand what it takes to break into Tech',
+      ],
+    },
+  },
+  {
+    meta: {
+      slug: '/the-next-wave',
+      title: 'The Next Wave',
+      image: `${STATIC_FILE_PATH.image}/coding_bg.png`,
+      imageAltText: `is programming for you`,
+      description:
+        'Understand why everybody wants to be in Tech and should you learn Tech or not.',
+      date: '2023-05-29', // YYYY-MM-DD
+      time: '5 PM',
+      instructor: {
+        name: `Sachin Kr. Shukla`,
+        designation: `Co-Founder, The Boring Education`,
+        image: `${STATIC_FILE_PATH.image}/sachin_shukla.png`,
+        imageAltText: 'sachin shukla',
+        about: [
+          '1. Built Ed-tech startups since college.',
+          '2. Worked with Newton School, Masai, Pesto & CueMath.',
+          '3. Senior Software Engineer @PW.',
+        ],
+      },
+      link: '#',
+    },
+    aboutWorkshop: {
+      descriptions: [
+        "Programming is becoming everyone's need these days. You want to build a software, You need programming. You want to get a job, you need programming.",
+        'First thing as a learner you do, is look for an online programs. There are so many programs available in the market.',
+        "With lot of options in market, You will be confused to choose an option, and with that you'll choose an expensive program that'll cost you lakhs.",
+        "Everybody has a spending capacity and with a “Job in 6 Months” scheme, you'll be prompted to buy a program.",
+        "Should you buy or should you not? We'll discuss it in our programs.",
+      ],
+      whatWillYouLearn: [
+        "1. You'll learn with your background, will programming be helpful for you?",
+        '2. Decide if you should be okay buying expensive bootcamps',
+        '3. Understand what it takes to break into Tech',
+      ],
+    },
+  },
+];
+
+const MICROCAMPS: MicrocampDataProps[] = [
+  {
+    slug: programs.juniorInWebEngineering.slug,
+    header: {
+      heading: {
+        primary: 'Junior in',
+        secondary: 'Web Engineering',
+      },
+      subheading:
+        'Learn Fundamentals of Web dev with industry experts in live sessions.',
+      cta: {
+        primary: LINKS.juniorInWebEngineeringRegistrationLink,
+      },
+    },
+    inThisCohort: {
+      label: 'Web Engineering',
+      features: JUNIOR_CAMP_FEATURES,
+    },
+    offerings: JUNIOR_CAMP_OFFERINGS,
+  },
+  {
+    slug: programs.beFrontendMaster.slug,
+    header: {
+      heading: {
+        primary: 'Be',
+        secondary: 'Front-end Master',
+      },
+      subheading:
+        'Learn Core of Front-end Engineering with Placement Assistance in 8 Weeks.',
+      cta: {
+        primary: LINKS.bootcamp,
+      },
+    },
+    inThisCohort: {
+      label: 'Front-end Engineering',
+      features: FRONTEND_MICROCAMP_FEATURES,
+    },
+    offerings: FRONTEND_CAMP_OFFERINGS,
+  },
+];
+
 export {
   FOOTER_NAVIGATION,
   PROGRAMS,
@@ -681,10 +733,11 @@ export {
   TESTIMONIALS,
   TOP_NAVIGATION,
   USP,
-  FRONTEND_MICROCAMP_CURRICULUM,
-  WHAT_WE_DO_FOR_YOU_MICROCAMP,
+  FRONTEND_MICROCAMP_FEATURES,
+  JUNIOR_CAMP_OFFERINGS,
+  FRONTEND_CAMP_OFFERINGS,
   BACKEND_MICROCAMP_CURRICULUM,
-  JUNIOR_CAMP_CURRICULUM,
+  JUNIOR_CAMP_FEATURES,
   WE_TAUGHT,
   NOT_ANOTHER_TECH_COURSE,
   TALK_ABOUT_OPPORTUNITIES,

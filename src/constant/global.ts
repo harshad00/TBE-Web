@@ -48,9 +48,11 @@ const programs: ProgramsDataProps = {
 // Global links
 const LINKS = {
   juniorInWebEngineeringRegistrationLink:
-    'https://docs.google.com/forms/d/e/1FAIpQLSejDBJvhWMWeKZFkWY2PxuUa_LZYsstDvJljrn0Tbm2_2Kd7Q/viewform?usp=sf_link',
+    'https://docs.google.com/forms/d/e/1FAIpQLSejDBJvhWMWeKZFkWY2PxuUa_LZYsstDvJljrn0Tbm2_2Kd7Q/viewform',
   freeTechConsultation:
     'https://calendly.com/theboringeducation/tech-consultation',
+  bootcamp:
+    'https://docs.google.com/forms/d/e/1FAIpQLSf40vUjRclTXIivifbahZ-L0EtnFhQw32BzQj3GWgBzeVfnXQ/viewform',
 };
 
 // Google analytics

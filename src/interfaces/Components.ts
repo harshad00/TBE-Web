@@ -1,5 +1,11 @@
 import { MouseEventHandler } from 'react';
-import { GetSEOMetaResponseType, PageSlug, SkillProps, SkillsProps } from '.';
+import {
+  GetSEOMetaResponseType,
+  MicrocampOfferingsProps,
+  PageSlug,
+  SkillProps,
+  SkillsProps,
+} from '.';
 
 export interface SectionProps {
   children: React.ReactNode;
@@ -301,4 +307,8 @@ export interface AboutWorkshopContainerProps
 
 export interface WorkshopRegisterContainerProps {
   link: string;
+}
+
+export interface WhatWeDoForYouProps {
+  offerings: MicrocampOfferingsProps[];
 }
