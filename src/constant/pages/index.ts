@@ -262,6 +262,32 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     image: `${STATIC_FILE_PATH.webp}/testimonial-2.webp`,
     imageAltText: `profile image`,
   },
+  {
+    id: v4(),
+    title: `Nikhil Maurya`,
+    content: `Boring workshop helps me a lot to
+    learn UI designing in a very easy and
+    intellectual manner and the most
+    important thing is that each and every
+    concept is explained easily. in workshop
+    they explain very complex things
+    easily`,
+    image: `${STATIC_FILE_PATH.webp}/testimonial-2.webp`,
+    imageAltText: `profile image`,
+  },
+  {
+    id: v4(),
+    title: `Nikhil Maurya`,
+    content: `Boring workshop helps me a lot to
+    learn UI designing in a very easy and
+    intellectual manner and the most
+    important thing is that each and every
+    concept is explained easily. in workshop
+    they explain very complex things
+    easily`,
+    image: `${STATIC_FILE_PATH.webp}/testimonial-2.webp`,
+    imageAltText: `profile image`,
+  },
 ];
 
 const FOOTER_NAVIGATION: FooterNavigationDataProps[] = [
@@ -759,7 +785,7 @@ const MICROCAMPS: MicrocampDataProps[] = [
     offerings: FRONTEND_CAMP_OFFERINGS,
     pricing: {
       basePrice: 11999,
-      sellingPrice: 7999,
+      sellingPrice: 8999,
       valueProvided: FRONTEND_CAMP_PRICING,
     },
   },

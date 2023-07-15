@@ -12,7 +12,7 @@ const CardGradientContainer = ({
         backgroundColor ?? 'bg-white'
       }`}
     >
-      <div className='rounded-2  p-3'>{children}</div>
+      <div className='rounded-2 p-3'>{children}</div>
     </div>
   );
 };
