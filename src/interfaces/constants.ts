@@ -1,4 +1,8 @@
-import { FooterLinksContainerProps, MicroCampFeatureCardProps } from '.';
+import {
+  FooterLinksContainerProps,
+  MicroCampFeatureCardProps,
+  MicroCampPricingCardProps,
+} from '.';
 
 export interface SkillProps {
   id?: string;
@@ -93,17 +97,24 @@ export interface MicrocampInThisCohortSectionProps {
   features: MicroCampFeatureCardContentProps[];
 }
 
-export interface MicrocampDataProps {
-  slug: PageSlug;
-  header: MicrocampHeaderProps;
-  inThisCohort: MicrocampInThisCohortSectionProps;
-  offerings: MicrocampOfferingsProps[];
-}
-
 export interface MicrocampOfferingsProps {
   id: string;
   title: string;
   content: string;
   image: string;
   imageAltText: string;
+}
+
+export interface MicrocampPricingProps {
+  basePrice: number;
+  sellingPrice: number;
+  valueProvided: MicroCampPricingCardProps[];
+}
+
+export interface MicrocampDataProps {
+  slug: PageSlug;
+  header: MicrocampHeaderProps;
+  inThisCohort: MicrocampInThisCohortSectionProps;
+  offerings: MicrocampOfferingsProps[];
+  pricing: MicrocampPricingProps;
 }

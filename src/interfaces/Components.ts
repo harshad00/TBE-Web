@@ -208,7 +208,7 @@ export interface MicroCampFeatureCardProps {
   content: string;
 }
 
-export interface MicroCampFeaturePricingCardProps {
+export interface MicroCampPricingCardProps {
   id: string;
   content: string;
 }
@@ -261,6 +261,7 @@ export interface PillProps {
   text: string;
   variant: 'PRIMARY' | 'SECONDARY';
   textStyleClasses?: string;
+  containerClasses?: string;
 }
 
 export interface CountdownTimerContainerProps {

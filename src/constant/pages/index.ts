@@ -5,7 +5,7 @@ import {
   SkillsProps,
   TestimonialCardProps,
   WeGuideDifferentlyCardProps,
-  MicroCampFeaturePricingCardProps,
+  MicroCampPricingCardProps,
   SkillProps,
   WorkshopDataProps,
   PageSlug,
@@ -437,7 +437,7 @@ const JUNIOR_CAMP_FEATURES: MicroCampFeatureCardContentProps[] = [
   },
 ];
 
-const JUNIOR_CAMP_CURRICULUM_PRICING: MicroCampFeaturePricingCardProps[] = [
+const JUNIOR_CAMP_PRICING: MicroCampPricingCardProps[] = [
   {
     id: v4(),
     content: `Live Sessions with Experts`,
@@ -457,6 +457,37 @@ const JUNIOR_CAMP_CURRICULUM_PRICING: MicroCampFeaturePricingCardProps[] = [
   {
     id: v4(),
     content: `Community based learning`,
+  },
+];
+
+const FRONTEND_CAMP_PRICING: MicroCampPricingCardProps[] = [
+  {
+    id: v4(),
+    content: `Live Sessions with Experts`,
+  },
+  {
+    id: v4(),
+    content: `Build 7+ Projects`,
+  },
+  {
+    id: v4(),
+    content: `Mock Interviews`,
+  },
+  {
+    id: v4(),
+    content: `Resume Building`,
+  },
+  {
+    id: v4(),
+    content: `Placement Training`,
+  },
+  {
+    id: v4(),
+    content: `Community based learning`,
+  },
+  {
+    id: v4(),
+    content: `Tech Workshops Every Weekend`,
   },
 ];
 
@@ -524,7 +555,7 @@ const FRONTEND_CAMP_OFFERINGS: MicrocampOfferingsProps[] = [
     id: v4(),
     title: `Job Profile Building`,
     content: `A good job profile is needed for a good, and we make sure that you've one.`,
-    image: `${STATIC_FILE_PATH.svg}/live_mock_interview.svg`,
+    image: `${STATIC_FILE_PATH.svg}/job_profile_building.svg`,
     imageAltText: `Job Profile Building`,
   },
   {
@@ -702,6 +733,11 @@ const MICROCAMPS: MicrocampDataProps[] = [
       features: JUNIOR_CAMP_FEATURES,
     },
     offerings: JUNIOR_CAMP_OFFERINGS,
+    pricing: {
+      basePrice: 5999,
+      sellingPrice: 2999,
+      valueProvided: JUNIOR_CAMP_PRICING,
+    },
   },
   {
     slug: programs.beFrontendMaster.slug,
@@ -721,6 +757,11 @@ const MICROCAMPS: MicrocampDataProps[] = [
       features: FRONTEND_MICROCAMP_FEATURES,
     },
     offerings: FRONTEND_CAMP_OFFERINGS,
+    pricing: {
+      basePrice: 11999,
+      sellingPrice: 7999,
+      valueProvided: FRONTEND_CAMP_PRICING,
+    },
   },
 ];
 
@@ -741,7 +782,8 @@ export {
   WE_TAUGHT,
   NOT_ANOTHER_TECH_COURSE,
   TALK_ABOUT_OPPORTUNITIES,
-  JUNIOR_CAMP_CURRICULUM_PRICING,
+  JUNIOR_CAMP_PRICING,
+  FRONTEND_CAMP_PRICING,
   WORKSHOPS,
   MICROCAMPS,
 };

@@ -38,10 +38,14 @@ const getSkillsBySlug = (slug: PageSlug) => {
   return skillsBySlug[slug];
 };
 
+const getDiscountPercentage = (basePrice: number, sellingPrice: number) =>
+  Math.floor(((basePrice - sellingPrice) / basePrice) * 100);
+
 export {
   formatDate,
   formatTime,
   getWorkshopPageData,
   getSkillsBySlug,
   getMicrocampPageData,
+  getDiscountPercentage,
 };

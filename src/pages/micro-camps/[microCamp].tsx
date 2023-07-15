@@ -22,9 +22,7 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
   const microcampData = getMicrocampPageData(slug);
   if (!microcampData) return;
 
-  const { header, inThisCohort, offerings } = microcampData;
-
-  // console.log(offerings);
+  const { header, inThisCohort, offerings, pricing } = microcampData;
 
   return (
     <React.Fragment>
@@ -35,7 +33,7 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
       <WhatWeDoForYou offerings={offerings} />
       <NotAnotherTechCourse />
       <ContextBasedLearning />
-      <MicrocampPricing />
+      <MicrocampPricing {...pricing} />
       <WeTaughtAt />
       <Testimonials />
     </React.Fragment>
