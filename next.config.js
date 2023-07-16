@@ -8,11 +8,12 @@ const nextConfig = {
   swcMinify: true,
 
   // Uncoment to add domain whitelist
-  // images: {
-  //   domains: [
-  //     'res.cloudinary.com',
-  //   ],
-  // },
+  images: {
+    domains: [
+      'lh3.googleusercontent.com',
+      'lh3.google.com'
+    ],
+  },
 
   // SVGR
   webpack(config) {
@@ -28,9 +29,9 @@ const nextConfig = {
           },
         },
       ],
-    });
+    })
 
-    return config;
+    return config
   },
   // async redirects() {
   //   return [
@@ -41,6 +42,6 @@ const nextConfig = {
   //     },
   //   ]
   // },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

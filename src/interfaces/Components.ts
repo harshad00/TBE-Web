@@ -137,6 +137,7 @@ export interface CardSectionContainerProps {
   children: React.ReactNode;
   isWidthFull?: boolean;
   className?: string;
+  gap?: string;
 }
 
 export interface CardGradientContainerProps {
@@ -185,6 +186,7 @@ export interface TestimonialCardProps {
   imageAltText: string;
   title: string;
   content: string;
+  work: string;
 }
 
 export interface FooterLinkProps {

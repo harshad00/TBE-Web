@@ -6,11 +6,12 @@ const TestimonialCard = ({
   imageAltText,
   title,
   content,
+  work,
 }: TestimonialCardProps) => {
   return (
     <CardGradientContainer className='max-w-sm border-borderColor3'>
       <Image
-        className='w-12 rounded-full border'
+        className='h-12 w-12 rounded-full border object-cover'
         fullWidth={false}
         src={`${image}`}
         alt={imageAltText}
@@ -20,6 +21,9 @@ const TestimonialCard = ({
       </Text>
       <Text level='p' className='paragraph mt-1'>
         {content}
+      </Text>
+      <Text level='p' className='paragraph span mt-2 text-secondary'>
+        {work}
       </Text>
     </CardGradientContainer>
   );
