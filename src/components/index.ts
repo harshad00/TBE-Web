@@ -60,6 +60,7 @@ import AboutWorkshopInstructorContainer from './containers/Page/Workshop/AboutWo
 import PopoverContainer from './containers/Page/common/PopoverContainer';
 import NavbarDropdownContainer from './containers/Page/common/NavbarDropdownContainer';
 import MicrocampInstructor from './containers/Page/Microcamp/MicrocampInstructor';
+import MicrocampOpportunities from './containers/Page/Microcamp/MicrocampOpportunities';
 
 export {
   Navbar,
@@ -124,4 +125,5 @@ export {
   PopoverContainer,
   NavbarDropdownContainer,
   MicrocampInstructor,
+  MicrocampOpportunities,
 };

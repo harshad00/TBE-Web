@@ -117,6 +117,7 @@ export interface MicrocampDataProps {
   header: MicrocampHeaderProps;
   instructor: MicrocampInstructorProps;
   inThisCohort: MicrocampInThisCohortSectionProps;
+  opportunities?: MicrocampOpportunitiesProps;
   skills: SkillsProps[];
   offerings: MicrocampOfferingsProps[];
   pricing: MicrocampPricingProps;
@@ -132,4 +133,14 @@ export interface TopNavbarLinkProps {
 export interface TopNavbarContainerProps {
   cohorts: TopNavbarLinkProps[];
   links: TopNavbarLinkProps[];
+}
+
+export interface MicrocampOpportunitiesCardProps {
+  label: string;
+  value: string;
+  subtitle: string;
+}
+export interface MicrocampOpportunitiesProps {
+  heading: string;
+  cards: MicrocampOpportunitiesCardProps[];
 }

@@ -839,6 +839,21 @@ const MICROCAMPS: MicrocampDataProps[] = [
       label: 'Front-end Engineering',
       features: FRONTEND_CAMP_FEATURES,
     },
+    opportunities: {
+      heading: 'Front-end Engineering',
+      cards: [
+        {
+          label: 'Avg. Salary',
+          value: '5-8 LPA',
+          subtitle: 'Source: Glassdoor',
+        },
+        {
+          label: 'Jobs in Market',
+          value: '55000+',
+          subtitle: 'Source: Glassdoor',
+        },
+      ],
+    },
     skills: beFrontendMasterSkills,
     offerings: FRONTEND_CAMP_OFFERINGS,
     pricing: {

@@ -12,9 +12,13 @@ const MicrocampInstructor = ({
       <FlexContainer direction='col'>
         <div className='inline-flex flex-col items-center justify-center rounded-2 bg-white px-4 py-6 lg:w-1/3'>
           <div className='inline-flex flex-col items-center justify-start gap-[30px] self-stretch'>
-            <div className='text-base font-semibold text-grey'>
+            <Text
+              level='p'
+              className='text-base font-semibold text-grey'
+              textCenter={true}
+            >
               PROGRAM INSTRUCTOR
-            </div>
+            </Text>
             <div className='flex flex-col items-center justify-start gap-5'>
               <div className='flex flex-col items-center justify-start gap-5'>
                 <div className='flex flex-col items-center justify-start gap-2.5'>

@@ -11,6 +11,7 @@ import {
   WeTaughtAt,
   SEO,
   MicrocampInstructor,
+  MicrocampOpportunities,
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getMicrocampPageData, getPreFetchProps } from '@/utils';
@@ -19,8 +20,15 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
   const microcampData = getMicrocampPageData(slug);
   if (!microcampData) return;
 
-  const { header, instructor, inThisCohort, offerings, pricing, skills } =
-    microcampData;
+  const {
+    header,
+    instructor,
+    inThisCohort,
+    opportunities,
+    offerings,
+    pricing,
+    skills,
+  } = microcampData;
 
   return (
     <React.Fragment>
@@ -29,6 +37,7 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
       <InThisCohortContainer {...inThisCohort} />
       <MicrocampInstructor {...instructor} />
       <Skills skills={skills} />
+      {opportunities && <MicrocampOpportunities {...opportunities} />}
       <WhatWeDoForYou offerings={offerings} />
       <NotAnotherTechCourse />
       <ContextBasedLearning />
