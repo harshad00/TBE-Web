@@ -181,7 +181,7 @@ const landingPageSkills: SkillsProps[] = [
   },
   {
     id: v4(),
-    title: `Extra Skills`,
+    title: `Extra Skills for Placements`,
     details: [Figma, TypeScript],
   },
 ];
@@ -800,6 +800,7 @@ const MICROCAMPS: MicrocampDataProps[] = [
       label: 'Web Engineering',
       features: JUNIOR_CAMP_FEATURES,
     },
+    skills: juniorInWebEngineeringSkills,
     offerings: JUNIOR_CAMP_OFFERINGS,
     pricing: {
       basePrice: 5999,
@@ -824,6 +825,7 @@ const MICROCAMPS: MicrocampDataProps[] = [
       label: 'Front-end Engineering',
       features: FRONTEND_CAMP_FEATURES,
     },
+    skills: beFrontendMasterSkills,
     offerings: FRONTEND_CAMP_OFFERINGS,
     pricing: {
       basePrice: 11999,

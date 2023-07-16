@@ -115,6 +115,7 @@ export interface MicrocampDataProps {
   slug: PageSlug;
   header: MicrocampHeaderProps;
   inThisCohort: MicrocampInThisCohortSectionProps;
+  skills: SkillsProps[];
   offerings: MicrocampOfferingsProps[];
   pricing: MicrocampPricingProps;
 }

@@ -9,15 +9,16 @@ import {
   SEO,
 } from '@/components';
 import { PageProps } from '@/interfaces';
-import { getPreFetchProps, getSkillsBySlug } from '@/utils';
+import { getPreFetchProps } from '@/utils';
+import { landingPageSkills } from '@/constant';
 
-const Home = ({ slug, seoMeta }: PageProps) => {
+const Home = ({ seoMeta }: PageProps) => {
   return (
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
       <LandingPageHero />
       <OurPrograms />
-      <Skills skills={getSkillsBySlug(slug)} />
+      <Skills skills={landingPageSkills} />
       <WeGuideDifferently />
       <CanYouBeAProgrammer />
       <Testimonials />

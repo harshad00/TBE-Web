@@ -6,7 +6,7 @@ import {
   SectionHeaderContainer,
   Text,
 } from '@/components';
-import { LINKS, generateSectionPath, routes } from '@/constant';
+import { generateSectionPath, routes } from '@/constant';
 import { MicrocampHeaderProps } from '@/interfaces';
 import { useRouter } from 'next/router';
 

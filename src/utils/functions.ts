@@ -1,11 +1,4 @@
-import {
-  MICROCAMPS,
-  WORKSHOPS,
-  beFrontendMasterSkills,
-  juniorInWebEngineeringSkills,
-  landingPageSkills,
-  programs,
-} from '@/constant';
+import { MICROCAMPS, WORKSHOPS } from '@/constant';
 // import workshops from '@/data/workshop';
 import { PageSlug } from '@/interfaces';
 
@@ -27,17 +20,6 @@ const getWorkshopPageData = (slug: PageSlug) =>
 const getMicrocampPageData = (slug: PageSlug) =>
   MICROCAMPS.find((microcamp) => microcamp.slug === slug);
 
-// Skills
-const getSkillsBySlug = (slug: PageSlug) => {
-  const skillsBySlug = {
-    '/': landingPageSkills,
-    [programs.juniorInWebEngineering.slug]: juniorInWebEngineeringSkills,
-    [programs.beFrontendMaster.slug]: beFrontendMasterSkills,
-  };
-
-  return skillsBySlug[slug];
-};
-
 const getDiscountPercentage = (basePrice: number, sellingPrice: number) =>
   Math.floor(((basePrice - sellingPrice) / basePrice) * 100);
 
@@ -45,7 +27,6 @@ export {
   formatDate,
   formatTime,
   getWorkshopPageData,
-  getSkillsBySlug,
   getMicrocampPageData,
   getDiscountPercentage,
 };
