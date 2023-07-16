@@ -58,7 +58,7 @@ const PROGRAMS = [
     title: programs.beFrontendMaster.label,
     content: programs.beFrontendMaster.description,
     href: routes.microCampLanding(programs.beFrontendMaster.slug),
-    active: false,
+    active: true,
   },
   {
     id: v4(),
