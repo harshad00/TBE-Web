@@ -325,14 +325,14 @@ const FOOTER_NAVIGATION: FooterNavigationDataProps[] = [
     urls: [
       {
         id: v4(),
+        label: programs.beFrontendMaster.label,
+        href: routes.microCampLanding(programs.beFrontendMaster.slug),
+      },
+      {
+        id: v4(),
         label: programs.juniorInWebEngineering.label,
         href: routes.microCampLanding(programs.juniorInWebEngineering.slug),
       },
-      // {
-      //   id: v4(),
-      //   label: programs.beFrontendMaster.label,
-      //   href: routes.microCampLanding(programs.beFrontendMaster.slug),
-      // },
       // {
       //   id: v4(),
       //   label: programs.beBackendMaster.label,

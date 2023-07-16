@@ -3,10 +3,10 @@ import { FooterLinkProps } from '@/interfaces';
 
 const FooterLink = ({ href, label, target }: FooterLinkProps) => {
   return (
-    <li>
+    <li className='mt-1'>
       <Link
         href={href}
-        className='paragraph text-contentDark hover:underline'
+        className='paragraph font-normal text-contentDark transition hover:text-primary'
         target={target}
       >
         {label}
