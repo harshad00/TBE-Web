@@ -118,3 +118,15 @@ export interface MicrocampDataProps {
   offerings: MicrocampOfferingsProps[];
   pricing: MicrocampPricingProps;
 }
+
+export interface TopNavbarLinkProps {
+  id: string;
+  name: string;
+  href: string;
+  description?: string;
+}
+
+export interface TopNavbarContainerProps {
+  cohorts: TopNavbarLinkProps[];
+  links: TopNavbarLinkProps[];
+}

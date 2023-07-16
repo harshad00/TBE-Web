@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import {
   GetSEOMetaResponseType,
   MicrocampOfferingsProps,
@@ -314,4 +314,9 @@ export interface WorkshopRegisterContainerProps {
 
 export interface WhatWeDoForYouProps {
   offerings: MicrocampOfferingsProps[];
+}
+
+export interface PopoverContainerProps {
+  label: string;
+  children: ReactNode;
 }

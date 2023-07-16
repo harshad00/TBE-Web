@@ -57,6 +57,8 @@ import WorkshopDescription from './containers/Page/Workshop/WorkshopDescription'
 import AboutTheBoringEducation from './containers/Page/Workshop/AboutTheBoringEducation';
 import WorkshopInstructor from './containers/Page/Workshop/WorkshopInstructor';
 import AboutWorkshopInstructorContainer from './containers/Page/Workshop/AboutWorkshopInstructorContainer';
+import PopoverContainer from './containers/Page/common/PopoverContainer';
+import NavbarDropdownContainer from './containers/Page/common/NavbarDropdownContainer';
 
 export {
   Navbar,
@@ -118,4 +120,6 @@ export {
   ImageLink,
   WorkshopInstructor,
   AboutWorkshopInstructorContainer,
+  PopoverContainer,
+  NavbarDropdownContainer,
 };

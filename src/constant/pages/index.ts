@@ -8,22 +8,38 @@ import {
   MicroCampPricingCardProps,
   SkillProps,
   WorkshopDataProps,
-  PageSlug,
   MicrocampDataProps,
   MicrocampOfferingsProps,
+  TopNavbarContainerProps,
 } from '@/interfaces';
 import { LINKS, programs, STATIC_FILE_PATH } from '../global';
 import { routes } from '../routes';
 import { v4 } from 'uuid';
 
-const TOP_NAVIGATION = [
-  {
-    id: v4(),
-    name: programs.juniorInWebEngineering.label,
-    href: routes.microCampLanding(programs.juniorInWebEngineering.slug),
-  },
-  { id: v4(), name: 'Contact us', href: routes.contactUs },
-];
+const TOP_NAVIGATION: TopNavbarContainerProps = {
+  cohorts: [
+    {
+      id: v4(),
+      name: programs.beFrontendMaster.label,
+      description: programs.beFrontendMaster.description,
+      href: routes.microCampLanding(programs.beFrontendMaster.slug),
+    },
+    {
+      id: v4(),
+      name: programs.juniorInWebEngineering.label,
+      description: programs.juniorInWebEngineering.description,
+      href: routes.microCampLanding(programs.juniorInWebEngineering.slug),
+    },
+  ],
+  links: [
+    {
+      id: v4(),
+      name: 'Contact us',
+      href: routes.contactUs,
+      description: 'Talk to our co-founders directly.',
+    },
+  ],
+};
 
 const PROGRAMS = [
   {
