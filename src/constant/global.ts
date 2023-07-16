@@ -1,14 +1,14 @@
-import { PageSlug } from '@/interfaces';
-import { landingPageSkills, juniorInWebEngineeringSkills } from './pages';
+import { ProgramsDataProps } from '@/interfaces';
 
 const imageMeta = {
   logo: {
-    path: '/svg/logo.svg',
+    light: '/svg/logo.svg',
+    dark: '/svg/logo-dark.svg',
     alt: 'the-boring-education-logo',
   },
 };
 
-const programs = {
+const programs: ProgramsDataProps = {
   beFrontendMaster: {
     label: 'Be Front-end Master',
     slug: '/be-frontend-master',
@@ -33,24 +33,26 @@ const programs = {
     description:
       'Learn to build In-Demand Tech & Design skills over a weekend, that stays for life!',
   },
-};
-
-// Skills
-const getSkillsBySlug = (slug: PageSlug) => {
-  const skillsBySlug = {
-    '/': landingPageSkills,
-    [programs.juniorInWebEngineering.slug]: juniorInWebEngineeringSkills,
-  };
-
-  return skillsBySlug[slug];
+  twoHourDesign: {
+    label: '2 Hour Design',
+    slug: '/2-hour-design',
+    description: 'Learn to Design Tech Products in just 2 Hours.',
+  },
+  theNextWave: {
+    label: 'The Next Wave',
+    slug: '/the-next-wave',
+    description: 'The Fundamentals of Next.js in 90 Min.',
+  },
 };
 
 // Global links
 const LINKS = {
   juniorInWebEngineeringRegistrationLink:
-    'https://docs.google.com/forms/d/e/1FAIpQLSejDBJvhWMWeKZFkWY2PxuUa_LZYsstDvJljrn0Tbm2_2Kd7Q/viewform?usp=sf_link',
+    'https://docs.google.com/forms/d/e/1FAIpQLSejDBJvhWMWeKZFkWY2PxuUa_LZYsstDvJljrn0Tbm2_2Kd7Q/viewform',
   freeTechConsultation:
     'https://calendly.com/theboringeducation/tech-consultation',
+  bootcamp:
+    'https://docs.google.com/forms/d/e/1FAIpQLSf40vUjRclTXIivifbahZ-L0EtnFhQw32BzQj3GWgBzeVfnXQ/viewform',
 };
 
 // Google analytics
@@ -63,11 +65,18 @@ const googleAnalyticsScript = `
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
           `;
 
+// Paths
+const STATIC_FILE_PATH = {
+  svg: '/svg',
+  webp: '/webp',
+  image: '/images',
+};
+
 export {
   imageMeta,
   programs,
   LINKS,
-  getSkillsBySlug,
   gtag,
   googleAnalyticsScript,
+  STATIC_FILE_PATH,
 };

@@ -17,7 +17,7 @@ const ContextBasedLearning = () => {
           <Image
             src='/svg/context_based_learning.svg'
             alt='developer activities'
-            className='w-48'
+            className='w-32'
           />
           <FlexContainer direction='col' className='w-full pt-8'>
             <Text level='p' className='paragraph text-center text-contentLight'>

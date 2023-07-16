@@ -13,7 +13,11 @@ const CanYouBeAProgrammer = () => {
             <Image src='/svg/laptop.svg' alt='laptop' />
           </div>
           <FlexContainer direction='col' itemCenter={true}>
-            <Text level='h3' className='heading-3' textCenter={true}>
+            <Text
+              level='h3'
+              className='heading-3 text-contentDark'
+              textCenter={true}
+            >
               Can you be a programmer?
             </Text>
             <Text
