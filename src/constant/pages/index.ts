@@ -244,7 +244,7 @@ const USP: WeGuideDifferentlyCardProps[] = [
     id: v4(),
     title: `Doubt Clearing Sessions`,
     content: `Clear all your doubts over weekend and discuss any issue you're facing.`,
-    image: `${STATIC_FILE_PATH.svg}/doubt-session.svg`,
+    image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
     imageAltText: `doubt session`,
   },
 ];
