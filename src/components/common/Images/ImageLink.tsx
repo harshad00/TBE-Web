@@ -1,10 +1,5 @@
 import { Image, Link } from '@/components';
-import { ImageContainerProps, LinkProps } from '@/interfaces';
-
-interface ImageLinkProps {
-  linkProps: LinkProps;
-  imageProps: ImageContainerProps;
-}
+import { ImageLinkProps } from '@/interfaces';
 
 const ImageLink = ({ linkProps, imageProps }: ImageLinkProps) => {
   return (

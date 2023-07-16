@@ -9,8 +9,8 @@ import {
   IconPill,
   WorkshopInstructor,
 } from '@/components';
+import { STATIC_FILE_PATH } from '@/constant';
 import { WorkshopMetaDataProps } from '@/interfaces';
-import { SVG_BASE_PATH } from '@/data';
 import { formatDate } from '@/utils';
 
 const WorkshopHeader = ({
@@ -63,13 +63,13 @@ const WorkshopHeader = ({
                 justifyCenter={false}
               >
                 <IconPill
-                  iconPath={`${SVG_BASE_PATH}/calendar.svg`}
+                  iconPath={`${STATIC_FILE_PATH.svg}/calendar.svg`}
                   iconAltText='Calendar'
                   label={formatDate(date)}
                   backgroundColor=''
                 />
                 <IconPill
-                  iconPath={`${SVG_BASE_PATH}/clock.svg`}
+                  iconPath={`${STATIC_FILE_PATH.svg}/clock.svg`}
                   iconAltText='Clock'
                   label={time}
                   backgroundColor=''

@@ -1,5 +1,11 @@
-import { MouseEventHandler } from 'react';
-import { GetSEOMetaResponseType, PageSlug, SkillProps, SkillsProps } from '.';
+import { MouseEventHandler, ReactNode } from 'react';
+import {
+  GetSEOMetaResponseType,
+  MicrocampOfferingsProps,
+  PageSlug,
+  SkillProps,
+  SkillsProps,
+} from '.';
 
 export interface SectionProps {
   children: React.ReactNode;
@@ -33,6 +39,7 @@ export interface ImageContainerProps {
 
 export interface LogoProps {
   className?: string;
+  isDark?: boolean;
 }
 
 export interface LinkButtonProps extends LinkProps {
@@ -51,12 +58,11 @@ export interface ButtonProps {
 
 export interface WorkshopDataProps {
   meta: WorkshopMetaDataProps;
-  // header: WorkshopMetaDataProps;
   aboutWorkshop: WorkshopAboutProps;
 }
 
 export interface WorkshopMetaDataProps {
-  slug: PageSlug;
+  slug: PageSlug | string;
   title: string;
   description: string;
   date: string;
@@ -131,6 +137,7 @@ export interface CardSectionContainerProps {
   children: React.ReactNode;
   isWidthFull?: boolean;
   className?: string;
+  gap?: string;
 }
 
 export interface CardGradientContainerProps {
@@ -179,6 +186,7 @@ export interface TestimonialCardProps {
   imageAltText: string;
   title: string;
   content: string;
+  work: string;
 }
 
 export interface FooterLinkProps {
@@ -202,7 +210,7 @@ export interface MicroCampFeatureCardProps {
   content: string;
 }
 
-export interface MicroCampFeaturePricingCardProps {
+export interface MicroCampPricingCardProps {
   id: string;
   content: string;
 }
@@ -255,6 +263,7 @@ export interface PillProps {
   text: string;
   variant: 'PRIMARY' | 'SECONDARY';
   textStyleClasses?: string;
+  containerClasses?: string;
 }
 
 export interface CountdownTimerContainerProps {
@@ -301,4 +310,25 @@ export interface AboutWorkshopContainerProps
 
 export interface WorkshopRegisterContainerProps {
   link: string;
+}
+
+export interface WhatWeDoForYouProps {
+  offerings: MicrocampOfferingsProps[];
+}
+
+export interface PopoverContainerProps {
+  label: string;
+  children: ReactNode;
+}
+
+export interface MicrocampInstructorProps {
+  name: string;
+  about: string;
+  imageLink: string;
+  linkedInProfile: string;
+}
+
+export interface ImageLinkProps {
+  linkProps: LinkProps;
+  imageProps: ImageContainerProps;
 }

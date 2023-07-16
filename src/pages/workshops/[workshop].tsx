@@ -8,10 +8,10 @@ import {
   Testimonials,
 } from '@/components';
 import { PageProps } from '@/interfaces';
-import { getPreFetchProps, getWorkshopData } from '@/utils';
+import { getPreFetchProps, getWorkshopPageData } from '@/utils';
 
 const WorkshopLanding = ({ seoMeta, slug }: PageProps) => {
-  const workshop = getWorkshopData(slug);
+  const workshop = getWorkshopPageData(slug);
   if (!workshop) return;
 
   const { meta, aboutWorkshop } = workshop;
