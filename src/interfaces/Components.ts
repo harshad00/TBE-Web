@@ -320,3 +320,15 @@ export interface PopoverContainerProps {
   label: string;
   children: ReactNode;
 }
+
+export interface MicrocampInstructorProps {
+  name: string;
+  about: string;
+  imageLink: string;
+  linkedInProfile: string;
+}
+
+export interface ImageLinkProps {
+  linkProps: LinkProps;
+  imageProps: ImageContainerProps;
+}

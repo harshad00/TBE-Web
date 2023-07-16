@@ -2,6 +2,7 @@ import {
   FooterLinksContainerProps,
   MicroCampFeatureCardProps,
   MicroCampPricingCardProps,
+  MicrocampInstructorProps,
 } from '.';
 
 export interface SkillProps {
@@ -114,6 +115,7 @@ export interface MicrocampPricingProps {
 export interface MicrocampDataProps {
   slug: PageSlug;
   header: MicrocampHeaderProps;
+  instructor: MicrocampInstructorProps;
   inThisCohort: MicrocampInThisCohortSectionProps;
   skills: SkillsProps[];
   offerings: MicrocampOfferingsProps[];

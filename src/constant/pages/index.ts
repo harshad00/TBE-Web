@@ -796,6 +796,13 @@ const MICROCAMPS: MicrocampDataProps[] = [
         primary: LINKS.juniorInWebEngineeringRegistrationLink,
       },
     },
+    instructor: {
+      name: 'Sachin Kr. Shukla',
+      about:
+        'Co-founder @ The Boring Education | Ex-Physics Wallah, Pesto, Masai & Newton School',
+      imageLink: '/images/frontend_camp_instructor_dp.png',
+      linkedInProfile: 'https://www.linkedin.com/in/imsks/',
+    },
     inThisCohort: {
       label: 'Web Engineering',
       features: JUNIOR_CAMP_FEATURES,
@@ -820,6 +827,13 @@ const MICROCAMPS: MicrocampDataProps[] = [
       cta: {
         primary: LINKS.bootcamp,
       },
+    },
+    instructor: {
+      name: 'Sachin Kr. Shukla',
+      about:
+        'Co-founder @ The Boring Education | Ex-Physics Wallah, Pesto, Masai & Newton School',
+      imageLink: '/images/frontend_camp_instructor_dp.png',
+      linkedInProfile: 'https://www.linkedin.com/in/imsks/',
     },
     inThisCohort: {
       label: 'Front-end Engineering',

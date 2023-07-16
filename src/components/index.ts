@@ -59,6 +59,7 @@ import WorkshopInstructor from './containers/Page/Workshop/WorkshopInstructor';
 import AboutWorkshopInstructorContainer from './containers/Page/Workshop/AboutWorkshopInstructorContainer';
 import PopoverContainer from './containers/Page/common/PopoverContainer';
 import NavbarDropdownContainer from './containers/Page/common/NavbarDropdownContainer';
+import MicrocampInstructor from './containers/Page/Microcamp/MicrocampInstructor';
 
 export {
   Navbar,
@@ -122,4 +123,5 @@ export {
   AboutWorkshopInstructorContainer,
   PopoverContainer,
   NavbarDropdownContainer,
+  MicrocampInstructor,
 };
