@@ -174,13 +174,3 @@ export interface MicrocampOpportunitiesProps {
   heading: string;
   cards: MicrocampOpportunitiesCardProps[];
 }
-
-export interface ProgramCardProps {
-  id: string;
-  image: string;
-  imageAltText: string;
-  title: string;
-  content: string;
-  href: string;
-  active: boolean;
-}
