@@ -32,6 +32,7 @@ const ProgramCard = ({
             active,
             className: `${!active && 'bg-secondary'}`,
           }}
+          target='BLANK'
           active={active}
         />
       </div>

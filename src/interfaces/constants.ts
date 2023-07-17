@@ -37,7 +37,12 @@ export type PageSlug =
   | '/be-backend-master'
   | '/the-boring-workshops'
   | '/2-hour-design'
-  | '/the-next-wave';
+  | '/getting-started-with-typescript'
+  | '/the-next-wave'
+  | '/head-to-tailwind'
+  | '/api-dev-with-postman'
+  | '/getting-started-with-github'
+  | '/intro-to-web3';
 
 export type GetSEOMetaResponseType = {
   title: string;
@@ -75,7 +80,32 @@ export interface ProgramsDataProps {
     slug: PageSlug;
     description: string;
   };
+  gettingStartedWithTypescipt: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
   theNextWave: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+  headToTailwind: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+  apiDevWithPostman: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+  gettingStartedWithGithub: {
+    label: string;
+    slug: PageSlug;
+    description: string;
+  };
+  introToWeb3: {
     label: string;
     slug: PageSlug;
     description: string;
@@ -143,4 +173,14 @@ export interface MicrocampOpportunitiesCardProps {
 export interface MicrocampOpportunitiesProps {
   heading: string;
   cards: MicrocampOpportunitiesCardProps[];
+}
+
+export interface ProgramCardProps {
+  id: string;
+  image: string;
+  imageAltText: string;
+  title: string;
+  content: string;
+  href: string;
+  active: boolean;
 }
