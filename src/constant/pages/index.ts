@@ -95,7 +95,7 @@ const WORKSHOP_CARDS: ProgramCardProps[] = [
     active: true,
   },
   {
-    image: `${STATIC_FILE_PATH.svg}/nextjs_for_web_developers_banner.svg`,
+    image: `${STATIC_FILE_PATH.svg}/nextjs_for_web_developer_banner.svg`,
     imageAltText: programs.theNextWave.label,
     title: programs.theNextWave.label,
     content: programs.theNextWave.description,
@@ -111,7 +111,7 @@ const WORKSHOP_CARDS: ProgramCardProps[] = [
     active: true,
   },
   {
-    image: `${STATIC_FILE_PATH.svg}/api_dev_with_postman_banner.svg`,
+    image: `${STATIC_FILE_PATH.svg}/api_development_with_postman_banner.svg`,
     imageAltText: programs.apiDevWithPostman.label,
     title: programs.apiDevWithPostman.label,
     content: programs.apiDevWithPostman.description,
