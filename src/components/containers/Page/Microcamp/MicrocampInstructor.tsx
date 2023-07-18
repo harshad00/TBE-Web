@@ -1,4 +1,5 @@
 import { FlexContainer, Image, ImageLink, Section, Text } from '@/components';
+import { STATIC_FILE_PATH } from '@/constant';
 import { MicrocampInstructorProps } from '@/interfaces';
 
 const MicrocampInstructor = ({
@@ -41,7 +42,7 @@ const MicrocampInstructor = ({
                   <ImageLink
                     linkProps={{ href: linkedInProfile, target: 'BLANK' }}
                     imageProps={{
-                      src: '/svg/linkedin.svg',
+                      src: `${STATIC_FILE_PATH.image}/linkedin.svg`,
                       className: 'w-3',
                       fullWidth: false,
                       alt: 'linkedin',

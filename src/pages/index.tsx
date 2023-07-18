@@ -7,6 +7,7 @@ import {
   CanYouBeAProgrammer,
   Testimonials,
   SEO,
+  OurWorkshops,
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
@@ -19,6 +20,7 @@ const Home = ({ seoMeta }: PageProps) => {
       <LandingPageHero />
       <OurPrograms />
       <Skills skills={landingPageSkills} />
+      <OurWorkshops />
       <WeGuideDifferently />
       <CanYouBeAProgrammer />
       <Testimonials />

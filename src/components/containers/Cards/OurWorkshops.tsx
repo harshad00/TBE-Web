@@ -5,20 +5,20 @@ import {
   Section,
   SectionHeaderContainer,
 } from '@/components';
-import { PROGRAMS, routes } from '@/constant';
+import { WORKSHOP_CARDS, routes } from '@/constant';
 
-const OurPrograms = () => {
+const OurWorkshops = () => {
   return (
     <Section id={routes.internals.landing.programs}>
       <FlexContainer direction='col'>
-        <SectionHeaderContainer heading='Our' focusText='Programs' />
+        <SectionHeaderContainer heading='Our' focusText='Workshops' />
         <CardSectionContainer>
-          {PROGRAMS.map((program) => {
+          {WORKSHOP_CARDS.map((program) => {
             const { image, imageAltText, title, href, content, active } =
               program;
             return (
               <ProgramCard
-                key={title}
+                key={href}
                 image={image}
                 imageAltText={imageAltText}
                 title={title}
@@ -34,4 +34,4 @@ const OurPrograms = () => {
   );
 };
 
-export default OurPrograms;
+export default OurWorkshops;
