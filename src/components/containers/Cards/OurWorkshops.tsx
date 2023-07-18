@@ -9,7 +9,7 @@ import { WORKSHOP_CARDS, routes } from '@/constant';
 
 const OurWorkshops = () => {
   return (
-    <Section id={routes.internals.landing.programs}>
+    <Section id={routes.internals.workshops}>
       <FlexContainer direction='col'>
         <SectionHeaderContainer heading='Our' focusText='Workshops' />
         <CardSectionContainer>
