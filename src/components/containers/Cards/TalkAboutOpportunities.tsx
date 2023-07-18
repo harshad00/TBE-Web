@@ -1,4 +1,4 @@
-import { Section, Text, Image, FlexContainer } from '@/components';
+import { Section, Text } from '@/components';
 import { TALK_ABOUT_OPPORTUNITIES } from '@/constant';
 
 const TalkAboutOpportunities = () => {
