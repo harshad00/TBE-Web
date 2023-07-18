@@ -60,19 +60,19 @@ const PROGRAMS: ProgramCardProps[] = [
     active: true,
   },
   {
+    image: `${STATIC_FILE_PATH.svg}/the-boring-workshop-banner.svg`,
+    imageAltText: programs.theBoringWorkshops.label,
+    title: programs.theBoringWorkshops.label,
+    content: programs.theBoringWorkshops.description,
+    href: `#${routes.internals.workshops}`,
+    active: true,
+  },
+  {
     image: `${STATIC_FILE_PATH.svg}/be-back-end-master-banner.svg`,
     imageAltText: programs.beBackendMaster.label,
     title: programs.beBackendMaster.label,
     content: programs.beBackendMaster.description,
     href: routes.microCampLanding(programs.beBackendMaster.slug),
-    active: false,
-  },
-  {
-    image: `${STATIC_FILE_PATH.svg}/the-boring-workshop-banner.svg`,
-    imageAltText: programs.theBoringWorkshops.label,
-    title: programs.theBoringWorkshops.label,
-    content: programs.theBoringWorkshops.description,
-    href: programs.theBoringWorkshops.slug,
     active: false,
   },
 ];

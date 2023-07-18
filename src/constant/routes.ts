@@ -15,6 +15,7 @@ const routes = {
     microCampLanding: {
       explore: 'explore',
     },
+    workshops: 'workshops',
   },
   workshopLanding: function (workshopSlug: PageSlug | string) {
     return this.workshops + workshopSlug;
