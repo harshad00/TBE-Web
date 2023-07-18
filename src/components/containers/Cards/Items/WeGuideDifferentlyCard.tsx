@@ -9,7 +9,13 @@ const WeGuideDifferentlyCard = ({
 }: WeGuideDifferentlyCardProps) => {
   return (
     <CardGradientContainer className='max-w-sm border-borderColor5'>
-      <Image className='h-40 w-48' src={`${image}`} alt={imageAltText} />
+      <Image
+        className='h-40 w-48'
+        src={`${image}`}
+        fullHeight={false}
+        fullWidth={false}
+        alt={imageAltText}
+      />
       <Text level='h4' className='heading-4 mt-4'>
         {title}
       </Text>

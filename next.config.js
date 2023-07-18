@@ -9,7 +9,7 @@ const nextConfig = {
 
   // Uncoment to add domain whitelist
   images: {
-    domains: ['lh3.googleusercontent.com', 'lh3.google.com'],
+    domains: ['lh3.googleusercontent.com', 'lh3.google.com', 'ik.imagekit.io'],
   },
 
   // SVGR
@@ -26,9 +26,9 @@ const nextConfig = {
           },
         },
       ],
-    });
+    })
 
-    return config;
+    return config
   },
   // async redirects() {
   //   return [
@@ -39,6 +39,6 @@ const nextConfig = {
   //     },
   //   ]
   // },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

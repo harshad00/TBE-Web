@@ -1,10 +1,17 @@
 import { ProgramsDataProps } from '@/interfaces';
 
+// Paths
+const STATIC_FILE_PATH = {
+  svg: 'https://ik.imagekit.io/tbe/webapp',
+  webp: 'https://ik.imagekit.io/tbe/webapp',
+  image: 'https://ik.imagekit.io/tbe/webapp',
+};
+
 const imageMeta = {
   logo: {
-    light: '/svg/logo.svg',
-    dark: '/svg/logo-dark.svg',
-    alt: 'the-boring-education-logo',
+    light: `${STATIC_FILE_PATH.svg}/logo.svg`,
+    dark: `${STATIC_FILE_PATH.svg}/logo-dark.svg`,
+    alt: `${STATIC_FILE_PATH.svg}/the-boring-education-logo`,
   },
 };
 
@@ -38,10 +45,35 @@ const programs: ProgramsDataProps = {
     slug: '/2-hour-design',
     description: 'Learn to Design Tech Products in just 2 Hours.',
   },
+  gettingStartedWithTypescipt: {
+    label: 'Getting Started with Typescript',
+    slug: '/getting-started-with-typescript',
+    description: 'Typescript Zero to One in 90 min',
+  },
   theNextWave: {
     label: 'The Next Wave',
     slug: '/the-next-wave',
-    description: 'The Fundamentals of Next.js in 90 Min.',
+    description: 'The next big thing after React.js in 2 Hours',
+  },
+  headToTailwind: {
+    label: 'Head to Tailwind',
+    slug: '/head-to-tailwind',
+    description: 'Tailwind CSS for Everyone in 90 Min',
+  },
+  apiDevWithPostman: {
+    label: 'API Dev with Postman',
+    slug: '/api-dev-with-postman',
+    description: 'Develop & Scale APIs like a Pro with Postman',
+  },
+  gettingStartedWithGithub: {
+    label: 'Getting started with GitHub',
+    slug: '/getting-started-with-github',
+    description: 'Learn Version Control with GitHub in 90 Min',
+  },
+  introToWeb3: {
+    label: 'Intro to Web3',
+    slug: '/intro-to-web3',
+    description: 'Roadmap to transition from Web2 to Web3',
   },
 };
 
@@ -53,6 +85,8 @@ const LINKS = {
     'https://calendly.com/theboringeducation/tech-consultation',
   bootcamp:
     'https://docs.google.com/forms/d/e/1FAIpQLSf40vUjRclTXIivifbahZ-L0EtnFhQw32BzQj3GWgBzeVfnXQ/viewform',
+  workshopRegistration:
+    'https://docs.google.com/forms/d/e/1FAIpQLSfPBZwDNAdhPWlJrdqJITBy9MEcR4OguNaz0H3TEpkh8irbNQ/viewform?usp=sf_link',
 };
 
 // Google analytics
@@ -64,13 +98,6 @@ const googleAnalyticsScript = `
           gtag('js', new Date());
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
           `;
-
-// Paths
-const STATIC_FILE_PATH = {
-  svg: '/svg',
-  webp: '/webp',
-  image: '/images',
-};
 
 export {
   imageMeta,

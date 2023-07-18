@@ -11,6 +11,7 @@ import {
   MicrocampDataProps,
   MicrocampOfferingsProps,
   TopNavbarContainerProps,
+  ProgramCardProps,
 } from '@/interfaces';
 import { LINKS, programs, STATIC_FILE_PATH } from '../global';
 import { routes } from '../routes';
@@ -41,9 +42,8 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
   ],
 };
 
-const PROGRAMS = [
+const PROGRAMS: ProgramCardProps[] = [
   {
-    id: v4(),
     image: `${STATIC_FILE_PATH.svg}/junior-in-web-engineering-banner.svg`,
     imageAltText: programs.juniorInWebEngineering.label,
     title: programs.juniorInWebEngineering.label,
@@ -52,16 +52,14 @@ const PROGRAMS = [
     active: true,
   },
   {
-    id: v4(),
     image: `${STATIC_FILE_PATH.svg}/be-front-end-master-banner.svg`,
     imageAltText: programs.beFrontendMaster.label,
     title: programs.beFrontendMaster.label,
     content: programs.beFrontendMaster.description,
     href: routes.microCampLanding(programs.beFrontendMaster.slug),
-    active: false,
+    active: true,
   },
   {
-    id: v4(),
     image: `${STATIC_FILE_PATH.svg}/be-back-end-master-banner.svg`,
     imageAltText: programs.beBackendMaster.label,
     title: programs.beBackendMaster.label,
@@ -70,13 +68,71 @@ const PROGRAMS = [
     active: false,
   },
   {
-    id: v4(),
     image: `${STATIC_FILE_PATH.svg}/the-boring-workshop-banner.svg`,
     imageAltText: programs.theBoringWorkshops.label,
     title: programs.theBoringWorkshops.label,
     content: programs.theBoringWorkshops.description,
     href: programs.theBoringWorkshops.slug,
     active: false,
+  },
+];
+
+const WORKSHOP_CARDS: ProgramCardProps[] = [
+  {
+    image: `${STATIC_FILE_PATH.svg}/2_hour-design_banner.svg`,
+    imageAltText: programs.twoHourDesign.label,
+    title: programs.twoHourDesign.label,
+    content: programs.twoHourDesign.description,
+    href: LINKS.workshopRegistration,
+    active: true,
+  },
+  {
+    image: `${STATIC_FILE_PATH.svg}/getting_started_with_typescript_banner.svg`,
+    imageAltText: programs.gettingStartedWithTypescipt.label,
+    title: programs.gettingStartedWithTypescipt.label,
+    content: programs.gettingStartedWithTypescipt.description,
+    href: LINKS.workshopRegistration,
+    active: true,
+  },
+  {
+    image: `${STATIC_FILE_PATH.svg}/nextjs_for_web_developer_banner.svg`,
+    imageAltText: programs.theNextWave.label,
+    title: programs.theNextWave.label,
+    content: programs.theNextWave.description,
+    href: LINKS.workshopRegistration,
+    active: true,
+  },
+  {
+    image: `${STATIC_FILE_PATH.svg}/head_to_tailwind_banner.svg`,
+    imageAltText: programs.headToTailwind.label,
+    title: programs.headToTailwind.label,
+    content: programs.headToTailwind.description,
+    href: LINKS.workshopRegistration,
+    active: true,
+  },
+  {
+    image: `${STATIC_FILE_PATH.svg}/api_development_with_postman_banner.svg`,
+    imageAltText: programs.apiDevWithPostman.label,
+    title: programs.apiDevWithPostman.label,
+    content: programs.apiDevWithPostman.description,
+    href: LINKS.workshopRegistration,
+    active: true,
+  },
+  {
+    image: `${STATIC_FILE_PATH.svg}/getting_started_with_github_banner.svg`,
+    imageAltText: programs.gettingStartedWithGithub.label,
+    title: programs.gettingStartedWithGithub.label,
+    content: programs.gettingStartedWithGithub.description,
+    href: LINKS.workshopRegistration,
+    active: true,
+  },
+  {
+    image: `${STATIC_FILE_PATH.svg}/intro_to_web3_banner.svg`,
+    imageAltText: programs.introToWeb3.label,
+    title: programs.introToWeb3.label,
+    content: programs.introToWeb3.description,
+    href: LINKS.workshopRegistration,
+    active: true,
   },
 ];
 
@@ -244,7 +300,7 @@ const USP: WeGuideDifferentlyCardProps[] = [
     id: v4(),
     title: `Doubt Clearing Sessions`,
     content: `Clear all your doubts over weekend and discuss any issue you're facing.`,
-    image: `${STATIC_FILE_PATH.svg}/doubt-session.svg`,
+    image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
     imageAltText: `doubt session`,
   },
 ];
@@ -744,8 +800,8 @@ const WORKSHOPS: WorkshopDataProps[] = [
   },
   {
     meta: {
-      slug: '/the-next-wave',
-      title: 'The Next Wave',
+      slug: programs.theNextWave.slug,
+      title: programs.theNextWave.label,
       image: `${STATIC_FILE_PATH.image}/coding_bg.png`,
       imageAltText: `is programming for you`,
       description:
@@ -800,7 +856,7 @@ const MICROCAMPS: MicrocampDataProps[] = [
       name: 'Sachin Kr. Shukla',
       about:
         'Co-founder @ The Boring Education | Ex-Physics Wallah, Pesto, Masai & Newton School',
-      imageLink: '/images/frontend_camp_instructor_dp.png',
+      imageLink: `${STATIC_FILE_PATH.image}/frontend_camp_instructor_dp.png`,
       linkedInProfile: 'https://www.linkedin.com/in/imsks/',
     },
     inThisCohort: {
@@ -885,4 +941,5 @@ export {
   FRONTEND_CAMP_PRICING,
   WORKSHOPS,
   MICROCAMPS,
+  WORKSHOP_CARDS,
 };

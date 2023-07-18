@@ -9,6 +9,7 @@ import LinkButton from '@/components/common/Buttons/LinkButton';
 import LandingPageHero from '@/components/containers/Page/Landing/Hero';
 import Section from '@/components/layout/Section';
 import OurPrograms from '@/components/containers/Cards/OurPrograms';
+import OurWorkshops from '@/components/containers/Cards/OurWorkshops';
 import ProgramCard from '@/components/containers/Cards/Items/ProgramCard';
 import PageLayout from '@/components/layout/Page';
 import SectionHeaderContainer from '@/components/containers/Page/common/SectionHeaderContainer';
@@ -74,6 +75,7 @@ export {
   LandingPageHero,
   Section,
   OurPrograms,
+  OurWorkshops,
   ProgramCard,
   PageLayout,
   SectionHeaderContainer,
