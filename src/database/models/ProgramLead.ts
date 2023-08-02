@@ -1,8 +1,8 @@
-import { ProgramLeadDocument } from '@/interfaces';
+import { ProgramLeadDocumentModel } from '@/interfaces';
 import mongoose, { Model, Schema } from 'mongoose';
 
-const programLeadSchema: Schema<ProgramLeadDocument> =
-  new Schema<ProgramLeadDocument>(
+const programLeadSchema: Schema<ProgramLeadDocumentModel> =
+  new Schema<ProgramLeadDocumentModel>(
     {
       name: { type: String, required: true },
       email: { type: String, required: true },
@@ -13,8 +13,8 @@ const programLeadSchema: Schema<ProgramLeadDocument> =
     { timestamps: true }
   );
 
-const ProgramLead: Model<ProgramLeadDocument> =
+const ProgramLead: Model<ProgramLeadDocumentModel> =
   mongoose.models.ProgramLead ||
-  mongoose.model<ProgramLeadDocument>('ProgramLead', programLeadSchema);
+  mongoose.model<ProgramLeadDocumentModel>('ProgramLead', programLeadSchema);
 
 export default ProgramLead;
