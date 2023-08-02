@@ -5,7 +5,7 @@ import { connectToDatabase } from '@/database';
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
 const routerHandler = router.handler({
-  onError: (err, req, res) => {
+  onError: (err: any, req, res) => {
     res.status(500).json({ err: err.message });
   },
 });

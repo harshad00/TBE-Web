@@ -14,4 +14,9 @@ const addALeadToDB = async ({
   return newLead;
 };
 
-export { addALeadToDB };
+// Get All Leads From DB
+const getAllLeadsFromDB = async () => {
+  return await ProgramLead.find();
+};
+
+export { addALeadToDB, getAllLeadsFromDB };
