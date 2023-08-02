@@ -1,5 +1,8 @@
 import { ProgramLead } from '..';
-import { AddALeadRequestPayload } from '@/interfaces';
+import {
+  AddALeadRequestPayload,
+  UpdateALeadRequestPayload,
+} from '@/interfaces';
 
 // Add A Lead to DB
 const addALeadToDB = async ({
@@ -19,4 +22,9 @@ const getAllLeadsFromDB = async () => {
   return await ProgramLead.find();
 };
 
-export { addALeadToDB, getAllLeadsFromDB };
+// Get A Lead By ID
+const getALeadByIDFromDB = async (id: string) => {
+  return await ProgramLead.findById(id);
+};
+
+export { addALeadToDB, getAllLeadsFromDB, getALeadByIDFromDB };

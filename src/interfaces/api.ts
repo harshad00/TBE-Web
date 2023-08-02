@@ -1,8 +1,13 @@
-import { ProgramName } from '.';
+import { ProgramLeadStatus, ProgramName } from '.';
 
 export interface AddALeadRequestPayload {
   name: string;
   email: string;
   phone: string;
   programName: ProgramName;
+}
+
+export interface UpdateALeadRequestPayload {
+  id: string;
+  status: ProgramLeadStatus;
 }
