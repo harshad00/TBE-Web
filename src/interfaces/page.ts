@@ -1,4 +1,4 @@
-import { GetSEOMetaResponseType, PageSlug } from './constants';
+import { GetSEOMetaResponseType, PageSlug } from './global';
 
 export interface PageProps {
   slug: PageSlug;

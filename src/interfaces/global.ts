@@ -174,3 +174,16 @@ export interface MicrocampOpportunitiesProps {
   heading: string;
   cards: MicrocampOpportunitiesCardProps[];
 }
+
+export type ProgramLeadStatus =
+  | 'Pending'
+  | 'WP Bot Sent'
+  | 'Interested'
+  | 'Thinking'
+  | 'Not Interested';
+
+export type ProgramName =
+  | 'Be Front-end Master'
+  | 'Be Backend Master'
+  | 'Junior In Web Engineering'
+  | 'Placement Camp';
