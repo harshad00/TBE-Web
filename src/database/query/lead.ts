@@ -1,5 +1,17 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { ProgramLead } from '..';
+import { AddALeadRequestPayload } from '@/interfaces';
 
-export default function hello(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json({ name: 'Bambang' });
-}
+// Add A Lead to DB
+const addALeadToDB = async ({
+  name,
+  email,
+  phone,
+  programName,
+}: AddALeadRequestPayload) => {
+  const newLead = new ProgramLead({ name, email, phone, programName });
+  await newLead.save();
+
+  return newLead;
+};
+
+export { addALeadToDB };

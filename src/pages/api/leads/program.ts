@@ -1,15 +1,19 @@
-import { ProgramLead } from '@/database';
+import { addALeadToDB } from '@/database';
+import { AddALeadRequestPayload } from '@/interfaces';
 import { connectDB, router, routerHandler } from '@/middlewares';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // Add A Lead
 const addALead = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { name, email, phone, programName } = req.body;
+  const { name, email, phone, programName } =
+    req.body as AddALeadRequestPayload;
 
-  const newLead = new ProgramLead({ name, email, phone, programName });
-  await newLead.save();
-
-  res.status(201).json({ message: 'Lead added successfully', lead: newLead });
+  try {
+    const newLead = await addALeadToDB({ name, email, phone, programName });
+    res.status(201).json({ message: 'Lead added successfully', lead: newLead });
+  } catch (error) {
+    res.status(500).json({ err: error.message });
+  }
 };
 
 router.use(connectDB).post(addALead);
