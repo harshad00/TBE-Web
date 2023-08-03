@@ -17,13 +17,13 @@ const addALead = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const newLead = await addALeadToDB({ name, email, phone, programName });
-    res.status(201).json({
+    return res.status(201).json({
       status: true,
       message: 'Lead added successfully',
       lead: newLead,
     });
   } catch (error: any) {
-    res.status(500).json({ status: false, err: error.message });
+    return res.status(500).json({ status: false, err: error.message });
   }
 };
 
@@ -32,11 +32,11 @@ const getAllLeads = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const leads = await getAllLeadsFromDB();
 
-    res
+    return res
       .status(201)
       .json({ status: true, message: 'Lead added successfully', lead: leads });
   } catch (error: any) {
-    res.status(500).json({ status: false, err: error.message });
+    return res.status(500).json({ status: false, err: error.message });
   }
 };
 

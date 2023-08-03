@@ -1,8 +1,5 @@
 import { ProgramLead } from '..';
-import {
-  AddALeadRequestPayload,
-  UpdateALeadRequestPayload,
-} from '@/interfaces';
+import { AddALeadRequestPayload } from '@/interfaces';
 
 // Add A Lead to DB
 const addALeadToDB = async ({

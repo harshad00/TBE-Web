@@ -11,3 +11,9 @@ export interface UpdateALeadRequestPayload {
   id: string;
   status: ProgramLeadStatus;
 }
+
+export interface AddAnAdminRequestPayload {
+  name: string;
+  email: string;
+  googleId: string;
+}
