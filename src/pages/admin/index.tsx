@@ -1,7 +1,7 @@
 import { Button, SEO } from '@/components';
 import { PageSlug } from '@/interfaces';
-import { getPreFetchProps } from '@/utils';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { getPreFetchProps, signInUser } from '@/utils';
+import { useSession } from 'next-auth/react';
 import { getSEOMeta } from '@/constant';
 
 const Admin = () => {
@@ -12,7 +12,7 @@ const Admin = () => {
   console.log('HERE', session);
 
   const handleGoogleAuth = () => {
-    signIn('google');
+    signInUser('google');
   };
 
   return (

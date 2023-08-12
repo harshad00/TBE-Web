@@ -1,6 +1,8 @@
 import { MICROCAMPS, WORKSHOPS } from '@/constant';
 // import workshops from '@/data/workshop';
 import { PageSlug } from '@/interfaces';
+import { BuiltInProviderType } from 'next-auth/providers';
+import { signIn } from 'next-auth/react';
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
@@ -20,8 +22,12 @@ const getWorkshopPageData = (slug: PageSlug) =>
 const getMicrocampPageData = (slug: PageSlug) =>
   MICROCAMPS.find((microcamp) => microcamp.slug === slug);
 
+// Get % of Discount on Program
 const getDiscountPercentage = (basePrice: number, sellingPrice: number) =>
   Math.floor(((basePrice - sellingPrice) / basePrice) * 100);
+
+// Sign in User
+const signInUser = (provider: BuiltInProviderType) => signIn(provider);
 
 export {
   formatDate,
@@ -29,4 +35,5 @@ export {
   getWorkshopPageData,
   getMicrocampPageData,
   getDiscountPercentage,
+  signInUser,
 };
