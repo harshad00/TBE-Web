@@ -5,9 +5,9 @@ import { AddAnAdminRequestPayload } from '@/interfaces';
 const addAnAdminToDB = async ({
   name,
   email,
-  googleId,
+  image,
 }: AddAnAdminRequestPayload) => {
-  const adminUser = new AdminUser({ name, email, googleId });
+  const adminUser = new AdminUser({ name, email, image });
   await adminUser.save();
 
   return adminUser;

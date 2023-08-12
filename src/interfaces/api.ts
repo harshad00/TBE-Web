@@ -15,5 +15,5 @@ export interface UpdateALeadRequestPayload {
 export interface AddAnAdminRequestPayload {
   name: string;
   email: string;
-  googleId: string;
+  image: string;
 }

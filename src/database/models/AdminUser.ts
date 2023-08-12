@@ -6,13 +6,13 @@ const adminUserSchema: Schema<AdminUserDocumentModel> =
     {
       name: { type: String, required: true },
       email: { type: String, required: true },
-      googleId: { type: String, required: true },
+      image: { type: String },
     },
     { timestamps: true }
   );
 
 const AdminUser: Model<AdminUserDocumentModel> =
-  mongoose.models.AdminUser ||
-  mongoose.model<AdminUserDocumentModel>('AdminUser', adminUserSchema);
+  mongoose.models.Admin ||
+  mongoose.model<AdminUserDocumentModel>('Admin', adminUserSchema);
 
 export default AdminUser;
