@@ -1,8 +1,8 @@
 import { AppProps } from 'next/app';
-import Script from 'next/script';
 import { PageLayout } from '@/components';
-import { googleAnalyticsScript, gtag } from '@/constant';
 import { SessionProvider } from 'next-auth/react';
+import Script from 'next/script';
+import { googleAnalyticsScript, gtag } from '@/constant';
 import '@/styles/globals.css';
 import '@/styles/colors.css';
 

@@ -5,6 +5,7 @@ const routes = {
   microCamps: '/micro-camps',
   workshops: '/workshops',
   contactUs: '/contact',
+  admin: '/admin',
   microCampLanding: function (microCampSlug: PageSlug | string) {
     return this.microCamps + microCampSlug;
   },

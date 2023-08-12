@@ -42,7 +42,8 @@ export type PageSlug =
   | '/head-to-tailwind'
   | '/api-dev-with-postman'
   | '/getting-started-with-github'
-  | '/intro-to-web3';
+  | '/intro-to-web3'
+  | '/admin';
 
 export type GetSEOMetaResponseType = {
   title: string;
