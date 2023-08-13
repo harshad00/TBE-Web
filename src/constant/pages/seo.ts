@@ -26,7 +26,7 @@ const getSEOMeta = (basePath: PageSlug): GetSEOMetaResponseType => {
       title: 'Admin | The Boring Education',
       siteName: 'Admin | The Boring Education',
       description: 'Tech Education for Everyone',
-      url: routes.admin,
+      url: routes.admin.base,
       ...adminMeta,
     },
     [programs.juniorInWebEngineering.slug]: {

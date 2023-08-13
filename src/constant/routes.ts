@@ -5,7 +5,11 @@ const routes = {
   microCamps: '/micro-camps',
   workshops: '/workshops',
   contactUs: '/contact',
-  admin: '/admin',
+  admin: {
+    base: '/admin',
+    dashboard: '/admin/dashboard',
+    programLeads: '/admin/program-leads',
+  },
   microCampLanding: function (microCampSlug: PageSlug | string) {
     return this.microCamps + microCampSlug;
   },
