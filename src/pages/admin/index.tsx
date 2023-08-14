@@ -17,10 +17,11 @@ const Admin = () => {
   const slug: PageSlug = '/admin';
   const seoMeta = getSEOMeta(slug as PageSlug);
 
-  const { user, isLoading, isUnauthenticated } = useUser();
+  const { isLoading, isUnauthenticated } = useUser();
 
   if (isLoading) return;
-  if (user) push(routes.admin.dashboard);
+
+  if (!isUnauthenticated) push(routes.admin.dashboard);
 
   return (
     isUnauthenticated && (

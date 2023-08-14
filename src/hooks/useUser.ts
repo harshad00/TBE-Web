@@ -7,8 +7,6 @@ import { useEffect } from 'react';
 const useUser = () => {
   const { data: session, status } = useSession();
 
-  let isLoading, isUnauthenticated;
-
   useEffect(() => {
     if (session) {
       const { user } = session;
@@ -23,16 +21,13 @@ const useUser = () => {
     }
   }, [session]);
 
-  if (status === 'loading') isLoading = true;
-  if (status === 'unauthenticated') isUnauthenticated = true;
-
   const userData = getetUserFromLocalStorage(localStorageKeys.USER);
 
   return {
     user: userData?.user,
     type: userData?.type,
-    isLoading,
-    isUnauthenticated,
+    isLoading: status === 'loading',
+    isUnauthenticated: status === 'unauthenticated',
   };
 };
 

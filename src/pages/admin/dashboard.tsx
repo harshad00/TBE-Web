@@ -17,30 +17,32 @@ const Admin = () => {
   const { push } = useRouter();
   const seoMeta = getSEOMeta(slug as PageSlug);
 
-  const { user, isLoading } = useUser();
+  const { user, isLoading, isUnauthenticated } = useUser();
 
   if (isLoading) return;
-  if (!user) push(routes.admin.base);
+  if (isUnauthenticated) push(routes.admin.base);
 
   return (
-    <Section>
-      <SEO seoMeta={seoMeta} />
-      <FlexContainer justifyCenter={true} className='py-6' direction='col'>
-        <FlexContainer direction='col' className='gap-3'>
-          <FlexContainer direction='col'>
-            <SectionHeaderContainer
-              headingLevel={2}
-              heading='Hello'
-              focusText={user.name}
-            />
-            <Text level='p' className='paragraph mt-1' textCenter={true}>
-              What would like to do today?
-            </Text>
+    !isUnauthenticated && (
+      <Section>
+        <SEO seoMeta={seoMeta} />
+        <FlexContainer justifyCenter={true} className='py-6' direction='col'>
+          <FlexContainer direction='col' className='gap-3'>
+            <FlexContainer direction='col'>
+              <SectionHeaderContainer
+                headingLevel={2}
+                heading='Hello'
+                focusText={user.name}
+              />
+              <Text level='p' className='paragraph mt-1' textCenter={true}>
+                What would like to do today?
+              </Text>
+            </FlexContainer>
+            <AdminDashboardCardContainer />
           </FlexContainer>
-          <AdminDashboardCardContainer />
         </FlexContainer>
-      </FlexContainer>
-    </Section>
+      </Section>
+    )
   );
 };
 
