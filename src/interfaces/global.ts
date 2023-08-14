@@ -188,3 +188,20 @@ export type ProgramName =
   | 'Be Backend Master'
   | 'Junior In Web Engineering'
   | 'Placement Camp';
+
+export type AuthUserType = 'USER' | 'ADMIN';
+
+export interface NextAuthUserType {
+  name: string;
+  email: string;
+  image: string;
+}
+export interface AuthUserInLocalStorageType {
+  user: NextAuthUserType;
+  type: AuthUserType;
+}
+
+export interface UserInLocalStorage {
+  user: NextAuthUserType;
+  type: AuthUserType;
+}

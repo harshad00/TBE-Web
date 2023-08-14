@@ -126,6 +126,11 @@ const favicons: Array<React.ComponentPropsWithoutRef<'link'>> = [
   { rel: 'shortcut icon', href: '/favicon/favicon.ico' },
 ];
 
+// Local storage keys
+const localStorageKeys = {
+  USER: 'USER',
+};
+
 export {
   imageMeta,
   programs,
@@ -134,4 +139,5 @@ export {
   googleAnalyticsScript,
   STATIC_FILE_PATH,
   favicons,
+  localStorageKeys,
 };

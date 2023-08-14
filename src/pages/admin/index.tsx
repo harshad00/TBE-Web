@@ -8,23 +8,22 @@ import {
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { getPreFetchProps, signInUser } from '@/utils';
-import { useSession } from 'next-auth/react';
 import { getSEOMeta, routes } from '@/constant';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
+import { useUser } from '@/hooks';
 
 const Admin = () => {
   const { push } = useRouter();
   const slug: PageSlug = '/admin';
   const seoMeta = getSEOMeta(slug as PageSlug);
 
-  const { data: session, status } = useSession();
+  const { user, isLoading, isUnauthenticated } = useUser();
 
-  if (status === 'loading') return;
-
-  if (session) push(routes.admin.dashboard);
+  if (isLoading) return;
+  if (user) push(routes.admin.dashboard);
 
   return (
-    status === 'unauthenticated' && (
+    isUnauthenticated && (
       <Section>
         <SEO seoMeta={seoMeta} />
         <FlexContainer justifyCenter={true} className='py-6' direction='col'>

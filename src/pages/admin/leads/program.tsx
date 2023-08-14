@@ -1,5 +1,4 @@
 import {
-  AdminDashboardCardContainer,
   FlexContainer,
   SEO,
   Section,
@@ -12,7 +11,7 @@ import { getSEOMeta, routes } from '@/constant';
 import { useRouter } from 'next/router';
 import { useUser } from '@/hooks';
 
-const Admin = () => {
+const AdminProgramLeadsDashboard = () => {
   const slug: PageSlug = '/admin';
   const { push } = useRouter();
   const seoMeta = getSEOMeta(slug as PageSlug);
@@ -30,14 +29,14 @@ const Admin = () => {
           <FlexContainer direction='col'>
             <SectionHeaderContainer
               headingLevel={2}
-              heading='Hello'
-              focusText={user.name}
+              heading='Program'
+              focusText='Leads'
             />
             <Text level='p' className='paragraph mt-1' textCenter={true}>
-              What would like to do today?
+              The list of all program leads.
             </Text>
           </FlexContainer>
-          <AdminDashboardCardContainer />
+          <FlexContainer direction='col'></FlexContainer>
         </FlexContainer>
       </FlexContainer>
     </Section>
@@ -46,4 +45,4 @@ const Admin = () => {
 
 export const getServerSideProps = getPreFetchProps;
 
-export default Admin;
+export default AdminProgramLeadsDashboard;

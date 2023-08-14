@@ -12,6 +12,7 @@ import {
   MicrocampOfferingsProps,
   TopNavbarContainerProps,
   ProgramCardProps,
+  AdminDashboardCardProps,
 } from '@/interfaces';
 import { LINKS, programs, STATIC_FILE_PATH } from '../global';
 import { routes } from '../routes';
@@ -133,6 +134,14 @@ const WORKSHOP_CARDS: ProgramCardProps[] = [
     content: programs.introToWeb3.description,
     href: LINKS.workshopRegistration,
     active: true,
+  },
+];
+
+const ADMIN_DASHBOARD_CARDS: AdminDashboardCardProps[] = [
+  {
+    heading: 'Program Leads',
+    subtitle: 'Manage all program leads',
+    link: routes.admin.leads.programLeads,
   },
 ];
 
@@ -942,4 +951,5 @@ export {
   WORKSHOPS,
   MICROCAMPS,
   WORKSHOP_CARDS,
+  ADMIN_DASHBOARD_CARDS,
 };

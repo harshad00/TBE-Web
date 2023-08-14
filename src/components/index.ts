@@ -44,7 +44,7 @@ import WhatWeDoForYou from './containers/Cards/WhatWeDoForYou';
 import WeTaughtAt from './containers/Cards/WeTaughtAt';
 import WeTaughtAtCard from './containers/Cards/Items/WeTaughtAtCard';
 import MicrocampRegisterForm from './containers/Forms/MicrocampRegisterForm';
-import ContactCard from './containers/Cards/ContactCard';
+import ContactCard from './containers/Cards/Items/ContactCard';
 import WorkshopHeader from './containers/Page/Workshop/WorkshopHeader';
 import SEO from './layout/SEO';
 import Pill from './common/Pill';
@@ -62,6 +62,8 @@ import PopoverContainer from './containers/Page/common/PopoverContainer';
 import NavbarDropdownContainer from './containers/Page/common/NavbarDropdownContainer';
 import MicrocampInstructor from './containers/Page/Microcamp/MicrocampInstructor';
 import MicrocampOpportunities from './containers/Page/Microcamp/MicrocampOpportunities';
+import AdminDashboardCard from './containers/Cards/Items/AdminDashboardCard';
+import AdminDashboardCardContainer from './containers/Cards/AdminDashboardCardContainer';
 
 export {
   Navbar,
@@ -128,4 +130,6 @@ export {
   NavbarDropdownContainer,
   MicrocampInstructor,
   MicrocampOpportunities,
+  AdminDashboardCard,
+  AdminDashboardCardContainer,
 };

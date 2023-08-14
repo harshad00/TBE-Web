@@ -1,6 +1,11 @@
-import { MICROCAMPS, WORKSHOPS } from '@/constant';
+import { MICROCAMPS, WORKSHOPS, localStorageKeys } from '@/constant';
 // import workshops from '@/data/workshop';
-import { PageSlug } from '@/interfaces';
+import {
+  AuthUserType,
+  NextAuthUserType,
+  PageSlug,
+  UserInLocalStorage,
+} from '@/interfaces';
 import { BuiltInProviderType } from 'next-auth/providers';
 import { signIn } from 'next-auth/react';
 
@@ -29,6 +34,47 @@ const getDiscountPercentage = (basePrice: number, sellingPrice: number) =>
 // Sign in User
 const signInUser = (provider: BuiltInProviderType) => signIn(provider);
 
+// Store data in Local Storage
+const setLocalStorageItem = (key: string, value: any) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.error('Error storing data in local storage:', error);
+  }
+};
+
+// Get data from Local Storage
+const getLocalStorageItem = (key: string): any | null => {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
+  } catch (error) {
+    console.error('Error fetching data from local storage:', error);
+    return;
+  }
+};
+
+const setUserInLocalStorage = (
+  key: string,
+  user: NextAuthUserType,
+  type: AuthUserType
+) => {
+  const payload: UserInLocalStorage = {
+    user,
+    type,
+  };
+
+  setLocalStorageItem(key, payload);
+
+  return payload;
+};
+
+const getetUserFromLocalStorage = (key: string) => {
+  const user = getLocalStorageItem(key) as UserInLocalStorage;
+
+  return user;
+};
+
 export {
   formatDate,
   formatTime,
@@ -36,4 +82,8 @@ export {
   getMicrocampPageData,
   getDiscountPercentage,
   signInUser,
+  setLocalStorageItem,
+  getLocalStorageItem,
+  setUserInLocalStorage,
+  getetUserFromLocalStorage,
 };
