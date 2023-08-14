@@ -13,15 +13,15 @@ import { getSEOMeta, routes } from '@/constant';
 import { useRouter } from 'next/navigation';
 
 const Admin = () => {
+  const { push } = useRouter();
   const slug: PageSlug = '/admin';
   const seoMeta = getSEOMeta(slug as PageSlug);
 
   const { data: session, status } = useSession();
 
-  const { push } = useRouter();
-  if (session) push(routes.admin.dashboard);
-
   if (status === 'loading') return;
+
+  if (session) push(routes.admin.dashboard);
 
   return (
     status === 'unauthenticated' && (

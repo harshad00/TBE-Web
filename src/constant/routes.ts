@@ -8,7 +8,9 @@ const routes = {
   admin: {
     base: '/admin',
     dashboard: '/admin/dashboard',
-    programLeads: '/admin/program-leads',
+    leads: {
+      programLeads: '/admin/leads/program',
+    },
   },
   microCampLanding: function (microCampSlug: PageSlug | string) {
     return this.microCamps + microCampSlug;

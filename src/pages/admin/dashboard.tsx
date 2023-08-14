@@ -8,15 +8,20 @@ import {
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { getPreFetchProps, signInUser } from '@/utils';
-import { getSEOMeta } from '@/constant';
+import { getSEOMeta, routes } from '@/constant';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const Admin = () => {
   const slug: PageSlug = '/admin';
+  const { push } = useRouter();
   const seoMeta = getSEOMeta(slug as PageSlug);
 
   const { data: session, status } = useSession();
-  console.log(session?.user);
+
+  if (status === 'loading') return;
+
+  if (!session) push(routes.admin.base);
 
   return (
     <Section>
