@@ -54,6 +54,15 @@ const getLocalStorageItem = (key: string): any | null => {
   }
 };
 
+// Remove Data from Local Stoarge
+const removeLocalStorageItem = (key: string) => {
+  try {
+    localStorage.removeItem(key);
+  } catch (error) {
+    console.error('Error removing data from local storage:', error);
+  }
+};
+
 const setUserInLocalStorage = (
   key: string,
   user: NextAuthUserType,
@@ -69,7 +78,7 @@ const setUserInLocalStorage = (
   return payload;
 };
 
-const getetUserFromLocalStorage = (key: string) => {
+const getUserFromLocalStorage = (key: string) => {
   const user = getLocalStorageItem(key) as UserInLocalStorage;
 
   return user;
@@ -85,5 +94,6 @@ export {
   setLocalStorageItem,
   getLocalStorageItem,
   setUserInLocalStorage,
-  getetUserFromLocalStorage,
+  getUserFromLocalStorage,
+  removeLocalStorageItem,
 };

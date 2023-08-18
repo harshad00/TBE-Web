@@ -5,6 +5,7 @@ import {
   Section,
   SectionHeaderContainer,
   Text,
+  WithAuth,
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
@@ -12,7 +13,7 @@ import { getSEOMeta, routes } from '@/constant';
 import { useRouter } from 'next/router';
 import { useUser } from '@/hooks';
 
-const Admin = () => {
+const AdminDashboard = () => {
   const slug: PageSlug = '/admin';
   const { push } = useRouter();
   const seoMeta = getSEOMeta(slug as PageSlug);
@@ -20,7 +21,9 @@ const Admin = () => {
   const { user, isLoading, isUnauthenticated } = useUser();
 
   if (isLoading) return;
-  if (isUnauthenticated) push(routes.admin.base);
+  // if (!user) push(routes.admin.base);
+
+  console.log('HERE', user, isLoading, isUnauthenticated);
 
   return (
     !isUnauthenticated && (
@@ -48,4 +51,4 @@ const Admin = () => {
 
 export const getServerSideProps = getPreFetchProps;
 
-export default Admin;
+export default AdminDashboard;
