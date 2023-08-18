@@ -1,5 +1,5 @@
 import { localStorageKeys } from '@/constant';
-import { AuthUserType, NextAuthUserType } from '@/interfaces';
+import { NextAuthUserType, UseUserProps } from '@/interfaces';
 import {
   getUserFromLocalStorage,
   removeLocalStorageItem,
@@ -8,20 +8,16 @@ import {
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
-const useUser = () => {
+const useUser = ({ userType }: UseUserProps) => {
   const { data: session, status } = useSession();
-  // console.log('HERE', session);
 
   useEffect(() => {
     if (session) {
       const { user } = session;
-      // TODO: Remove Hardcoded value of ADMIN
-      const type: AuthUserType = 'ADMIN';
-
       setUserInLocalStorage(
         localStorageKeys.USER,
         user as NextAuthUserType,
-        type
+        userType
       );
     } else {
       removeLocalStorageItem(localStorageKeys.USER);

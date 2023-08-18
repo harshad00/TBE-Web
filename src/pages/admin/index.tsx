@@ -18,7 +18,7 @@ const Admin = () => {
   const slug: PageSlug = '/admin';
   const seoMeta = getSEOMeta(slug as PageSlug);
 
-  const { isLoading, isUnauthenticated } = useUser();
+  const { isLoading, isUnauthenticated } = useUser({ userType: 'ADMIN' });
 
   if (isLoading) return;
 

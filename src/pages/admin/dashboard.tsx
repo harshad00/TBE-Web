@@ -18,7 +18,7 @@ const Admin = () => {
   const { push } = useRouter();
   const seoMeta = getSEOMeta(slug as PageSlug);
 
-  const { user, isLoading, isUnauthenticated } = useUser();
+  const { user, isLoading, isUnauthenticated } = useUser({ userType: 'ADMIN' });
 
   if (isLoading) return;
   if (isUnauthenticated) push(routes.admin.base);
