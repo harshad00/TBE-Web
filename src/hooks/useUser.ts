@@ -34,7 +34,7 @@ const useUser = () => {
     user: userData?.user,
     type: userData?.type,
     isLoading: status === 'loading',
-    isUnauthenticated: status === 'unauthenticated',
+    isUnauthenticated: !userData,
   };
 };
 

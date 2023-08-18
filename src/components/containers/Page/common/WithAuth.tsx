@@ -1,30 +1,35 @@
-// // utils/withAuth.tsx
+// utils/withAuth.tsx
 
-// import { routes } from '@/constant';
-// import { useSession } from 'next-auth/react';
-// import { useRouter } from 'next/router';
-// import { ReactNode } from 'react';
+import { routes } from '@/constant';
+import { useUser } from '@/hooks';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { ReactNode } from 'react';
 
-// interface WithAuthProps {
-//   children: ReactNode;
-// }
+interface WithAuthProps {
+  children: ReactNode;
+}
 
-// const WithAuth = ({ children }: WithAuthProps) => {
-//   const { data: session, status } = useSession();
-//   const router = useRouter();
+const WithAuth = ({ children }: any) => {
+  //   const { data: session, status } = useSession();
+  const router = useRouter();
 
-//   // If not authenticated, redirect to the login page
-//   if (status === 'loading') {
-//     return <p>Loading...</p>;
-//   }
+  const { user, isLoading, isUnauthenticated } = useUser();
 
-//   if (!session) {
-//     router.replace(routes.admin.base);
-//     return null;
-//   }
+  if (isLoading) return;
+  //   if (user) router.replace(routes.admin.dashboard);
 
-//   return <>{children}</>; // Pass the session to the children function
-// };
+  // If not authenticated, redirect to the login page
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-// export default WithAuth;
-export {};
+  if (!user || isUnauthenticated) {
+    router.replace(routes.admin.base);
+    return null;
+  }
+
+  return <>{children(user)}</>;
+};
+
+export default WithAuth;
