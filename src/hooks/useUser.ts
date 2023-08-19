@@ -5,24 +5,29 @@ import {
   removeLocalStorageItem,
   setUserInLocalStorage,
 } from '@/utils';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
 const useUser = ({ userType }: UseUserProps) => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   useEffect(() => {
-    if (session) {
-      const { user } = session;
-      setUserInLocalStorage(
-        localStorageKeys.USER,
-        user as NextAuthUserType,
-        userType
-      );
-    } else {
-      removeLocalStorageItem(localStorageKeys.USER);
-    }
-  }, [session]);
+    const checkAuth = async () => {
+      const session = await getSession();
+      if (session) {
+        const { user } = session;
+        setUserInLocalStorage(
+          localStorageKeys.USER,
+          user as NextAuthUserType,
+          userType
+        );
+      } else {
+        removeLocalStorageItem(localStorageKeys.USER);
+      }
+    };
+
+    checkAuth();
+  }, [userType]);
 
   const userData = getUserFromLocalStorage(localStorageKeys.USER);
 

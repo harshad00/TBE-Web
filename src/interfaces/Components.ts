@@ -1,5 +1,6 @@
 import { MouseEventHandler, ReactNode } from 'react';
 import {
+  AuthUserType,
   GetSEOMetaResponseType,
   MicrocampOfferingsProps,
   PageSlug,
@@ -331,4 +332,10 @@ export interface MicrocampInstructorProps {
 export interface ImageLinkProps {
   linkProps: LinkProps;
   imageProps: ImageContainerProps;
+}
+
+export interface UserTypeConfig {
+  userType: AuthUserType;
+  loginUrl?: string;
+  redirectTo?: string;
 }

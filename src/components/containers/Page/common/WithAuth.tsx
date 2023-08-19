@@ -2,7 +2,6 @@
 
 import { routes } from '@/constant';
 import { useUser } from '@/hooks';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 

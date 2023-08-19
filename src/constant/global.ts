@@ -1,4 +1,5 @@
-import { ProgramsDataProps } from '@/interfaces';
+import { ProgramsDataProps, AuthHOCConfigType } from '@/interfaces';
+import { routes } from './routes';
 
 // Paths
 const STATIC_FILE_PATH = {
@@ -131,6 +132,17 @@ const localStorageKeys = {
   USER: 'USER',
 };
 
+const authHOCConfig: AuthHOCConfigType = {
+  admin: {
+    userType: 'ADMIN',
+    loginUrl: routes.admin.base,
+  },
+  adminLogin: {
+    userType: 'ADMIN',
+    redirectTo: routes.admin.dashboard,
+  },
+};
+
 export {
   imageMeta,
   programs,
@@ -140,4 +152,5 @@ export {
   STATIC_FILE_PATH,
   favicons,
   localStorageKeys,
+  authHOCConfig,
 };
