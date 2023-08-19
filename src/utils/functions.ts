@@ -1,5 +1,4 @@
-import { MICROCAMPS, WORKSHOPS, localStorageKeys } from '@/constant';
-// import workshops from '@/data/workshop';
+import { MICROCAMPS, WORKSHOPS } from '@/constant';
 import {
   AuthUserType,
   NextAuthUserType,

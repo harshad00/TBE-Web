@@ -5,7 +5,6 @@ import {
   Section,
   SectionHeaderContainer,
   Text,
-  WithAuth,
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
