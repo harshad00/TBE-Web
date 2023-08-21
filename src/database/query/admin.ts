@@ -2,12 +2,8 @@ import { AdminUser } from '..';
 import { AddAnAdminRequestPayload } from '@/interfaces';
 
 // Add An Admin to DB
-const addAnAdminToDB = async ({
-  name,
-  email,
-  image,
-}: AddAnAdminRequestPayload) => {
-  const adminUser = new AdminUser({ name, email, image });
+const addAnAdminToDB = async ({ name, email }: AddAnAdminRequestPayload) => {
+  const adminUser = new AdminUser({ name, email });
   await adminUser.save();
 
   return adminUser;

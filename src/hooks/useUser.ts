@@ -11,6 +11,8 @@ import { useEffect } from 'react';
 const useUser = ({ userType }: UseUserProps) => {
   const { status } = useSession();
 
+  const userData = getUserFromLocalStorage(localStorageKeys.USER);
+
   useEffect(() => {
     const checkAuth = async () => {
       const session = await getSession();
@@ -26,10 +28,8 @@ const useUser = ({ userType }: UseUserProps) => {
       }
     };
 
-    checkAuth();
+    if (!userData) checkAuth();
   }, [userType]);
-
-  const userData = getUserFromLocalStorage(localStorageKeys.USER);
 
   return {
     user: userData?.user,

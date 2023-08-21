@@ -15,5 +15,25 @@ export interface UpdateALeadRequestPayload {
 export interface AddAnAdminRequestPayload {
   name: string;
   email: string;
-  image: string;
 }
+
+export type APIMethodTypes = 'GET' | 'POST';
+
+export type ApiHookResult = {
+  data: any;
+  loading: boolean;
+  error: any;
+  makeRequest: (
+    method: APIMethodTypes,
+    url: string,
+    headers?: { [key: string]: string },
+    body?: any
+  ) => Promise<void>;
+};
+
+export type APIResponseType = {
+  status: boolean;
+  data?: any;
+  message?: string;
+  error?: string;
+};
