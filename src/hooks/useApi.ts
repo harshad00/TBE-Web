@@ -3,12 +3,12 @@ import { AxiosResponse } from 'axios';
 import { sendRequest } from '@/utils';
 import {
   APIMakeRquestProps,
-  APIResponseType,
+  ClientAPIResponse,
   ApiHookResult,
 } from '@/interfaces';
 
 const useApi = (): ApiHookResult => {
-  const [data, setData] = useState<APIResponseType>();
+  const [data, setData] = useState<ClientAPIResponse>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 

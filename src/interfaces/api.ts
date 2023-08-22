@@ -27,15 +27,18 @@ export interface APIMakeRquestProps {
 }
 
 export type ApiHookResult = {
-  data: any;
+  data: ClientAPIResponse | undefined;
   loading: boolean;
   error: any;
   makeRequest: (params: APIMakeRquestProps) => Promise<void>;
 };
 
-export type APIResponseType = {
+export interface ClientAPIResponse {
   status: boolean;
   data?: any;
+}
+
+export interface APIResponseType extends ClientAPIResponse {
   message?: string;
   error?: string;
-};
+}

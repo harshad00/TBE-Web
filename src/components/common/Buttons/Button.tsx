@@ -11,9 +11,12 @@ const Button = ({
   if (variant === 'PRIMARY')
     additionalClasses =
       'button bg-primary px-4 py-2 text-white hover:bg-transparent hover:text-primary border-2 border-primary hover:scale-105 transition-all';
-  if (variant === 'OUTLINE')
+  else if (variant === 'OUTLINE')
     additionalClasses =
       'button bg-light-bg border-2 border-primary px-4 py-2 text-primary hover:scale-105 transition-all';
+  else if (variant === 'GHOST')
+    additionalClasses =
+      'button bg-black text-white px-2 py-1 text-white hover:bg-transparent hover:text-black border-2 hover:border-black transition-all';
   if (!active)
     additionalClasses = 'button bg-greyDark text-contentLight px-4 py-2';
 

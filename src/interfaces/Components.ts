@@ -50,7 +50,7 @@ export interface LinkButtonProps extends LinkProps {
 }
 
 export interface ButtonProps {
-  variant: 'PRIMARY' | 'OUTLINE';
+  variant: 'PRIMARY' | 'OUTLINE' | 'GHOST';
   className?: string;
   text: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
