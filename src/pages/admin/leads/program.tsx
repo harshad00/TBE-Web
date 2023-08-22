@@ -8,9 +8,7 @@ import {
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
-import { authHOCConfig, getSEOMeta, routes } from '@/constant';
-import { useRouter } from 'next/router';
-import { useUser } from '@/hooks';
+import { authHOCConfig, getSEOMeta } from '@/constant';
 
 const AdminProgramLeadsDashboard = () => {
   const slug: PageSlug = '/admin';
