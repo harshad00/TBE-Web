@@ -176,14 +176,14 @@ export interface MicrocampOpportunitiesProps {
   cards: MicrocampOpportunitiesCardProps[];
 }
 
-export type ProgramLeadStatus =
+export type CohortLeadStatus =
   | 'Pending'
   | 'WP Bot Sent'
   | 'Interested'
   | 'Thinking'
   | 'Not Interested';
 
-export type ProgramName =
+export type CohortName =
   | 'Be Front-end Master'
   | 'Be Backend Master'
   | 'Junior In Web Engineering'

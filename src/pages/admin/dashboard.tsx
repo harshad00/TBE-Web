@@ -5,11 +5,11 @@ import {
   Section,
   SectionHeaderContainer,
   Text,
+  withAuth,
 } from '@/components';
 import { PageProps, PageSlug } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
 import { getSEOMeta, authHOCConfig } from '@/constant';
-import withAuth from '@/components/layout/Auth';
 import { useAdmin } from '@/hooks';
 
 const Admin = ({ user }: PageProps) => {

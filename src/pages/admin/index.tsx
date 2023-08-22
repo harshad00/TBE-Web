@@ -5,11 +5,11 @@ import {
   Section,
   SectionHeaderContainer,
   Text,
+  withAuth,
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { getPreFetchProps, signInUser } from '@/utils';
 import { authHOCConfig, getSEOMeta } from '@/constant';
-import withAuth from '@/components/layout/Auth';
 
 const Admin = () => {
   const slug: PageSlug = '/admin';

@@ -11,7 +11,10 @@ const useAdmin = (email: string | undefined) => {
   useEffect(() => {
     if (!email) return;
 
-    makeRequest('GET', `/admin?email=${email}`);
+    makeRequest({
+      method: 'GET',
+      url: `/admin?email=${email}`,
+    });
   }, [email]);
 
   if (error) {

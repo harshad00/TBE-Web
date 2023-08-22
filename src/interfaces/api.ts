@@ -1,15 +1,15 @@
-import { ProgramLeadStatus, ProgramName } from '.';
+import { CohortLeadStatus, CohortName } from '.';
 
 export interface AddALeadRequestPayload {
   name: string;
   email: string;
   phone: string;
-  programName: ProgramName;
+  cohortName: CohortName;
 }
 
 export interface UpdateALeadRequestPayload {
   id: string;
-  status: ProgramLeadStatus;
+  status: CohortLeadStatus;
 }
 
 export interface AddAnAdminRequestPayload {
@@ -19,16 +19,18 @@ export interface AddAnAdminRequestPayload {
 
 export type APIMethodTypes = 'GET' | 'POST';
 
+export interface APIMakeRquestProps {
+  method: APIMethodTypes;
+  url: string;
+  headers?: { [key: string]: string };
+  body?: any;
+}
+
 export type ApiHookResult = {
   data: any;
   loading: boolean;
   error: any;
-  makeRequest: (
-    method: APIMethodTypes,
-    url: string,
-    headers?: { [key: string]: string },
-    body?: any
-  ) => Promise<void>;
+  makeRequest: (params: APIMakeRquestProps) => Promise<void>;
 };
 
 export type APIResponseType = {

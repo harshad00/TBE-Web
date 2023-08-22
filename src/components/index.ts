@@ -64,7 +64,7 @@ import MicrocampInstructor from './containers/Page/Microcamp/MicrocampInstructor
 import MicrocampOpportunities from './containers/Page/Microcamp/MicrocampOpportunities';
 import AdminDashboardCard from './containers/Cards/Items/AdminDashboardCard';
 import AdminDashboardCardContainer from './containers/Cards/AdminDashboardCardContainer';
-import WithAuth from './containers/Page/common/WithAuth';
+import withAuth from './layout/Auth';
 
 export {
   Navbar,
@@ -133,5 +133,5 @@ export {
   MicrocampOpportunities,
   AdminDashboardCard,
   AdminDashboardCardContainer,
-  WithAuth,
+  withAuth,
 };

@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import { AxiosResponse } from 'axios';
 import { sendRequest } from '@/utils';
-import { APIResponseType, ApiHookResult } from '@/interfaces';
+import {
+  APIMakeRquestProps,
+  APIResponseType,
+  ApiHookResult,
+} from '@/interfaces';
 
 const useApi = (): ApiHookResult => {
   const [data, setData] = useState<APIResponseType>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const makeRequest = async (
-    method: string,
-    url: string,
-    headers?: { [key: string]: string },
-    body?: any
-  ): Promise<void> => {
+  const makeRequest = async ({
+    method,
+    url,
+    headers,
+    body,
+  }: APIMakeRquestProps): Promise<void> => {
     try {
       setLoading(true);
       setError(null);

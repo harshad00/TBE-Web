@@ -4,22 +4,17 @@ import {
   Section,
   SectionHeaderContainer,
   Text,
+  withAuth,
 } from '@/components';
 import { PageSlug } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
-import { getSEOMeta, routes } from '@/constant';
+import { authHOCConfig, getSEOMeta, routes } from '@/constant';
 import { useRouter } from 'next/router';
 import { useUser } from '@/hooks';
 
 const AdminProgramLeadsDashboard = () => {
   const slug: PageSlug = '/admin';
-  const { push } = useRouter();
   const seoMeta = getSEOMeta(slug as PageSlug);
-
-  const { user, isLoading } = useUser();
-
-  if (isLoading) return;
-  if (!user) push(routes.admin.base);
 
   return (
     <Section>
@@ -32,7 +27,7 @@ const AdminProgramLeadsDashboard = () => {
               heading='Program'
               focusText='Leads'
             />
-            <Text level='p' className='paragraph mt-1' textCenter={true}>
+            <Text level='p' className='strong-text mt-1' textCenter={true}>
               The list of all program leads.
             </Text>
           </FlexContainer>
@@ -45,4 +40,4 @@ const AdminProgramLeadsDashboard = () => {
 
 export const getServerSideProps = getPreFetchProps;
 
-export default AdminProgramLeadsDashboard;
+export default withAuth(AdminProgramLeadsDashboard, authHOCConfig.admin);
