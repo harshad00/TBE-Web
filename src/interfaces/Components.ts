@@ -1,6 +1,8 @@
-import { MouseEventHandler, ReactNode } from 'react';
+import { ChangeEvent, MouseEventHandler, ReactNode } from 'react';
 import {
   AuthUserType,
+  CohortLeadStatus,
+  CohortName,
   GetSEOMetaResponseType,
   MicrocampOfferingsProps,
   PageSlug,
@@ -174,6 +176,7 @@ export interface FlexContainerProps {
   justifyCenter?: boolean;
   className?: string;
   direction?: 'row' | 'col';
+  wrap?: boolean;
 }
 
 export interface WorkshopDescriptionProps {
@@ -338,4 +341,21 @@ export interface UserTypeConfig {
   userType: AuthUserType;
   loginUrl?: string;
   redirectTo?: string;
+}
+
+export interface ProgramLeadCard {
+  _id: string;
+  name: string;
+  email?: string;
+  phone: string;
+  cohortName: CohortName;
+  status: CohortLeadStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SelectInputProps {
+  list: any[];
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  selectedItem: string;
 }

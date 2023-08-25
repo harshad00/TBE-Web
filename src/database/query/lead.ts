@@ -2,7 +2,6 @@ import { CohortLead } from '..';
 import {
   AddALeadRequestPayload,
   UpdateALeadByIDFromDBType,
-  UpdateALeadRequestPayload,
 } from '@/interfaces';
 
 // Add A Lead to DB

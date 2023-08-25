@@ -6,12 +6,13 @@ const FlexContainer = ({
   direction = 'row',
   itemCenter = true,
   justifyCenter = true,
+  wrap = true,
 }: FlexContainerProps) => {
   return (
     <div
       className={`flex flex-${direction} ${itemCenter && 'items-center'} ${
         justifyCenter && 'justify-center'
-      } ${className} flex-wrap`}
+      } ${className} ${wrap && 'flex-wrap'}`}
     >
       {children}
     </div>

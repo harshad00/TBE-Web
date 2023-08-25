@@ -178,9 +178,9 @@ export interface MicrocampOpportunitiesProps {
 
 export type CohortLeadStatus =
   | 'Pending'
-  | 'WP Bot Sent'
+  | 'Connected'
   | 'Interested'
-  | 'Thinking'
+  | 'Callback'
   | 'Not Interested';
 
 export type CohortName =

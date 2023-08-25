@@ -1,14 +1,19 @@
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
-import { TOP_NAVIGATION } from '@/constant';
+import { useEffect, useState } from 'react';
+import { TOP_NAVIGATION, localStorageKeys, routes } from '@/constant';
 import {
+  Button,
   Link,
   Logo,
+  LogoutButton,
   NavbarDropdownContainer,
   PopoverContainer,
   ScreenReader,
 } from '..';
+import { removeLocalStorageItem } from '@/utils';
+import { useRouter } from 'next/router';
+import { useLogoutButton, useUser } from '@/hooks';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,7 +34,7 @@ const Navbar = () => {
             <Bars3Icon className='h-6 w-6' aria-hidden='true' color='black' />
           </button>
         </div>
-        <div className='hidden lg:flex lg:gap-x-12'>
+        <div className='hidden items-center lg:flex lg:gap-x-4'>
           <PopoverContainer label='Our Cohorts'>
             <NavbarDropdownContainer />
           </PopoverContainer>
@@ -42,6 +47,7 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
+          <LogoutButton />
         </div>
       </nav>
       <Dialog

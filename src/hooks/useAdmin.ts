@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useApi } from '.';
 import { useEffect } from 'react';
 import { removeLocalStorageItem } from '@/utils';
-import { localStorageKeys, routes } from '@/constant';
+import { apiUrls, localStorageKeys, routes } from '@/constant';
 
 const useAdmin = (email: string | undefined) => {
   const router = useRouter();
@@ -13,7 +13,7 @@ const useAdmin = (email: string | undefined) => {
 
     makeRequest({
       method: 'GET',
-      url: `/admin?email=${email}`,
+      url: apiUrls.validateAdminByEmail(email),
     });
   }, [email]);
 

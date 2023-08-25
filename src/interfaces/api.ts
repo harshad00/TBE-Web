@@ -2,7 +2,7 @@ import { CohortLeadStatus, CohortName } from '.';
 
 export interface AddALeadRequestPayload {
   name: string;
-  email: string;
+  email?: string;
   phone: string;
   cohortName: CohortName;
 }
@@ -19,6 +19,8 @@ export interface AddAnAdminRequestPayload {
   email: string;
 }
 
+export type ProgramLeadAPIResponse = UpdateALeadRequestPayload;
+
 export type APIMethodTypes = 'GET' | 'POST' | 'PATCH';
 
 export interface APIMakeRquestProps {
@@ -29,7 +31,7 @@ export interface APIMakeRquestProps {
 }
 
 export type ApiHookResult = {
-  data: ClientAPIResponse | undefined;
+  data: any | undefined;
   loading: boolean;
   error: any;
   makeRequest: (params: APIMakeRquestProps) => Promise<void>;

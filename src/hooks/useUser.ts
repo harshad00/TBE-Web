@@ -16,7 +16,7 @@ const useUser = ({ userType }: UseUserProps) => {
   useEffect(() => {
     const checkAuth = async () => {
       const session = await getSession();
-      if (session) {
+      if (session && userType) {
         const { user } = session;
         setUserInLocalStorage(
           localStorageKeys.USER,
@@ -29,7 +29,7 @@ const useUser = ({ userType }: UseUserProps) => {
     };
 
     if (!userData) checkAuth();
-  }, [userType]);
+  }, []);
 
   return {
     user: userData?.user,

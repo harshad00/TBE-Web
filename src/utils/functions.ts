@@ -10,9 +10,13 @@ import { signIn } from 'next-auth/react';
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
-    month: 'long',
+    year: 'numeric',
+    month: 'short',
     day: 'numeric',
-    weekday: 'long',
+    weekday: 'short',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
   });
 };
 

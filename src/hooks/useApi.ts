@@ -1,14 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AxiosResponse } from 'axios';
 import { sendRequest } from '@/utils';
-import {
-  APIMakeRquestProps,
-  ClientAPIResponse,
-  ApiHookResult,
-} from '@/interfaces';
+import { APIMakeRquestProps, ApiHookResult } from '@/interfaces';
 
-const useApi = (): ApiHookResult => {
-  const [data, setData] = useState<ClientAPIResponse>();
+const useApi = (params?: APIMakeRquestProps): ApiHookResult => {
+  const [data, setData] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -37,8 +33,18 @@ const useApi = (): ApiHookResult => {
     }
   };
 
+  useEffect(() => {
+    const init = async () => {
+      if (params) {
+        await makeRequest(params);
+      }
+    };
+
+    init();
+  }, []);
+
   return {
-    data,
+    data: data?.data,
     loading,
     error,
     makeRequest,

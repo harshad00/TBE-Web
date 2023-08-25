@@ -13,6 +13,7 @@ import {
   TopNavbarContainerProps,
   ProgramCardProps,
   AdminDashboardCardProps,
+  CohortLeadStatus,
 } from '@/interfaces';
 import { LINKS, programs, STATIC_FILE_PATH } from '../global';
 import { routes } from '../routes';
@@ -929,6 +930,14 @@ const MICROCAMPS: MicrocampDataProps[] = [
   },
 ];
 
+const programLeadStatusList: CohortLeadStatus[] = [
+  'Pending',
+  'Connected',
+  'Interested',
+  'Callback',
+  'Not Interested',
+];
+
 export {
   FOOTER_NAVIGATION,
   PROGRAMS,
@@ -952,4 +961,5 @@ export {
   MICROCAMPS,
   WORKSHOP_CARDS,
   ADMIN_DASHBOARD_CARDS,
+  programLeadStatusList,
 };
