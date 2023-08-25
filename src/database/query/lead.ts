@@ -1,5 +1,9 @@
 import { CohortLead } from '..';
-import { AddALeadRequestPayload } from '@/interfaces';
+import {
+  AddALeadRequestPayload,
+  UpdateALeadByIDFromDBType,
+  UpdateALeadRequestPayload,
+} from '@/interfaces';
 
 // Add A Lead to DB
 const addALeadToDB = async ({
@@ -24,4 +28,21 @@ const getALeadByIDFromDB = async (id: string) => {
   return await CohortLead.findById(id);
 };
 
-export { addALeadToDB, getAllLeadsFromDB, getALeadByIDFromDB };
+// Update A Lead By ID
+const updateALeadByIDFromDB = async (
+  id: string,
+  updatedPayload: UpdateALeadByIDFromDBType
+) => {
+  return await CohortLead.findByIdAndUpdate(
+    { _id: id },
+    { $set: updatedPayload },
+    { new: true }
+  );
+};
+
+export {
+  addALeadToDB,
+  getAllLeadsFromDB,
+  getALeadByIDFromDB,
+  updateALeadByIDFromDB,
+};

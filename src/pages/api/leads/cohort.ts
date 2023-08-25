@@ -4,6 +4,7 @@ import {
   addALeadToDB,
   getALeadByIDFromDB,
   getAllLeadsFromDB,
+  updateALeadByIDFromDB,
 } from '@/database';
 import {
   AddALeadRequestPayload,
@@ -54,7 +55,7 @@ const getAllLeads = async (req: NextApiRequest, res: NextApiResponse) => {
 // Update A Lead By ID
 const updateLeadByID = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { id, status } = req.body as UpdateALeadRequestPayload;
+    const { id, ...updatedPayload } = req.body as UpdateALeadRequestPayload;
 
     const lead = await getALeadByIDFromDB(id);
 
@@ -64,14 +65,13 @@ const updateLeadByID = async (req: NextApiRequest, res: NextApiResponse) => {
         .json(sendAPIResponse({ status: false, error: 'Lead not found' }));
     }
 
-    lead.status = status;
-    await lead.save();
+    const updatedLead = await updateALeadByIDFromDB(id, updatedPayload);
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({
         status: true,
         message: 'Lead updated successfully',
-        data: lead,
+        data: updatedLead,
       })
     );
   } catch (error: any) {

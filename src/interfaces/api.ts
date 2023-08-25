@@ -7,17 +7,19 @@ export interface AddALeadRequestPayload {
   cohortName: CohortName;
 }
 
-export interface UpdateALeadRequestPayload {
+export interface UpdateALeadRequestPayload extends AddALeadRequestPayload {
   id: string;
   status: CohortLeadStatus;
 }
+
+export type UpdateALeadByIDFromDBType = Omit<UpdateALeadRequestPayload, 'id'>;
 
 export interface AddAnAdminRequestPayload {
   name: string;
   email: string;
 }
 
-export type APIMethodTypes = 'GET' | 'POST';
+export type APIMethodTypes = 'GET' | 'POST' | 'PATCH';
 
 export interface APIMakeRquestProps {
   method: APIMethodTypes;
