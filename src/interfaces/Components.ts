@@ -178,6 +178,7 @@ export interface FlexContainerProps {
   className?: string;
   direction?: 'row' | 'col';
   wrap?: boolean;
+  fullWidth?: boolean;
 }
 
 export interface WorkshopDescriptionProps {

@@ -7,12 +7,13 @@ const FlexContainer = ({
   itemCenter = true,
   justifyCenter = true,
   wrap = true,
+  fullWidth = false,
 }: FlexContainerProps) => {
   return (
     <div
       className={`flex flex-${direction} ${itemCenter && 'items-center'} ${
         justifyCenter && 'justify-center'
-      } ${className} ${wrap && 'flex-wrap'}`}
+      } ${className} ${wrap && 'flex-wrap'} ${fullWidth && 'w-full'}`}
     >
       {children}
     </div>

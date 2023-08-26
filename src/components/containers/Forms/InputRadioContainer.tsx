@@ -9,7 +9,7 @@ const InputRadioContainer = ({
   className,
 }: InputRadioContainerProps) => {
   return (
-    <FlexContainer direction='row' className={`gap-1 ${className}`}>
+    <FlexContainer className={`gap-1 ${className}`}>
       {radioItems.map(({ id, label, description }) => {
         return (
           <RadioInputField
