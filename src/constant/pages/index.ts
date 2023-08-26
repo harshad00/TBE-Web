@@ -14,6 +14,7 @@ import {
   ProgramCardProps,
   AdminDashboardCardProps,
   CohortLeadStatus,
+  RadioOptionProps,
 } from '@/interfaces';
 import { LINKS, programs, STATIC_FILE_PATH } from '../global';
 import { routes } from '../routes';
@@ -938,6 +939,21 @@ const programLeadStatusList: CohortLeadStatus[] = [
   'Not Interested',
 ];
 
+const chooseTechCohortItems: RadioOptionProps[] = [
+  {
+    id: 'professional',
+    label: 'Experience Professional',
+  },
+  {
+    id: 'graduated',
+    label: 'Graduated, Looking For Job',
+  },
+  {
+    id: 'student',
+    label: 'School Student',
+  },
+];
+
 export {
   FOOTER_NAVIGATION,
   PROGRAMS,
@@ -962,4 +978,5 @@ export {
   WORKSHOP_CARDS,
   ADMIN_DASHBOARD_CARDS,
   programLeadStatusList,
+  chooseTechCohortItems,
 };

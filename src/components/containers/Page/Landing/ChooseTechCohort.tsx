@@ -5,25 +5,11 @@ import {
   Section,
   Text,
 } from '@/components';
-import React, { useState } from 'react';
+import { chooseTechCohortItems } from '@/constant';
+import { useState } from 'react';
 
 const ChooseTechCohort = () => {
   const [selectedOptionId, setSelectedOptionId] = useState<string>('');
-
-  const radioItems = [
-    {
-      id: 'professional',
-      label: 'Experience Professional',
-    },
-    {
-      id: 'graduated',
-      label: 'Graduated, Looking For Job',
-    },
-    {
-      id: 'student',
-      label: 'School Student',
-    },
-  ];
 
   const handleRadioChange = (id: string) => {
     setSelectedOptionId(id);
@@ -48,7 +34,7 @@ const ChooseTechCohort = () => {
                 Choose what describes you
               </Text>
               <InputRadioContainer
-                radioItems={radioItems}
+                radioItems={chooseTechCohortItems}
                 onChange={handleRadioChange}
                 selectedItemId={selectedOptionId}
                 className='mt-3'

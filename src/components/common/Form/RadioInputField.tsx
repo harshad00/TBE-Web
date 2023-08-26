@@ -13,13 +13,13 @@ const RadioInputField = ({
     <label
       key={id}
       htmlFor={id}
-      className='cursor-pointer transition-all duration-300'
+      className='cursor-pointer '
       onClick={() => onChange(id)}
     >
       <input type='radio' name='custom-radio' className='hidden' />
       <FlexContainer
         direction='row'
-        className={`gap-2 rounded-full border-2 border-white py-2 px-3 shadow-md ${
+        className={`gap-2 rounded-full border-2 border-white p-2 shadow-md ${
           selected && 'bg-primary'
         }`}
       >
