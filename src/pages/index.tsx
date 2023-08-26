@@ -8,6 +8,7 @@ import {
   Testimonials,
   SEO,
   OurWorkshops,
+  ChooseTechCohort,
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
@@ -18,6 +19,7 @@ const Home = ({ seoMeta }: PageProps) => {
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
       <LandingPageHero />
+      <ChooseTechCohort />
       <OurPrograms />
       <Skills skills={landingPageSkills} />
       <OurWorkshops />

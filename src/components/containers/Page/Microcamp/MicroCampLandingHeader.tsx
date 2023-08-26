@@ -1,7 +1,7 @@
 import {
   FlexContainer,
+  GradientContainer,
   LinkButton,
-  MicroCampBGGradientContainer,
   Section,
   SectionHeaderContainer,
   Text,
@@ -19,7 +19,7 @@ const MicroCampLandingHeader = ({
 
   return (
     <Section>
-      <MicroCampBGGradientContainer>
+      <GradientContainer className='gradient-6 rounded-2'>
         <FlexContainer className='p-4 md:px-12 md:py-8' direction='col'>
           <FlexContainer itemCenter={true} justifyCenter={true}>
             <SectionHeaderContainer
@@ -75,7 +75,7 @@ const MicroCampLandingHeader = ({
             </FlexContainer>
           </FlexContainer>
         </FlexContainer>
-      </MicroCampBGGradientContainer>
+      </GradientContainer>
     </Section>
   );
 };

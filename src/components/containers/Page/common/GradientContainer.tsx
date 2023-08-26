@@ -1,11 +1,11 @@
-import { CardGradientContainerProps } from '@/interfaces';
+import { GradientContainerProps } from '@/interfaces';
 
 // To Put Border Color => border-borderColor${variant}
-const CardGradientContainer = ({
+const GradientContainer = ({
   children,
   className = '',
   backgroundColor,
-}: CardGradientContainerProps) => {
+}: GradientContainerProps) => {
   return (
     <div
       className={`flex-auto rounded-2 border ${className} ${
@@ -17,4 +17,4 @@ const CardGradientContainer = ({
   );
 };
 
-export default CardGradientContainer;
+export default GradientContainer;

@@ -1,25 +1,16 @@
 import {
   FlexContainer,
-  LinkButton,
   ProgramLeadsCard,
   SEO,
   Section,
   SectionHeaderContainer,
-  SelectInput,
   Text,
   withAuth,
 } from '@/components';
-import { CohortLeadStatus, PageSlug, ProgramLeadCard } from '@/interfaces';
-import { formatDate, getPreFetchProps } from '@/utils';
-import {
-  apiUrls,
-  authHOCConfig,
-  getSEOMeta,
-  programLeadStatusList,
-  sendMessageToWhatsappURL,
-} from '@/constant';
+import { PageSlug, ProgramLeadCard } from '@/interfaces';
+import { getPreFetchProps } from '@/utils';
+import { apiUrls, authHOCConfig, getSEOMeta } from '@/constant';
 import { useApi } from '@/hooks';
-import { ChangeEvent, ReactEventHandler } from 'react';
 
 const AdminProgramLeadsDashboard = () => {
   const slug: PageSlug = '/admin';

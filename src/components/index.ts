@@ -15,7 +15,7 @@ import ProgramCard from '@/components/containers/Cards/Items/ProgramCard';
 import PageLayout from '@/components/layout/Page';
 import SectionHeaderContainer from '@/components/containers/Page/common/SectionHeaderContainer';
 import CardSectionContainer from '@/components/containers/Page/common/CardSectionContainer';
-import CardGradientContainer from '@/components/containers/Page/common/CardGradientContainer';
+import GradientContainer from '@/components/containers/Page/common/GradientContainer';
 import SkillCardItem from '@/components/containers/Cards/Items/SkillCardItem';
 import SkillCard from '@/components/containers/Cards/Items/SkillCard';
 import Skills from '@/components/containers/Cards/Skills';
@@ -25,12 +25,12 @@ import NotAnotherTechCourseCard from './containers/Cards/Items/NotAnotherTechCou
 import NotAnotherTechCourse from './containers/Cards/NotAnotherTechCourse';
 import FlexContainer from '@/components/containers/Page/common/FlexContainer';
 import CanYouBeAProgrammer from '@/components/containers/Page/Landing/CanYouBeAProgrammer';
+import ChooseTechCohort from '@/components/containers/Page/Landing/ChooseTechCohort';
 import TestimonialCard from '@/components/containers/Cards/Items/TestimonialCard';
 import Testimonials from '@/components/containers/Cards/Testimonials';
 import Footer from '@/components/layout/Footer';
 import FooterLink from '@/components/common/Typography/FooterLink';
 import FooterLinksContainer from '@/components/containers/Page/common/FooterLinksContainer';
-import MicroCampBGGradientContainer from '@/components/containers/Page/Microcamp/MicroCampBGGradientContainer';
 import MicroCampLandingHeader from '@/components/containers/Page/Microcamp/MicroCampLandingHeader';
 import MicroCampFeatureCard from '@/components/containers/Cards/Items/MicroCampFeatureCard';
 import GridContainer from '@/components/containers/Page/common/GridContainer';
@@ -86,7 +86,7 @@ export {
   PageLayout,
   SectionHeaderContainer,
   CardSectionContainer,
-  CardGradientContainer,
+  GradientContainer,
   SkillCardItem,
   SkillCard,
   Skills,
@@ -101,7 +101,6 @@ export {
   Footer,
   FooterLink,
   FooterLinksContainer,
-  MicroCampBGGradientContainer,
   MicroCampLandingHeader,
   MicroCampFeatureCard,
   GridContainer,
@@ -140,4 +139,5 @@ export {
   SelectInput,
   ProgramLeadsCard,
   LogoutButton,
+  ChooseTechCohort,
 };

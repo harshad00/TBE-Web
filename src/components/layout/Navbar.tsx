@@ -1,9 +1,8 @@
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useEffect, useState } from 'react';
-import { TOP_NAVIGATION, localStorageKeys, routes } from '@/constant';
+import { useState } from 'react';
+import { TOP_NAVIGATION } from '@/constant';
 import {
-  Button,
   Link,
   Logo,
   LogoutButton,
@@ -11,9 +10,6 @@ import {
   PopoverContainer,
   ScreenReader,
 } from '..';
-import { removeLocalStorageItem } from '@/utils';
-import { useRouter } from 'next/router';
-import { useLogoutButton, useUser } from '@/hooks';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

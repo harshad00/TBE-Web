@@ -143,7 +143,7 @@ export interface CardSectionContainerProps {
   gap?: string;
 }
 
-export interface CardGradientContainerProps {
+export interface GradientContainerProps {
   children: React.ReactNode;
   className?: string;
   backgroundColor?: string;
