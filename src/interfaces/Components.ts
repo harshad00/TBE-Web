@@ -147,6 +147,7 @@ export interface GradientContainerProps {
   children: React.ReactNode;
   className?: string;
   backgroundColor?: string;
+  childrenClassName?: string;
 }
 
 export interface SkillCardProps {
@@ -358,4 +359,23 @@ export interface SelectInputProps {
   list: any[];
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   selectedItem: string;
+}
+
+export interface RadioOptionProps {
+  id: string;
+  label: string;
+  description?: string;
+}
+
+export interface InputRadioContainerProps {
+  radioItems: RadioOptionProps[];
+  onChange: (itemId: string) => void;
+  selectedItemId: string;
+  className?: string;
+}
+
+export interface RadioInputFieldProps extends RadioOptionProps {
+  onChange: (itemId: string) => void;
+  selected?: boolean;
+  className?: string;
 }
