@@ -183,7 +183,7 @@ export type CohortLeadStatus =
   | 'Callback'
   | 'Not Interested';
 
-export type CohortName =
+export type CohortNameType =
   | 'Be Front-end Master'
   | 'Be Backend Master'
   | 'Junior In Web Engineering'

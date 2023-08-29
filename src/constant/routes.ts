@@ -18,6 +18,7 @@ const routes = {
   internals: {
     landing: {
       programs: 'programs',
+      talkToCounsellors: 'talk-to-counsellors',
     },
     microCampLanding: {
       explore: 'explore',

@@ -1,21 +1,51 @@
 import {
+  ChooseTechCohortCard,
   FlexContainer,
   GradientContainer,
+  Image,
   InputRadioContainer,
+  LinkButton,
   Section,
   Text,
 } from '@/components';
-import { chooseTechCohortItems } from '@/constant';
+import {
+  PROGRAMS,
+  chooseTechCohortItems,
+  generateSectionPath,
+  routes,
+} from '@/constant';
+import { CohortNameType, ProgramCardProps } from '@/interfaces';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const ChooseTechCohort = () => {
   const [selectedOptionId, setSelectedOptionId] = useState<string>('');
+  const [bestSuitedPrograms, setBestSuitedPrograms] =
+    useState<ProgramCardProps[]>();
+  const [selectedProgram, setSelectedProgram] = useState<string>();
 
   const handleRadioChange = (id: string) => {
     setSelectedOptionId(id);
+
+    const suitedPrograms = PROGRAMS.filter(
+      (program) =>
+        program.bestSuitedFor?.find((cohort) => cohort === id) &&
+        program.active &&
+        program.isCohort
+    );
+
+    setBestSuitedPrograms(suitedPrograms);
   };
 
-  console.log('HERE', selectedOptionId);
+  const onSelectedProgram = (programId: string) => {
+    const selectedProgram = PROGRAMS.find(
+      (program) => program.id === programId && program.active
+    )?.title;
+
+    setSelectedProgram(selectedProgram);
+  };
+
+  console.log('HERE', selectedProgram);
 
   return (
     <Section>
@@ -40,84 +70,33 @@ const ChooseTechCohort = () => {
               />
             </FlexContainer>
           </FlexContainer>
-          <FlexContainer direction='col'>
-            <FlexContainer direction='col' className='gap-3' fullWidth={true}>
-              <Text level='h5' className='heading-5 text-contentDark'>
-                We recommend
-              </Text>
-              <FlexContainer className='gap-2'>
-                <div className='flex w-80 flex-col items-center justify-center gap-2.5 rounded border border-gray-100 bg-gray-100 px-7 py-6'>
-                  <div className='flex w-64 flex-col items-center justify-between gap-12'>
-                    <div className='flex h-16 flex-col items-start justify-start gap-2.5'>
-                      <div>
-                        <span className='text-xl font-bold text-zinc-900'>
-                          Junior in{' '}
-                        </span>
-                        <span className='text-xl font-bold text-rose-500'>
-                          Web Engineering
-                        </span>
-                      </div>
-                      <div className='flex h-8 flex-col items-start justify-start gap-2.5 self-stretch'>
-                        <div className='w-64 text-sm font-medium tracking-tight text-zinc-400'>
-                          Learn Web Fundamentals with HTML, CSS and JS with live
-                          projects.
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-col items-start justify-start gap-2.5'>
-                      <div className=' w-64 items-center justify-center gap-2.5 rounded bg-rose-500 px-8 py-2.5'>
-                        <div className='text-sm font-bold tracking-tight text-stone-50'>
-                          Talk to Counsellor
-                        </div>
-                      </div>
-                      <div className=' w-64 items-center justify-center gap-2.5 rounded border border-rose-500 bg-stone-50 px-8 py-2.5'>
-                        <div className='text-sm font-bold tracking-tight text-rose-500'>
-                          Know More
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='flex w-80 flex-col items-center justify-center gap-2.5 rounded border border-gray-100 bg-gray-100 px-7 py-6'>
-                  <div className='flex w-64 flex-col items-center justify-between gap-12'>
-                    <div className='flex h-16 flex-col items-start justify-start gap-2.5'>
-                      <div>
-                        <span className='text-xl font-bold text-zinc-900'>
-                          Be{' '}
-                        </span>
-                        <span className='text-xl font-bold text-rose-500'>
-                          Front-end{' '}
-                        </span>
-                        <span className='text-xl font-bold text-zinc-900'>
-                          Master
-                        </span>
-                      </div>
-                      <div className='flex h-8 flex-col items-start justify-start gap-2.5 self-stretch'>
-                        <div className='w-64 text-sm font-medium tracking-tight text-zinc-400'>
-                          Learn Core of Front-end with React.js with Placement
-                          Assistance in 8 Weeks.
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-col items-start justify-start gap-2.5'>
-                      <div className=' w-64 items-center justify-center gap-2.5 rounded bg-rose-500 px-8 py-2.5'>
-                        <div className='text-sm font-bold tracking-tight text-stone-50'>
-                          Talk to Counsellor
-                        </div>
-                      </div>
-                      <div className=' w-64 items-center justify-center gap-2.5 rounded border border-rose-500 bg-stone-50 px-8 py-2.5'>
-                        <div className='text-sm font-bold tracking-tight text-rose-500'>
-                          Know More
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          {selectedOptionId && (
+            <FlexContainer direction='col'>
+              <FlexContainer direction='col' className='gap-3' fullWidth={true}>
+                <Text level='h5' className='heading-5 text-contentDark'>
+                  We recommend
+                </Text>
+                <FlexContainer className='gap-2'>
+                  {bestSuitedPrograms?.map((bestSuitedProgram, key) => {
+                    return (
+                      <ChooseTechCohortCard
+                        key={key}
+                        {...bestSuitedProgram}
+                        onSelected={onSelectedProgram}
+                      />
+                    );
+                  })}
+                </FlexContainer>
               </FlexContainer>
             </FlexContainer>
-          </FlexContainer>
+          )}
           <FlexContainer direction='col' className='gap-6'>
-            <FlexContainer direction='col' className='gap-3' fullWidth={true}>
+            <FlexContainer
+              direction='col'
+              className='gap-3'
+              fullWidth={true}
+              id={routes.internals.landing.talkToCounsellors}
+            >
               <Text level='h5' className='heading-5 text-contentDark'>
                 Talk to our counsellors
               </Text>

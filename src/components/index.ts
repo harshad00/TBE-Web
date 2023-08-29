@@ -66,6 +66,7 @@ import MicrocampInstructor from './containers/Page/Microcamp/MicrocampInstructor
 import MicrocampOpportunities from './containers/Page/Microcamp/MicrocampOpportunities';
 import AdminDashboardCard from './containers/Cards/Items/AdminDashboardCard';
 import AdminDashboardCardContainer from './containers/Cards/AdminDashboardCardContainer';
+import ChooseTechCohortCard from './containers/Cards/Items/ChooseTechCohortCard';
 import SelectInput from './common/Form/SelectInput';
 import RadioInputField from './common/Form/RadioInputField';
 import InputRadioContainer from './containers/Forms/InputRadioContainer';
@@ -144,4 +145,5 @@ export {
   ChooseTechCohort,
   InputRadioContainer,
   RadioInputField,
+  ChooseTechCohortCard,
 };

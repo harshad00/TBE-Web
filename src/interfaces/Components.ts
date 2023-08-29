@@ -2,7 +2,7 @@ import { ChangeEvent, MouseEventHandler, ReactNode } from 'react';
 import {
   AuthUserType,
   CohortLeadStatus,
-  CohortName,
+  CohortNameType,
   GetSEOMetaResponseType,
   MicrocampOfferingsProps,
   PageSlug,
@@ -116,13 +116,27 @@ export interface WorkshopWhatWillYouLearnContentProps {
   id: string;
   paragraph: string;
 }
+
+export type BestSuitedTechProgram = 'professional' | 'graduated' | 'student';
+
+export interface ChooseTechCohortItem extends RadioOptionProps {
+  id: BestSuitedTechProgram;
+}
+
 export interface ProgramCardProps {
+  id: string;
   image: string;
   imageAltText: string;
   title: string;
   content: string;
   href: string;
   active: boolean;
+  bestSuitedFor?: BestSuitedTechProgram[];
+  isCohort?: boolean;
+}
+
+export interface ChooseTechCohortCardProps extends ProgramCardProps {
+  onSelected: (programId: string) => void;
 }
 
 export interface PageLayoutProps {
@@ -179,6 +193,7 @@ export interface FlexContainerProps {
   direction?: 'row' | 'col';
   wrap?: boolean;
   fullWidth?: boolean;
+  id?: string;
 }
 
 export interface WorkshopDescriptionProps {
@@ -350,7 +365,7 @@ export interface ProgramLeadCard {
   name: string;
   email?: string;
   phone: string;
-  cohortName: CohortName;
+  cohortName: CohortNameType;
   status: CohortLeadStatus;
   createdAt: string;
   updatedAt: string;

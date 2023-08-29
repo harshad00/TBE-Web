@@ -7,22 +7,21 @@ const Button = ({
   active = true,
   onClick,
 }: ButtonProps) => {
-  let additionalClasses = ' button bg-light px-4 py-2 text-white';
+  let baseClasses = 'button bg-light px-4 py-2 text-white';
   if (variant === 'PRIMARY')
-    additionalClasses =
+    baseClasses =
       'button bg-primary px-4 py-2 text-white hover:bg-transparent hover:text-primary border-2 border-primary hover:scale-105 transition-all';
   else if (variant === 'OUTLINE')
-    additionalClasses =
+    baseClasses =
       'button bg-light-bg border-2 border-primary px-4 py-2 text-primary hover:scale-105 transition-all';
   else if (variant === 'GHOST')
-    additionalClasses =
+    baseClasses =
       'button bg-black text-white px-2 py-1 text-white hover:bg-transparent hover:text-black border-2 hover:border-black transition-all';
-  if (!active)
-    additionalClasses = 'button bg-greyDark text-contentLight px-4 py-2';
+  if (!active) baseClasses = 'button bg-greyDark text-contentLight px-4 py-2';
 
   return (
     <button
-      className={`${className} ${additionalClasses}`}
+      className={`${baseClasses} ${className}`}
       disabled={!active}
       onClick={onClick}
     >

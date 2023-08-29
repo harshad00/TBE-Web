@@ -1,10 +1,10 @@
-import { CohortLeadStatus, CohortName } from '.';
+import { CohortLeadStatus, CohortNameType } from '.';
 
 export interface AddALeadRequestPayload {
   name: string;
   email?: string;
   phone: string;
-  cohortName: CohortName;
+  cohortName: CohortNameType;
 }
 
 export interface UpdateALeadRequestPayload extends AddALeadRequestPayload {
