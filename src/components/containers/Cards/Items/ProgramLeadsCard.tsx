@@ -1,4 +1,4 @@
-import { FlexContainer, LinkButton, SelectInput } from '@/components';
+import { FlexContainer, LinkButton, SelectInput, Text } from '@/components';
 import {
   apiUrls,
   programLeadStatusList,
@@ -21,15 +21,13 @@ const ProgramLeadsCard = ({
 }: ProgramLeadCard) => {
   const { makeRequest } = useApi();
 
-  const handleUpdateLeadStatus = (event: ChangeEvent<HTMLSelectElement>) => {
-    const status = event.target.value;
-
+  const handleUpdateLeadStatus = (value: string) => {
     makeRequest({
       method: 'PATCH',
       url: apiUrls.leadCohort,
       body: {
         id: _id,
-        status,
+        status: value,
       },
     });
   };
@@ -47,10 +45,18 @@ const ProgramLeadsCard = ({
         justifyCenter={false}
         className='items-start justify-start gap-1'
       >
-        <div className='paragraph'>Name: {name}</div>
-        <div className='paragraph'>Cohort Name: {cohortName}</div>
-        <div className='paragraph'>Created on: {formatDate(createdAt)}</div>
-        <div className='paragraph'>Updated on: {formatDate(updatedAt)}</div>
+        <Text level='p' className='paragraph'>
+          Name: {name}
+        </Text>
+        <Text level='p' className='paragraph'>
+          Cohort Name: {cohortName}
+        </Text>
+        <Text level='p' className='paragraph'>
+          Created on: {formatDate(createdAt)}
+        </Text>
+        <Text level='p' className='paragraph'>
+          Updated on: {formatDate(updatedAt)}
+        </Text>
       </FlexContainer>
       <FlexContainer
         itemCenter={true}
@@ -58,7 +64,9 @@ const ProgramLeadsCard = ({
         wrap={false}
         className='justify-start gap-1'
       >
-        <div className='paragraph'>Status</div>
+        <Text level='p' className='paragraph'>
+          Status
+        </Text>
         <div className='w-full'>
           <SelectInput
             list={programLeadStatusList}

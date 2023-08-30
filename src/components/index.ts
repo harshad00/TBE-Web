@@ -69,6 +69,7 @@ import AdminDashboardCardContainer from './containers/Cards/AdminDashboardCardCo
 import ChooseTechCohortCard from './containers/Cards/Items/ChooseTechCohortCard';
 import SelectInput from './common/Form/SelectInput';
 import RadioInputField from './common/Form/RadioInputField';
+import InputFieldContainer from './common/Form/InputFieldContainer';
 import InputRadioContainer from './containers/Forms/InputRadioContainer';
 import withAuth from './layout/Auth';
 
@@ -146,4 +147,5 @@ export {
   InputRadioContainer,
   RadioInputField,
   ChooseTechCohortCard,
+  InputFieldContainer,
 };

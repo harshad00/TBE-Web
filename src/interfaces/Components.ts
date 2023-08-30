@@ -1,4 +1,10 @@
-import { ChangeEvent, MouseEventHandler, ReactNode } from 'react';
+import {
+  ChangeEvent,
+  ChangeEventHandler,
+  HTMLInputTypeAttribute,
+  MouseEventHandler,
+  ReactNode,
+} from 'react';
 import {
   AuthUserType,
   CohortLeadStatus,
@@ -25,7 +31,7 @@ export interface LinkProps {
 }
 
 export interface TextProps {
-  level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+  level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'label';
   children: React.ReactNode;
   className?: string;
   textCenter?: boolean;
@@ -373,7 +379,7 @@ export interface ProgramLeadCard {
 
 export interface SelectInputProps {
   list: any[];
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (value: string) => void;
   selectedItem: string;
 }
 
@@ -394,4 +400,12 @@ export interface RadioInputFieldProps extends RadioOptionProps {
   onChange: (itemId: string) => void;
   selected?: boolean;
   className?: string;
+}
+
+export interface InputFieldContainerProps {
+  label: string;
+  type: HTMLInputTypeAttribute;
+  onChange: (value: string) => void;
+  className?: string;
+  value?: string;
 }
