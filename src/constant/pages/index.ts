@@ -14,7 +14,6 @@ import {
   ProgramCardProps,
   AdminDashboardCardProps,
   CohortLeadStatus,
-  RadioOptionProps,
   ChooseTechCohortItem,
 } from '@/interfaces';
 import { LINKS, programs, STATIC_FILE_PATH } from '../global';

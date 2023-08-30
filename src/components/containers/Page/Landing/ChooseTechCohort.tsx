@@ -2,20 +2,12 @@ import {
   ChooseTechCohortCard,
   FlexContainer,
   GradientContainer,
-  Image,
   InputRadioContainer,
-  LinkButton,
   Section,
   Text,
 } from '@/components';
-import {
-  PROGRAMS,
-  chooseTechCohortItems,
-  generateSectionPath,
-  routes,
-} from '@/constant';
-import { CohortNameType, ProgramCardProps } from '@/interfaces';
-import { useRouter } from 'next/router';
+import { PROGRAMS, chooseTechCohortItems, routes } from '@/constant';
+import { ProgramCardProps } from '@/interfaces';
 import { useState } from 'react';
 
 const ChooseTechCohort = () => {

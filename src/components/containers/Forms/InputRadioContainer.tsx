@@ -1,6 +1,5 @@
-import { FlexContainer, Image, RadioInputField, Text } from '@/components';
-import { STATIC_FILE_PATH } from '@/constant';
-import { InputRadioContainerProps, RadioInputFieldProps } from '@/interfaces';
+import { FlexContainer, RadioInputField } from '@/components';
+import { InputRadioContainerProps } from '@/interfaces';
 
 const InputRadioContainer = ({
   radioItems,

@@ -6,9 +6,7 @@ import {
   LinkButton,
   Text,
 } from '@/components';
-import { generateSectionPath, routes } from '@/constant';
-import { ChooseTechCohortCardProps, ProgramCardProps } from '@/interfaces';
-import { useRouter } from 'next/router';
+import { ChooseTechCohortCardProps } from '@/interfaces';
 
 const ChooseTechCohortCard = ({
   id,
