@@ -29,7 +29,7 @@ const ChooseTechCohortCard = ({
           direction='col'
           itemCenter={false}
           justifyCenter={false}
-          className=''
+          className='w-full'
         >
           <Image
             className='m-auto w-3/5 rounded-t-lg'
