@@ -7,7 +7,6 @@ import {
   InputFieldContainer,
   InputRadioContainer,
   Section,
-  SelectInput,
   Text,
 } from '@/components';
 import { PROGRAMS, chooseTechCohortItems, routes } from '@/constant';
@@ -122,24 +121,11 @@ const ChooseTechCohort = () => {
                     type='text'
                     onChange={(value) => handleFieldChange('contact', value)}
                   />
-                  <FlexContainer
-                    direction='col'
-                    className='gap-2.5'
-                    itemCenter={false}
-                  >
-                    <Text level='label' className='pre-title text-white'>
-                      Your profession
-                    </Text>
-                    <SelectInput
-                      list={chooseTechCohortItems.map(
-                        (chooseTechCohortItem) => chooseTechCohortItem.label
-                      )}
-                      selectedItem={formData.profession}
-                      onChange={(value) =>
-                        handleFieldChange('profession', value)
-                      }
-                    />
-                  </FlexContainer>
+                  <InputFieldContainer
+                    label='Your Email'
+                    type='email'
+                    onChange={(value) => handleFieldChange('email', value)}
+                  />
                 </FlexContainer>
 
                 <FlexContainer
