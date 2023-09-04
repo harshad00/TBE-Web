@@ -7,7 +7,6 @@ import {
 import { useApi } from '@/hooks';
 import { ProgramLeadCard } from '@/interfaces';
 import { formatDate } from '@/utils';
-import { ChangeEvent } from 'react';
 
 const ProgramLeadsCard = ({
   _id,

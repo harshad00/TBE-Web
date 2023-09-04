@@ -10,37 +10,22 @@ import {
   Text,
 } from '@/components';
 import { PROGRAMS, chooseTechCohortItems, routes } from '@/constant';
-import { ProgramCardProps } from '@/interfaces';
 import {
-  ChangeEventHandler,
-  HTMLInputTypeAttribute,
-  useReducer,
-  useState,
-} from 'react';
-
-type ChooseTechCohortInitialFormDataType = {
-  name: string;
-  contact: string;
-  profession: string;
-  program?: string;
-};
-
-type ChooseTechCohortFormFields = 'name' | 'contact' | 'profession' | 'program';
-
-type ChooseTechCohortActionType = {
-  type: 'UPDATE_FIELD';
-  value: string;
-  field: ChooseTechCohortFormFields;
-};
+  ChooseTechCohortActionType,
+  ChooseTechCohortFormFields,
+  ChooseTechCohortInitialFormDataType,
+  ProgramCardProps,
+} from '@/interfaces';
+import { useReducer, useState } from 'react';
 
 // Reducer function to manage form field data
 const chooseTechCohortFormReducer = (
   state: ChooseTechCohortInitialFormDataType,
-  action: ChooseTechCohortActionType
+  { type, field, value }: ChooseTechCohortActionType
 ) => {
-  switch (action.type) {
+  switch (type) {
     case 'UPDATE_FIELD':
-      return { ...state, [action.field]: action.value };
+      return { ...state, [field]: value };
     default:
       return state;
   }
@@ -54,7 +39,7 @@ const ChooseTechCohort = () => {
   const initialFormData: ChooseTechCohortInitialFormDataType = {
     name: '',
     contact: '',
-    profession: '',
+    profession: chooseTechCohortItems[0].label,
     program: '',
   };
 
@@ -63,6 +48,7 @@ const ChooseTechCohort = () => {
     initialFormData
   );
 
+  // On Changing Input Fields
   const handleFieldChange = (
     field: ChooseTechCohortFormFields,
     value: string
@@ -70,6 +56,7 @@ const ChooseTechCohort = () => {
     dispatch({ type: 'UPDATE_FIELD', field, value });
   };
 
+  // On Selecting Profession
   const handleRadioChange = (id: string) => {
     setSelectedOptionId(id);
 
@@ -83,17 +70,14 @@ const ChooseTechCohort = () => {
     setBestSuitedPrograms(suitedPrograms);
   };
 
+  // On Selecting A Program Card
   const onSelectedProgram = (programId: string) => {
     const selectedProgram = PROGRAMS.find(
       (program) => program.id === programId && program.active
     )?.title;
 
-    // setSelectedProgram(selectedProgram);
-
     if (selectedProgram) handleFieldChange('program', selectedProgram);
   };
-
-  console.log('HERE', formData);
 
   const programRecommendationContainer = selectedOptionId && (
     <FlexContainer direction='col'>
@@ -115,6 +99,8 @@ const ChooseTechCohort = () => {
       </FlexContainer>
     </FlexContainer>
   );
+
+  console.log('HERE', formData);
 
   return (
     <Section>

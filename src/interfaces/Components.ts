@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  HTMLInputTypeAttribute,
-  MouseEventHandler,
-  ReactNode,
-} from 'react';
+import { HTMLInputTypeAttribute, MouseEventHandler, ReactNode } from 'react';
 import {
   AuthUserType,
   CohortLeadStatus,
@@ -123,10 +117,10 @@ export interface WorkshopWhatWillYouLearnContentProps {
   paragraph: string;
 }
 
-export type BestSuitedTechProgram = 'professional' | 'graduated' | 'student';
+export type BestSuitedForType = 'professional' | 'graduated' | 'student';
 
 export interface ChooseTechCohortItem extends RadioOptionProps {
-  id: BestSuitedTechProgram;
+  id: BestSuitedForType;
 }
 
 export interface ProgramCardProps {
@@ -137,7 +131,7 @@ export interface ProgramCardProps {
   content: string;
   href: string;
   active: boolean;
-  bestSuitedFor?: BestSuitedTechProgram[];
+  bestSuitedFor?: BestSuitedForType[];
   isCohort?: boolean;
 }
 
@@ -409,3 +403,22 @@ export interface InputFieldContainerProps {
   className?: string;
   value?: string;
 }
+
+export type ChooseTechCohortInitialFormDataType = {
+  name: string;
+  contact: string;
+  profession: string;
+  program?: string;
+};
+
+export type ChooseTechCohortFormFields =
+  | 'name'
+  | 'contact'
+  | 'profession'
+  | 'program';
+
+export type ChooseTechCohortActionType = {
+  type: 'UPDATE_FIELD';
+  value: string;
+  field: ChooseTechCohortFormFields;
+};
