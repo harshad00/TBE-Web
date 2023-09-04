@@ -54,7 +54,7 @@ const PROGRAMS: ProgramCardProps[] = [
     content: programs.juniorInWebEngineering.description,
     href: routes.microCampLanding(programs.juniorInWebEngineering.slug),
     active: true,
-    bestSuitedFor: ['student', 'graduated'],
+    bestSuitedFor: ['student', 'college-student'],
     isCohort: true,
   },
   {
@@ -65,7 +65,7 @@ const PROGRAMS: ProgramCardProps[] = [
     content: programs.beFrontendMaster.description,
     href: routes.microCampLanding(programs.beFrontendMaster.slug),
     active: true,
-    bestSuitedFor: ['graduated', 'professional'],
+    bestSuitedFor: ['college-student', 'professional'],
     isCohort: true,
   },
   {
@@ -87,7 +87,7 @@ const PROGRAMS: ProgramCardProps[] = [
     content: programs.theBoringWorkshops.description,
     href: `#${routes.internals.workshops}`,
     active: true,
-    bestSuitedFor: ['student', 'graduated', 'professional'],
+    bestSuitedFor: ['student', 'college-student', 'professional'],
   },
 ];
 
@@ -963,8 +963,8 @@ const chooseTechCohortItems: ChooseTechCohortItem[] = [
     label: 'Experience Professional',
   },
   {
-    id: 'graduated',
-    label: 'Graduated, Looking For Job',
+    id: 'college-student',
+    label: 'College Student',
   },
   {
     id: 'student',

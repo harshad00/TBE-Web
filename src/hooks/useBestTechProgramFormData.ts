@@ -24,6 +24,9 @@ const useBestTechProgramFormData = () => {
     email: '',
     profession: '',
     program: '',
+    school: '',
+    college: '',
+    company: '',
   };
 
   const [formData, dispatch] = useReducer(

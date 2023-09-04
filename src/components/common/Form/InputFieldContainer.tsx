@@ -7,6 +7,7 @@ const InputFieldContainer = ({
   className,
   value,
   onChange,
+  isOptional = false,
 }: InputFieldContainerProps) => {
   return (
     <FlexContainer
@@ -14,7 +15,10 @@ const InputFieldContainer = ({
       className={`w-full gap-2.5 ${className}`}
       itemCenter={false}
     >
-      <label className='pre-title text-white'>{label}</label>
+      <label className='pre-title text-white'>
+        {label}
+        {isOptional && <span> (Optional)</span>}
+      </label>
       <input
         type={type}
         value={value}

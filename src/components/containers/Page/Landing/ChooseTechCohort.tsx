@@ -108,9 +108,9 @@ const ChooseTechCohort = () => {
               </Text>
               <FlexContainer
                 direction='col'
-                className='gap-2 rounded-lg border border-white p-5'
+                className='w-3/4 gap-2 rounded-lg border border-white p-5 md:w-1/2'
               >
-                <FlexContainer direction='col' className='gap-3'>
+                <FlexContainer direction='col' className='w-full gap-3'>
                   <InputFieldContainer
                     label='Your Name'
                     type='text'
@@ -124,8 +124,33 @@ const ChooseTechCohort = () => {
                   <InputFieldContainer
                     label='Your Email'
                     type='email'
+                    isOptional={true}
                     onChange={(value) => handleFieldChange('email', value)}
                   />
+                  {formData.profession === 'student' && (
+                    <InputFieldContainer
+                      label='Your School Name'
+                      type='text'
+                      isOptional={true}
+                      onChange={(value) => handleFieldChange('school', value)}
+                    />
+                  )}
+                  {formData.profession === 'college-student' && (
+                    <InputFieldContainer
+                      label='Your College'
+                      type='text'
+                      isOptional={true}
+                      onChange={(value) => handleFieldChange('college', value)}
+                    />
+                  )}
+                  {formData.profession === 'professional' && (
+                    <InputFieldContainer
+                      label='Currently Working At'
+                      type='text'
+                      isOptional={true}
+                      onChange={(value) => handleFieldChange('company', value)}
+                    />
+                  )}
                 </FlexContainer>
 
                 <FlexContainer

@@ -117,7 +117,7 @@ export interface WorkshopWhatWillYouLearnContentProps {
   paragraph: string;
 }
 
-export type BestSuitedForType = 'professional' | 'graduated' | 'student';
+export type BestSuitedForType = 'professional' | 'college-student' | 'student';
 
 export interface ChooseTechCohortItem extends RadioOptionProps {
   id: BestSuitedForType;
@@ -402,6 +402,7 @@ export interface InputFieldContainerProps {
   onChange: (value: string) => void;
   className?: string;
   value?: string;
+  isOptional?: boolean;
 }
 
 export type ChooseTechCohortInitialFormDataType = {
@@ -410,6 +411,9 @@ export type ChooseTechCohortInitialFormDataType = {
   email?: string;
   profession: BestSuitedForType | '';
   program?: string;
+  school?: string;
+  college?: string;
+  company?: string;
 };
 
 export type ChooseTechCohortFormFields =
@@ -417,7 +421,10 @@ export type ChooseTechCohortFormFields =
   | 'email'
   | 'contact'
   | 'profession'
-  | 'program';
+  | 'program'
+  | 'school'
+  | 'college'
+  | 'company';
 
 export type ChooseTechCohortActionType = {
   type: 'UPDATE_FIELD';
