@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Button,
   ChooseTechCohortCard,
@@ -10,43 +11,13 @@ import {
   Text,
 } from '@/components';
 import { PROGRAMS, chooseTechCohortItems, routes } from '@/constant';
-import {
-  ChooseTechCohortActionType,
-  ChooseTechCohortFormFields,
-  ChooseTechCohortInitialFormDataType,
-  ProgramCardProps,
-} from '@/interfaces';
-import { useReducer, useState } from 'react';
-
-// Reducer function to manage form field data
-const chooseTechCohortFormReducer = (
-  state: ChooseTechCohortInitialFormDataType,
-  { type, field, value }: ChooseTechCohortActionType
-) => {
-  switch (type) {
-    case 'UPDATE_FIELD':
-      return { ...state, [field]: value };
-    default:
-      return state;
-  }
-};
+import { useBestTechProgramFormData } from '@/hooks';
+import { ChooseTechCohortFormFields, ProgramCardProps } from '@/interfaces';
 
 const ChooseTechCohort = () => {
-  const [selectedOptionId, setSelectedOptionId] = useState<string>('');
   const [bestSuitedPrograms, setBestSuitedPrograms] =
     useState<ProgramCardProps[]>();
-
-  const initialFormData: ChooseTechCohortInitialFormDataType = {
-    name: '',
-    contact: '',
-    profession: chooseTechCohortItems[0].label,
-    program: '',
-  };
-
-  const [formData, dispatch] = useReducer(
-    chooseTechCohortFormReducer,
-    initialFormData
-  );
+  const { formData, dispatch } = useBestTechProgramFormData();
 
   // On Changing Input Fields
   const handleFieldChange = (
@@ -58,14 +29,14 @@ const ChooseTechCohort = () => {
 
   // On Selecting Profession
   const handleRadioChange = (id: string) => {
-    setSelectedOptionId(id);
-
     const suitedPrograms = PROGRAMS.filter(
       (program) =>
         program.bestSuitedFor?.find((cohort) => cohort === id) &&
         program.active &&
         program.isCohort
     );
+
+    dispatch({ type: 'UPDATE_FIELD', field: 'profession', value: id });
 
     setBestSuitedPrograms(suitedPrograms);
   };
@@ -79,7 +50,7 @@ const ChooseTechCohort = () => {
     if (selectedProgram) handleFieldChange('program', selectedProgram);
   };
 
-  const programRecommendationContainer = selectedOptionId && (
+  const programRecommendationContainer = formData.profession && (
     <FlexContainer direction='col'>
       <FlexContainer direction='col' className='gap-3' fullWidth={true}>
         <Text level='h5' className='heading-5 text-contentDark'>
@@ -120,7 +91,7 @@ const ChooseTechCohort = () => {
               <InputRadioContainer
                 radioItems={chooseTechCohortItems}
                 onChange={handleRadioChange}
-                selectedItemId={selectedOptionId}
+                selectedItemId={formData.profession}
                 className='mt-3'
               />
             </FlexContainer>
