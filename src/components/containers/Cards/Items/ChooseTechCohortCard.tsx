@@ -6,6 +6,7 @@ import {
   LinkButton,
   Text,
 } from '@/components';
+import { routes } from '@/constant';
 import { ChooseTechCohortCardProps } from '@/interfaces';
 
 const ChooseTechCohortCard = ({
@@ -57,10 +58,13 @@ const ChooseTechCohortCard = ({
           className='gap-1'
           fullWidth={true}
         >
-          <Button
-            variant='PRIMARY'
-            text='Talk to Counsellor'
-            onClick={() => onSelected(id)}
+          <LinkButton
+            href={`#${routes.internals.landing.talkToCounsellors}`}
+            buttonProps={{
+              variant: 'PRIMARY',
+              text: 'Talk to Counsellor',
+              onClick: () => onSelected(id),
+            }}
           />
           <LinkButton
             href={href}

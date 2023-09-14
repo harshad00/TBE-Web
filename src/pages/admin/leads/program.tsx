@@ -7,7 +7,7 @@ import {
   Text,
   withAuth,
 } from '@/components';
-import { PageSlug, ProgramLeadCard } from '@/interfaces';
+import { PageSlug, CohortLeadCard } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
 import { apiUrls, authHOCConfig, getSEOMeta } from '@/constant';
 import { useApi } from '@/hooks';
@@ -22,7 +22,7 @@ const AdminProgramLeadsDashboard = () => {
 
   if (loading || !data) return;
 
-  const programLeads: ProgramLeadCard[] = data;
+  const programLeads: CohortLeadCard[] = data;
 
   // console.log('HERE', programLeads);
 

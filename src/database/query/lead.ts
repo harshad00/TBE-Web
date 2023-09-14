@@ -10,8 +10,19 @@ const addALeadToDB = async ({
   email,
   phone,
   cohortName,
+  school,
+  college,
+  company,
 }: AddALeadRequestPayload) => {
-  const newLead = new CohortLead({ name, email, phone, cohortName });
+  const newLead = new CohortLead({
+    name,
+    email,
+    phone,
+    cohortName,
+    school,
+    college,
+    company,
+  });
   await newLead.save();
 
   return newLead;

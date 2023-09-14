@@ -11,11 +11,11 @@ import {
 } from '@/components';
 import { PROGRAMS, chooseTechCohortItems, routes } from '@/constant';
 import { useBestTechProgramFormData } from '@/hooks';
-import { ChooseTechCohortFormFields, ProgramCardProps } from '@/interfaces';
+import { ChooseTechCohortFormFields, CohortCardProps } from '@/interfaces';
 
 const ChooseTechCohort = () => {
   const [bestSuitedPrograms, setBestSuitedPrograms] =
-    useState<ProgramCardProps[]>();
+    useState<CohortCardProps[]>();
   const { formData, dispatch } = useBestTechProgramFormData();
 
   // On Changing Input Fields
@@ -29,10 +29,10 @@ const ChooseTechCohort = () => {
   // On Selecting Profession
   const handleRadioChange = (id: string) => {
     const suitedPrograms = PROGRAMS.filter(
-      (program) =>
-        program.bestSuitedFor?.find((cohort) => cohort === id) &&
-        program.active &&
-        program.isCohort
+      (cohort) =>
+        cohort.bestSuitedFor?.find((cohort) => cohort === id) &&
+        cohort.active &&
+        cohort.isCohort
     );
 
     dispatch({ type: 'UPDATE_FIELD', field: 'profession', value: id });
@@ -41,15 +41,20 @@ const ChooseTechCohort = () => {
   };
 
   // On Selecting A Program Card
-  const onSelectedProgram = (programId: string) => {
+  const onSelectedProgram = (cohortId: string) => {
     const selectedProgram = PROGRAMS.find(
-      (program) => program.id === programId && program.active
+      (cohort) => cohort.id === cohortId && cohort.active
     )?.title;
 
-    if (selectedProgram) handleFieldChange('program', selectedProgram);
+    if (selectedProgram) handleFieldChange('cohortName', selectedProgram);
   };
 
-  const programRecommendationContainer = formData.profession && (
+  // On Booking Counselling
+  const handleBookCounselling = () => {
+    console.log('HERE', formData);
+  };
+
+  const cohortRecommendationContainer = formData.profession && (
     <FlexContainer direction='col'>
       <FlexContainer direction='col' className='gap-3' fullWidth={true}>
         <Text level='h5' className='heading-5 text-contentDark'>
@@ -69,8 +74,6 @@ const ChooseTechCohort = () => {
       </FlexContainer>
     </FlexContainer>
   );
-
-  console.log('HERE', formData);
 
   return (
     <Section>
@@ -95,7 +98,7 @@ const ChooseTechCohort = () => {
               />
             </FlexContainer>
           </FlexContainer>
-          {programRecommendationContainer}
+          {cohortRecommendationContainer}
           <FlexContainer direction='col' className='gap-6'>
             <FlexContainer
               direction='col'
@@ -161,8 +164,8 @@ const ChooseTechCohort = () => {
                 >
                   <Button
                     variant='PRIMARY'
-                    text='Talk to us'
-                    onClick={() => console.log}
+                    text='Book Free Counselling'
+                    onClick={handleBookCounselling}
                   />
                 </FlexContainer>
               </FlexContainer>

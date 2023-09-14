@@ -5,7 +5,7 @@ import {
   sendMessageToWhatsappURL,
 } from '@/constant';
 import { useApi } from '@/hooks';
-import { ProgramLeadCard } from '@/interfaces';
+import { CohortLeadCard } from '@/interfaces';
 import { formatDate } from '@/utils';
 
 const ProgramLeadsCard = ({
@@ -17,7 +17,7 @@ const ProgramLeadsCard = ({
   status,
   createdAt,
   updatedAt,
-}: ProgramLeadCard) => {
+}: CohortLeadCard) => {
   const { makeRequest } = useApi();
 
   const handleUpdateLeadStatus = (value: string) => {

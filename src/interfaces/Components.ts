@@ -123,7 +123,7 @@ export interface ChooseTechCohortItem extends RadioOptionProps {
   id: BestSuitedForType;
 }
 
-export interface ProgramCardProps {
+export interface CohortCardProps {
   id: string;
   image: string;
   imageAltText: string;
@@ -135,8 +135,8 @@ export interface ProgramCardProps {
   isCohort?: boolean;
 }
 
-export interface ChooseTechCohortCardProps extends ProgramCardProps {
-  onSelected: (programId: string) => void;
+export interface ChooseTechCohortCardProps extends CohortCardProps {
+  onSelected: (cohortId: string) => void;
 }
 
 export interface PageLayoutProps {
@@ -360,7 +360,7 @@ export interface UserTypeConfig {
   redirectTo?: string;
 }
 
-export interface ProgramLeadCard {
+export interface CohortLeadCard {
   _id: string;
   name: string;
   email?: string;
@@ -410,7 +410,7 @@ export type ChooseTechCohortInitialFormDataType = {
   contact: string;
   email?: string;
   profession: BestSuitedForType | '';
-  program?: string;
+  cohortName?: string;
   school?: string;
   college?: string;
   company?: string;
@@ -421,7 +421,7 @@ export type ChooseTechCohortFormFields =
   | 'email'
   | 'contact'
   | 'profession'
-  | 'program'
+  | 'cohortName'
   | 'school'
   | 'college'
   | 'company';

@@ -11,7 +11,7 @@ import {
   MicrocampDataProps,
   MicrocampOfferingsProps,
   TopNavbarContainerProps,
-  ProgramCardProps,
+  CohortCardProps,
   AdminDashboardCardProps,
   CohortLeadStatus,
   ChooseTechCohortItem,
@@ -45,7 +45,7 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
   ],
 };
 
-const PROGRAMS: ProgramCardProps[] = [
+const PROGRAMS: CohortCardProps[] = [
   {
     id: 'JWE',
     image: `${STATIC_FILE_PATH.svg}/junior-in-web-engineering-banner.svg`,
@@ -91,7 +91,7 @@ const PROGRAMS: ProgramCardProps[] = [
   },
 ];
 
-const WORKSHOP_CARDS: ProgramCardProps[] = [
+const WORKSHOP_CARDS: CohortCardProps[] = [
   {
     id: '2HD',
     image: `${STATIC_FILE_PATH.svg}/2_hour-design_banner.svg`,

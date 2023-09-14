@@ -23,7 +23,7 @@ const useBestTechProgramFormData = () => {
     contact: '',
     email: '',
     profession: '',
-    program: '',
+    cohortName: '',
     school: '',
     college: '',
     company: '',

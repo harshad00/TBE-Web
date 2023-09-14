@@ -9,6 +9,9 @@ const cohortLeadSchema: Schema<CohortLeadDocumentModel> =
       phone: { type: String, required: true },
       cohortName: { type: String, required: true },
       status: { type: String, default: 'Pending' },
+      school: { type: String },
+      college: { type: String },
+      company: { type: String },
     },
     { timestamps: true }
   );

@@ -15,10 +15,19 @@ import { sendAPIResponse } from '@/utils';
 
 // Add A Lead
 const addALead = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { name, email, phone, cohortName } = req.body as AddALeadRequestPayload;
+  const { name, email, phone, cohortName, school, college, company } =
+    req.body as AddALeadRequestPayload;
 
   try {
-    const lead = await addALeadToDB({ name, email, phone, cohortName });
+    const lead = await addALeadToDB({
+      name,
+      email,
+      phone,
+      cohortName,
+      school,
+      college,
+      company,
+    });
 
     return res.status(apiStatusCodes.RESOURCE_CREATED).json(
       sendAPIResponse({

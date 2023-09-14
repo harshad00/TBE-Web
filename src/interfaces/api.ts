@@ -5,6 +5,9 @@ export interface AddALeadRequestPayload {
   email?: string;
   phone: string;
   cohortName: CohortNameType;
+  school?: string;
+  college?: string;
+  company?: string;
 }
 
 export interface UpdateALeadRequestPayload extends AddALeadRequestPayload {
