@@ -1,4 +1,5 @@
 import {
+  AddALeadRequestPayload,
   ChooseTechCohortActionType,
   ChooseTechCohortInitialFormDataType,
 } from '@/interfaces';
@@ -18,7 +19,7 @@ const useBestTechProgramFormData = () => {
     }
   };
 
-  const initialFormData: ChooseTechCohortInitialFormDataType = {
+  const initialFormData: AddALeadRequestPayload = {
     name: '',
     contactNo: '',
     email: '',

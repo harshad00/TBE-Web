@@ -58,4 +58,10 @@ const getAdminByEmail = async (req: NextApiRequest, res: NextApiResponse) => {
 
 router.use(connectDB).post(addAnAdmin).get(getAdminByEmail);
 
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};
+
 export default routerHandler;

@@ -1,10 +1,11 @@
-import { CohortLeadStatus, CohortNameType } from '.';
+import { BestSuitedForType, CohortLeadStatus, CohortNameType } from '.';
 
 export interface AddALeadRequestPayload {
   name: string;
-  email?: string;
   contactNo: string;
-  cohortName: CohortNameType;
+  email?: string;
+  cohortName?: CohortNameType | '';
+  profession?: BestSuitedForType | '';
   school?: string;
   college?: string;
   company?: string;

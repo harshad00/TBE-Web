@@ -8,10 +8,11 @@ const cohortLeadSchema: Schema<CohortLeadDocumentModel> =
       email: { type: String },
       contactNo: { type: String, required: true },
       cohortName: { type: String, required: true },
-      status: { type: String, default: 'Pending' },
+      profession: { type: String },
       school: { type: String },
       college: { type: String },
       company: { type: String },
+      status: { type: String, default: 'Pending' },
     },
     { timestamps: true }
   );

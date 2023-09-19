@@ -1,5 +1,6 @@
 import { HTMLInputTypeAttribute, MouseEventHandler, ReactNode } from 'react';
 import {
+  AddALeadRequestPayload,
   AuthUserType,
   CohortLeadStatus,
   CohortNameType,
@@ -386,7 +387,7 @@ export interface RadioOptionProps {
 export interface InputRadioContainerProps {
   radioItems: RadioOptionProps[];
   onChange: (itemId: string) => void;
-  selectedItemId: string;
+  selectedItemId?: string;
   className?: string;
 }
 
@@ -405,21 +406,15 @@ export interface InputFieldContainerProps {
   isOptional?: boolean;
 }
 
-export type ChooseTechCohortInitialFormDataType = {
-  name: string;
-  contactNo: string;
-  email?: string;
-  profession: BestSuitedForType | '';
-  cohortName?: string;
-  school?: string;
-  college?: string;
-  company?: string;
-};
+export interface ChooseTechCohortInitialFormDataType
+  extends AddALeadRequestPayload {
+  profession?: BestSuitedForType | '';
+}
 
 export type ChooseTechCohortFormFields =
   | 'name'
   | 'email'
-  | 'contact'
+  | 'contactNo'
   | 'profession'
   | 'cohortName'
   | 'school'

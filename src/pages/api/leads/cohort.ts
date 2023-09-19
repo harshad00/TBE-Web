@@ -15,8 +15,16 @@ import { sendAPIResponse } from '@/utils';
 
 // Add A Lead
 const addALead = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { name, contactNo, email, cohortName, school, college, company } =
-    req.body as AddALeadRequestPayload;
+  const {
+    name,
+    contactNo,
+    email,
+    profession,
+    cohortName,
+    school,
+    college,
+    company,
+  } = req.body as AddALeadRequestPayload;
 
   try {
     const { data, error } = await addALeadToDB({
@@ -24,6 +32,7 @@ const addALead = async (req: NextApiRequest, res: NextApiResponse) => {
       contactNo,
       email,
       cohortName,
+      profession,
       school,
       college,
       company,
@@ -34,6 +43,7 @@ const addALead = async (req: NextApiRequest, res: NextApiResponse) => {
         sendAPIResponse({
           status: false,
           message: 'Something went wrong. Please try again.',
+          error,
         })
       );
     }
@@ -90,6 +100,7 @@ const updateLeadByID = async (req: NextApiRequest, res: NextApiResponse) => {
         sendAPIResponse({
           status: false,
           message: "Data couldn't be updated. Please try again",
+          error,
         })
       );
     }
@@ -109,5 +120,11 @@ const updateLeadByID = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 router.use(connectDB).get(getAllLeads).post(addALead).patch(updateLeadByID);
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};
 
 export default routerHandler;

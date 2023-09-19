@@ -22,10 +22,10 @@ const ChooseTechCohort = () => {
       contactNo,
       email,
       cohortName,
+      profession,
       school,
       college,
       company,
-      profession,
     },
     dispatch,
   } = useBestTechProgramFormData();
@@ -71,11 +71,11 @@ const ChooseTechCohort = () => {
         name,
         contactNo,
         email,
+        profession,
         cohortName,
         college,
         school,
         company,
-        profession,
       },
     });
   };
@@ -150,7 +150,7 @@ const ChooseTechCohort = () => {
                   <InputFieldContainer
                     label='Your Contact No.'
                     type='text'
-                    onChange={(value) => handleFieldChange('contact', value)}
+                    onChange={(value) => handleFieldChange('contactNo', value)}
                   />
                   <InputFieldContainer
                     label='Your Email'

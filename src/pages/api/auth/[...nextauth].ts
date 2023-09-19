@@ -18,4 +18,10 @@ export const authOptions = {
   ],
 };
 
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};
+
 export default NextAuth(authOptions);
