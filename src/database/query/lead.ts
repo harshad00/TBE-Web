@@ -1,31 +1,27 @@
 import { CohortLead } from '..';
 import {
   AddALeadRequestPayload,
+  DatabaseQueryResponseType,
   UpdateALeadByIDFromDBType,
 } from '@/interfaces';
 
 // Add A Lead to DB
-const addALeadToDB = async ({
-  name,
-  email,
-  phone,
-  cohortName,
-  school,
-  college,
-  company,
-}: AddALeadRequestPayload) => {
-  const newLead = new CohortLead({
-    name,
-    email,
-    phone,
-    cohortName,
-    school,
-    college,
-    company,
-  });
-  await newLead.save();
+const addALeadToDB = async (
+  payload: AddALeadRequestPayload
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const newLead = new CohortLead(payload);
 
-  return newLead;
+    try {
+      await newLead.save();
+    } catch (error: any) {
+      return { error: error.message };
+    }
+
+    return { data: newLead };
+  } catch (error) {
+    return { error };
+  }
 };
 
 // Get All Leads From DB
@@ -42,12 +38,21 @@ const getALeadByIDFromDB = async (id: string) => {
 const updateALeadByIDFromDB = async (
   id: string,
   updatedPayload: UpdateALeadByIDFromDBType
-) => {
-  return await CohortLead.findByIdAndUpdate(
-    { _id: id },
-    { $set: updatedPayload },
-    { new: true }
-  );
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    try {
+      const updatedLead = await CohortLead.findByIdAndUpdate(
+        { _id: id },
+        { $set: updatedPayload },
+        { new: true }
+      );
+      return { data: updatedLead };
+    } catch (error: any) {
+      return { error: error.message };
+    }
+  } catch (error) {
+    return { error };
+  }
 };
 
 export {

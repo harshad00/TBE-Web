@@ -15,25 +15,34 @@ import { sendAPIResponse } from '@/utils';
 
 // Add A Lead
 const addALead = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { name, email, phone, cohortName, school, college, company } =
+  const { name, contactNo, email, cohortName, school, college, company } =
     req.body as AddALeadRequestPayload;
 
   try {
-    const lead = await addALeadToDB({
+    const { data, error } = await addALeadToDB({
       name,
+      contactNo,
       email,
-      phone,
       cohortName,
       school,
       college,
       company,
     });
 
+    if (error) {
+      return res.status(apiStatusCodes.BAD_REQUEST).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Something went wrong. Please try again.',
+        })
+      );
+    }
+
     return res.status(apiStatusCodes.RESOURCE_CREATED).json(
       sendAPIResponse({
         status: true,
         message: "Thanks for registering. We'll contact you soon",
-        data: lead,
+        data,
       })
     );
   } catch (error: any) {
@@ -74,13 +83,22 @@ const updateLeadByID = async (req: NextApiRequest, res: NextApiResponse) => {
         .json(sendAPIResponse({ status: false, error: 'Lead not found' }));
     }
 
-    const updatedLead = await updateALeadByIDFromDB(id, updatedPayload);
+    const { data, error } = await updateALeadByIDFromDB(id, updatedPayload);
+
+    if (error) {
+      return res.status(apiStatusCodes.BAD_REQUEST).json(
+        sendAPIResponse({
+          status: false,
+          message: "Data couldn't be updated. Please try again",
+        })
+      );
+    }
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({
         status: true,
         message: 'Lead updated successfully',
-        data: updatedLead,
+        data,
       })
     );
   } catch (error: any) {

@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import { AxiosResponse } from 'axios';
 import { sendRequest } from '@/utils';
-import { APIMakeRquestProps, ApiHookResult } from '@/interfaces';
+import {
+  APIMakeRquestProps,
+  APIResponseType,
+  ApiHookResult,
+} from '@/interfaces';
 
 const useApi = (params?: APIMakeRquestProps): ApiHookResult => {
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<APIResponseType>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<APIResponseType | string | null>();
 
   const makeRequest = async ({
     method,
@@ -18,16 +21,17 @@ const useApi = (params?: APIMakeRquestProps): ApiHookResult => {
       setLoading(true);
       setError(null);
 
-      const response: AxiosResponse = await sendRequest(
+      const response: APIResponseType = await sendRequest({
         method,
         url,
         headers,
-        body
-      );
+        body,
+      });
 
-      setData(response.data);
+      if (response.status) setData(response.data as APIResponseType);
+      else setError(response.message);
     } catch (err: any) {
-      setError(err);
+      setError(err.response.data);
     } finally {
       setLoading(false);
     }
@@ -36,17 +40,21 @@ const useApi = (params?: APIMakeRquestProps): ApiHookResult => {
   useEffect(() => {
     const init = async () => {
       if (params) {
-        await makeRequest(params);
+        try {
+          await makeRequest(params);
+        } catch (error: any) {
+          setError(error?.message);
+        }
       }
     };
 
     init();
-  }, []);
+  }, [params]);
 
   return {
-    data: data?.data,
+    data: data,
+    error: error,
     loading,
-    error,
     makeRequest,
   };
 };

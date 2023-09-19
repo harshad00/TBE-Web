@@ -24,8 +24,6 @@ const AdminProgramLeadsDashboard = () => {
 
   const programLeads: CohortLeadCard[] = data;
 
-  // console.log('HERE', programLeads);
-
   return (
     <Section>
       <SEO seoMeta={seoMeta} />

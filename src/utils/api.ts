@@ -1,22 +1,31 @@
-import { APIResponseType } from '@/interfaces';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { APIMakeRquestProps, APIResponseType } from '@/interfaces';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const apiInstance = axios.create();
 
-const sendRequest = async (
-  method: string,
-  url: string,
-  headers?: { [key: string]: string },
-  data?: any
-): Promise<AxiosResponse> => {
+const sendRequest = async ({
+  method = 'GET',
+  url,
+  headers,
+  body,
+}: APIMakeRquestProps): Promise<APIResponseType> => {
   const config: AxiosRequestConfig = {
     method,
     url: `/api${url}`,
-    headers,
-    data,
+    headers: {
+      ...headers,
+      cache: 'no-store',
+    },
+    data: body,
   };
 
-  return apiInstance.request(config);
+  try {
+    const response = (await apiInstance.request(config)).data;
+
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
 };
 
 const sendAPIResponse = ({ status, error, message, data }: APIResponseType) => {

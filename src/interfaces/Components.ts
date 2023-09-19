@@ -407,7 +407,7 @@ export interface InputFieldContainerProps {
 
 export type ChooseTechCohortInitialFormDataType = {
   name: string;
-  contact: string;
+  contactNo: string;
   email?: string;
   profession: BestSuitedForType | '';
   cohortName?: string;

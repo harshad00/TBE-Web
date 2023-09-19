@@ -20,7 +20,7 @@ const useBestTechProgramFormData = () => {
 
   const initialFormData: ChooseTechCohortInitialFormDataType = {
     name: '',
-    contact: '',
+    contactNo: '',
     email: '',
     profession: '',
     cohortName: '',

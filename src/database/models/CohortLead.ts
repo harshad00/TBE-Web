@@ -6,7 +6,7 @@ const cohortLeadSchema: Schema<CohortLeadDocumentModel> =
     {
       name: { type: String, required: true },
       email: { type: String },
-      phone: { type: String, required: true },
+      contactNo: { type: String, required: true },
       cohortName: { type: String, required: true },
       status: { type: String, default: 'Pending' },
       school: { type: String },

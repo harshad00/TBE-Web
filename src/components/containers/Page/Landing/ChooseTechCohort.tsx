@@ -9,14 +9,27 @@ import {
   Section,
   Text,
 } from '@/components';
-import { PROGRAMS, chooseTechCohortItems, routes } from '@/constant';
-import { useBestTechProgramFormData } from '@/hooks';
+import { PROGRAMS, apiUrls, chooseTechCohortItems, routes } from '@/constant';
+import { useApi, useBestTechProgramFormData } from '@/hooks';
 import { ChooseTechCohortFormFields, CohortCardProps } from '@/interfaces';
 
 const ChooseTechCohort = () => {
   const [bestSuitedPrograms, setBestSuitedPrograms] =
     useState<CohortCardProps[]>();
-  const { formData, dispatch } = useBestTechProgramFormData();
+  const {
+    formData: {
+      name,
+      contactNo,
+      email,
+      cohortName,
+      school,
+      college,
+      company,
+      profession,
+    },
+    dispatch,
+  } = useBestTechProgramFormData();
+  const { data, loading, error, makeRequest } = useApi();
 
   // On Changing Input Fields
   const handleFieldChange = (
@@ -51,10 +64,25 @@ const ChooseTechCohort = () => {
 
   // On Booking Counselling
   const handleBookCounselling = () => {
-    console.log('HERE', formData);
+    makeRequest({
+      method: 'POST',
+      url: apiUrls.leadCohort,
+      body: {
+        name,
+        contactNo,
+        email,
+        cohortName,
+        college,
+        school,
+        company,
+        profession,
+      },
+    });
   };
 
-  const cohortRecommendationContainer = formData.profession && (
+  console.log('HERE', loading, error, data);
+
+  const cohortRecommendationContainer = profession && (
     <FlexContainer direction='col'>
       <FlexContainer direction='col' className='gap-3' fullWidth={true}>
         <Text level='h5' className='heading-5 text-contentDark'>
@@ -93,7 +121,7 @@ const ChooseTechCohort = () => {
               <InputRadioContainer
                 radioItems={chooseTechCohortItems}
                 onChange={handleRadioChange}
-                selectedItemId={formData.profession}
+                selectedItemId={profession}
                 className='mt-3'
               />
             </FlexContainer>
@@ -130,7 +158,7 @@ const ChooseTechCohort = () => {
                     isOptional={true}
                     onChange={(value) => handleFieldChange('email', value)}
                   />
-                  {formData.profession === 'student' && (
+                  {profession === 'student' && (
                     <InputFieldContainer
                       label='Your School Name'
                       type='text'
@@ -138,7 +166,7 @@ const ChooseTechCohort = () => {
                       onChange={(value) => handleFieldChange('school', value)}
                     />
                   )}
-                  {formData.profession === 'college-student' && (
+                  {profession === 'college-student' && (
                     <InputFieldContainer
                       label='Your College'
                       type='text'
@@ -146,7 +174,7 @@ const ChooseTechCohort = () => {
                       onChange={(value) => handleFieldChange('college', value)}
                     />
                   )}
-                  {formData.profession === 'professional' && (
+                  {profession === 'professional' && (
                     <InputFieldContainer
                       label='Currently Working At'
                       type='text'

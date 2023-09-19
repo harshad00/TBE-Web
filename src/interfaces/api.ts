@@ -3,7 +3,7 @@ import { CohortLeadStatus, CohortNameType } from '.';
 export interface AddALeadRequestPayload {
   name: string;
   email?: string;
-  phone: string;
+  contactNo: string;
   cohortName: CohortNameType;
   school?: string;
   college?: string;
@@ -27,7 +27,7 @@ export type ProgramLeadAPIResponse = UpdateALeadRequestPayload;
 export type APIMethodTypes = 'GET' | 'POST' | 'PATCH';
 
 export interface APIMakeRquestProps {
-  method: APIMethodTypes;
+  method?: APIMethodTypes;
   url: string;
   headers?: { [key: string]: string };
   body?: any;
@@ -49,3 +49,8 @@ export interface APIResponseType extends ClientAPIResponse {
   message?: string;
   error?: string;
 }
+
+export type DatabaseQueryResponseType = {
+  data?: any;
+  error?: any;
+};

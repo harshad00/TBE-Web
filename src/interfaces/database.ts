@@ -1,15 +1,8 @@
-import { CohortLeadStatus, CohortNameType } from './global';
+import { CohortLeadStatus } from './global';
 import { AddALeadRequestPayload, AddAnAdminRequestPayload } from './api';
 
-export interface CohortLead extends AddALeadRequestPayload {
-  name: string;
-  email: string;
-  phone: string;
-  cohortName: CohortNameType;
-}
-
-export interface CohortLeadDocumentModel extends CohortLead {
-  status: CohortLeadStatus;
+export interface CohortLeadDocumentModel extends AddALeadRequestPayload {
+  status?: CohortLeadStatus;
 }
 
 export interface AdminUserDocumentModel extends AddAnAdminRequestPayload {
