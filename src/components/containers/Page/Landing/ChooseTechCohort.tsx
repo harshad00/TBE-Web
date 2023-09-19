@@ -16,6 +16,7 @@ import { ChooseTechCohortFormFields, CohortCardProps } from '@/interfaces';
 const ChooseTechCohort = () => {
   const [bestSuitedPrograms, setBestSuitedPrograms] =
     useState<CohortCardProps[]>();
+  const [errors, setErrors] = useState({ formError: '', apiError: '' });
   const {
     formData: {
       name,
@@ -29,7 +30,7 @@ const ChooseTechCohort = () => {
     },
     dispatch,
   } = useBestTechProgramFormData();
-  const { data, loading, error, makeRequest } = useApi();
+  const { data, loading, error: apiError, makeRequest } = useApi();
 
   // On Changing Input Fields
   const handleFieldChange = (
@@ -64,6 +65,22 @@ const ChooseTechCohort = () => {
 
   // On Booking Counselling
   const handleBookCounselling = () => {
+    if (!name) {
+      setErrors({
+        ...errors,
+        formError: 'Please enter correct name',
+      });
+      return;
+    } else if (!contactNo) {
+      setErrors({
+        ...errors,
+        formError: 'Please enter correct contact no.',
+      });
+      return;
+    }
+
+    setErrors({ ...errors, formError: '' });
+
     makeRequest({
       method: 'POST',
       url: apiUrls.leadCohort,
@@ -79,8 +96,6 @@ const ChooseTechCohort = () => {
       },
     });
   };
-
-  console.log('HERE', loading, error, data);
 
   const cohortRecommendationContainer = profession && (
     <FlexContainer direction='col'>
@@ -102,6 +117,14 @@ const ChooseTechCohort = () => {
       </FlexContainer>
     </FlexContainer>
   );
+
+  // If any error comes from API
+  if (apiError) {
+    setErrors({
+      ...errors,
+      apiError,
+    });
+  }
 
   return (
     <Section>
@@ -194,7 +217,28 @@ const ChooseTechCohort = () => {
                     variant='PRIMARY'
                     text='Book Free Counselling'
                     onClick={handleBookCounselling}
+                    isLoading={loading}
                   />
+                  {errors && (
+                    <Text
+                      level='p'
+                      className='mt-1'
+                      variant='ERROR'
+                      textCenter={true}
+                    >
+                      {errors.formError || errors.apiError}
+                    </Text>
+                  )}
+                  {data?.message && (
+                    <Text
+                      level='p'
+                      className='mt-1'
+                      variant='SUCCESS'
+                      textCenter={true}
+                    >
+                      {data?.message}
+                    </Text>
+                  )}
                 </FlexContainer>
               </FlexContainer>
             </FlexContainer>

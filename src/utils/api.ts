@@ -24,7 +24,7 @@ const sendRequest = async ({
 
     return response;
   } catch (error: any) {
-    return error.response;
+    return error.response.data;
   }
 };
 

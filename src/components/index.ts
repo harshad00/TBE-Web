@@ -72,6 +72,7 @@ import RadioInputField from './common/Form/RadioInputField';
 import InputFieldContainer from './common/Form/InputFieldContainer';
 import InputRadioContainer from './containers/Forms/InputRadioContainer';
 import withAuth from './layout/Auth';
+import LoadingSpinner from './common/LoadingSpinner';
 
 export {
   Navbar,
@@ -148,4 +149,5 @@ export {
   RadioInputField,
   ChooseTechCohortCard,
   InputFieldContainer,
+  LoadingSpinner,
 };

@@ -28,7 +28,9 @@ const useApi = (params?: APIMakeRquestProps): ApiHookResult => {
         body,
       });
 
-      if (response.status) setData(response.data as APIResponseType);
+      console.log('HERE', response);
+
+      if (response.status) setData(response as APIResponseType);
       else setError(response.message);
     } catch (err: any) {
       setError(err.response.data);
@@ -52,8 +54,8 @@ const useApi = (params?: APIMakeRquestProps): ApiHookResult => {
   }, [params]);
 
   return {
-    data: data,
-    error: error,
+    data,
+    error,
     loading,
     makeRequest,
   };

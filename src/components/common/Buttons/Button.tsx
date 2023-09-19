@@ -1,3 +1,4 @@
+import { LoadingSpinner } from '@/components';
 import { ButtonProps } from '@/interfaces';
 
 const Button = ({
@@ -5,6 +6,7 @@ const Button = ({
   className = '',
   text,
   active = true,
+  isLoading = false,
   onClick,
 }: ButtonProps) => {
   let baseClasses = 'button bg-light px-4 py-2 text-white';
@@ -19,6 +21,8 @@ const Button = ({
       'button bg-black text-white px-2 py-1 text-white hover:bg-transparent hover:text-black border-2 hover:border-black transition-all';
   if (!active) baseClasses = 'button bg-greyDark text-contentLight px-4 py-2';
 
+  const loadingContainer = isLoading && <LoadingSpinner />;
+
   return (
     <button
       className={`${baseClasses} ${className}`}
@@ -26,6 +30,7 @@ const Button = ({
       onClick={onClick}
     >
       {text}
+      {loadingContainer}
     </button>
   );
 };

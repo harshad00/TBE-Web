@@ -28,6 +28,7 @@ export interface LinkProps {
 export interface TextProps {
   level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'label';
   children: React.ReactNode;
+  variant?: 'SUCCESS' | 'ERROR';
   className?: string;
   textCenter?: boolean;
 }
@@ -58,6 +59,7 @@ export interface ButtonProps {
   text: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   active?: boolean;
+  isLoading?: boolean;
 }
 
 export interface WorkshopDataProps {
@@ -426,3 +428,10 @@ export type ChooseTechCohortActionType = {
   value: string;
   field: ChooseTechCohortFormFields;
 };
+
+export interface LoadingSpinnerProps {
+  height?: number;
+  width?: number;
+  marginClass?: string;
+  className?: string;
+}
