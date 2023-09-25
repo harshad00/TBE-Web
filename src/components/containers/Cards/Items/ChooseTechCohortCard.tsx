@@ -1,5 +1,4 @@
 import {
-  Button,
   FlexContainer,
   GradientContainer,
   Image,

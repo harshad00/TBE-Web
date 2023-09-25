@@ -2,10 +2,13 @@ import {
   AddALeadRequestPayload,
   ChooseTechCohortActionType,
   ChooseTechCohortInitialFormDataType,
+  UseBestTechProgramFormDataType,
 } from '@/interfaces';
 import { useReducer } from 'react';
 
-const useBestTechProgramFormData = () => {
+const useBestTechProgramFormData = ({
+  cohortName = '',
+}: UseBestTechProgramFormDataType) => {
   // Reducer function to manage form field data
   const chooseTechCohortFormReducer = (
     state: ChooseTechCohortInitialFormDataType,
@@ -24,10 +27,10 @@ const useBestTechProgramFormData = () => {
     contactNo: '',
     email: '',
     profession: '',
-    cohortName: '',
+    cohortName,
     school: '',
     college: '',
-    company: '',
+    workExperience: '',
   };
 
   const [formData, dispatch] = useReducer(

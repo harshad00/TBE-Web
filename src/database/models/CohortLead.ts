@@ -11,7 +11,7 @@ const cohortLeadSchema: Schema<CohortLeadDocumentModel> =
       profession: { type: String },
       school: { type: String },
       college: { type: String },
-      company: { type: String },
+      workExperience: { type: Number },
       status: { type: String, default: 'Pending' },
     },
     { timestamps: true }

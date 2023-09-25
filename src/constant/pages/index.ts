@@ -870,6 +870,7 @@ const WORKSHOPS: WorkshopDataProps[] = [
 const MICROCAMPS: MicrocampDataProps[] = [
   {
     slug: programs.juniorInWebEngineering.slug,
+    name: 'Junior in Web Engineering',
     header: {
       heading: {
         primary: 'Junior in',
@@ -902,6 +903,7 @@ const MICROCAMPS: MicrocampDataProps[] = [
   },
   {
     slug: programs.beFrontendMaster.slug,
+    name: 'Be Front-end Master',
     header: {
       heading: {
         primary: 'Be',

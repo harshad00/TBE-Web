@@ -23,7 +23,7 @@ const addALead = async (req: NextApiRequest, res: NextApiResponse) => {
     cohortName,
     school,
     college,
-    company,
+    workExperience,
   } = req.body as AddALeadRequestPayload;
 
   try {
@@ -35,7 +35,7 @@ const addALead = async (req: NextApiRequest, res: NextApiResponse) => {
       profession,
       school,
       college,
-      company,
+      workExperience,
     });
 
     if (error) {

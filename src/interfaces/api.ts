@@ -8,7 +8,7 @@ export interface AddALeadRequestPayload {
   profession?: BestSuitedForType | '';
   school?: string;
   college?: string;
-  company?: string;
+  workExperience?: string;
 }
 
 export interface UpdateALeadRequestPayload extends AddALeadRequestPayload {

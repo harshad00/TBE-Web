@@ -55,59 +55,72 @@ export type GetSEOMetaResponseType = {
   image: string;
 };
 
+export type ProgramLabelType =
+  | 'Be Front-end Master'
+  | 'Be Backend Master'
+  | 'Junior in Web Engineering'
+  | 'The Boring Workshops'
+  | '2 Hour Design'
+  | 'Getting Started with Typescript'
+  | 'The Next Wave'
+  | 'Head to Tailwind'
+  | 'API Dev with Postman'
+  | 'Getting started with GitHub'
+  | 'Intro to Web3';
+
 export interface ProgramsDataProps {
   beFrontendMaster: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   beBackendMaster: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   juniorInWebEngineering: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   theBoringWorkshops: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   twoHourDesign: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   gettingStartedWithTypescipt: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   theNextWave: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   headToTailwind: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   apiDevWithPostman: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   gettingStartedWithGithub: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
   introToWeb3: {
-    label: string;
+    label: ProgramLabelType;
     slug: PageSlug;
     description: string;
   };
@@ -145,6 +158,7 @@ export interface MicrocampPricingProps {
 
 export interface MicrocampDataProps {
   slug: PageSlug;
+  name: ProgramLabelType;
   header: MicrocampHeaderProps;
   instructor: MicrocampInstructorProps;
   inThisCohort: MicrocampInThisCohortSectionProps;

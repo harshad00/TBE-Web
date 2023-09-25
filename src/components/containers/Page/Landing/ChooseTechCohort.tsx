@@ -11,9 +11,13 @@ import {
 } from '@/components';
 import { PROGRAMS, apiUrls, chooseTechCohortItems, routes } from '@/constant';
 import { useApi, useBestTechProgramFormData } from '@/hooks';
-import { ChooseTechCohortFormFields, CohortCardProps } from '@/interfaces';
+import {
+  ChooseTechCohortFormFields,
+  ChooseTechCohortProps,
+  CohortCardProps,
+} from '@/interfaces';
 
-const ChooseTechCohort = () => {
+const ChooseTechCohort = ({ preSelectedCohortName }: ChooseTechCohortProps) => {
   const [bestSuitedPrograms, setBestSuitedPrograms] =
     useState<CohortCardProps[]>();
   const [errors, setErrors] = useState({ formError: '', apiError: '' });
@@ -26,10 +30,10 @@ const ChooseTechCohort = () => {
       profession,
       school,
       college,
-      company,
+      workExperience,
     },
     dispatch,
-  } = useBestTechProgramFormData();
+  } = useBestTechProgramFormData({ cohortName: preSelectedCohortName ?? '' });
   const { data, loading, error: apiError, makeRequest } = useApi();
 
   // On Changing Input Fields
@@ -92,31 +96,32 @@ const ChooseTechCohort = () => {
         cohortName,
         college,
         school,
-        company,
+        workExperience,
       },
     });
   };
 
-  const cohortRecommendationContainer = profession && (
-    <FlexContainer direction='col'>
-      <FlexContainer direction='col' className='gap-3' fullWidth={true}>
-        <Text level='h5' className='heading-5 text-contentDark'>
-          We recommend
-        </Text>
-        <FlexContainer className='gap-2'>
-          {bestSuitedPrograms?.map((bestSuitedProgram, key) => {
-            return (
-              <ChooseTechCohortCard
-                key={key}
-                {...bestSuitedProgram}
-                onSelected={onSelectedProgram}
-              />
-            );
-          })}
+  const cohortRecommendationContainer = profession &&
+    !preSelectedCohortName && (
+      <FlexContainer direction='col'>
+        <FlexContainer direction='col' className='gap-3' fullWidth={true}>
+          <Text level='h5' className='heading-5 text-contentDark'>
+            We recommend
+          </Text>
+          <FlexContainer className='gap-2'>
+            {bestSuitedPrograms?.map((bestSuitedProgram, key) => {
+              return (
+                <ChooseTechCohortCard
+                  key={key}
+                  {...bestSuitedProgram}
+                  onSelected={onSelectedProgram}
+                />
+              );
+            })}
+          </FlexContainer>
         </FlexContainer>
       </FlexContainer>
-    </FlexContainer>
-  );
+    );
 
   // If any error comes from API
   if (apiError) {
@@ -199,10 +204,12 @@ const ChooseTechCohort = () => {
                   )}
                   {profession === 'professional' && (
                     <InputFieldContainer
-                      label='Currently Working At'
-                      type='text'
+                      label='Work Experience(in Years)'
+                      type='number'
                       isOptional={true}
-                      onChange={(value) => handleFieldChange('company', value)}
+                      onChange={(value) =>
+                        handleFieldChange('workExperience', value)
+                      }
                     />
                   )}
                 </FlexContainer>

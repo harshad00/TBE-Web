@@ -12,8 +12,9 @@ import {
   SEO,
   MicrocampInstructor,
   MicrocampOpportunities,
+  ChooseTechCohort,
 } from '@/components';
-import { PageProps } from '@/interfaces';
+import { CohortNameType, PageProps } from '@/interfaces';
 import { getMicrocampPageData, getPreFetchProps } from '@/utils';
 
 const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
@@ -21,6 +22,7 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
   if (!microcampData) return;
 
   const {
+    name,
     header,
     instructor,
     inThisCohort,
@@ -34,6 +36,7 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
       <MicroCampLandingHeader {...header} />
+      <ChooseTechCohort preSelectedCohortName={name as CohortNameType} />
       <InThisCohortContainer {...inThisCohort} />
       <MicrocampInstructor {...instructor} />
       <Skills skills={skills} />

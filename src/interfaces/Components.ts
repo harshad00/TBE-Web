@@ -421,7 +421,7 @@ export type ChooseTechCohortFormFields =
   | 'cohortName'
   | 'school'
   | 'college'
-  | 'company';
+  | 'workExperience';
 
 export type ChooseTechCohortActionType = {
   type: 'UPDATE_FIELD';
@@ -434,4 +434,8 @@ export interface LoadingSpinnerProps {
   width?: number;
   marginClass?: string;
   className?: string;
+}
+
+export interface ChooseTechCohortProps {
+  preSelectedCohortName?: CohortNameType;
 }
