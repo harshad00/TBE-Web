@@ -18,7 +18,7 @@ const RadioInputField = ({
     >
       <input type='radio' name='custom-radio' className='hidden' />
       <FlexContainer
-        className={`gap-2 rounded-full border-2 border-white p-2 shadow-md ${
+        className={`justify-between gap-2 rounded-full border-2 border-white p-2 shadow-md ${
           selected && 'bg-primary'
         }`}
       >

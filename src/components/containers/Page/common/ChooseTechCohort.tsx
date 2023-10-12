@@ -153,7 +153,7 @@ const ChooseTechCohort = ({
           <FlexContainer direction='col'>
             <Text
               level='h3'
-              className='heading-3 text-contentDark'
+              className='heading-4 md:heading-3 text-contentDark md:text-contentDark'
               textCenter={true}
             >
               {headerTitle}
@@ -224,7 +224,7 @@ const ChooseTechCohort = ({
                   )}
                   {profession === 'working-professional' && (
                     <InputFieldContainer
-                      label='Work Experience(in Years)'
+                      label='Years of Experience'
                       type='number'
                       isOptional={true}
                       onChange={(value) =>
@@ -234,7 +234,7 @@ const ChooseTechCohort = ({
                   )}
                 </FlexContainer>
 
-                {/* <FlexContainer
+                <FlexContainer
                   direction='col'
                   className='gap-2.5'
                   itemCenter={true}
@@ -266,7 +266,7 @@ const ChooseTechCohort = ({
                       {data?.message}
                     </Text>
                   )}
-                </FlexContainer> */}
+                </FlexContainer>
               </FlexContainer>
             </FlexContainer>
           </FlexContainer>

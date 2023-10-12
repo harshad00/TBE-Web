@@ -17,7 +17,7 @@ const InputFieldContainer = ({
     >
       <label className='pre-title text-white'>
         {label}
-        {isOptional && <span> (Optional)</span>}
+        {!isOptional && <span>*</span>}
       </label>
       <input
         type={type}

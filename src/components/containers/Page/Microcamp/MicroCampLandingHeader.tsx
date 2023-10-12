@@ -37,11 +37,14 @@ const MicroCampLandingHeader = ({
             >
               <Text
                 level='h2'
-                className='heading-2 text-dark'
+                className='heading-3 md:heading-2 text-dark'
                 textCenter={true}
               >
                 {heading.primary}{' '}
-                <Text level='span' className='heading-2 text-primary'>
+                <Text
+                  level='span'
+                  className='heading-3 md:heading-2 text-primary md:text-primary'
+                >
                   {heading.secondary}{' '}
                 </Text>
               </Text>
