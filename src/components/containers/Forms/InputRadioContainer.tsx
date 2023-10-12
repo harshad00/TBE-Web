@@ -8,7 +8,7 @@ const InputRadioContainer = ({
   className,
 }: InputRadioContainerProps) => {
   return (
-    <FlexContainer className={`gap-1 ${className}`}>
+    <FlexContainer className={`gap-2 ${className}`}>
       {radioItems.map(({ id, label, description }) => {
         return (
           <RadioInputField

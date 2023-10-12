@@ -147,15 +147,23 @@ const ChooseTechCohort = ({
     <Section>
       <FlexContainer direction='col'>
         <GradientContainer
-          className='gradient-5 w-3/4'
-          childrenClassName='flex flex-col m-6 gap-16'
+          className='gradient-5'
+          childrenClassName='flex flex-col px-2 py-4 md:p-6 gap-16'
         >
           <FlexContainer direction='col'>
-            <Text level='h3' className='heading-3 text-contentDark'>
+            <Text
+              level='h3'
+              className='heading-3 text-contentDark'
+              textCenter={true}
+            >
               {headerTitle}
             </Text>
             <FlexContainer direction='col' className='mt-6' fullWidth={true}>
-              <Text level='h5' className='heading-5 text-contentDark'>
+              <Text
+                level='h5'
+                className='heading-5 text-contentDark'
+                textCenter={true}
+              >
                 What you're doing now
               </Text>
               <InputRadioContainer
@@ -179,7 +187,7 @@ const ChooseTechCohort = ({
               </Text>
               <FlexContainer
                 direction='col'
-                className='w-3/4 gap-4 rounded-lg border border-white p-5 md:w-2/3'
+                className='w-full gap-4 rounded-lg border border-white px-3 py-3 md:w-2/3 md:p-5'
               >
                 <FlexContainer direction='col' className='w-full gap-3'>
                   <InputFieldContainer
@@ -226,7 +234,7 @@ const ChooseTechCohort = ({
                   )}
                 </FlexContainer>
 
-                <FlexContainer
+                {/* <FlexContainer
                   direction='col'
                   className='gap-2.5'
                   itemCenter={true}
@@ -258,7 +266,7 @@ const ChooseTechCohort = ({
                       {data?.message}
                     </Text>
                   )}
-                </FlexContainer>
+                </FlexContainer> */}
               </FlexContainer>
             </FlexContainer>
           </FlexContainer>

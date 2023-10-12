@@ -5,7 +5,7 @@ const InputFieldContainer = ({
   label,
   type,
   className,
-  value,
+  value = '',
   onChange,
   isOptional = false,
 }: InputFieldContainerProps) => {
@@ -22,7 +22,7 @@ const InputFieldContainer = ({
       <input
         type={type}
         value={value}
-        className='rounded focus:border-secondary focus:outline-none'
+        className='w-full rounded focus:border-secondary focus:outline-none'
         onChange={(e) => onChange(e.target.value)}
       />
     </FlexContainer>

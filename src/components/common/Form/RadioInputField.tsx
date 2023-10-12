@@ -13,7 +13,7 @@ const RadioInputField = ({
     <label
       key={id}
       htmlFor={id}
-      className='cursor-pointer '
+      className='w-full cursor-pointer md:w-fit'
       onClick={() => onChange(id)}
     >
       <input type='radio' name='custom-radio' className='hidden' />
