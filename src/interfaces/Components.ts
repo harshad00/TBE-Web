@@ -120,7 +120,10 @@ export interface WorkshopWhatWillYouLearnContentProps {
   paragraph: string;
 }
 
-export type BestSuitedForType = 'professional' | 'college-student' | 'student';
+export type BestSuitedForType =
+  | 'working-professional'
+  | 'college-student'
+  | 'student';
 
 export interface ChooseTechCohortItem extends RadioOptionProps {
   id: BestSuitedForType;
@@ -437,5 +440,6 @@ export interface LoadingSpinnerProps {
 }
 
 export interface ChooseTechCohortProps {
+  headerTitle?: string;
   preSelectedCohortName?: CohortNameType;
 }

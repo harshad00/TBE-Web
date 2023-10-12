@@ -25,7 +25,7 @@ import NotAnotherTechCourseCard from './containers/Cards/Items/NotAnotherTechCou
 import NotAnotherTechCourse from './containers/Cards/NotAnotherTechCourse';
 import FlexContainer from '@/components/containers/Page/common/FlexContainer';
 import CanYouBeAProgrammer from '@/components/containers/Page/Landing/CanYouBeAProgrammer';
-import ChooseTechCohort from '@/components/containers/Page/Landing/ChooseTechCohort';
+import ChooseTechCohort from '@/components/containers/Page/common/ChooseTechCohort';
 import TestimonialCard from '@/components/containers/Cards/Items/TestimonialCard';
 import Testimonials from '@/components/containers/Cards/Testimonials';
 import Footer from '@/components/layout/Footer';

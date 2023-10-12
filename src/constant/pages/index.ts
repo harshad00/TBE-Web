@@ -65,7 +65,7 @@ const PROGRAMS: CohortCardProps[] = [
     content: programs.beFrontendMaster.description,
     href: routes.microCampLanding(programs.beFrontendMaster.slug),
     active: true,
-    bestSuitedFor: ['college-student', 'professional'],
+    bestSuitedFor: ['college-student', 'working-professional'],
     isCohort: true,
   },
   {
@@ -76,7 +76,7 @@ const PROGRAMS: CohortCardProps[] = [
     content: programs.beBackendMaster.description,
     href: routes.microCampLanding(programs.beBackendMaster.slug),
     active: false,
-    bestSuitedFor: ['professional'],
+    bestSuitedFor: ['working-professional'],
     isCohort: true,
   },
   {
@@ -87,7 +87,7 @@ const PROGRAMS: CohortCardProps[] = [
     content: programs.theBoringWorkshops.description,
     href: `#${routes.internals.workshops}`,
     active: true,
-    bestSuitedFor: ['student', 'college-student', 'professional'],
+    bestSuitedFor: ['student', 'college-student', 'working-professional'],
   },
 ];
 
@@ -545,7 +545,7 @@ const JUNIOR_CAMP_FEATURES: MicroCampFeatureCardContentProps[] = [
 const FRONTEND_CAMP_FEATURES: MicroCampFeatureCardContentProps[] = [
   {
     id: v4(),
-    title: `8 Weeks`,
+    title: `10 Weeks`,
     content: `Duration`,
   },
   {
@@ -867,6 +867,12 @@ const WORKSHOPS: WorkshopDataProps[] = [
   },
 ];
 
+const CHOOSE_COHORT_HEADER_TITLES = {
+  default: 'Choose best suited Tech Program',
+  juniorInWebEngineering: 'Web Engineering for Beginners',
+  beFrontendMaster: 'Front-end Engineering in 2.5 Months',
+};
+
 const MICROCAMPS: MicrocampDataProps[] = [
   {
     slug: programs.juniorInWebEngineering.slug,
@@ -882,6 +888,7 @@ const MICROCAMPS: MicrocampDataProps[] = [
         primary: LINKS.juniorInWebEngineeringRegistrationLink,
       },
     },
+    chooseCohortHeaderTitle: CHOOSE_COHORT_HEADER_TITLES.juniorInWebEngineering,
     instructor: {
       name: 'Sachin Kr. Shukla',
       about:
@@ -915,6 +922,7 @@ const MICROCAMPS: MicrocampDataProps[] = [
         primary: LINKS.bootcamp,
       },
     },
+    chooseCohortHeaderTitle: CHOOSE_COHORT_HEADER_TITLES.beFrontendMaster,
     instructor: {
       name: 'Sachin Kr. Shukla',
       about:
@@ -961,8 +969,8 @@ const programLeadStatusList: CohortLeadStatus[] = [
 
 const chooseTechCohortItems: ChooseTechCohortItem[] = [
   {
-    id: 'professional',
-    label: 'Experience Professional',
+    id: 'working-professional',
+    label: 'Working Professional',
   },
   {
     id: 'college-student',
@@ -999,4 +1007,5 @@ export {
   ADMIN_DASHBOARD_CARDS,
   programLeadStatusList,
   chooseTechCohortItems,
+  CHOOSE_COHORT_HEADER_TITLES,
 };

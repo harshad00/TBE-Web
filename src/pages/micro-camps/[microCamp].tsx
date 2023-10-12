@@ -24,6 +24,7 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
   const {
     name,
     header,
+    chooseCohortHeaderTitle,
     instructor,
     inThisCohort,
     opportunities,
@@ -36,7 +37,10 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
       <MicroCampLandingHeader {...header} />
-      <ChooseTechCohort preSelectedCohortName={name as CohortNameType} />
+      <ChooseTechCohort
+        preSelectedCohortName={name as CohortNameType}
+        headerTitle={chooseCohortHeaderTitle}
+      />
       <InThisCohortContainer {...inThisCohort} />
       <MicrocampInstructor {...instructor} />
       <Skills skills={skills} />

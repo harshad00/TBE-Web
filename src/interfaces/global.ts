@@ -160,6 +160,7 @@ export interface MicrocampDataProps {
   slug: PageSlug;
   name: ProgramLabelType;
   header: MicrocampHeaderProps;
+  chooseCohortHeaderTitle: string;
   instructor: MicrocampInstructorProps;
   inThisCohort: MicrocampInThisCohortSectionProps;
   opportunities?: MicrocampOpportunitiesProps;

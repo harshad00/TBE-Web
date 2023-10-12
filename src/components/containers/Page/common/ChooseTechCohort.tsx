@@ -9,7 +9,13 @@ import {
   Section,
   Text,
 } from '@/components';
-import { PROGRAMS, apiUrls, chooseTechCohortItems, routes } from '@/constant';
+import {
+  CHOOSE_COHORT_HEADER_TITLES,
+  PROGRAMS,
+  apiUrls,
+  chooseTechCohortItems,
+  routes,
+} from '@/constant';
 import { useApi, useBestTechProgramFormData } from '@/hooks';
 import {
   ChooseTechCohortFormFields,
@@ -17,7 +23,10 @@ import {
   CohortCardProps,
 } from '@/interfaces';
 
-const ChooseTechCohort = ({ preSelectedCohortName }: ChooseTechCohortProps) => {
+const ChooseTechCohort = ({
+  preSelectedCohortName,
+  headerTitle = CHOOSE_COHORT_HEADER_TITLES.default,
+}: ChooseTechCohortProps) => {
   const [bestSuitedPrograms, setBestSuitedPrograms] =
     useState<CohortCardProps[]>();
   const [errors, setErrors] = useState({ formError: '', apiError: '' });
@@ -53,6 +62,9 @@ const ChooseTechCohort = ({ preSelectedCohortName }: ChooseTechCohortProps) => {
         cohort.isCohort
     );
 
+    dispatch({ type: 'UPDATE_FIELD', field: 'college', value: '' });
+    dispatch({ type: 'UPDATE_FIELD', field: 'school', value: '' });
+    dispatch({ type: 'UPDATE_FIELD', field: 'workExperience', value: '' });
     dispatch({ type: 'UPDATE_FIELD', field: 'profession', value: id });
 
     setBestSuitedPrograms(suitedPrograms);
@@ -140,11 +152,11 @@ const ChooseTechCohort = ({ preSelectedCohortName }: ChooseTechCohortProps) => {
         >
           <FlexContainer direction='col'>
             <Text level='h3' className='heading-3 text-contentDark'>
-              Choose best suited Tech Program
+              {headerTitle}
             </Text>
             <FlexContainer direction='col' className='mt-6' fullWidth={true}>
               <Text level='h5' className='heading-5 text-contentDark'>
-                Choose what describes you
+                What you're doing now
               </Text>
               <InputRadioContainer
                 radioItems={chooseTechCohortItems}
@@ -167,7 +179,7 @@ const ChooseTechCohort = ({ preSelectedCohortName }: ChooseTechCohortProps) => {
               </Text>
               <FlexContainer
                 direction='col'
-                className='w-3/4 gap-2 rounded-lg border border-white p-5 md:w-1/2'
+                className='w-3/4 gap-4 rounded-lg border border-white p-5 md:w-2/3'
               >
                 <FlexContainer direction='col' className='w-full gap-3'>
                   <InputFieldContainer
@@ -202,7 +214,7 @@ const ChooseTechCohort = ({ preSelectedCohortName }: ChooseTechCohortProps) => {
                       onChange={(value) => handleFieldChange('college', value)}
                     />
                   )}
-                  {profession === 'professional' && (
+                  {profession === 'working-professional' && (
                     <InputFieldContainer
                       label='Work Experience(in Years)'
                       type='number'
