@@ -440,6 +440,7 @@ export interface LoadingSpinnerProps {
 }
 
 export interface ChooseTechCohortProps {
+  id?: string;
   headerTitle?: string;
   preSelectedCohortName?: CohortNameType;
 }

@@ -12,14 +12,14 @@ import {
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
-import { landingPageSkills } from '@/constant';
+import { landingPageSkills, routes } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
   return (
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
       <LandingPageHero />
-      <ChooseTechCohort />
+      <ChooseTechCohort id={routes.internals.microCampRegister} />
       <OurPrograms />
       <Skills skills={landingPageSkills} />
       <OurWorkshops />

@@ -21,9 +21,11 @@ const routes = {
       talkToCounsellors: 'talk-to-counsellors',
     },
     microCampLanding: {
+      register: 'microcamp-register',
       explore: 'explore',
     },
     workshops: 'workshops',
+    microCampRegister: 'microcamp-register',
   },
   workshopLanding: function (workshopSlug: PageSlug | string) {
     return this.workshops + workshopSlug;

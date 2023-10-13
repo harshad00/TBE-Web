@@ -24,6 +24,7 @@ import {
 } from '@/interfaces';
 
 const ChooseTechCohort = ({
+  id,
   preSelectedCohortName,
   headerTitle = CHOOSE_COHORT_HEADER_TITLES.default,
 }: ChooseTechCohortProps) => {
@@ -144,11 +145,11 @@ const ChooseTechCohort = ({
   }
 
   return (
-    <Section>
+    <Section id={id}>
       <FlexContainer direction='col'>
         <GradientContainer
-          className='gradient-5'
-          childrenClassName='flex flex-col px-2 py-4 md:p-6 gap-16'
+          className='gradient-5 w-full sm:w-3/4 md:w-2/3'
+          childrenClassName='flex flex-col px-2 py-6 md:py-8 gap-16'
         >
           <FlexContainer direction='col'>
             <Text

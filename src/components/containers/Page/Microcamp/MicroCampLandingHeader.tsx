@@ -20,7 +20,7 @@ const MicroCampLandingHeader = ({
   return (
     <Section>
       <GradientContainer className='gradient-6 rounded-2'>
-        <FlexContainer className='p-4 md:px-12 md:py-8' direction='col'>
+        <FlexContainer className='py-2 md:px-12 md:py-8' direction='col'>
           <FlexContainer itemCenter={true} justifyCenter={true}>
             <SectionHeaderContainer
               heading='The Boring'
@@ -58,8 +58,7 @@ const MicroCampLandingHeader = ({
             </FlexContainer>
             <FlexContainer justifyCenter={true} className='w-full gap-2 pt-4'>
               <LinkButton
-                href={cta.primary}
-                target='BLANK'
+                href={`#${cta.primary}`}
                 buttonProps={{ variant: 'PRIMARY', text: 'Register now' }}
                 className='w-full md:w-auto'
               />

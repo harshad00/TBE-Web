@@ -16,7 +16,7 @@ import {
 } from '@/components';
 import { CohortNameType, PageProps } from '@/interfaces';
 import { getMicrocampPageData, getPreFetchProps } from '@/utils';
-
+// routes.internals.workshops;
 const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
   const microcampData = getMicrocampPageData(slug);
   if (!microcampData) return;
@@ -40,6 +40,7 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
       <ChooseTechCohort
         preSelectedCohortName={name as CohortNameType}
         headerTitle={chooseCohortHeaderTitle}
+        id={header.cta.primary}
       />
       <InThisCohortContainer {...inThisCohort} />
       <MicrocampInstructor {...instructor} />
