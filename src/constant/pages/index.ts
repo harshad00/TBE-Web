@@ -79,16 +79,6 @@ const PROGRAMS: CohortCardProps[] = [
     bestSuitedFor: ['working-professional'],
     isCohort: true,
   },
-  {
-    id: 'TBW',
-    image: `${STATIC_FILE_PATH.svg}/the-boring-workshop-banner.svg`,
-    imageAltText: programs.theBoringWorkshops.label,
-    title: programs.theBoringWorkshops.label,
-    content: programs.theBoringWorkshops.description,
-    href: `#${routes.internals.workshops}`,
-    active: true,
-    bestSuitedFor: ['student', 'college-student', 'working-professional'],
-  },
 ];
 
 const WORKSHOP_CARDS: CohortCardProps[] = [

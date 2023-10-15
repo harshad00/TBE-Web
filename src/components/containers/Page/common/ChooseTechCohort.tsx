@@ -142,6 +142,106 @@ const ChooseTechCohort = ({
       </FlexContainer>
     );
 
+  const cohortFormContainer = !isSuccess && (
+    <FlexContainer direction='col' className='gap-6'>
+      <FlexContainer direction='col'>
+        <FlexContainer direction='col' className='mt-6' fullWidth={true}>
+          <Text
+            level='h5'
+            className='heading-5 text-contentDark'
+            textCenter={true}
+          >
+            What you're doing now
+          </Text>
+          <InputRadioContainer
+            radioItems={chooseTechCohortItems}
+            onChange={handleRadioChange}
+            selectedItemId={profession}
+            className='mt-3'
+          />
+        </FlexContainer>
+      </FlexContainer>
+      {cohortRecommendationContainer}
+      <FlexContainer direction='col' className='gap-6' fullWidth={true}>
+        <FlexContainer
+          direction='col'
+          className='gap-3'
+          fullWidth={true}
+          id={routes.internals.landing.talkToCounsellors}
+        >
+          <Text level='h5' className='heading-5 text-contentDark'>
+            Talk to our counsellors
+          </Text>
+          <FlexContainer
+            direction='col'
+            className='w-full rounded-lg border border-white px-3 py-3 md:w-2/3 md:p-5'
+          >
+            <FlexContainer direction='col' className='w-full gap-3'>
+              <FlexContainer direction='col' className='w-full gap-3'>
+                <InputFieldContainer
+                  label='Your Name'
+                  type='text'
+                  value={name}
+                  onChange={(value) => handleFieldChange('name', value)}
+                />
+                <InputFieldContainer
+                  label='Your Contact No.'
+                  type='text'
+                  value={contactNo}
+                  onChange={(value) => handleFieldChange('contactNo', value)}
+                />
+                <InputFieldContainer
+                  label='Your Email'
+                  type='email'
+                  value={email}
+                  isOptional={true}
+                  onChange={(value) => handleFieldChange('email', value)}
+                />
+                {profession === 'student' && (
+                  <InputFieldContainer
+                    label='Your School Name'
+                    type='text'
+                    value={school}
+                    isOptional={true}
+                    onChange={(value) => handleFieldChange('school', value)}
+                  />
+                )}
+                {profession === 'college-student' && (
+                  <InputFieldContainer
+                    label='Your College'
+                    type='text'
+                    value={college}
+                    isOptional={true}
+                    onChange={(value) => handleFieldChange('college', value)}
+                  />
+                )}
+                {profession === 'working-professional' && (
+                  <InputFieldContainer
+                    label='Years of Experience'
+                    type='number'
+                    value={workExperience}
+                    isOptional={true}
+                    onChange={(value) =>
+                      handleFieldChange('workExperience', value)
+                    }
+                  />
+                )}
+              </FlexContainer>
+              <FlexContainer itemCenter={true} justifyCenter={true}>
+                <Button
+                  variant='PRIMARY'
+                  text='Book Free Counselling'
+                  onClick={handleBookCounselling}
+                  isLoading={loading}
+                />
+              </FlexContainer>
+            </FlexContainer>
+          </FlexContainer>
+        </FlexContainer>
+      </FlexContainer>
+    </FlexContainer>
+  );
+
   // If any error comes from API
   if (apiError) {
     setErrors({
@@ -151,15 +251,18 @@ const ChooseTechCohort = ({
   }
 
   useEffect(() => {
-    dispatch({ type: 'RESET_FIELDS', field: 'all' });
-  }, [dispatch, isSuccess]);
+    if (isSuccess) {
+      dispatch({ type: 'RESET_FIELDS', field: 'all' });
+      setErrors({ formError: '', apiError: '' });
+    }
+  }, [dispatch, isSuccess, loading]);
 
   return (
     <Section id={id}>
       <FlexContainer direction='col'>
         <GradientContainer
           className='gradient-5 w-full sm:w-3/4 md:w-2/3'
-          childrenClassName='flex flex-col px-2 py-6 md:py-8 gap-16'
+          childrenClassName='flex flex-col px-2 py-6 md:py-8'
         >
           <FlexContainer direction='col'>
             <Text
@@ -169,123 +272,31 @@ const ChooseTechCohort = ({
             >
               {headerTitle}
             </Text>
-            <FlexContainer direction='col' className='mt-6' fullWidth={true}>
-              <Text
-                level='h5'
-                className='heading-5 text-contentDark'
-                textCenter={true}
-              >
-                What you're doing now
-              </Text>
-              <InputRadioContainer
-                radioItems={chooseTechCohortItems}
-                onChange={handleRadioChange}
-                selectedItemId={profession}
-                className='mt-3'
-              />
-            </FlexContainer>
           </FlexContainer>
-          {cohortRecommendationContainer}
-          <FlexContainer direction='col' className='gap-6'>
-            <FlexContainer
-              direction='col'
-              className='gap-3'
-              fullWidth={true}
-              id={routes.internals.landing.talkToCounsellors}
-            >
-              <Text level='h5' className='heading-5 text-contentDark'>
-                Talk to our counsellors
+          {cohortFormContainer}
+          <FlexContainer
+            direction='col'
+            className='gap-2.5'
+            itemCenter={true}
+            justifyCenter={true}
+          >
+            {errors && (
+              <Text level='p' className='' variant='ERROR' textCenter={true}>
+                {errors.formError || errors.apiError}
               </Text>
-              <FlexContainer
-                direction='col'
-                className='w-full gap-4 rounded-lg border border-white px-3 py-3 md:w-2/3 md:p-5'
-              >
-                <FlexContainer direction='col' className='w-full gap-3'>
-                  <InputFieldContainer
-                    label='Your Name'
-                    type='text'
-                    value={name}
-                    onChange={(value) => handleFieldChange('name', value)}
-                  />
-                  <InputFieldContainer
-                    label='Your Contact No.'
-                    type='text'
-                    value={contactNo}
-                    onChange={(value) => handleFieldChange('contactNo', value)}
-                  />
-                  <InputFieldContainer
-                    label='Your Email'
-                    type='email'
-                    value={email}
-                    isOptional={true}
-                    onChange={(value) => handleFieldChange('email', value)}
-                  />
-                  {profession === 'student' && (
-                    <InputFieldContainer
-                      label='Your School Name'
-                      type='text'
-                      value={school}
-                      isOptional={true}
-                      onChange={(value) => handleFieldChange('school', value)}
-                    />
-                  )}
-                  {profession === 'college-student' && (
-                    <InputFieldContainer
-                      label='Your College'
-                      type='text'
-                      value={college}
-                      isOptional={true}
-                      onChange={(value) => handleFieldChange('college', value)}
-                    />
-                  )}
-                  {profession === 'working-professional' && (
-                    <InputFieldContainer
-                      label='Years of Experience'
-                      type='number'
-                      value={workExperience}
-                      isOptional={true}
-                      onChange={(value) =>
-                        handleFieldChange('workExperience', value)
-                      }
-                    />
-                  )}
-                </FlexContainer>
-
-                <FlexContainer
-                  direction='col'
-                  className='gap-2.5'
-                  itemCenter={true}
-                  justifyCenter={true}
+            )}
+            {leadCohortAPIResponse?.message &&
+              !errors.apiError &&
+              !errors.formError && (
+                <Text
+                  level='p'
+                  className=''
+                  variant='SUCCESS'
+                  textCenter={true}
                 >
-                  <Button
-                    variant='PRIMARY'
-                    text='Book Free Counselling'
-                    onClick={handleBookCounselling}
-                    isLoading={loading}
-                  />
-                  {errors && (
-                    <Text
-                      level='p'
-                      className='mt-1'
-                      variant='ERROR'
-                      textCenter={true}
-                    >
-                      {errors.formError || errors.apiError}
-                    </Text>
-                  )}
-                  {leadCohortAPIResponse?.message && (
-                    <Text
-                      level='p'
-                      className='mt-1'
-                      variant='SUCCESS'
-                      textCenter={true}
-                    >
-                      {leadCohortAPIResponse?.message}
-                    </Text>
-                  )}
-                </FlexContainer>
-              </FlexContainer>
-            </FlexContainer>
+                  {leadCohortAPIResponse?.message}
+                </Text>
+              )}
           </FlexContainer>
         </GradientContainer>
       </FlexContainer>

@@ -21,8 +21,8 @@ const Home = ({ seoMeta }: PageProps) => {
       <LandingPageHero />
       <ChooseTechCohort id={routes.internals.microCampRegister} />
       <OurPrograms />
-      <Skills skills={landingPageSkills} />
       <OurWorkshops />
+      <Skills skills={landingPageSkills} />
       <WeGuideDifferently />
       <CanYouBeAProgrammer />
       <Testimonials />
