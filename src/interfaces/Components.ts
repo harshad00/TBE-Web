@@ -424,11 +424,12 @@ export type ChooseTechCohortFormFields =
   | 'cohortName'
   | 'school'
   | 'college'
-  | 'workExperience';
+  | 'workExperience'
+  | 'all';
 
 export type ChooseTechCohortActionType = {
-  type: 'UPDATE_FIELD';
-  value: string;
+  type: 'UPDATE_FIELD' | 'RESET_FIELDS';
+  value?: string;
   field: ChooseTechCohortFormFields;
 };
 

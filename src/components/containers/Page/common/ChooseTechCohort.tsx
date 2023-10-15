@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Button,
   ChooseTechCohortCard,
@@ -16,7 +16,7 @@ import {
   chooseTechCohortItems,
   routes,
 } from '@/constant';
-import { useApi, useBestTechProgramFormData } from '@/hooks';
+import { useApi, useBestTechCohortFormData } from '@/hooks';
 import {
   ChooseTechCohortFormFields,
   ChooseTechCohortProps,
@@ -43,8 +43,14 @@ const ChooseTechCohort = ({
       workExperience,
     },
     dispatch,
-  } = useBestTechProgramFormData({ cohortName: preSelectedCohortName ?? '' });
-  const { data, loading, error: apiError, makeRequest } = useApi();
+  } = useBestTechCohortFormData({ cohortName: preSelectedCohortName ?? '' });
+  const {
+    data: leadCohortAPIResponse,
+    isSuccess,
+    loading,
+    error: apiError,
+    makeRequest,
+  } = useApi();
 
   // On Changing Input Fields
   const handleFieldChange = (
@@ -144,6 +150,10 @@ const ChooseTechCohort = ({
     });
   }
 
+  useEffect(() => {
+    dispatch({ type: 'RESET_FIELDS', field: 'all' });
+  }, [dispatch, isSuccess]);
+
   return (
     <Section id={id}>
       <FlexContainer direction='col'>
@@ -194,16 +204,19 @@ const ChooseTechCohort = ({
                   <InputFieldContainer
                     label='Your Name'
                     type='text'
+                    value={name}
                     onChange={(value) => handleFieldChange('name', value)}
                   />
                   <InputFieldContainer
                     label='Your Contact No.'
                     type='text'
+                    value={contactNo}
                     onChange={(value) => handleFieldChange('contactNo', value)}
                   />
                   <InputFieldContainer
                     label='Your Email'
                     type='email'
+                    value={email}
                     isOptional={true}
                     onChange={(value) => handleFieldChange('email', value)}
                   />
@@ -211,6 +224,7 @@ const ChooseTechCohort = ({
                     <InputFieldContainer
                       label='Your School Name'
                       type='text'
+                      value={school}
                       isOptional={true}
                       onChange={(value) => handleFieldChange('school', value)}
                     />
@@ -219,6 +233,7 @@ const ChooseTechCohort = ({
                     <InputFieldContainer
                       label='Your College'
                       type='text'
+                      value={college}
                       isOptional={true}
                       onChange={(value) => handleFieldChange('college', value)}
                     />
@@ -227,6 +242,7 @@ const ChooseTechCohort = ({
                     <InputFieldContainer
                       label='Years of Experience'
                       type='number'
+                      value={workExperience}
                       isOptional={true}
                       onChange={(value) =>
                         handleFieldChange('workExperience', value)
@@ -257,14 +273,14 @@ const ChooseTechCohort = ({
                       {errors.formError || errors.apiError}
                     </Text>
                   )}
-                  {data?.message && (
+                  {leadCohortAPIResponse?.message && (
                     <Text
                       level='p'
                       className='mt-1'
                       variant='SUCCESS'
                       textCenter={true}
                     >
-                      {data?.message}
+                      {leadCohortAPIResponse?.message}
                     </Text>
                   )}
                 </FlexContainer>

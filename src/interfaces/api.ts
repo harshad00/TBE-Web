@@ -36,6 +36,7 @@ export interface APIMakeRquestProps {
 
 export type ApiHookResult = {
   data: APIResponseType | undefined;
+  isSuccess: boolean;
   loading: boolean;
   error: any;
   makeRequest: (params: APIMakeRquestProps) => Promise<void>;

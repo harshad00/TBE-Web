@@ -6,22 +6,9 @@ import {
 } from '@/interfaces';
 import { useReducer } from 'react';
 
-const useBestTechProgramFormData = ({
+const useBestTechCohortFormData = ({
   cohortName = '',
 }: UseBestTechProgramFormDataType) => {
-  // Reducer function to manage form field data
-  const chooseTechCohortFormReducer = (
-    state: ChooseTechCohortInitialFormDataType,
-    { type, field, value }: ChooseTechCohortActionType
-  ) => {
-    switch (type) {
-      case 'UPDATE_FIELD':
-        return { ...state, [field]: value };
-      default:
-        return state;
-    }
-  };
-
   const initialFormData: AddALeadRequestPayload = {
     name: '',
     contactNo: '',
@@ -33,6 +20,21 @@ const useBestTechProgramFormData = ({
     workExperience: '',
   };
 
+  // Reducer function to manage form field data
+  const chooseTechCohortFormReducer = (
+    state: ChooseTechCohortInitialFormDataType,
+    { type, field, value }: ChooseTechCohortActionType
+  ) => {
+    switch (type) {
+      case 'UPDATE_FIELD':
+        return { ...state, [field]: value };
+      case 'RESET_FIELDS':
+        return initialFormData;
+      default:
+        return state;
+    }
+  };
+
   const [formData, dispatch] = useReducer(
     chooseTechCohortFormReducer,
     initialFormData
@@ -41,4 +43,4 @@ const useBestTechProgramFormData = ({
   return { formData, dispatch };
 };
 
-export default useBestTechProgramFormData;
+export default useBestTechCohortFormData;

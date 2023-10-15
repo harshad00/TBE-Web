@@ -5,7 +5,7 @@ const InputFieldContainer = ({
   label,
   type,
   className,
-  value = '',
+  value,
   onChange,
   isOptional = false,
 }: InputFieldContainerProps) => {
