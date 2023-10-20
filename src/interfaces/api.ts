@@ -34,13 +34,22 @@ export interface APIMakeRquestProps {
   body?: any;
 }
 
-export type ApiHookResult = {
-  data: APIResponseType | undefined;
-  isSuccess: boolean;
+export interface ClientAPIResponseProps {
+  status: boolean;
+  data?: any;
+}
+
+export interface APIResponseProps extends ClientAPIResponseProps {
+  message?: string;
+  error?: any;
+}
+
+export interface ApiHookResultProps {
+  data: any | undefined;
   loading: boolean;
   error: any;
   makeRequest: (params: APIMakeRquestProps) => Promise<void>;
-};
+}
 
 export interface ClientAPIResponse {
   status: boolean;

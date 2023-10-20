@@ -14,6 +14,10 @@ const ProgramLeadsCard = ({
   email,
   phone,
   cohortName,
+  profession,
+  school,
+  college,
+  workExperience,
   status,
   createdAt,
   updatedAt,
@@ -50,6 +54,26 @@ const ProgramLeadsCard = ({
         <Text level='p' className='paragraph'>
           Cohort Name: {cohortName}
         </Text>
+        {profession && (
+          <Text level='p' className='paragraph'>
+            Profession: {profession}
+          </Text>
+        )}
+        {school && (
+          <Text level='p' className='paragraph'>
+            School: {school}
+          </Text>
+        )}
+        {college && (
+          <Text level='p' className='paragraph'>
+            College: {college}
+          </Text>
+        )}
+        {workExperience && (
+          <Text level='p' className='paragraph'>
+            Work Experience: {workExperience}
+          </Text>
+        )}
         <Text level='p' className='paragraph'>
           Created on: {formatDate(createdAt)}
         </Text>
@@ -75,23 +99,27 @@ const ProgramLeadsCard = ({
         </div>
       </FlexContainer>
       <FlexContainer wrap={false} className='gap-1'>
-        <LinkButton
-          buttonProps={{
-            variant: 'GHOST',
-            text: 'Call',
-          }}
-          href={`tel:${phone}`}
-          className='w-full'
-        />
-        <LinkButton
-          buttonProps={{
-            variant: 'GHOST',
-            text: 'Whatsapp',
-          }}
-          target='BLANK'
-          href={sendMessageToWhatsappURL(phone)}
-          className='w-full'
-        />
+        {phone && (
+          <LinkButton
+            buttonProps={{
+              variant: 'GHOST',
+              text: 'Call',
+            }}
+            href={`tel:${phone}`}
+            className='w-full'
+          />
+        )}
+        {phone && (
+          <LinkButton
+            buttonProps={{
+              variant: 'GHOST',
+              text: 'Whatsapp',
+            }}
+            target='BLANK'
+            href={sendMessageToWhatsappURL(phone)}
+            className='w-full'
+          />
+        )}
         {email && (
           <LinkButton
             buttonProps={{

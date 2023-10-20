@@ -22,7 +22,9 @@ const AdminProgramLeadsDashboard = () => {
 
   if (loading || !data) return;
 
-  const programLeads: CohortLeadCard[] = data.data;
+  const programLeads: CohortLeadCard[] = data;
+
+  console.log('HERE', programLeads);
 
   return (
     <Section>

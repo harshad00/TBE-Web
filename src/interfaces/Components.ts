@@ -371,8 +371,12 @@ export interface CohortLeadCard {
   name: string;
   email?: string;
   phone: string;
-  cohortName: CohortNameType;
+  cohortName?: CohortNameType;
   status: CohortLeadStatus;
+  profession?: BestSuitedForType;
+  school?: string;
+  college?: string;
+  workExperience?: string;
   createdAt: string;
   updatedAt: string;
 }

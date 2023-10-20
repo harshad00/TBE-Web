@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { sendRequest } from '@/utils';
 import {
   APIMakeRquestProps,
-  APIResponseType,
-  ApiHookResult,
+  APIResponseProps,
+  ApiHookResultProps,
 } from '@/interfaces';
 
-const useApi = (params?: APIMakeRquestProps): ApiHookResult => {
-  const [data, setData] = useState<APIResponseType>();
+const useApi = (params?: APIMakeRquestProps): ApiHookResultProps => {
+  const [data, setData] = useState<APIResponseProps>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<APIResponseType | string | null>();
+  const [error, setError] = useState<APIResponseProps | string | null>();
 
   const makeRequest = async ({
     method,
@@ -21,14 +21,14 @@ const useApi = (params?: APIMakeRquestProps): ApiHookResult => {
       setLoading(true);
       setError(null);
 
-      const response: APIResponseType = await sendRequest({
+      const response: APIResponseProps = await sendRequest({
         method,
         url,
         headers,
         body,
       });
 
-      if (response.status) setData(response as APIResponseType);
+      if (response.status) setData(response.data as APIResponseProps);
       else setError(response.message);
     } catch (err: any) {
       setError(err.response.data);
@@ -49,12 +49,11 @@ const useApi = (params?: APIMakeRquestProps): ApiHookResult => {
     };
 
     init();
-  }, [params]);
+  }, []);
 
   return {
-    data,
-    isSuccess: !!data,
-    error,
+    data: data,
+    error: error,
     loading,
     makeRequest,
   };
