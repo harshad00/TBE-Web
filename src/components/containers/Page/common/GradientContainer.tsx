@@ -5,7 +5,7 @@ const GradientContainer = ({
   children,
   className = '',
   backgroundColor,
-  childrenClassName = '',
+  childrenClassName = 'p-3',
 }: GradientContainerProps) => {
   return (
     <div
@@ -13,7 +13,7 @@ const GradientContainer = ({
         backgroundColor ?? 'bg-white'
       }`}
     >
-      <div className={`rounded-2 p-3 ${childrenClassName}`}>{children}</div>
+      <div className={`rounded-2 ${childrenClassName}`}>{children}</div>
     </div>
   );
 };

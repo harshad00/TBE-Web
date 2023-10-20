@@ -46,6 +46,7 @@ export interface APIResponseProps extends ClientAPIResponseProps {
 
 export interface ApiHookResultProps {
   data: any | undefined;
+  isSuccess: boolean;
   loading: boolean;
   error: any;
   makeRequest: (params: APIMakeRquestProps) => Promise<void>;

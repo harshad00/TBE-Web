@@ -15,14 +15,14 @@ import { useApi } from '@/hooks';
 const AdminProgramLeadsDashboard = () => {
   const slug: PageSlug = '/admin';
   const seoMeta = getSEOMeta(slug as PageSlug);
-  const { data, loading } = useApi({
+  const { data: cohortLeadData, loading } = useApi({
     method: 'GET',
     url: apiUrls.leadCohort,
   });
 
-  if (loading || !data) return;
+  if (loading || !cohortLeadData) return;
 
-  const programLeads: CohortLeadCard[] = data;
+  const programLeads: CohortLeadCard[] = cohortLeadData.data;
 
   console.log('HERE', programLeads);
 

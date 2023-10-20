@@ -370,7 +370,7 @@ export interface CohortLeadCard {
   _id: string;
   name: string;
   email?: string;
-  phone: string;
+  contactNo: string;
   cohortName?: CohortNameType;
   status: CohortLeadStatus;
   profession?: BestSuitedForType;

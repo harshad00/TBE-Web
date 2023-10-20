@@ -12,7 +12,7 @@ const ProgramLeadsCard = ({
   _id,
   name,
   email,
-  phone,
+  contactNo,
   cohortName,
   profession,
   school,
@@ -99,24 +99,24 @@ const ProgramLeadsCard = ({
         </div>
       </FlexContainer>
       <FlexContainer wrap={false} className='gap-1'>
-        {phone && (
+        {contactNo && (
           <LinkButton
             buttonProps={{
               variant: 'GHOST',
               text: 'Call',
             }}
-            href={`tel:${phone}`}
+            href={`tel:${contactNo}`}
             className='w-full'
           />
         )}
-        {phone && (
+        {contactNo && (
           <LinkButton
             buttonProps={{
               variant: 'GHOST',
               text: 'Whatsapp',
             }}
             target='BLANK'
-            href={sendMessageToWhatsappURL(phone)}
+            href={sendMessageToWhatsappURL(contactNo)}
             className='w-full'
           />
         )}

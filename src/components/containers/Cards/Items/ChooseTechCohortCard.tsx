@@ -18,7 +18,10 @@ const ChooseTechCohortCard = ({
   onSelected,
 }: ChooseTechCohortCardProps) => {
   return (
-    <GradientContainer className='max-w-sm rounded bg-white'>
+    <GradientContainer
+      className='max-w-sm rounded bg-white'
+      childrenClassName='p-2'
+    >
       <FlexContainer
         direction='col'
         itemCenter={true}
