@@ -1,8 +1,6 @@
 const MONGODB_URI = process.env.MONGODB_URI as string;
-const GOOGLE_CLIENT_ID = process.env
-  .NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID as string;
-const GOOGLE_CLIENT_SECRET = process.env
-  .NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_SECRET as string;
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string;
 const NEXT_AUTH_SECRET = process.env.NEXT_AUTH_SECRET as string;
 
 export {
