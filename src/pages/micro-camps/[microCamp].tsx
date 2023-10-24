@@ -8,7 +8,7 @@ import {
   ContextBasedLearning,
   MicrocampPricing,
   WhatWeDoForYou,
-  WeTaughtAt,
+  WeAlreadyTaughtAt,
   SEO,
   MicrocampInstructor,
   MicrocampOpportunities,
@@ -50,7 +50,7 @@ const MicroCampLanding = ({ slug, seoMeta }: PageProps) => {
       <NotAnotherTechCourse />
       <ContextBasedLearning />
       <MicrocampPricing {...pricing} />
-      <WeTaughtAt />
+      <WeAlreadyTaughtAt />
       <Testimonials />
     </React.Fragment>
   );

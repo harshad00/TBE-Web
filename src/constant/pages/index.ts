@@ -860,7 +860,7 @@ const WORKSHOPS: WorkshopDataProps[] = [
 const CHOOSE_COHORT_HEADER_TITLES = {
   default: 'Choose best suited Tech Program',
   juniorInWebEngineering: 'Web Engineering for Beginners',
-  beFrontendMaster: 'Front-end Engineering in 8 Weeks',
+  beFrontendMaster: 'Job-ready Front-end Skills in 8 Weeks',
 };
 
 const MICROCAMPS: MicrocampDataProps[] = [

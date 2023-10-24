@@ -43,7 +43,7 @@ import Opportunities from './containers/Cards/Opportunities';
 import WhatWeDoForYouCard from './containers/Cards/Items/WhatWeDoForYouCard';
 import ProgramLeadsCard from './containers/Cards/Items/ProgramLeadsCard';
 import WhatWeDoForYou from './containers/Cards/WhatWeDoForYou';
-import WeTaughtAt from './containers/Cards/WeTaughtAt';
+import WeAlreadyTaughtAt from './containers/Cards/WeAlreadyTaughtAt';
 import WeTaughtAtCard from './containers/Cards/Items/WeTaughtAtCard';
 import MicrocampRegisterForm from './containers/Forms/MicrocampRegisterForm';
 import ContactCard from './containers/Cards/Items/ContactCard';
@@ -117,7 +117,7 @@ export {
   Opportunities,
   WhatWeDoForYouCard,
   WhatWeDoForYou,
-  WeTaughtAt,
+  WeAlreadyTaughtAt,
   WeTaughtAtCard,
   MicrocampRegisterForm,
   SEO,
