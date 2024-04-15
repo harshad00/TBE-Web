@@ -139,6 +139,7 @@ export interface CohortCardProps {
   active: boolean;
   bestSuitedFor?: BestSuitedForType[];
   isCohort?: boolean;
+  ctaText?: string;
 }
 
 export interface ChooseTechCohortCardProps extends CohortCardProps {

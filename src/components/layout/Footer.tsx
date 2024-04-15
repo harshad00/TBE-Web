@@ -1,5 +1,4 @@
-import { FlexContainer, FooterLinksContainer, Logo, Text } from '@/components';
-import { FOOTER_NAVIGATION } from '@/constant';
+import { FlexContainer, Logo, Text } from '@/components';
 
 const Footer = () => {
   return (
@@ -27,16 +26,7 @@ const Footer = () => {
         <FlexContainer
           className='items-baseline justify-between gap-4'
           itemCenter={false}
-        >
-          {FOOTER_NAVIGATION.map((item) => {
-            const { isShow, id, title, urls } = item;
-
-            if (isShow)
-              return (
-                <FooterLinksContainer key={id} title={title} urls={urls} />
-              );
-          })}
-        </FlexContainer>
+        ></FlexContainer>
       </FlexContainer>
       <FlexContainer className='border-t border-grey py-2' itemCenter={true}>
         <Text level='p' className='pre-title text-contentDark'>

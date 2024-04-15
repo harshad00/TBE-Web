@@ -8,9 +8,13 @@ const ProgramCard = ({
   href,
   content,
   active,
+  ctaText,
 }: CohortCardProps) => {
   return (
-    <GradientContainer className='max-w-sm border-borderColor2'>
+    <GradientContainer
+      className='max-w-sm border-borderColor2'
+      childrenClassName='p-3 h-full flex flex-col'
+    >
       <Image
         className='m-auto w-3/5 rounded-t-lg'
         src={`${image}`}
@@ -28,7 +32,7 @@ const ProgramCard = ({
           className='mt-3 block'
           buttonProps={{
             variant: 'PRIMARY',
-            text: active ? 'Registration Open' : 'Coming soon',
+            text: active && ctaText ? ctaText : 'Coming soon',
             active,
             className: `${!active && 'bg-secondary'}`,
           }}

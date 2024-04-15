@@ -1,6 +1,6 @@
-import { GetSEOMetaResponseType, PageSlug } from '@/interfaces';
+import { GetSEOMetaResponseType } from '@/interfaces';
 import { routes } from '../routes';
-import { programs } from '..';
+import { products } from '..';
 
 const commonMeta = {
   type: 'website',
@@ -8,12 +8,7 @@ const commonMeta = {
   image: 'https://theboringeducation.com/images/large-og.png',
 };
 
-const adminMeta = {
-  ...commonMeta,
-  robots: 'nofollow, noindex',
-};
-
-const getSEOMeta = (basePath: PageSlug): GetSEOMetaResponseType => {
+const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
   const meta = {
     '/': {
       title: 'The Boring Education',
@@ -22,46 +17,18 @@ const getSEOMeta = (basePath: PageSlug): GetSEOMetaResponseType => {
       url: routes.home,
       ...commonMeta,
     },
-    '/admin': {
-      title: 'Admin | The Boring Education',
-      siteName: 'Admin | The Boring Education',
-      description: 'Tech Education for Everyone',
-      url: routes.admin.base,
-      ...adminMeta,
-    },
-    [programs.juniorInWebEngineering.slug]: {
-      title: `${programs.juniorInWebEngineering.label} | The Boring Education`,
-      siteName: programs.juniorInWebEngineering.label,
-      description: programs.juniorInWebEngineering.description,
-      url: routes.microCampLanding(programs.juniorInWebEngineering.slug),
+    [products.roadmaps.slug]: {
+      title: `${products.roadmaps.label} | The Boring Education`,
+      siteName: products.roadmaps.label,
+      description: products.roadmaps.description,
+      url: products.roadmaps.slug,
       ...commonMeta,
     },
-    [programs.beFrontendMaster.slug]: {
-      title: `${programs.beFrontendMaster.label} | The Boring Education`,
-      siteName: programs.beFrontendMaster.label,
-      description: programs.beFrontendMaster.description,
-      url: routes.microCampLanding(programs.beFrontendMaster.slug),
-      ...commonMeta,
-    },
-    [programs.beBackendMaster.slug]: {
-      title: `${programs.beBackendMaster.label} | The Boring Education`,
-      siteName: programs.beBackendMaster.label,
-      description: programs.beBackendMaster.description,
-      url: routes.microCampLanding(programs.beBackendMaster.slug),
-      ...commonMeta,
-    },
-    [programs.twoHourDesign.slug]: {
-      title: `${programs.twoHourDesign.label} | The Boring Education`,
-      siteName: programs.twoHourDesign.label,
-      description: programs.twoHourDesign.description,
-      url: routes.workshopLanding(programs.twoHourDesign.slug),
-      ...commonMeta,
-    },
-    [programs.theNextWave.slug]: {
-      title: `${programs.theNextWave.label} | The Boring Education`,
-      siteName: programs.theNextWave.label,
-      description: programs.theNextWave.description,
-      url: routes.workshopLanding(programs.theNextWave.slug),
+    [products.projects.slug]: {
+      title: `${products.projects.label} | The Boring Education`,
+      siteName: products.projects.label,
+      description: products.projects.description,
+      url: products.projects.slug,
       ...commonMeta,
     },
     '/contact': {

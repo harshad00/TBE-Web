@@ -42,6 +42,7 @@ const PRODUCTS: CohortCardProps[] = [
     content: products.roadmaps.description,
     href: products.roadmaps.slug,
     active: true,
+    ctaText: 'Explore Roadmaps',
   },
   {
     id: 'projects',
@@ -51,6 +52,7 @@ const PRODUCTS: CohortCardProps[] = [
     content: products.projects.description,
     href: products.projects.slug,
     active: true,
+    ctaText: 'Explore Projects',
   },
   {
     id: 'workshops',
@@ -60,6 +62,7 @@ const PRODUCTS: CohortCardProps[] = [
     content: products.workshops.description,
     href: products.workshops.slug,
     active: true,
+    ctaText: 'Explore Workshops',
   },
   {
     id: 'shiksha',
@@ -68,16 +71,16 @@ const PRODUCTS: CohortCardProps[] = [
     title: products.shiksha.label,
     content: products.shiksha.description,
     href: products.shiksha.slug,
-    active: true,
+    active: false,
   },
   {
     id: 'os',
-    image: `${STATIC_FILE_PATH.svg}/os.svg`,
+    image: `${STATIC_FILE_PATH.svg}/open-source.svg`,
     imageAltText: products.os.label,
     title: products.os.label,
     content: products.os.description,
     href: products.os.slug,
-    active: true,
+    active: false,
   },
 ];
 
