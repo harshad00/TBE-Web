@@ -9,8 +9,7 @@ import LogoutButton from '@/components/common/Buttons/LogoutButton';
 import LinkButton from '@/components/common/Buttons/LinkButton';
 import LandingPageHero from '@/components/containers/Page/Landing/Hero';
 import Section from '@/components/layout/Section';
-import OurPrograms from '@/components/containers/Cards/OurPrograms';
-import OurWorkshops from '@/components/containers/Cards/OurWorkshops';
+import OurProducts from '@/components/containers/Cards/OurProducts';
 import ProgramCard from '@/components/containers/Cards/Items/ProgramCard';
 import PageLayout from '@/components/layout/Page';
 import SectionHeaderContainer from '@/components/containers/Page/common/SectionHeaderContainer';
@@ -18,7 +17,6 @@ import CardSectionContainer from '@/components/containers/Page/common/CardSectio
 import GradientContainer from '@/components/containers/Page/common/GradientContainer';
 import SkillCardItem from '@/components/containers/Cards/Items/SkillCardItem';
 import SkillCard from '@/components/containers/Cards/Items/SkillCard';
-import Skills from '@/components/containers/Cards/Skills';
 import WeGuideDifferentlyCard from '@/components/containers/Cards/Items/WeGuideDifferentlyCard';
 import WeGuideDifferently from '@/components/containers/Cards/WeGuideDifferently';
 import NotAnotherTechCourseCard from './containers/Cards/Items/NotAnotherTechCourseCard';
@@ -85,8 +83,7 @@ export {
   LinkButton,
   LandingPageHero,
   Section,
-  OurPrograms,
-  OurWorkshops,
+  OurProducts,
   ProgramCard,
   PageLayout,
   SectionHeaderContainer,
@@ -94,7 +91,6 @@ export {
   GradientContainer,
   SkillCardItem,
   SkillCard,
-  Skills,
   WeGuideDifferentlyCard,
   WeGuideDifferently,
   NotAnotherTechCourseCard,

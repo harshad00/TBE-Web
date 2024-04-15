@@ -82,8 +82,7 @@ const programs: ProgramsDataProps = {
 const LINKS = {
   juniorInWebEngineeringRegistrationLink:
     'https://docs.google.com/forms/d/e/1FAIpQLSejDBJvhWMWeKZFkWY2PxuUa_LZYsstDvJljrn0Tbm2_2Kd7Q/viewform',
-  freeTechConsultation:
-    'https://calendly.com/theboringeducation/tech-consultation',
+  freeTechConsultation: 'https://topmate.io/imsks',
   bootcamp:
     'https://docs.google.com/forms/d/e/1FAIpQLSf40vUjRclTXIivifbahZ-L0EtnFhQw32BzQj3GWgBzeVfnXQ/viewform',
   workshopRegistration:

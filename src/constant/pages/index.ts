@@ -243,24 +243,6 @@ const [
   },
 ];
 
-const landingPageSkills: SkillsProps[] = [
-  {
-    id: v4(),
-    title: `Front-end Engineering`,
-    details: [JavaScript, ReactJS, NextJS],
-  },
-  {
-    id: v4(),
-    title: `Back-end Engineering`,
-    details: [NodeJS, MongoDB],
-  },
-  {
-    id: v4(),
-    title: `Extra Skills for Placements`,
-    details: [Figma, TypeScript],
-  },
-];
-
 const juniorInWebEngineeringSkills: SkillsProps[] = [
   {
     id: v4(),
@@ -296,29 +278,29 @@ const beFrontendMasterSkills: SkillsProps[] = [
 const USP: WeGuideDifferentlyCardProps[] = [
   {
     id: v4(),
-    title: `Mentorship`,
-    content: `You'll mentored by Industry Experts. From Code Review to 1:1, You'll be in touch them every week.`,
+    title: `Personalised Roadmap`,
+    content: `You can create your version of Roadmap and follow along. You don't need old hardcoded roadmaps.`,
     image: `${STATIC_FILE_PATH.svg}/mentorship.svg`,
     imageAltText: `mentorship`,
   },
   {
     id: v4(),
-    title: `Peer Learning`,
-    content: `You learn by practicing and also from your batchmates. Do Pair programming in our Discord community.`,
+    title: `Build Real Life Projects`,
+    content: `Stop Building Clone Projects. Build Something that People would Love to use and also Add into your Resume.`,
     image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
     imageAltText: `peer learning`,
   },
+  // {
+  //   id: v4(),
+  //   title: `Learn Skills in Workshops`,
+  //   content: `Learn skill over weekend that spreads your horizon in Tech Opportunities.`,
+  //   image: `${STATIC_FILE_PATH.svg}/workshop.svg`,
+  //   imageAltText: `weekend workshop`,
+  // },
   {
     id: v4(),
-    title: `Weekend Workshop`,
-    content: `Learn skill over weekend that spreads your horizon in Tech Opportunities.`,
-    image: `${STATIC_FILE_PATH.svg}/workshop.svg`,
-    imageAltText: `weekend workshop`,
-  },
-  {
-    id: v4(),
-    title: `Doubt Clearing Sessions`,
-    content: `Clear all your doubts over weekend and discuss any issue you're facing.`,
+    title: `Free Mentorship Sessions`,
+    content: `We Provide Free Mentorship Sessions. Take Tech Guidance or Get Your Resume Reviewed.`,
     image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
     imageAltText: `doubt session`,
   },
@@ -977,7 +959,6 @@ export {
   PROGRAMS,
   juniorInWebEngineeringSkills,
   beFrontendMasterSkills,
-  landingPageSkills,
   TESTIMONIALS,
   TOP_NAVIGATION,
   USP,

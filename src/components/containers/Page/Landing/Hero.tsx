@@ -6,7 +6,7 @@ import {
   SectionHeaderContainer,
   Text,
 } from '@/components';
-import { generateSectionPath, routes } from '@/constant';
+import { LINKS, generateSectionPath, routes } from '@/constant';
 import { useRouter } from 'next/router';
 
 const LandingPageHero = () => {
@@ -51,21 +51,19 @@ const LandingPageHero = () => {
                 className='w-full sm:w-fit'
                 buttonProps={{
                   variant: 'PRIMARY',
-                  text: 'Register Now',
+                  text: 'Get Started',
                   className: '',
                 }}
               />
               <LinkButton
-                href={generateSectionPath({
-                  basePath: router.basePath,
-                  sectionID: routes.internals.landing.programs,
-                })}
+                href={LINKS.freeTechConsultation}
                 className='w-full sm:w-fit'
                 buttonProps={{
                   variant: 'OUTLINE',
-                  text: 'Explore Roadmaps',
+                  text: 'Book Free Session',
                   className: '',
                 }}
+                target='BLANK'
               />
             </FlexContainer>
           </FlexContainer>
