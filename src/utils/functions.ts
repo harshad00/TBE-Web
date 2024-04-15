@@ -1,7 +1,6 @@
 import {
   AuthUserType,
   NextAuthUserType,
-  PageSlug,
   UserInLocalStorage,
 } from '@/interfaces';
 

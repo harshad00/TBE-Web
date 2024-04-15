@@ -1,10 +1,6 @@
 import { localStorageKeys } from '@/constant';
-import { NextAuthUserType, UseUserProps } from '@/interfaces';
-import {
-  getUserFromLocalStorage,
-  removeLocalStorageItem,
-  setUserInLocalStorage,
-} from '@/utils';
+import { UseUserProps } from '@/interfaces';
+import { getUserFromLocalStorage, removeLocalStorageItem } from '@/utils';
 import { useEffect } from 'react';
 
 const useUser = ({ userType }: UseUserProps) => {
