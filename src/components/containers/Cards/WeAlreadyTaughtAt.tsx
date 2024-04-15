@@ -1,5 +1,5 @@
 import { Section, Text, Image, FlexContainer } from '@/components';
-import { WE_TAUGHT } from '@/constant';
+import { MY_PREV_EXPERIENCE } from '@/constant';
 const WeAlreadyTaughtAt = () => {
   return (
     <Section>
@@ -8,7 +8,7 @@ const WeAlreadyTaughtAt = () => {
           We already <span className=' text-primary'>taught</span> at
         </Text>
         <FlexContainer>
-          {WE_TAUGHT.map((item) => (
+          {MY_PREV_EXPERIENCE.map((item) => (
             <FlexContainer
               key={item.id}
               className='w-88 justify-between [&:not(:first-child)]:ml-2'

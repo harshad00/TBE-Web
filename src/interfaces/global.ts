@@ -32,18 +32,11 @@ export type PageSlug =
   | '/'
   | '/404'
   | '/contact'
-  | '/junior-in-web-engineering'
-  | '/be-frontend-master'
-  | '/be-backend-master'
-  | '/the-boring-workshops'
-  | '/2-hour-design'
-  | '/getting-started-with-typescript'
-  | '/the-next-wave'
-  | '/head-to-tailwind'
-  | '/api-dev-with-postman'
-  | '/getting-started-with-github'
-  | '/intro-to-web3'
-  | '/admin';
+  | '/roadmaps'
+  | '/projects'
+  | '/workshops'
+  | '/shiksha'
+  | '/os';
 
 export type GetSEOMetaResponseType = {
   title: string;
@@ -55,72 +48,16 @@ export type GetSEOMetaResponseType = {
   image: string;
 };
 
-export type ProgramLabelType =
-  | 'Be Front-end Master'
-  | 'Be Backend Master'
-  | 'Junior in Web Engineering'
+export type ProductLabelType =
+  | 'Roadmaps'
+  | 'The Boring Projects'
+  | 'Shiksha'
   | 'The Boring Workshops'
-  | '2 Hour Design'
-  | 'Getting Started with Typescript'
-  | 'The Next Wave'
-  | 'Head to Tailwind'
-  | 'API Dev with Postman'
-  | 'Getting started with GitHub'
-  | 'Intro to Web3';
+  | 'The Boring Open Source';
 
-export interface ProgramsDataProps {
-  beFrontendMaster: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  beBackendMaster: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  juniorInWebEngineering: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  theBoringWorkshops: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  twoHourDesign: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  gettingStartedWithTypescipt: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  theNextWave: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  headToTailwind: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  apiDevWithPostman: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  gettingStartedWithGithub: {
-    label: ProgramLabelType;
-    slug: PageSlug;
-    description: string;
-  };
-  introToWeb3: {
-    label: ProgramLabelType;
+export interface ProductDataProps {
+  [key: string]: {
+    label: ProductLabelType;
     slug: PageSlug;
     description: string;
   };
@@ -158,7 +95,7 @@ export interface MicrocampPricingProps {
 
 export interface MicrocampDataProps {
   slug: PageSlug;
-  name: ProgramLabelType;
+  name: ProductLabelType;
   header: MicrocampHeaderProps;
   chooseCohortHeaderTitle: string;
   instructor: MicrocampInstructorProps;
@@ -177,7 +114,7 @@ export interface TopNavbarLinkProps {
 }
 
 export interface TopNavbarContainerProps {
-  cohorts: TopNavbarLinkProps[];
+  products: TopNavbarLinkProps[];
   links: TopNavbarLinkProps[];
 }
 

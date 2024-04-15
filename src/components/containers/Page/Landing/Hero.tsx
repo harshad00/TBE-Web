@@ -68,7 +68,7 @@ const LandingPageHero = () => {
             </FlexContainer>
           </FlexContainer>
           <Image
-            src={'https://ik.imagekit.io/tbe/webapp/hero-image.svg'}
+            src='https://ik.imagekit.io/tbe/webapp/hero-image.svg'
             className='w-64'
             fullWidth={false}
             alt='hihi'
