@@ -29,7 +29,6 @@ import ContactCard from './containers/Cards/Items/ContactCard';
 import SEO from './layout/SEO';
 import Pill from './common/Pill';
 import IconPill from './common/Pill/IconPill';
-import TimerItem from './common/Timer';
 import ImageLink from './common/Images/ImageLink';
 import PopoverContainer from './containers/Page/common/PopoverContainer';
 import NavbarDropdownContainer from './containers/Page/common/NavbarDropdownContainer';
@@ -70,7 +69,6 @@ export {
   SEO,
   ContactCard,
   Pill,
-  TimerItem,
   IconPill,
   ImageLink,
   PopoverContainer,

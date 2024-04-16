@@ -1,16 +1,5 @@
 import { HTMLInputTypeAttribute, MouseEventHandler, ReactNode } from 'react';
-import {
-  AddALeadRequestPayload,
-  AuthUserType,
-  CohortLeadStatus,
-  CohortNameType,
-  GetSEOMetaResponseType,
-  MicrocampOfferingsProps,
-  PageSlug,
-  SkillProps,
-  SkillsProps,
-  TopNavbarLinkProps,
-} from '.';
+import { GetSEOMetaResponseType, SkillsProps, TopNavbarLinkProps } from '.';
 
 export interface SectionProps {
   children: React.ReactNode;
@@ -63,90 +52,6 @@ export interface ButtonProps {
   isLoading?: boolean;
 }
 
-export interface WorkshopDataProps {
-  meta: WorkshopMetaDataProps;
-  aboutWorkshop: WorkshopAboutProps;
-}
-
-export interface WorkshopMetaDataProps {
-  slug: PageSlug | string;
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  image: string;
-  imageAltText: string;
-  instructor: WorkshopInstructorDataProps;
-  link: string;
-}
-
-export interface WorkshopInstructorDataProps {
-  name: string;
-  designation: string;
-  image: string;
-  imageAltText: string;
-  about: string[];
-}
-
-export interface WorkshopHeaderCountDownProps {
-  id: string;
-  heading: string;
-  timerList: string;
-}
-
-export interface WorkshopAboutProps {
-  // heading: string;
-  // schedule: WorkshopAboutScheduleProps;
-  descriptions: string[];
-  whatWillYouLearn: string[];
-}
-
-export interface WorkshopAboutScheduleProps {
-  date: string;
-  dateIcon: string;
-  dateIconAltText: string;
-  time: string;
-  timeIcon: string;
-  timeIconAltText: string;
-}
-
-export interface WorkshopWhatWillYouLearnProps {
-  id: string;
-  heading: string;
-  content: WorkshopWhatWillYouLearnContentProps[];
-}
-
-export interface WorkshopWhatWillYouLearnContentProps {
-  id: string;
-  paragraph: string;
-}
-
-export type BestSuitedForType =
-  | 'working-professional'
-  | 'college-student'
-  | 'student';
-
-export interface ChooseTechCohortItem extends RadioOptionProps {
-  id: BestSuitedForType;
-}
-
-export interface CohortCardProps {
-  id: string;
-  image: string;
-  imageAltText: string;
-  title: string;
-  content: string;
-  href: string;
-  active: boolean;
-  bestSuitedFor?: BestSuitedForType[];
-  isCohort?: boolean;
-  ctaText?: string;
-}
-
-export interface ChooseTechCohortCardProps extends CohortCardProps {
-  onSelected: (cohortId: string) => void;
-}
-
 export interface PageLayoutProps {
   children: React.ReactNode;
 }
@@ -172,20 +77,7 @@ export interface GradientContainerProps {
   childrenClassName?: string;
 }
 
-export interface SkillCardProps {
-  skilledDetails: SkillProps[];
-  title: string;
-}
-
 export interface WeGuideDifferentlyCardProps {
-  id?: string;
-  image: string;
-  imageAltText: string;
-  title: string;
-  content: string;
-}
-
-export interface NotAnotherTechCourseCardProps {
   id?: string;
   image: string;
   imageAltText: string;
@@ -202,11 +94,6 @@ export interface FlexContainerProps {
   wrap?: boolean;
   fullWidth?: boolean;
   id?: string;
-}
-
-export interface WorkshopDescriptionProps {
-  paragraphs: string[];
-  flexProps: FlexContainerProps;
 }
 
 export interface TestimonialCardProps {
@@ -230,49 +117,9 @@ export interface FooterLinksContainerProps {
   urls: FooterLinkProps[];
 }
 
-export interface MicroCampBGGradientContainerProps {
-  children: React.ReactNode;
-}
-
-export interface MicroCampFeatureCardProps {
-  title: string;
-  content: string;
-}
-
-export interface MicroCampPricingCardProps {
-  id: string;
-  content: string;
-}
-
-export interface TechEducationForEveryoneProps {
-  heading: string;
-  title: string;
-  content: string;
-}
-
 export interface GridContainerProps {
   children: React.ReactNode;
   className?: string;
-}
-
-export interface OpportunityCardProps {
-  id?: string;
-  heading: string;
-  title: string;
-  content: string;
-}
-
-export interface WhatWeDoForYouCardProps {
-  image: string;
-  imageAltText: string;
-  title: string;
-  content: string;
-}
-
-export interface WeToughtAtCardProps {
-  id?: string;
-  image: string;
-  imageAltText: string;
 }
 
 export type GenerateSectionPathProps = {
@@ -295,14 +142,6 @@ export interface PillProps {
   containerClasses?: string;
 }
 
-export interface CountdownTimerContainerProps {
-  date: string;
-}
-
-export interface TimerItemProps {
-  timer: string;
-}
-
 export interface IconPillProps {
   iconPath: string;
   iconAltText: string;
@@ -312,37 +151,9 @@ export interface IconPillProps {
   labelColor?: string;
 }
 
-export interface WorkshopAboutInstructorProps {
-  containerClasses?: string;
-  imagePath: string;
-  imageAltText: string;
-  name: string;
-  position: string;
-  linkedInURL?: string;
-}
-
 export interface WeTaughtAtCardProps {
   image: string;
   imageAltText: string;
-}
-
-export interface CountdownTimerProps {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
-export interface AboutWorkshopContainerProps
-  extends WorkshopAboutProps,
-    WorkshopMetaDataProps {}
-
-export interface WorkshopRegisterContainerProps {
-  link: string;
-}
-
-export interface WhatWeDoForYouProps {
-  offerings: MicrocampOfferingsProps[];
 }
 
 export interface PopoverContainerProps {
@@ -351,62 +162,15 @@ export interface PopoverContainerProps {
   panelClasses?: string;
 }
 
-export interface MicrocampInstructorProps {
-  name: string;
-  about: string;
-  imageLink: string;
-  linkedInProfile: string;
-}
-
 export interface ImageLinkProps {
   linkProps: LinkProps;
   imageProps: ImageContainerProps;
-}
-
-export interface UserTypeConfig {
-  userType: AuthUserType;
-  loginUrl?: string;
-  redirectTo?: string;
-}
-
-export interface CohortLeadCard {
-  _id: string;
-  name: string;
-  email?: string;
-  contactNo: string;
-  cohortName?: CohortNameType;
-  status: CohortLeadStatus;
-  profession?: BestSuitedForType;
-  school?: string;
-  college?: string;
-  workExperience?: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface SelectInputProps {
   list: any[];
   onChange: (value: string) => void;
   selectedItem: string;
-}
-
-export interface RadioOptionProps {
-  id: string;
-  label: string;
-  description?: string;
-}
-
-export interface InputRadioContainerProps {
-  radioItems: RadioOptionProps[];
-  onChange: (itemId: string) => void;
-  selectedItemId?: string;
-  className?: string;
-}
-
-export interface RadioInputFieldProps extends RadioOptionProps {
-  onChange: (itemId: string) => void;
-  selected?: boolean;
-  className?: string;
 }
 
 export interface InputFieldContainerProps {
@@ -418,39 +182,11 @@ export interface InputFieldContainerProps {
   isOptional?: boolean;
 }
 
-export interface ChooseTechCohortInitialFormDataType
-  extends AddALeadRequestPayload {
-  profession?: BestSuitedForType | '';
-}
-
-export type ChooseTechCohortFormFields =
-  | 'name'
-  | 'email'
-  | 'contactNo'
-  | 'profession'
-  | 'cohortName'
-  | 'school'
-  | 'college'
-  | 'workExperience'
-  | 'all';
-
-export type ChooseTechCohortActionType = {
-  type: 'UPDATE_FIELD' | 'RESET_FIELDS';
-  value?: string;
-  field: ChooseTechCohortFormFields;
-};
-
 export interface LoadingSpinnerProps {
   height?: number;
   width?: number;
   marginClass?: string;
   className?: string;
-}
-
-export interface ChooseTechCohortProps {
-  id?: string;
-  headerTitle?: string;
-  preSelectedCohortName?: CohortNameType;
 }
 
 export interface NavbarDropdownContainerProps {

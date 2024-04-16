@@ -1,7 +1,6 @@
-import { GetSEOMetaResponseType, NextAuthUserType, PageSlug } from './global';
+import { GetSEOMetaResponseType, PageSlug } from './global';
 
 export interface PageProps {
   slug: PageSlug;
   seoMeta: GetSEOMetaResponseType;
-  user?: NextAuthUserType;
 }

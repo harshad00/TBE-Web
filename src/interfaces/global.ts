@@ -1,31 +1,8 @@
-import {
-  FooterLinksContainerProps,
-  MicroCampFeatureCardProps,
-  MicroCampPricingCardProps,
-  MicrocampInstructorProps,
-} from '.';
-
-export interface SkillProps {
-  id?: string;
-  name: string;
-  image: string;
-  imageAltText: string;
-}
-
-export interface SkillsProps {
-  id: string;
-  title: string;
-  details: SkillProps[];
-}
+import { FooterLinksContainerProps } from '.';
 
 export interface FooterNavigationDataProps extends FooterLinksContainerProps {
   id: string;
   isShow: boolean;
-}
-
-export interface MicroCampFeatureCardContentProps
-  extends MicroCampFeatureCardProps {
-  id: string;
 }
 
 export type PageSlug =
@@ -63,49 +40,6 @@ export interface ProductDataProps {
   };
 }
 
-export interface MicrocampHeaderProps {
-  heading: {
-    primary: string;
-    secondary: string;
-  };
-  subheading: string;
-  cta: {
-    primary: string;
-  };
-}
-
-export interface MicrocampInThisCohortSectionProps {
-  label: string;
-  features: MicroCampFeatureCardContentProps[];
-}
-
-export interface MicrocampOfferingsProps {
-  id: string;
-  title: string;
-  content: string;
-  image: string;
-  imageAltText: string;
-}
-
-export interface MicrocampPricingProps {
-  basePrice: number;
-  sellingPrice: number;
-  valueProvided: MicroCampPricingCardProps[];
-}
-
-export interface MicrocampDataProps {
-  slug: PageSlug;
-  name: ProductLabelType;
-  header: MicrocampHeaderProps;
-  chooseCohortHeaderTitle: string;
-  instructor: MicrocampInstructorProps;
-  inThisCohort: MicrocampInThisCohortSectionProps;
-  opportunities?: MicrocampOpportunitiesProps;
-  skills: SkillsProps[];
-  offerings: MicrocampOfferingsProps[];
-  pricing: MicrocampPricingProps;
-}
-
 export interface TopNavbarLinkProps {
   id: string;
   name: string;
@@ -117,44 +51,4 @@ export interface TopNavbarLinkProps {
 export interface TopNavbarContainerProps {
   products: TopNavbarLinkProps[];
   links: TopNavbarLinkProps[];
-}
-
-export interface MicrocampOpportunitiesCardProps {
-  label: string;
-  value: string;
-  subtitle: string;
-}
-export interface MicrocampOpportunitiesProps {
-  heading: string;
-  cards: MicrocampOpportunitiesCardProps[];
-}
-
-export type CohortLeadStatus =
-  | 'Pending'
-  | 'Connected'
-  | 'Interested'
-  | 'Callback'
-  | 'Not Interested';
-
-export type CohortNameType =
-  | 'Be Front-end Master'
-  | 'Be Backend Master'
-  | 'Junior In Web Engineering'
-  | 'Placement Camp';
-
-export type AuthUserType = 'USER' | 'ADMIN';
-
-export interface NextAuthUserType {
-  name: string;
-  email: string;
-  image: string;
-}
-export interface AuthUserInLocalStorageType {
-  user: NextAuthUserType;
-  type: AuthUserType;
-}
-
-export interface UserInLocalStorage {
-  user: NextAuthUserType;
-  type: AuthUserType;
 }

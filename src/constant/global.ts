@@ -93,11 +93,6 @@ const localStorageKeys = {
   USER: 'USER',
 };
 
-const apiUrls = {
-  validateAdminByEmail: (email: string) => `/admin?email=${email}`,
-  leadCohort: '/leads/cohort',
-};
-
 const apiStatusCodes = {
   OKAY: 200,
   RESOURCE_CREATED: 201,
@@ -119,5 +114,4 @@ export {
   favicons,
   localStorageKeys,
   apiStatusCodes,
-  apiUrls,
 };
