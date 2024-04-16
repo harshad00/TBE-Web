@@ -1,5 +1,6 @@
 import { Section, Text, Image, FlexContainer } from '@/components';
 import { MY_PREV_EXPERIENCE } from '@/constant';
+
 const WeAlreadyTaughtAt = () => {
   return (
     <Section>

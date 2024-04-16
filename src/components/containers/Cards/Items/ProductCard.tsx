@@ -1,7 +1,7 @@
 import { GradientContainer, Image, LinkButton, Text } from '@/components';
 import { CohortCardProps } from '@/interfaces';
 
-const ProgramCard = ({
+const ProductCard = ({
   image,
   imageAltText,
   title,
@@ -44,4 +44,4 @@ const ProgramCard = ({
   );
 };
 
-export default ProgramCard;
+export default ProductCard;
