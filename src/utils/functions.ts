@@ -24,6 +24,8 @@ const getDiscountPercentage = (basePrice: number, sellingPrice: number) =>
 
 // Store data in Local Storage
 const setLocalStorageItem = (key: string, value: any) => {
+  if (!localStorage) return;
+
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
@@ -33,6 +35,8 @@ const setLocalStorageItem = (key: string, value: any) => {
 
 // Get data from Local Storage
 const getLocalStorageItem = (key: string): any | null => {
+  if (!localStorage) return;
+
   try {
     const value = localStorage.getItem(key);
     return value ? JSON.parse(value) : null;
@@ -44,6 +48,8 @@ const getLocalStorageItem = (key: string): any | null => {
 
 // Remove Data from Local Stoarge
 const removeLocalStorageItem = (key: string) => {
+  if (!localStorage) return;
+
   try {
     localStorage.removeItem(key);
   } catch (error) {
