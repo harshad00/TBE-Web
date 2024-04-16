@@ -1,7 +1,6 @@
-import { FlexContainer, Text } from '@/components';
+import { FlexContainer, Link, Text } from '@/components';
 import { LINKS } from '@/constant';
-import { FaInstagram } from 'react-icons/fa';
-import LinkText from '../common/Typography/Link';
+import { FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -13,11 +12,13 @@ const Footer = () => {
         <Text level='p' className='pre-title text-contentDark'>
           Built with ❤️ in 🇮🇳
         </Text>
-        <FaInstagram />
-        <FlexContainer>
-          <LinkText href={LINKS.instagram}>
+        <FlexContainer className='gap-1'>
+          <Link href={LINKS.instagram} target='BLANK'>
             <FaInstagram color='white' size='2em' />
-          </LinkText>
+          </Link>
+          <Link href={LINKS.youtube} target='BLANK'>
+            <FaYoutube color='white' size='2em' />
+          </Link>
         </FlexContainer>
       </FlexContainer>
     </footer>

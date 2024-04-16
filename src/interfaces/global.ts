@@ -111,6 +111,7 @@ export interface TopNavbarLinkProps {
   name: string;
   href: string;
   description?: string;
+  target?: 'BLANK';
 }
 
 export interface TopNavbarContainerProps {

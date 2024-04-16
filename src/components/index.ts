@@ -69,6 +69,7 @@ import InputFieldContainer from './common/Form/InputFieldContainer';
 import InputRadioContainer from './containers/Forms/InputRadioContainer';
 import withAuth from './layout/Auth';
 import LoadingSpinner from './common/LoadingSpinner';
+import MobileNavbarLinksContainer from './containers/Page/common/MobileNavbarLinksContainer';
 
 export {
   Navbar,
@@ -142,4 +143,5 @@ export {
   ChooseTechCohortCard,
   InputFieldContainer,
   LoadingSpinner,
+  MobileNavbarLinksContainer,
 };

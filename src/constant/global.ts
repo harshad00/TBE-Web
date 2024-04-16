@@ -46,7 +46,9 @@ const products: ProductDataProps = {
 // Global links
 const LINKS = {
   freeTechConsultation: 'https://topmate.io/imsks',
+  whatsappCommunity: 'https://chat.whatsapp.com/EeB7LrPRg2p3RyMOicyIAC',
   instagram: 'https://www.instagram.com/theboringeducation',
+  youtube: 'https://www.youtube.com/@TheBoringEducation',
 };
 
 // Google analytics

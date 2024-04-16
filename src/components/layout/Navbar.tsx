@@ -1,14 +1,18 @@
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { TOP_NAVIGATION } from '@/constant';
+import { LINKS, TOP_NAVIGATION } from '@/constant';
 import {
+  FlexContainer,
   Link,
   Logo,
   LogoutButton,
+  MobileNavbarLinksContainer,
   NavbarDropdownContainer,
   PopoverContainer,
+  Text,
 } from '..';
+import { FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,17 +34,11 @@ const Navbar = () => {
         </div>
         <div className='hidden items-center lg:flex lg:gap-x-4'>
           <PopoverContainer label='Products'>
-            <NavbarDropdownContainer />
+            <NavbarDropdownContainer links={TOP_NAVIGATION.products} />
           </PopoverContainer>
-          {TOP_NAVIGATION.links.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className='paragraph text-base font-normal hover:text-primary'
-            >
-              {item.name}
-            </Link>
-          ))}
+          <PopoverContainer label='Links' panelClasses='-left-6'>
+            <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
+          </PopoverContainer>
           <LogoutButton />
         </div>
       </nav>
@@ -64,20 +62,42 @@ const Navbar = () => {
           </div>
           <div className='mt-6 flow-root'>
             <div className='divide-white-500/10 -my-6 divide-y'>
-              <div className='space-y-2 py-6'>
-                <PopoverContainer label='Products'>
-                  <NavbarDropdownContainer />
-                </PopoverContainer>
-                {TOP_NAVIGATION.links.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className='paragraph -mx-3 block rounded-lg px-3 text-base hover:text-primary'
+              <FlexContainer
+                className='gap-2 space-y-2 py-6'
+                direction='col'
+                itemCenter={false}
+              >
+                <MobileNavbarLinksContainer
+                  title='Our Products'
+                  links={TOP_NAVIGATION.products}
+                />
+                <MobileNavbarLinksContainer
+                  title='Links'
+                  links={TOP_NAVIGATION.links}
+                />
+                <FlexContainer
+                  itemCenter={false}
+                  justifyCenter={false}
+                  direction='col'
+                  className='gap-1'
+                >
+                  <Text level='span' className='pre-title text-greyDark'>
+                    Connect with us
+                  </Text>
+                  <FlexContainer
+                    itemCenter={false}
+                    justifyCenter={false}
+                    className='gap-1'
                   >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
+                    <Link href={LINKS.instagram} target='BLANK'>
+                      <FaInstagram color='black' size='2em' />
+                    </Link>
+                    <Link href={LINKS.youtube} target='BLANK'>
+                      <FaYoutube color='black' size='2em' />
+                    </Link>
+                  </FlexContainer>
+                </FlexContainer>
+              </FlexContainer>
             </div>
           </div>
         </Dialog.Panel>

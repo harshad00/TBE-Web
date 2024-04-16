@@ -9,6 +9,7 @@ import {
   PageSlug,
   SkillProps,
   SkillsProps,
+  TopNavbarLinkProps,
 } from '.';
 
 export interface SectionProps {
@@ -450,4 +451,13 @@ export interface ChooseTechCohortProps {
   id?: string;
   headerTitle?: string;
   preSelectedCohortName?: CohortNameType;
+}
+
+export interface NavbarDropdownContainerProps {
+  links: TopNavbarLinkProps[];
+}
+
+export interface MobileNavbarLinksContainerProps {
+  title: string;
+  links: TopNavbarLinkProps[];
 }

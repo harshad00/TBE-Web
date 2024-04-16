@@ -4,8 +4,7 @@ import {
   TopNavbarContainerProps,
   CohortCardProps,
 } from '@/interfaces';
-import { products, STATIC_FILE_PATH } from '../global';
-import { routes } from '../routes';
+import { LINKS, products, STATIC_FILE_PATH } from '../global';
 import { v4 } from 'uuid';
 
 const TOP_NAVIGATION: TopNavbarContainerProps = {
@@ -26,9 +25,17 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
   links: [
     {
       id: v4(),
-      name: 'Contact us',
-      href: routes.contactUs,
-      description: 'Talk to our co-founders directly.',
+      name: 'Free Mentorship',
+      description: 'Get Free Tech Consultation',
+      href: LINKS.freeTechConsultation,
+      target: 'BLANK',
+    },
+    {
+      id: v4(),
+      name: 'Join Community',
+      description: 'Join our WhatsApp Community',
+      href: LINKS.whatsappCommunity,
+      target: 'BLANK',
     },
   ],
 };
