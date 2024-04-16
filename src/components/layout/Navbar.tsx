@@ -29,7 +29,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className='hidden items-center lg:flex lg:gap-x-4'>
-          <PopoverContainer label='Our Cohorts'>
+          <PopoverContainer label='Products'>
             <NavbarDropdownContainer />
           </PopoverContainer>
           {TOP_NAVIGATION.links.map((item) => (
@@ -65,7 +65,7 @@ const Navbar = () => {
           <div className='mt-6 flow-root'>
             <div className='divide-white-500/10 -my-6 divide-y'>
               <div className='space-y-2 py-6'>
-                <PopoverContainer label='Our Cohorts'>
+                <PopoverContainer label='Products'>
                   <NavbarDropdownContainer />
                 </PopoverContainer>
                 {TOP_NAVIGATION.links.map((item) => (

@@ -3,7 +3,7 @@ import { TOP_NAVIGATION } from '@/constant';
 const NavbarDropdownContainer = () => {
   return (
     <div className='p-2'>
-      {TOP_NAVIGATION.cohorts.map(({ name, href, description }) => {
+      {TOP_NAVIGATION.products.map(({ name, href, description }) => {
         return (
           <div
             key={name}

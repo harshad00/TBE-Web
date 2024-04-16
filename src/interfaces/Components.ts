@@ -347,6 +347,7 @@ export interface WhatWeDoForYouProps {
 export interface PopoverContainerProps {
   label: string;
   children: ReactNode;
+  panelClasses?: string;
 }
 
 export interface MicrocampInstructorProps {
