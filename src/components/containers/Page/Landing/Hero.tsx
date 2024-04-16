@@ -31,8 +31,8 @@ const LandingPageHero = () => {
           >
             <FlexContainer direction='col'>
               <SectionHeaderContainer
-                headingLevel={2}
-                heading='Tech Learning for'
+                headingLevel={3}
+                heading='Tech Education for'
                 focusText='Everyone'
               />
               <Text
@@ -46,7 +46,7 @@ const LandingPageHero = () => {
               <LinkButton
                 href={generateSectionPath({
                   basePath: router.basePath,
-                  sectionID: routes.internals.microCampRegister,
+                  sectionID: routes.internals.landing.products,
                 })}
                 className='w-full sm:w-fit'
                 buttonProps={{

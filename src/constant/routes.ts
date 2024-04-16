@@ -10,10 +10,9 @@ const routes = {
   contactUs: '/contact',
   internals: {
     landing: {
-      programs: 'programs',
+      products: 'products',
       talkToCounsellors: 'talk-to-counsellors',
     },
-    workshops: 'workshops',
   },
   404: '/404',
 };
