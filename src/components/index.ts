@@ -1,7 +1,6 @@
 import Navbar from '@/components/layout/Navbar';
 import LinkText from '@/components/common/Typography/Link';
 import Text from '@/components/common/Typography/Text';
-import ScreenReader from '@/components/common/Typography/ScreenReader';
 import ImageContainer from '@/components/common/Images/Image';
 import Logo from '@/components/common/Images/Logo';
 import Button from '@/components/common/Buttons/Button';
@@ -27,7 +26,6 @@ import ChooseTechCohort from '@/components/containers/Page/common/ChooseTechCoho
 import TestimonialCard from '@/components/containers/Cards/Items/TestimonialCard';
 import Testimonials from '@/components/containers/Cards/Testimonials';
 import Footer from '@/components/layout/Footer';
-import FooterLink from '@/components/common/Typography/FooterLink';
 import FooterLinksContainer from '@/components/containers/Page/common/FooterLinksContainer';
 import MicroCampLandingHeader from '@/components/containers/Page/Microcamp/MicroCampLandingHeader';
 import MicroCampFeatureCard from '@/components/containers/Cards/Items/MicroCampFeatureCard';
@@ -78,7 +76,6 @@ export {
   Text,
   ImageContainer as Image,
   Logo,
-  ScreenReader,
   Button,
   LinkButton,
   LandingPageHero,
@@ -100,7 +97,6 @@ export {
   TestimonialCard,
   Testimonials,
   Footer,
-  FooterLink,
   FooterLinksContainer,
   MicroCampLandingHeader,
   MicroCampFeatureCard,

@@ -8,7 +8,6 @@ import {
   LogoutButton,
   NavbarDropdownContainer,
   PopoverContainer,
-  ScreenReader,
 } from '..';
 
 const Navbar = () => {
@@ -26,7 +25,6 @@ const Navbar = () => {
             className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black'
             onClick={() => setMobileMenuOpen(true)}
           >
-            <ScreenReader text='Open main menu' />
             <Bars3Icon className='h-6 w-6' aria-hidden='true' color='black' />
           </button>
         </div>
@@ -61,7 +59,6 @@ const Navbar = () => {
               className='-m-2.5 rounded-md p-2.5 text-black'
               onClick={() => setMobileMenuOpen(false)}
             >
-              <ScreenReader text='Close menu' />
               <XMarkIcon className='h-6 w-6' aria-hidden='true' />
             </button>
           </div>
