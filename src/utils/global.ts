@@ -8,7 +8,6 @@ export const getPreFetchProps = async ({ query }: NextPageContext) => {
   let slug = '/';
 
   if (microCamp) slug += microCamp;
-  else if (workshop) slug += workshop;
 
   const seoMeta = getSEOMeta(slug as PageSlug);
 

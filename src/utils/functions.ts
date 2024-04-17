@@ -1,9 +1,3 @@
-import {
-  AuthUserType,
-  NextAuthUserType,
-  UserInLocalStorage,
-} from '@/interfaces';
-
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -51,34 +45,11 @@ const removeLocalStorageItem = (key: string) => {
   }
 };
 
-const setUserInLocalStorage = (
-  key: string,
-  user: NextAuthUserType,
-  type: AuthUserType
-) => {
-  const payload: UserInLocalStorage = {
-    user,
-    type,
-  };
-
-  setLocalStorageItem(key, payload);
-
-  return payload;
-};
-
-const getUserFromLocalStorage = (key: string) => {
-  const user = getLocalStorageItem(key) as UserInLocalStorage;
-
-  return user;
-};
-
 export {
   formatDate,
   formatTime,
   getDiscountPercentage,
   setLocalStorageItem,
   getLocalStorageItem,
-  setUserInLocalStorage,
-  getUserFromLocalStorage,
   removeLocalStorageItem,
 };
