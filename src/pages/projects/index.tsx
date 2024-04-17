@@ -30,9 +30,8 @@ const Home = ({ seoMeta }: PageProps) => {
             }}
           />
         }
-        backgroundImageUrl={`${STATIC_FILE_PATH}/tbp-hero.svg`}
+        backgroundImageUrl={`${STATIC_FILE_PATH.svg}/tbp-hero.svg`}
       />
-
       <WeGuideDifferently />
     </React.Fragment>
   );

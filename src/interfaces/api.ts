@@ -1,5 +1,3 @@
-import { BestSuitedForType, CohortLeadStatus, CohortNameType } from '.';
-
 export type APIMethodTypes = 'GET' | 'POST' | 'PATCH';
 
 export interface APIMakeRquestProps {

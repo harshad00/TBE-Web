@@ -1,5 +1,5 @@
 import { GradientContainer, Image, LinkButton, Text } from '@/components';
-import { CohortCardProps } from '@/interfaces';
+import { ProductCardProps } from '@/interfaces';
 
 const ProductCard = ({
   image,
@@ -9,7 +9,7 @@ const ProductCard = ({
   content,
   active,
   ctaText,
-}: CohortCardProps) => {
+}: ProductCardProps) => {
   return (
     <GradientContainer
       className='max-w-sm border-borderColor2'

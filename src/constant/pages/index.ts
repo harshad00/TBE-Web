@@ -2,7 +2,7 @@ import {
   TestimonialCardProps,
   WeGuideDifferentlyCardProps,
   TopNavbarContainerProps,
-  CohortCardProps,
+  ProductCardProps,
 } from '@/interfaces';
 import { LINKS, products, STATIC_FILE_PATH } from '../global';
 import { v4 } from 'uuid';
@@ -40,7 +40,7 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
   ],
 };
 
-const PRODUCTS: CohortCardProps[] = [
+const PRODUCTS: ProductCardProps[] = [
   {
     id: 'roadmaps',
     image: `${STATIC_FILE_PATH.svg}/roadmaps.svg`,
@@ -128,7 +128,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     title: `Manish Kumar`,
     content:
       'The Front-end cohort at The Boring Education transformed my web development skills. Their comprehensive curriculum and engaging teaching style made learning Front-end enjoyable and practical.',
-    image: `${STATIC_FILE_PATH}/manish-kumar-testimonial.png`,
+    image: `${STATIC_FILE_PATH.svg}/manish-kumar-testimonial.png`,
     imageAltText: `profile image`,
     work: 'Software Engineer at Infosys',
   },
@@ -136,7 +136,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     id: v4(),
     title: `Nancy Sharma`,
     content: `Thanks to The Boring Education's Front-end Cohort, my confidence in Web Dev skills has soared. Hands-on learning and supportive instructors made JavaScript accessible and rewarding.`,
-    image: `${STATIC_FILE_PATH}/nancy-sharma-testimonial.png`,
+    image: `${STATIC_FILE_PATH.svg}/nancy-sharma-testimonial.png`,
     imageAltText: `profile image`,
     work: 'Software Engineer at Cognizant',
   },
@@ -144,7 +144,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     id: v4(),
     title: `Gautom Das`,
     content: `I highly recommend The Boring Education's Front-end cohort! Clear explanations, real-world examples, and challenging projects strengthened my understanding of Front-end Engineering.`,
-    image: `${STATIC_FILE_PATH}/gautom-das-testimonial.png`,
+    image: `${STATIC_FILE_PATH.svg}/gautom-das-testimonial.png`,
     imageAltText: `profile image`,
     work: 'College Passed Out',
   },
@@ -152,7 +152,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     id: v4(),
     title: `Mohammad Sufyan`,
     content: `A fantastic tech learning platform for aspiring web developers, providing a pathway to explore and excel in this exciting career.`,
-    image: `${STATIC_FILE_PATH}/mohammad-sufyan-testimonial.png`,
+    image: `${STATIC_FILE_PATH.svg}/mohammad-sufyan-testimonial.png`,
     imageAltText: `profile image`,
     work: '12th completed',
   },
@@ -160,7 +160,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     id: v4(),
     title: `Eshan Mishra`,
     content: `I'm extremely grateful to be part of The Boring Education as a learner, acquiring valuable web development skills.`,
-    image: `${STATIC_FILE_PATH}/eshan-mishra-testimonial.png`,
+    image: `${STATIC_FILE_PATH.svg}/eshan-mishra-testimonial.png`,
     imageAltText: `profile image`,
     work: 'College Student',
   },
@@ -168,7 +168,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     id: v4(),
     title: `Kusum Sahani`,
     content: `I'm grateful to be part of The Boring Education as a learner, acquiring Front-end Engineering skills with exceptional faculty.`,
-    image: `${STATIC_FILE_PATH}/kusum-sahani-testimonial.png`,
+    image: `${STATIC_FILE_PATH.svg}/kusum-sahani-testimonial.png`,
     imageAltText: `profile image`,
     work: 'College Passed Out',
   },
@@ -176,7 +176,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     id: v4(),
     title: `Nikhil Maurya`,
     content: `The Boring workshop made UI design easy and accessible. They explained complex concepts in a simple and understandable manner.`,
-    image: `${STATIC_FILE_PATH}/nikhil-testimonial.png`,
+    image: `${STATIC_FILE_PATH.svg}/nikhil-testimonial.png`,
     imageAltText: `profile image`,
     work: 'College Student',
   },
@@ -184,7 +184,7 @@ const TESTIMONIALS: TestimonialCardProps[] = [
     id: v4(),
     title: `Satish Daraboina`,
     content: `The workshop at The Boring Education elevated my design skills. From Figma basics to creating and connecting screens, I gained hands-on experience to apply in real projects.`,
-    image: `${STATIC_FILE_PATH}/satish-testimonial.png`,
+    image: `${STATIC_FILE_PATH.svg}/satish-testimonial.png`,
     imageAltText: `profile image`,
     work: 'College Student',
   },

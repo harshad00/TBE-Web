@@ -61,6 +61,7 @@ export interface SectionHeaderProps {
   focusText: string;
   headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   className?: string;
+  flexContainerProps?: FlexContainerProps;
 }
 
 export interface CardSectionContainerProps {
@@ -192,4 +193,23 @@ export interface NavbarDropdownContainerProps {
 export interface MobileNavbarLinksContainerProps {
   title: string;
   links: TopNavbarLinkProps[];
+}
+
+export interface ProductCardProps {
+  id: string;
+  image: string;
+  imageAltText: string;
+  title: string;
+  content: string;
+  href: string;
+  active: boolean;
+  ctaText?: string;
+}
+
+export interface LandingPageHeroProps {
+  sectionHeaderProps: SectionHeaderProps;
+  primaryButton: ReactNode;
+  secondaryButton?: ReactNode;
+  backgroundImageUrl: string;
+  heroText: string;
 }
