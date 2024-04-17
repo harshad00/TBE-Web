@@ -1,5 +1,5 @@
 import { HTMLInputTypeAttribute, MouseEventHandler, ReactNode } from 'react';
-import { GetSEOMetaResponseType, SkillsProps, TopNavbarLinkProps } from '.';
+import { GetSEOMetaResponseType, TopNavbarLinkProps } from '.';
 
 export interface SectionProps {
   children: React.ReactNode;
@@ -129,10 +129,6 @@ export type GenerateSectionPathProps = {
 
 export interface SEOProps {
   seoMeta: GetSEOMetaResponseType;
-}
-
-export interface SkillsContainerProps {
-  skills: SkillsProps[];
 }
 
 export interface PillProps {

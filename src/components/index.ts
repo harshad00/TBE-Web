@@ -6,7 +6,7 @@ import Logo from '@/components/common/Images/Logo';
 import Button from '@/components/common/Buttons/Button';
 import LogoutButton from '@/components/common/Buttons/LogoutButton';
 import LinkButton from '@/components/common/Buttons/LinkButton';
-import LandingPageHero from '@/components/containers/Page/Landing/Hero';
+import LandingPageHero from '@/components/containers/Page/common/Hero';
 import Section from '@/components/layout/Section';
 import OurProducts from '@/components/containers/Cards/OurProducts';
 import ProgramCard from '@/components/containers/Cards/Items/ProductCard';

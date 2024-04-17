@@ -1,13 +1,12 @@
 import { getSEOMeta } from '@/constant';
 import { PageSlug } from '@/interfaces';
-import { NextPageContext } from 'next';
 
-export const getPreFetchProps = async ({ query }: NextPageContext) => {
-  const { workshop, microCamp } = query;
-
+export const getPreFetchProps = async ({ resolvedUrl }: any) => {
   let slug = '/';
 
-  if (microCamp) slug += microCamp;
+  if (resolvedUrl) {
+    slug = resolvedUrl;
+  }
 
   const seoMeta = getSEOMeta(slug as PageSlug);
 

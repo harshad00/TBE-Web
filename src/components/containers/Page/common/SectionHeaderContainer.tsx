@@ -8,10 +8,10 @@ const SectionHeaderContainer = ({
   className = '',
 }: SectionHeaderProps) => {
   return (
-    <FlexContainer justifyCenter={true} className='w-full'>
+    <FlexContainer justifyCenter={false} className={`w-full ${className}`}>
       <Text
         level={`h${headingLevel}`}
-        className={`heading-${headingLevel} ${className}`}
+        className={`heading-${headingLevel}`}
         textCenter={true}
       >
         {heading}
