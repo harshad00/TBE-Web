@@ -2,10 +2,11 @@ import {
   TestimonialCardProps,
   PrimaryCardProps,
   TopNavbarContainerProps,
-  ProductCardProps,
+  PrimaryCardWithCTAProps,
 } from '@/interfaces';
 import { LINKS, products, STATIC_FILE_PATH } from '../global';
 import { v4 } from 'uuid';
+import { routes } from '..';
 
 const TOP_NAVIGATION: TopNavbarContainerProps = {
   products: [
@@ -40,7 +41,7 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
   ],
 };
 
-const PRODUCTS: ProductCardProps[] = [
+const PRODUCTS: PrimaryCardWithCTAProps[] = [
   {
     id: 'roadmaps',
     image: `${STATIC_FILE_PATH.svg}/roadmaps.svg`,
@@ -88,6 +89,31 @@ const PRODUCTS: ProductCardProps[] = [
     content: products.os.description,
     href: products.os.slug,
     active: false,
+  },
+];
+
+const TBP_PROJECTS: PrimaryCardWithCTAProps[] = [
+  {
+    id: 'pharmasift-i',
+    image: `${STATIC_FILE_PATH.svg}/tbp-pharmasift-1.svg`,
+    imageAltText: 'The Boring Projects Pharmasift Part I',
+    title: 'Pharmasift Part I',
+    content:
+      'Design and Develop A Medicine App that compares Med Prices with HTML & CSS.',
+    href: routes.allProjects.pharmashiftI,
+    active: true,
+    ctaText: 'Start The Project',
+  },
+  {
+    id: 'pharmasift-ii',
+    image: `${STATIC_FILE_PATH.svg}/tbp-pharmasift-2.svg`,
+    imageAltText: 'The Boring Projects Pharmasift Part II',
+    title: 'Pharmasift Part II',
+    content:
+      'Design and Develop A Medicine App that Compares Med Prices with JavaScript',
+    href: routes.allProjects.pharmashiftII,
+    active: false,
+    ctaText: 'Start The Project',
   },
 ];
 
@@ -244,4 +270,5 @@ export {
   USP,
   TBP_FEATURES,
   MY_PREV_EXPERIENCE,
+  TBP_PROJECTS,
 };

@@ -1,6 +1,6 @@
 import { GetSEOMetaResponseType } from '@/interfaces';
 import { routes } from '../routes';
-import { products } from '..';
+import { TBP_PROJECTS, products } from '..';
 
 const commonMeta = {
   type: 'website',
@@ -36,6 +36,20 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       siteName: products.projects.label,
       description: products.projects.description,
       url: products.projects.slug,
+      ...commonMeta,
+    },
+    [`${routes.allProjects.pharmashiftI}`]: {
+      title: `${TBP_PROJECTS[0].title} | The Boring Education`,
+      siteName: TBP_PROJECTS[0].title,
+      description: TBP_PROJECTS[0].content,
+      url: routes.allProjects.pharmashiftI,
+      ...commonMeta,
+    },
+    [`${routes.allProjects.pharmashiftII}`]: {
+      title: `${TBP_PROJECTS[1].title} | The Boring Education`,
+      siteName: TBP_PROJECTS[1].title,
+      description: TBP_PROJECTS[1].content,
+      url: routes.allProjects.pharmashiftII,
       ...commonMeta,
     },
     [`${routes.contactUs}`]: {

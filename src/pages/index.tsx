@@ -1,17 +1,18 @@
 import React from 'react';
 import {
   LandingPageHero,
-  OurProducts,
   CardContainerA,
   CanYouBeAProgrammer,
   Testimonials,
   SEO,
   LinkButton,
+  CardContainerB,
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
 import {
   LINKS,
+  PRODUCTS,
   STATIC_FILE_PATH,
   USP,
   generateSectionPath,
@@ -59,7 +60,12 @@ const Home = ({ seoMeta }: PageProps) => {
         }
         backgroundImageUrl={`${STATIC_FILE_PATH.svg}/hero-image.svg`}
       />
-      <OurProducts />
+      <CardContainerB
+        heading='Our'
+        focusText='Products'
+        cards={PRODUCTS}
+        borderColour={2}
+      />
       <CanYouBeAProgrammer />
       <CardContainerA
         heading='What We Do'

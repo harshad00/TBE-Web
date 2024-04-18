@@ -38,7 +38,6 @@ const LandingPageHero = ({
                 headingLevel={3}
                 heading={heading}
                 focusText={focusText}
-                flexContainerProps={{ justifyCenter: false }}
               />
               <Text
                 level='p'
@@ -56,7 +55,7 @@ const LandingPageHero = ({
             src={backgroundImageUrl}
             className='w-64'
             fullWidth={false}
-            alt='hihi'
+            alt='landing-page-hero-image'
           />
         </FlexContainer>
       </FlexContainer>

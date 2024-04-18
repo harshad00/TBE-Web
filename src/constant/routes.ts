@@ -5,6 +5,10 @@ const routes = {
   roadmaps: '/roadmaps',
   projects: '/projects',
   projectsExplore: '/projects/explore',
+  allProjects: {
+    pharmashiftI: '/projects/pharmashift-i',
+    pharmashiftII: '/projects/pharmashift-ii',
+  },
   shiksha: '/shiksha',
   workshops: '/workshops',
   os: '/os',

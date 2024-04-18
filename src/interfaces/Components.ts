@@ -197,15 +197,16 @@ export interface MobileNavbarLinksContainerProps {
   links: TopNavbarLinkProps[];
 }
 
-export interface ProductCardProps {
+export interface PrimaryCardWithCTAProps {
   id: string;
   image: string;
   imageAltText: string;
   title: string;
   content: string;
   href: string;
-  active: boolean;
+  active?: boolean;
   ctaText?: string;
+  borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 export interface LandingPageHeroProps {
@@ -216,9 +217,17 @@ export interface LandingPageHeroProps {
   heroText: string;
 }
 
-export interface CardContainerAProps {
+interface BaseCardContainerProps {
   heading: string;
   focusText: string;
-  cards: PrimaryCardProps[];
   borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
+  subtext?: string;
+}
+
+export interface CardContainerAProps extends BaseCardContainerProps {
+  cards: PrimaryCardProps[];
+}
+
+export interface CardContainerBProps extends BaseCardContainerProps {
+  cards: PrimaryCardWithCTAProps[];
 }

@@ -1,21 +1,22 @@
 import {
   CardSectionContainer,
   FlexContainer,
+  PrimaryCardWithCTA,
   Section,
   SectionHeaderContainer,
-  PrimaryCard,
 } from '@/components';
-import { CardContainerAProps } from '@/interfaces';
+import { routes } from '@/constant';
+import { CardContainerBProps } from '@/interfaces';
 
-const CardContainerA = ({
+const CardContainerB = ({
   heading,
   focusText,
   cards,
   borderColour,
   subtext,
-}: CardContainerAProps) => {
+}: CardContainerBProps) => {
   return (
-    <Section>
+    <Section id={routes.internals.landing.products}>
       <FlexContainer direction='col'>
         <SectionHeaderContainer
           heading={heading}
@@ -23,8 +24,12 @@ const CardContainerA = ({
           subtext={subtext}
         />
         <CardSectionContainer>
-          {cards.map((item) => (
-            <PrimaryCard key={item.id} {...item} borderColour={borderColour} />
+          {cards.map((program, key) => (
+            <PrimaryCardWithCTA
+              {...program}
+              key={key}
+              borderColour={borderColour}
+            />
           ))}
         </CardSectionContainer>
       </FlexContainer>
@@ -32,4 +37,4 @@ const CardContainerA = ({
   );
 };
 
-export default CardContainerA;
+export default CardContainerB;

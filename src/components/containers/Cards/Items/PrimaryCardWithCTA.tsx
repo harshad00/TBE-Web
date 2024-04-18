@@ -1,7 +1,7 @@
 import { GradientContainer, Image, LinkButton, Text } from '@/components';
-import { ProductCardProps } from '@/interfaces';
+import { PrimaryCardWithCTAProps } from '@/interfaces';
 
-const ProductCard = ({
+const PrimaryCardWithCTA = ({
   image,
   imageAltText,
   title,
@@ -9,11 +9,14 @@ const ProductCard = ({
   content,
   active,
   ctaText,
-}: ProductCardProps) => {
+  borderColour = 4,
+}: PrimaryCardWithCTAProps) => {
+  const border = `border-borderColor${borderColour}`;
+
   return (
     <GradientContainer
-      className='max-w-sm border-borderColor2'
-      childrenClassName='p-3 h-full flex flex-col'
+      className={`max-w-sm ${border}`}
+      childrenClassName='p-2 h-full flex flex-col'
     >
       <Image
         className='m-auto w-3/5 rounded-t-lg'
@@ -44,4 +47,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default PrimaryCardWithCTA;

@@ -8,8 +8,8 @@ import LogoutButton from '@/components/common/Buttons/LogoutButton';
 import LinkButton from '@/components/common/Buttons/LinkButton';
 import LandingPageHero from '@/components/containers/Page/common/Hero';
 import Section from '@/components/layout/Section';
-import OurProducts from '@/components/containers/Cards/OurProducts';
-import ProgramCard from '@/components/containers/Cards/Items/ProductCard';
+import CardContainerB from '@/components/containers/Cards/CardContainerB';
+import PrimaryCardWithCTA from '@/components/containers/Cards/Items/PrimaryCardWithCTA';
 import PageLayout from '@/components/layout/Page';
 import SectionHeaderContainer from '@/components/containers/Page/common/SectionHeaderContainer';
 import CardSectionContainer from '@/components/containers/Page/common/CardSectionContainer';
@@ -49,8 +49,8 @@ export {
   LinkButton,
   LandingPageHero,
   Section,
-  OurProducts,
-  ProgramCard,
+  CardContainerB,
+  PrimaryCardWithCTA,
   PageLayout,
   SectionHeaderContainer,
   CardSectionContainer,

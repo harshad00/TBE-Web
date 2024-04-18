@@ -13,7 +13,7 @@ const Home = ({ seoMeta }: PageProps) => {
           heading: 'Build Projects',
           focusText: 'without Tutorials',
         }}
-        heroText='Come Out of Tutorial Hell & Enhance Your Resume with Real Life Projects.'
+        heroText='Come Out of Tutorial Hell & Build Real Life Projects.'
         primaryButton={
           <LinkButton
             href={routes.projectsExplore}
