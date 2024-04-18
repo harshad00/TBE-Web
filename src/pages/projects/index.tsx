@@ -7,7 +7,7 @@ import {
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
-import { STATIC_FILE_PATH } from '@/constant';
+import { STATIC_FILE_PATH, routes } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
   return (
@@ -21,7 +21,7 @@ const Home = ({ seoMeta }: PageProps) => {
         heroText='Come Out of Tutorial Hell & Enhance Your Resume with Real Life Projects.'
         primaryButton={
           <LinkButton
-            href='/get-started'
+            href={routes.projectsExplore}
             className='w-full sm:w-fit'
             buttonProps={{
               variant: 'PRIMARY',

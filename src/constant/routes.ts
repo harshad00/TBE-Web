@@ -4,6 +4,7 @@ const routes = {
   home: '/',
   roadmaps: '/roadmaps',
   projects: '/projects',
+  projectsExplore: '/projects/explore',
   shiksha: '/shiksha',
   workshops: '/workshops',
   os: '/os',
