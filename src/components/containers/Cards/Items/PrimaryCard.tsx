@@ -1,14 +1,17 @@
 import { GradientContainer, Image, Text } from '@/components';
-import { WeGuideDifferentlyCardProps } from '@/interfaces';
+import { PrimaryCardProps } from '@/interfaces';
 
-const WeGuideDifferentlyCard = ({
+const PrimaryCard = ({
   image,
   imageAltText,
   title,
   content,
-}: WeGuideDifferentlyCardProps) => {
+  borderColour = 4,
+}: PrimaryCardProps) => {
+  const border = `border-borderColor${borderColour}`;
+
   return (
-    <GradientContainer className='max-w-sm border-borderColor5'>
+    <GradientContainer className={`max-w-sm ${border}`}>
       <Image
         className='h-40 w-48'
         src={`${image}`}
@@ -27,4 +30,4 @@ const WeGuideDifferentlyCard = ({
   );
 };
 
-export default WeGuideDifferentlyCard;
+export default PrimaryCard;

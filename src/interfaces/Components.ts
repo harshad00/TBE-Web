@@ -78,12 +78,13 @@ export interface GradientContainerProps {
   childrenClassName?: string;
 }
 
-export interface WeGuideDifferentlyCardProps {
+export interface PrimaryCardProps {
   id?: string;
   image: string;
   imageAltText: string;
   title: string;
   content: string;
+  borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 export interface FlexContainerProps {
@@ -212,4 +213,11 @@ export interface LandingPageHeroProps {
   secondaryButton?: ReactNode;
   backgroundImageUrl: string;
   heroText: string;
+}
+
+export interface CardContainerAProps {
+  heading: string;
+  focusText: string;
+  cards: PrimaryCardProps[];
+  borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
 }

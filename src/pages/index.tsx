@@ -2,7 +2,7 @@ import React from 'react';
 import {
   LandingPageHero,
   OurProducts,
-  WeGuideDifferently,
+  CardContainerA,
   CanYouBeAProgrammer,
   Testimonials,
   SEO,
@@ -13,6 +13,7 @@ import { getPreFetchProps } from '@/utils';
 import {
   LINKS,
   STATIC_FILE_PATH,
+  USP,
   generateSectionPath,
   routes,
 } from '@/constant';
@@ -56,11 +57,15 @@ const Home = ({ seoMeta }: PageProps) => {
             target='BLANK'
           />
         }
-        backgroundImageUrl={`${STATIC_FILE_PATH.svg}/tbp-hero.svg`}
+        backgroundImageUrl={`${STATIC_FILE_PATH.svg}/hero-image.svg`}
       />
       <OurProducts />
       <CanYouBeAProgrammer />
-      <WeGuideDifferently />
+      <CardContainerA
+        heading='What We Do'
+        focusText='Differently'
+        cards={USP}
+      />
       <Testimonials />
     </React.Fragment>
   );

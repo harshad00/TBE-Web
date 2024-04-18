@@ -14,8 +14,8 @@ import PageLayout from '@/components/layout/Page';
 import SectionHeaderContainer from '@/components/containers/Page/common/SectionHeaderContainer';
 import CardSectionContainer from '@/components/containers/Page/common/CardSectionContainer';
 import GradientContainer from '@/components/containers/Page/common/GradientContainer';
-import WeGuideDifferentlyCard from '@/components/containers/Cards/Items/WeGuideDifferentlyCard';
-import WeGuideDifferently from '@/components/containers/Cards/WeGuideDifferently';
+import PrimaryCard from '@/components/containers/Cards/Items/PrimaryCard';
+import CardContainerA from '@/components/containers/Cards/CardContainerA';
 import FlexContainer from '@/components/containers/Page/common/FlexContainer';
 import CanYouBeAProgrammer from '@/components/containers/Page/Landing/CanYouBeAProgrammer';
 import TestimonialCard from '@/components/containers/Cards/Items/TestimonialCard';
@@ -55,8 +55,8 @@ export {
   SectionHeaderContainer,
   CardSectionContainer,
   GradientContainer,
-  WeGuideDifferentlyCard,
-  WeGuideDifferently,
+  PrimaryCard,
+  CardContainerA,
   FlexContainer,
   CanYouBeAProgrammer,
   TestimonialCard,

@@ -1,6 +1,6 @@
 import {
   TestimonialCardProps,
-  WeGuideDifferentlyCardProps,
+  PrimaryCardProps,
   TopNavbarContainerProps,
   ProductCardProps,
 } from '@/interfaces';
@@ -91,7 +91,7 @@ const PRODUCTS: ProductCardProps[] = [
   },
 ];
 
-const USP: WeGuideDifferentlyCardProps[] = [
+const USP: PrimaryCardProps[] = [
   {
     id: v4(),
     title: `Personalised Roadmap`,
@@ -118,6 +118,30 @@ const USP: WeGuideDifferentlyCardProps[] = [
     title: `Free Mentorship Sessions`,
     content: `We Provide Free Mentorship Sessions. Take Tech Guidance or Get Your Resume Reviewed.`,
     image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
+    imageAltText: `doubt session`,
+  },
+];
+
+const TBP_FEATURES: PrimaryCardProps[] = [
+  {
+    id: v4(),
+    title: `Build Real Life Projects`,
+    content: `How about Ditching Clone Projects and Build Something Meaningful.`,
+    image: `${STATIC_FILE_PATH.svg}/mentorship.svg`,
+    imageAltText: `mentorship`,
+  },
+  {
+    id: v4(),
+    title: `Free Code Review`,
+    content: `Complete the Project and We’ll review your code in 1:1 Sessions.`,
+    image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
+    imageAltText: `peer learning`,
+  },
+  {
+    id: v4(),
+    title: `Book Free Mentorship`,
+    content: `Discuss Every issue you’re facing in 1:1 Mentorship Sessions.`,
+    image: `${STATIC_FILE_PATH.svg}/workshops.svg`,
     imageAltText: `doubt session`,
   },
 ];
@@ -213,4 +237,11 @@ const MY_PREV_EXPERIENCE = [
   },
 ];
 
-export { PRODUCTS, TESTIMONIALS, TOP_NAVIGATION, USP, MY_PREV_EXPERIENCE };
+export {
+  PRODUCTS,
+  TESTIMONIALS,
+  TOP_NAVIGATION,
+  USP,
+  TBP_FEATURES,
+  MY_PREV_EXPERIENCE,
+};

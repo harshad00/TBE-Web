@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  LandingPageHero,
-  WeGuideDifferently,
-  SEO,
-  LinkButton,
-} from '@/components';
+import { LandingPageHero, CardContainerA, SEO, LinkButton } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
-import { STATIC_FILE_PATH, routes } from '@/constant';
+import { STATIC_FILE_PATH, TBP_FEATURES, routes } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
   return (
@@ -32,7 +27,12 @@ const Home = ({ seoMeta }: PageProps) => {
         }
         backgroundImageUrl={`${STATIC_FILE_PATH.svg}/tbp-hero.svg`}
       />
-      <WeGuideDifferently />
+      <CardContainerA
+        heading='What We Do'
+        focusText='Differently'
+        cards={TBP_FEATURES}
+        borderColour={4}
+      />
     </React.Fragment>
   );
 };
