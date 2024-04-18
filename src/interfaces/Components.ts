@@ -62,6 +62,7 @@ export interface SectionHeaderProps {
   headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   className?: string;
   flexContainerProps?: FlexContainerProps;
+  subtext?: string;
 }
 
 export interface CardSectionContainerProps {

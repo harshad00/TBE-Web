@@ -7,9 +7,14 @@ const SectionHeaderContainer = ({
   headingLevel = 4,
   className = '',
   flexContainerProps,
+  subtext,
 }: SectionHeaderProps) => {
   return (
-    <FlexContainer className={`w-full ${className}`} {...flexContainerProps}>
+    <FlexContainer
+      className={`w-full ${className}`}
+      {...flexContainerProps}
+      direction='col'
+    >
       <Text
         level={`h${headingLevel}`}
         className={`heading-${headingLevel}`}
@@ -24,6 +29,15 @@ const SectionHeaderContainer = ({
           &nbsp;{focusText}
         </Text>
       </Text>
+      {subtext && (
+        <Text
+          level='span'
+          className='strong-text text-greyDark'
+          textCenter={true}
+        >
+          {subtext}
+        </Text>
+      )}
     </FlexContainer>
   );
 };
