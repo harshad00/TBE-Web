@@ -32,10 +32,20 @@ export interface ClientAPIResponse {
 
 export interface APIResponseType extends ClientAPIResponse {
   message?: string;
-  error?: string;
+  error?: any;
 }
 
 export type DatabaseQueryResponseType = {
   data?: any;
   error?: any;
 };
+
+export interface AddProjectRequestPayloadProps {
+  name: string;
+  meta: string;
+}
+
+export interface UpdateProjectRequestPayloadProps
+  extends AddProjectRequestPayloadProps {
+  id: string;
+}

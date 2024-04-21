@@ -1,2 +1,7 @@
-import connectToDatabase from './connect';
-export { connectToDatabase };
+// Models
+import Project from './models/Project';
+
+export { Project };
+
+// Query
+export * from './query/Project';

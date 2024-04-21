@@ -1,14 +1,18 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { connectToDatabase } from '@/database';
+import type { NextApiResponse } from 'next';
+import { MONGODB_URI, apiStatusCodes } from '@/constant';
+import { sendAPIResponse } from '@/utils';
+import mongoose from 'mongoose';
 
 // Connect to DB
-const connectDB = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-  next: () => void
-) => {
-  await connectToDatabase();
-  next();
+const connectDB = async (res: NextApiResponse) => {
+  try {
+    await mongoose.connect(MONGODB_URI);
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    return res
+      .status(apiStatusCodes.INTERNAL_SERVER_ERROR)
+      .json(sendAPIResponse({ status: false, message: 'DB error', error }));
+  }
 };
 
 export { connectDB };

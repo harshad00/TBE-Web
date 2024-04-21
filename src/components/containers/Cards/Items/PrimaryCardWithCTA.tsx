@@ -10,6 +10,7 @@ const PrimaryCardWithCTA = ({
   active,
   ctaText,
   borderColour = 4,
+  target,
 }: PrimaryCardWithCTAProps) => {
   const border = `border-borderColor${borderColour}`;
 
@@ -39,7 +40,7 @@ const PrimaryCardWithCTA = ({
             active,
             className: `${!active && 'bg-secondary'}`,
           }}
-          target='BLANK'
+          target={target}
           active={active}
         />
       </div>

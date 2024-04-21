@@ -207,6 +207,7 @@ export interface PrimaryCardWithCTAProps {
   active?: boolean;
   ctaText?: string;
   borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
+  target?: 'BLANK';
 }
 
 export interface LandingPageHeroProps {
