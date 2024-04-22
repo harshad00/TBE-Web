@@ -16,7 +16,7 @@ const PrimaryCardWithCTA = ({
 
   return (
     <GradientContainer
-      className={`max-w-sm ${border}`}
+      className={`max-w-md ${border} flex-1`}
       childrenClassName='p-2 h-full flex flex-col'
     >
       <Image

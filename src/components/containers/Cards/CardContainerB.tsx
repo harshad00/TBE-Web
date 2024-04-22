@@ -17,7 +17,7 @@ const CardContainerB = ({
 }: CardContainerBProps) => {
   return (
     <Section id={routes.internals.landing.products}>
-      <FlexContainer direction='col'>
+      <FlexContainer direction='col' className='gap-4'>
         <SectionHeaderContainer
           heading={heading}
           focusText={focusText}

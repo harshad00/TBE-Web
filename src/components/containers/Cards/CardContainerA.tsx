@@ -16,7 +16,7 @@ const CardContainerA = ({
 }: CardContainerAProps) => {
   return (
     <Section>
-      <FlexContainer direction='col'>
+      <FlexContainer direction='col' className='gap-4'>
         <SectionHeaderContainer
           heading={heading}
           focusText={focusText}
