@@ -28,6 +28,7 @@ const projectSchema: Schema<ProjectDocumentModel> =
     name: { type: String, required: true },
     description: { type: String, required: true },
     coverImageURL: { type: String, required: true },
+    slug: { type: String, required: true },
     meta: { type: String },
     sections: [sectionSchema],
     requiredSkills: [{ type: String, enum: PROJECT_SKILLS, required: true }],

@@ -42,6 +42,7 @@ export type DatabaseQueryResponseType = {
 
 export interface AddProjectRequestPayloadProps {
   name: string;
+  slug: string;
   description: string;
   coverImageURL: string;
   requiredSkills: SkillsType[];

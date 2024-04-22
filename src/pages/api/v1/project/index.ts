@@ -9,6 +9,7 @@ import {
 import {
   addAProjectToDB,
   deleteProjectFromDB,
+  getProjectFromDB,
   getProjectsFromDB,
   updateProjectInDB,
 } from '@/database';
@@ -38,14 +39,28 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 const handleAddProject = async (req: NextApiRequest, res: NextApiResponse) => {
   const {
     name,
+    slug,
     description,
     coverImageURL,
     requiredSkills,
     roadmap,
     difficultyLevel,
   } = req.body as AddProjectRequestPayloadProps;
+
+  const { error: projectNotFound } = await getProjectFromDB(slug);
+
+  if (!projectNotFound) {
+    return res.status(apiStatusCodes.BAD_REQUEST).json(
+      sendAPIResponse({
+        status: false,
+        message: 'Project already exists',
+      })
+    );
+  }
+
   const { data, error } = await addAProjectToDB({
     name,
+    slug,
     description,
     coverImageURL,
     requiredSkills,

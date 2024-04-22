@@ -5,8 +5,9 @@ import {
 } from '@/interfaces';
 import { Project } from '..';
 
-export const addAProjectToDB = async ({
+const addAProjectToDB = async ({
   name,
+  slug,
   description,
   coverImageURL,
   requiredSkills,
@@ -16,6 +17,7 @@ export const addAProjectToDB = async ({
   try {
     const project = new Project({
       name,
+      slug,
       description,
       coverImageURL,
       requiredSkills,
@@ -35,17 +37,32 @@ export const addAProjectToDB = async ({
   }
 };
 
-export const getProjectsFromDB =
-  async (): Promise<DatabaseQueryResponseType> => {
-    try {
-      const projects = await Project.find();
-      return { data: projects };
-    } catch (error) {
-      return { error };
-    }
-  };
+const getProjectsFromDB = async (): Promise<DatabaseQueryResponseType> => {
+  try {
+    const projects = await Project.find();
+    return { data: projects };
+  } catch (error) {
+    return { error };
+  }
+};
 
-export const updateProjectInDB = async ({
+const getProjectFromDB = async (
+  slug: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const project = await Project.findOne({ slug });
+
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    return { data: project };
+  } catch (error) {
+    return { error };
+  }
+};
+
+const updateProjectInDB = async ({
   id,
   name,
   meta,
@@ -62,7 +79,7 @@ export const updateProjectInDB = async ({
   }
 };
 
-export const deleteProjectFromDB = async (
+const deleteProjectFromDB = async (
   projectId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
@@ -74,4 +91,12 @@ export const deleteProjectFromDB = async (
   } catch (error) {
     return { error };
   }
+};
+
+export {
+  addAProjectToDB,
+  getProjectsFromDB,
+  getProjectFromDB,
+  updateProjectInDB,
+  deleteProjectFromDB,
 };

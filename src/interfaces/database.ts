@@ -15,6 +15,7 @@ export interface ProjectSection {
 export interface ProjectDocumentModel extends Document {
   name: string;
   meta: string;
+  slug: string;
   description: string;
   coverImageURL: string;
   sections: ProjectSection[];
