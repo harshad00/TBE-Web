@@ -22,4 +22,5 @@ export interface ProjectDocumentModel extends Document {
   requiredSkills: SkillsType[];
   roadmap: RoadmapsType;
   difficultyLevel: DifficultyType;
+  isActive: boolean;
 }

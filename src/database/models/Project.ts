@@ -38,6 +38,7 @@ const projectSchema: Schema<ProjectDocumentModel> =
       enum: DIFFICULTY_LEVEL,
       required: true,
     },
+    isActive: { type: Boolean, default: false },
   });
 
 const Project: Model<ProjectDocumentModel> =
