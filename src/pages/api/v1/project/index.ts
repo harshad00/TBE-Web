@@ -36,8 +36,22 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const handleAddProject = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { name, meta } = req.body as AddProjectRequestPayloadProps;
-  const { data, error } = await addAProjectToDB({ name, meta });
+  const {
+    name,
+    description,
+    coverImageURL,
+    requiredSkills,
+    roadmap,
+    difficultyLevel,
+  } = req.body as AddProjectRequestPayloadProps;
+  const { data, error } = await addAProjectToDB({
+    name,
+    description,
+    coverImageURL,
+    requiredSkills,
+    roadmap,
+    difficultyLevel,
+  });
 
   if (error) {
     return res.status(apiStatusCodes.BAD_REQUEST).json(

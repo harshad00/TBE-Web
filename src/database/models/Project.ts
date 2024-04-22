@@ -1,4 +1,9 @@
-import { databaseModels } from '@/constant';
+import {
+  DIFFICULTY_LEVEL,
+  PROJECT_SKILLS,
+  ROADMAPS,
+  databaseModels,
+} from '@/constant';
 import {
   ProjectChapter,
   ProjectDocumentModel,
@@ -21,8 +26,17 @@ const sectionSchema: Schema<ProjectSection> = new Schema({
 const projectSchema: Schema<ProjectDocumentModel> =
   new Schema<ProjectDocumentModel>({
     name: { type: String, required: true },
-    meta: { type: String, required: true },
+    description: { type: String, required: true },
+    coverImageURL: { type: String, required: true },
+    meta: { type: String },
     sections: [sectionSchema],
+    requiredSkills: [{ type: String, enum: PROJECT_SKILLS, required: true }],
+    roadmap: { type: String, enum: ROADMAPS, required: true },
+    difficultyLevel: {
+      type: String,
+      enum: DIFFICULTY_LEVEL,
+      required: true,
+    },
   });
 
 const Project: Model<ProjectDocumentModel> =

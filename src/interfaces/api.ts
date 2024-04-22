@@ -42,10 +42,31 @@ export type DatabaseQueryResponseType = {
 
 export interface AddProjectRequestPayloadProps {
   name: string;
+  description: string;
+  coverImageURL: string;
+  requiredSkills: SkillsType[];
+  roadmap: RoadmapsType;
+  difficultyLevel: DifficultyType;
+}
+
+export interface UpdateProjectRequestPayloadProps {
+  id: string;
+  name: string;
   meta: string;
 }
 
-export interface UpdateProjectRequestPayloadProps
-  extends AddProjectRequestPayloadProps {
-  id: string;
-}
+export type SkillsType =
+  | 'HTML'
+  | 'CSS'
+  | 'JavaScript'
+  | 'React'
+  | 'TypeScript'
+  | 'NodeJS'
+  | 'ExpressJS'
+  | 'MongoDB'
+  | 'TailwindCSS'
+  | 'NextJS';
+
+export type RoadmapsType = 'Frontend' | 'Backend' | 'Fullstack';
+
+export type DifficultyType = 'Beginner' | 'Intermediate' | 'Advanced';

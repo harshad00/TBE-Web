@@ -7,12 +7,20 @@ import { Project } from '..';
 
 export const addAProjectToDB = async ({
   name,
-  meta,
+  description,
+  coverImageURL,
+  requiredSkills,
+  roadmap,
+  difficultyLevel,
 }: AddProjectRequestPayloadProps): Promise<DatabaseQueryResponseType> => {
   try {
     const project = new Project({
       name,
-      meta,
+      description,
+      coverImageURL,
+      requiredSkills,
+      roadmap,
+      difficultyLevel,
     });
 
     try {
