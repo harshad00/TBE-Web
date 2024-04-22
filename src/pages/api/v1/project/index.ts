@@ -151,8 +151,8 @@ const handleDeleteProject = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const { projectId } = req.query;
-  const { data, error } = await deleteProjectFromDB(projectId as string);
+  const { slug } = req.body;
+  const { data, error } = await deleteProjectFromDB(slug as string);
 
   if (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(

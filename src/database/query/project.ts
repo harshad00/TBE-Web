@@ -84,10 +84,10 @@ const updateProjectInDB = async ({
 };
 
 const deleteProjectFromDB = async (
-  projectId: string
+  slug: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const deletedProject = await Project.findByIdAndDelete(projectId);
+    const deletedProject = await Project.findOneAndDelete({ slug });
     if (!deletedProject) {
       return { error: 'Project not found' };
     }
