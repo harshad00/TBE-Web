@@ -33,7 +33,7 @@ const products: ProductDataProps = {
   },
   workshops: {
     label: 'The Boring Workshops',
-    slug: `/workshops`,
+    slug: `https://www.youtube.com/playlist?list=PLOPyGCrLiI_5JPAbIsv1T129b5LqdurTc`,
     description: 'Learn Skills with Hands-on Workshops',
   },
   os: {

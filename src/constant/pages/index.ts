@@ -43,16 +43,6 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
 
 const PRODUCTS: PrimaryCardWithCTAProps[] = [
   {
-    id: 'roadmaps',
-    image: `${STATIC_FILE_PATH.svg}/roadmaps.svg`,
-    imageAltText: products.roadmaps.label,
-    title: products.roadmaps.label,
-    content: products.roadmaps.description,
-    href: products.roadmaps.slug,
-    active: true,
-    ctaText: 'Explore Roadmaps',
-  },
-  {
     id: 'projects',
     image: `${STATIC_FILE_PATH.svg}/projects.svg`,
     imageAltText: products.projects.label,
@@ -71,6 +61,17 @@ const PRODUCTS: PrimaryCardWithCTAProps[] = [
     href: products.workshops.slug,
     active: true,
     ctaText: 'Explore Workshops',
+    target: 'BLANK',
+  },
+  {
+    id: 'roadmaps',
+    image: `${STATIC_FILE_PATH.svg}/roadmaps.svg`,
+    imageAltText: products.roadmaps.label,
+    title: products.roadmaps.label,
+    content: products.roadmaps.description,
+    href: products.roadmaps.slug,
+    active: false,
+    ctaText: 'Explore Roadmaps',
   },
   {
     id: 'shiksha',

@@ -35,7 +35,7 @@ export type ProductLabelType =
 export interface ProductDataProps {
   [key: string]: {
     label: ProductLabelType;
-    slug: PageSlug;
+    slug: string;
     description: string;
   };
 }
