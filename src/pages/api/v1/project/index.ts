@@ -22,7 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return handleAddProject(req, res);
     case 'GET':
       return handleGetProjects(req, res);
-    case 'PUT':
+    case 'PATCH':
       return handleUpdateProject(req, res);
     case 'DELETE':
       return handleDeleteProject(req, res);
@@ -113,8 +113,20 @@ const handleUpdateProject = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const { id, name, meta } = req.body as UpdateProjectRequestPayloadProps;
-  const { data, error } = await updateProjectInDB({ id, name, meta });
+  const { slug, fieldsToUpdate } = req.body as UpdateProjectRequestPayloadProps;
+
+  const { error: projectNotFound } = await getProjectFromDB(slug);
+
+  if (projectNotFound) {
+    return res.status(apiStatusCodes.BAD_REQUEST).json(
+      sendAPIResponse({
+        status: false,
+        message: "Project doesn't exists",
+      })
+    );
+  }
+
+  const { data, error } = await updateProjectInDB({ slug, fieldsToUpdate });
 
   if (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(

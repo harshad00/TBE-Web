@@ -63,16 +63,20 @@ const getProjectFromDB = async (
 };
 
 const updateProjectInDB = async ({
-  id,
-  name,
-  meta,
+  slug,
+  fieldsToUpdate,
 }: UpdateProjectRequestPayloadProps): Promise<DatabaseQueryResponseType> => {
   try {
-    const updatedProject = await Project.findByIdAndUpdate(
-      id,
-      { name, meta },
+    const updatedProject = await Project.findOneAndUpdate(
+      { slug },
+      { $set: fieldsToUpdate },
       { new: true }
     );
+
+    if (!updatedProject) {
+      return { error: 'Project not found' };
+    }
+
     return { data: updatedProject };
   } catch (error) {
     return { error };

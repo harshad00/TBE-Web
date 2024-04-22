@@ -51,9 +51,16 @@ export interface AddProjectRequestPayloadProps {
 }
 
 export interface UpdateProjectRequestPayloadProps {
-  id: string;
-  name: string;
-  meta: string;
+  fieldsToUpdate: {
+    name?: string;
+    meta?: string;
+    description?: string;
+    coverImageURL?: string;
+    requiredSkills?: SkillsType[];
+    roadmap?: RoadmapsType;
+    difficultyLevel?: DifficultyType;
+  };
+  slug: string;
 }
 
 export type SkillsType =
