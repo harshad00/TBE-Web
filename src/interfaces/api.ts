@@ -64,6 +64,11 @@ export interface UpateSectionRequestPayloadProps {
   updatedSectionName: string;
 }
 
+export interface DeleteSectionRequestPayloadProps {
+  projectId: string;
+  sectionId: string;
+}
+
 export interface UpdateProjectRequestPayloadProps {
   fieldsToUpdate: {
     name?: string;

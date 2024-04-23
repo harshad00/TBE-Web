@@ -4,6 +4,7 @@ import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import {
   addSectionToProjectInDB,
+  deleteSectionFromProjectInDB,
   getSectionsFromProjectInDB,
   updateSectionInProjectInDB,
 } from '@/database';
@@ -26,6 +27,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return handleGetSections(res, projectId);
     case 'PATCH':
       return handleUpdateSection(req, res, projectId);
+    case 'DELETE':
+      return handleDeleteSection(req, res, projectId);
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
@@ -152,6 +155,46 @@ const handleUpdateSection = async (
       sendAPIResponse({
         status: false,
         message: 'Error updating section',
+        error,
+      })
+    );
+  }
+};
+
+const handleDeleteSection = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  projectId: string
+) => {
+  const { sectionId } = req.body as UpateSectionRequestPayloadProps;
+
+  try {
+    const { error } = await deleteSectionFromProjectInDB({
+      projectId,
+      sectionId,
+    });
+
+    if (error) {
+      return res.status(apiStatusCodes.NOT_FOUND).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Error deleting section',
+          error,
+        })
+      );
+    }
+
+    return res.status(apiStatusCodes.OKAY).json(
+      sendAPIResponse({
+        status: true,
+        message: 'Section deleted successfully',
+      })
+    );
+  } catch (error) {
+    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+      sendAPIResponse({
+        status: false,
+        message: 'Error deleting section',
         error,
       })
     );

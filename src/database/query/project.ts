@@ -2,6 +2,7 @@ import {
   AddProjectRequestPayloadProps,
   AddSectionRequestPayloadProps,
   DatabaseQueryResponseType,
+  DeleteSectionRequestPayloadProps,
   UpateSectionRequestPayloadProps,
   UpdateProjectRequestPayloadProps,
 } from '@/interfaces';
@@ -187,6 +188,35 @@ const updateSectionInProjectInDB = async ({
   }
 };
 
+const deleteSectionFromProjectInDB = async ({
+  projectId,
+  sectionId,
+}: DeleteSectionRequestPayloadProps): Promise<DatabaseQueryResponseType> => {
+  try {
+    const project = await Project.findById(projectId);
+
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    const sectionIndex = project.sections.findIndex(
+      (section) => section.sectionId === sectionId
+    );
+
+    if (sectionIndex === -1) {
+      return { error: 'Section not found' };
+    }
+
+    project.sections.splice(sectionIndex, 1);
+
+    await project.save();
+
+    return {};
+  } catch (error) {
+    return { error: 'Error deleting section' };
+  }
+};
+
 export {
   addAProjectToDB,
   getProjectsFromDB,
@@ -197,4 +227,5 @@ export {
   addSectionToProjectInDB,
   getSectionsFromProjectInDB,
   updateSectionInProjectInDB,
+  deleteSectionFromProjectInDB,
 };
