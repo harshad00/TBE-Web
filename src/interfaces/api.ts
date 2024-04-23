@@ -53,8 +53,15 @@ export interface AddProjectRequestPayloadProps {
 }
 
 export interface AddSectionRequestPayloadProps {
+  sectionId: string;
   sectionName: string;
   chapters: ProjectChapter[];
+}
+
+export interface UpateSectionRequestPayloadProps {
+  projectId: string;
+  sectionId: string;
+  updatedSectionName: string;
 }
 
 export interface UpdateProjectRequestPayloadProps {

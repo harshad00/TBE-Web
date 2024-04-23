@@ -2,7 +2,7 @@ import {
   AddProjectRequestPayloadProps,
   AddSectionRequestPayloadProps,
   DatabaseQueryResponseType,
-  ProjectDocumentModel,
+  UpateSectionRequestPayloadProps,
   UpdateProjectRequestPayloadProps,
 } from '@/interfaces';
 import { Project } from '@/database';
@@ -29,8 +29,8 @@ const addAProjectToDB = async ({
 
     try {
       await project.save();
-    } catch (error: any) {
-      return { error: error.message };
+    } catch (error) {
+      return { error };
     }
 
     return { data: project };
@@ -115,14 +115,14 @@ const deleteProjectFromDB = async (
   }
 };
 
-export const addSectionToProjectInDB = async (
+const addSectionToProjectInDB = async (
   projectId: string,
   sectionData: AddSectionRequestPayloadProps
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const { data: project, error } = await getProjectByIDFromDB(projectId);
+    const project = await Project.findOne({ _id: projectId });
 
-    if (error) {
+    if (!project) {
       return { error: 'Project not found' };
     }
 
@@ -136,6 +136,57 @@ export const addSectionToProjectInDB = async (
   }
 };
 
+const getSectionsFromProjectInDB = async (
+  projectId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const project = await Project.findOne({ _id: projectId });
+
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    return { data: project.sections };
+  } catch (error) {
+    return { error: 'Section not fetched' };
+  }
+};
+
+const updateSectionInProjectInDB = async ({
+  projectId,
+  sectionId,
+  updatedSectionName,
+}: UpateSectionRequestPayloadProps): Promise<DatabaseQueryResponseType> => {
+  try {
+    const project = await Project.findOne({ _id: projectId });
+
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    const section = project.sections.find(
+      (section) => section.sectionId === sectionId
+    );
+
+    if (!section) {
+      return { error: 'Section not found' };
+    }
+
+    section.sectionName = updatedSectionName;
+
+    await project.save();
+
+    // Find index of the updated section
+    const updatedSectionIndex = project.sections.findIndex(
+      (section) => section.sectionId === sectionId
+    );
+
+    return { data: project.sections[updatedSectionIndex] };
+  } catch (error) {
+    return { error: 'Error updating section' };
+  }
+};
+
 export {
   addAProjectToDB,
   getProjectsFromDB,
@@ -143,4 +194,7 @@ export {
   updateProjectInDB,
   deleteProjectFromDB,
   getProjectByIDFromDB,
+  addSectionToProjectInDB,
+  getSectionsFromProjectInDB,
+  updateSectionInProjectInDB,
 };

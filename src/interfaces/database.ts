@@ -8,6 +8,7 @@ export interface ProjectChapter {
 }
 
 export interface ProjectSection {
+  sectionId: string;
   sectionName: string;
   chapters: ProjectChapter[];
 }

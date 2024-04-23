@@ -12,16 +12,23 @@ import {
 import { Model, Schema, models, model } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
-const chapterSchema: Schema<ProjectChapter> = new Schema({
-  chapterId: { type: String, default: uuidv4 },
-  chapterName: { type: String, required: true },
-  content: { type: String, required: true },
-});
+const chapterSchema: Schema<ProjectChapter> = new Schema(
+  {
+    chapterId: { type: String, default: uuidv4 },
+    chapterName: { type: String, required: true },
+    content: { type: String, required: true },
+  },
+  { _id: false }
+);
 
-const sectionSchema: Schema<ProjectSection> = new Schema({
-  sectionName: { type: String, required: true },
-  chapters: [chapterSchema],
-});
+const sectionSchema: Schema<ProjectSection> = new Schema(
+  {
+    sectionId: { type: String, required: true },
+    sectionName: { type: String, required: true },
+    chapters: [chapterSchema],
+  },
+  { _id: false }
+);
 
 const projectSchema: Schema<ProjectDocumentModel> =
   new Schema<ProjectDocumentModel>({
