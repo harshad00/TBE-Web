@@ -3,7 +3,7 @@ import {
   DatabaseQueryResponseType,
   UpdateProjectRequestPayloadProps,
 } from '@/interfaces';
-import { Project } from '..';
+import { Project } from '@/database';
 
 const addAProjectToDB = async ({
   name,
@@ -46,11 +46,27 @@ const getProjectsFromDB = async (): Promise<DatabaseQueryResponseType> => {
   }
 };
 
-const getProjectFromDB = async (
+const getProjectBySlugFromDB = async (
   slug: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
     const project = await Project.findOne({ slug });
+
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    return { data: project };
+  } catch (error) {
+    return { error };
+  }
+};
+
+const getProjectByIDFromDB = async (
+  projectId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const project = await Project.findOne({ _id: projectId });
 
     if (!project) {
       return { error: 'Project not found' };
@@ -100,7 +116,8 @@ const deleteProjectFromDB = async (
 export {
   addAProjectToDB,
   getProjectsFromDB,
-  getProjectFromDB,
+  getProjectBySlugFromDB,
   updateProjectInDB,
   deleteProjectFromDB,
+  getProjectByIDFromDB,
 };

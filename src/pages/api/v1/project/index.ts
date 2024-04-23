@@ -9,7 +9,7 @@ import {
 import {
   addAProjectToDB,
   deleteProjectFromDB,
-  getProjectFromDB,
+  getProjectBySlugFromDB,
   getProjectsFromDB,
   updateProjectInDB,
 } from '@/database';
@@ -47,7 +47,7 @@ const handleAddProject = async (req: NextApiRequest, res: NextApiResponse) => {
     difficultyLevel,
   } = req.body as AddProjectRequestPayloadProps;
 
-  const { error: projectNotFound } = await getProjectFromDB(slug);
+  const { error: projectNotFound } = await getProjectBySlugFromDB(slug);
 
   if (!projectNotFound) {
     return res.status(apiStatusCodes.BAD_REQUEST).json(
@@ -115,7 +115,7 @@ const handleUpdateProject = async (
 ) => {
   const { slug, fieldsToUpdate } = req.body as UpdateProjectRequestPayloadProps;
 
-  const { error: projectNotFound } = await getProjectFromDB(slug);
+  const { error: projectNotFound } = await getProjectBySlugFromDB(slug);
 
   if (projectNotFound) {
     return res.status(apiStatusCodes.BAD_REQUEST).json(
