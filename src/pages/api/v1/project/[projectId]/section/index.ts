@@ -4,7 +4,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { addSectionToProject } from '@/database';
+import { addSectionToProjectInDB } from '@/database';
+import { AddSectionRequestPayloadProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
@@ -30,40 +31,40 @@ const handleAddSection = async (
   res: NextApiResponse,
   projectId: string
 ) => {
-  const { sectionName, chapters } = req.body;
+  const sectionData = req.body as AddSectionRequestPayloadProps;
 
-  if (!sectionName || !chapters || !Array.isArray(chapters)) {
-    return res.status(apiStatusCodes.BAD_REQUEST).json(
+  try {
+    const { data, error } = await addSectionToProjectInDB(
+      projectId,
+      sectionData
+    );
+
+    if (error) {
+      return res.status(apiStatusCodes.NOT_FOUND).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Error fetching project',
+          error: error.message,
+        })
+      );
+    }
+
+    return res.status(apiStatusCodes.RESOURCE_CREATED).json(
+      sendAPIResponse({
+        status: true,
+        message: 'Section Added Successfully',
+        data,
+      })
+    );
+  } catch (error) {
+    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        message: 'Invalid request body',
+        message: 'Error fetching project',
+        error,
       })
     );
   }
-
-  const sectionData = {
-    sectionName,
-    chapters,
-  };
-
-  const project = await addSectionToProject(projectId, sectionData);
-
-  if (!project) {
-    return res.status(apiStatusCodes.NOT_FOUND).json(
-      sendAPIResponse({
-        status: false,
-        message: 'Project not found',
-      })
-    );
-  }
-
-  return res.status(apiStatusCodes.OKAY).json(
-    sendAPIResponse({
-      status: true,
-      message: 'Section added successfully',
-      data: project,
-    })
-  );
 };
 
 export default handler;

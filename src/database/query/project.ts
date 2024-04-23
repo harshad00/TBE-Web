@@ -1,6 +1,8 @@
 import {
   AddProjectRequestPayloadProps,
+  AddSectionRequestPayloadProps,
   DatabaseQueryResponseType,
+  ProjectDocumentModel,
   UpdateProjectRequestPayloadProps,
 } from '@/interfaces';
 import { Project } from '@/database';
@@ -110,6 +112,27 @@ const deleteProjectFromDB = async (
     return { data: deletedProject };
   } catch (error) {
     return { error };
+  }
+};
+
+export const addSectionToProjectInDB = async (
+  projectId: string,
+  sectionData: AddSectionRequestPayloadProps
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const { data: project, error } = await getProjectByIDFromDB(projectId);
+
+    if (error) {
+      return { error: 'Project not found' };
+    }
+
+    project.sections.push(sectionData);
+
+    await project.save();
+
+    return { data: project };
+  } catch (error) {
+    return { error: 'Section not added' };
   }
 };
 

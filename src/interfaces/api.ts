@@ -1,3 +1,5 @@
+import { ProjectChapter } from '.';
+
 export type APIMethodTypes = 'GET' | 'POST' | 'PATCH';
 
 export interface APIMakeRquestProps {
@@ -48,6 +50,11 @@ export interface AddProjectRequestPayloadProps {
   requiredSkills: SkillsType[];
   roadmap: RoadmapsType;
   difficultyLevel: DifficultyType;
+}
+
+export interface AddSectionRequestPayloadProps {
+  sectionName: string;
+  chapters: ProjectChapter[];
 }
 
 export interface UpdateProjectRequestPayloadProps {

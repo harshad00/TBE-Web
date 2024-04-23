@@ -42,7 +42,6 @@ const handleGetProject = async (req: NextApiRequest, res: NextApiResponse) => {
         status: false,
         message: 'Error fetching project',
         error: error.message,
-        data,
       })
     );
   }
