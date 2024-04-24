@@ -247,6 +247,31 @@ const addChapterToSectionInDB = async (
   }
 };
 
+const getChaptersFromSectionInDB = async (
+  projectId: string,
+  sectionId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const project = await Project.findOne({ _id: projectId });
+
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    const section = project.sections.find(
+      (section) => section.sectionId.toString() === sectionId
+    );
+
+    if (!section) {
+      return { error: 'Section not found' };
+    }
+
+    return { data: section.chapters };
+  } catch (error) {
+    return { error: 'Error fetching chapters' };
+  }
+};
+
 export {
   addAProjectToDB,
   getProjectsFromDB,
@@ -259,4 +284,5 @@ export {
   updateSectionInProjectInDB,
   deleteSectionFromProjectInDB,
   addChapterToSectionInDB,
+  getChaptersFromSectionInDB,
 };
