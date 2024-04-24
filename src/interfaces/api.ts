@@ -65,10 +65,6 @@ export interface UpateSectionRequestPayloadProps {
 }
 
 export interface DeleteSectionRequestPayloadProps {
-  sectionId: string;
-}
-
-export interface DeleteSectionRequestPayloadProps {
   projectId: string;
   sectionId: string;
 }
