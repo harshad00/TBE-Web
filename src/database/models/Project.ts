@@ -17,6 +17,7 @@ const chapterSchema: Schema<ProjectChapter> = new Schema(
     chapterId: { type: String, default: uuidv4 },
     chapterName: { type: String, required: true },
     content: { type: String, required: true },
+    isOptional: { type: Boolean, default: false },
   },
   { _id: false }
 );

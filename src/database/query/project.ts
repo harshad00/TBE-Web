@@ -1,4 +1,5 @@
 import {
+  AddChapterRequestPayloadProps,
   AddProjectRequestPayloadProps,
   AddSectionRequestPayloadProps,
   DatabaseQueryResponseType,
@@ -177,7 +178,6 @@ const updateSectionInProjectInDB = async ({
 
     await project.save();
 
-    // Find index of the updated section
     const updatedSectionIndex = project.sections.findIndex(
       (section) => section.sectionId === sectionId
     );
@@ -217,6 +217,36 @@ const deleteSectionFromProjectInDB = async ({
   }
 };
 
+const addChapterToSectionInDB = async (
+  projectId: string,
+  sectionId: string,
+  chapterData: AddChapterRequestPayloadProps
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const project = await Project.findOne({ _id: projectId });
+
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    const section = project.sections.find(
+      (section) => section.sectionId.toString() === sectionId
+    );
+
+    if (!section) {
+      return { error: 'Section not found' };
+    }
+
+    section.chapters.push(chapterData);
+
+    await project.save();
+
+    return { data: project };
+  } catch (error) {
+    return { error: 'Chapter not added' };
+  }
+};
+
 export {
   addAProjectToDB,
   getProjectsFromDB,
@@ -228,4 +258,5 @@ export {
   getSectionsFromProjectInDB,
   updateSectionInProjectInDB,
   deleteSectionFromProjectInDB,
+  addChapterToSectionInDB,
 };

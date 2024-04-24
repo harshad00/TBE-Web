@@ -58,6 +58,12 @@ export interface AddSectionRequestPayloadProps {
   chapters: ProjectChapter[];
 }
 
+export interface AddChapterRequestPayloadProps {
+  chapterId?: string;
+  chapterName: string;
+  content: string;
+}
+
 export interface UpateSectionRequestPayloadProps {
   projectId: string;
   sectionId: string;
