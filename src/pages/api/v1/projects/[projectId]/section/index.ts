@@ -10,6 +10,7 @@ import {
 } from '@/database';
 import {
   AddSectionRequestPayloadProps,
+  DeleteSectionRequestPayloadProps,
   UpateSectionRequestPayloadProps,
 } from '@/interfaces';
 import { v4 } from 'uuid';
@@ -166,7 +167,7 @@ const handleDeleteSection = async (
   res: NextApiResponse,
   projectId: string
 ) => {
-  const { sectionId } = req.body as UpateSectionRequestPayloadProps;
+  const { sectionId } = req.body as DeleteSectionRequestPayloadProps;
 
   try {
     const { error } = await deleteSectionFromProjectInDB({

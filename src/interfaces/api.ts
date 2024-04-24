@@ -65,12 +65,16 @@ export interface UpateSectionRequestPayloadProps {
 }
 
 export interface DeleteSectionRequestPayloadProps {
+  sectionId: string;
+}
+
+export interface DeleteSectionRequestPayloadProps {
   projectId: string;
   sectionId: string;
 }
 
 export interface UpdateProjectRequestPayloadProps {
-  fieldsToUpdate: {
+  updatedData: {
     name?: string;
     meta?: string;
     description?: string;
@@ -79,7 +83,7 @@ export interface UpdateProjectRequestPayloadProps {
     roadmap?: RoadmapsType;
     difficultyLevel?: DifficultyType;
   };
-  slug: string;
+  projectId: string;
 }
 
 export type SkillsType =

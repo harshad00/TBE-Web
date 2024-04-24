@@ -82,13 +82,13 @@ const getProjectByIDFromDB = async (
 };
 
 const updateProjectInDB = async ({
-  slug,
-  fieldsToUpdate,
+  projectId,
+  updatedData,
 }: UpdateProjectRequestPayloadProps): Promise<DatabaseQueryResponseType> => {
   try {
     const updatedProject = await Project.findOneAndUpdate(
-      { slug },
-      { $set: fieldsToUpdate },
+      { _id: projectId },
+      { $set: updatedData },
       { new: true }
     );
 
@@ -103,10 +103,10 @@ const updateProjectInDB = async ({
 };
 
 const deleteProjectFromDB = async (
-  slug: string
+  projectId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const deletedProject = await Project.findOneAndDelete({ slug });
+    const deletedProject = await Project.findOneAndDelete({ _id: projectId });
     if (!deletedProject) {
       return { error: 'Project not found' };
     }
