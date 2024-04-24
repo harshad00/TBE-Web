@@ -3,7 +3,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { updateChapterInSectionInDB } from '@/database';
+import {
+  deleteChapterFromSectionInDB,
+  updateChapterInSectionInDB,
+} from '@/database';
 import { UpdateChapterRequestPayloadProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -18,13 +21,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (method) {
     case 'PATCH':
-      return handleUpdateChapter(
-        req,
-        res,
-        projectId as string,
-        sectionId as string,
-        chapterId as string
-      );
+      return handleUpdateChapter(req, res, projectId, sectionId, chapterId);
+    case 'DELETE':
+      return handleDeleteChapter(req, res, projectId, sectionId, chapterId);
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
@@ -77,6 +76,47 @@ const handleUpdateChapter = async (
       sendAPIResponse({
         status: false,
         message: 'Error updating chapter',
+        error,
+      })
+    );
+  }
+};
+
+const handleDeleteChapter = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  projectId: string,
+  sectionId: string,
+  chapterId: string
+) => {
+  try {
+    const { error } = await deleteChapterFromSectionInDB({
+      projectId,
+      sectionId,
+      chapterId,
+    });
+
+    if (error) {
+      return res.status(apiStatusCodes.NOT_FOUND).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Error deleting chapter',
+          error,
+        })
+      );
+    }
+
+    return res.status(apiStatusCodes.OKAY).json(
+      sendAPIResponse({
+        status: true,
+        message: 'Chapter deleted successfully',
+      })
+    );
+  } catch (error) {
+    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+      sendAPIResponse({
+        status: false,
+        message: 'Error deleting chapter',
         error,
       })
     );

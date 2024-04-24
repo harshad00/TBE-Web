@@ -316,7 +316,55 @@ const updateChapterInSectionInDB = async ({
   }
 };
 
-export { updateChapterInSectionInDB };
+const deleteChapterFromSectionInDB = async ({
+  projectId,
+  sectionId,
+  chapterId,
+}: {
+  projectId: string;
+  sectionId: string;
+  chapterId: string;
+}): Promise<DatabaseQueryResponseType> => {
+  try {
+    // Find the project by projectId
+    const project = await Project.findById(projectId);
+
+    // If project not found, return error
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    // Find the section by sectionId
+    const section = project.sections.find(
+      (section) => section.sectionId.toString() === sectionId
+    );
+
+    // If section not found, return error
+    if (!section) {
+      return { error: 'Section not found' };
+    }
+
+    // Find the index of the chapter to delete
+    const chapterIndex = section.chapters.findIndex(
+      (chapter) => chapter.chapterId.toString() === chapterId
+    );
+
+    // If chapter not found, return error
+    if (chapterIndex === -1) {
+      return { error: 'Chapter not found' };
+    }
+
+    // Remove the chapter from the section
+    section.chapters.splice(chapterIndex, 1);
+
+    // Save the updated project
+    await project.save();
+
+    return { data: 'Chapter deleted successfully' };
+  } catch (error) {
+    return { error: 'Error deleting chapter' };
+  }
+};
 
 export {
   addAProjectToDB,
@@ -331,4 +379,6 @@ export {
   deleteSectionFromProjectInDB,
   addChapterToSectionInDB,
   getChaptersFromSectionInDB,
+  updateChapterInSectionInDB,
+  deleteChapterFromSectionInDB,
 };
