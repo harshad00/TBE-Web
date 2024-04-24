@@ -5,6 +5,7 @@ import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import {
   deleteChapterFromSectionInDB,
+  getChapterFromSectionInDB,
   updateChapterInSectionInDB,
 } from '@/database';
 import { UpdateChapterRequestPayloadProps } from '@/interfaces';
@@ -20,6 +21,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   };
 
   switch (method) {
+    case 'GET':
+      return handleGetChapter(req, res, projectId, sectionId, chapterId);
     case 'PATCH':
       return handleUpdateChapter(req, res, projectId, sectionId, chapterId);
     case 'DELETE':
@@ -31,6 +34,48 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           message: `Method ${method} Not Allowed`,
         })
       );
+  }
+};
+
+const handleGetChapter = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  projectId: string,
+  sectionId: string,
+  chapterId: string
+) => {
+  try {
+    const { data, error } = await getChapterFromSectionInDB(
+      projectId,
+      sectionId,
+      chapterId
+    );
+
+    if (error) {
+      return res.status(apiStatusCodes.NOT_FOUND).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Error fetching chapters',
+          error,
+        })
+      );
+    }
+
+    return res.status(apiStatusCodes.OKAY).json(
+      sendAPIResponse({
+        status: true,
+        message: 'Chapter Fetched Successfully',
+        data,
+      })
+    );
+  } catch (error) {
+    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+      sendAPIResponse({
+        status: false,
+        message: 'Error fetching Chapter',
+        error,
+      })
+    );
   }
 };
 

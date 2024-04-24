@@ -273,6 +273,40 @@ const getChaptersFromSectionInDB = async (
   }
 };
 
+const getChapterFromSectionInDB = async (
+  projectId: string,
+  sectionId: string,
+  chapterId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const project = await Project.findById(projectId);
+
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    const section = project.sections.find(
+      (section) => section.sectionId.toString() === sectionId
+    );
+
+    if (!section) {
+      return { error: 'Section not found' };
+    }
+
+    const chapter = section.chapters.find(
+      (chapter) => chapter.chapterId.toString() === chapterId
+    );
+
+    if (!chapter) {
+      return { error: 'Chapter not found' };
+    }
+
+    return { data: chapter };
+  } catch (error) {
+    return { error: 'Error fetching chapter' };
+  }
+};
+
 const updateChapterInSectionInDB = async ({
   projectId,
   sectionId,
@@ -381,4 +415,5 @@ export {
   getChaptersFromSectionInDB,
   updateChapterInSectionInDB,
   deleteChapterFromSectionInDB,
+  getChapterFromSectionInDB,
 };
