@@ -59,7 +59,7 @@ export interface AddSectionRequestPayloadProps {
 }
 
 export interface AddChapterRequestPayloadProps {
-  chapterId?: string;
+  chapterId: string;
   chapterName: string;
   content: string;
 }
@@ -86,6 +86,19 @@ export interface UpdateProjectRequestPayloadProps {
     difficultyLevel?: DifficultyType;
   };
   projectId: string;
+}
+
+export interface UpdateChapterRequestPayloadProps {
+  updatedChapterName: string;
+  updatedChapterContent: string;
+  updatedIsOptional: boolean;
+}
+
+export interface UpdateChapterDBRequestProps
+  extends UpdateChapterRequestPayloadProps {
+  projectId: string;
+  sectionId: string;
+  chapterId: string;
 }
 
 export type SkillsType =

@@ -5,6 +5,7 @@ import {
   DatabaseQueryResponseType,
   DeleteSectionRequestPayloadProps,
   UpateSectionRequestPayloadProps,
+  UpdateChapterDBRequestProps,
   UpdateProjectRequestPayloadProps,
 } from '@/interfaces';
 import { Project } from '@/database';
@@ -271,6 +272,51 @@ const getChaptersFromSectionInDB = async (
     return { error: 'Error fetching chapters' };
   }
 };
+
+const updateChapterInSectionInDB = async ({
+  projectId,
+  sectionId,
+  chapterId,
+  updatedChapterName,
+  updatedChapterContent,
+  updatedIsOptional,
+}: UpdateChapterDBRequestProps): Promise<DatabaseQueryResponseType> => {
+  try {
+    const project = await Project.findOne({ _id: projectId });
+
+    if (!project) {
+      return { error: 'Project not found' };
+    }
+
+    const section = project.sections.find(
+      (section) => section.sectionId.toString() === sectionId
+    );
+
+    if (!section) {
+      return { error: 'Section not found' };
+    }
+
+    const chapter = section.chapters.find(
+      (chapter) => chapter.chapterId.toString() === chapterId
+    );
+
+    if (!chapter) {
+      return { error: 'Chapter not found' };
+    }
+
+    if (updatedChapterName) chapter.chapterName = updatedChapterName;
+    if (updatedChapterContent) chapter.content = updatedChapterContent;
+    if (updatedIsOptional) chapter.isOptional = updatedIsOptional;
+
+    await project.save();
+
+    return { data: project };
+  } catch (error) {
+    return { error: 'Chapter not updated' };
+  }
+};
+
+export { updateChapterInSectionInDB };
 
 export {
   addAProjectToDB,

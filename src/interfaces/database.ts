@@ -2,7 +2,7 @@ import { Document } from 'mongoose';
 import { DifficultyType, RoadmapsType, SkillsType } from '.';
 
 export interface ProjectChapter {
-  chapterId?: string;
+  chapterId: string;
   chapterName: string;
   content: string;
   isOptional?: boolean;
