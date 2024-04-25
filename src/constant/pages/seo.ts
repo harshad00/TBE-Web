@@ -1,6 +1,6 @@
-import { GetSEOMetaResponseType, PageSlug } from '@/interfaces';
+import { GetSEOMetaResponseType } from '@/interfaces';
 import { routes } from '../routes';
-import { programs } from '..';
+import { TBP_PROJECTS, products } from '..';
 
 const commonMeta = {
   type: 'website',
@@ -8,70 +8,58 @@ const commonMeta = {
   image: 'https://theboringeducation.com/images/large-og.png',
 };
 
-const adminMeta = {
-  ...commonMeta,
-  robots: 'nofollow, noindex',
-};
-
-const getSEOMeta = (basePath: PageSlug): GetSEOMetaResponseType => {
+const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
   const meta = {
-    '/': {
+    [`${routes.home}`]: {
       title: 'The Boring Education',
       siteName: 'The Boring Education',
       description: 'Tech Education for Everyone',
       url: routes.home,
       ...commonMeta,
     },
-    '/admin': {
-      title: 'Admin | The Boring Education',
-      siteName: 'Admin | The Boring Education',
-      description: 'Tech Education for Everyone',
-      url: routes.admin.base,
-      ...adminMeta,
-    },
-    [programs.juniorInWebEngineering.slug]: {
-      title: `${programs.juniorInWebEngineering.label} | The Boring Education`,
-      siteName: programs.juniorInWebEngineering.label,
-      description: programs.juniorInWebEngineering.description,
-      url: routes.microCampLanding(programs.juniorInWebEngineering.slug),
+    [`${routes.roadmaps}`]: {
+      title: `${products.roadmaps.label} | The Boring Education`,
+      siteName: products.roadmaps.label,
+      description: products.roadmaps.description,
+      url: products.roadmaps.slug,
       ...commonMeta,
     },
-    [programs.beFrontendMaster.slug]: {
-      title: `${programs.beFrontendMaster.label} | The Boring Education`,
-      siteName: programs.beFrontendMaster.label,
-      description: programs.beFrontendMaster.description,
-      url: routes.microCampLanding(programs.beFrontendMaster.slug),
+    [`${routes.projects}`]: {
+      title: `${products.projects.label} | The Boring Education`,
+      siteName: products.projects.label,
+      description: products.projects.description,
+      url: products.projects.slug,
       ...commonMeta,
     },
-    [programs.beBackendMaster.slug]: {
-      title: `${programs.beBackendMaster.label} | The Boring Education`,
-      siteName: programs.beBackendMaster.label,
-      description: programs.beBackendMaster.description,
-      url: routes.microCampLanding(programs.beBackendMaster.slug),
+    [`${routes.projectsExplore}`]: {
+      title: `${products.projects.label} | The Boring Education`,
+      siteName: products.projects.label,
+      description: products.projects.description,
+      url: products.projects.slug,
       ...commonMeta,
     },
-    [programs.twoHourDesign.slug]: {
-      title: `${programs.twoHourDesign.label} | The Boring Education`,
-      siteName: programs.twoHourDesign.label,
-      description: programs.twoHourDesign.description,
-      url: routes.workshopLanding(programs.twoHourDesign.slug),
+    [`${routes.allProjects.pharmashiftI}`]: {
+      title: `${TBP_PROJECTS[0].title} | The Boring Education`,
+      siteName: TBP_PROJECTS[0].title,
+      description: TBP_PROJECTS[0].content,
+      url: routes.allProjects.pharmashiftI,
       ...commonMeta,
     },
-    [programs.theNextWave.slug]: {
-      title: `${programs.theNextWave.label} | The Boring Education`,
-      siteName: programs.theNextWave.label,
-      description: programs.theNextWave.description,
-      url: routes.workshopLanding(programs.theNextWave.slug),
+    [`${routes.allProjects.pharmashiftII}`]: {
+      title: `${TBP_PROJECTS[1].title} | The Boring Education`,
+      siteName: TBP_PROJECTS[1].title,
+      description: TBP_PROJECTS[1].content,
+      url: routes.allProjects.pharmashiftII,
       ...commonMeta,
     },
-    '/contact': {
+    [`${routes.contactUs}`]: {
       title: 'Contact | The Boring Education',
       siteName: 'The Boring Education',
       description: 'Contact The Boring Education',
       url: routes.contactUs,
       ...commonMeta,
     },
-    '/404': {
+    [`${routes[404]}`]: {
       title: 'Lost in Boring Space | The Boring Education',
       siteName: 'Lost in Boring Space',
       description: 'Tech Education for Everyone',

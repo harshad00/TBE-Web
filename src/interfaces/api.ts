@@ -1,29 +1,4 @@
-import { BestSuitedForType, CohortLeadStatus, CohortNameType } from '.';
-
-export interface AddALeadRequestPayload {
-  name: string;
-  contactNo: string;
-  email?: string;
-  cohortName?: CohortNameType | '';
-  profession?: BestSuitedForType | '';
-  school?: string;
-  college?: string;
-  workExperience?: string;
-}
-
-export interface UpdateALeadRequestPayload extends AddALeadRequestPayload {
-  id: string;
-  status: CohortLeadStatus;
-}
-
-export type UpdateALeadByIDFromDBType = Omit<UpdateALeadRequestPayload, 'id'>;
-
-export interface AddAnAdminRequestPayload {
-  name: string;
-  email: string;
-}
-
-export type ProgramLeadAPIResponse = UpdateALeadRequestPayload;
+import { ProjectChapter } from '.';
 
 export type APIMethodTypes = 'GET' | 'POST' | 'PATCH';
 
@@ -59,10 +34,85 @@ export interface ClientAPIResponse {
 
 export interface APIResponseType extends ClientAPIResponse {
   message?: string;
-  error?: string;
+  error?: any;
 }
 
 export type DatabaseQueryResponseType = {
   data?: any;
   error?: any;
 };
+
+export interface AddProjectRequestPayloadProps {
+  name: string;
+  slug: string;
+  description: string;
+  coverImageURL: string;
+  requiredSkills: SkillsType[];
+  roadmap: RoadmapsType;
+  difficultyLevel: DifficultyType;
+}
+
+export interface AddSectionRequestPayloadProps {
+  sectionId: string;
+  sectionName: string;
+  chapters: ProjectChapter[];
+}
+
+export interface AddChapterRequestPayloadProps {
+  chapterId: string;
+  chapterName: string;
+  content: string;
+}
+
+export interface UpateSectionRequestPayloadProps {
+  projectId: string;
+  sectionId: string;
+  updatedSectionName: string;
+}
+
+export interface DeleteSectionRequestPayloadProps {
+  projectId: string;
+  sectionId: string;
+}
+
+export interface UpdateProjectRequestPayloadProps {
+  updatedData: {
+    name?: string;
+    meta?: string;
+    description?: string;
+    coverImageURL?: string;
+    requiredSkills?: SkillsType[];
+    roadmap?: RoadmapsType;
+    difficultyLevel?: DifficultyType;
+  };
+  projectId: string;
+}
+
+export interface UpdateChapterRequestPayloadProps {
+  updatedChapterName: string;
+  updatedChapterContent: string;
+  updatedIsOptional: boolean;
+}
+
+export interface UpdateChapterDBRequestProps
+  extends UpdateChapterRequestPayloadProps {
+  projectId: string;
+  sectionId: string;
+  chapterId: string;
+}
+
+export type SkillsType =
+  | 'HTML'
+  | 'CSS'
+  | 'JavaScript'
+  | 'React'
+  | 'TypeScript'
+  | 'NodeJS'
+  | 'ExpressJS'
+  | 'MongoDB'
+  | 'TailwindCSS'
+  | 'NextJS';
+
+export type RoadmapsType = 'Frontend' | 'Backend' | 'Fullstack';
+
+export type DifficultyType = 'Beginner' | 'Intermediate' | 'Advanced';

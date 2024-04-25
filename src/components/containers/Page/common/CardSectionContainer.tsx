@@ -10,9 +10,7 @@ const CardSectionContainer = ({
   return (
     <FlexContainer
       itemCenter={false}
-      className={`${isWidthFull && 'w-full'} ${
-        gap ?? 'gap-4'
-      } pt-4 ${className}`}
+      className={`${isWidthFull && 'w-full'} ${gap ?? 'gap-4'} ${className}`}
     >
       {children}
     </FlexContainer>

@@ -1,30 +1,77 @@
 import React from 'react';
 import {
   LandingPageHero,
-  OurPrograms,
-  Skills,
-  WeGuideDifferently,
+  CardContainerA,
   CanYouBeAProgrammer,
   Testimonials,
   SEO,
-  OurWorkshops,
-  ChooseTechCohort,
+  LinkButton,
+  CardContainerB,
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
-import { landingPageSkills, routes } from '@/constant';
+import {
+  LINKS,
+  PRODUCTS,
+  STATIC_FILE_PATH,
+  USP,
+  generateSectionPath,
+  routes,
+} from '@/constant';
+import { useRouter } from 'next/router';
 
 const Home = ({ seoMeta }: PageProps) => {
+  const router = useRouter();
+
   return (
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
-      <LandingPageHero />
-      <ChooseTechCohort id={routes.internals.microCampRegister} />
-      <OurPrograms />
-      <OurWorkshops />
-      <Skills skills={landingPageSkills} />
-      <WeGuideDifferently />
+      <LandingPageHero
+        sectionHeaderProps={{
+          heading: 'Tech Education for',
+          focusText: 'Everyone',
+        }}
+        heroText='Learn Tech Skills & Prepare yourself for a Tech Job.'
+        primaryButton={
+          <LinkButton
+            href={generateSectionPath({
+              basePath: router.basePath,
+              sectionID: routes.internals.landing.products,
+            })}
+            className='w-full sm:w-fit'
+            buttonProps={{
+              variant: 'PRIMARY',
+              text: 'Get Started',
+              className: '',
+            }}
+          />
+        }
+        secondaryButton={
+          <LinkButton
+            href={LINKS.freeTechConsultation}
+            className='w-full sm:w-fit'
+            buttonProps={{
+              variant: 'OUTLINE',
+              text: 'Book Free Session',
+              className: '',
+            }}
+            target='BLANK'
+          />
+        }
+        backgroundImageUrl={`${STATIC_FILE_PATH.svg}/hero-image.svg`}
+      />
+      <CardContainerB
+        heading='Our'
+        focusText='Products'
+        cards={PRODUCTS}
+        borderColour={2}
+      />
       <CanYouBeAProgrammer />
+      <CardContainerA
+        heading='What We Do'
+        focusText='Differently'
+        cards={USP}
+      />
       <Testimonials />
     </React.Fragment>
   );

@@ -7,7 +7,7 @@ import {
 } from '@/components';
 import { TESTIMONIALS } from '@/constant';
 
-const TestimonialsCardContainer = () => {
+const Testimonials = () => {
   return (
     <Section>
       <FlexContainer direction='col'>
@@ -25,4 +25,4 @@ const TestimonialsCardContainer = () => {
   );
 };
 
-export default TestimonialsCardContainer;
+export default Testimonials;

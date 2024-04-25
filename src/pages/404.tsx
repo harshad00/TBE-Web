@@ -1,5 +1,4 @@
 import { RiAlarmWarningFill } from 'react-icons/ri';
-
 import Layout from '@/components/layout/Section';
 import SEO from '@/components/layout/SEO';
 import { Link } from '@/components';

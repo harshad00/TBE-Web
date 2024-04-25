@@ -1,23 +1,18 @@
-import { createRouter } from 'next-connect';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { connectToDatabase } from '@/database';
-
-const router = createRouter<NextApiRequest, NextApiResponse>();
-
-const routerHandler = router.handler({
-  onError: (err: any, req, res) => {
-    res.status(500).json({ err: err.message });
-  },
-});
+import type { NextApiResponse } from 'next';
+import { MONGODB_URI, apiStatusCodes } from '@/constant';
+import { sendAPIResponse } from '@/utils';
+import mongoose from 'mongoose';
 
 // Connect to DB
-const connectDB = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-  next: () => void
-) => {
-  await connectToDatabase();
-  next();
+const connectDB = async (res: NextApiResponse) => {
+  try {
+    await mongoose.connect(MONGODB_URI);
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    return res
+      .status(apiStatusCodes.INTERNAL_SERVER_ERROR)
+      .json(sendAPIResponse({ status: false, message: 'DB error', error }));
+  }
 };
 
-export { router, routerHandler, connectDB };
+export { connectDB };

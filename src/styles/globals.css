@@ -94,7 +94,7 @@
 
   /* Link */
   .link {
-    @apply text-button-text font-bold text-contentLight;
+    @apply text-button-text text-contentLight;
   }
 
   .button {
