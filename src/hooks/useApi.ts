@@ -1,62 +1,38 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { sendRequest } from '@/utils';
-import {
-  APIMakeRquestProps,
-  APIResponseProps,
-  ApiHookResultProps,
-} from '@/interfaces';
+import { APIMakeRquestProps, APIResponseType } from '@/interfaces';
 
-const useApi = (params?: APIMakeRquestProps): ApiHookResultProps => {
-  const [data, setData] = useState<APIResponseProps>();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<APIResponseProps | string | null>();
+const useApi = (params?: APIMakeRquestProps) => {
+  if (!params) {
+    throw new Error('Params are required for useApi hook');
+  }
 
-  const makeRequest = async ({
-    method,
-    url,
-    headers,
-    body,
-  }: APIMakeRquestProps): Promise<void> => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const response: APIResponseProps = await sendRequest({
-        method,
-        url,
-        headers,
-        body,
-      });
-
-      if (response.status) setData(response as APIResponseProps);
-      else setError(response.message);
-    } catch (err: any) {
-      setError(err.response.data);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data, isLoading, error, refetch } = useQuery<APIResponseType>(
+    ['apiRequest', params],
+    async () => {
+      try {
+        const response = await sendRequest(params);
+        return response;
+      } catch (error: any) {
+        throw new Error(error.message);
+      }
+    },
+    { enabled: !!params }
+  );
 
   useEffect(() => {
-    const init = async () => {
-      if (params) {
-        try {
-          await makeRequest(params);
-        } catch (error: any) {
-          setError(error?.message);
-        }
-      }
-    };
-
-    init();
-  }, []);
+    if (params) {
+      refetch();
+    }
+  }, [params, refetch]);
 
   return {
-    data: data,
+    data,
     isSuccess: !!data,
-    error: error,
-    loading,
-    makeRequest,
+    error,
+    loading: isLoading,
+    makeRequest: refetch,
   };
 };
 

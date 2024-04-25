@@ -20,11 +20,10 @@ const sendRequest = async ({
   };
 
   try {
-    const response = (await apiInstance.request(config)).data;
-
-    return response;
+    const response = await apiInstance.request(config);
+    return response.data as APIResponseType;
   } catch (error: any) {
-    return error.response.data;
+    return error.response.data as APIResponseType;
   }
 };
 
