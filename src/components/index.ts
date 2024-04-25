@@ -21,7 +21,6 @@ import CanYouBeAProgrammer from '@/components/containers/Page/Landing/CanYouBeAP
 import TestimonialCard from '@/components/containers/Cards/Items/TestimonialCard';
 import Testimonials from '@/components/containers/Cards/Testimonials';
 import Footer from '@/components/layout/Footer';
-import FooterLinksContainer from '@/components/containers/Page/common/FooterLinksContainer';
 import GridContainer from '@/components/containers/Page/common/GridContainer';
 import WeAlreadyTaughtAt from './containers/Cards/WeAlreadyTaughtAt';
 import WeTaughtAtCard from './containers/Cards/Items/WeTaughtAtCard';
@@ -62,7 +61,6 @@ export {
   TestimonialCard,
   Testimonials,
   Footer,
-  FooterLinksContainer,
   GridContainer,
   WeAlreadyTaughtAt,
   WeTaughtAtCard,

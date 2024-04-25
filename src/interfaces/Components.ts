@@ -232,3 +232,22 @@ export interface CardContainerAProps extends BaseCardContainerProps {
 export interface CardContainerBProps extends BaseCardContainerProps {
   cards: PrimaryCardWithCTAProps[];
 }
+
+export interface RadioOptionProps {
+  id: string;
+  label: string;
+  description?: string;
+}
+
+export interface InputRadioContainerProps {
+  radioItems: RadioOptionProps[];
+  onChange: (itemId: string) => void;
+  selectedItemId?: string;
+  className?: string;
+}
+
+export interface RadioInputFieldProps extends RadioOptionProps {
+  onChange: (itemId: string) => void;
+  selected?: boolean;
+  className?: string;
+}
