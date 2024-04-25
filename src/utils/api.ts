@@ -11,7 +11,7 @@ const sendRequest = async ({
 }: APIMakeRquestProps): Promise<APIResponseType> => {
   const config: AxiosRequestConfig = {
     method,
-    url: `/api${url}`,
+    url: `/api/v1${url}`,
     headers: {
       ...headers,
       cache: 'no-store',

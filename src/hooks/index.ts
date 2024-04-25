@@ -1,3 +1,4 @@
 import useApi from './useApi';
+import useAPIResponseMapper from './useAPIResponseMapper';
 
-export { useApi };
+export { useApi, useAPIResponseMapper };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SEO } from '@/components';
 import { PageProps } from '@/interfaces';
-import { getPreFetchProps } from '@/utils';
+import { getProjectPageProps } from '@/utils';
 
 const Home = ({ seoMeta }: PageProps) => {
   return (
@@ -11,6 +11,6 @@ const Home = ({ seoMeta }: PageProps) => {
   );
 };
 
-export const getServerSideProps = getPreFetchProps;
+export const getServerSideProps = getProjectPageProps;
 
 export default Home;

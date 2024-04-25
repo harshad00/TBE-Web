@@ -1,18 +1,20 @@
-import { useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { sendRequest } from '@/utils';
 import { APIMakeRquestProps, APIResponseType } from '@/interfaces';
 
-const useApi = (params?: APIMakeRquestProps) => {
+const useApi = (
+  queryKey: string,
+  fetchFunction: (params: APIMakeRquestProps) => Promise<APIResponseType>,
+  params?: APIMakeRquestProps
+) => {
   if (!params) {
     throw new Error('Params are required for useApi hook');
   }
 
   const { data, isLoading, error, refetch } = useQuery<APIResponseType>(
-    ['apiRequest', params],
+    [queryKey],
     async () => {
       try {
-        const response = await sendRequest(params);
+        const response = await fetchFunction(params);
         return response;
       } catch (error: any) {
         throw new Error(error.message);
@@ -21,14 +23,8 @@ const useApi = (params?: APIMakeRquestProps) => {
     { enabled: !!params }
   );
 
-  useEffect(() => {
-    if (params) {
-      refetch();
-    }
-  }, [params, refetch]);
-
   return {
-    data,
+    response: data,
     isSuccess: !!data,
     error,
     loading: isLoading,
