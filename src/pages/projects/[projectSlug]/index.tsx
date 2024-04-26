@@ -3,7 +3,6 @@ import {
   Accordion,
   AccordionLinkItem,
   FlexContainer,
-  Link,
   ProjectHeroContainer,
   SEO,
   Section,
