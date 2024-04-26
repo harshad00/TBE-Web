@@ -37,6 +37,10 @@ import InputFieldContainer from './common/Form/InputFieldContainer';
 import InputRadioContainer from './containers/Forms/InputRadioContainer';
 import LoadingSpinner from './common/LoadingSpinner';
 import MobileNavbarLinksContainer from './containers/Page/common/MobileNavbarLinksContainer';
+import PageHeroMetaContainer from './containers/Page/common/PageHeroMetaContainer';
+import ProjectHeroContainer from './containers/Page/Project/ProjectHeroContainer';
+import Accordion from './common/Accordion';
+import AccordionLinkItem from './common/Accordion/AccordionLinkItem';
 
 export {
   Navbar,
@@ -78,4 +82,8 @@ export {
   InputFieldContainer,
   LoadingSpinner,
   MobileNavbarLinksContainer,
+  PageHeroMetaContainer,
+  ProjectHeroContainer,
+  Accordion,
+  AccordionLinkItem,
 };

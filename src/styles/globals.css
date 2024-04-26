@@ -78,7 +78,7 @@
   }
 
   .pre-title {
-    @apply text-pre-title font-medium text-contentLight;
+    @apply text-pre-title font-normal text-contentLight;
   }
 
   .button-text {

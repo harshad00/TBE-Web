@@ -251,3 +251,26 @@ export interface RadioInputFieldProps extends RadioOptionProps {
   selected?: boolean;
   className?: string;
 }
+
+export interface ProjectHeroMetaContainerProps {
+  subtitle: string;
+  title: string;
+  titleClassName?: string;
+}
+
+export interface ProjectHeroContainerProps {
+  name: string;
+  roadmap: string;
+  difficultyLevel: string;
+}
+
+export interface AccordionProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+export interface AccordionLinkItemProps {
+  label: string;
+  href: string;
+  className?: string;
+}

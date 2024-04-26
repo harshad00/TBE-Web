@@ -1,4 +1,4 @@
-import { getSEOMeta } from '@/constant';
+import { BASE_API_URL, getSEOMeta } from '@/constant';
 import { PageSlug } from '@/interfaces';
 
 const getPreFetchProps = async ({ query, resolvedUrl }: any) => {
@@ -25,30 +25,52 @@ const getPreFetchProps = async ({ query, resolvedUrl }: any) => {
   };
 };
 
-const getProjectPageProps = async ({ query, resolvedUrl }: any) => {
+const getProjectPageProps = async ({ query }: any) => {
   const { projectSlug, projectId } = query;
   let slug = '/';
 
-  if (resolvedUrl) {
-    slug = resolvedUrl;
-  }
-
   if (projectSlug) {
-    slug = `/projects/${projectSlug}`;
+    slug = '/projects/' + projectSlug;
   }
 
-  const seoMeta = getSEOMeta(slug as PageSlug);
+  if (projectId) {
+    try {
+      const seoMeta = getSEOMeta(slug as PageSlug);
 
-  // FETCH HERE
+      const { status, data: project } = await fetchAPIData(
+        `projects/${projectId}`
+      );
 
-  const redirect = !seoMeta && {
-    destination: '/404',
-  };
+      // If the project data is not found, return the message
+      if (!status) {
+        return {
+          redirect: {
+            destination: '/404',
+          },
+          props: { slug },
+        };
+      }
+
+      return {
+        props: { slug, seoMeta, project },
+      };
+    } catch (error) {
+      console.error('Error fetching project data:', error);
+    }
+  }
 
   return {
-    props: { slug, seoMeta },
-    redirect,
+    redirect: {
+      destination: '/404',
+    },
+    props: { slug },
   };
+};
+
+const fetchAPIData = async (url: string) => {
+  const response = await fetch(`${BASE_API_URL}/${url}`);
+
+  return await response.json();
 };
 
 export { getPreFetchProps, getProjectPageProps };
