@@ -1,28 +1,13 @@
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { MDXContentProps } from '@/interfaces';
-import { serialize } from 'next-mdx-remote/serialize';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import MarkdownIt from 'markdown-it';
 
-const MDXRenderer = ({ mdxSource }: MDXContentProps) => {
-  const [content, setContent] = useState<MDXRemoteSerializeResult | null>(null);
+const MDXRenderer = ({ mdxSource }: any) => {
+  const md = new MarkdownIt();
+  const mdxHTML = md.render(mdxSource);
 
-  useEffect(() => {
-    const mdx = async () => {
-      const content = await serialize(mdxSource, {
-        mdxOptions: { development: true },
-      });
-      setContent(content);
-    };
-    mdx();
-  }, [mdxSource]);
+  console.log('HERE', mdxHTML);
 
-  if (!content) return null;
-
-  return (
-    <div>
-      <MDXRemote {...content} />
-    </div>
-  );
+  return <div dangerouslySetInnerHTML={{ __html: mdxHTML }} />;
 };
 
 export default MDXRenderer;
