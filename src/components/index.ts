@@ -41,6 +41,7 @@ import PageHeroMetaContainer from './containers/Page/common/PageHeroMetaContaine
 import ProjectHeroContainer from './containers/Page/Project/ProjectHeroContainer';
 import Accordion from './common/Accordion';
 import AccordionLinkItem from './common/Accordion/AccordionLinkItem';
+import MDXRenderer from './common/MDXRenderer';
 
 export {
   Navbar,
@@ -86,4 +87,5 @@ export {
   ProjectHeroContainer,
   Accordion,
   AccordionLinkItem,
+  MDXRenderer,
 };

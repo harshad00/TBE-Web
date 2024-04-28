@@ -3,6 +3,7 @@ import {
   Accordion,
   AccordionLinkItem,
   FlexContainer,
+  MDXRenderer,
   ProjectHeroContainer,
   SEO,
   Section,
@@ -12,7 +13,7 @@ import { ProjectPageProps } from '@/interfaces';
 import { getProjectPageProps } from '@/utils';
 
 const Home = ({ project, seoMeta }: ProjectPageProps) => {
-  console.log('HERE', project);
+  // console.log('HERE', project);
 
   return (
     <React.Fragment>
@@ -60,7 +61,7 @@ const Home = ({ project, seoMeta }: ProjectPageProps) => {
               justifyCenter={false}
               itemCenter={false}
             >
-              <h1>Content</h1>
+              <MDXRenderer mdxSource={project.meta} />
             </FlexContainer>
           </FlexContainer>
         </FlexContainer>
