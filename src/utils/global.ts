@@ -26,7 +26,7 @@ const getPreFetchProps = async ({ query, resolvedUrl }: any) => {
   };
 };
 
-const getProjectPageProps = async ({ query, resolvedUrl }: any) => {
+const getProjectPageProps = async ({ query }: any) => {
   const { projectSlug, projectId, sectionId, chapterId } = query;
 
   let slug = '/';
@@ -69,7 +69,6 @@ const getProjectPageProps = async ({ query, resolvedUrl }: any) => {
           slug,
           seoMeta,
           project,
-          resolvedUrl,
           meta,
         },
       };

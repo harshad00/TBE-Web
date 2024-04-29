@@ -12,7 +12,7 @@ import {
 import { ProjectPageProps } from '@/interfaces';
 import { getProjectPageProps, getSelectedProjectChapterMeta } from '@/utils';
 
-const Home = ({ project, meta, seoMeta, resolvedUrl }: ProjectPageProps) => {
+const Home = ({ project, meta, seoMeta, slug }: ProjectPageProps) => {
   const [projectMeta, setProjectMeta] = useState<string>(meta);
 
   const handleChapterClick = ({ sectionId, chapterId }: any) => {
@@ -56,7 +56,7 @@ const Home = ({ project, meta, seoMeta, resolvedUrl }: ProjectPageProps) => {
                             <AccordionLinkItem
                               key={chapterId}
                               label={chapterName}
-                              href={`${resolvedUrl}&sectionId=${sectionId}&chapterId=${chapterId}`}
+                              href={`/${slug}?projectId=${project._id}&sectionId=${sectionId}&chapterId=${chapterId}`}
                               onClick={() =>
                                 handleChapterClick({ sectionId, chapterId })
                               }
