@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Accordion,
   AccordionLinkItem,
@@ -10,9 +10,21 @@ import {
   Text,
 } from '@/components';
 import { ProjectPageProps } from '@/interfaces';
-import { getProjectPageProps } from '@/utils';
+import { getProjectPageProps, getSelectedProjectChapterMeta } from '@/utils';
 
-const Home = ({ project, seoMeta }: ProjectPageProps) => {
+const Home = ({ project, meta, seoMeta, resolvedUrl }: ProjectPageProps) => {
+  const [projectMeta, setProjectMeta] = useState<string>(meta);
+
+  const handleChapterClick = ({ sectionId, chapterId }: any) => {
+    const selectedChapter = getSelectedProjectChapterMeta(
+      project,
+      sectionId,
+      chapterId
+    );
+
+    setProjectMeta(selectedChapter);
+  };
+
   return (
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
@@ -44,7 +56,10 @@ const Home = ({ project, seoMeta }: ProjectPageProps) => {
                             <AccordionLinkItem
                               key={chapterId}
                               label={chapterName}
-                              href={`${chapterId}`}
+                              href={`${resolvedUrl}&sectionId=${sectionId}&chapterId=${chapterId}`}
+                              onClick={() =>
+                                handleChapterClick({ sectionId, chapterId })
+                              }
                             />
                           );
                         })}
@@ -59,7 +74,7 @@ const Home = ({ project, seoMeta }: ProjectPageProps) => {
               justifyCenter={false}
               itemCenter={false}
             >
-              <MDXRenderer mdxSource={project.meta} />
+              <MDXRenderer mdxSource={projectMeta} />
             </FlexContainer>
           </FlexContainer>
         </FlexContainer>

@@ -1,5 +1,6 @@
 import { BASE_API_URL, getSEOMeta } from '@/constant';
-import { PageSlug } from '@/interfaces';
+import { PageSlug, ProjectPickedPageProps } from '@/interfaces';
+import { getSelectedProjectChapterMeta } from '.';
 
 const getPreFetchProps = async ({ query, resolvedUrl }: any) => {
   const { projectSlug } = query;
@@ -25,8 +26,9 @@ const getPreFetchProps = async ({ query, resolvedUrl }: any) => {
   };
 };
 
-const getProjectPageProps = async ({ query }: any) => {
-  const { projectSlug, projectId } = query;
+const getProjectPageProps = async ({ query, resolvedUrl }: any) => {
+  const { projectSlug, projectId, sectionId, chapterId } = query;
+
   let slug = '/';
 
   if (projectSlug) {
@@ -37,9 +39,7 @@ const getProjectPageProps = async ({ query }: any) => {
     try {
       const seoMeta = getSEOMeta(slug as PageSlug);
 
-      const { status, data: project } = await fetchAPIData(
-        `projects/${projectId}`
-      );
+      const { status, data } = await fetchAPIData(`projects/${projectId}`);
 
       // If the project data is not found, return the message
       if (!status) {
@@ -51,8 +51,27 @@ const getProjectPageProps = async ({ query }: any) => {
         };
       }
 
+      const project: ProjectPickedPageProps = data;
+      let { meta } = project;
+
+      if (sectionId && chapterId) {
+        const selectedChapterMeta = getSelectedProjectChapterMeta(
+          project,
+          sectionId,
+          chapterId
+        );
+
+        if (selectedChapterMeta) meta = selectedChapterMeta;
+      }
+
       return {
-        props: { slug, seoMeta, project },
+        props: {
+          slug,
+          seoMeta,
+          project,
+          resolvedUrl,
+          meta,
+        },
       };
     } catch (error) {
       console.error('Error fetching project data:', error);

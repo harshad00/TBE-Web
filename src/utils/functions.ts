@@ -1,4 +1,4 @@
-import { ProjectDocumentModel } from '@/interfaces';
+import { ProjectDocumentModel, ProjectPickedPageProps } from '@/interfaces';
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
@@ -62,6 +62,22 @@ const mapProjectResponseToCard = (projectsData: ProjectDocumentModel[]) => {
   );
 };
 
+const getSelectedProjectChapterMeta = (
+  project: ProjectPickedPageProps,
+  sectionId: string,
+  chapterId: string
+) => {
+  const selectedSection = project.sections.find(
+    (section) => section.sectionId === sectionId
+  );
+
+  const selectedChapter = selectedSection?.chapters.find(
+    (chapter) => chapter.chapterId === chapterId
+  );
+
+  return selectedChapter?.content ?? '';
+};
+
 export {
   formatDate,
   formatTime,
@@ -70,4 +86,5 @@ export {
   getLocalStorageItem,
   removeLocalStorageItem,
   mapProjectResponseToCard,
+  getSelectedProjectChapterMeta,
 };
