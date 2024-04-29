@@ -6,11 +6,13 @@ const AccordionLinkItem = ({
   label,
   href,
   className,
+  onClick,
 }: AccordionLinkItemProps) => {
   return (
     <Link href={href} className='w-full'>
       <Disclosure.Panel
-        className={`${className} p-2 rounded pre-title text-greyDark hover:bg-gray-200`}
+        onClick={onClick}
+        className={`${className} p-2 rounded text-left pre-title text-greyDark hover:bg-gray-200`}
       >
         {label}
       </Disclosure.Panel>
