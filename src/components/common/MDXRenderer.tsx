@@ -1,28 +1,40 @@
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { MDXContentProps } from '@/interfaces';
-import { serialize } from 'next-mdx-remote/serialize';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import MarkdownIt from 'markdown-it';
 
-const MDXRenderer = ({ mdxSource }: MDXContentProps) => {
-  const [content, setContent] = useState<MDXRemoteSerializeResult | null>(null);
+const MDXRenderer = ({ mdxSource }: any) => {
+  const md = new MarkdownIt();
 
-  useEffect(() => {
-    const mdx = async () => {
-      const content = await serialize(mdxSource, {
-        mdxOptions: { development: true },
-      });
-      setContent(content);
-    };
-    mdx();
-  }, [mdxSource]);
+  // Add class names to specific tags
+  md.renderer.rules.heading_open = (tokens: any[], idx: number) => {
+    const { tag } = tokens[idx];
+    return `<${tag} class="md-1 mt-2">`;
+  };
 
-  if (!content) return null;
+  md.renderer.rules.list_open = () => {
+    return `<ol class="md-list bg-red">`;
+  };
 
-  return (
-    <div>
-      <MDXRemote {...content} />
-    </div>
-  );
+  md.renderer.rules.paragraph_open = () => {
+    return '<p class="my-2">';
+  };
+
+  md.renderer.rules.link_open = (
+    tokens: any,
+    idx: any,
+    options: any,
+    self: any
+  ) => {
+    const token = tokens[idx];
+    const href = token.attrGet('href');
+    if (href.includes('youtube.com') || href.includes('youtu.be')) {
+      return `<iframe width="560" height="315" class="rounded" src="${href}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    }
+    return self.renderToken(tokens, idx, options);
+  };
+
+  const mdxHTML = md.render(mdxSource);
+
+  return <div dangerouslySetInnerHTML={{ __html: mdxHTML }} />;
 };
 
 export default MDXRenderer;

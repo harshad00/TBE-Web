@@ -1,6 +1,5 @@
 import { HTMLInputTypeAttribute, MouseEventHandler, ReactNode } from 'react';
 import { GetSEOMetaResponseType, TopNavbarLinkProps } from '.';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 export interface SectionProps {
   children: React.ReactNode;
@@ -268,12 +267,14 @@ export interface ProjectHeroContainerProps {
 export interface AccordionProps {
   title: string;
   children: React.ReactNode;
+  open?: boolean;
 }
 
 export interface AccordionLinkItemProps {
   label: string;
   href: string;
   className?: string;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 export interface MDXContentProps {

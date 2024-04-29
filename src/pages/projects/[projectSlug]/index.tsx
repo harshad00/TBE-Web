@@ -13,8 +13,6 @@ import { ProjectPageProps } from '@/interfaces';
 import { getProjectPageProps } from '@/utils';
 
 const Home = ({ project, seoMeta }: ProjectPageProps) => {
-  // console.log('HERE', project);
-
   return (
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
@@ -27,9 +25,9 @@ const Home = ({ project, seoMeta }: ProjectPageProps) => {
       </Section>
       <Section className='md:p-2 p-2'>
         <FlexContainer>
-          <FlexContainer className='w-10/12 gap-4' itemCenter={false}>
+          <FlexContainer className='w-11/12 gap-4' itemCenter={false}>
             <FlexContainer
-              className='border w-1/5 p-2 gap-1 rounded'
+              className='border w-1/5 p-2 gap-1 rounded self-baseline'
               itemCenter={false}
               direction='col'
             >
