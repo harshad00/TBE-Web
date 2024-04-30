@@ -62,6 +62,7 @@ export interface AddChapterRequestPayloadProps {
   chapterId: string;
   chapterName: string;
   content: string;
+  isOptional?: boolean;
 }
 
 export interface UpateSectionRequestPayloadProps {

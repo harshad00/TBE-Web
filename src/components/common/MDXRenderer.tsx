@@ -26,8 +26,7 @@ const MDXRenderer = ({ mdxSource }: any) => {
     if (href.includes('youtube.com') || href.includes('youtu.be')) {
       return `<iframe width="560" height="315" class="rounded" src="${href}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     }
-    // return self.renderToken(tokens, idx, options);
-    return `<a href=${href} target="_blank" class="text-primary">`;
+    return `<a href=${href} target="_blank" class="text-primary underline strong-text">`;
   };
 
   md.renderer.rules.html_block = (tokens: any, idx: any) => {
@@ -35,6 +34,16 @@ const MDXRenderer = ({ mdxSource }: any) => {
     const href = token.attrGet('href');
 
     return `<a href=${href} target="_blank">${href}</a>`;
+  };
+
+  md.renderer.rules.fence = (tokens, idx) => {
+    const token = tokens[idx];
+    const lang = token.info.trim();
+    const code = token.content;
+
+    return `<pre class="bg-accent hover:bg-greyLight transition border px-2 py-1 rounded"><code class="language-${lang}">${md.utils.escapeHtml(
+      code
+    )}</code></pre>`;
   };
 
   const mdxHTML = md.render(mdxSource);

@@ -56,7 +56,7 @@ const Home = ({ project, meta, seoMeta, slug }: ProjectPageProps) => {
                             <AccordionLinkItem
                               key={chapterId}
                               label={chapterName}
-                              href={`/${slug}?projectId=${project._id}&sectionId=${sectionId}&chapterId=${chapterId}`}
+                              href={`${slug}?projectId=${project._id}&sectionId=${sectionId}&chapterId=${chapterId}`}
                               onClick={() =>
                                 handleChapterClick({ sectionId, chapterId })
                               }

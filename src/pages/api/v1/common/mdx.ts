@@ -1,6 +1,8 @@
+import fs from 'fs';
+import path from 'path';
 import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { createMarkdownPayload, sendAPIResponse } from '@/utils';
+import { sendAPIResponse } from '@/utils';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
@@ -21,7 +23,15 @@ const generateMDXContent = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const mdxPayload = createMarkdownPayload();
+  // Read the MD file synchronously
+  const mdFilePath = path.join(
+    process.cwd(),
+    'src',
+    'utils',
+    'mdx',
+    'testing.md'
+  );
+  const mdxPayload = fs.readFileSync(mdFilePath, 'utf8');
 
   return res.status(apiStatusCodes.OKAY).json(
     sendAPIResponse({
