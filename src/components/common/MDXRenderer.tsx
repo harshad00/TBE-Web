@@ -20,12 +20,7 @@ const MDXRenderer = ({ mdxSource }: any) => {
     return '<p class="my-2">';
   };
 
-  md.renderer.rules.link_open = (
-    tokens: any,
-    idx: any,
-    options: any,
-    self: any
-  ) => {
+  md.renderer.rules.link_open = (tokens: any, idx: any) => {
     const token = tokens[idx];
     const href = token.attrGet('href');
     if (href.includes('youtube.com') || href.includes('youtu.be')) {
@@ -35,12 +30,7 @@ const MDXRenderer = ({ mdxSource }: any) => {
     return `<a href=${href} target="_blank" class="text-primary">`;
   };
 
-  md.renderer.rules.html_block = (
-    tokens: any,
-    idx: any,
-    options: any,
-    self: any
-  ) => {
+  md.renderer.rules.html_block = (tokens: any, idx: any) => {
     const token = tokens[idx];
     const href = token.attrGet('href');
 

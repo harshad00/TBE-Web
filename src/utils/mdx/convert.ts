@@ -1,17 +1,12 @@
-const mdx = `# 3. Design Landing Page
+const mdx = `# 4. Assignment 1: Share Figma Link
 
-As of now, You’ve got a good understanding of How Figma helps you design Websites. Now It’s your turn to design the Landing Page of PharmaSift.
+Glad that you’ve reached this far. 🔥 Congratulations on Designing the Beta Version.
 
-## Steps -
+Now it’s time to share the Figma Link.
 
-1. Create A Design Project in Figma
-2. Separate Pages for Components and website as explained in the workshop.
-3. Design the Landing Page
-4. **Take Inspirations from [Dribble](https://dribbble.com/search/landing-page)**
+Click on the form below and share the Figma link with us.
 
-PS1: If you’re designing for the first time, It may be difficult to assume what to design that’s why we see how others design. We get inspiration from it and design our products.
-
-PS2: You can always draw on paper first to visualize the design better.`;
+### [Submit Your Assignment](https://docs.google.com/forms/d/e/1FAIpQLSe0qYlwyPJaql8iJnMnIaurFG96aR267eyjoO_JvzuGwheOBQ/viewform?usp=sf_link)`;
 
 const createMarkdownPayload = () => mdx;
 
