@@ -1,9 +1,17 @@
-const mdx = `# 1. Project Introduction
+const mdx = `# 3. Design Landing Page
 
-Before we start building the project, Let’s understand what we’re building and Why?
+As of now, You’ve got a good understanding of How Figma helps you design Websites. Now It’s your turn to design the Landing Page of PharmaSift.
 
-[https://www.youtube.com/embed/nAeq6D4OapU?si=LIk8niDDG-PM3UD6](https://www.youtube.com/embed/nAeq6D4OapU?si=LIk8niDDG-PM3UD6)
-`;
+## Steps -
+
+1. Create A Design Project in Figma
+2. Separate Pages for Components and website as explained in the workshop.
+3. Design the Landing Page
+4. **Take Inspirations from [Dribble](https://dribbble.com/search/landing-page)**
+
+PS1: If you’re designing for the first time, It may be difficult to assume what to design that’s why we see how others design. We get inspiration from it and design our products.
+
+PS2: You can always draw on paper first to visualize the design better.`;
 
 const createMarkdownPayload = () => mdx;
 

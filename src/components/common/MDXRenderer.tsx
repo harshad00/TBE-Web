@@ -2,7 +2,9 @@ import React from 'react';
 import MarkdownIt from 'markdown-it';
 
 const MDXRenderer = ({ mdxSource }: any) => {
-  const md = new MarkdownIt();
+  const md = new MarkdownIt({
+    html: true,
+  });
 
   // Add class names to specific tags
   md.renderer.rules.heading_open = (tokens: any[], idx: number) => {
@@ -29,7 +31,20 @@ const MDXRenderer = ({ mdxSource }: any) => {
     if (href.includes('youtube.com') || href.includes('youtu.be')) {
       return `<iframe width="560" height="315" class="rounded" src="${href}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     }
-    return self.renderToken(tokens, idx, options);
+    // return self.renderToken(tokens, idx, options);
+    return `<a href=${href} target="_blank" class="text-primary">`;
+  };
+
+  md.renderer.rules.html_block = (
+    tokens: any,
+    idx: any,
+    options: any,
+    self: any
+  ) => {
+    const token = tokens[idx];
+    const href = token.attrGet('href');
+
+    return `<a href=${href} target="_blank">${href}</a>`;
   };
 
   const mdxHTML = md.render(mdxSource);
