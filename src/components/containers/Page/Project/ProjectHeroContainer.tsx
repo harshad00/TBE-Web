@@ -1,4 +1,10 @@
-import { FlexContainer, PageHeroMetaContainer, Text } from '@/components';
+import {
+  LinkButton,
+  FlexContainer,
+  PageHeroMetaContainer,
+  Text,
+} from '@/components';
+import { routes } from '@/constant';
 import { ProjectHeroContainerProps } from '@/interfaces';
 
 const ProjectHeroContainer = ({
@@ -8,15 +14,11 @@ const ProjectHeroContainer = ({
 }: ProjectHeroContainerProps) => {
   return (
     <FlexContainer>
-      <FlexContainer
-        className='border w-2/3 p-2 justify-between rounded'
-        justifyCenter={false}
-      >
+      <FlexContainer className='border w-2/3 p-2 justify-between rounded'>
         <FlexContainer
-          justifyCenter={false}
           itemCenter={false}
           direction='col'
-          className='justify-start items-start gap-1'
+          className='items-start gap-1'
         >
           <Text level='h4' className='heading-4'>
             Hello there!
@@ -37,6 +39,13 @@ const ProjectHeroContainer = ({
             title={difficultyLevel}
           />
         </FlexContainer>
+        <LinkButton
+          href={routes.projectsExplore}
+          buttonProps={{
+            variant: 'GHOST',
+            text: 'Back to Projects',
+          }}
+        />
       </FlexContainer>
     </FlexContainer>
   );
