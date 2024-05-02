@@ -1,8 +1,7 @@
-import fs from 'fs';
-import path from 'path';
 import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
+import { getMDXContent } from '@/utils/mdx';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
@@ -23,21 +22,11 @@ const generateMDXContent = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  // Read the MD file synchronously
-  const mdFilePath = path.join(
-    process.cwd(),
-    'src',
-    'utils',
-    'mdx',
-    'testing.md'
-  );
-  const mdxPayload = fs.readFileSync(mdFilePath, 'utf8');
-
   return res.status(apiStatusCodes.OKAY).json(
     sendAPIResponse({
       status: true,
       message: 'Here is Project MDX',
-      data: { mdxPayload },
+      data: getMDXContent(),
     })
   );
 };

@@ -1,7 +1,7 @@
-# Assignment 2: Share GitHub Repo
+# 3. Wrapping Up
 
-Amazing job so far. Now share the GitHub repo.
+# …And It’s a Wrap
 
-Click below to share your GitHub repo link.
+[https://www.youtube.com/embed/o39NnwKWmfM?si=aSuTHJvcg0z0-QxY](https://www.youtube.com/embed/o39NnwKWmfM?si=aSuTHJvcg0z0-QxY)
 
-### [Click to Fill The Form](https://docs.google.com/forms/d/e/1FAIpQLSdvz-bSCF7WHOfp2SiGmMRex4JrxUePmIW6XH-GXHuLSwNJsg/viewform?usp=sf_link)
+Take some time off and Let’s get Started with PharmaSift Part II with Javascript.

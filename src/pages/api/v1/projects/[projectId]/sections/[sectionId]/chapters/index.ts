@@ -9,6 +9,7 @@ import {
 } from '@/database';
 import { AddChapterRequestPayloadProps } from '@/interfaces';
 import { v4 } from 'uuid';
+import { getMDXContent } from '@/utils/mdx';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
@@ -45,6 +46,7 @@ const handleAddChapter = async (
   chapterData = {
     ...chapterData,
     chapterId: v4().replace(/-/g, ''),
+    content: getMDXContent(),
   };
 
   try {

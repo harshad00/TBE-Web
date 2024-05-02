@@ -61,7 +61,7 @@ export interface AddSectionRequestPayloadProps {
 export interface AddChapterRequestPayloadProps {
   chapterId: string;
   chapterName: string;
-  content: string;
+  content?: string;
   isOptional?: boolean;
 }
 

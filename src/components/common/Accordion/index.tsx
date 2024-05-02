@@ -9,7 +9,7 @@ const Accordion = ({ title, children, open = false }: AccordionProps) => {
       {({ open }) => (
         <>
           <Disclosure.Button className='flex w-full justify-between items-center rounded border px-2 py-1 strong-text hover:bg-gray-200'>
-            <Text level='span' className='strong-text text-greyDark text-left'>
+            <Text level='span' className='paragraph text-greyDark text-left'>
               {title}
             </Text>
             <ChevronUpIcon

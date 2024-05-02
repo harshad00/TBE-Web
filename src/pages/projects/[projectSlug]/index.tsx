@@ -37,9 +37,9 @@ const Home = ({ project, meta, seoMeta, slug }: ProjectPageProps) => {
       </Section>
       <Section className='md:p-2 p-2'>
         <FlexContainer>
-          <FlexContainer className='w-11/12 gap-4' itemCenter={false}>
+          <FlexContainer className='w-full gap-4' itemCenter={false}>
             <FlexContainer
-              className='border w-1/5 p-2 gap-1 rounded self-baseline'
+              className='border w-3/12 p-2 gap-1 rounded self-baseline'
               itemCenter={false}
               direction='col'
             >
@@ -70,7 +70,7 @@ const Home = ({ project, meta, seoMeta, slug }: ProjectPageProps) => {
               </FlexContainer>
             </FlexContainer>
             <FlexContainer
-              className='border w-3/5 p-2 rounded'
+              className='border w-8/12 p-2 rounded'
               justifyCenter={false}
               itemCenter={false}
             >

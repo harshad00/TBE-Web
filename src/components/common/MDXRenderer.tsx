@@ -41,14 +41,19 @@ const MDXRenderer = ({ mdxSource }: any) => {
     const lang = token.info.trim();
     const code = token.content;
 
-    return `<pre class="bg-accent hover:bg-greyLight transition border px-2 py-1 rounded"><code class="language-${lang}">${md.utils.escapeHtml(
+    return `<pre class="bg-accent overflow-x-auto hover:bg-greyLight transition border px-2 py-1 rounded"><code class="language-${lang}">${md.utils.escapeHtml(
       code
     )}</code></pre>`;
   };
 
   const mdxHTML = md.render(mdxSource);
 
-  return <div dangerouslySetInnerHTML={{ __html: mdxHTML }} />;
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: mdxHTML }}
+      className='overflow-auto'
+    />
+  );
 };
 
 export default MDXRenderer;
