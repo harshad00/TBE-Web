@@ -57,7 +57,8 @@
     @apply text-header-3 font-bold text-contentLight;
   }
 
-  .heading-4 {
+  .heading-4,
+  .md-1 {
     @apply text-header-4 font-semibold text-contentLight;
   }
 
@@ -78,7 +79,7 @@
   }
 
   .pre-title {
-    @apply text-pre-title font-medium text-contentLight;
+    @apply text-pre-title font-normal text-contentLight;
   }
 
   .button-text {
@@ -104,4 +105,9 @@
   .disabled {
     pointer-events: none;
   }
+
+  .md-list {
+    @apply list-disc;
+  }
+
 }

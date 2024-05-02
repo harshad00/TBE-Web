@@ -340,7 +340,8 @@ const updateChapterInSectionInDB = async ({
 
     if (updatedChapterName) chapter.chapterName = updatedChapterName;
     if (updatedChapterContent) chapter.content = updatedChapterContent;
-    if (updatedIsOptional) chapter.isOptional = updatedIsOptional;
+    if (updatedIsOptional !== undefined && updatedIsOptional !== null)
+      chapter.isOptional = updatedIsOptional;
 
     await project.save();
 

@@ -21,7 +21,6 @@ import CanYouBeAProgrammer from '@/components/containers/Page/Landing/CanYouBeAP
 import TestimonialCard from '@/components/containers/Cards/Items/TestimonialCard';
 import Testimonials from '@/components/containers/Cards/Testimonials';
 import Footer from '@/components/layout/Footer';
-import FooterLinksContainer from '@/components/containers/Page/common/FooterLinksContainer';
 import GridContainer from '@/components/containers/Page/common/GridContainer';
 import WeAlreadyTaughtAt from './containers/Cards/WeAlreadyTaughtAt';
 import WeTaughtAtCard from './containers/Cards/Items/WeTaughtAtCard';
@@ -38,6 +37,11 @@ import InputFieldContainer from './common/Form/InputFieldContainer';
 import InputRadioContainer from './containers/Forms/InputRadioContainer';
 import LoadingSpinner from './common/LoadingSpinner';
 import MobileNavbarLinksContainer from './containers/Page/common/MobileNavbarLinksContainer';
+import PageHeroMetaContainer from './containers/Page/common/PageHeroMetaContainer';
+import ProjectHeroContainer from './containers/Page/Project/ProjectHeroContainer';
+import Accordion from './common/Accordion';
+import AccordionLinkItem from './common/Accordion/AccordionLinkItem';
+import MDXRenderer from './common/MDXRenderer';
 
 export {
   Navbar,
@@ -62,7 +66,6 @@ export {
   TestimonialCard,
   Testimonials,
   Footer,
-  FooterLinksContainer,
   GridContainer,
   WeAlreadyTaughtAt,
   WeTaughtAtCard,
@@ -80,4 +83,9 @@ export {
   InputFieldContainer,
   LoadingSpinner,
   MobileNavbarLinksContainer,
+  PageHeroMetaContainer,
+  ProjectHeroContainer,
+  Accordion,
+  AccordionLinkItem,
+  MDXRenderer,
 };

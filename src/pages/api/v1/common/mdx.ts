@@ -1,6 +1,7 @@
 import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { createMarkdownPayload, sendAPIResponse } from '@/utils';
+import { sendAPIResponse } from '@/utils';
+import { getMDXContent } from '@/utils/mdx';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
@@ -21,13 +22,11 @@ const generateMDXContent = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const mdxPayload = createMarkdownPayload();
-
   return res.status(apiStatusCodes.OKAY).json(
     sendAPIResponse({
       status: true,
       message: 'Here is Project MDX',
-      data: { mdxPayload },
+      data: getMDXContent(),
     })
   );
 };

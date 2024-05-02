@@ -6,8 +6,8 @@ const routes = {
   projects: '/projects',
   projectsExplore: '/projects/explore',
   allProjects: {
-    pharmashiftI: '/projects/pharmashift-i',
-    pharmashiftII: '/projects/pharmashift-ii',
+    pharmashiftI: '/projects/pharmasift-i',
+    pharmashiftII: '/projects/pharmasift-ii',
   },
   shiksha: '/shiksha',
   workshops: '/workshops',
@@ -19,6 +19,11 @@ const routes = {
     },
   },
   404: '/404',
+  api: {
+    base: '/api/v1',
+    projects: '/projects',
+    project: (project: string) => `/projects/${project}`,
+  },
 };
 
 const generateSectionPath = ({

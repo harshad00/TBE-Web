@@ -18,7 +18,7 @@ const Button = ({
       'button bg-light-bg border-2 shadow-lg border-primary px-4 py-2 text-primary hover:scale-105 transition-all';
   else if (variant === 'GHOST')
     baseClasses =
-      'button bg-black text-white px-2 py-1 text-white hover:bg-transparent hover:text-black border-2 hover:border-black transition-all';
+      'button bg-accent px-2 py-1 text-greyDark hover:bg-transparent hover:text-black border-2 hover:border-black transition-all';
   if (!active) baseClasses = 'button bg-greyDark text-contentLight px-4 py-2';
 
   const loadingContainer = isLoading && <LoadingSpinner />;

@@ -1,3 +1,5 @@
+import { ProjectDocumentModel, ProjectPickedPageProps } from '@/interfaces';
+
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -45,6 +47,37 @@ const removeLocalStorageItem = (key: string) => {
   }
 };
 
+const mapProjectResponseToCard = (projectsData: ProjectDocumentModel[]) => {
+  return projectsData?.map(
+    ({ _id, coverImageURL, name, description, slug, isActive }) => ({
+      id: _id,
+      image: coverImageURL,
+      imageAltText: name,
+      title: name,
+      content: description,
+      href: `/projects/${slug}?projectId=${_id}`,
+      active: isActive,
+      ctaText: isActive ? 'Start The Project' : 'Coming Soon',
+    })
+  );
+};
+
+const getSelectedProjectChapterMeta = (
+  project: ProjectPickedPageProps,
+  sectionId: string,
+  chapterId: string
+) => {
+  const selectedSection = project.sections.find(
+    (section) => section.sectionId === sectionId
+  );
+
+  const selectedChapter = selectedSection?.chapters.find(
+    (chapter) => chapter.chapterId === chapterId
+  );
+
+  return selectedChapter?.content ?? '';
+};
+
 export {
   formatDate,
   formatTime,
@@ -52,4 +85,6 @@ export {
   setLocalStorageItem,
   getLocalStorageItem,
   removeLocalStorageItem,
+  mapProjectResponseToCard,
+  getSelectedProjectChapterMeta,
 };

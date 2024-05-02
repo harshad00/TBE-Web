@@ -232,3 +232,51 @@ export interface CardContainerAProps extends BaseCardContainerProps {
 export interface CardContainerBProps extends BaseCardContainerProps {
   cards: PrimaryCardWithCTAProps[];
 }
+
+export interface RadioOptionProps {
+  id: string;
+  label: string;
+  description?: string;
+}
+
+export interface InputRadioContainerProps {
+  radioItems: RadioOptionProps[];
+  onChange: (itemId: string) => void;
+  selectedItemId?: string;
+  className?: string;
+}
+
+export interface RadioInputFieldProps extends RadioOptionProps {
+  onChange: (itemId: string) => void;
+  selected?: boolean;
+  className?: string;
+}
+
+export interface ProjectHeroMetaContainerProps {
+  subtitle: string;
+  title: string;
+  titleClassName?: string;
+}
+
+export interface ProjectHeroContainerProps {
+  name: string;
+  roadmap: string;
+  difficultyLevel: string;
+}
+
+export interface AccordionProps {
+  title: string;
+  children: React.ReactNode;
+  open?: boolean;
+}
+
+export interface AccordionLinkItemProps {
+  label: string;
+  href: string;
+  className?: string;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}
+
+export interface MDXContentProps {
+  mdxSource: string;
+}

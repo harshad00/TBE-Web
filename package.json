@@ -1,6 +1,6 @@
 {
   "name": "tbe-webapp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,11 +19,13 @@
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
     "axios": "^1.4.0",
+    "markdown-it": "^14.1.0",
     "mongoose": "^7.4.1",
     "next": "^13.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
+    "react-query": "^3.39.3",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -33,7 +35,9 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/axios": "^0.14.0",
+    "@types/markdown-it": "^14.0.1",
     "@types/react": "^18.0.28",
+    "@types/react-query": "^1.2.9",
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
