@@ -1,1 +1,5 @@
-#The Boring Education
+# Run TBE App
+
+```bash
+npm run dev
+```

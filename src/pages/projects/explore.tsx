@@ -32,6 +32,7 @@ const Home = ({ seoMeta }: PageProps) => {
         cards={projects}
         borderColour={2}
         subtext='Pick A Real Life Project and Start Building'
+        sectionClassName='px-2 py-4'
       />
     </Fragment>
   );

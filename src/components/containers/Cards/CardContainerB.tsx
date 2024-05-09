@@ -5,7 +5,6 @@ import {
   Section,
   SectionHeaderContainer,
 } from '@/components';
-import { routes } from '@/constant';
 import { CardContainerBProps } from '@/interfaces';
 
 const CardContainerB = ({
@@ -14,9 +13,11 @@ const CardContainerB = ({
   cards,
   borderColour,
   subtext,
+  id,
+  sectionClassName,
 }: CardContainerBProps) => {
   return (
-    <Section id={routes.internals.landing.products}>
+    <Section id={id} className={sectionClassName}>
       <FlexContainer direction='col' className='gap-4'>
         <SectionHeaderContainer
           heading={heading}

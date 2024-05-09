@@ -14,7 +14,7 @@ const ProjectHeroContainer = ({
 }: ProjectHeroContainerProps) => {
   return (
     <FlexContainer>
-      <FlexContainer className='border w-2/3 p-2 justify-between rounded'>
+      <FlexContainer className='border md:w-4/5 gap-4 w-full p-2 justify-between rounded'>
         <FlexContainer
           itemCenter={false}
           direction='col'

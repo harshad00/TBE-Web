@@ -9,7 +9,7 @@ const MDXRenderer = ({ mdxSource }: any) => {
   // Add class names to specific tags
   md.renderer.rules.heading_open = (tokens: any[], idx: number) => {
     const { tag } = tokens[idx];
-    return `<${tag} class="md-1 mt-2">`;
+    return `<${tag} class="md-1">`;
   };
 
   md.renderer.rules.list_open = () => {
@@ -24,7 +24,7 @@ const MDXRenderer = ({ mdxSource }: any) => {
     const token = tokens[idx];
     const href = token.attrGet('href');
     if (href.includes('youtube.com') || href.includes('youtu.be')) {
-      return `<iframe width="560" height="315" class="rounded" src="${href}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      return `<iframe width="100%" height="315" class="rounded" src="${href}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     }
     return `<a href=${href} target="_blank" class="text-primary underline strong-text">`;
   };
@@ -49,10 +49,7 @@ const MDXRenderer = ({ mdxSource }: any) => {
   const mdxHTML = md.render(mdxSource);
 
   return (
-    <div
-      dangerouslySetInnerHTML={{ __html: mdxHTML }}
-      className='overflow-auto'
-    />
+    <div dangerouslySetInnerHTML={{ __html: mdxHTML }} className='break-all' />
   );
 };
 
