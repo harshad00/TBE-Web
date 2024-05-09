@@ -61,6 +61,7 @@ const Home = ({ seoMeta }: PageProps) => {
         backgroundImageUrl={`${STATIC_FILE_PATH.svg}/hero-image.svg`}
       />
       <CardContainerB
+        id={routes.internals.landing.products}
         heading='Our'
         focusText='Products'
         cards={PRODUCTS}

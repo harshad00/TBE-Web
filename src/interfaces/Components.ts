@@ -231,6 +231,8 @@ export interface CardContainerAProps extends BaseCardContainerProps {
 
 export interface CardContainerBProps extends BaseCardContainerProps {
   cards: PrimaryCardWithCTAProps[];
+  id?: string;
+  sectionClassName?: string;
 }
 
 export interface RadioOptionProps {
