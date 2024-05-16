@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { LinkProps } from '@/interfaces';
 
 const LinkText = ({

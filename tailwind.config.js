@@ -53,6 +53,7 @@ module.exports = {
         contentLight: '#19191B',
         contentDark: '#FDFDFD',
         grey: '#B0B0B0',
+        greyLight: '#e3e3e3',
         greyDark: '#848484',
         accent: '#ECF1F4',
         lightBG: '#F8F8F8',

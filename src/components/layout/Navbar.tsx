@@ -1,15 +1,18 @@
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { TOP_NAVIGATION } from '@/constant';
+import { LINKS, TOP_NAVIGATION } from '@/constant';
 import {
+  FlexContainer,
   Link,
   Logo,
   LogoutButton,
+  MobileNavbarLinksContainer,
   NavbarDropdownContainer,
   PopoverContainer,
-  ScreenReader,
+  Text,
 } from '..';
+import { FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -26,23 +29,16 @@ const Navbar = () => {
             className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black'
             onClick={() => setMobileMenuOpen(true)}
           >
-            <ScreenReader text='Open main menu' />
             <Bars3Icon className='h-6 w-6' aria-hidden='true' color='black' />
           </button>
         </div>
         <div className='hidden items-center lg:flex lg:gap-x-4'>
-          <PopoverContainer label='Our Cohorts'>
-            <NavbarDropdownContainer />
+          <PopoverContainer label='Products'>
+            <NavbarDropdownContainer links={TOP_NAVIGATION.products} />
           </PopoverContainer>
-          {TOP_NAVIGATION.links.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className='paragraph text-base font-normal hover:text-primary'
-            >
-              {item.name}
-            </Link>
-          ))}
+          <PopoverContainer label='Links' panelClasses='-left-6'>
+            <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
+          </PopoverContainer>
           <LogoutButton />
         </div>
       </nav>
@@ -53,7 +49,7 @@ const Navbar = () => {
         onClose={setMobileMenuOpen}
       >
         <div className='fixed inset-0 z-50' />
-        <Dialog.Panel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-accent px-4 py-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
+        <Dialog.Panel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-4 py-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
           <div className='flex items-center justify-between'>
             <Logo />
             <button
@@ -61,26 +57,47 @@ const Navbar = () => {
               className='-m-2.5 rounded-md p-2.5 text-black'
               onClick={() => setMobileMenuOpen(false)}
             >
-              <ScreenReader text='Close menu' />
               <XMarkIcon className='h-6 w-6' aria-hidden='true' />
             </button>
           </div>
           <div className='mt-6 flow-root'>
             <div className='divide-white-500/10 -my-6 divide-y'>
-              <div className='space-y-2 py-6'>
-                <PopoverContainer label='Our Cohorts'>
-                  <NavbarDropdownContainer />
-                </PopoverContainer>
-                {TOP_NAVIGATION.links.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className='paragraph -mx-3 block rounded-lg px-3 text-base hover:text-primary'
+              <FlexContainer
+                className='gap-2 space-y-2 py-6'
+                direction='col'
+                itemCenter={false}
+              >
+                <MobileNavbarLinksContainer
+                  title='Our Products'
+                  links={TOP_NAVIGATION.products}
+                />
+                <MobileNavbarLinksContainer
+                  title='Links'
+                  links={TOP_NAVIGATION.links}
+                />
+                <FlexContainer
+                  itemCenter={false}
+                  justifyCenter={false}
+                  direction='col'
+                  className='gap-1'
+                >
+                  <Text level='span' className='pre-title text-greyDark'>
+                    Connect with us
+                  </Text>
+                  <FlexContainer
+                    itemCenter={false}
+                    justifyCenter={false}
+                    className='gap-1'
                   >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
+                    <Link href={LINKS.instagram} target='BLANK'>
+                      <FaInstagram color='black' size='2em' />
+                    </Link>
+                    <Link href={LINKS.youtube} target='BLANK'>
+                      <FaYoutube color='black' size='2em' />
+                    </Link>
+                  </FlexContainer>
+                </FlexContainer>
+              </FlexContainer>
             </div>
           </div>
         </Dialog.Panel>

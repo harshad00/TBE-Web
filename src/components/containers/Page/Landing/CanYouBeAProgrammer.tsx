@@ -22,8 +22,7 @@ const CanYouBeAProgrammer = () => {
               className='paragraph pt-1 text-grey'
               textCenter={true}
             >
-              Book your session and discuss if programming is for you. Purely
-              unbiased.
+              Book your session and discuss if programming is for you.
             </Text>
             <LinkButton
               href={LINKS.freeTechConsultation}

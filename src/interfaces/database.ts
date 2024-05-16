@@ -1,12 +1,28 @@
-import { CohortLeadStatus } from './global';
-import { AddALeadRequestPayload, AddAnAdminRequestPayload } from './api';
+import { Document } from 'mongoose';
+import { DifficultyType, RoadmapsType, SkillsType } from '.';
 
-export interface CohortLeadDocumentModel extends AddALeadRequestPayload {
-  status?: CohortLeadStatus;
+export interface ProjectChapter {
+  chapterId: string;
+  chapterName: string;
+  content: string;
+  isOptional?: boolean;
 }
 
-export interface AdminUserDocumentModel extends AddAnAdminRequestPayload {
+export interface ProjectSection {
+  sectionId: string;
+  sectionName: string;
+  chapters: ProjectChapter[];
+}
+
+export interface ProjectDocumentModel extends Document {
   name: string;
-  email: string;
-  googleId: string;
+  meta: string;
+  slug: string;
+  description: string;
+  coverImageURL: string;
+  sections: ProjectSection[];
+  requiredSkills: SkillsType[];
+  roadmap: RoadmapsType;
+  difficultyLevel: DifficultyType;
+  isActive: boolean;
 }
