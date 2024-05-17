@@ -1,6 +1,5 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-
 export const authOptions = {
   providers: [
     GoogleProvider({
@@ -13,7 +12,7 @@ export const authOptions = {
     async signIn({ user }: any) {
       if (!user || !user.email || !user.name) return false;
       try {
-        const response = await fetch('http://localhost:3000/api/v1/users', {
+        const response = await fetch(`${process.env.BASE_API_URL}/users`, {
           method: 'POST',
           body: JSON.stringify({ name: user.name, email: user.email }),
         });
