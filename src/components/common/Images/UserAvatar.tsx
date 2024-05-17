@@ -1,11 +1,14 @@
 import React from 'react';
 
 import { Popover, Transition } from '@headlessui/react';
+
 import { Fragment } from 'react';
+
 import { signOut, useSession } from 'next-auth/react';
+
 import { Button, Image } from '@/components';
 
-export function UserAvatar() {
+const UserAvatar = () => {
   const session = useSession();
   if (session.status !== 'authenticated') return;
   return (
@@ -52,6 +55,6 @@ export function UserAvatar() {
       </Popover>
     </div>
   );
-}
+};
 
 export default UserAvatar;

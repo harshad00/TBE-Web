@@ -1,19 +1,24 @@
 import { Dialog } from '@headlessui/react';
+
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+
 import { useState } from 'react';
+
 import { LINKS, TOP_NAVIGATION } from '@/constant';
+
 import {
   FlexContainer,
   Link,
+  LoginWithGoogleButton,
   Logo,
   MobileNavbarLinksContainer,
   NavbarDropdownContainer,
   PopoverContainer,
   Text,
+  UserAvatar,
 } from '..';
+
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
-import LoginWithGoogleButton from '../common/Buttons/LoginWithGoogleButton';
-import UserAvatar from '../common/Images/UserAvatar';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

@@ -1,6 +1,8 @@
 import NextAuth from 'next-auth';
+
 import GoogleProvider from 'next-auth/providers/google';
-export const authOptions = {
+
+const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_AUTH_CLIENT_ID as string,
@@ -10,11 +12,16 @@ export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ user }: any) {
-      if (!user || !user.email || !user.name) return false;
+      if (!user) return false;
+
+      const { name, email } = user;
+
+      if (!email || !name) return false;
+
       try {
         const response = await fetch(`${process.env.BASE_API_URL}/users`, {
           method: 'POST',
-          body: JSON.stringify({ name: user.name, email: user.email }),
+          body: JSON.stringify({ name, email }),
         });
 
         if (!response.ok) return false;
@@ -27,3 +34,5 @@ export const authOptions = {
 };
 
 export default NextAuth(authOptions);
+
+export { authOptions };

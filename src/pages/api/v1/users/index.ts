@@ -1,8 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+
 import User from '@/database/models/User';
+
 import { apiStatusCodes } from '@/constant';
+
 import { sendAPIResponse } from '@/utils';
+
 import { connectDB } from '@/middlewares';
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
 
@@ -19,8 +24,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 const handleGetUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const filter: Partial<{ [key: string]: string | string[] }> = req.query;
+    const { email, userId } = filter;
     const users = await User.find({
-      $or: [{ email: filter.email || '' }, { userId: filter.userId || '' }],
+      $or: [{ email: email || '' }, { userId: userId || '' }],
     });
     return res
       .status(apiStatusCodes.OKAY)
@@ -35,6 +41,7 @@ const handleGetUser = async (req: NextApiRequest, res: NextApiResponse) => {
     );
   }
 };
+
 const handleCreateUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const body: { email: string; name: string } = JSON.parse(req.body);

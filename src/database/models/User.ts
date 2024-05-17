@@ -1,8 +1,12 @@
 import { databaseModels } from '@/constant';
-import { IUser } from '@/interfaces';
+
+import { UserModel } from '@/interfaces';
+
 import { Model, Schema, model, models } from 'mongoose';
+
 import { v4 as uuidv4 } from 'uuid';
-const UserSchema: Schema<IUser> = new Schema({
+
+const UserSchema: Schema<UserModel> = new Schema({
   userId: {
     type: String,
     default: uuidv4,
@@ -22,6 +26,6 @@ const UserSchema: Schema<IUser> = new Schema({
   },
 });
 
-const User: Model<IUser> =
-  models?.User || model<IUser>(databaseModels.USER, UserSchema);
+const User: Model<UserModel> =
+  models?.User || model<UserModel>(databaseModels.USER, UserSchema);
 export default User;

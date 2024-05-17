@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+
 const Navbar = dynamic(() => import('@/components/layout/Navbar'));
 const LinkText = dynamic(() => import('@/components/common/Typography/Link'));
 const Text = dynamic(() => import('@/components/common/Typography/Text'));
@@ -98,6 +99,12 @@ const AccordionLinkItem = dynamic(
 );
 const MDXRenderer = dynamic(() => import('./common/MDXRenderer'));
 
+const LoginWithGoogleButton = dynamic(
+  () => import('./common/Buttons/LoginWithGoogleButton')
+);
+
+const UserAvatar = dynamic(() => import('./common/Images/UserAvatar'));
+
 export {
   Navbar,
   LinkText as Link,
@@ -143,4 +150,6 @@ export {
   Accordion,
   AccordionLinkItem,
   MDXRenderer,
+  LoginWithGoogleButton,
+  UserAvatar,
 };
