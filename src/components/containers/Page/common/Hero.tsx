@@ -24,7 +24,7 @@ const LandingPageHero = ({
         <FlexContainer
           justifyCenter={true}
           itemCenter={true}
-          className='wrap-reverse flex-col flex-col-reverse gap-6 lg:flex-row'
+          className='wrap-reverse flex-col-reverse gap-6 lg:flex-row'
           wrap={false}
         >
           <FlexContainer
