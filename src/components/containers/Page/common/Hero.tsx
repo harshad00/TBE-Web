@@ -6,7 +6,6 @@ import {
   Text,
 } from '@/components';
 import { LandingPageHeroProps } from '@/interfaces';
-
 const LandingPageHero = ({
   sectionHeaderProps,
   primaryButton,
@@ -15,7 +14,6 @@ const LandingPageHero = ({
   heroText,
 }: LandingPageHeroProps) => {
   const { heading, focusText } = sectionHeaderProps;
-
   return (
     <Section>
       <FlexContainer
