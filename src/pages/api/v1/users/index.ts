@@ -10,15 +10,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (method) {
     case 'GET':
-      return handleGetAllUser(req, res);
+      return handleGetUser(req, res);
     case 'POST':
       return handleCreateUser(req, res);
   }
 };
 
-const handleGetAllUser = async (req: NextApiRequest, res: NextApiResponse) => {
+const handleGetUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const users = await User.find({});
+    const filter: Partial<{ [key: string]: string | string[] }> = req.query;
+    const users = await User.find({
+      $or: [{ email: filter.email || '' }, { userId: filter.userId || '' }],
+    });
     return res
       .status(apiStatusCodes.OKAY)
       .json(sendAPIResponse({ status: true, data: users }));
