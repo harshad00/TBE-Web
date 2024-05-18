@@ -1,24 +1,20 @@
+import { signOut } from 'next-auth/react';
+
 import Button from './Button';
-import { removeLocalStorageItem } from '@/utils';
-import { localStorageKeys, routes } from '@/constant';
-import { useRouter } from 'next/router';
+
+import { useSession } from 'next-auth/react';
 
 const LogoutButton = () => {
-  const router = useRouter();
-
-  const logOutUser = () => {
-    removeLocalStorageItem(localStorageKeys.USER);
-    router.push(routes.home);
-  };
-
-  if (router) return <></>;
-
+  const session = useSession();
+  if (session.status === 'unauthenticated') return;
   return (
     <Button
       variant='GHOST'
       text='Log out'
       className='w-fit'
-      onClick={logOutUser}
+      onClick={() => {
+        signOut();
+      }}
     />
   );
 };

@@ -1,17 +1,23 @@
 import { Dialog } from '@headlessui/react';
+
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+
 import { useState } from 'react';
+
 import { LINKS, TOP_NAVIGATION } from '@/constant';
+
 import {
   FlexContainer,
   Link,
+  LoginWithGoogleButton,
   Logo,
-  LogoutButton,
   MobileNavbarLinksContainer,
   NavbarDropdownContainer,
   PopoverContainer,
   Text,
+  UserAvatar,
 } from '..';
+
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Navbar = () => {
@@ -29,6 +35,7 @@ const Navbar = () => {
             className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black'
             onClick={() => setMobileMenuOpen(true)}
           >
+            <UserAvatar />
             <Bars3Icon className='h-6 w-6' aria-hidden='true' color='black' />
           </button>
         </div>
@@ -39,7 +46,8 @@ const Navbar = () => {
           <PopoverContainer label='Links' panelClasses='-left-6'>
             <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
           </PopoverContainer>
-          <LogoutButton />
+          <LoginWithGoogleButton />
+          <UserAvatar />
         </div>
       </nav>
       <Dialog
@@ -75,6 +83,7 @@ const Navbar = () => {
                   title='Links'
                   links={TOP_NAVIGATION.links}
                 />
+
                 <FlexContainer
                   itemCenter={false}
                   justifyCenter={false}
@@ -95,6 +104,7 @@ const Navbar = () => {
                     <Link href={LINKS.youtube} target='BLANK'>
                       <FaYoutube color='black' size='2em' />
                     </Link>
+                    <LoginWithGoogleButton />
                   </FlexContainer>
                 </FlexContainer>
               </FlexContainer>

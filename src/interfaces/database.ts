@@ -1,6 +1,13 @@
 import { Document } from 'mongoose';
 import { DifficultyType, RoadmapsType, SkillsType } from '.';
 
+export interface UserModel {
+  userId: string;
+  name: string;
+  email: string;
+  username: string;
+}
+
 export interface ProjectChapter {
   chapterId: string;
   chapterName: string;
