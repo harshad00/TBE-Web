@@ -1,16 +1,12 @@
 import React from 'react';
-
 import { Popover, Transition } from '@headlessui/react';
-
 import { Fragment } from 'react';
-
 import { signOut, useSession } from 'next-auth/react';
-
 import { Button, Image } from '@/components';
 
 const UserAvatar = () => {
   const session = useSession();
-  if (session.status !== 'authenticated') return;
+  if (session.status !== 'authenticated') return null;
   return (
     <div>
       <Popover className='relative p-0 w-[40px] h-[40px] rounded-[50%] border-[2px]'>

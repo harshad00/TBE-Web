@@ -59,5 +59,5 @@ export interface ServerSessionProp {
     email: string;
     image: string;
   };
-  expires: Date;
+  expires : Date;
 }
