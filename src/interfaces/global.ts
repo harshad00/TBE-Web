@@ -52,3 +52,12 @@ export interface TopNavbarContainerProps {
   products: TopNavbarLinkProps[];
   links: TopNavbarLinkProps[];
 }
+
+export interface ServerSessionProp {
+  user: {
+    name: string;
+    email: string;
+    image: string;
+  };
+  expires: Date;
+}
