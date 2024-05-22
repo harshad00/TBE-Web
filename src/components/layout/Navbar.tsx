@@ -19,9 +19,11 @@ import {
 } from '..';
 
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const path = usePathname();
 
   return (
     <header>
@@ -46,7 +48,7 @@ const Navbar = () => {
           <PopoverContainer label='Links' panelClasses='-left-6'>
             <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
           </PopoverContainer>
-          <LoginWithGoogleButton />
+          {!path.startsWith('/register') && <LoginWithGoogleButton />}
           <UserAvatar />
         </div>
       </nav>
@@ -104,7 +106,7 @@ const Navbar = () => {
                     <Link href={LINKS.youtube} target='BLANK'>
                       <FaYoutube color='black' size='2em' />
                     </Link>
-                    <LoginWithGoogleButton />
+                    {!path.startsWith('/register') && <LoginWithGoogleButton />}
                   </FlexContainer>
                 </FlexContainer>
               </FlexContainer>
