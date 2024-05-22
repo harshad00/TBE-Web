@@ -1,29 +1,29 @@
+import { Text } from '@/components';
+import LoginWithGoogleButton from '@/components/common/Buttons/LoginWithGoogleButton';
+import FlexContainer from '@/components/containers/Page/common/FlexContainer';
+import Image from 'next/image';
 import React from 'react';
-import { isLoggedIn } from '@/utils/isLoggedIn';
-import { ServerSessionProp } from '@/interfaces';
-import type { GetServerSidePropsContext } from 'next';
-function Register({ session }: { session: ServerSessionProp }) {
-  if (typeof window === 'undefined') return null;
 
-  return <div>index</div>;
+function Register() {
+  return (
+    <div className=''>
+      <FlexContainer className='flex-col max-w-[351px] max-h-[527px] mx-auto my-auto border-[1px]  border-[#B0B0B0] rounded-[5px] p-[26px] mb-5'>
+        <Text level='h1' className='text-[20px] font-bold'>
+          Start Your Boring Journey
+        </Text>
+        <FlexContainer className='my-[84px]'>
+          <Image
+            src='/images/login_illustration.png'
+            alt='login illustration'
+            width={273}
+            height={214}
+            className='w-full'
+          />
+        </FlexContainer>
+        <LoginWithGoogleButton />
+      </FlexContainer>
+    </div>
+  );
 }
 
 export default Register;
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  try {
-    const session: ServerSessionProp | null = await isLoggedIn(context);
-    console.log('session in register page = ', session);
-
-    if (!session) {
-      return {
-        props: {
-          session: null,
-        },
-      };
-    }
-    return { props: { session } };
-  } catch (error) {
-    return { props: { session: null } };
-  }
-}
