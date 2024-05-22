@@ -1,13 +1,12 @@
-import { Text } from '@/components';
+import { FlexContainer, Text } from '@/components';
 import LoginWithGoogleButton from '@/components/common/Buttons/LoginWithGoogleButton';
-import FlexContainer from '@/components/containers/Page/common/FlexContainer';
 import Image from 'next/image';
 import React from 'react';
 
 function Register() {
   return (
-    <div className=''>
-      <FlexContainer className='flex-col max-w-[351px] max-h-[527px] mx-auto my-auto border-[1px]  border-[#B0B0B0] rounded-[5px] p-[26px] mb-5'>
+    <FlexContainer className='h-screen'>
+      <FlexContainer className='flex-col max-w-[351px] max-h-[527px]  border-[1px]  border-[#B0B0B0] rounded-[5px] p-[26px] mb-5'>
         <Text level='h1' className='text-[20px] font-bold'>
           Start Your Boring Journey
         </Text>
@@ -22,7 +21,7 @@ function Register() {
         </FlexContainer>
         <LoginWithGoogleButton />
       </FlexContainer>
-    </div>
+    </FlexContainer>
   );
 }
 
