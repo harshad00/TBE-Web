@@ -1,11 +1,7 @@
 import { Dialog } from '@headlessui/react';
-
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-
 import { useState } from 'react';
-
 import { LINKS, TOP_NAVIGATION } from '@/constant';
-
 import {
   FlexContainer,
   Link,
@@ -17,7 +13,6 @@ import {
   Text,
   UserAvatar,
 } from '..';
-
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 

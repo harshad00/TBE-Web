@@ -1,11 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-
 import User from '@/database/models/User';
-
 import { apiStatusCodes } from '@/constant';
-
 import { sendAPIResponse } from '@/utils';
-
 import { connectDB } from '@/middlewares';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
