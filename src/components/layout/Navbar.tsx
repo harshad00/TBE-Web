@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import { useState } from 'react';
 
-import { LINKS, TOP_NAVIGATION } from '@/constant';
+import { LINKS, TOP_NAVIGATION, routes } from '@/constant';
 
 import {
   FlexContainer,
@@ -48,7 +48,7 @@ const Navbar = () => {
           <PopoverContainer label='Links' panelClasses='-left-6'>
             <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
           </PopoverContainer>
-          {!path.startsWith('/register') && <LoginWithGoogleButton />}
+          {!path.startsWith(routes.register) && <LoginWithGoogleButton />}
           <UserAvatar />
         </div>
       </nav>
@@ -106,7 +106,9 @@ const Navbar = () => {
                     <Link href={LINKS.youtube} target='BLANK'>
                       <FaYoutube color='black' size='2em' />
                     </Link>
-                    {!path.startsWith('/register') && <LoginWithGoogleButton />}
+                    {!path.startsWith(routes.register) && (
+                      <LoginWithGoogleButton />
+                    )}
                   </FlexContainer>
                 </FlexContainer>
               </FlexContainer>
