@@ -1,11 +1,7 @@
 import { Dialog } from '@headlessui/react';
-
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-
 import { useState } from 'react';
-
 import { LINKS, TOP_NAVIGATION, routes } from '@/constant';
-
 import {
   FlexContainer,
   Link,
@@ -20,10 +16,12 @@ import {
 
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const path = usePathname();
+  const session = useSession();
 
   return (
     <header>
@@ -79,24 +77,26 @@ const Navbar = () => {
                 direction='col'
                 itemCenter={false}
               >
-                <FlexContainer
-                  itemCenter={false}
-                  justifyCenter={false}
-                  direction='col'
-                  className='gap-1'
-                >
-                  <Text level='span' className='pre-title text-greyDark'>
-                    Get Started
-                  </Text>
+                {session.status === 'unauthenticated' && (
                   <FlexContainer
                     itemCenter={false}
                     justifyCenter={false}
                     direction='col'
                     className='gap-1'
                   >
-                    <LoginWithGoogleButton text='Login' />
+                    <Text level='span' className='pre-title text-greyDark'>
+                      Get Started
+                    </Text>
+                    <FlexContainer
+                      itemCenter={false}
+                      justifyCenter={false}
+                      direction='col'
+                      className='gap-1'
+                    >
+                      <LoginWithGoogleButton text='Login' />
+                    </FlexContainer>
                   </FlexContainer>
-                </FlexContainer>
+                )}
                 <MobileNavbarLinksContainer
                   title='Our Products'
                   links={TOP_NAVIGATION.products}
