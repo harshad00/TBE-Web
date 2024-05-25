@@ -6,7 +6,7 @@ import { Button, Image } from '@/components';
 
 const UserAvatar = () => {
   const session = useSession();
-  if (session.status !== 'authenticated') return null;
+  if (session.status !== 'authenticated') return <></>;
   return (
     <div>
       <Popover className='relative p-0 w-[40px] h-[40px] rounded-[50%] border-[2px]'>
