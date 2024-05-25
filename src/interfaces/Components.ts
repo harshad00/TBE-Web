@@ -282,3 +282,7 @@ export interface AccordionLinkItemProps {
 export interface MDXContentProps {
   mdxSource: string;
 }
+
+export interface LoginWithGoogleBtnProps {
+  text: string;
+}
