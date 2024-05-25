@@ -117,3 +117,16 @@ export type SkillsType =
 export type RoadmapsType = 'Frontend' | 'Backend' | 'Fullstack';
 
 export type DifficultyType = 'Beginner' | 'Intermediate' | 'Advanced';
+
+export interface GetUserByIdDBRequestProps {
+  id: string;
+}
+
+export interface GetUserByEmailDBRequestProps {
+  email: string;
+}
+
+export interface CreateUserRequestPayloadProps {
+  name: string;
+  email: string;
+}

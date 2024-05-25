@@ -48,7 +48,9 @@ const Navbar = () => {
           <PopoverContainer label='Links' panelClasses='-left-6'>
             <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
           </PopoverContainer>
-          {!path.startsWith(routes.register) && <LoginWithGoogleButton />}
+          {!path.startsWith(routes.register) && (
+            <LoginWithGoogleButton text='Login' />
+          )}
           <UserAvatar />
         </div>
       </nav>
@@ -77,6 +79,24 @@ const Navbar = () => {
                 direction='col'
                 itemCenter={false}
               >
+                <FlexContainer
+                  itemCenter={false}
+                  justifyCenter={false}
+                  direction='col'
+                  className='gap-1'
+                >
+                  <Text level='span' className='pre-title text-greyDark'>
+                    Get Started
+                  </Text>
+                  <FlexContainer
+                    itemCenter={false}
+                    justifyCenter={false}
+                    direction='col'
+                    className='gap-1'
+                  >
+                    <LoginWithGoogleButton text='Login' />
+                  </FlexContainer>
+                </FlexContainer>
                 <MobileNavbarLinksContainer
                   title='Our Products'
                   links={TOP_NAVIGATION.products}
@@ -106,9 +126,6 @@ const Navbar = () => {
                     <Link href={LINKS.youtube} target='BLANK'>
                       <FaYoutube color='black' size='2em' />
                     </Link>
-                    {!path.startsWith(routes.register) && (
-                      <LoginWithGoogleButton />
-                    )}
                   </FlexContainer>
                 </FlexContainer>
               </FlexContainer>
