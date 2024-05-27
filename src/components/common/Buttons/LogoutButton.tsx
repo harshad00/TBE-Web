@@ -1,7 +1,5 @@
 import { signOut } from 'next-auth/react';
-
 import Button from './Button';
-
 import { useSession } from 'next-auth/react';
 
 const LogoutButton = () => {

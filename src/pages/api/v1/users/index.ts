@@ -7,10 +7,10 @@ import {
   getUserByEmailFromDB,
   getUserByIdFromDB,
 } from '@/database/query/user';
-import { Error } from 'mongoose';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
+
   const { method } = req;
   switch (method) {
     case 'GET':
@@ -53,7 +53,7 @@ const handleGetUser = async (req: NextApiRequest, res: NextApiResponse) => {
           sendAPIResponse({
             status: false,
             error,
-            message: 'error while fetching user',
+            message: 'Error while fetching user',
           })
         );
       }
@@ -66,8 +66,8 @@ const handleGetUser = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(apiStatusCodes.BAD_REQUEST).json(
       sendAPIResponse({
         status: false,
-        message: 'please provide email or user id',
-        error: new Error('please provide email or user id'),
+        message: 'Please provide Email or User id',
+        error: 'Please provide Email or User id',
       })
     );
   } catch (error) {
@@ -92,32 +92,23 @@ const handleCreateUser = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
           status: false,
-          error: 'please provide email and name',
-          message: 'error while creating user',
+          error: 'Please provide email and name',
+          message: 'Error while creating user',
         })
       );
     }
 
-    const { data, error } = await getUserByEmailFromDB(email);
-
-    if (error) {
-      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
-        sendAPIResponse({
-          status: false,
-          error,
-          message: 'error while creating user',
-        })
-      );
-    }
+    const { data } = await getUserByEmailFromDB(email);
 
     if (!data) {
       const { data, error } = await createUserInDB({ name, email });
+
       if (error) {
         return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
           sendAPIResponse({
             status: false,
             error,
-            message: 'error while creating user',
+            message: 'Error while creating user',
           })
         );
       }
@@ -135,7 +126,7 @@ const handleCreateUser = async (req: NextApiRequest, res: NextApiResponse) => {
       sendAPIResponse({
         status: false,
         error,
-        message: 'error while creating user',
+        message: 'Error while creating user',
       })
     );
   }

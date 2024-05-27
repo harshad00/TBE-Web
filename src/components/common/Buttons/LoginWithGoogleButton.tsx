@@ -6,7 +6,7 @@ import { LoginWithGoogleBtnProps } from '@/interfaces';
 const LoginWithGoogleButton = ({ text = 'Login' }: LoginWithGoogleBtnProps) => {
   const session = useSession();
   if (session.status === 'authenticated' || session.status === 'loading')
-    return;
+    return <></>;
 
   return (
     <Button

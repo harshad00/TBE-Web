@@ -2,7 +2,7 @@ import {
   CreateUserRequestPayloadProps,
   DatabaseQueryResponseType,
 } from '@/interfaces';
-import User from '../models/User';
+import { User } from '@/database';
 
 const getUserByIdFromDB = async (
   id: string
@@ -10,11 +10,11 @@ const getUserByIdFromDB = async (
   try {
     const user = await User.findById(id);
 
-    if (!user) return { error: 'user does not exists' };
+    if (!user) return { error: 'User does not exists' };
 
     return { data: user };
   } catch (error) {
-    return { error: 'error while fetching user' };
+    return { error: 'Error while fetching user' };
   }
 };
 
@@ -24,11 +24,11 @@ const getUserByEmailFromDB = async (
   try {
     const user = await User.findOne({ email });
 
-    if (!user) return { error: 'user does not exists' };
+    if (!user) return { error: 'User does not exists' };
 
     return { data: user };
   } catch (error) {
-    return { error: 'error while fetching user' };
+    return { error: 'Error while fetching user' };
   }
 };
 
@@ -40,7 +40,7 @@ const createUserInDB = async ({
     const user = await User.create({ email, name });
     return { data: user };
   } catch (error) {
-    return { error: 'error while creating user' };
+    return { error: 'Error while creating user' };
   }
 };
 

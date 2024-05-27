@@ -1,9 +1,6 @@
 import { databaseModels } from '@/constant';
-
 import { UserModel } from '@/interfaces';
-
 import { Model, Schema, model, models } from 'mongoose';
-
 import { v4 as uuidv4 } from 'uuid';
 
 const UserSchema: Schema<UserModel> = new Schema({
@@ -15,9 +12,6 @@ const UserSchema: Schema<UserModel> = new Schema({
   name: {
     type: String,
     required: [true, 'name is required'],
-  },
-  username: {
-    type: String,
   },
   email: {
     type: String,
