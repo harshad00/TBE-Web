@@ -11,6 +11,7 @@ const routes = {
     pharmashiftII: '/projects/pharmasift-ii',
   },
   shiksha: '/shiksha',
+  shikshaExplore: '/shiksha/explore',
   workshops: '/workshops',
   os: '/os',
   contactUs: '/contact',
