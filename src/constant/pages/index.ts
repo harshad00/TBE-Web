@@ -18,9 +18,9 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
     },
     {
       id: v4(),
-      name: products.roadmaps.label,
-      description: products.roadmaps.description,
-      href: products.roadmaps.slug,
+      name: products.shiksha.label,
+      description: products.shiksha.description,
+      href: products.shiksha.slug,
       isDevelopment: true,
     },
   ],

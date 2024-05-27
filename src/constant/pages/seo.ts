@@ -52,6 +52,13 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: routes.allProjects.pharmashiftII,
       ...commonMeta,
     },
+    [`${routes.shiksha}`]: {
+      title: `${products.shiksha.label} | The Boring Education`,
+      siteName: products.shiksha.label,
+      description: products.shiksha.description,
+      url: products.shiksha.slug,
+      ...commonMeta,
+    },
     [`${routes.contactUs}`]: {
       title: 'Contact | The Boring Education',
       siteName: 'The Boring Education',

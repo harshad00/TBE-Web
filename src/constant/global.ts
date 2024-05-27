@@ -29,7 +29,7 @@ const products: ProductDataProps = {
   shiksha: {
     label: 'Shiksha',
     slug: '/shiksha',
-    description: 'Learn Tech with Bite-sized Lessions',
+    description: 'Learn Tech with Free Bite-sized Courses',
   },
   workshops: {
     label: 'The Boring Workshops',
