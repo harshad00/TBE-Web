@@ -284,5 +284,5 @@ export interface MDXContentProps {
 }
 
 export interface LoginWithGoogleBtnProps {
-  text: string;
+  text?: string;
 }
