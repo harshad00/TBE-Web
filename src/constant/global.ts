@@ -104,6 +104,10 @@ const apiStatusCodes = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
+const underDevelopmentPage = {
+  projectsPage: /^\/projects(\/.*)?$/,
+};
+
 export {
   imageMeta,
   products,
@@ -114,4 +118,5 @@ export {
   favicons,
   localStorageKeys,
   apiStatusCodes,
+  underDevelopmentPage,
 };

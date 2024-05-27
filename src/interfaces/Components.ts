@@ -286,3 +286,8 @@ export interface MDXContentProps {
 export interface LoginWithGoogleBtnProps {
   text?: string;
 }
+
+export interface AlertProps {
+  text: string;
+  className?: string;
+}
