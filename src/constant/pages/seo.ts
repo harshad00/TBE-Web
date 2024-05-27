@@ -66,6 +66,13 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: routes[404],
       ...commonMeta,
     },
+    [`${routes.register}`]: {
+      title: 'Register | The Boring Education',
+      siteName: 'Register at The Boring Education',
+      description: 'Register at The Boring Education',
+      url: routes.register,
+      ...commonMeta,
+    },
   };
 
   return meta[basePath];

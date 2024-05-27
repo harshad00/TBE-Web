@@ -8,9 +8,7 @@ const ImageContainer = dynamic(
 );
 const Logo = dynamic(() => import('@/components/common/Images/Logo'));
 const Button = dynamic(() => import('@/components/common/Buttons/Button'));
-const LogoutButton = dynamic(
-  () => import('@/components/common/Buttons/LogoutButton')
-);
+
 const LinkButton = dynamic(
   () => import('@/components/common/Buttons/LinkButton')
 );
@@ -99,11 +97,11 @@ const AccordionLinkItem = dynamic(
 );
 const MDXRenderer = dynamic(() => import('./common/MDXRenderer'));
 
+const UserAvatar = dynamic(() => import('./common/Images/UserAvatar'));
 const LoginWithGoogleButton = dynamic(
   () => import('./common/Buttons/LoginWithGoogleButton')
 );
-
-const UserAvatar = dynamic(() => import('./common/Images/UserAvatar'));
+const LogoutButton = dynamic(() => import('./common/Buttons/LogoutButton'));
 
 export {
   Navbar,

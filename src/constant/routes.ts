@@ -4,6 +4,7 @@ const routes = {
   home: '/',
   roadmaps: '/roadmaps',
   projects: '/projects',
+  register: '/register',
   projectsExplore: '/projects/explore',
   allProjects: {
     pharmashiftI: '/projects/pharmasift-i',

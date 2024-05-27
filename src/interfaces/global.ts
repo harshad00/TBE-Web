@@ -46,9 +46,19 @@ export interface TopNavbarLinkProps {
   href: string;
   description?: string;
   target?: 'BLANK';
+  isDevelopment?: boolean;
 }
 
 export interface TopNavbarContainerProps {
   products: TopNavbarLinkProps[];
   links: TopNavbarLinkProps[];
+}
+
+export interface ServerSessionProp {
+  user: {
+    name: string;
+    email: string;
+    image: string;
+  };
+  expires: Date;
 }
