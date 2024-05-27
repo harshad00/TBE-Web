@@ -1,27 +1,32 @@
-import { Link } from '@/components';
+import { FlexContainer, Link } from '@/components';
 import { NavbarDropdownContainerProps } from '@/interfaces';
 
 const NavbarDropdownContainer = ({ links }: NavbarDropdownContainerProps) => {
   return (
     <div className='p-2'>
-      {links.map(({ name, href, description, target }) => {
+      {links.map(({ name, href, description, target, isDevelopment }) => {
         return (
-          <div
+          <FlexContainer
             key={name}
-            className='group relative flex gap-x-6 rounded-lg p-2 hover:bg-gray-100'
+            direction='col'
+            itemCenter={false}
+            className='relative rounded-lg p-2 hover:bg-gray-100'
           >
-            <div>
+            <FlexContainer direction='col' itemCenter={false}>
               <Link
                 href={href}
                 className='text-base font-semibold text-black'
                 target={target}
               >
-                {name}
+                {name}{' '}
+                {isDevelopment && (
+                  <span className='text-secondary'>(In Dev)</span>
+                )}
                 <span className='absolute inset-0' />
               </Link>
               <p className='text-gray-600'>{description}</p>
-            </div>
-          </div>
+            </FlexContainer>
+          </FlexContainer>
         );
       })}
     </div>

@@ -46,6 +46,7 @@ export interface TopNavbarLinkProps {
   href: string;
   description?: string;
   target?: 'BLANK';
+  isDevelopment?: boolean;
 }
 
 export interface TopNavbarContainerProps {
@@ -59,5 +60,5 @@ export interface ServerSessionProp {
     email: string;
     image: string;
   };
-  expires : Date;
+  expires: Date;
 }
