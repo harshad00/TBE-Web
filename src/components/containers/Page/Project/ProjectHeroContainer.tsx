@@ -40,6 +40,17 @@ const ProjectHeroContainer = ({
           />
         </FlexContainer>
         <LinkButton
+          href={routes.whatsappCommunity}
+          target='BLANK'
+          buttonProps={{
+            variant: 'OUTLINE',
+            text: 'Ask Question',
+            className:
+              'button bg-secondary border-0  px-2 py-1 !text-black hover:scale-100 hover:transition-none',
+          }}
+        />
+
+        <LinkButton
           href={routes.projectsExplore}
           buttonProps={{
             variant: 'GHOST',
