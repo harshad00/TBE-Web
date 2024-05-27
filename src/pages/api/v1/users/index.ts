@@ -7,6 +7,7 @@ import {
   getUserByEmailFromDB,
   getUserByIdFromDB,
 } from '@/database/query/user';
+import { Error } from 'mongoose';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
@@ -21,31 +22,60 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const handleGetUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const filter: Partial<{ [key: string]: string | string[] }> = req.query;
-    const { email, userId } = filter;
+    const { email, userId } = req.query as {
+      email: string;
+      userId: string;
+    };
+
     if (email) {
-      const { data, error } = await getUserByEmailFromDB({
-        email: email as string,
-      });
-      if (error) throw error;
+      const { data, error } = await getUserByEmailFromDB(email);
+
+      if (error) {
+        return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+          sendAPIResponse({
+            status: false,
+            error,
+            message: 'error while fetching user',
+          })
+        );
+      }
+
       return res
         .status(apiStatusCodes.OKAY)
         .json(sendAPIResponse({ status: true, data }));
     }
+
     if (userId) {
-      const { data, error } = await getUserByIdFromDB({ id: userId as string });
-      if (error) throw error;
+      const { data, error } = await getUserByIdFromDB(userId);
+
+      if (error) {
+        return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+          sendAPIResponse({
+            status: false,
+            error,
+            message: 'error while fetching user',
+          })
+        );
+      }
+
       return res
         .status(apiStatusCodes.OKAY)
         .json(sendAPIResponse({ status: true, data }));
     }
-    throw new Error('please provide email or user id');
+
+    return res.status(apiStatusCodes.BAD_REQUEST).json(
+      sendAPIResponse({
+        status: false,
+        message: 'please provide email or user id',
+        error: new Error('please provide email or user id'),
+      })
+    );
   } catch (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
         error,
-        message: 'error while fetching users',
+        message: 'error while fetching user',
       })
     );
   }
@@ -53,14 +83,45 @@ const handleGetUser = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const handleCreateUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const body: { email: string; name: string } = req.body;
-    const { email, name } = body;
-    if (!email || !name) throw new Error('name & email is required');
-    const { data, error } = await getUserByEmailFromDB({ email });
-    if (error) throw error;
+    const { email, name } = JSON.parse(req.body) as {
+      email: string;
+      name: string;
+    };
+
+    if (!email || !name) {
+      return res.status(apiStatusCodes.BAD_REQUEST).json(
+        sendAPIResponse({
+          status: false,
+          error: 'please provide email and name',
+          message: 'error while creating user',
+        })
+      );
+    }
+
+    const { data, error } = await getUserByEmailFromDB(email);
+
+    if (error) {
+      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+        sendAPIResponse({
+          status: false,
+          error,
+          message: 'error while creating user',
+        })
+      );
+    }
+
     if (!data) {
       const { data, error } = await createUserInDB({ name, email });
-      if (error) throw error;
+      if (error) {
+        return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+          sendAPIResponse({
+            status: false,
+            error,
+            message: 'error while creating user',
+          })
+        );
+      }
+
       return res
         .status(apiStatusCodes.OKAY)
         .json(sendAPIResponse({ status: true, data }));

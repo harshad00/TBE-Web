@@ -1,5 +1,5 @@
+import { routes } from '@/constant';
 import NextAuth from 'next-auth';
-
 import GoogleProvider from 'next-auth/providers/google';
 
 const authOptions = {
@@ -31,8 +31,10 @@ const authOptions = {
       return true;
     },
   },
+  pages: {
+    signIn: routes.register,
+  },
 };
 
 export default NextAuth(authOptions);
-
 export { authOptions };
