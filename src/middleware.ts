@@ -4,7 +4,7 @@ import { routes } from './constant';
 
 const middleware = async (req: NextRequest) => {
   const response = await fetch(
-    `${process.env.BASE_API_URL}/users/isauthenticed`,
+    `${process.env.BASE_API_URL}/users/isauthenticated`,
     {
       credentials: 'include',
       cache: 'no-cache',

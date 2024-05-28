@@ -102,6 +102,7 @@ const LoginWithGoogleButton = dynamic(
   () => import('./common/Buttons/LoginWithGoogleButton')
 );
 const LogoutButton = dynamic(() => import('./common/Buttons/LogoutButton'));
+const Alert = dynamic(() => import('./containers/Alerts/Alert'));
 
 export {
   Navbar,
@@ -150,4 +151,5 @@ export {
   MDXRenderer,
   LoginWithGoogleButton,
   UserAvatar,
+  Alert,
 };
