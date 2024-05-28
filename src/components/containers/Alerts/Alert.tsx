@@ -1,5 +1,5 @@
 import { FlexContainer, Text } from '@/components';
-import { underDevelopmentPage } from '@/constant';
+import { IN_DEV_PAGES } from '@/constant';
 import { AlertProps } from '@/interfaces';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -8,7 +8,7 @@ const Alert = ({ text, className }: AlertProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const path = usePathname();
   useEffect(() => {
-    setIsOpen(underDevelopmentPage.projectsPage.test(path));
+    for (const page of IN_DEV_PAGES) if (path === page) setIsOpen(true);
   }, [path]);
 
   return (
