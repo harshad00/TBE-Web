@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 import { DifficultyType, RoadmapsType, SkillsType } from '.';
 
 export interface UserModel {
@@ -32,4 +32,25 @@ export interface ProjectDocumentModel extends Document {
   roadmap: RoadmapsType;
   difficultyLevel: DifficultyType;
   isActive: boolean;
+}
+
+export interface CourseModel extends Document {
+  title: string;
+  description: string;
+  thumbnailLink: string;
+  roadmap: RoadmapsType;
+  createdAt: Date;
+}
+
+export interface CourseSectionModel {
+  title: string;
+  courseId: Schema.Types.ObjectId;
+  createdAt: Date;
+}
+
+export interface CourseChapterModel {
+  title: string;
+  sectionId: Schema.Types.ObjectId;
+  videoLink: string;
+  createdAt: Date;
 }
