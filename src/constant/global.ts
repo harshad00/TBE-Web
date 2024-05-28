@@ -104,9 +104,8 @@ const apiStatusCodes = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
-const underDevelopmentPage = {
-  projectsPage: /^\/projects(\/.*)?$/,
-};
+const IN_DEV_PAGES = ['/projects'];
+const projectGroupWhatsapp = 'https://chat.whatsapp.com/D1ko12SykD1LfvJwmNQ48A';
 
 export {
   imageMeta,
@@ -118,5 +117,6 @@ export {
   favicons,
   localStorageKeys,
   apiStatusCodes,
-  underDevelopmentPage,
+  IN_DEV_PAGES,
+  projectGroupWhatsapp,
 };
