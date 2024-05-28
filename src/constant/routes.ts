@@ -25,7 +25,6 @@ const routes = {
     projects: '/projects',
     project: (project: string) => `/projects/${project}`,
   },
-  whatsappCommunity: 'https://chat.whatsapp.com/D1ko12SykD1LfvJwmNQ48A',
 };
 
 const generateSectionPath = ({
