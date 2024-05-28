@@ -102,6 +102,27 @@ export interface UpdateChapterDBRequestProps
   chapterId: string;
 }
 
+export interface AddCourseDBRequestProps {
+  title: string;
+  description: string;
+  thumbnailLink: string;
+  roadmap: RoadmapsType;
+}
+
+export interface UpdateCourseRequestPayloadProps {
+  updatedData: {
+    title?: string;
+    description?: string;
+    thumbnailLink?: string;
+  };
+  courseId: string;
+}
+
+export interface AddSectionToACourseDBRequestProps {
+  title: string;
+  courseId: string;
+}
+
 export type SkillsType =
   | 'HTML'
   | 'CSS'
