@@ -106,6 +106,7 @@ export interface AddCourseDBRequestProps {
   title: string;
   description: string;
   thumbnailLink: string;
+  liveOn: Date;
   roadmap: RoadmapsType;
 }
 
@@ -114,6 +115,7 @@ export interface UpdateCourseRequestPayloadProps {
     title?: string;
     description?: string;
     thumbnailLink?: string;
+    roadmap?: RoadmapsType;
   };
   courseId: string;
 }
@@ -121,6 +123,24 @@ export interface UpdateCourseRequestPayloadProps {
 export interface AddSectionToACourseDBRequestProps {
   title: string;
   courseId: string;
+}
+
+export interface UpdateCourseSectionInDBRequestProps {
+  sectionId: string;
+  updatedData: {
+    title?: string;
+  };
+}
+
+export interface AddCourseChapterInDBRequestProps {
+  title: string;
+  videoLink: string;
+  sectionId: string;
+}
+
+export interface UpdateCourseChapterInDBRequestProps {
+  chapterId: string;
+  updatedData: Partial<AddCourseChapterInDBRequestProps>;
 }
 
 export type SkillsType =
