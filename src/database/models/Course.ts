@@ -14,6 +14,10 @@ const CourseSchema = new Schema<CourseModel>({
   description: {
     type: String,
   },
+  liveOn: {
+    type: Date,
+    required: [true, 'liveOn is required'],
+  },
   roadmap: { type: String, enum: ROADMAPS, required: true },
   createdAt: {
     type: Date,
