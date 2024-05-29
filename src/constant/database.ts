@@ -4,6 +4,7 @@ const databaseModels = {
   Course: 'Course',
   COURSE_SECTION: 'CourseSection',
   COURSE_CHAPTER: 'CourseChapter',
+  USER_COURSE: 'UserCourse',
 };
 
 export { databaseModels };
