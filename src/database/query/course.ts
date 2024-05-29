@@ -66,17 +66,63 @@ const getAllCoursesFromDB = async (): Promise<DatabaseQueryResponseType> => {
 };
 
 // will implement letter, have to write aggregation
-// const getACourseFromDBById = async (
-//   courseId: string
-// ): Promise<DatabaseQueryResponseType> => {
-//   try {
-
-//   } catch (error) {}
-// };
+const getACourseFromDBById = async (
+  courseId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const courseObjectId = new mongoose.Types.ObjectId(courseId);
+    const course = await Course.aggregate([
+      {
+        $match: {
+          _id: courseObjectId,
+        },
+      },
+      {
+        $lookup: {
+          from: 'coursesections', // collection name of CourseSection
+          localField: '_id',
+          foreignField: 'courseId',
+          as: 'sections',
+        },
+      },
+      {
+        $unwind: {
+          path: '$sections',
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $lookup: {
+          from: 'coursechapters', // collection name of CourseChapter
+          localField: 'sections._id',
+          foreignField: 'sectionId',
+          as: 'sections.chapters',
+        },
+      },
+      {
+        $group: {
+          _id: '$_id',
+          title: { $first: '$title' },
+          thumbnailLink: { $first: '$thumbnailLink' },
+          description: { $first: '$description' },
+          roadmap: { $first: '$roadmap' },
+          liveOn: { $first: '$liveOn' },
+          createdAt: { $first: '$createdAt' },
+          sections: { $push: '$sections' },
+        },
+      },
+    ]);
+    if (course[0].liveOn <= Date.now()) return { data: course };
+    return { data: null };
+  } catch (error) {
+    return { error: 'Failed while fetching a course' };
+  }
+};
 
 export {
   addACourseToDB,
   updateACourseInDB,
   deleteACourseFromDBById,
   getAllCoursesFromDB,
+  getACourseFromDBById,
 };
