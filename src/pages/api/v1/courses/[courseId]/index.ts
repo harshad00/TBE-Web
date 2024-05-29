@@ -4,6 +4,7 @@ import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import {
   deleteACourseFromDBById,
+  getACourseFromDBById,
   updateACourseInDB,
 } from '@/database/query/course';
 import { AddCourseDBRequestProps } from '@/interfaces';
@@ -13,6 +14,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method, query } = req;
   const { courseId } = query as { courseId: string };
   switch (method) {
+    case 'GET':
+      return handleGetCourseById(req, res, courseId);
     case 'DELETE':
       return handleDeleteCourse(req, res, courseId);
     case 'PATCH':
@@ -94,6 +97,41 @@ const handleUpdateCourse = async (
       sendAPIResponse({
         status: false,
         message: 'failed while updating course',
+        error,
+      })
+    );
+  }
+};
+
+const handleGetCourseById = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  courseId: string
+) => {
+  try {
+    const { data, error } = await getACourseFromDBById(courseId);
+
+    if (error) {
+      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Failed while fetching a course',
+          error,
+        })
+      );
+    }
+
+    return res.status(apiStatusCodes.OKAY).json(
+      sendAPIResponse({
+        status: true,
+        data,
+      })
+    );
+  } catch (error) {
+    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+      sendAPIResponse({
+        status: false,
+        message: 'Failed while fetching a course',
         error,
       })
     );
