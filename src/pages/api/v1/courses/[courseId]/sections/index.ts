@@ -8,16 +8,18 @@ import { AddSectionToACourseInDB } from '@/database/query/section';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
   const { method, query } = req;
-  const { courseId } = query as { courseId: string };
+  const { courseId } = query as {
+    courseId: string;
+  };
 
   switch (method) {
     case 'POST':
       return handleAddSection(req, res, courseId);
+
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
           status: false,
-
           message: `Method ${req.method} Not Allowed`,
         })
       );
