@@ -55,3 +55,9 @@ export interface CourseChapterModel {
   videoLink: string;
   createdAt: Date;
 }
+
+export interface UserCourseModel {
+  userId: Schema.Types.ObjectId;
+  chapterId: Schema.Types.ObjectId;
+  isCompleted: boolean;
+}
