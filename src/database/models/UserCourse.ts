@@ -7,15 +7,19 @@ const UserCourseSchema = new Schema<UserCourseModel>({
     ref: `${databaseModels.USER}`,
     required: [true, 'user id is required'],
   },
-  chapterId: {
+
+  courseId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: `${databaseModels.COURSE_CHAPTER}`,
     required: [true, 'chapter id is required'],
   },
-  isCompleted: {
-    type: Boolean,
-    required: [true, 'isCompleted is required'],
-  },
+
+  chaptersId: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: `${databaseModels.COURSE_CHAPTER}`,
+    },
+  ],
 });
 
 const UserCourse: Model<UserCourseModel> =
