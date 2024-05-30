@@ -33,7 +33,7 @@ const handleAddACourse = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({
           status: false,
-          message: 'Error deleting project',
+          message: 'Failed while adding course',
           error: error,
         })
       );
@@ -48,7 +48,7 @@ const handleAddACourse = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        message: 'Error while adding course',
+        message: 'Failed while adding course',
         error: error,
       })
     );
@@ -65,7 +65,7 @@ const handleGetAllCourse = async (
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({
           status: false,
-          message: `failed while fetching all courses`,
+          message: `Failed while fetching all courses`,
         })
       );
     return res
@@ -75,7 +75,7 @@ const handleGetAllCourse = async (
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        message: `failed while fetching all courses`,
+        message: `Failed while fetching all courses`,
       })
     );
   }

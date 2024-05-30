@@ -43,7 +43,7 @@ const handleAddSection = async (
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({
           status: false,
-          message: 'failed while adding section to course',
+          message: 'Failed while adding section to course',
         })
       );
     }
@@ -55,7 +55,7 @@ const handleAddSection = async (
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        message: 'failed while adding section to course',
+        message: 'Failed while adding section to course',
       })
     );
   }

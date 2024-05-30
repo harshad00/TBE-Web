@@ -42,7 +42,7 @@ const handleDeleteCourse = async (
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({
           status: false,
-          message: 'Error while deleting course',
+          message: 'Failed while deleting course',
           error: error,
         })
       );
@@ -57,7 +57,7 @@ const handleDeleteCourse = async (
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        message: 'Error deleting project',
+        message: 'Failed while deleting course',
         error: error,
       })
     );
@@ -80,7 +80,7 @@ const handleUpdateCourse = async (
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({
           status: false,
-          message: 'failed while updating course',
+          message: 'Failed while updating course',
           error,
         })
       );
@@ -96,7 +96,7 @@ const handleUpdateCourse = async (
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        message: 'failed while updating course',
+        message: 'Failed while updating course',
         error,
       })
     );
