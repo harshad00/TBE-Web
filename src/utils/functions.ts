@@ -1,3 +1,4 @@
+import { getUserByEmailFromDB } from '@/database/query/user';
 import { ProjectDocumentModel, ProjectPickedPageProps } from '@/interfaces';
 
 const formatDate = (date: string) => {
@@ -78,6 +79,16 @@ const getSelectedProjectChapterMeta = (
   return selectedChapter?.content ?? '';
 };
 
+const checkTheLoggedInUser = async (email: string): Promise<string | null> => {
+  try {
+    const { data, error } = await getUserByEmailFromDB(email);
+    if (error) return null;
+    return data.userId;
+  } catch (error) {
+    return null;
+  }
+};
+
 export {
   formatDate,
   formatTime,
@@ -87,4 +98,5 @@ export {
   removeLocalStorageItem,
   mapProjectResponseToCard,
   getSelectedProjectChapterMeta,
+  checkTheLoggedInUser,
 };
