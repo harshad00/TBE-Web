@@ -58,6 +58,6 @@ export interface CourseChapterModel {
 
 export interface UserCourseModel {
   userId: Schema.Types.ObjectId;
-  chapterId: Schema.Types.ObjectId;
-  isCompleted: boolean;
+  courseId: Schema.Types.ObjectId;
+  chaptersId: [Schema.Types.ObjectId];
 }
