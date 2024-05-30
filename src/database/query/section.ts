@@ -13,7 +13,7 @@ const AddSectionToACourseInDB = async (
     const section = await CourseSection.create(sectionData);
     return { data: section };
   } catch (error) {
-    return { error: 'failed while adding course' };
+    return { error: 'Failed while adding course' };
   }
 };
 

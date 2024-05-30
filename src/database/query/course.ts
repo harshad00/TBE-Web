@@ -14,7 +14,7 @@ const addACourseToDB = async (
     await course.save();
     return { data: course };
   } catch (error) {
-    return { error: 'failed while adding course' };
+    return { error: 'Failed while adding course' };
   }
 };
 
@@ -29,11 +29,11 @@ const updateACourseInDB = async ({
       { new: true }
     );
 
-    if (!updatedCourse) return { error: 'course does not exists' };
+    if (!updatedCourse) return { error: 'Course does not exists' };
 
     return { data: updatedCourse };
   } catch (error) {
-    return { error: 'failed while updating course' };
+    return { error: 'Failed while updating course' };
   }
 };
 
@@ -52,7 +52,7 @@ const deleteACourseFromDBById = async (
     return { data: 'course deleted' };
   } catch (error) {
     await session.abortTransaction();
-    return { error: 'failed while deleting course' };
+    return { error: 'Failed while deleting course' };
   }
 };
 
@@ -61,7 +61,7 @@ const getAllCoursesFromDB = async (): Promise<DatabaseQueryResponseType> => {
     const courses = await Course.find({});
     return { data: courses };
   } catch (error) {
-    return { error: 'failed while fetching all courses' };
+    return { error: 'Failed while fetching all courses' };
   }
 };
 
