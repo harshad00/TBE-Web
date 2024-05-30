@@ -7,7 +7,7 @@ const CourseChapterSchema = new Schema<CourseChapterModel>({
     type: String,
     required: [true, 'chapter title is required'],
   },
-  videoLink: {
+  content: {
     type: String,
     required: [true, 'video link is required'],
   },

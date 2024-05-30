@@ -134,7 +134,7 @@ export interface UpdateCourseSectionInDBRequestProps {
 
 export interface AddCourseChapterInDBRequestProps {
   title: string;
-  videoLink: string;
+  content: string;
   sectionId: string;
 }
 

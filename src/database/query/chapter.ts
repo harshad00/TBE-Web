@@ -21,8 +21,6 @@ const UpdateCourseChapterInDB = async ({
   updatedData,
 }: UpdateCourseChapterInDBRequestProps): Promise<DatabaseQueryResponseType> => {
   try {
-    console.log('update - ', chapterId, updatedData);
-
     const updatedChapter = await CourseChapter.findByIdAndUpdate(
       chapterId,
       updatedData,

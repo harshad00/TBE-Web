@@ -52,7 +52,7 @@ export interface CourseSectionModel {
 export interface CourseChapterModel {
   title: string;
   sectionId: Schema.Types.ObjectId;
-  videoLink: string;
+  content: string;
   createdAt: Date;
 }
 
