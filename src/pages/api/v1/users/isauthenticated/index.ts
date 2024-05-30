@@ -34,8 +34,8 @@ const handleIsLoggedIn = async (req: NextApiRequest, res: NextApiResponse) => {
         })
       );
 
-    const user = await getUserByEmailFromDB(session.user.email);
-    if (!user)
+    const { data, error } = await getUserByEmailFromDB(session.user.email);
+    if (error)
       return res.status(apiStatusCodes.UNAUTHORIZED).json(
         sendAPIResponse({
           status: false,
@@ -46,7 +46,7 @@ const handleIsLoggedIn = async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res
       .status(apiStatusCodes.OKAY)
-      .json(sendAPIResponse({ status: true, data: user }));
+      .json(sendAPIResponse({ status: true, data }));
   } catch (error) {
     return res.status(apiStatusCodes.UNAUTHORIZED).json(
       sendAPIResponse({
