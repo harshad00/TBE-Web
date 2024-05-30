@@ -143,6 +143,18 @@ export interface UpdateCourseChapterInDBRequestProps {
   updatedData: Partial<AddCourseChapterInDBRequestProps>;
 }
 
+export interface EnrollCourseInDBRequestProps {
+  userId: string;
+  courseId: string;
+}
+
+export interface MarkChapterAsCompletedDBRequestProps {
+  chapterId: string;
+  courseId: string;
+  sectionId: string;
+  userId: string;
+}
+
 export type SkillsType =
   | 'HTML'
   | 'CSS'
