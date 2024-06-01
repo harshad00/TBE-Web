@@ -10,3 +10,4 @@ export { Project, User, Course, CourseChapter, CourseSection, UserCourse };
 
 // Query
 export * from './query/project';
+export * from './query/shiksha';
