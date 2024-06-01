@@ -102,6 +102,59 @@ export interface UpdateChapterDBRequestProps
   chapterId: string;
 }
 
+export interface AddCourseDBRequestProps {
+  title: string;
+  description: string;
+  thumbnailLink: string;
+  liveOn: Date;
+  roadmap: RoadmapsType;
+}
+
+export interface UpdateCourseRequestPayloadProps {
+  updatedData: {
+    title?: string;
+    description?: string;
+    thumbnailLink?: string;
+    roadmap?: RoadmapsType;
+  };
+  courseId: string;
+}
+
+export interface AddSectionToACourseDBRequestProps {
+  title: string;
+  courseId: string;
+}
+
+export interface UpdateCourseSectionInDBRequestProps {
+  sectionId: string;
+  updatedData: {
+    title?: string;
+  };
+}
+
+export interface AddCourseChapterInDBRequestProps {
+  title: string;
+  content: string;
+  sectionId: string;
+}
+
+export interface UpdateCourseChapterInDBRequestProps {
+  chapterId: string;
+  updatedData: Partial<AddCourseChapterInDBRequestProps>;
+}
+
+export interface EnrollCourseInDBRequestProps {
+  userId: string;
+  courseId: string;
+}
+
+export interface MarkChapterAsCompletedDBRequestProps {
+  chapterId: string;
+  courseId: string;
+  sectionId: string;
+  userId: string;
+}
+
 export type SkillsType =
   | 'HTML'
   | 'CSS'

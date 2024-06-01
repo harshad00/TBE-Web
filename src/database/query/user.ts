@@ -28,7 +28,7 @@ const getUserByEmailFromDB = async (
 
     return { data: user };
   } catch (error) {
-    return { error: 'Error while fetching user' };
+    return { error: 'Failed while fetching user' };
   }
 };
 
@@ -40,7 +40,7 @@ const createUserInDB = async ({
     const user = await User.create({ email, name });
     return { data: user };
   } catch (error) {
-    return { error: 'Error while creating user' };
+    return { error: 'Failed while creating user' };
   }
 };
 

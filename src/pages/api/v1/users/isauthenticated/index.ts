@@ -5,6 +5,7 @@ import { connectDB } from '@/middlewares';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ServerSessionProp } from '@/interfaces';
+import { getUserByEmailFromDB } from '@/database/query/user';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
@@ -23,17 +24,35 @@ const handleIsLoggedIn = async (req: NextApiRequest, res: NextApiResponse) => {
       res,
       authOptions
     );
+
     if (!session || !session.user || !session.user.email)
-      throw new Error('unauthenticated');
+      return res.status(apiStatusCodes.UNAUTHORIZED).json(
+        sendAPIResponse({
+          status: false,
+          error: 'Unauthenticated, please login again.',
+          message: 'Unauthenticated, please login again.',
+        })
+      );
+
+    const { data, error } = await getUserByEmailFromDB(session.user.email);
+    if (error)
+      return res.status(apiStatusCodes.UNAUTHORIZED).json(
+        sendAPIResponse({
+          status: false,
+          error: 'Unauthenticated, please login again.',
+          message: 'Unauthenticated, please login again.',
+        })
+      );
+
     return res
       .status(apiStatusCodes.OKAY)
-      .json(sendAPIResponse({ status: true, data: session }));
+      .json(sendAPIResponse({ status: true, data }));
   } catch (error) {
-    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+    return res.status(apiStatusCodes.UNAUTHORIZED).json(
       sendAPIResponse({
         status: false,
-        error,
-        message: 'error while fetching users',
+        error: 'Unauthenticated, please login again.',
+        message: 'Unauthenticated, please login again.',
       })
     );
   }
