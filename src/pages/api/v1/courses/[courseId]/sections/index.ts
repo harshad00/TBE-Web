@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { AddSectionToACourseDBRequestProps } from '@/interfaces';
-import { AddSectionToACourseInDB } from '@/database/query/section';
+import { addSectionToACourseInDB } from '@/database/query/section';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
@@ -34,7 +34,7 @@ const handleAddSection = async (
   const sectionData = req.body as AddSectionToACourseDBRequestProps;
 
   try {
-    const { data, error } = await AddSectionToACourseInDB({
+    const { data, error } = await addSectionToACourseInDB({
       ...sectionData,
       courseId,
     });

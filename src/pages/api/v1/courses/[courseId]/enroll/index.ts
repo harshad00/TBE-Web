@@ -4,7 +4,7 @@ import { checkTheLoggedInUser, sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { Session, getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { EnrollInACourse } from '@/database/query/userCourse';
+import { enrollInACourse } from '@/database/query/userCourse';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -59,7 +59,7 @@ const handleCourseEnrollment = async (
         })
       );
 
-    const { data, error } = await EnrollInACourse({ userId, courseId });
+    const { data, error } = await enrollInACourse({ userId, courseId });
 
     if (error)
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(

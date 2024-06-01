@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { AddCourseChapterInDBRequestProps } from '@/interfaces';
-import { AddCourseChapterToCourseSectionInDB } from '@/database/query/chapter';
+import { addCourseChapterToCourseSectionInDB } from '@/database/query/chapter';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
@@ -31,7 +31,7 @@ const handleAddChapter = async (
   const chapterData = req.body as AddCourseChapterInDBRequestProps;
 
   try {
-    const { data, error } = await AddCourseChapterToCourseSectionInDB({
+    const { data, error } = await addCourseChapterToCourseSectionInDB({
       ...chapterData,
       sectionId,
     });

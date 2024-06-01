@@ -5,7 +5,7 @@ import {
 } from '@/interfaces';
 import { CourseChapter } from '@/database';
 
-const AddCourseChapterToCourseSectionInDB = async (
+const addCourseChapterToCourseSectionInDB = async (
   chapterData: AddCourseChapterInDBRequestProps
 ): Promise<DatabaseQueryResponseType> => {
   try {
@@ -16,7 +16,7 @@ const AddCourseChapterToCourseSectionInDB = async (
   }
 };
 
-const UpdateCourseChapterInDB = async ({
+const updateCourseChapterInDB = async ({
   chapterId,
   updatedData,
 }: UpdateCourseChapterInDBRequestProps): Promise<DatabaseQueryResponseType> => {
@@ -32,7 +32,7 @@ const UpdateCourseChapterInDB = async ({
   }
 };
 
-const DeleteCourseChapterByIdFromDB = async (
+const deleteCourseChapterByIdFromDB = async (
   chapterId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
@@ -44,7 +44,7 @@ const DeleteCourseChapterByIdFromDB = async (
 };
 
 export {
-  AddCourseChapterToCourseSectionInDB,
-  UpdateCourseChapterInDB,
-  DeleteCourseChapterByIdFromDB,
+  addCourseChapterToCourseSectionInDB,
+  updateCourseChapterInDB,
+  deleteCourseChapterByIdFromDB,
 };

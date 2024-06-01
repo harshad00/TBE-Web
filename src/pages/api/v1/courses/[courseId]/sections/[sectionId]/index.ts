@@ -3,9 +3,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import {
-  DeleteCourseSectionByIdFromDB,
-  GetChapterAssociatedWithSectionByIdFromDB,
-  UpdateCourseSectionInDB,
+  deleteCourseSectionByIdFromDB,
+  getChapterAssociatedWithSectionByIdFromDB,
+  updateCourseSectionInDB,
 } from '@/database/query/section';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -38,7 +38,7 @@ const handleUpdateCourseSection = async (
   const updatedData = req.body as { title: string };
 
   try {
-    const { data, error } = await UpdateCourseSectionInDB({
+    const { data, error } = await updateCourseSectionInDB({
       updatedData,
       sectionId,
     });
@@ -73,7 +73,7 @@ const handleDeleteCourseSection = async (
   sectionId: string
 ) => {
   try {
-    const { error } = await DeleteCourseSectionByIdFromDB(sectionId);
+    const { error } = await deleteCourseSectionByIdFromDB(sectionId);
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
@@ -105,7 +105,7 @@ const handlerGetSectionById = async (
   sectionId: string
 ) => {
   try {
-    const { data, error } = await GetChapterAssociatedWithSectionByIdFromDB(
+    const { data, error } = await getChapterAssociatedWithSectionByIdFromDB(
       sectionId
     );
 

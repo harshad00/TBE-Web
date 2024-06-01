@@ -4,7 +4,7 @@ import { checkTheLoggedInUser, sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { Session, getServerSession } from 'next-auth';
-import { MarkChapterAsCompleted } from '@/database/query/userCourse';
+import { markChapterAsCompleted } from '@/database/query/userCourse';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -71,7 +71,7 @@ const handleMarkChapter = async (
           message: 'Unauthorized, please login',
         })
       );
-    const { data, error } = await MarkChapterAsCompleted({
+    const { data, error } = await markChapterAsCompleted({
       courseId,
       userId,
       sectionId,
