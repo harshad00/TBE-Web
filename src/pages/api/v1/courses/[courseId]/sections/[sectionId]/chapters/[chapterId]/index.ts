@@ -4,8 +4,8 @@ import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { AddCourseChapterInDBRequestProps } from '@/interfaces';
 import {
-  DeleteCourseChapterByIdFromDB,
-  UpdateCourseChapterInDB,
+  deleteCourseChapterByIdFromDB,
+  updateCourseChapterInDB,
 } from '@/database/query/chapter';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -38,7 +38,7 @@ const handleUpdateChapter = async (
   const updatedData = req.body as Partial<AddCourseChapterInDBRequestProps>;
 
   try {
-    const { data, error } = await UpdateCourseChapterInDB({
+    const { data, error } = await updateCourseChapterInDB({
       updatedData,
       chapterId,
     });
@@ -71,7 +71,7 @@ const handleDeleteChapter = async (
   chapterId: string
 ) => {
   try {
-    const { data, error } = await DeleteCourseChapterByIdFromDB(chapterId);
+    const { data, error } = await deleteCourseChapterByIdFromDB(chapterId);
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(

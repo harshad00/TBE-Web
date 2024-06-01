@@ -6,7 +6,7 @@ import {
 import { CourseChapter, CourseSection } from '@/database';
 import mongoose from 'mongoose';
 
-const AddSectionToACourseInDB = async (
+const addSectionToACourseInDB = async (
   sectionData: AddSectionToACourseDBRequestProps
 ): Promise<DatabaseQueryResponseType> => {
   try {
@@ -17,7 +17,7 @@ const AddSectionToACourseInDB = async (
   }
 };
 
-const UpdateCourseSectionInDB = async ({
+const updateCourseSectionInDB = async ({
   updatedData,
   sectionId,
 }: UpdateCourseSectionInDBRequestProps): Promise<DatabaseQueryResponseType> => {
@@ -33,7 +33,7 @@ const UpdateCourseSectionInDB = async ({
   }
 };
 
-const DeleteCourseSectionByIdFromDB = async (
+const deleteCourseSectionByIdFromDB = async (
   sectionId: string
 ): Promise<DatabaseQueryResponseType> => {
   const session = await mongoose.startSession();
@@ -49,7 +49,7 @@ const DeleteCourseSectionByIdFromDB = async (
   }
 };
 
-const GetChapterAssociatedWithSectionByIdFromDB = async (
+const getChapterAssociatedWithSectionByIdFromDB = async (
   sectionId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
@@ -76,8 +76,8 @@ const GetChapterAssociatedWithSectionByIdFromDB = async (
 };
 
 export {
-  AddSectionToACourseInDB,
-  UpdateCourseSectionInDB,
-  DeleteCourseSectionByIdFromDB,
-  GetChapterAssociatedWithSectionByIdFromDB,
+  addSectionToACourseInDB,
+  updateCourseSectionInDB,
+  deleteCourseSectionByIdFromDB,
+  getChapterAssociatedWithSectionByIdFromDB,
 };

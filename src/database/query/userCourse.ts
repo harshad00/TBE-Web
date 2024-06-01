@@ -3,12 +3,10 @@ import {
   EnrollCourseInDBRequestProps,
   MarkChapterAsCompletedDBRequestProps,
 } from '@/interfaces';
-import UserCourse from '../models/UserCourse';
+import { UserCourse, CourseChapter, CourseSection } from '@/database';
 import mongoose from 'mongoose';
-import CourseChapter from '../models/CourseChapter';
-import CourseSection from '../models/CourseSection';
 
-const EnrollInACourse = async ({
+const enrollInACourse = async ({
   userId,
   courseId,
 }: EnrollCourseInDBRequestProps): Promise<DatabaseQueryResponseType> => {
@@ -20,7 +18,7 @@ const EnrollInACourse = async ({
   }
 };
 
-const MarkChapterAsCompleted = async ({
+const markChapterAsCompleted = async ({
   courseId,
   userId,
   sectionId,
@@ -63,7 +61,7 @@ const MarkChapterAsCompleted = async ({
   }
 };
 
-const GetEnrolledCourse = async ({
+const getEnrolledCourse = async ({
   courseId,
   userId,
 }: EnrollCourseInDBRequestProps): Promise<DatabaseQueryResponseType> => {
@@ -75,4 +73,4 @@ const GetEnrolledCourse = async ({
   }
 };
 
-export { EnrollInACourse, MarkChapterAsCompleted, GetEnrolledCourse };
+export { enrollInACourse, markChapterAsCompleted, getEnrolledCourse };
