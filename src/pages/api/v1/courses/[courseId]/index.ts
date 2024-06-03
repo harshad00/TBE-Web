@@ -2,12 +2,13 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
+
+import { AddCourseDBRequestProps } from '@/interfaces';
 import {
   deleteACourseFromDBById,
-  getACourseFromDBById,
   updateACourseInDB,
-} from '@/database/query/course';
-import { AddCourseDBRequestProps } from '@/interfaces';
+  getACourseFromDBById,
+} from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);

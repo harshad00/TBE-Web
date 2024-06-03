@@ -4,9 +4,9 @@ import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { AddCourseChapterInDBRequestProps } from '@/interfaces';
 import {
-  deleteCourseChapterByIdFromDB,
   updateCourseChapterInDB,
-} from '@/database/query/chapter';
+  deleteCourseChapterByIdFromDB,
+} from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);

@@ -4,7 +4,7 @@ import { checkTheLoggedInUser, sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { Session, getServerSession } from 'next-auth';
-import { markChapterAsCompleted } from '@/database/query/userCourse';
+import { markChapterAsCompleted } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
