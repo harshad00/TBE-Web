@@ -25,6 +25,8 @@ const routes = {
     base: '/api/v1',
     projects: '/projects',
     project: (project: string) => `/projects/${project}`,
+    courses: '/courses',
+    course: (course: string) => `/courses/${course}`,
   },
 };
 
