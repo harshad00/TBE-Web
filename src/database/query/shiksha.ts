@@ -1,9 +1,15 @@
 import {
+  AddCourseChapterInDBRequestProps,
   AddCourseDBRequestProps,
+  AddSectionToACourseDBRequestProps,
   DatabaseQueryResponseType,
+  EnrollCourseInDBRequestProps,
+  MarkChapterAsCompletedDBRequestProps,
+  UpdateCourseChapterInDBRequestProps,
   UpdateCourseRequestPayloadProps,
+  UpdateCourseSectionInDBRequestProps,
 } from '@/interfaces';
-import { Course, CourseChapter, CourseSection } from '@/database';
+import { Course, CourseChapter, CourseSection, UserCourse } from '@/database';
 import mongoose from 'mongoose';
 
 const addACourseToDB = async (
@@ -187,6 +193,113 @@ const getChapterAssociatedWithSectionByIdFromDB = async (
   }
 };
 
+const enrollInACourse = async ({
+  userId,
+  courseId,
+}: EnrollCourseInDBRequestProps): Promise<DatabaseQueryResponseType> => {
+  try {
+    const userCourse = await UserCourse.create({ userId, courseId });
+    return { data: userCourse };
+  } catch (error) {
+    return { error: 'Failed while enrolling in a course' };
+  }
+};
+
+// chapters
+
+const addCourseChapterToCourseSectionInDB = async (
+  chapterData: AddCourseChapterInDBRequestProps
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const chapter = await CourseChapter.create(chapterData);
+    return { data: chapter };
+  } catch (error) {
+    return { error: 'Failed while adding chapter to a course' };
+  }
+};
+
+const updateCourseChapterInDB = async ({
+  chapterId,
+  updatedData,
+}: UpdateCourseChapterInDBRequestProps): Promise<DatabaseQueryResponseType> => {
+  try {
+    const updatedChapter = await CourseChapter.findByIdAndUpdate(
+      chapterId,
+      updatedData,
+      { new: true }
+    );
+    return { data: updatedChapter };
+  } catch (error) {
+    return { error: 'Failed while updating chapter' };
+  }
+};
+
+const deleteCourseChapterByIdFromDB = async (
+  chapterId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    await CourseChapter.findByIdAndDelete(chapterId);
+    return { data: null };
+  } catch (error) {
+    return { error: 'Failed while deleting chapter' };
+  }
+};
+
+const markChapterAsCompleted = async ({
+  courseId,
+  userId,
+  sectionId,
+  chapterId,
+}: MarkChapterAsCompletedDBRequestProps): Promise<DatabaseQueryResponseType> => {
+  try {
+    const userCourse = await UserCourse.findOne({ userId, courseId });
+    if (!userCourse) return { error: "you aren't enrolled in this course" };
+    const isChapterExists = await CourseChapter.findById(chapterId);
+    if (!isChapterExists) return { error: 'chapter does not exists' };
+    const isSectionExists = await CourseSection.findById(
+      isChapterExists.sectionId
+    );
+
+    if (
+      !isSectionExists ||
+      isChapterExists.sectionId !==
+        new mongoose.Schema.Types.ObjectId(sectionId)
+    ) {
+      return { error: 'chapter is not part of the given section' };
+    }
+
+    if (
+      isSectionExists.courseId !== new mongoose.Schema.Types.ObjectId(courseId)
+    ) {
+      return { error: 'section is not part of the given course' };
+    }
+
+    if (
+      userCourse.chaptersId.includes(
+        new mongoose.Schema.Types.ObjectId(chapterId)
+      )
+    )
+      return { error: 'chapter is already marked' };
+    userCourse.chaptersId.push(new mongoose.Schema.Types.ObjectId(chapterId));
+    await userCourse.save();
+    return { data: userCourse };
+  } catch (error) {
+    return { error: "you aren't enrolled in this course" };
+  }
+};
+
+const getEnrolledCourse = async ({
+  courseId,
+  userId,
+}: EnrollCourseInDBRequestProps): Promise<DatabaseQueryResponseType> => {
+  try {
+    const enrolledCourse = await UserCourse.findOne({ courseId, userId });
+    return { data: enrolledCourse };
+  } catch (error) {
+    return { error: 'Failed while fetching enrolled course' };
+  }
+};
+
 export {
   addACourseToDB,
   updateACourseInDB,
@@ -197,4 +310,10 @@ export {
   updateCourseSectionInDB,
   deleteCourseSectionByIdFromDB,
   getChapterAssociatedWithSectionByIdFromDB,
+  enrollInACourse,
+  addCourseChapterToCourseSectionInDB,
+  updateCourseChapterInDB,
+  deleteCourseChapterByIdFromDB,
+  markChapterAsCompleted,
+  getEnrolledCourse,
 };
