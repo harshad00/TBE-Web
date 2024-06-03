@@ -1,3 +1,4 @@
+import { admins } from '@/constant';
 import { getUserByEmailFromDB } from '@/database/query/user';
 import { ProjectDocumentModel, ProjectPickedPageProps } from '@/interfaces';
 
@@ -89,6 +90,10 @@ const checkTheLoggedInUser = async (email: string): Promise<string | null> => {
   }
 };
 
+const isAdmin = (email: string): boolean => {
+  return admins.includes(email);
+};
+
 export {
   formatDate,
   formatTime,
@@ -99,4 +104,5 @@ export {
   mapProjectResponseToCard,
   getSelectedProjectChapterMeta,
   checkTheLoggedInUser,
+  isAdmin,
 };
