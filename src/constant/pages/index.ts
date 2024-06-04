@@ -8,24 +8,6 @@ import { LINKS, products, STATIC_FILE_PATH } from '../global';
 import { v4 } from 'uuid';
 import { routes } from '..';
 
-const COMMUNITY_SECTION: {
-  communityBannerImage: string;
-  communityTitleLine: string;
-  communityDescriptionLine: string;
-  goalOfCommunity: string[];
-} = {
-  communityBannerImage: '/images/Community-Section-Image.svg',
-  communityTitleLine: 'Community For Everyone',
-  communityDescriptionLine:
-    'You excel where you’re supported. Connect with like-minded peers who share the same goal as you.',
-  goalOfCommunity: [
-    'Attend Tech Workshops',
-    'Connect with Like-minded Peers',
-    'Share your journey with others',
-    'Find accountability parter',
-  ],
-};
-
 const TOP_NAVIGATION: TopNavbarContainerProps = {
   products: [
     {
@@ -291,5 +273,4 @@ export {
   TBP_FEATURES,
   MY_PREV_EXPERIENCE,
   TBP_PROJECTS,
-  COMMUNITY_SECTION,
 };
