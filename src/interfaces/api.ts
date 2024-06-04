@@ -107,6 +107,7 @@ export interface AddCourseDBRequestProps {
   description: string;
   thumbnailLink: string;
   liveOn: Date;
+  slug: string;
   roadmap: RoadmapsType;
 }
 
