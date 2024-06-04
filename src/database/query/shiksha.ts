@@ -205,8 +205,6 @@ const enrollInACourse = async ({
   }
 };
 
-// chapters
-
 const addCourseChapterToCourseSectionInDB = async (
   chapterData: AddCourseChapterInDBRequestProps
 ): Promise<DatabaseQueryResponseType> => {
