@@ -1,4 +1,4 @@
-import { COMMUNITY_SECTION, LINKS } from '@/constant';
+import { LINKS } from '@/constant';
 import Link from 'next/link';
 import React from 'react';
 import FlexContainer from '../common/FlexContainer';
@@ -10,7 +10,7 @@ function Community() {
     <FlexContainer className='gradient-5 w-full p-4 flex-col  gap-4'>
       <FlexContainer className='w-full max-w-[98%] md:max-w-[50%]'>
         <Image
-          src={COMMUNITY_SECTION.communityBannerImage}
+          src='/images/Community-Section-Image.svg'
           fullHeight={true}
           fullWidth={true}
           alt='community'
@@ -18,10 +18,11 @@ function Community() {
       </FlexContainer>
       <FlexContainer className='text-white gap-1  max-w-[98%] md:max-w-[50%]'>
         <Text level='h1' className='font-bold text-2xl'>
-          {COMMUNITY_SECTION.communityTitleLine}
+          Community For Everyone
         </Text>
         <Text level='p' className='text-center'>
-          {COMMUNITY_SECTION.communityDescriptionLine}
+          You excel where you’re supported. Connect with like-minded peers who
+          share the same goal as you.
         </Text>
       </FlexContainer>
       <FlexContainer className=' flex-col text-white gap-1  max-w-[98%] md:max-w-[50%]'>
@@ -29,7 +30,12 @@ function Community() {
           In Community, You can
         </Text>
         <FlexContainer className='flex-col gap-3 justify-center items-center'>
-          {COMMUNITY_SECTION.goalOfCommunity.map((goal, i) => (
+          {[
+            'Attend Tech Workshops',
+            'Connect with Like-minded Peers',
+            'Share your journey with others',
+            'Find accountability parter',
+          ].map((goal, i) => (
             <Pill text={goal} variant='GHOST' widthFull={true} key={i} />
           ))}
           <Link
