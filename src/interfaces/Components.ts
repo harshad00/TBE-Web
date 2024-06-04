@@ -136,9 +136,10 @@ export interface SEOProps {
 
 export interface PillProps {
   text: string;
-  variant: 'PRIMARY' | 'SECONDARY';
+  variant: 'PRIMARY' | 'SECONDARY' | 'GHOST';
   textStyleClasses?: string;
   containerClasses?: string;
+  widthFull?: boolean;
 }
 
 export interface IconPillProps {
