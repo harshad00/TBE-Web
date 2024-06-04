@@ -40,6 +40,7 @@ export interface CourseModel extends Document {
   thumbnailLink: string;
   roadmap: RoadmapsType;
   liveOn: Date;
+  slug: string;
   createdAt: Date;
 }
 
