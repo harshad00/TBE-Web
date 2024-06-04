@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { AddSectionToACourseDBRequestProps } from '@/interfaces';
-import { addSectionToACourseInDB } from '@/database/query/section';
+import { addSectionToACourseInDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
