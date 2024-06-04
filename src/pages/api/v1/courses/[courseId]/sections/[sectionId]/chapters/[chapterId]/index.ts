@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { chapterId } = query as { chapterId: string };
 
   switch (method) {
-    case 'POST':
+    case 'PATCH':
       return handleUpdateChapter(req, res, chapterId);
 
     case 'DELETE':
