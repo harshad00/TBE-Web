@@ -88,7 +88,7 @@ const checkTheLoggedInUser = async (email: string): Promise<string | null> => {
   try {
     const { data, error } = await getUserByEmailFromDB(email);
     if (error) return null;
-    return data.userId;
+    return data._id;
   } catch (error) {
     return null;
   }
@@ -100,13 +100,13 @@ const isAdmin = (email: string): boolean => {
 
 const mapCourseResponseToCard = (coursesData: CourseModel[]) => {
   return coursesData?.map(
-    ({ _id, thumbnailLink, title, description, liveOn }) => ({
+    ({ _id, thumbnailLink, title, description, liveOn, slug }) => ({
       id: _id,
       image: thumbnailLink,
       imageAltText: title,
       title,
       content: description,
-      href: `/courses/?courseId=${_id}`,
+      href: `/shiksha/${slug}/?courseId=${_id}`,
       active:
         new Date(liveOn).getMilliseconds() <=
         new Date(Date.now()).getMilliseconds(),
