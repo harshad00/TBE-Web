@@ -104,6 +104,13 @@ const apiStatusCodes = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
+const mentorshipPlans: { title: string; description: string; link: string }[] =
+  [
+    { title: 'Free Tech guidance', description: '', link: '' },
+    { title: 'Free Resume Review', description: '', link: '' },
+    { title: 'Cracking Remote Jobs', description: '', link: '' },
+  ];
+
 const IN_DEV_PAGES = ['/projects'];
 const projectGroupWhatsapp = 'https://chat.whatsapp.com/D1ko12SykD1LfvJwmNQ48A';
 const admins = ['helloatkrishna@gmail.com', 'krish36pandey@gmail.com'];
@@ -121,4 +128,5 @@ export {
   IN_DEV_PAGES,
   projectGroupWhatsapp,
   admins,
+  mentorshipPlans,
 };
