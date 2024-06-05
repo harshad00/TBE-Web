@@ -5,7 +5,7 @@ import FlexContainer from '../common/FlexContainer';
 import { Image, Pill } from '@/components';
 import { Text } from '@/components';
 
-function Community() {
+const Community = () => {
   return (
     <FlexContainer className='gradient-5 w-full p-4 flex-col  gap-4'>
       <FlexContainer className='w-full max-w-[98%] md:max-w-[50%]'>
@@ -49,6 +49,6 @@ function Community() {
       </FlexContainer>
     </FlexContainer>
   );
-}
+};
 
 export default Community;
