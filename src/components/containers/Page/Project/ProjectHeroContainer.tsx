@@ -4,7 +4,7 @@ import {
   PageHeroMetaContainer,
   Text,
 } from '@/components';
-import { routes } from '@/constant';
+import { projectGroupWhatsapp, routes } from '@/constant';
 import { ProjectHeroContainerProps } from '@/interfaces';
 
 const ProjectHeroContainer = ({
@@ -40,7 +40,7 @@ const ProjectHeroContainer = ({
           />
         </FlexContainer>
         <LinkButton
-          href={routes.whatsappCommunity}
+          href={projectGroupWhatsapp}
           target='BLANK'
           buttonProps={{
             variant: 'OUTLINE',
