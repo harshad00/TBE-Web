@@ -23,6 +23,7 @@ const CourseSchema = new Schema<CourseModel>({
     type: String,
     required: [true, 'slug is required'],
   },
+  meta: { type: String },
   createdAt: {
     type: Date,
     default: Date.now(),
