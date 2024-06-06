@@ -268,8 +268,7 @@ export interface ProjectHeroContainerProps {
 }
 
 export interface CourseHeroContainerProps {
-  name?: string;
-  roadmap: string;
+  name: string;
 }
 
 export interface AccordionProps {
