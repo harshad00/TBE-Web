@@ -1,4 +1,4 @@
-import { ROADMAPS, databaseModels } from '@/constant';
+import { databaseModels } from '@/constant';
 import { CourseModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
 
@@ -18,7 +18,6 @@ const CourseSchema = new Schema<CourseModel>({
     type: Date,
     required: [true, 'liveOn is required'],
   },
-  roadmap: { type: String, enum: ROADMAPS, required: true },
   slug: {
     type: String,
     required: [true, 'slug is required'],

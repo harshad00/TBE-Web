@@ -38,7 +38,6 @@ export interface CourseModel extends Document {
   title: string;
   description: string;
   thumbnailLink: string;
-  roadmap: RoadmapsType;
   liveOn: Date;
   slug: string;
   meta: string;

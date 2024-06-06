@@ -109,7 +109,6 @@ export interface AddCourseDBRequestProps {
   liveOn: Date;
   slug: string;
   meta?: string;
-  roadmap: RoadmapsType;
 }
 
 export interface UpdateCourseRequestPayloadProps {
@@ -117,7 +116,6 @@ export interface UpdateCourseRequestPayloadProps {
     title?: string;
     description?: string;
     thumbnailLink?: string;
-    roadmap?: RoadmapsType;
     meta?: string;
   };
   courseId: string;
