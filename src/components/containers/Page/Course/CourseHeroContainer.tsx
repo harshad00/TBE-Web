@@ -1,13 +1,13 @@
 import {
   LinkButton,
   FlexContainer,
-  PageHeroMetaContainer,
   Text,
+  PageHeroMetaContainer,
 } from '@/components';
 import { projectGroupWhatsapp, routes } from '@/constant';
 import { CourseHeroContainerProps } from '@/interfaces';
 
-const CourseHeroContainer = ({ roadmap }: CourseHeroContainerProps) => {
+const CourseHeroContainer = ({ name }: CourseHeroContainerProps) => {
   return (
     <FlexContainer>
       <FlexContainer className='border md:w-4/5 gap-4 w-full p-2 justify-between rounded'>
@@ -28,7 +28,7 @@ const CourseHeroContainer = ({ roadmap }: CourseHeroContainerProps) => {
           itemCenter={false}
           className='justify-start items-start gap-3'
         >
-          <PageHeroMetaContainer subtitle='ROADMAP' title={roadmap} />
+          <PageHeroMetaContainer subtitle="YOU'RE LEARING" title={name} />
         </FlexContainer>
         <LinkButton
           href={projectGroupWhatsapp}
