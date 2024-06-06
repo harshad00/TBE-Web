@@ -1,5 +1,4 @@
 import { ProductDataProps } from '@/interfaces';
-import { admins } from '.';
 
 // Paths
 const STATIC_FILE_PATH = {
@@ -127,6 +126,5 @@ export {
   apiStatusCodes,
   IN_DEV_PAGES,
   projectGroupWhatsapp,
-  admins,
   mentorshipPlans,
 };
