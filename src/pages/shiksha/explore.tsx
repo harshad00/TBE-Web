@@ -19,7 +19,6 @@ const Home = ({ seoMeta }: PageProps) => {
   if (loading) {
     return <LoadingSpinner />;
   }
-  console.log(courses);
 
   return (
     <Fragment>
