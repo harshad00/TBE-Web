@@ -1,4 +1,3 @@
-import { admins } from '@/constant';
 import { getUserByEmailFromDB } from '@/database/query/user';
 import {
   CourseModel,
@@ -94,8 +93,8 @@ const checkTheLoggedInUser = async (email: string): Promise<string | null> => {
   }
 };
 
-const isAdmin = (email: string): boolean => {
-  return admins.includes(email);
+const isAdmin = (adminSecret: string): boolean => {
+  return process.env.ADMIN_SECRET == adminSecret;
 };
 
 const mapCourseResponseToCard = (coursesData: CourseModel[]) => {
