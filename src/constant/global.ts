@@ -1,4 +1,5 @@
 import { ProductDataProps } from '@/interfaces';
+import { admins } from '.';
 
 // Paths
 const STATIC_FILE_PATH = {
@@ -113,7 +114,6 @@ const mentorshipPlans: { title: string; description: string; link: string }[] =
 
 const IN_DEV_PAGES = ['/projects'];
 const projectGroupWhatsapp = 'https://chat.whatsapp.com/D1ko12SykD1LfvJwmNQ48A';
-const admins = ['helloatkrishna@gmail.com', 'krish36pandey@gmail.com'];
 
 export {
   imageMeta,
