@@ -7,6 +7,8 @@ import {
   SEO,
   LinkButton,
   CardContainerB,
+  Community,
+  MentorshipPlans,
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
@@ -19,7 +21,6 @@ import {
   routes,
 } from '@/constant';
 import { useRouter } from 'next/router';
-import Community from '@/components/containers/Page/Landing/Community';
 
 const Home = ({ seoMeta }: PageProps) => {
   const router = useRouter();
@@ -71,6 +72,7 @@ const Home = ({ seoMeta }: PageProps) => {
       />
       <CanYouBeAProgrammer />
       <Community />
+      <MentorshipPlans />
       <CardContainerA
         heading='What We Do'
         focusText='Differently'
