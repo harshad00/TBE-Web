@@ -106,9 +106,23 @@ const apiStatusCodes = {
 
 const mentorshipPlans: { title: string; description: string; link: string }[] =
   [
-    { title: 'Free Tech guidance', description: '', link: '' },
-    { title: 'Free Resume Review', description: '', link: '' },
-    { title: 'Cracking Remote Jobs', description: '', link: '' },
+    {
+      title: 'Free Tech guidance',
+      description: 'Get mentored by working professionals',
+      link: '',
+    },
+    {
+      title: 'Free Resume Review',
+      description:
+        'Get a free resume review to enhance your job application and stand out to employers.',
+      link: '',
+    },
+    {
+      title: 'Cracking Remote Jobs',
+      description:
+        'know the secret behind cracking remote jobs by industry experts.',
+      link: '',
+    },
   ];
 
 const IN_DEV_PAGES = ['/projects'];
