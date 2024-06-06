@@ -3,7 +3,6 @@ import {
   AccordionLinkItem,
   FlexContainer,
   MDXRenderer,
-  PageHeroMetaContainer,
   Section,
   Text,
 } from '@/components';
@@ -19,9 +18,8 @@ const Home = ({ course, courseSlug }: any) => {
 
   return (
     <div className='p-2'>
-      <PageHeroMetaContainer subtitle="YOU'RE LEARING" title={course.title} />
       <Section className='md:p-2 p-2'>
-        <CourseHeroContainer name={course.title} roadmap={course.roadmap} />
+        <CourseHeroContainer name={course.title} />
       </Section>
       <Section className='md:p-2 p-2'>
         <FlexContainer className='w-full gap-4' itemCenter={false}>
