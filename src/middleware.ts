@@ -105,6 +105,7 @@ const middleware = async (req: NextRequest) => {
 
   if (!response.ok) {
     if (currentUrl === '/register') return NextResponse.next();
+    else if (currentUrl === '/shiksha/explore') return NextResponse.next();
     else return NextResponse.redirect(new URL('/register', req.url));
   }
 
@@ -117,6 +118,7 @@ const middleware = async (req: NextRequest) => {
 export const config = {
   matcher: [
     '/register',
+    '/shiksha/:courseSlug*',
     '/api/v1/courses',
     '/api/v1/courses/:courseId*',
     '/api/v1/courses/:courseId/enroll',
