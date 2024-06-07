@@ -267,6 +267,10 @@ export interface ProjectHeroContainerProps {
   difficultyLevel: string;
 }
 
+export interface CourseHeroContainerProps {
+  name: string;
+}
+
 export interface AccordionProps {
   title: string;
   children: React.ReactNode;

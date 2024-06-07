@@ -103,6 +103,10 @@ const LoginWithGoogleButton = dynamic(
 );
 const LogoutButton = dynamic(() => import('./common/Buttons/LogoutButton'));
 const Alert = dynamic(() => import('./containers/Alerts/Alert'));
+const MentorshipPlans = dynamic(
+  () => import('./containers/Page/Landing/MentorshipPlans')
+);
+const Community = dynamic(() => import('./containers/Page/Landing/Community'));
 
 export {
   Navbar,
@@ -152,4 +156,6 @@ export {
   LoginWithGoogleButton,
   UserAvatar,
   Alert,
+  Community,
+  MentorshipPlans,
 };

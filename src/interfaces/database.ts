@@ -38,8 +38,9 @@ export interface CourseModel extends Document {
   title: string;
   description: string;
   thumbnailLink: string;
-  roadmap: RoadmapsType;
   liveOn: Date;
+  slug: string;
+  meta: string;
   createdAt: Date;
 }
 
@@ -49,7 +50,7 @@ export interface CourseSectionModel {
   createdAt: Date;
 }
 
-export interface CourseChapterModel {
+export interface CourseChapterModel extends Document {
   title: string;
   sectionId: Schema.Types.ObjectId;
   content: string;

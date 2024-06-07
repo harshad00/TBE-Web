@@ -4,7 +4,7 @@ import { checkTheLoggedInUser, sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { Session, getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { enrollInACourse } from '@/database';
+import { enrollInACourse, getEnrolledCourse } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -56,6 +56,22 @@ const handleCourseEnrollment = async (
         sendAPIResponse({
           status: false,
           message: 'Unauthorized, please login before enrolling in course',
+        })
+      );
+
+    const alreadyEnrolled = await getEnrolledCourse({ courseId, userId });
+    if (alreadyEnrolled.error)
+      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Failed while enrolling course',
+        })
+      );
+    if (alreadyEnrolled.data)
+      return res.status(apiStatusCodes.BAD_REQUEST).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Already enrolled in course',
         })
       );
 

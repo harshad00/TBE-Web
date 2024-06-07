@@ -1,17 +1,13 @@
 import {
   LinkButton,
   FlexContainer,
-  PageHeroMetaContainer,
   Text,
+  PageHeroMetaContainer,
 } from '@/components';
 import { projectGroupWhatsapp, routes } from '@/constant';
-import { ProjectHeroContainerProps } from '@/interfaces';
+import { CourseHeroContainerProps } from '@/interfaces';
 
-const ProjectHeroContainer = ({
-  name,
-  roadmap,
-  difficultyLevel,
-}: ProjectHeroContainerProps) => {
+const CourseHeroContainer = ({ name }: CourseHeroContainerProps) => {
   return (
     <FlexContainer>
       <FlexContainer className='border md:w-4/5 gap-4 w-full p-2 justify-between rounded'>
@@ -32,12 +28,7 @@ const ProjectHeroContainer = ({
           itemCenter={false}
           className='justify-start items-start gap-3'
         >
-          <PageHeroMetaContainer subtitle="YOU'RE BUILDING" title={name} />
-          <PageHeroMetaContainer subtitle='ROADMAP' title={roadmap} />
-          <PageHeroMetaContainer
-            subtitle='DIFFICULTY LEVEL'
-            title={difficultyLevel}
-          />
+          <PageHeroMetaContainer subtitle="YOU'RE LEARING" title={name} />
         </FlexContainer>
         <LinkButton
           href={projectGroupWhatsapp}
@@ -51,7 +42,7 @@ const ProjectHeroContainer = ({
         />
 
         <LinkButton
-          href={routes.projectsExplore}
+          href={routes.shikshaExplore}
           buttonProps={{
             variant: 'GHOST',
             text: 'Back to Projects',
@@ -62,4 +53,4 @@ const ProjectHeroContainer = ({
   );
 };
 
-export default ProjectHeroContainer;
+export default CourseHeroContainer;

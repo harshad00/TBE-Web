@@ -9,20 +9,18 @@ const Pill = ({
   widthFull = false,
 }: PillProps) => {
   let backgroundColor;
-  let textColor;
-
+  let className = '';
   if (variant === 'PRIMARY') backgroundColor = 'bg-primary';
   else if (variant === 'SECONDARY') backgroundColor = 'bg-secondary';
   else if (variant === 'GHOST') {
-    backgroundColor = 'bg-white';
-    textColor = 'strong-text';
+    className = 'bg-white strong-text';
   }
 
   return (
     <div
       className={`rounded-1 ${backgroundColor} px-2 py-1 ${containerClasses} ${
         widthFull && 'w-full'
-      } ${textColor}`}
+      } ${className}`}
     >
       <Text
         level='p'

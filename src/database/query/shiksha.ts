@@ -108,6 +108,7 @@ const getACourseFromDBById = async (
         $group: {
           _id: '$_id',
           title: { $first: '$title' },
+          meta: { $first: '$meta' },
           thumbnailLink: { $first: '$thumbnailLink' },
           description: { $first: '$description' },
           roadmap: { $first: '$roadmap' },

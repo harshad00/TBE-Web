@@ -104,9 +104,29 @@ const apiStatusCodes = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
+const mentorshipPlans: { title: string; description: string; link: string }[] =
+  [
+    {
+      title: 'Free Tech guidance',
+      description: 'Get mentored by working professionals',
+      link: '',
+    },
+    {
+      title: 'Free Resume Review',
+      description:
+        'Get a free resume review to enhance your job application and stand out to employers.',
+      link: '',
+    },
+    {
+      title: 'Cracking Remote Jobs',
+      description:
+        'know the secret behind cracking remote jobs by industry experts.',
+      link: '',
+    },
+  ];
+
 const IN_DEV_PAGES = ['/projects'];
 const projectGroupWhatsapp = 'https://chat.whatsapp.com/D1ko12SykD1LfvJwmNQ48A';
-const admins = ['helloatkrishna@gmail.com', 'krish36pandey@gmail.com'];
 
 export {
   imageMeta,
@@ -120,5 +140,5 @@ export {
   apiStatusCodes,
   IN_DEV_PAGES,
   projectGroupWhatsapp,
-  admins,
+  mentorshipPlans,
 };
