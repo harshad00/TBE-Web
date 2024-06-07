@@ -1,5 +1,10 @@
+import { admins } from '@/constant';
 import { getUserByEmailFromDB } from '@/database/query/user';
-import { ProjectDocumentModel, ProjectPickedPageProps } from '@/interfaces';
+import {
+  CourseModel,
+  ProjectDocumentModel,
+  ProjectPickedPageProps,
+} from '@/interfaces';
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
@@ -89,6 +94,31 @@ const checkTheLoggedInUser = async (email: string): Promise<string | null> => {
   }
 };
 
+const isAdmin = (email: string): boolean => {
+  return admins.includes(email);
+};
+
+const mapCourseResponseToCard = (coursesData: CourseModel[]) => {
+  return coursesData?.map(
+    ({ _id, thumbnailLink, title, description, liveOn }) => ({
+      id: _id,
+      image: thumbnailLink,
+      imageAltText: title,
+      title,
+      content: description,
+      href: `/courses/?courseId=${_id}`,
+      active:
+        new Date(liveOn).getMilliseconds() <=
+        new Date(Date.now()).getMilliseconds(),
+      ctaText:
+        new Date(liveOn).getMilliseconds() <=
+        new Date(Date.now()).getMilliseconds()
+          ? 'Start The Project'
+          : 'Coming Soon',
+    })
+  );
+};
+
 export {
   formatDate,
   formatTime,
@@ -99,4 +129,6 @@ export {
   mapProjectResponseToCard,
   getSelectedProjectChapterMeta,
   checkTheLoggedInUser,
+  isAdmin,
+  mapCourseResponseToCard,
 };

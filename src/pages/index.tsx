@@ -19,6 +19,7 @@ import {
   routes,
 } from '@/constant';
 import { useRouter } from 'next/router';
+import Community from '@/components/containers/Page/Landing/Community';
 
 const Home = ({ seoMeta }: PageProps) => {
   const router = useRouter();
@@ -60,6 +61,7 @@ const Home = ({ seoMeta }: PageProps) => {
         }
         backgroundImageUrl={`${STATIC_FILE_PATH.svg}/hero-image.svg`}
       />
+
       <CardContainerB
         id={routes.internals.landing.products}
         heading='Our'
@@ -68,6 +70,7 @@ const Home = ({ seoMeta }: PageProps) => {
         borderColour={2}
       />
       <CanYouBeAProgrammer />
+      <Community />
       <CardContainerA
         heading='What We Do'
         focusText='Differently'

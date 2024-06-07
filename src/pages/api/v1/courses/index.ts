@@ -1,10 +1,11 @@
 import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { sendAPIResponse } from '@/utils';
+import { isAdmin, sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { AddCourseDBRequestProps } from '@/interfaces';
-import { addACourseToDB, getAllCoursesFromDB } from '@/database/query/course';
-
+import { addACourseToDB, getAllCoursesFromDB } from '@/database';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../../auth/[...nextauth]';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
   const { method } = req;
@@ -26,6 +27,24 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const handleAddACourse = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    const session = await getServerSession(req, res, authOptions);
+
+    if (!session || !session.user || !session.user.email)
+      return res.status(apiStatusCodes.UNAUTHORIZED).json(
+        sendAPIResponse({
+          status: false,
+          message: "You aren't logged in.",
+        })
+      );
+
+    if (!isAdmin(session.user.email))
+      return res.status(apiStatusCodes.UNAUTHORIZED).json(
+        sendAPIResponse({
+          status: false,
+          message: "You aren't permitted to add course",
+        })
+      );
+
     const courseDetails = req.body as AddCourseDBRequestProps;
     const { data, error } = await addACourseToDB(courseDetails);
 

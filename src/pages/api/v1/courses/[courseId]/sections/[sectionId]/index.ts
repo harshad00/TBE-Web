@@ -3,10 +3,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import {
+  updateCourseSectionInDB,
   deleteCourseSectionByIdFromDB,
   getChapterAssociatedWithSectionByIdFromDB,
-  updateCourseSectionInDB,
-} from '@/database/query/section';
+} from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
