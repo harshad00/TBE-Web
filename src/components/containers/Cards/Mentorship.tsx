@@ -28,8 +28,6 @@ const Mentorship = ({
         buttonProps={{
           variant: 'PRIMARY',
           text: 'Book Session',
-
-          className: `${'bg-secondary'}`,
         }}
       />
     </FlexContainer>
