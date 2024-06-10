@@ -39,24 +39,27 @@ const ProjectHeroContainer = ({
             title={difficultyLevel}
           />
         </FlexContainer>
-        <LinkButton
-          href={projectGroupWhatsapp}
-          target='BLANK'
-          buttonProps={{
-            variant: 'OUTLINE',
-            text: 'Ask Question',
-            className:
-              'button bg-secondary border-0  px-2 py-1 !text-black hover:scale-100 hover:transition-none',
-          }}
-        />
-
-        <LinkButton
-          href={routes.projectsExplore}
-          buttonProps={{
-            variant: 'GHOST',
-            text: 'Back to Projects',
-          }}
-        />
+        <FlexContainer
+          justifyCenter={false}
+          itemCenter={false}
+          className='justify-start items-start gap-2'
+        >
+          <LinkButton
+            href={projectGroupWhatsapp}
+            target='BLANK'
+            buttonProps={{
+              variant: 'OUTLINE',
+              text: 'Ask Question',
+            }}
+          />
+          <LinkButton
+            href={routes.projectsExplore}
+            buttonProps={{
+              variant: 'GHOST',
+              text: 'Back to Projects',
+            }}
+          />
+        </FlexContainer>
       </FlexContainer>
     </FlexContainer>
   );
