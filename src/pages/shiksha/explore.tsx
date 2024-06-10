@@ -1,6 +1,13 @@
 import React, { Fragment } from 'react';
 import { PageProps } from '@/interfaces';
-import { SEO, CardContainerB, LoadingSpinner } from '@/components';
+import {
+  SEO,
+  CardContainerB,
+  LoadingSpinner,
+  FlexContainer,
+  Text,
+  LinkButton,
+} from '@/components';
 import { useAPIResponseMapper, useApi } from '@/hooks';
 import {
   getPreFetchProps,
@@ -18,6 +25,26 @@ const Home = ({ seoMeta }: PageProps) => {
 
   if (loading) {
     return <LoadingSpinner />;
+  }
+
+  if (!courses || courses.length === 0) {
+    return (
+      <FlexContainer
+        justifyCenter={true}
+        className='w-screen h-screen item-center justify-center flex-col'
+      >
+        <Text level='h1' className='heading-4 mb-3'>
+          Oops! No Courses found.
+        </Text>
+        <LinkButton
+          buttonProps={{
+            variant: 'PRIMARY',
+            text: 'Go Back To Home',
+          }}
+          href='/'
+        ></LinkButton>
+      </FlexContainer>
+    );
   }
 
   return (

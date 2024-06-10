@@ -109,4 +109,8 @@
   .md-list {
     @apply list-disc;
   }
+
+  .text-accent {
+    color: #ecf1f4;
+  }
 }

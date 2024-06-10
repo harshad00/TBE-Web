@@ -4,7 +4,7 @@ import {
   Text,
   PageHeroMetaContainer,
 } from '@/components';
-import { projectGroupWhatsapp, routes } from '@/constant';
+import { routes } from '@/constant';
 import { CourseHeroContainerProps } from '@/interfaces';
 
 const CourseHeroContainer = ({ name }: CourseHeroContainerProps) => {
@@ -30,22 +30,12 @@ const CourseHeroContainer = ({ name }: CourseHeroContainerProps) => {
         >
           <PageHeroMetaContainer subtitle="YOU'RE LEARING" title={name} />
         </FlexContainer>
-        <LinkButton
-          href={projectGroupWhatsapp}
-          target='BLANK'
-          buttonProps={{
-            variant: 'OUTLINE',
-            text: 'Ask Question',
-            className:
-              'button bg-secondary border-0  px-2 py-1 !text-black hover:scale-100 hover:transition-none',
-          }}
-        />
 
         <LinkButton
           href={routes.shikshaExplore}
           buttonProps={{
             variant: 'GHOST',
-            text: 'Back to Projects',
+            text: 'Back to Courses',
           }}
         />
       </FlexContainer>
