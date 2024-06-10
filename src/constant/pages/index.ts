@@ -21,7 +21,6 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
       name: products.shiksha.label,
       description: products.shiksha.description,
       href: products.shiksha.slug,
-      isDevelopment: true,
     },
   ],
   links: [
