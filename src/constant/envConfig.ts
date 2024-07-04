@@ -1,6 +1,4 @@
 const MONGODB_URI = process.env.MONGODB_URI as string;
-const NEXT_PUBLIC_GOOGLE_ANALYTICS = process.env
-  .NEXT_PUBLIC_GOOGLE_ANALYTICS as string;
 const BASE_API_URL = process.env.BASE_API_URL as string;
 const GOOGLE_AUTH_CLIENT_ID = process.env.GOOGLE_AUTH_CLIENT_ID as string;
 const GOOGLE_AUTH_CLIENT_SECRET = process.env
@@ -10,7 +8,6 @@ const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET as string;
 
 const envConfig = {
   MONGODB_URI,
-  NEXT_PUBLIC_GOOGLE_ANALYTICS,
   BASE_API_URL,
   GOOGLE_AUTH_CLIENT_ID,
   GOOGLE_AUTH_CLIENT_SECRET,
