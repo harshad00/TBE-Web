@@ -7,6 +7,7 @@ import {
   Text,
 } from '@/components';
 import CourseHeroContainer from '@/components/containers/Page/Course/CourseHeroContainer';
+import { envConfig } from '@/constant';
 import { CourseChapterModel } from '@/interfaces';
 import { useState } from 'react';
 
@@ -79,7 +80,7 @@ export const getServerSideProps = async ({
   try {
     if (!query.courseId) return { notFound: true };
     const response = await fetch(
-      `${process.env.BASE_API_URL}/courses/${query.courseId}`
+      `${envConfig.BASE_API_URL}/courses/${query.courseId}`
     );
     const data = await response.json();
 

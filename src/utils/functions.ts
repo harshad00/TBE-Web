@@ -1,9 +1,11 @@
+import { envConfig } from '@/constant';
 import { getUserByEmailFromDB } from '@/database/query/user';
 import {
   CourseModel,
   ProjectDocumentModel,
   ProjectPickedPageProps,
 } from '@/interfaces';
+import { NextRequest } from 'next/server';
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
@@ -94,7 +96,26 @@ const checkTheLoggedInUser = async (email: string): Promise<string | null> => {
 };
 
 const isAdmin = (adminSecret: string): boolean => {
-  return process.env.ADMIN_SECRET == adminSecret;
+  return envConfig.ADMIN_SECRET == adminSecret;
+};
+
+const isUserAuthenticated = async (req: NextRequest) => {
+  try {
+    const response = await fetch(
+      `${envConfig.BASE_API_URL}/users/isauthenticated`,
+      {
+        credentials: 'include',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+          Cookie: req.headers.get('cookie') || '',
+        },
+      }
+    );
+    return response.ok;
+  } catch (error) {
+    return false;
+  }
 };
 
 const mapCourseResponseToCard = (coursesData: CourseModel[]) => {
@@ -130,4 +151,5 @@ export {
   checkTheLoggedInUser,
   isAdmin,
   mapCourseResponseToCard,
+  isUserAuthenticated,
 };

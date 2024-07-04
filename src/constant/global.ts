@@ -1,4 +1,5 @@
 import { ProductDataProps } from '@/interfaces';
+import { envConfig } from '.';
 
 // Paths
 const STATIC_FILE_PATH = {
@@ -52,13 +53,13 @@ const LINKS = {
 };
 
 // Google analytics
-const gtag = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`;
+const gtag = `https://www.googletagmanager.com/gtag/js?id=${envConfig.NEXT_PUBLIC_GOOGLE_ANALYTICS}`;
 
 const googleAnalyticsScript = `
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+          gtag('config', '${envConfig.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
           `;
 
 const favicons: Array<React.ComponentPropsWithoutRef<'link'>> = [

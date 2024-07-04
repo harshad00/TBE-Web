@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
-import { isAdmin } from './utils';
+import { isAdmin, isUserAuthenticated } from './utils';
+import { routes } from './constant';
 
-// const courseEnrollPathExp = /^\/api\/v1\/courses\/[^/]+\/enroll$/;
 const adminRoutes: {
   path: RegExp;
   method: 'GET' | 'PUT' | 'PATCH' | 'POST' | 'DELETE';
@@ -83,34 +83,20 @@ const middleware = async (req: NextRequest) => {
       route.method === method &&
       !isAdmin(req.headers.get('x-admin-secret') || '')
     ) {
-      return NextResponse.redirect(new URL('/', req.url));
+      return NextResponse.redirect(new URL(routes.home, req.url));
     }
   }
 
-  const response = await fetch(
-    `${process.env.BASE_API_URL}/users/isauthenticated`,
-    {
-      credentials: 'include',
-      cache: 'no-cache',
-      headers: {
-        'Content-Type': 'application/json',
-        Cookie: req.headers.get('cookie') || '', // Forward the request cookies
-      },
-    }
-  );
-  // if the response is ok that means user is authenticated otherwise unauthenticated
+  const isAuthenticated = await isUserAuthenticated(req);
 
-  // const { data }: { status: boolean; data: { email: string; _id: string } } =
-  //   await response.json();
-
-  if (!response.ok) {
-    if (currentUrl === '/register') return NextResponse.next();
-    else if (currentUrl === '/shiksha/explore') return NextResponse.next();
-    else return NextResponse.redirect(new URL('/register', req.url));
+  if (!isAuthenticated) {
+    if (currentUrl === routes.register) return NextResponse.next();
+    else if (currentUrl === routes.shikshaExplore) return NextResponse.next();
+    else return NextResponse.redirect(new URL(routes.register, req.url));
   }
 
-  if (currentUrl === '/register')
-    return NextResponse.redirect(new URL('/', req.url));
+  if (currentUrl === routes.register)
+    return NextResponse.redirect(new URL(routes.home, req.url));
 
   return NextResponse.next();
 };
