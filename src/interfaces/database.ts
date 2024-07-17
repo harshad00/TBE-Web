@@ -37,28 +37,24 @@ export interface ProjectDocumentModel extends Document {
 export interface CourseModel extends Document {
   title: string;
   description: string;
-  thumbnailLink: string;
+  coverImageURL: string;
   liveOn: Date;
   slug: string;
   meta: string;
-  createdAt: Date;
+  chapters: CourseChapterModel[];
+  roadmap: RoadmapsType;
+  difficultyLevel: DifficultyType;
 }
 
-export interface CourseSectionModel {
-  title: string;
-  courseId: Schema.Types.ObjectId;
-  createdAt: Date;
-}
-
-export interface CourseChapterModel extends Document {
-  title: string;
-  sectionId: Schema.Types.ObjectId;
+export interface CourseChapterModel {
+  chapterId: string;
+  chapterName: string;
   content: string;
-  createdAt: Date;
+  isOptional?: boolean;
 }
 
 export interface UserCourseModel {
-  userId: Schema.Types.ObjectId;
-  courseId: Schema.Types.ObjectId;
-  chaptersId: [Schema.Types.ObjectId];
+  userId: string;
+  courseId: string;
+  chaptersId: [string];
 }

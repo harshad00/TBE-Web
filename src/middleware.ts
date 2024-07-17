@@ -78,11 +78,18 @@ const middleware = async (req: NextRequest) => {
   }
 
   for (const route of adminRoutes) {
+    console.log(
+      'HERE',
+      route,
+      route.path.test(currentUrl),
+      route.method === method
+    );
     if (
       route.path.test(currentUrl) &&
       route.method === method &&
-      !isAdmin(req.headers.get('x-admin-secret') || '')
+      isAdmin(req.headers.get('x-admin-secret') || '')
     ) {
+      console.log('HERE', 1);
       return NextResponse.redirect(new URL(routes.home, req.url));
     }
   }
@@ -105,13 +112,13 @@ export const config = {
   matcher: [
     '/register',
     '/shiksha/:courseSlug*',
-    '/api/v1/courses',
-    '/api/v1/courses/:courseId*',
-    '/api/v1/courses/:courseId/enroll',
-    '/api/v1/courses/:courseId/sections',
-    '/api/v1/courses/:courseId/sections/:sectionId',
-    '/api/v1/courses/:courseId/sections/:sectionId/chapter',
-    '/api/v1/courses/:courseId/sections/:sectionId/chapter/:chapterId*',
+    // '/api/v1/courses',
+    // '/api/v1/courses/:courseId*',
+    // '/api/v1/courses/:courseId/enroll',
+    // '/api/v1/courses/:courseId/sections',
+    // '/api/v1/courses/:courseId/sections/:sectionId',
+    // '/api/v1/courses/:courseId/sections/:sectionId/chapter',
+    // '/api/v1/courses/:courseId/sections/:sectionId/chapter/:chapterId*',
   ],
 };
 

@@ -19,4 +19,8 @@ const connectDB = async (res: NextApiResponse) => {
   }
 };
 
-export { connectDB };
+const isAdmin = (adminSecret: string): boolean => {
+  return envConfig.ADMIN_SECRET == adminSecret;
+};
+
+export { connectDB, isAdmin };

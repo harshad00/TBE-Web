@@ -102,20 +102,22 @@ export interface UpdateChapterDBRequestProps
   chapterId: string;
 }
 
-export interface AddCourseDBRequestProps {
+export interface AddCourseRequestPayloadProps {
   title: string;
   description: string;
-  thumbnailLink: string;
-  liveOn: Date;
+  coverImageURL: string;
+  liveOn: string;
   slug: string;
   meta?: string;
+  roadmap: RoadmapsType;
+  difficultyLevel: DifficultyType;
 }
 
 export interface UpdateCourseRequestPayloadProps {
   updatedData: {
     title?: string;
     description?: string;
-    thumbnailLink?: string;
+    coverImageURL?: string;
     meta?: string;
   };
   courseId: string;
@@ -168,7 +170,7 @@ export type SkillsType =
   | 'TailwindCSS'
   | 'NextJS';
 
-export type RoadmapsType = 'Frontend' | 'Backend' | 'Fullstack';
+export type RoadmapsType = 'Frontend' | 'Backend' | 'Fullstack' | 'Tech';
 
 export type DifficultyType = 'Beginner' | 'Intermediate' | 'Advanced';
 

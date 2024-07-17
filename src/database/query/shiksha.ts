@@ -1,6 +1,6 @@
 import {
   AddCourseChapterInDBRequestProps,
-  AddCourseDBRequestProps,
+  AddCourseRequestPayloadProps,
   AddSectionToACourseDBRequestProps,
   DatabaseQueryResponseType,
   EnrollCourseInDBRequestProps,
@@ -13,7 +13,7 @@ import { Course, CourseChapter, CourseSection, UserCourse } from '@/database';
 import mongoose from 'mongoose';
 
 const addACourseToDB = async (
-  courseDetails: AddCourseDBRequestProps
+  courseDetails: AddCourseRequestPayloadProps
 ): Promise<DatabaseQueryResponseType> => {
   try {
     const course = new Course(courseDetails);
@@ -109,7 +109,7 @@ const getACourseFromDBById = async (
           _id: '$_id',
           title: { $first: '$title' },
           meta: { $first: '$meta' },
-          thumbnailLink: { $first: '$thumbnailLink' },
+          coverImageURL: { $first: '$coverImageURL' },
           description: { $first: '$description' },
           roadmap: { $first: '$roadmap' },
           liveOn: { $first: '$liveOn' },
@@ -299,6 +299,22 @@ const getEnrolledCourse = async ({
   }
 };
 
+const getCourseBySlugFromDB = async (
+  slug: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const course = await UserCourse.findOne({ slug });
+
+    if (!course) {
+      return { error: 'Course not found' };
+    }
+
+    return { data: course };
+  } catch (error) {
+    return { error };
+  }
+};
+
 export {
   addACourseToDB,
   updateACourseInDB,
@@ -315,4 +331,5 @@ export {
   deleteCourseChapterByIdFromDB,
   markChapterAsCompleted,
   getEnrolledCourse,
+  getCourseBySlugFromDB,
 };

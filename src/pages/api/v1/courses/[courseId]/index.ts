@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 
-import { AddCourseDBRequestProps } from '@/interfaces';
+import { AddCourseRequestPayloadProps } from '@/interfaces';
 import {
   deleteACourseFromDBById,
   updateACourseInDB,
@@ -70,7 +70,7 @@ const handleUpdateCourse = async (
   res: NextApiResponse,
   courseId: string
 ) => {
-  const updatedData = req.body as Partial<AddCourseDBRequestProps>;
+  const updatedData = req.body as Partial<AddCourseRequestPayloadProps>;
   try {
     const { data, error } = await updateACourseInDB({
       updatedData,

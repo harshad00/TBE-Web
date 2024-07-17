@@ -1,5 +1,4 @@
 import { ProductDataProps } from '@/interfaces';
-import { envConfig } from '.';
 
 // Paths
 const STATIC_FILE_PATH = {

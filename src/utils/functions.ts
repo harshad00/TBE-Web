@@ -120,9 +120,9 @@ const isUserAuthenticated = async (req: NextRequest) => {
 
 const mapCourseResponseToCard = (coursesData: CourseModel[]) => {
   return coursesData?.map(
-    ({ _id, thumbnailLink, title, description, liveOn, slug }) => ({
+    ({ _id, coverImageURL, title, description, liveOn, slug }) => ({
       id: _id,
-      image: thumbnailLink,
+      image: coverImageURL,
       imageAltText: title,
       title,
       content: description,

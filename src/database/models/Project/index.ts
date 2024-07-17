@@ -32,22 +32,25 @@ const sectionSchema: Schema<ProjectSection> = new Schema(
 );
 
 const projectSchema: Schema<ProjectDocumentModel> =
-  new Schema<ProjectDocumentModel>({
-    name: { type: String, required: true },
-    description: { type: String, required: true },
-    coverImageURL: { type: String, required: true },
-    slug: { type: String, required: true },
-    meta: { type: String },
-    sections: [sectionSchema],
-    requiredSkills: [{ type: String, enum: PROJECT_SKILLS, required: true }],
-    roadmap: { type: String, enum: ROADMAPS, required: true },
-    difficultyLevel: {
-      type: String,
-      enum: DIFFICULTY_LEVEL,
-      required: true,
+  new Schema<ProjectDocumentModel>(
+    {
+      name: { type: String, required: true },
+      description: { type: String, required: true },
+      coverImageURL: { type: String, required: true },
+      slug: { type: String, required: true },
+      meta: { type: String },
+      sections: [sectionSchema],
+      requiredSkills: [{ type: String, enum: PROJECT_SKILLS, required: true }],
+      roadmap: { type: String, enum: ROADMAPS, required: true },
+      difficultyLevel: {
+        type: String,
+        enum: DIFFICULTY_LEVEL,
+        required: true,
+      },
+      isActive: { type: Boolean, default: false },
     },
-    isActive: { type: Boolean, default: false },
-  });
+    { timestamps: true }
+  );
 
 const Project: Model<ProjectDocumentModel> =
   models?.Project ||
