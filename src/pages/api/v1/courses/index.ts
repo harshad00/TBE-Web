@@ -11,7 +11,6 @@ import {
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
-  console.log('HERE', 1);
 
   switch (req.method) {
     case 'POST':

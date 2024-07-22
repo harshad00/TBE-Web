@@ -1,7 +1,8 @@
-import type { NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { envConfig, apiStatusCodes } from '@/constant';
-import { sendAPIResponse } from '@/utils';
+import { isAdmin, sendAPIResponse } from '@/utils';
 import mongoose from 'mongoose';
+import { NextResponse } from 'next/server';
 
 // Connect to DB
 const connectDB = async (res: NextApiResponse) => {
@@ -19,8 +20,4 @@ const connectDB = async (res: NextApiResponse) => {
   }
 };
 
-const isAdmin = (adminSecret: string): boolean => {
-  return envConfig.ADMIN_SECRET == adminSecret;
-};
-
-export { connectDB, isAdmin };
+export { connectDB };
