@@ -51,7 +51,7 @@ const handleAddACourse = async (req: NextApiRequest, res: NextApiResponse) => {
         sendAPIResponse({
           status: false,
           message: 'Course not added',
-          error: error,
+          error,
         })
       );
 
@@ -59,6 +59,7 @@ const handleAddACourse = async (req: NextApiRequest, res: NextApiResponse) => {
       sendAPIResponse({
         status: true,
         data,
+        message: 'Course added successfully',
       })
     );
   } catch (error) {
@@ -87,7 +88,7 @@ const handleGetAllCourse = async (
       );
     return res
       .status(apiStatusCodes.OKAY)
-      .json(sendAPIResponse({ data, status: true }));
+      .json(sendAPIResponse({ status: true, data }));
   } catch (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({

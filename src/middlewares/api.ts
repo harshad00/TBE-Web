@@ -1,8 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiResponse } from 'next';
 import { envConfig, apiStatusCodes } from '@/constant';
-import { isAdmin, sendAPIResponse } from '@/utils';
+import { sendAPIResponse } from '@/utils';
 import mongoose from 'mongoose';
-import { NextResponse } from 'next/server';
 
 // Connect to DB
 const connectDB = async (res: NextApiResponse) => {

@@ -20,7 +20,7 @@ const protectedUIRoutes: {
 ];
 
 const middleware = async (req: NextRequest) => {
-  console.log('path matched : ', req.url);
+  // console.log('path matched : ', req.url);
 
   const currentUrl = req.nextUrl.pathname;
 
@@ -42,7 +42,7 @@ const middleware = async (req: NextRequest) => {
   }
 
   const isAuthenticated = await isUserAuthenticated(req);
-  console.log('isAuthenticated : ', isAuthenticated);
+  // console.log('isAuthenticated : ', isAuthenticated);
 
   if (!isAuthenticated) {
     const isProtectedUIRoute = protectedUIRoutes.find((route) =>

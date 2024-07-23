@@ -13,7 +13,7 @@ const PROJECT_SKILLS: SkillsType[] = [
   'TailwindCSS',
 ];
 
-const ROADMAPS: RoadmapsType[] = ['Frontend', 'Backend', 'Fullstack'];
+const ROADMAPS: RoadmapsType[] = ['Frontend', 'Backend', 'Fullstack', 'Tech'];
 
 const DIFFICULTY_LEVEL: DifficultyType[] = [
   'Beginner',

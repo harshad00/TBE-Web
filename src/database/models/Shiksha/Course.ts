@@ -23,27 +23,27 @@ const chapterSchema = new Schema<CourseChapterModel>(
 
 const CourseSchema = new Schema<CourseModel>(
   {
-    title: {
+    name: {
       type: String,
-      required: [true, 'course title is required'],
+      required: [true, 'Course name is required'],
+    },
+    meta: { type: String },
+    slug: {
+      type: String,
+      required: [true, 'Slug is required'],
     },
     coverImageURL: {
       type: String,
-      required: [true, 'course thumbnail is required'],
+      required: [true, 'Course thumbnail is required'],
     },
     description: {
       type: String,
     },
     liveOn: {
       type: Date,
-      required: [true, 'liveOn is required'],
-    },
-    slug: {
-      type: String,
-      required: [true, 'slug is required'],
+      required: [true, 'Live on is required'],
     },
     chapters: [chapterSchema],
-    meta: { type: String },
     roadmap: { type: String, enum: ROADMAPS, required: true },
     difficultyLevel: {
       type: String,
