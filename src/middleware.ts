@@ -7,7 +7,7 @@ const protectedAPIRoutes: {
   path: RegExp;
 }[] = [
   {
-    path: /^\/api\/v1\/courses(?:\/|$)/,
+    path: /^\/api\/v1\/course(?:\/|$)/,
   },
 ];
 
@@ -31,7 +31,7 @@ const middleware = async (req: NextRequest) => {
   if (isProtectedAPIRoute) {
     const adminHeader = req.headers.get('x-admin-secret') || '';
 
-    if (!isAdmin(adminHeader)) {
+    if (!isAdmin(adminHeader) && req.method !== 'GET') {
       return NextResponse.json(
         sendAPIResponse({
           status: false,
@@ -60,7 +60,7 @@ const middleware = async (req: NextRequest) => {
 };
 
 export const config = {
-  matcher: ['/register', '/shiksha/:courseSlug*', '/api/v1/courses/:path*'],
+  matcher: ['/register', '/shiksha/:courseSlug*', '/api/v1/course/:courseId*'],
 };
 
 export { middleware };

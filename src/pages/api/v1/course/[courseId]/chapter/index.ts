@@ -6,7 +6,6 @@ import { AddChapterToCourseRequestProps } from '@/interfaces';
 import { addChapterToCourse } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log('HERE', 1);
   await connectDB(res);
   const { method, query } = req;
   const { courseId } = query as { courseId: string };
@@ -45,7 +44,13 @@ const handleAddChapter = async (
 
     return res
       .status(apiStatusCodes.OKAY)
-      .json(sendAPIResponse({ status: true, data }));
+      .json(
+        sendAPIResponse({
+          status: true,
+          data,
+          message: 'Chapter added to course successfully',
+        })
+      );
   } catch (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
