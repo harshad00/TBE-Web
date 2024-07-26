@@ -43,6 +43,7 @@ const deleteACourseFromDBById = async (
 ): Promise<DatabaseQueryResponseType> => {
   try {
     const deletedCourse = await Course.findByIdAndDelete(courseId);
+
     if (!deletedCourse) {
       return { error: 'Course not found' };
     }
@@ -65,53 +66,15 @@ const getACourseFromDBById = async (
   courseId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const courseObjectId = new mongoose.Types.ObjectId(courseId);
-    const course = await Course.aggregate([
-      {
-        $match: {
-          _id: courseObjectId,
-        },
-      },
-      {
-        $lookup: {
-          from: 'coursesections', // collection name of CourseSection
-          localField: '_id',
-          foreignField: 'courseId',
-          as: 'sections',
-        },
-      },
-      {
-        $unwind: {
-          path: '$sections',
-          preserveNullAndEmptyArrays: true,
-        },
-      },
-      {
-        $lookup: {
-          from: 'coursechapters', // collection name of CourseChapter
-          localField: 'sections._id',
-          foreignField: 'sectionId',
-          as: 'sections.chapters',
-        },
-      },
-      {
-        $group: {
-          _id: '$_id',
-          title: { $first: '$title' },
-          meta: { $first: '$meta' },
-          coverImageURL: { $first: '$coverImageURL' },
-          description: { $first: '$description' },
-          roadmap: { $first: '$roadmap' },
-          liveOn: { $first: '$liveOn' },
-          createdAt: { $first: '$createdAt' },
-          sections: { $push: '$sections' },
-        },
-      },
-    ]);
-    if (course[0].liveOn <= Date.now()) return { data: course };
-    return { data: null };
+    const course = await Course.findById(courseId);
+
+    if (!course) {
+      return { error: 'Course not found' };
+    }
+
+    return { data: course };
   } catch (error) {
-    return { error: 'Failed while fetching a course' };
+    return { error: `Failed while fetching a course ${error}` };
   }
 };
 
