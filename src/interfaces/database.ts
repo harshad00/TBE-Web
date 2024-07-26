@@ -47,8 +47,7 @@ export interface CourseModel extends Document {
 }
 
 export interface CourseChapterModel {
-  chapterId: string;
-  chapterName: string;
+  name: string;
   content: string;
   isOptional?: boolean;
 }

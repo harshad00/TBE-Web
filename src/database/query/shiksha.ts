@@ -1,11 +1,11 @@
 import {
+  AddChapterToCourseRequestProps,
   AddCourseRequestPayloadProps,
   DatabaseQueryResponseType,
   EnrollCourseInDBRequestProps,
   UpdateCourseRequestPayloadProps,
 } from '@/interfaces';
 import { Course, UserCourse } from '@/database';
-import mongoose from 'mongoose';
 
 const addACourseToDB = async (
   courseDetails: AddCourseRequestPayloadProps
@@ -78,6 +78,27 @@ const getACourseFromDBById = async (
   }
 };
 
+const addChapterToCourse = async (
+  courseId: string,
+  chapter: AddChapterToCourseRequestProps
+) => {
+  try {
+    const updatedCourse = await Course.findOneAndUpdate(
+      { _id: courseId },
+      { $push: { chapters: chapter } },
+      { new: true }
+    );
+
+    if (!updatedCourse) {
+      return { error: 'Course not found' };
+    }
+
+    return { data: updatedCourse };
+  } catch (error) {
+    return { error: 'Failed to add chapter to course' };
+  }
+};
+
 const enrollInACourse = async ({
   userId,
   courseId,
@@ -127,4 +148,5 @@ export {
   enrollInACourse,
   getEnrolledCourse,
   getCourseBySlugFromDB,
+  addChapterToCourse,
 };

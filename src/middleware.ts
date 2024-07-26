@@ -20,7 +20,7 @@ const protectedUIRoutes: {
 ];
 
 const middleware = async (req: NextRequest) => {
-  // console.log('path matched : ', req.url);
+  console.log('path matched : ', req.url);
 
   const currentUrl = req.nextUrl.pathname;
 
@@ -60,7 +60,7 @@ const middleware = async (req: NextRequest) => {
 };
 
 export const config = {
-  matcher: ['/register', '/shiksha/:courseSlug*', '/api/v1/courses'],
+  matcher: ['/register', '/shiksha/:courseSlug*', '/api/v1/courses/:path*'],
 };
 
 export { middleware };

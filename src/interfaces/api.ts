@@ -123,6 +123,11 @@ export interface UpdateCourseRequestPayloadProps {
   courseId: string;
 }
 
+export interface AddChapterToCourseRequestProps {
+  name: string;
+  content: string;
+}
+
 export interface EnrollCourseInDBRequestProps {
   userId: string;
   courseId: string;

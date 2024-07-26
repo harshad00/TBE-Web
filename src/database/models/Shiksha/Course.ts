@@ -4,11 +4,7 @@ import { Model, Schema, model, models } from 'mongoose';
 
 const chapterSchema = new Schema<CourseChapterModel>(
   {
-    chapterId: {
-      type: String,
-      required: [true, 'Chapter ID is required'],
-    },
-    chapterName: {
+    name: {
       type: String,
       required: [true, 'Chapter Name is required'],
     },
@@ -18,7 +14,7 @@ const chapterSchema = new Schema<CourseChapterModel>(
       ref: `${databaseModels.COURSE_SECTION}`,
     },
   },
-  { timestamps: true, _id: false }
+  { timestamps: true, _id: true }
 );
 
 const CourseSchema = new Schema<CourseModel>(
