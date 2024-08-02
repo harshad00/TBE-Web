@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import { AddChapterToCourseRequestProps } from '@/interfaces';
-import { addChapterToCourse } from '@/database';
+import { addChapterToCourseInDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
@@ -31,7 +31,7 @@ const handleAddChapter = async (
   const chapterData = req.body as AddChapterToCourseRequestProps;
 
   try {
-    const { data, error } = await addChapterToCourse(courseId, chapterData);
+    const { data, error } = await addChapterToCourseInDB(courseId, chapterData);
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
@@ -42,15 +42,13 @@ const handleAddChapter = async (
       );
     }
 
-    return res
-      .status(apiStatusCodes.OKAY)
-      .json(
-        sendAPIResponse({
-          status: true,
-          data,
-          message: 'Chapter added to course successfully',
-        })
-      );
+    return res.status(apiStatusCodes.OKAY).json(
+      sendAPIResponse({
+        status: true,
+        data,
+        message: 'Chapter added to course successfully',
+      })
+    );
   } catch (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({

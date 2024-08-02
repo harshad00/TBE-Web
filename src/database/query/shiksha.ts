@@ -3,6 +3,7 @@ import {
   AddCourseRequestPayloadProps,
   DatabaseQueryResponseType,
   EnrollCourseInDBRequestProps,
+  UpdateChapterInCourseRequestProps,
   UpdateCourseRequestPayloadProps,
 } from '@/interfaces';
 import { Course, UserCourse } from '@/database';
@@ -78,7 +79,7 @@ const getACourseFromDBById = async (
   }
 };
 
-const addChapterToCourse = async (
+const addChapterToCourseInDB = async (
   courseId: string,
   chapter: AddChapterToCourseRequestProps
 ) => {
@@ -96,6 +97,46 @@ const addChapterToCourse = async (
     return { data: updatedCourse };
   } catch (error) {
     return { error: 'Failed to add chapter to course' };
+  }
+};
+
+const updateCourseChapterInDB = async (
+  courseId: string,
+  chapterId: string,
+  { name, content, isOptional }: UpdateChapterInCourseRequestProps
+) => {
+  try {
+    const course = await Course.findOneAndUpdate(
+      { _id: courseId, 'chapters._id': chapterId },
+      {
+        $set: {
+          'chapters.$.chapterName': name,
+          'chapters.$.content': content,
+          'chapters.$.isOptional': isOptional,
+        },
+      },
+      { new: true }
+    );
+
+    return { data: course };
+  } catch (error) {
+    return { error: 'Failed to update chapter to course' };
+  }
+};
+
+const deleteCourseChapterByIdFromDB = async (
+  courseId: string,
+  chapterId: string
+) => {
+  try {
+    const course = await Course.findOneAndUpdate(
+      { _id: courseId },
+      { $pull: { chapters: { _id: chapterId } } },
+      { new: true }
+    );
+    return { data: course };
+  } catch (error) {
+    return { error: 'Failed to delete chapter from course' };
   }
 };
 
@@ -148,5 +189,7 @@ export {
   enrollInACourse,
   getEnrolledCourse,
   getCourseBySlugFromDB,
-  addChapterToCourse,
+  addChapterToCourseInDB,
+  updateCourseChapterInDB,
+  deleteCourseChapterByIdFromDB,
 };

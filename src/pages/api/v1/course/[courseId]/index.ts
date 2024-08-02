@@ -17,10 +17,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (method) {
     case 'GET':
       return handleGetCourseById(req, res, courseId);
-    case 'DELETE':
-      return handleDeleteCourse(req, res, courseId);
     case 'PATCH':
       return handleUpdateCourse(req, res, courseId);
+    case 'DELETE':
+      return handleDeleteCourse(req, res, courseId);
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
@@ -78,7 +78,7 @@ const handleUpdateCourse = async (
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        message: 'Failed while updating a course',
+        message: 'Course not found',
         error,
       })
     );

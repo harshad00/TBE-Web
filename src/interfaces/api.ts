@@ -128,6 +128,12 @@ export interface AddChapterToCourseRequestProps {
   content: string;
 }
 
+export interface UpdateChapterInCourseRequestProps {
+  name?: string;
+  content?: string;
+  isOptional?: boolean;
+}
+
 export interface EnrollCourseInDBRequestProps {
   userId: string;
   courseId: string;

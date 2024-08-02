@@ -11,7 +11,9 @@ const chapterSchema = new Schema<CourseChapterModel>(
     content: {
       type: String,
       required: [true, 'Chapter content is required'],
-      ref: `${databaseModels.COURSE_SECTION}`,
+    },
+    isOptional: {
+      type: Boolean,
     },
   },
   { timestamps: true, _id: true }

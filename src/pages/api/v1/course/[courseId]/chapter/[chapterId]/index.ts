@@ -2,23 +2,26 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { AddCourseChapterInDBRequestProps } from '@/interfaces';
+import { UpdateChapterInCourseRequestProps } from '@/interfaces';
 import {
   updateCourseChapterInDB,
   deleteCourseChapterByIdFromDB,
+  getACourseFromDBById,
 } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
   const { method, query } = req;
-  const { chapterId } = query as { chapterId: string };
+  const { courseId, chapterId } = query as {
+    chapterId: string;
+    courseId: string;
+  };
 
   switch (method) {
     case 'PATCH':
-      return handleUpdateChapter(req, res, chapterId);
-
+      return handleUpdateChapter(req, res, courseId, chapterId);
     case 'DELETE':
-      return handleDeleteChapter(req, res, chapterId);
+      return handleDeleteChapter(req, res, courseId, chapterId);
 
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
@@ -33,15 +36,29 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 const handleUpdateChapter = async (
   req: NextApiRequest,
   res: NextApiResponse,
+  courseId: string,
   chapterId: string
 ) => {
-  const updatedData = req.body as Partial<AddCourseChapterInDBRequestProps>;
+  const updatedData = req.body as UpdateChapterInCourseRequestProps;
 
   try {
-    const { data, error } = await updateCourseChapterInDB({
-      updatedData,
+    const { error: courseNotFoundError } = await getACourseFromDBById(courseId);
+
+    if (courseNotFoundError) {
+      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Course not found',
+          error: courseNotFoundError,
+        })
+      );
+    }
+
+    const { data, error } = await updateCourseChapterInDB(
+      courseId,
       chapterId,
-    });
+      updatedData
+    );
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
@@ -68,10 +85,26 @@ const handleUpdateChapter = async (
 const handleDeleteChapter = async (
   req: NextApiRequest,
   res: NextApiResponse,
+  courseId: string,
   chapterId: string
 ) => {
   try {
-    const { data, error } = await deleteCourseChapterByIdFromDB(chapterId);
+    const { error: courseNotFoundError } = await getACourseFromDBById(courseId);
+
+    if (courseNotFoundError) {
+      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Course not found',
+          error: courseNotFoundError,
+        })
+      );
+    }
+
+    const { data, error } = await deleteCourseChapterByIdFromDB(
+      courseId,
+      chapterId
+    );
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
