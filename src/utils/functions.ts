@@ -102,7 +102,7 @@ const isAdmin = (adminSecret: string): boolean => {
 const isUserAuthenticated = async (req: NextRequest) => {
   try {
     const response = await fetch(
-      `${envConfig.BASE_API_URL}/users/isauthenticated`,
+      `${envConfig.BASE_API_URL}/user/isauthenticated`,
       {
         credentials: 'include',
         cache: 'no-cache',

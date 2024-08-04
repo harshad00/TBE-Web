@@ -19,7 +19,7 @@ const authOptions = {
       if (!email || !name) return false;
 
       try {
-        const response = await fetch(`${envConfig.BASE_API_URL}/users`, {
+        const response = await fetch(`${envConfig.BASE_API_URL}/user`, {
           method: 'POST',
           body: JSON.stringify({ name, email }),
         });

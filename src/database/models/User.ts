@@ -1,24 +1,21 @@
 import { databaseModels } from '@/constant';
 import { UserModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
 
-const UserSchema: Schema<UserModel> = new Schema({
-  userId: {
-    type: String,
-    default: uuidv4,
-    unique: true,
+const UserSchema: Schema<UserModel> = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'name is required'],
+    },
+    email: {
+      type: String,
+      required: [true, 'email is required'],
+      unique: true,
+    },
   },
-  name: {
-    type: String,
-    required: [true, 'name is required'],
-  },
-  email: {
-    type: String,
-    required: [true, 'email is required'],
-    unique: true,
-  },
-});
+  { timestamps: true }
+);
 
 const User: Model<UserModel> =
   models?.User || model<UserModel>(databaseModels.USER, UserSchema);
