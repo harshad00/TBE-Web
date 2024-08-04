@@ -86,7 +86,9 @@ const handleGetUser = async (
 
 const handleCreateUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { name, email } = req.body as CreateUserRequestPayloadProps;
+    const { name, email } = JSON.parse(
+      req.body
+    ) as CreateUserRequestPayloadProps;
 
     if (!email || !name) {
       return res.status(apiStatusCodes.BAD_REQUEST).json(
