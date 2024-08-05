@@ -1,26 +1,22 @@
 import { UserCourseModel } from '@/interfaces';
-import mongoose, { Model, Schema, model, models } from 'mongoose';
+import { Model, Schema, model, models } from 'mongoose';
 import { databaseModels } from '@/constant';
-const UserCourseSchema = new Schema<UserCourseModel>({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: `${databaseModels.USER}`,
-    required: [true, 'user id is required'],
-  },
 
-  courseId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: `${databaseModels.COURSE_CHAPTER}`,
-    required: [true, 'chapter id is required'],
-  },
-
-  chaptersId: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: `${databaseModels.COURSE_CHAPTER}`,
+const UserCourseSchema = new Schema<UserCourseModel>(
+  {
+    userId: {
+      type: String,
+      required: [true, 'User id is required'],
+      index: true,
     },
-  ],
-});
+    courseId: {
+      type: String,
+      required: [true, 'Course id is required'],
+      index: true,
+    },
+  },
+  { timestamps: true, _id: true }
+);
 
 const UserCourse: Model<UserCourseModel> =
   models?.UserCourse ||

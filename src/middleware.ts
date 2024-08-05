@@ -48,6 +48,7 @@ const middleware = async (req: NextRequest) => {
     const isProtectedUIRoute = protectedUIRoutes.find((route) =>
       route.path.test(currentUrl)
     );
+    // console.log('isProtectedUIRoute : ', isProtectedUIRoute);
 
     if (isProtectedUIRoute) {
       return NextResponse.redirect(new URL(routes.register, req.url));

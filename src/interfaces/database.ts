@@ -57,3 +57,10 @@ export interface UserCourseModel {
   courseId: string;
   chaptersId: [string];
 }
+
+export interface UserCourseChapterModel {
+  userId: string;
+  courseId: string;
+  chapterId: string;
+  isCompleted?: boolean;
+}
