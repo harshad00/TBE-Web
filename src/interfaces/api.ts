@@ -159,3 +159,8 @@ export interface CreateUserRequestPayloadProps {
   name: string;
   email: string;
 }
+
+export interface CourseEnrollmentRequestProps {
+  courseId: string;
+  userId: string;
+}

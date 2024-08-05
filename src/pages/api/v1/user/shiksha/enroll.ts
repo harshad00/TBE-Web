@@ -5,17 +5,15 @@ import { connectDB } from '@/middlewares';
 import { Session, getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { enrollInACourse, getEnrolledCourse } from '@/database';
+import { CourseEnrollmentRequestProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const session = await getServerSession(req, res, authOptions);
     await connectDB(res);
-    const { method, query } = req;
-    const { courseId } = query as { courseId: string };
 
-    switch (method) {
+    switch (req.method) {
       case 'POST':
-        return handleCourseEnrollment(req, res, courseId, session);
+        return handleCourseEnrollment(req, res);
       default:
         return res.status(apiStatusCodes.BAD_REQUEST).json(
           sendAPIResponse({
@@ -37,37 +35,22 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const handleCourseEnrollment = async (
   req: NextApiRequest,
-  res: NextApiResponse,
-  courseId: string,
-  session: Session | null
+  res: NextApiResponse
 ) => {
+  const { userId, courseId } = req.body as CourseEnrollmentRequestProps;
+
   try {
-    if (!session || !session.user || !session.user.email)
-      return res.status(apiStatusCodes.UNAUTHORIZED).json(
-        sendAPIResponse({
-          status: false,
-          message: 'Unauthorized, please login before enrolling in course',
-        })
-      );
+    const { data: alreadyExists, error: fetchEnrolledCourseError } =
+      await getEnrolledCourse({ courseId, userId });
 
-    const userId = await checkTheLoggedInUser(session.user.email);
-    if (!userId)
-      return res.status(apiStatusCodes.UNAUTHORIZED).json(
-        sendAPIResponse({
-          status: false,
-          message: 'Unauthorized, please login before enrolling in course',
-        })
-      );
-
-    const alreadyEnrolled = await getEnrolledCourse({ courseId, userId });
-    if (alreadyEnrolled.error)
+    if (fetchEnrolledCourseError)
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({
           status: false,
           message: 'Failed while enrolling course',
         })
       );
-    if (alreadyEnrolled.data)
+    if (alreadyExists)
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
           status: false,
@@ -89,6 +72,7 @@ const handleCourseEnrollment = async (
       sendAPIResponse({
         status: true,
         data,
+        message: 'Successfully enrolled in course',
       })
     );
   } catch (error) {
