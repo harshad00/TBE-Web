@@ -1,9 +1,7 @@
 import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { checkTheLoggedInUser, sendAPIResponse } from '@/utils';
+import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { Session, getServerSession } from 'next-auth';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { enrollInACourse, getEnrolledCourse } from '@/database';
 import { CourseEnrollmentRequestProps } from '@/interfaces';
 
