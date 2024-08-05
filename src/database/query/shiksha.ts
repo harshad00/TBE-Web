@@ -152,12 +152,25 @@ const enrollInACourse = async ({
   }
 };
 
-const getEnrolledCourse = async ({
-  courseId,
+const getEnrolledCourseFromDB = async ({
   userId,
+  courseId,
 }: EnrollCourseInDBRequestProps): Promise<DatabaseQueryResponseType> => {
   try {
-    const enrolledCourse = await UserCourse.findOne({ courseId, userId });
+    const enrolledCourse = await UserCourse.findOne({ userId, courseId });
+    return { data: enrolledCourse };
+  } catch (error) {
+    return { error: 'Failed while fetching enrolled course' };
+  }
+};
+
+const getAllEnrolledCoursesFromDB = async (
+  userId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const enrolledCourse = await UserCourse.find({ userId })
+      .populate('courseId')
+      .exec();
     return { data: enrolledCourse };
   } catch (error) {
     return { error: 'Failed while fetching enrolled course' };
@@ -187,7 +200,8 @@ export {
   getAllCoursesFromDB,
   getACourseFromDBById,
   enrollInACourse,
-  getEnrolledCourse,
+  getEnrolledCourseFromDB,
+  getAllEnrolledCoursesFromDB,
   getCourseBySlugFromDB,
   addChapterToCourseInDB,
   updateCourseChapterInDB,

@@ -2,7 +2,7 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { enrollInACourse, getEnrolledCourse } from '@/database';
+import { enrollInACourse, getEnrolledCourseFromDB } from '@/database';
 import { CourseEnrollmentRequestProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -39,7 +39,7 @@ const handleCourseEnrollment = async (
 
   try {
     const { data: alreadyExists, error: fetchEnrolledCourseError } =
-      await getEnrolledCourse({ courseId, userId });
+      await getEnrolledCourseFromDB({ courseId, userId });
 
     if (fetchEnrolledCourseError)
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(

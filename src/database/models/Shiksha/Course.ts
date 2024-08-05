@@ -53,5 +53,5 @@ const CourseSchema = new Schema<CourseModel>(
 );
 
 const Course: Model<CourseModel> =
-  models?.Course || model<CourseModel>(databaseModels.Course, CourseSchema);
+  models?.Course || model<CourseModel>(databaseModels.COURSE, CourseSchema);
 export default Course;

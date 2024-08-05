@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 import { DifficultyType, RoadmapsType, SkillsType } from '.';
 
 export interface UserModel {
@@ -53,9 +53,8 @@ export interface CourseChapterModel {
 }
 
 export interface UserCourseModel {
-  userId: string;
-  courseId: string;
-  chaptersId: [string];
+  userId: typeof Schema.Types.ObjectId;
+  courseId: typeof Schema.Types.ObjectId;
 }
 
 export interface UserCourseChapterModel {

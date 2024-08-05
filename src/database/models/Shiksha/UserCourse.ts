@@ -5,12 +5,14 @@ import { databaseModels } from '@/constant';
 const UserCourseSchema = new Schema<UserCourseModel>(
   {
     userId: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: databaseModels.USER,
       required: [true, 'User id is required'],
       index: true,
     },
     courseId: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: databaseModels.COURSE,
       required: [true, 'Course id is required'],
       index: true,
     },
