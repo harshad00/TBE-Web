@@ -5,8 +5,9 @@ import {
   EnrollCourseInDBRequestProps,
   UpdateChapterInCourseRequestProps,
   UpdateCourseRequestPayloadProps,
+  UpdateUserChapterInCourseRequestProps,
 } from '@/interfaces';
-import { Course, UserCourse } from '@/database';
+import { Course, UserChapter, UserCourse } from '@/database';
 
 const addACourseToDB = async (
   courseDetails: AddCourseRequestPayloadProps
@@ -197,6 +198,82 @@ const getCourseBySlugFromDB = async (
   }
 };
 
+const updateUserCourseChapterInDB = async ({
+  userId,
+  courseId,
+  chapterId,
+  isCompleted,
+}: UpdateUserChapterInCourseRequestProps) => {
+  try {
+    const userCourse = await UserChapter.findOneAndUpdate(
+      { _id: chapterId },
+      {
+        $set: {
+          userId,
+          courseId,
+          chapterId,
+          isCompleted,
+        },
+      },
+      { new: true, upsert: true }
+    );
+
+    if (!userCourse) {
+      return { error: 'Course or chapter not found' };
+    }
+
+    return { data: userCourse };
+  } catch (error) {
+    return { error: 'Failed to update chapter in user course' };
+  }
+};
+
+const getAllCoursesWithChaptersStatusFromDB = async (userId: string) => {
+  try {
+    // Fetch all user courses and populate course details
+    const userCourses = await UserCourse.find({ userId })
+      .populate({
+        path: 'courseId',
+        populate: {
+          path: 'chapters',
+        },
+      })
+      .exec();
+
+    if (!userCourses || userCourses.length === 0) {
+      return { error: 'No courses found for the user' };
+    }
+
+    // Fetch chapter statuses for the user
+    const chapterStatuses = await UserChapter.find({ userId })
+      .populate('chapter')
+      .exec();
+
+    // const coursesWithChapters = userCourses.map((userCourse) => {
+    //   const course = userCourse.courseId;
+    //   const chapters = course.chapters.map((chapter) => {
+    //     const status = chapterStatuses.find(
+    //       (chapterStatus) =>
+    //         chapterStatus.chapterId.toString() === chapter._id.toString()
+    //     );
+    //     return {
+    //       ...chapter.toObject(),
+    //       isCompleted: status ? status.isCompleted : false,
+    //     };
+    //   });
+
+    //   return {
+    //     // ...course.toObject(),
+    //     chapters,
+    //   };
+    // });
+
+    return { data: chapterStatuses };
+  } catch (error) {
+    return { error: 'Failed to fetch courses with chapter status' };
+  }
+};
+
 export {
   addACourseToDB,
   updateACourseInDB,
@@ -210,4 +287,6 @@ export {
   addChapterToCourseInDB,
   updateCourseChapterInDB,
   deleteCourseChapterByIdFromDB,
+  updateUserCourseChapterInDB,
+  getAllCoursesWithChaptersStatusFromDB,
 };

@@ -13,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     switch (method) {
       case 'GET':
-        return handleGetUserCourses(req, res, userId as string);
+        return handleGetAllUserCourses(req, res, userId as string);
       default:
         return res.status(apiStatusCodes.BAD_REQUEST).json(
           sendAPIResponse({
@@ -33,7 +33,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-const handleGetUserCourses = async (
+const handleGetAllUserCourses = async (
   req: NextApiRequest,
   res: NextApiResponse,
   userId: string

@@ -164,3 +164,10 @@ export interface CourseEnrollmentRequestProps {
   courseId: string;
   userId: string;
 }
+
+export interface UpdateUserChapterInCourseRequestProps {
+  userId: string;
+  courseId: string;
+  chapterId: string;
+  isCompleted: boolean;
+}
