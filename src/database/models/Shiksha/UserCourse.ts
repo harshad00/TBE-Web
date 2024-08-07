@@ -17,8 +17,33 @@ const UserCourseSchema = new Schema<UserCourseModel>(
       index: true,
     },
   },
-  { timestamps: true, _id: true }
+  {
+    timestamps: true,
+    _id: true,
+    toObject: {
+      virtuals: true,
+      transform: (doc, ret) => {
+        delete ret.id;
+        return ret;
+      },
+    },
+    toJSON: {
+      virtuals: true,
+      transform: (doc, ret) => {
+        delete ret.id;
+        return ret;
+      },
+    },
+  }
 );
+
+// Define the virtual field
+UserCourseSchema.virtual('course', {
+  ref: databaseModels.COURSE,
+  localField: 'courseId',
+  foreignField: '_id',
+  justOne: true,
+});
 
 const UserCourse: Model<UserCourseModel> =
   models?.UserCourse ||

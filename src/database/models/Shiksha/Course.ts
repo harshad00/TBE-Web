@@ -49,7 +49,7 @@ const CourseSchema = new Schema<CourseModel>(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true, _id: true }
 );
 
 const Course: Model<CourseModel> =

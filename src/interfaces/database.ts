@@ -55,6 +55,7 @@ export interface CourseChapterModel {
 export interface UserCourseModel {
   userId: typeof Schema.Types.ObjectId;
   courseId: typeof Schema.Types.ObjectId;
+  course: object;
 }
 
 export interface UserCourseChapterModel {

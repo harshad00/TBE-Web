@@ -169,8 +169,12 @@ const getAllEnrolledCoursesFromDB = async (
 ): Promise<DatabaseQueryResponseType> => {
   try {
     const enrolledCourse = await UserCourse.find({ userId })
-      .populate('courseId')
+      .populate({
+        path: 'course',
+        select: '_id name slug coverImageURL description liveOn',
+      })
       .exec();
+
     return { data: enrolledCourse };
   } catch (error) {
     return { error: 'Failed while fetching enrolled course' };
