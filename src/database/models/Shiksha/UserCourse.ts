@@ -37,7 +37,6 @@ const UserCourseSchema = new Schema<UserCourseModel>(
   }
 );
 
-// Define the virtual field
 UserCourseSchema.virtual('course', {
   ref: databaseModels.COURSE,
   localField: 'courseId',

@@ -228,47 +228,42 @@ const updateUserCourseChapterInDB = async ({
   }
 };
 
-const getAllCoursesWithChaptersStatusFromDB = async (userId: string) => {
+const getACourseForUserFromDB = async (userId: string, courseId: string) => {
   try {
-    // Fetch all user courses and populate course details
-    const userCourses = await UserCourse.find({ userId })
+    const userCourse = await UserCourse.findOne({ userId, courseId })
       .populate({
-        path: 'courseId',
-        populate: {
-          path: 'chapters',
-        },
+        path: 'course',
       })
       .exec();
 
-    if (!userCourses || userCourses.length === 0) {
-      return { error: 'No courses found for the user' };
+    const completedChapters = await UserChapter.find({
+      userId,
+      courseId,
+    });
+
+    const mappedChapters = userCourse?.course.chapters.map((chapter) => {
+      const { _id } = chapter;
+      const isCompleted = completedChapters.some(
+        (completedChapter) =>
+          completedChapter.chapterId.toString() === _id.toString()
+      );
+
+      return {
+        ...chapter.toObject(),
+        isCompleted,
+      };
+    });
+
+    if (!userCourse) {
+      return { error: 'No course found for the user' };
     }
 
-    // Fetch chapter statuses for the user
-    const chapterStatuses = await UserChapter.find({ userId })
-      .populate('chapter')
-      .exec();
+    const updatedCourseResponse = {
+      ...userCourse.course.toObject(),
+      chapters: mappedChapters,
+    };
 
-    // const coursesWithChapters = userCourses.map((userCourse) => {
-    //   const course = userCourse.courseId;
-    //   const chapters = course.chapters.map((chapter) => {
-    //     const status = chapterStatuses.find(
-    //       (chapterStatus) =>
-    //         chapterStatus.chapterId.toString() === chapter._id.toString()
-    //     );
-    //     return {
-    //       ...chapter.toObject(),
-    //       isCompleted: status ? status.isCompleted : false,
-    //     };
-    //   });
-
-    //   return {
-    //     // ...course.toObject(),
-    //     chapters,
-    //   };
-    // });
-
-    return { data: chapterStatuses };
+    return { data: updatedCourseResponse };
   } catch (error) {
     return { error: 'Failed to fetch courses with chapter status' };
   }
@@ -288,5 +283,5 @@ export {
   updateCourseChapterInDB,
   deleteCourseChapterByIdFromDB,
   updateUserCourseChapterInDB,
-  getAllCoursesWithChaptersStatusFromDB,
+  getACourseForUserFromDB,
 };

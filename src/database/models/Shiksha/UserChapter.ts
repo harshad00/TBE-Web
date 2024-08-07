@@ -26,15 +26,25 @@ const UserChapterSchema = new Schema<UserCourseChapterModel>(
       type: Boolean,
     },
   },
-  { timestamps: true, _id: true }
+  {
+    timestamps: true,
+    _id: true,
+    toObject: {
+      virtuals: true,
+      transform: (doc, ret) => {
+        delete ret.id;
+        return ret;
+      },
+    },
+    toJSON: {
+      virtuals: true,
+      transform: (doc, ret) => {
+        delete ret.id;
+        return ret;
+      },
+    },
+  }
 );
-
-// Virtual properties to link with UserCourse and Course
-UserChapterSchema.virtual('chapter', {
-  ref: 'Chapter', // Refers to the Chapter model
-  localField: 'chapterId',
-  foreignField: '_id',
-});
 
 UserChapterSchema.virtual('course', {
   ref: databaseModels.COURSE,

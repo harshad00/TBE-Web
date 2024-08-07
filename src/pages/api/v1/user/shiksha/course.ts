@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import {
-  getAllCoursesWithChaptersStatusFromDB,
+  getACourseForUserFromDB,
   updateUserCourseChapterInDB,
 } from '@/database';
 import { UpdateUserChapterInCourseRequestProps } from '@/interfaces';
@@ -12,13 +12,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await connectDB(res);
 
-    const { method } = req;
+    const { method, query } = req;
+    const { userId, courseId } = query as { userId: string; courseId: string };
 
     switch (method) {
       case 'POST':
         return handleUpdateChapterStatus(req, res);
       case 'GET':
-        return handleGetAllCoursesWithChapterStatus(req, res);
+        return handleGetCourseForUser(req, res, userId, courseId);
       default:
         return res.status(apiStatusCodes.BAD_REQUEST).json(
           sendAPIResponse({
@@ -66,6 +67,7 @@ const handleUpdateChapterStatus = async (
       sendAPIResponse({
         status: true,
         data,
+        message: 'Chapter status updated successfully',
       })
     );
   } catch (error) {
@@ -79,14 +81,14 @@ const handleUpdateChapterStatus = async (
   }
 };
 
-const handleGetAllCoursesWithChapterStatus = async (
+const handleGetCourseForUser = async (
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
+  userId: string,
+  courseId: string
 ) => {
-  const { userId } = req.query as { userId: string };
-
   try {
-    const { data, error } = await getAllCoursesWithChaptersStatusFromDB(userId);
+    const { data, error } = await getACourseForUserFromDB(userId, courseId);
 
     if (error) {
       return res.status(apiStatusCodes.NOT_FOUND).json(

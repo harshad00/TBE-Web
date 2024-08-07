@@ -47,15 +47,17 @@ export interface CourseModel extends Document {
 }
 
 export interface CourseChapterModel {
+  _id: typeof Schema.Types.ObjectId;
   name: string;
   content: string;
   isOptional?: boolean;
+  toObject: () => UserCourseModel;
 }
 
 export interface UserCourseModel {
   userId: typeof Schema.Types.ObjectId;
   courseId: typeof Schema.Types.ObjectId;
-  course: object;
+  course: CourseModel;
 }
 
 export interface UserCourseChapterModel {
