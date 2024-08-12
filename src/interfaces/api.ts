@@ -1,4 +1,4 @@
-import { ProjectChapter } from '.';
+import { CourseModel, ProjectChapter } from '.';
 
 export type APIMethodTypes = 'GET' | 'POST' | 'PATCH';
 
@@ -171,3 +171,5 @@ export interface UpdateUserChapterInCourseRequestProps {
   chapterId: string;
   isCompleted: boolean;
 }
+
+export type AllEnrolledCourseForUserResponseProps = Partial<CourseModel>[];

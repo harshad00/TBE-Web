@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { userId, courseId } = query as { userId: string; courseId: string };
 
     switch (method) {
-      case 'POST':
+      case 'PATCH':
         return handleUpdateChapterStatus(req, res);
       case 'GET':
         return handleGetCourseForUser(req, res, userId, courseId);

@@ -8,4 +8,8 @@ const databaseModels = {
   USER_CHAPTER: 'UserChapter',
 };
 
-export { databaseModels };
+const modelSelectParams = {
+  coursePreview: '_id name slug coverImageURL description liveOn',
+};
+
+export { databaseModels, modelSelectParams };

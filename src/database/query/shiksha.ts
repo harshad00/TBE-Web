@@ -1,6 +1,7 @@
 import {
   AddChapterToCourseRequestProps,
   AddCourseRequestPayloadProps,
+  AllEnrolledCourseForUserResponseProps,
   DatabaseQueryResponseType,
   EnrollCourseInDBRequestProps,
   UpdateChapterInCourseRequestProps,
@@ -8,6 +9,7 @@ import {
   UpdateUserChapterInCourseRequestProps,
 } from '@/interfaces';
 import { Course, UserChapter, UserCourse } from '@/database';
+import { modelSelectParams } from '@/constant';
 
 const addACourseToDB = async (
   courseDetails: AddCourseRequestPayloadProps
@@ -68,7 +70,9 @@ const getACourseFromDBById = async (
   courseId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const course = await Course.findById(courseId);
+    const course = await Course.findById(courseId)
+      .select(modelSelectParams.coursePreview)
+      .exec();
 
     if (!course) {
       return { error: 'Course not found' };
@@ -172,11 +176,15 @@ const getAllEnrolledCoursesFromDB = async (
     const enrolledCourse = await UserCourse.find({ userId })
       .populate({
         path: 'course',
-        select: '_id name slug coverImageURL description liveOn',
+        select: modelSelectParams.coursePreview,
       })
       .exec();
 
-    return { data: enrolledCourse };
+    return {
+      data: enrolledCourse.map(
+        (course) => course.course
+      ) as AllEnrolledCourseForUserResponseProps,
+    };
   } catch (error) {
     return { error: 'Failed while fetching enrolled course' };
   }
