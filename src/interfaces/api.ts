@@ -172,4 +172,6 @@ export interface UpdateUserChapterInCourseRequestProps {
   isCompleted: boolean;
 }
 
-export type AllEnrolledCourseForUserResponseProps = Partial<CourseModel>[];
+export interface BaseShikshaCourseResponseProps extends Partial<CourseModel> {
+  isEnrolled?: boolean;
+}

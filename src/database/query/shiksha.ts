@@ -1,7 +1,7 @@
 import {
   AddChapterToCourseRequestProps,
   AddCourseRequestPayloadProps,
-  AllEnrolledCourseForUserResponseProps,
+  BaseShikshaCourseResponseProps,
   DatabaseQueryResponseType,
   EnrollCourseInDBRequestProps,
   UpdateChapterInCourseRequestProps,
@@ -57,12 +57,19 @@ const deleteACourseFromDBById = async (
   }
 };
 
-const getAllCoursesFromDB = async (): Promise<DatabaseQueryResponseType> => {
+const getAllCourseFromDB = async (): Promise<DatabaseQueryResponseType> => {
   try {
-    const courses = await Course.find({});
-    return { data: courses };
+    const course = await Course.find()
+      .select(modelSelectParams.coursePreview)
+      .exec();
+
+    if (!course) {
+      return { error: 'Course not found' };
+    }
+
+    return { data: course };
   } catch (error) {
-    return { error: 'Failed while fetching all courses' };
+    return { error: `Failed while fetching a course ${error}` };
   }
 };
 
@@ -183,7 +190,7 @@ const getAllEnrolledCoursesFromDB = async (
     return {
       data: enrolledCourse.map(
         (course) => course.course
-      ) as AllEnrolledCourseForUserResponseProps,
+      ) as BaseShikshaCourseResponseProps,
     };
   } catch (error) {
     return { error: 'Failed while fetching enrolled course' };
@@ -281,7 +288,6 @@ export {
   addACourseToDB,
   updateACourseInDB,
   deleteACourseFromDBById,
-  getAllCoursesFromDB,
   getACourseFromDBById,
   enrollInACourse,
   getEnrolledCourseFromDB,
@@ -292,4 +298,5 @@ export {
   deleteCourseChapterByIdFromDB,
   updateUserCourseChapterInDB,
   getACourseForUserFromDB,
+  getAllCourseFromDB,
 };

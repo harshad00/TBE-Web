@@ -49,7 +49,24 @@ const CourseSchema = new Schema<CourseModel>(
       required: true,
     },
   },
-  { timestamps: true, _id: true }
+  {
+    timestamps: true,
+    _id: true,
+    toObject: {
+      virtuals: true,
+      transform: (doc, ret) => {
+        delete ret.id;
+        return ret;
+      },
+    },
+    toJSON: {
+      virtuals: true,
+      transform: (doc, ret) => {
+        delete ret.id;
+        return ret;
+      },
+    },
+  }
 );
 
 const Course: Model<CourseModel> =
