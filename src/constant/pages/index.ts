@@ -43,6 +43,16 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
 
 const PRODUCTS: PrimaryCardWithCTAProps[] = [
   {
+    id: 'shiksha',
+    image: `${STATIC_FILE_PATH.svg}/shiksha.svg`,
+    imageAltText: products.shiksha.label,
+    title: products.shiksha.label,
+    content: products.shiksha.description,
+    href: products.shiksha.slug,
+    active: true,
+    ctaText: 'Explore Free Courses',
+  },
+  {
     id: 'projects',
     image: `${STATIC_FILE_PATH.svg}/projects.svg`,
     imageAltText: products.projects.label,
@@ -72,15 +82,6 @@ const PRODUCTS: PrimaryCardWithCTAProps[] = [
     href: products.roadmaps.slug,
     active: false,
     ctaText: 'Explore Roadmaps',
-  },
-  {
-    id: 'shiksha',
-    image: `${STATIC_FILE_PATH.svg}/shiksha.svg`,
-    imageAltText: products.shiksha.label,
-    title: products.shiksha.label,
-    content: products.shiksha.description,
-    href: products.shiksha.slug,
-    active: false,
   },
   {
     id: 'os',

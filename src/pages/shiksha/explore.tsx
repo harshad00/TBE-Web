@@ -41,7 +41,7 @@ const Home = ({ seoMeta }: PageProps) => {
             variant: 'PRIMARY',
             text: 'Go Back To Home',
           }}
-          href='/'
+          href={routes.shiksha}
         ></LinkButton>
       </FlexContainer>
     );

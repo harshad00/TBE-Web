@@ -1,19 +1,16 @@
 import {
-  AddCourseChapterInDBRequestProps,
-  AddCourseDBRequestProps,
-  AddSectionToACourseDBRequestProps,
+  AddChapterToCourseRequestProps,
+  AddCourseRequestPayloadProps,
   DatabaseQueryResponseType,
   EnrollCourseInDBRequestProps,
-  MarkChapterAsCompletedDBRequestProps,
-  UpdateCourseChapterInDBRequestProps,
+  UpdateChapterInCourseRequestProps,
   UpdateCourseRequestPayloadProps,
-  UpdateCourseSectionInDBRequestProps,
+  UpdateUserChapterInCourseRequestProps,
 } from '@/interfaces';
-import { Course, CourseChapter, CourseSection, UserCourse } from '@/database';
-import mongoose from 'mongoose';
+import { Course, UserChapter, UserCourse } from '@/database';
 
 const addACourseToDB = async (
-  courseDetails: AddCourseDBRequestProps
+  courseDetails: AddCourseRequestPayloadProps
 ): Promise<DatabaseQueryResponseType> => {
   try {
     const course = new Course(courseDetails);
@@ -46,18 +43,14 @@ const updateACourseInDB = async ({
 const deleteACourseFromDBById = async (
   courseId: string
 ): Promise<DatabaseQueryResponseType> => {
-  const session = await mongoose.startSession();
-  session.startTransaction();
   try {
-    const sections = await CourseSection.find({ courseId });
-    const sectionIds = sections.map((section) => section._id);
-    await CourseChapter.deleteMany({ sectionId: { $in: sectionIds } });
-    await CourseSection.deleteMany({ _id: { $in: sectionIds } });
-    await Course.findByIdAndDelete(courseId);
-    await session.commitTransaction();
-    return { data: 'course deleted' };
+    const deletedCourse = await Course.findByIdAndDelete(courseId);
+
+    if (!deletedCourse) {
+      return { error: 'Course not found' };
+    }
+    return { data: 'Course deleted' };
   } catch (error) {
-    await session.abortTransaction();
     return { error: 'Failed while deleting course' };
   }
 };
@@ -75,122 +68,76 @@ const getACourseFromDBById = async (
   courseId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const courseObjectId = new mongoose.Types.ObjectId(courseId);
-    const course = await Course.aggregate([
-      {
-        $match: {
-          _id: courseObjectId,
-        },
-      },
-      {
-        $lookup: {
-          from: 'coursesections', // collection name of CourseSection
-          localField: '_id',
-          foreignField: 'courseId',
-          as: 'sections',
-        },
-      },
-      {
-        $unwind: {
-          path: '$sections',
-          preserveNullAndEmptyArrays: true,
-        },
-      },
-      {
-        $lookup: {
-          from: 'coursechapters', // collection name of CourseChapter
-          localField: 'sections._id',
-          foreignField: 'sectionId',
-          as: 'sections.chapters',
-        },
-      },
-      {
-        $group: {
-          _id: '$_id',
-          title: { $first: '$title' },
-          meta: { $first: '$meta' },
-          thumbnailLink: { $first: '$thumbnailLink' },
-          description: { $first: '$description' },
-          roadmap: { $first: '$roadmap' },
-          liveOn: { $first: '$liveOn' },
-          createdAt: { $first: '$createdAt' },
-          sections: { $push: '$sections' },
-        },
-      },
-    ]);
-    if (course[0].liveOn <= Date.now()) return { data: course };
-    return { data: null };
-  } catch (error) {
-    return { error: 'Failed while fetching a course' };
-  }
-};
+    const course = await Course.findById(courseId);
 
-const addSectionToACourseInDB = async (
-  sectionData: AddSectionToACourseDBRequestProps
-): Promise<DatabaseQueryResponseType> => {
-  try {
-    const section = await CourseSection.create(sectionData);
-    return { data: section };
-  } catch (error) {
-    return { error: 'Failed while adding course' };
-  }
-};
+    if (!course) {
+      return { error: 'Course not found' };
+    }
 
-const updateCourseSectionInDB = async ({
-  updatedData,
-  sectionId,
-}: UpdateCourseSectionInDBRequestProps): Promise<DatabaseQueryResponseType> => {
-  try {
-    const section = await CourseSection.findByIdAndUpdate(
-      sectionId,
-      updatedData,
-      { new: true }
-    );
-    return { data: section };
-  } catch (error) {
-    return { error: "Failed while updating course's section" };
-  }
-};
-
-const deleteCourseSectionByIdFromDB = async (
-  sectionId: string
-): Promise<DatabaseQueryResponseType> => {
-  const session = await mongoose.startSession();
-  session.startTransaction();
-  try {
-    await CourseChapter.deleteMany({ sectionId });
-    await CourseSection.findByIdAndDelete(sectionId);
-    await session.commitTransaction();
-    return { data: 'course deleted' };
-  } catch (error) {
-    await session.abortTransaction();
-    return { error: "Failed while deleting course's section" };
-  }
-};
-
-const getChapterAssociatedWithSectionByIdFromDB = async (
-  sectionId: string
-): Promise<DatabaseQueryResponseType> => {
-  try {
-    const sectionObjectId = new mongoose.Types.ObjectId(sectionId);
-    const course = await CourseSection.aggregate([
-      {
-        $match: {
-          _id: sectionObjectId,
-        },
-      },
-      {
-        $lookup: {
-          from: 'coursechapters', // collection name of CourseChapter
-          localField: '_id',
-          foreignField: 'sectionId',
-          as: 'chapters',
-        },
-      },
-    ]);
     return { data: course };
   } catch (error) {
-    return { error: 'Failed while fetching a section' };
+    return { error: `Failed while fetching a course ${error}` };
+  }
+};
+
+const addChapterToCourseInDB = async (
+  courseId: string,
+  chapter: AddChapterToCourseRequestProps
+) => {
+  try {
+    const updatedCourse = await Course.findOneAndUpdate(
+      { _id: courseId },
+      { $push: { chapters: chapter } },
+      { new: true }
+    );
+
+    if (!updatedCourse) {
+      return { error: 'Course not found' };
+    }
+
+    return { data: updatedCourse };
+  } catch (error) {
+    return { error: 'Failed to add chapter to course' };
+  }
+};
+
+const updateCourseChapterInDB = async (
+  courseId: string,
+  chapterId: string,
+  { name, content, isOptional }: UpdateChapterInCourseRequestProps
+) => {
+  try {
+    const course = await Course.findOneAndUpdate(
+      { _id: courseId, 'chapters._id': chapterId },
+      {
+        $set: {
+          'chapters.$.chapterName': name,
+          'chapters.$.content': content,
+          'chapters.$.isOptional': isOptional,
+        },
+      },
+      { new: true }
+    );
+
+    return { data: course };
+  } catch (error) {
+    return { error: 'Failed to update chapter to course' };
+  }
+};
+
+const deleteCourseChapterByIdFromDB = async (
+  courseId: string,
+  chapterId: string
+) => {
+  try {
+    const course = await Course.findOneAndUpdate(
+      { _id: courseId },
+      { $pull: { chapters: { _id: chapterId } } },
+      { new: true }
+    );
+    return { data: course };
+  } catch (error) {
+    return { error: 'Failed to delete chapter from course' };
   }
 };
 
@@ -206,96 +153,119 @@ const enrollInACourse = async ({
   }
 };
 
-const addCourseChapterToCourseSectionInDB = async (
-  chapterData: AddCourseChapterInDBRequestProps
-): Promise<DatabaseQueryResponseType> => {
-  try {
-    const chapter = await CourseChapter.create(chapterData);
-    return { data: chapter };
-  } catch (error) {
-    return { error: 'Failed while adding chapter to a course' };
-  }
-};
-
-const updateCourseChapterInDB = async ({
-  chapterId,
-  updatedData,
-}: UpdateCourseChapterInDBRequestProps): Promise<DatabaseQueryResponseType> => {
-  try {
-    const updatedChapter = await CourseChapter.findByIdAndUpdate(
-      chapterId,
-      updatedData,
-      { new: true }
-    );
-    return { data: updatedChapter };
-  } catch (error) {
-    return { error: 'Failed while updating chapter' };
-  }
-};
-
-const deleteCourseChapterByIdFromDB = async (
-  chapterId: string
-): Promise<DatabaseQueryResponseType> => {
-  try {
-    await CourseChapter.findByIdAndDelete(chapterId);
-    return { data: null };
-  } catch (error) {
-    return { error: 'Failed while deleting chapter' };
-  }
-};
-
-const markChapterAsCompleted = async ({
-  courseId,
+const getEnrolledCourseFromDB = async ({
   userId,
-  sectionId,
-  chapterId,
-}: MarkChapterAsCompletedDBRequestProps): Promise<DatabaseQueryResponseType> => {
-  try {
-    const userCourse = await UserCourse.findOne({ userId, courseId });
-    if (!userCourse) return { error: "you aren't enrolled in this course" };
-    const isChapterExists = await CourseChapter.findById(chapterId);
-    if (!isChapterExists) return { error: 'chapter does not exists' };
-    const isSectionExists = await CourseSection.findById(
-      isChapterExists.sectionId
-    );
-
-    if (
-      !isSectionExists ||
-      isChapterExists.sectionId !==
-        new mongoose.Schema.Types.ObjectId(sectionId)
-    ) {
-      return { error: 'chapter is not part of the given section' };
-    }
-
-    if (
-      isSectionExists.courseId !== new mongoose.Schema.Types.ObjectId(courseId)
-    ) {
-      return { error: 'section is not part of the given course' };
-    }
-
-    if (
-      userCourse.chaptersId.includes(
-        new mongoose.Schema.Types.ObjectId(chapterId)
-      )
-    )
-      return { error: 'chapter is already marked' };
-    userCourse.chaptersId.push(new mongoose.Schema.Types.ObjectId(chapterId));
-    await userCourse.save();
-    return { data: userCourse };
-  } catch (error) {
-    return { error: "you aren't enrolled in this course" };
-  }
-};
-
-const getEnrolledCourse = async ({
   courseId,
-  userId,
 }: EnrollCourseInDBRequestProps): Promise<DatabaseQueryResponseType> => {
   try {
-    const enrolledCourse = await UserCourse.findOne({ courseId, userId });
+    const enrolledCourse = await UserCourse.findOne({ userId, courseId });
     return { data: enrolledCourse };
   } catch (error) {
     return { error: 'Failed while fetching enrolled course' };
+  }
+};
+
+const getAllEnrolledCoursesFromDB = async (
+  userId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const enrolledCourse = await UserCourse.find({ userId })
+      .populate({
+        path: 'course',
+        select: '_id name slug coverImageURL description liveOn',
+      })
+      .exec();
+
+    return { data: enrolledCourse };
+  } catch (error) {
+    return { error: 'Failed while fetching enrolled course' };
+  }
+};
+
+const getCourseBySlugFromDB = async (
+  slug: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const course = await Course.findOne({ slug });
+
+    if (!course) {
+      return { error: 'Course not found' };
+    }
+
+    return { data: course };
+  } catch (error) {
+    return { error };
+  }
+};
+
+const updateUserCourseChapterInDB = async ({
+  userId,
+  courseId,
+  chapterId,
+  isCompleted,
+}: UpdateUserChapterInCourseRequestProps) => {
+  try {
+    const userCourse = await UserChapter.findOneAndUpdate(
+      { _id: chapterId },
+      {
+        $set: {
+          userId,
+          courseId,
+          chapterId,
+          isCompleted,
+        },
+      },
+      { new: true, upsert: true }
+    );
+
+    if (!userCourse) {
+      return { error: 'Course or chapter not found' };
+    }
+
+    return { data: userCourse };
+  } catch (error) {
+    return { error: 'Failed to update chapter in user course' };
+  }
+};
+
+const getACourseForUserFromDB = async (userId: string, courseId: string) => {
+  try {
+    const userCourse = await UserCourse.findOne({ userId, courseId })
+      .populate({
+        path: 'course',
+      })
+      .exec();
+
+    const completedChapters = await UserChapter.find({
+      userId,
+      courseId,
+    });
+
+    const mappedChapters = userCourse?.course.chapters.map((chapter) => {
+      const { _id } = chapter;
+      const isCompleted = completedChapters.some(
+        (completedChapter) =>
+          completedChapter.chapterId.toString() === _id.toString()
+      );
+
+      return {
+        ...chapter.toObject(),
+        isCompleted,
+      };
+    });
+
+    if (!userCourse) {
+      return { error: 'No course found for the user' };
+    }
+
+    const updatedCourseResponse = {
+      ...userCourse.course.toObject(),
+      chapters: mappedChapters,
+    };
+
+    return { data: updatedCourseResponse };
+  } catch (error) {
+    return { error: 'Failed to fetch courses with chapter status' };
   }
 };
 
@@ -305,14 +275,13 @@ export {
   deleteACourseFromDBById,
   getAllCoursesFromDB,
   getACourseFromDBById,
-  addSectionToACourseInDB,
-  updateCourseSectionInDB,
-  deleteCourseSectionByIdFromDB,
-  getChapterAssociatedWithSectionByIdFromDB,
   enrollInACourse,
-  addCourseChapterToCourseSectionInDB,
+  getEnrolledCourseFromDB,
+  getAllEnrolledCoursesFromDB,
+  getCourseBySlugFromDB,
+  addChapterToCourseInDB,
   updateCourseChapterInDB,
   deleteCourseChapterByIdFromDB,
-  markChapterAsCompleted,
-  getEnrolledCourse,
+  updateUserCourseChapterInDB,
+  getACourseForUserFromDB,
 };

@@ -2,17 +2,17 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { AddCourseChapterInDBRequestProps } from '@/interfaces';
-import { addCourseChapterToCourseSectionInDB } from '@/database';
+import { AddChapterToCourseRequestProps } from '@/interfaces';
+import { addChapterToCourseInDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
   const { method, query } = req;
-  const { sectionId } = query as { sectionId: string };
+  const { courseId } = query as { courseId: string };
 
   switch (method) {
     case 'POST':
-      return handleAddChapter(req, res, sectionId);
+      return handleAddChapter(req, res, courseId);
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
@@ -26,33 +26,34 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 const handleAddChapter = async (
   req: NextApiRequest,
   res: NextApiResponse,
-  sectionId: string
+  courseId: string
 ) => {
-  const chapterData = req.body as AddCourseChapterInDBRequestProps;
+  const chapterData = req.body as AddChapterToCourseRequestProps;
 
   try {
-    const { data, error } = await addCourseChapterToCourseSectionInDB({
-      ...chapterData,
-      sectionId,
-    });
+    const { data, error } = await addChapterToCourseInDB(courseId, chapterData);
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({
           status: false,
-          message: 'Failed while adding chapter to section',
+          message: 'Failed while adding chapter to course',
         })
       );
     }
 
-    return res
-      .status(apiStatusCodes.OKAY)
-      .json(sendAPIResponse({ status: true, data }));
+    return res.status(apiStatusCodes.OKAY).json(
+      sendAPIResponse({
+        status: true,
+        data,
+        message: 'Chapter added to course successfully',
+      })
+    );
   } catch (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        message: 'Failed while adding chapter to section',
+        message: 'Failed while adding chapter to course',
       })
     );
   }

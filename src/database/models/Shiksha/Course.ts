@@ -1,34 +1,57 @@
-import { databaseModels } from '@/constant';
-import { CourseModel } from '@/interfaces';
+import { databaseModels, DIFFICULTY_LEVEL, ROADMAPS } from '@/constant';
+import { CourseChapterModel, CourseModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
 
-const CourseSchema = new Schema<CourseModel>({
-  title: {
-    type: String,
-    required: [true, 'course title is required'],
+const chapterSchema = new Schema<CourseChapterModel>(
+  {
+    name: {
+      type: String,
+      required: [true, 'Chapter Name is required'],
+    },
+    content: {
+      type: String,
+      required: [true, 'Chapter content is required'],
+    },
+    isOptional: {
+      type: Boolean,
+    },
   },
-  thumbnailLink: {
-    type: String,
-    required: [true, 'course thumbnail is required'],
+  { timestamps: true, _id: true }
+);
+
+const CourseSchema = new Schema<CourseModel>(
+  {
+    name: {
+      type: String,
+      required: [true, 'Course name is required'],
+    },
+    meta: { type: String },
+    slug: {
+      type: String,
+      required: [true, 'Slug is required'],
+    },
+    coverImageURL: {
+      type: String,
+      required: [true, 'Course thumbnail is required'],
+    },
+    description: {
+      type: String,
+    },
+    liveOn: {
+      type: Date,
+      required: [true, 'Live on is required'],
+    },
+    chapters: [chapterSchema],
+    roadmap: { type: String, enum: ROADMAPS, required: true },
+    difficultyLevel: {
+      type: String,
+      enum: DIFFICULTY_LEVEL,
+      required: true,
+    },
   },
-  description: {
-    type: String,
-  },
-  liveOn: {
-    type: Date,
-    required: [true, 'liveOn is required'],
-  },
-  slug: {
-    type: String,
-    required: [true, 'slug is required'],
-  },
-  meta: { type: String },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
-});
+  { timestamps: true, _id: true }
+);
 
 const Course: Model<CourseModel> =
-  models?.Course || model<CourseModel>(databaseModels.Course, CourseSchema);
+  models?.Course || model<CourseModel>(databaseModels.COURSE, CourseSchema);
 export default Course;

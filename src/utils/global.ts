@@ -1,4 +1,4 @@
-import { BASE_API_URL, getSEOMeta } from '@/constant';
+import { envConfig, getSEOMeta } from '@/constant';
 import { PageSlug, ProjectPickedPageProps } from '@/interfaces';
 import { getSelectedProjectChapterMeta } from '.';
 
@@ -86,7 +86,7 @@ const getProjectPageProps = async ({ query }: any) => {
 };
 
 const fetchAPIData = async (url: string) => {
-  const response = await fetch(`${BASE_API_URL}/${url}`);
+  const response = await fetch(`${envConfig.BASE_API_URL}/${url}`);
 
   return await response.json();
 };
