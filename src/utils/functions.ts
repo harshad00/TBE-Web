@@ -1,7 +1,7 @@
 import { envConfig } from '@/constant';
 import { getUserByEmailFromDB } from '@/database/query/user';
 import {
-  CourseModel,
+  BaseShikshaCourseResponseProps,
   ProjectDocumentModel,
   ProjectPickedPageProps,
 } from '@/interfaces';
@@ -118,24 +118,43 @@ const isUserAuthenticated = async (req: NextRequest) => {
   }
 };
 
-const mapCourseResponseToCard = (coursesData: CourseModel[]) => {
+const isProgramActive = (liveOn: Date) => new Date(liveOn) <= new Date();
+
+const mapCourseResponseToCard = (
+  coursesData: BaseShikshaCourseResponseProps[]
+) => {
   return coursesData?.map(
-    ({ _id, coverImageURL, name, description, liveOn, slug }) => ({
-      id: _id,
-      image: coverImageURL,
-      imageAltText: name,
+    ({
+      _id,
+      coverImageURL,
       name,
-      content: description,
-      href: `/shiksha/${slug}/?courseId=${_id}`,
-      active:
-        new Date(liveOn).getMilliseconds() <=
-        new Date(Date.now()).getMilliseconds(),
-      ctaText:
-        new Date(liveOn).getMilliseconds() <=
-        new Date(Date.now()).getMilliseconds()
-          ? 'Start The Project'
-          : 'Coming Soon',
-    })
+      description,
+      liveOn = new Date(),
+      slug,
+      isEnrolled,
+    }) => {
+      const isActive = isProgramActive(liveOn);
+
+      let ctaText = 'Coming Soon';
+
+      if (isEnrolled) {
+        ctaText = 'Continue Learning';
+      } else if (isActive) {
+        ctaText = 'Start The Project';
+      }
+
+      return {
+        id: _id,
+        image: coverImageURL,
+        title: name,
+        imageAltText: name,
+        content: description,
+        href: `/shiksha/${slug}/?courseId=${_id}`,
+        isEnrolled,
+        active: isActive,
+        ctaText,
+      };
+    }
   );
 };
 

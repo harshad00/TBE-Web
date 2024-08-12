@@ -25,8 +25,8 @@ const routes = {
     base: '/api/v1',
     projects: '/projects',
     project: (project: string) => `/projects/${project}`,
-    courses: '/course',
-    course: (course: string) => `/course/${course}`,
+    shiksha: '/shiksha',
+    courseById: (course: string) => `/shiksha/${course}`,
   },
 };
 
