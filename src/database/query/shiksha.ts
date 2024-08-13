@@ -74,15 +74,25 @@ const getAllCourseFromDB = async (): Promise<DatabaseQueryResponseType> => {
 };
 
 const getACourseFromDBById = async (
-  courseId: string
+  courseId: string,
+  userId?: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const course = await Course.findById(courseId)
-      .select(modelSelectParams.coursePreview)
-      .exec();
+    const course = await Course.findById(courseId);
 
     if (!course) {
       return { error: 'Course not found' };
+    }
+
+    if (userId) {
+      const { data } = await getEnrolledCourseFromDB({ userId, courseId });
+
+      return {
+        data: {
+          ...course.toObject(),
+          isEnrolled: !!data,
+        } as BaseShikshaCourseResponseProps,
+      };
     }
 
     return { data: course };
@@ -251,6 +261,10 @@ const getACourseForUserFromDB = async (userId: string, courseId: string) => {
       })
       .exec();
 
+    if (!userCourse) {
+      return { error: 'No course found for the user' };
+    }
+
     const completedChapters = await UserChapter.find({
       userId,
       courseId,
@@ -269,16 +283,17 @@ const getACourseForUserFromDB = async (userId: string, courseId: string) => {
       };
     });
 
-    if (!userCourse) {
-      return { error: 'No course found for the user' };
-    }
-
     const updatedCourseResponse = {
       ...userCourse.course.toObject(),
       chapters: mappedChapters,
     };
 
-    return { data: updatedCourseResponse };
+    return {
+      data: {
+        ...updatedCourseResponse,
+        isEnrolled: true,
+      } as BaseShikshaCourseResponseProps,
+    };
   } catch (error) {
     return { error: 'Failed to fetch courses with chapter status' };
   }

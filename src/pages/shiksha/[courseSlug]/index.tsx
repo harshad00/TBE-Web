@@ -11,7 +11,7 @@ import { envConfig } from '@/constant';
 import { CourseChapterModel } from '@/interfaces';
 import { useState } from 'react';
 
-const Home = ({ course, courseSlug }: any) => {
+const CoursePage = ({ course, courseSlug }: any) => {
   const [courseMeta, setCourseMeta] = useState<string>(course.meta || '');
   const handleChapterClick = (chapterMeta: string) => {
     setCourseMeta(chapterMeta);
@@ -44,8 +44,8 @@ const Home = ({ course, courseSlug }: any) => {
                       {section.chapters.map((chapter) => {
                         return (
                           <AccordionLinkItem
-                            key={chapter._id}
-                            label={chapter.title || ''}
+                            key={chapter._id?.toString()}
+                            label={chapter.name || ''}
                             href={`${courseSlug}?courseId=${course._id}&sectionId=${section._id}&chapterId=${chapter._id}`}
                             onClick={() => {
                               handleChapterClick(chapter.content || '');
@@ -80,17 +80,16 @@ export const getServerSideProps = async ({
   try {
     if (!query.courseId) return { notFound: true };
     const response = await fetch(
-      `${envConfig.BASE_API_URL}/courses/${query.courseId}`
-    );
-    const data = await response.json();
+      `${envConfig.BASE_API_URL}/shiksha/${query.courseId}`
+    ).then((res) => res.json());
+    const { status, data } = response;
 
-    if (!data.status || !response.ok || !data.data || data.data.length === 0)
-      return { notFound: true };
+    if (!status) return { notFound: true };
 
-    return { props: { course: data.data[0], courseSlug: query.courseSlug } };
+    return { props: { course: data, courseSlug: query.courseSlug } };
   } catch (error) {
     return { notFound: true };
   }
 };
 
-export default Home;
+export default CoursePage;

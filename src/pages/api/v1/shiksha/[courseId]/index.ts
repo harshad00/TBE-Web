@@ -12,11 +12,11 @@ import {
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB(res);
   const { method, query } = req;
-  const { courseId } = query as { courseId: string };
+  const { courseId, userId } = query as { courseId: string; userId: string };
 
   switch (method) {
     case 'GET':
-      return handleGetCourseById(req, res, courseId);
+      return handleGetCourseById(req, res, courseId, userId);
     case 'PATCH':
       return handleUpdateCourse(req, res, courseId);
     case 'DELETE':
@@ -120,10 +120,11 @@ const handleUpdateCourse = async (
 const handleGetCourseById = async (
   req: NextApiRequest,
   res: NextApiResponse,
-  courseId: string
+  courseId: string,
+  userId: string
 ) => {
   try {
-    const { data, error } = await getACourseFromDBById(courseId);
+    const { data, error } = await getACourseFromDBById(courseId, userId);
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(

@@ -7,7 +7,7 @@ const protectedAPIRoutes: {
   path: RegExp;
 }[] = [
   {
-    path: /^\/api\/v1\/course(?:\/|$)/,
+    path: /^\/api\/v1\/shiksha(?:\/|$)/,
   },
 ];
 
@@ -15,7 +15,7 @@ const protectedUIRoutes: {
   path: RegExp;
 }[] = [
   {
-    path: /^\/shiksha\/course(?:\/|$)/,
+    path: /^\/shiksha\/(?:\/|$)/,
   },
 ];
 
@@ -42,13 +42,13 @@ const middleware = async (req: NextRequest) => {
   }
 
   const isAuthenticated = await isUserAuthenticated(req);
-  // console.log('isAuthenticated : ', isAuthenticated);
+  console.log('isAuthenticated : ', isAuthenticated);
 
   if (!isAuthenticated) {
     const isProtectedUIRoute = protectedUIRoutes.find((route) =>
       route.path.test(currentUrl)
     );
-    // console.log('isProtectedUIRoute : ', isProtectedUIRoute);
+    console.log('isProtectedUIRoute : ', isProtectedUIRoute);
 
     if (isProtectedUIRoute) {
       return NextResponse.redirect(new URL(routes.register, req.url));
