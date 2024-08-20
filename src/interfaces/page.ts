@@ -1,9 +1,9 @@
 import { BaseShikshaCourseResponseProps } from '.';
 import { ProjectDocumentModel } from './database';
-import { GetSEOMetaResponseType, PageSlug } from './global';
+import { GetSEOMetaResponseType } from './global';
 
 export interface PageProps {
-  slug: PageSlug;
+  slug: any;
   seoMeta: GetSEOMetaResponseType;
   resolvedUrl?: string;
 }
@@ -26,6 +26,5 @@ export interface ProjectPageProps extends PageProps {
 
 export interface CoursePageProps extends PageProps {
   course: BaseShikshaCourseResponseProps;
-  courseSlug: string;
   meta: string;
 }

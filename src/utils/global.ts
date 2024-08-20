@@ -125,7 +125,6 @@ const getCoursePageProps = async ({ query }: any) => {
 
         if (selectedChapterMeta) meta = selectedChapterMeta;
       }
-      console.log('HERE', seoMeta);
 
       return {
         props: {

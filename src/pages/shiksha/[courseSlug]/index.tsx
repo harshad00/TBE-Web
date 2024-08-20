@@ -12,7 +12,7 @@ import {
 import { CoursePageProps } from '@/interfaces';
 import { getCoursePageProps } from '@/utils';
 
-const CoursePage = ({ course, meta, courseSlug, seoMeta }: CoursePageProps) => {
+const CoursePage = ({ course, meta, slug, seoMeta }: CoursePageProps) => {
   const [courseMeta, setCourseMeta] = useState<string>(meta || '');
   const handleChapterClick = (chapterMeta: string) => {
     setCourseMeta(chapterMeta);
@@ -43,7 +43,7 @@ const CoursePage = ({ course, meta, courseSlug, seoMeta }: CoursePageProps) => {
                     <AccordionLinkItem
                       key={_id?.toString()}
                       label={name || ''}
-                      href={`${courseSlug}?courseId=${course._id}&chapterId=${_id}`}
+                      href={`${slug}?courseId=${course._id}&chapterId=${_id}`}
                       onClick={() => {
                         handleChapterClick(content || '');
                       }}
