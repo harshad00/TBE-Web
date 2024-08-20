@@ -1,4 +1,7 @@
 import dynamic from 'next/dynamic';
+const CourseHeroContainer = dynamic(
+  () => import('@/components/containers/Page/Course/CourseHeroContainer')
+);
 
 const Navbar = dynamic(() => import('@/components/layout/Navbar'));
 const LinkText = dynamic(() => import('@/components/common/Typography/Link'));
@@ -158,4 +161,5 @@ export {
   Alert,
   Community,
   MentorshipPlans,
+  CourseHeroContainer,
 };

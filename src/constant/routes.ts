@@ -12,6 +12,10 @@ const routes = {
   },
   shiksha: '/shiksha',
   shikshaExplore: '/shiksha/explore',
+  allCourses: {
+    logicBuildingForEveryone: '/shiksha/logic-building-for-everyone',
+    basicsOfProgrammingWithJS: '/shiksha/basics-of-programming-with-js',
+  },
   workshops: '/workshops',
   os: '/os',
   contactUs: '/contact',

@@ -85,6 +85,19 @@ const getSelectedProjectChapterMeta = (
   return selectedChapter?.content ?? '';
 };
 
+const getSelectedCourseChapterMeta = (
+  course: BaseShikshaCourseResponseProps,
+  chapterId: string
+) => {
+  if (!course.chapters) return null;
+
+  const selectedChapter = course?.chapters.find(
+    (chapter) => chapter._id.toString() === chapterId
+  );
+
+  return selectedChapter?.content ?? '';
+};
+
 const checkTheLoggedInUser = async (email: string): Promise<string | null> => {
   try {
     const { data, error } = await getUserByEmailFromDB(email);
@@ -171,4 +184,5 @@ export {
   isAdmin,
   mapCourseResponseToCard,
   isUserAuthenticated,
+  getSelectedCourseChapterMeta,
 };

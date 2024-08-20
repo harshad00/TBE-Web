@@ -12,7 +12,7 @@ import {
 import { ProjectPageProps } from '@/interfaces';
 import { getProjectPageProps, getSelectedProjectChapterMeta } from '@/utils';
 
-const Home = ({ project, meta, seoMeta, slug }: ProjectPageProps) => {
+const ProjectPage = ({ project, meta, seoMeta, slug }: ProjectPageProps) => {
   const [projectMeta, setProjectMeta] = useState<string>(meta);
 
   const handleChapterClick = ({ sectionId, chapterId }: any) => {
@@ -81,4 +81,4 @@ const Home = ({ project, meta, seoMeta, slug }: ProjectPageProps) => {
 
 export const getServerSideProps = getProjectPageProps;
 
-export default Home;
+export default ProjectPage;

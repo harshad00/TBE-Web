@@ -119,6 +119,29 @@ const TBP_PROJECTS: PrimaryCardWithCTAProps[] = [
   },
 ];
 
+const SHIKSHA_COURSES: PrimaryCardWithCTAProps[] = [
+  {
+    id: 'logic-building-for-everyone',
+    image: `${STATIC_FILE_PATH.svg}/tbp-pharmasift-1.svg`,
+    imageAltText: 'Learn Logic Building with Real-world Coding Challenges.',
+    title: 'Logic Building For Everyone',
+    content: 'Learn Logic Building with Real-world Coding Challenges.',
+    href: routes.allCourses.logicBuildingForEveryone,
+    active: true,
+    ctaText: 'Start The Course',
+  },
+  {
+    id: 'basics-of-programming-with-js',
+    image: `${STATIC_FILE_PATH.svg}/tbp-pharmasift-1.svg`,
+    imageAltText: 'Start Your Programming Journey with JavaScript.',
+    title: 'Basics of Programming with JS',
+    content: 'Start Your Programming Journey with JavaScript.',
+    href: routes.allCourses.basicsOfProgrammingWithJS,
+    active: false,
+    ctaText: 'Start The Course',
+  },
+];
+
 const USP: PrimaryCardProps[] = [
   {
     id: v4(),
@@ -273,4 +296,5 @@ export {
   TBP_FEATURES,
   MY_PREV_EXPERIENCE,
   TBP_PROJECTS,
+  SHIKSHA_COURSES,
 };

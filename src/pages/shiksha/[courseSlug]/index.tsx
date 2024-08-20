@@ -1,26 +1,30 @@
+import React, { useState } from 'react';
 import {
   Accordion,
   AccordionLinkItem,
+  CourseHeroContainer,
   FlexContainer,
   MDXRenderer,
   Section,
+  SEO,
   Text,
 } from '@/components';
-import CourseHeroContainer from '@/components/containers/Page/Course/CourseHeroContainer';
-import { envConfig } from '@/constant';
-import { CourseChapterModel } from '@/interfaces';
-import { useState } from 'react';
+import { CoursePageProps } from '@/interfaces';
+import { getCoursePageProps } from '@/utils';
 
-const CoursePage = ({ course, courseSlug }: any) => {
-  const [courseMeta, setCourseMeta] = useState<string>(course.meta || '');
+const CoursePage = ({ course, meta, courseSlug, seoMeta }: CoursePageProps) => {
+  const [courseMeta, setCourseMeta] = useState<string>(meta || '');
   const handleChapterClick = (chapterMeta: string) => {
     setCourseMeta(chapterMeta);
   };
 
+  if (!course) return null;
+
   return (
-    <div className='p-2'>
+    <React.Fragment>
+      <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
-        <CourseHeroContainer name={course.title} />
+        <CourseHeroContainer name={course.name ?? ''} />
       </Section>
       <Section className='md:p-2 p-2'>
         <FlexContainer className='w-full gap-4' itemCenter={false}>
@@ -30,33 +34,23 @@ const CoursePage = ({ course, courseSlug }: any) => {
             direction='col'
           >
             <Text level='h5' className='heading-5'>
-              Sections
+              Chapters
             </Text>
             <FlexContainer justifyCenter={false} className='gap-px'>
-              {course.sections.map(
-                (section: {
-                  _id: string;
-                  title: string;
-                  chapters: Partial<CourseChapterModel>[];
-                }) => {
+              <Accordion title='Chapters'>
+                {course.chapters?.map(({ _id, name, content }) => {
                   return (
-                    <Accordion title={section.title} key={section._id}>
-                      {section.chapters.map((chapter) => {
-                        return (
-                          <AccordionLinkItem
-                            key={chapter._id?.toString()}
-                            label={chapter.name || ''}
-                            href={`${courseSlug}?courseId=${course._id}&sectionId=${section._id}&chapterId=${chapter._id}`}
-                            onClick={() => {
-                              handleChapterClick(chapter.content || '');
-                            }}
-                          />
-                        );
-                      })}
-                    </Accordion>
+                    <AccordionLinkItem
+                      key={_id?.toString()}
+                      label={name || ''}
+                      href={`${courseSlug}?courseId=${course._id}&chapterId=${_id}`}
+                      onClick={() => {
+                        handleChapterClick(content || '');
+                      }}
+                    />
                   );
-                }
-              )}
+                })}
+              </Accordion>
             </FlexContainer>
           </FlexContainer>
           <FlexContainer
@@ -68,28 +62,10 @@ const CoursePage = ({ course, courseSlug }: any) => {
           </FlexContainer>
         </FlexContainer>
       </Section>
-    </div>
+    </React.Fragment>
   );
 };
 
-export const getServerSideProps = async ({
-  query,
-}: {
-  query: { courseId: string; courseSlug: string };
-}) => {
-  try {
-    if (!query.courseId) return { notFound: true };
-    const response = await fetch(
-      `${envConfig.BASE_API_URL}/shiksha/${query.courseId}`
-    ).then((res) => res.json());
-    const { status, data } = response;
-
-    if (!status) return { notFound: true };
-
-    return { props: { course: data, courseSlug: query.courseSlug } };
-  } catch (error) {
-    return { notFound: true };
-  }
-};
+export const getServerSideProps = getCoursePageProps;
 
 export default CoursePage;
