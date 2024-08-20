@@ -269,6 +269,7 @@ export interface ProjectHeroContainerProps {
 
 export interface CourseHeroContainerProps {
   name: string;
+  isEnrolled?: boolean;
 }
 
 export interface AccordionProps {

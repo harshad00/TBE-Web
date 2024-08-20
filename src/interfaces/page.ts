@@ -27,4 +27,5 @@ export interface ProjectPageProps extends PageProps {
 export interface CoursePageProps extends PageProps {
   course: BaseShikshaCourseResponseProps;
   meta: string;
+  currentChapterId: string;
 }

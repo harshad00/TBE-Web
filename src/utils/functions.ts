@@ -4,6 +4,7 @@ import {
   BaseShikshaCourseResponseProps,
   ProjectDocumentModel,
   ProjectPickedPageProps,
+  User,
 } from '@/interfaces';
 import { NextRequest } from 'next/server';
 
@@ -131,6 +132,18 @@ const isUserAuthenticated = async (req: NextRequest) => {
   }
 };
 
+const fetchUserData = async (): Promise<User | null> => {
+  const response = await fetch(`${envConfig.BASE_API_URL}/user/me`, {
+    credentials: 'include',
+  });
+
+  if (response.ok) {
+    return response.json();
+  }
+
+  return null;
+};
+
 const isProgramActive = (liveOn: Date) => new Date(liveOn) <= new Date();
 
 const mapCourseResponseToCard = (
@@ -185,4 +198,5 @@ export {
   mapCourseResponseToCard,
   isUserAuthenticated,
   getSelectedCourseChapterMeta,
+  fetchUserData,
 };

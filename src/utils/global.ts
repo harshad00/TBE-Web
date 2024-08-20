@@ -132,6 +132,7 @@ const getCoursePageProps = async ({ query }: any) => {
           seoMeta,
           course,
           meta,
+          currentChapterId: chapterId,
         },
       };
     } catch (error) {

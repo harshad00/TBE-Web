@@ -4,6 +4,7 @@ import {
   AccordionLinkItem,
   CourseHeroContainer,
   FlexContainer,
+  Link,
   MDXRenderer,
   Section,
   SEO,
@@ -12,8 +13,15 @@ import {
 import { CoursePageProps } from '@/interfaces';
 import { getCoursePageProps } from '@/utils';
 
-const CoursePage = ({ course, meta, slug, seoMeta }: CoursePageProps) => {
+const CoursePage = ({
+  course,
+  meta,
+  slug,
+  seoMeta,
+  currentChapterId,
+}: CoursePageProps) => {
   const [courseMeta, setCourseMeta] = useState<string>(meta || '');
+
   const handleChapterClick = (chapterMeta: string) => {
     setCourseMeta(chapterMeta);
   };
@@ -24,7 +32,10 @@ const CoursePage = ({ course, meta, slug, seoMeta }: CoursePageProps) => {
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
-        <CourseHeroContainer name={course.name ?? ''} />
+        <CourseHeroContainer
+          name={course.name ?? ''}
+          isEnrolled={course.isEnrolled}
+        />
       </Section>
       <Section className='md:p-2 p-2'>
         <FlexContainer className='w-full gap-4' itemCenter={false}>
@@ -37,20 +48,29 @@ const CoursePage = ({ course, meta, slug, seoMeta }: CoursePageProps) => {
               Chapters
             </Text>
             <FlexContainer justifyCenter={false} className='gap-px'>
-              <Accordion title='Chapters'>
-                {course.chapters?.map(({ _id, name, content }) => {
-                  return (
-                    <AccordionLinkItem
-                      key={_id?.toString()}
-                      label={name || ''}
-                      href={`${slug}?courseId=${course._id}&chapterId=${_id}`}
+              {course.chapters?.map(({ _id, name, content }) => {
+                const chapterId = _id?.toString();
+                const additionalClasses =
+                  currentChapterId === chapterId
+                    ? 'text-primary bg-gray-200'
+                    : '';
+
+                return (
+                  <Link
+                    href={`${slug}?courseId=${course._id}&chapterId=${chapterId}`}
+                    key={chapterId?.toString()}
+                    className={`w-full p-2 rounded text-left pre-title text-greyDark hover:bg-gray-200 hover:text-primary ${additionalClasses}`}
+                  >
+                    <div
                       onClick={() => {
-                        handleChapterClick(content || '');
+                        handleChapterClick(content);
                       }}
-                    />
-                  );
-                })}
-              </Accordion>
+                    >
+                      {name}
+                    </div>
+                  </Link>
+                );
+              })}
             </FlexContainer>
           </FlexContainer>
           <FlexContainer
