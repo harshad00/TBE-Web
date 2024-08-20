@@ -12,6 +12,7 @@ import {
 } from '@/components';
 import { CoursePageProps } from '@/interfaces';
 import { getCoursePageProps } from '@/utils';
+import { useUser } from '@/hooks';
 
 const CoursePage = ({
   course,
@@ -77,6 +78,7 @@ const CoursePage = ({
             className='border md:w-8/12 w-full p-2 rounded'
             justifyCenter={false}
             itemCenter={false}
+            disabled={!course.isEnrolled}
           >
             <MDXRenderer mdxSource={courseMeta} />
           </FlexContainer>

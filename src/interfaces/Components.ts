@@ -97,6 +97,7 @@ export interface FlexContainerProps {
   wrap?: boolean;
   fullWidth?: boolean;
   id?: string;
+  disabled?: boolean;
 }
 
 export interface TestimonialCardProps {

@@ -3,6 +3,8 @@ import {
   FlexContainer,
   Text,
   PageHeroMetaContainer,
+  LoginWithGoogleButton,
+  Button,
 } from '@/components';
 import { routes } from '@/constant';
 import { useUser } from '@/hooks';
@@ -12,8 +14,27 @@ const CourseHeroContainer = ({
   name,
   isEnrolled,
 }: CourseHeroContainerProps) => {
-  const { isAuth } = useUser();
-  console.log('HERE', isAuth);
+  const { user, isAuth } = useUser();
+
+  let headerActionButton;
+
+  if (!isAuth) {
+    headerActionButton = (
+      <FlexContainer>
+        <LoginWithGoogleButton text='Login to Get Started' />
+      </FlexContainer>
+    );
+  }
+
+  console.log('HERE', user, isEnrolled);
+
+  if (isAuth && !isEnrolled) {
+    headerActionButton = (
+      <FlexContainer>
+        <Button variant='PRIMARY' text='Enroll to Course' />
+      </FlexContainer>
+    );
+  }
 
   return (
     <FlexContainer>
@@ -38,13 +59,7 @@ const CourseHeroContainer = ({
           <PageHeroMetaContainer subtitle="YOU'RE LEARING" title={name} />
         </FlexContainer>
 
-        <LinkButton
-          href={routes.shikshaExplore}
-          buttonProps={{
-            variant: 'GHOST',
-            text: 'Back to Courses',
-          }}
-        />
+        {headerActionButton}
       </FlexContainer>
     </FlexContainer>
   );
