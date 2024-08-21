@@ -116,8 +116,11 @@ const getCoursePageProps = async ({ query }: any) => {
 
       const course: BaseShikshaCourseResponseProps = data;
       let { meta } = course;
+      let currentChapterId = '';
 
       if (chapterId) {
+        currentChapterId = chapterId;
+
         const selectedChapterMeta = getSelectedCourseChapterMeta(
           course,
           chapterId
@@ -132,7 +135,7 @@ const getCoursePageProps = async ({ query }: any) => {
           seoMeta,
           course,
           meta,
-          currentChapterId: chapterId,
+          currentChapterId,
         },
       };
     } catch (error) {

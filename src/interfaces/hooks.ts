@@ -7,7 +7,5 @@ export interface User {
 export interface UseUserReturnType {
   user: User | null;
   isAuth: boolean;
-  error: string | null;
   loading: boolean;
-  refetchUser: () => void;
 }

@@ -1,12 +1,10 @@
 import {
-  LinkButton,
   FlexContainer,
   Text,
   PageHeroMetaContainer,
   LoginWithGoogleButton,
   Button,
 } from '@/components';
-import { routes } from '@/constant';
 import { useUser } from '@/hooks';
 import { CourseHeroContainerProps } from '@/interfaces';
 
@@ -16,6 +14,10 @@ const CourseHeroContainer = ({
 }: CourseHeroContainerProps) => {
   const { user, isAuth } = useUser();
 
+  const enrollCourse = () => {
+    console.log('Enroll Course');
+  };
+
   let headerActionButton;
 
   if (!isAuth) {
@@ -24,14 +26,16 @@ const CourseHeroContainer = ({
         <LoginWithGoogleButton text='Login to Get Started' />
       </FlexContainer>
     );
-  }
-
-  console.log('HERE', user, isEnrolled);
-
-  if (isAuth && !isEnrolled) {
+  } else if (isAuth && !isEnrolled) {
     headerActionButton = (
       <FlexContainer>
         <Button variant='PRIMARY' text='Enroll to Course' />
+      </FlexContainer>
+    );
+  } else if (isAuth && isEnrolled) {
+    headerActionButton = (
+      <FlexContainer>
+        <Button variant='PRIMARY' text='Ask Questions' onClick={enrollCourse} />
       </FlexContainer>
     );
   }
@@ -45,10 +49,10 @@ const CourseHeroContainer = ({
           className='items-start gap-1'
         >
           <Text level='h4' className='heading-4'>
-            Hello there!
+            Hello {user?.name ?? 'there'}!
           </Text>
           <Text level='p' className='paragraph text-greyDark'>
-            Let's learn something today.
+            Let's Learn Something Today.
           </Text>
         </FlexContainer>
         <FlexContainer
