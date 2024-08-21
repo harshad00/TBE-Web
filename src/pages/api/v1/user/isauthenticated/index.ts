@@ -5,10 +5,10 @@ import { connectDB } from '@/middlewares';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ServerSessionProp } from '@/interfaces';
-import { getUserByEmailFromDB } from '@/database/query/user';
+import { getUserByEmailFromDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB(res);
+  await connectDB();
 
   const { method } = req;
   switch (method) {

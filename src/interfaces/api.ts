@@ -158,6 +158,9 @@ export type DifficultyType = 'Beginner' | 'Intermediate' | 'Advanced';
 export interface CreateUserRequestPayloadProps {
   name: string;
   email: string;
+  image?: string;
+  provider: string;
+  providerAccountId?: string;
 }
 
 export interface CourseEnrollmentRequestProps {

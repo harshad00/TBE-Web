@@ -5,19 +5,36 @@ import {
   LoginWithGoogleButton,
   Button,
 } from '@/components';
-import { useUser } from '@/hooks';
+import { routes } from '@/constant';
+import { useApi, useUser } from '@/hooks';
 import { CourseHeroContainerProps } from '@/interfaces';
 
 const CourseHeroContainer = ({
+  id,
   name,
   isEnrolled,
 }: CourseHeroContainerProps) => {
   const { user, isAuth } = useUser();
+  // Initialize useApi with the initialParams
+  const { response, loading, makeRequest } = useApi(
+    `shiksha/${name}`,
+    {
+      method: 'POST',
+      url: routes.api.enrollCourse,
+      body: {
+        userId: user?.id,
+        courseId: id,
+      },
+    },
+    { enabled: false } // API call will not be made on render
+  );
 
   const enrollCourse = () => {
-    console.log('Enroll Course');
+    console.log('HERE', user);
+    makeRequest();
   };
 
+  console.log('HERE', user, isAuth);
   let headerActionButton;
 
   if (!isAuth) {
@@ -29,13 +46,17 @@ const CourseHeroContainer = ({
   } else if (isAuth && !isEnrolled) {
     headerActionButton = (
       <FlexContainer>
-        <Button variant='PRIMARY' text='Enroll to Course' />
+        <Button
+          variant='PRIMARY'
+          text='Enroll to Course'
+          onClick={enrollCourse}
+        />
       </FlexContainer>
     );
   } else if (isAuth && isEnrolled) {
     headerActionButton = (
       <FlexContainer>
-        <Button variant='PRIMARY' text='Ask Questions' onClick={enrollCourse} />
+        <Button variant='PRIMARY' text='Ask Questions' />
       </FlexContainer>
     );
   }

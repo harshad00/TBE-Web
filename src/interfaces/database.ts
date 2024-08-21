@@ -2,10 +2,11 @@ import { Document, Schema } from 'mongoose';
 import { DifficultyType, RoadmapsType, SkillsType } from '.';
 
 export interface UserModel {
-  userId: string;
   name: string;
   email: string;
-  username: string;
+  image?: string;
+  provider: string;
+  providerAccountId?: string;
 }
 
 export interface ProjectChapter {

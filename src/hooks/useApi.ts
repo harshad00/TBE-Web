@@ -1,34 +1,46 @@
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { APIMakeRquestProps, APIResponseType } from '@/interfaces';
+import { sendRequest } from '@/utils';
 
 const useApi = (
   queryKey: string,
-  fetchFunction: (params: APIMakeRquestProps) => Promise<APIResponseType>,
-  params?: APIMakeRquestProps
+  initialParams: APIMakeRquestProps,
+  options = { enabled: true }
 ) => {
-  if (!params) {
-    throw new Error('Params are required for useApi hook');
-  }
+  const queryClient = useQueryClient();
 
-  const { data, isLoading, error, refetch } = useQuery<APIResponseType>(
-    [queryKey],
-    async () => {
-      try {
-        const response = await fetchFunction(params);
-        return response;
-      } catch (error: any) {
-        throw new Error(error.message);
-      }
-    },
-    { enabled: !!params }
+  // Define the fetch function once
+  const fetchFunction = async (params: APIMakeRquestProps) => {
+    try {
+      const response = await sendRequest(params);
+      return response;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
+
+  const { data, isLoading, error } = useQuery<APIResponseType>(
+    [queryKey, initialParams], // Key includes params for caching purposes
+    () => fetchFunction(initialParams),
+    {
+      enabled: options.enabled,
+    }
   );
+
+  // Custom function to refetch with optional new params
+  const makeRequest = (overrideParams?: APIMakeRquestProps) => {
+    const params = overrideParams ? overrideParams : initialParams;
+    return queryClient.fetchQuery([queryKey, params], () =>
+      fetchFunction(params)
+    );
+  };
 
   return {
     response: data,
     isSuccess: !!data,
     error,
     loading: isLoading,
-    makeRequest: refetch,
+    makeRequest,
   };
 };
 

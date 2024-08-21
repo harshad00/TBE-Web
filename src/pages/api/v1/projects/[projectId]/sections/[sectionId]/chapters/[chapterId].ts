@@ -11,7 +11,7 @@ import {
 import { UpdateChapterRequestPayloadProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB(res);
+  await connectDB();
 
   const { method, query } = req;
   const { projectId, sectionId, chapterId } = query as {

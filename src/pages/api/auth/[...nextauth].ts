@@ -1,4 +1,6 @@
 import { envConfig, routes } from '@/constant';
+import { createUserInDB, getUserByEmailFromDB } from '@/database';
+import { connectDB } from '@/middlewares';
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -11,7 +13,7 @@ const authOptions = {
   ],
   secret: envConfig.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ user }: any) {
+    async signIn({ user, account }: any) {
       if (!user) return false;
 
       const { name, email } = user;
@@ -19,16 +21,48 @@ const authOptions = {
       if (!email || !name) return false;
 
       try {
-        const response = await fetch(`${envConfig.BASE_API_URL}/user`, {
-          method: 'POST',
-          body: JSON.stringify({ name, email }),
-        });
+        await connectDB();
 
-        if (!response.ok) return false;
+        // Find or create the user in MongoDB
+        const { data: existingUser } = await getUserByEmailFromDB(email);
+
+        if (!existingUser) {
+          // Create a new user in MongoDB if not found
+
+          const { data: result, error } = await createUserInDB({
+            name,
+            email,
+            image: user.image,
+            provider: account.provider,
+            providerAccountId: account.providerAccountId,
+          });
+
+          // Attach the MongoDB _id to the user object
+          user.id = result._id.toString();
+        } else {
+          // If the user exists, attach the MongoDB _id to the user object
+          user.id = existingUser._id.toString();
+        }
+
+        return true; // Allow the sign in
       } catch (error) {
+        console.error('Error signing in:', error);
         return false;
       }
-      return true;
+    },
+
+    async session({ session, token }: any) {
+      // Attach the MongoDB user ID to the session object
+      session.user.id = token.sub; // `sub` was set in the jwt callback
+      return session;
+    },
+
+    async jwt({ token, user }: any) {
+      if (user) {
+        // Attach the MongoDB user ID to the token (if this is the initial sign in)
+        token.sub = user.id;
+      }
+      return token;
     },
   },
   pages: {

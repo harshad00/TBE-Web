@@ -6,7 +6,7 @@ import { AddChapterToCourseRequestProps } from '@/interfaces';
 import { addChapterToCourseInDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB(res);
+  await connectDB();
   const { method, query } = req;
   const { courseId } = query as { courseId: string };
 

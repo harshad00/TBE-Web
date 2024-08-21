@@ -15,7 +15,7 @@ import {
 import mongoose from 'mongoose';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB(res);
+  await connectDB();
   const { method, query } = req;
   const { userId } = query as { userId: string };
 

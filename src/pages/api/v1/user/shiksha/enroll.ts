@@ -7,7 +7,7 @@ import { CourseEnrollmentRequestProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    await connectDB(res);
+    await connectDB();
 
     switch (req.method) {
       case 'POST':

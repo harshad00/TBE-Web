@@ -30,6 +30,7 @@ const routes = {
     projects: '/projects',
     project: (project: string) => `/projects/${project}`,
     shiksha: '/shiksha',
+    enrollCourse: '/user/shiksha/enroll',
     courseById: (course: string) => `/shiksha/${course}`,
   },
 };

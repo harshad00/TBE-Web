@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Accordion,
-  AccordionLinkItem,
   CourseHeroContainer,
   FlexContainer,
   Link,
@@ -12,7 +10,6 @@ import {
 } from '@/components';
 import { CoursePageProps } from '@/interfaces';
 import { getCoursePageProps } from '@/utils';
-import { useUser } from '@/hooks';
 
 const CoursePage = ({
   course,
@@ -34,6 +31,7 @@ const CoursePage = ({
       <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
         <CourseHeroContainer
+          id={course._id ?? ''}
           name={course.name ?? ''}
           isEnrolled={course.isEnrolled}
         />

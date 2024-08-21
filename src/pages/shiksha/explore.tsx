@@ -9,15 +9,11 @@ import {
   LinkButton,
 } from '@/components';
 import { useAPIResponseMapper, useApi } from '@/hooks';
-import {
-  getPreFetchProps,
-  mapCourseResponseToCard,
-  sendRequest,
-} from '@/utils';
+import { getPreFetchProps, mapCourseResponseToCard } from '@/utils';
 import { routes } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
-  const { response, loading } = useApi('shiksha', sendRequest, {
+  const { response, loading } = useApi('shiksha', {
     url: routes.api.shiksha,
   });
 

@@ -10,7 +10,7 @@ import { UpdateUserChapterInCourseRequestProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    await connectDB(res);
+    await connectDB();
 
     const { method, query } = req;
     const { userId, courseId } = query as { userId: string; courseId: string };

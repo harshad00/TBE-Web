@@ -12,7 +12,7 @@ import { v4 } from 'uuid';
 import { getMDXContent } from '@/utils/mdx';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB(res);
+  await connectDB();
 
   const { method, query } = req;
   const { projectId, sectionId } = query as {

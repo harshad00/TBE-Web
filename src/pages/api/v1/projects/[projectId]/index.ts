@@ -10,7 +10,7 @@ import {
 import { UpdateProjectRequestPayloadProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB(res);
+  await connectDB();
 
   const { query } = req;
   const { projectId } = query;
