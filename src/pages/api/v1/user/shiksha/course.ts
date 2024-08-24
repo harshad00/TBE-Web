@@ -2,24 +2,18 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import {
-  getACourseForUserFromDB,
-  updateUserCourseChapterInDB,
-} from '@/database';
+import { updateUserCourseChapterInDB } from '@/database';
 import { UpdateUserChapterInCourseRequestProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await connectDB();
 
-    const { method, query } = req;
-    const { userId, courseId } = query as { userId: string; courseId: string };
+    const { method } = req;
 
     switch (method) {
       case 'PATCH':
         return handleUpdateChapterStatus(req, res);
-      case 'GET':
-        return handleGetCourseForUser(req, res, userId, courseId);
       default:
         return res.status(apiStatusCodes.BAD_REQUEST).json(
           sendAPIResponse({
@@ -75,41 +69,6 @@ const handleUpdateChapterStatus = async (
       sendAPIResponse({
         status: false,
         message: 'Failed to update chapter status',
-        error,
-      })
-    );
-  }
-};
-
-const handleGetCourseForUser = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-  userId: string,
-  courseId: string
-) => {
-  try {
-    const { data, error } = await getACourseForUserFromDB(userId, courseId);
-
-    if (error) {
-      return res.status(apiStatusCodes.NOT_FOUND).json(
-        sendAPIResponse({
-          status: false,
-          message: error,
-        })
-      );
-    }
-
-    return res.status(apiStatusCodes.OKAY).json(
-      sendAPIResponse({
-        status: true,
-        data,
-      })
-    );
-  } catch (error) {
-    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
-      sendAPIResponse({
-        status: false,
-        message: 'Failed to fetch courses with chapter status',
         error,
       })
     );

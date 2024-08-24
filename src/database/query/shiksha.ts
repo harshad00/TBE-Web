@@ -262,7 +262,8 @@ const getACourseForUserFromDB = async (userId: string, courseId: string) => {
       .exec();
 
     if (!userCourse) {
-      return { error: 'No course found for the user' };
+      const { data: course } = await getACourseFromDBById(courseId);
+      return { data: { ...course.toObject(), isEnrolled: false } };
     }
 
     const completedChapters = await UserChapter.find({

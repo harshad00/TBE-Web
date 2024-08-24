@@ -25,6 +25,7 @@ const CoursePage = ({
   };
 
   if (!course) return null;
+  console.log('HERE', course);
 
   return (
     <React.Fragment>

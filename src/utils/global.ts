@@ -5,6 +5,8 @@ import {
   ProjectPickedPageProps,
 } from '@/interfaces';
 import { getSelectedCourseChapterMeta, getSelectedProjectChapterMeta } from '.';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 const getPreFetchProps = async ({ query, resolvedUrl }: any) => {
   const { projectSlug } = query;
@@ -101,6 +103,15 @@ const getCoursePageProps = async ({ query }: any) => {
   if (courseId) {
     try {
       const seoMeta = getSEOMeta(slug as PageSlug);
+      // const session = await getServerSession(authOptions);
+
+      // let userId = '';
+
+      // if (session) userId = session.user.id;
+
+      // const { status, data } = await fetchAPIData(
+      //   `shiksha/${courseId}?userId=${userId}`
+      // );
 
       const { status, data } = await fetchAPIData(`shiksha/${courseId}`);
 

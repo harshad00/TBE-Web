@@ -7,6 +7,7 @@ import {
   deleteACourseFromDBById,
   updateACourseInDB,
   getACourseFromDBById,
+  getACourseForUserFromDB,
 } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,7 +17,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (method) {
     case 'GET':
-      return handleGetCourseById(req, res, courseId, userId);
+      return handleGetCourseById(req, res, userId, courseId);
     case 'PATCH':
       return handleUpdateCourse(req, res, courseId);
     case 'DELETE':
@@ -120,18 +121,17 @@ const handleUpdateCourse = async (
 const handleGetCourseById = async (
   req: NextApiRequest,
   res: NextApiResponse,
-  courseId: string,
-  userId: string
+  userId: string,
+  courseId: string
 ) => {
   try {
-    const { data, error } = await getACourseFromDBById(courseId, userId);
+    const { data, error } = await getACourseForUserFromDB(userId, courseId);
 
     if (error) {
-      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+      return res.status(apiStatusCodes.NOT_FOUND).json(
         sendAPIResponse({
           status: false,
-          message: 'Failed while fetching a course',
-          error,
+          message: error,
         })
       );
     }
@@ -146,7 +146,7 @@ const handleGetCourseById = async (
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        message: 'Failed while fetching a course',
+        message: 'Failed to fetch courses with chapter status',
         error,
       })
     );
