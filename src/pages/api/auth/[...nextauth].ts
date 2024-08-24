@@ -1,5 +1,5 @@
 import { envConfig, routes } from '@/constant';
-import { createUserInDB, getUserByEmailFromDB } from '@/database';
+import { createUserInDB, getUserByEmailFromDB } from '@/database/query/user';
 import { connectDB } from '@/middlewares';
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';

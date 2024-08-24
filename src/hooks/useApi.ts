@@ -4,8 +4,8 @@ import { sendRequest } from '@/utils';
 
 const useApi = (
   queryKey: string,
-  initialParams: APIMakeRquestProps,
-  options = { enabled: true }
+  initialParams?: APIMakeRquestProps, // Make initialParams optional
+  options = { enabled: !!initialParams } // Enable query only if initialParams are provided
 ) => {
   const queryClient = useQueryClient();
 
@@ -21,7 +21,7 @@ const useApi = (
 
   const { data, isLoading, error } = useQuery<APIResponseType>(
     [queryKey, initialParams], // Key includes params for caching purposes
-    () => fetchFunction(initialParams),
+    () => fetchFunction(initialParams!), // Non-null assertion because it won't be undefined if enabled is true
     {
       enabled: options.enabled,
     }
@@ -29,7 +29,11 @@ const useApi = (
 
   // Custom function to refetch with optional new params
   const makeRequest = (overrideParams?: APIMakeRquestProps) => {
-    const params = overrideParams ? overrideParams : initialParams;
+    const params = overrideParams || initialParams;
+    if (!params) {
+      throw new Error('Params are required to make a request.');
+    }
+
     return queryClient.fetchQuery([queryKey, params], () =>
       fetchFunction(params)
     );
