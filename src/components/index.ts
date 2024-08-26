@@ -110,6 +110,9 @@ const MentorshipPlans = dynamic(
   () => import('./containers/Page/Landing/MentorshipPlans')
 );
 const Community = dynamic(() => import('./containers/Page/Landing/Community'));
+const ChapterLink = dynamic(
+  () => import('@/components/common/Learning/ChapterLink')
+);
 
 export {
   Navbar,
@@ -162,4 +165,5 @@ export {
   Community,
   MentorshipPlans,
   CourseHeroContainer,
+  ChapterLink,
 };

@@ -7,12 +7,14 @@ const LinkText = ({
   className,
   target,
   active = true,
+  scroll = false,
 }: LinkProps) => {
   return (
     <Link
       className={`${className} link ${!active && 'disabled'}`}
       href={href}
       target={target}
+      scroll={scroll}
     >
       {children}
     </Link>

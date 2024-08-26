@@ -16,8 +16,7 @@ const CourseHeroContainer = ({
 }: CourseHeroContainerProps) => {
   const { user, isAuth } = useUser();
 
-  // Initialize useApi with the initialParams
-  const { response, loading, makeRequest } = useApi(`shiksha/${name}`);
+  const { makeRequest } = useApi(`shiksha/${name}`);
 
   const enrollCourse = () => {
     makeRequest({
@@ -29,8 +28,6 @@ const CourseHeroContainer = ({
       },
     });
   };
-
-  // console.log('HERE', response, isEnrolled);
 
   let headerActionButton;
 

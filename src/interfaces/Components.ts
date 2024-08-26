@@ -13,6 +13,7 @@ export interface LinkProps {
   href: string;
   target?: 'BLANK';
   active?: boolean;
+  scroll?: boolean;
 }
 
 export interface TextProps {
@@ -298,4 +299,14 @@ export interface LoginWithGoogleBtnProps {
 export interface AlertProps {
   text: string;
   className?: string;
+}
+
+export interface ChapterLinkProps {
+  href: string;
+  chapterId: string;
+  name: string;
+  content: string;
+  isCompleted: boolean;
+  currentChapterId: string;
+  handleChapterClick: (content: string) => void;
 }

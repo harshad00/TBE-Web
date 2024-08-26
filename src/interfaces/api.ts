@@ -1,4 +1,4 @@
-import { CourseModel, ProjectChapter } from '.';
+import { CourseChapterModel, CourseModel, ProjectChapter } from '.';
 
 export type APIMethodTypes = 'GET' | 'POST' | 'PATCH';
 
@@ -175,6 +175,11 @@ export interface UpdateUserChapterInCourseRequestProps {
   isCompleted: boolean;
 }
 
+export interface ExtendedCourseChapterModel extends CourseChapterModel {
+  isCompleted: boolean; // Add `isCompleted` flag
+}
+
 export interface BaseShikshaCourseResponseProps extends Partial<CourseModel> {
   isEnrolled?: boolean;
+  chapters?: ExtendedCourseChapterModel[];
 }

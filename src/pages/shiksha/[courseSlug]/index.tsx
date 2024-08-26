@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
+  ChapterLink,
   CourseHeroContainer,
   FlexContainer,
-  Link,
   MDXRenderer,
   Section,
   SEO,
@@ -25,7 +25,6 @@ const CoursePage = ({
   };
 
   if (!course) return null;
-  console.log('HERE', course);
 
   return (
     <React.Fragment>
@@ -48,27 +47,20 @@ const CoursePage = ({
               Chapters
             </Text>
             <FlexContainer justifyCenter={false} className='gap-px'>
-              {course.chapters?.map(({ _id, name, content }) => {
+              {course.chapters?.map(({ _id, name, content, isCompleted }) => {
                 const chapterId = _id?.toString();
-                const additionalClasses =
-                  currentChapterId === chapterId
-                    ? 'text-primary bg-gray-200'
-                    : '';
 
                 return (
-                  <Link
+                  <ChapterLink
+                    key={chapterId}
                     href={`${slug}?courseId=${course._id}&chapterId=${chapterId}`}
-                    key={chapterId?.toString()}
-                    className={`w-full p-2 rounded text-left pre-title text-greyDark hover:bg-gray-200 hover:text-primary ${additionalClasses}`}
-                  >
-                    <div
-                      onClick={() => {
-                        handleChapterClick(content);
-                      }}
-                    >
-                      {name}
-                    </div>
-                  </Link>
+                    chapterId={chapterId}
+                    name={name}
+                    content={content}
+                    isCompleted={isCompleted}
+                    currentChapterId={currentChapterId}
+                    handleChapterClick={handleChapterClick}
+                  />
                 );
               })}
             </FlexContainer>
