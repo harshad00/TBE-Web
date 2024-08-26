@@ -6,7 +6,6 @@ import {
   ProjectPickedPageProps,
   User,
 } from '@/interfaces';
-import { NextRequest } from 'next/server';
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
@@ -113,9 +112,8 @@ const isAdmin = (adminSecret: string): boolean => {
   return envConfig.ADMIN_SECRET == adminSecret;
 };
 
-const isUserAuthenticated = async (req: NextRequest): Promise<User | null> => {
-  // if (!req.nextUrl) return null;
-  const cookie = req.headers['cookie'] || req.headers.get('Cookie');
+const isUserAuthenticated = async (req: any): Promise<User | null> => {
+  const cookie = req.headers.cookie || req.headers.get('cookie');
 
   try {
     const response = await fetch(

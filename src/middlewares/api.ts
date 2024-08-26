@@ -1,6 +1,4 @@
-import type { NextApiResponse } from 'next';
-import { envConfig, apiStatusCodes } from '@/constant';
-import { sendAPIResponse } from '@/utils';
+import { envConfig } from '@/constant';
 import mongoose from 'mongoose';
 
 // Connect to DB

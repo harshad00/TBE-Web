@@ -103,10 +103,10 @@ const getCoursePageProps = async (context: any) => {
     slug = '/shiksha/' + courseSlug;
   }
 
-  if (courseId) {
-    try {
-      const seoMeta = getSEOMeta(slug as PageSlug);
+  const seoMeta = getSEOMeta(slug as PageSlug);
 
+  if (courseId && seoMeta) {
+    try {
       const user = await isUserAuthenticated(req);
 
       const { status, data } = await fetchAPIData(
