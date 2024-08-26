@@ -1,12 +1,14 @@
-import { envConfig, getSEOMeta } from '@/constant';
+import { envConfig, getSEOMeta, routes } from '@/constant';
 import {
   BaseShikshaCourseResponseProps,
   PageSlug,
   ProjectPickedPageProps,
 } from '@/interfaces';
-import { getSelectedCourseChapterMeta, getSelectedProjectChapterMeta } from '.';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import {
+  getSelectedCourseChapterMeta,
+  getSelectedProjectChapterMeta,
+  isUserAuthenticated,
+} from '.';
 
 const getPreFetchProps = async ({ query, resolvedUrl }: any) => {
   const { projectSlug } = query;
@@ -91,7 +93,8 @@ const getProjectPageProps = async ({ query }: any) => {
   };
 };
 
-const getCoursePageProps = async ({ query }: any) => {
+const getCoursePageProps = async (context: any) => {
+  const { req, query } = context;
   const { courseSlug, courseId, chapterId } = query;
 
   let slug = '/';
@@ -103,17 +106,12 @@ const getCoursePageProps = async ({ query }: any) => {
   if (courseId) {
     try {
       const seoMeta = getSEOMeta(slug as PageSlug);
-      // const session = await getServerSession(authOptions);
 
-      // let userId = '';
+      const user = await isUserAuthenticated(req);
 
-      // if (session) userId = session.user.id;
-
-      // const { status, data } = await fetchAPIData(
-      //   `shiksha/${courseId}?userId=${userId}`
-      // );
-
-      const { status, data } = await fetchAPIData(`shiksha/${courseId}`);
+      const { status, data } = await fetchAPIData(
+        routes.api.courseByIdWithUser(courseId, user?.id)
+      );
 
       // If the project data is not found, return the message
       if (!status) {

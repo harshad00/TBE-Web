@@ -32,6 +32,13 @@ const routes = {
     shiksha: '/shiksha',
     enrollCourse: '/user/shiksha/enroll',
     courseById: (course: string) => `/shiksha/${course}`,
+    courseByIdWithUser: (course: string, userId?: string) => {
+      let url = `/shiksha/${course}`;
+      if (userId) {
+        url += `?userId=${userId}`;
+      }
+      return url;
+    },
   },
 };
 

@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 import { isAdmin, isUserAuthenticated, sendAPIResponse } from './utils';
 import { routes } from './constant';
-import { authOptions } from './pages/api/auth/[...nextauth]';
-import { getServerSession } from 'next-auth/next';
 
 const protectedAPIRoutes: {
   path: RegExp;
@@ -21,8 +19,8 @@ const protectedUIRoutes: {
   },
 ];
 
-const middleware = async (req: NextRequest, res: NextResponse) => {
-  console.log('path matched : ', req.url);
+const middleware = async (req: NextRequest) => {
+  // console.log('path matched : ', req.url);
 
   const currentUrl = req.nextUrl.pathname;
 
@@ -44,13 +42,11 @@ const middleware = async (req: NextRequest, res: NextResponse) => {
   }
 
   const isAuthenticated = await isUserAuthenticated(req);
-  console.log('isAuthenticated : ', isAuthenticated);
 
   if (!isAuthenticated) {
     const isProtectedUIRoute = protectedUIRoutes.find((route) =>
       route.path.test(currentUrl)
     );
-    console.log('isProtectedUIRoute : ', isProtectedUIRoute);
 
     if (isProtectedUIRoute) {
       return NextResponse.redirect(new URL(routes.register, req.url));

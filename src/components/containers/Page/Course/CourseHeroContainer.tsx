@@ -30,7 +30,7 @@ const CourseHeroContainer = ({
     });
   };
 
-  console.log('HERE', response, isEnrolled);
+  // console.log('HERE', response, isEnrolled);
 
   let headerActionButton;
 

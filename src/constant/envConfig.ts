@@ -1,5 +1,6 @@
 const MONGODB_URI = process.env.MONGODB_URI as string;
 const BASE_API_URL = process.env.BASE_API_URL as string;
+const BASE_AUTH_API_URL = process.env.BASE_AUTH_API_URL as string;
 const GOOGLE_AUTH_CLIENT_ID = process.env.GOOGLE_AUTH_CLIENT_ID as string;
 const GOOGLE_AUTH_CLIENT_SECRET = process.env
   .GOOGLE_AUTH_CLIENT_SECRET as string;
@@ -13,6 +14,7 @@ const envConfig = {
   GOOGLE_AUTH_CLIENT_SECRET,
   ADMIN_SECRET,
   NEXTAUTH_SECRET,
+  BASE_AUTH_API_URL,
 };
 
 export { envConfig };

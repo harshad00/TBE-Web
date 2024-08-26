@@ -113,22 +113,26 @@ const isAdmin = (adminSecret: string): boolean => {
   return envConfig.ADMIN_SECRET == adminSecret;
 };
 
-const isUserAuthenticated = async (req: NextRequest) => {
+const isUserAuthenticated = async (req: NextRequest): Promise<User | null> => {
+  // if (!req.nextUrl) return null;
+  const cookie = req.headers['cookie'] || req.headers.get('Cookie');
+
   try {
     const response = await fetch(
-      `${envConfig.BASE_API_URL}/user/isauthenticated`,
+      `${envConfig.BASE_AUTH_API_URL}/auth/session`,
       {
-        credentials: 'include',
-        cache: 'no-cache',
         headers: {
           'Content-Type': 'application/json',
-          Cookie: req.headers.get('cookie') || '',
+          Cookie: cookie || '',
         },
       }
     );
-    return response.ok;
+
+    const session = await response.json();
+    return session && session.user ? session.user : null;
   } catch (error) {
-    return false;
+    console.error('Error fetching session:', error);
+    return null;
   }
 };
 
