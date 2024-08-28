@@ -31,6 +31,7 @@ const routes = {
     project: (project: string) => `/projects/${project}`,
     shiksha: '/shiksha',
     enrollCourse: '/user/shiksha/enroll',
+    markCourseChapterAsCompleted: '/user/shiksha/course',
     courseById: (course: string) => `/shiksha/${course}`,
     courseByIdWithUser: (course: string, userId?: string) => {
       let url = `/shiksha/${course}`;

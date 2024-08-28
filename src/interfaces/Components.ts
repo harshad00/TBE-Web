@@ -45,7 +45,7 @@ export interface LinkButtonProps extends LinkProps {
 }
 
 export interface ButtonProps {
-  variant: 'PRIMARY' | 'OUTLINE' | 'GHOST';
+  variant: 'PRIMARY' | 'OUTLINE' | 'GHOST' | 'SUCCESS';
   className?: string;
   text: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -309,4 +309,9 @@ export interface ChapterLinkProps {
   isCompleted: boolean;
   currentChapterId: string;
   handleChapterClick: (content: string) => void;
+}
+
+export interface MDXRendererProps {
+  mdxSource: string;
+  actions?: React.ReactNode[];
 }

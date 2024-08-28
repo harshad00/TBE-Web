@@ -13,18 +13,24 @@ const ChapterLink = ({
   handleChapterClick,
 }: ChapterLinkProps) => {
   const additionalClasses =
-    currentChapterId === chapterId ? 'text-dark font-semibold bg-gray-200' : '';
+    currentChapterId === chapterId
+      ? isCompleted
+        ? 'text-dark font-semibold bg-green-200'
+        : 'text-dark font-semibold bg-gray-200'
+      : '';
+
+  const iconColor = isCompleted ? 'text-green-500' : 'text-greyDark';
 
   return (
     <Link
       href={href}
       key={chapterId}
-      className={`flex items-center gap-1 w-full p-2 rounded text-left pre-title text-greyDark hover:bg-gray-200 hover:text-contentLight ${additionalClasses}`}
+      className={`flex items-center gap-1 w-full p-2 rounded text-left pre-title hover:bg-gray-200 hover:text-contentLight ${additionalClasses}`}
     >
       {isCompleted ? (
-        <IoIosCheckmarkCircle size={24} />
+        <IoIosCheckmarkCircle size={24} className={iconColor} />
       ) : (
-        <FaRegCircle size={24} />
+        <FaRegCircle size={24} className={iconColor} />
       )}
       <div onClick={() => handleChapterClick(content)}>{name}</div>
     </Link>

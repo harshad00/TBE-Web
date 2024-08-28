@@ -47,12 +47,6 @@ const CourseHeroContainer = ({
         />
       </FlexContainer>
     );
-  } else if (isAuth && isEnrolled) {
-    headerActionButton = (
-      <FlexContainer>
-        <Button variant='PRIMARY' text='Ask Questions' />
-      </FlexContainer>
-    );
   }
 
   return (

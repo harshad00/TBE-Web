@@ -5,21 +5,20 @@ import { sendRequest } from '@/utils';
 
 const useApi = (
   queryKey: string,
-  initialParams?: APIMakeRquestProps, // Make initialParams optional
-  options = { enabled: !!initialParams } // Enable query only if initialParams are provided
+  initialParams?: APIMakeRquestProps,
+  options = { enabled: !!initialParams }
 ) => {
   const queryClient = useQueryClient();
   const [data, setData] = useState<APIResponseType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Define the fetch function
   const fetchFunction = async (params: APIMakeRquestProps) => {
     setLoading(true);
     setError(null);
     try {
       const response = await sendRequest(params);
-      setData(response); // Set the data when request is successful
+      setData(response);
       return response;
     } catch (error: any) {
       setError(error.message);

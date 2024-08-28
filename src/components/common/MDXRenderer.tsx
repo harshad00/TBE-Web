@@ -1,7 +1,8 @@
 import React from 'react';
 import MarkdownIt from 'markdown-it';
+import { MDXRendererProps } from '@/interfaces';
 
-const MDXRenderer = ({ mdxSource }: any) => {
+const MDXRenderer = ({ mdxSource, actions }: MDXRendererProps) => {
   const md = new MarkdownIt({
     html: true,
   });
@@ -48,8 +49,22 @@ const MDXRenderer = ({ mdxSource }: any) => {
 
   const mdxHTML = md.render(mdxSource);
 
+  const actionContainer = actions && (
+    <div className='flex justify-end gap-2'>
+      {actions.map((action, index) => (
+        <React.Fragment key={index}>{action}</React.Fragment>
+      ))}
+    </div>
+  );
+
   return (
-    <div dangerouslySetInnerHTML={{ __html: mdxHTML }} className='break-all' />
+    <div className='w-full flex flex-col justify-between'>
+      <div
+        dangerouslySetInnerHTML={{ __html: mdxHTML }}
+        className='break-all'
+      />
+      {actionContainer}
+    </div>
   );
 };
 
