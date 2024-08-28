@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   ChapterLink,
@@ -28,7 +28,14 @@ const CoursePage = ({
       ?.isCompleted
   );
 
-  const { makeRequest, response } = useApi(`shiksha/${course}`);
+  useEffect(() => {
+    const currentChapter = chapters.find(
+      (chapter) => chapter._id.toString() === currentChapterId
+    );
+    setIsChapterCompleted(currentChapter?.isCompleted);
+  }, [currentChapterId, chapters]);
+
+  const { makeRequest } = useApi(`shiksha/${course}`);
   const { user } = useUser();
 
   if (!course) return null;

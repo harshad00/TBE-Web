@@ -275,7 +275,8 @@ const getACourseForUserFromDB = async (userId: string, courseId: string) => {
       const { _id } = chapter;
       const isCompleted = completedChapters.some(
         (completedChapter) =>
-          completedChapter.chapterId.toString() === _id.toString()
+          completedChapter.chapterId.toString() === _id.toString() &&
+          completedChapter.isCompleted
       );
 
       return {
