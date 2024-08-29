@@ -59,11 +59,10 @@ export interface UserCourseModel {
   userId: typeof Schema.Types.ObjectId;
   courseId: typeof Schema.Types.ObjectId;
   course: CourseModel;
+  chapters: UserCourseChapterModel[];
 }
 
 export interface UserCourseChapterModel {
-  userId: typeof Schema.Types.ObjectId;
-  courseId: typeof Schema.Types.ObjectId;
-  chapterId: typeof Schema.Types.ObjectId;
+  chapterId: string;
   isCompleted?: boolean;
 }

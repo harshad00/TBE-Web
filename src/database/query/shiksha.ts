@@ -8,7 +8,7 @@ import {
   UpdateCourseRequestPayloadProps,
   UpdateUserChapterInCourseRequestProps,
 } from '@/interfaces';
-import { Course, UserChapter, UserCourse } from '@/database';
+import { Course, UserCourse } from '@/database';
 import { modelSelectParams } from '@/constant';
 
 const addACourseToDB = async (
@@ -230,54 +230,59 @@ const updateUserCourseChapterInDB = async ({
   isCompleted,
 }: UpdateUserChapterInCourseRequestProps) => {
   try {
-    const userCourse = await UserChapter.findOneAndUpdate(
-      { _id: chapterId },
-      {
-        $set: {
-          userId,
-          courseId,
-          chapterId,
-          isCompleted,
-        },
-      },
-      { new: true, upsert: true }
-    );
+    // Find the UserCourse document
+    const userCourse = await UserCourse.findOne({ userId, courseId });
 
     if (!userCourse) {
-      return { error: 'Course or chapter not found' };
+      return { error: 'User course not found' };
     }
+
+    // Find the specific chapter in the chapters array
+    const chapterIndex = userCourse.chapters.findIndex(
+      (chapter) => chapter.chapterId.toString() === chapterId.toString()
+    );
+
+    if (chapterIndex === -1) {
+      // If chapter is not found in the array, add it with the given status
+      userCourse.chapters.push({
+        chapterId: chapterId,
+        isCompleted: isCompleted,
+      });
+    } else {
+      // If chapter is found, update the isCompleted status
+      userCourse.chapters[chapterIndex].isCompleted = isCompleted;
+    }
+
+    // Save the updated document
+    await userCourse.save();
 
     return { data: userCourse };
   } catch (error) {
+    console.error('Failed to update chapter in user course:', error);
     return { error: 'Failed to update chapter in user course' };
   }
 };
 
 const getACourseForUserFromDB = async (userId: string, courseId: string) => {
   try {
+    // Find the UserCourse document, including the populated course data
     const userCourse = await UserCourse.findOne({ userId, courseId })
       .populate({
         path: 'course',
       })
       .exec();
 
+    // If the user is not enrolled in the course, fetch the course data without user-specific data
     if (!userCourse) {
       const { data: course } = await getACourseFromDBById(courseId);
       return { data: { ...course.toObject(), isEnrolled: false } };
     }
 
-    const completedChapters = await UserChapter.find({
-      userId,
-      courseId,
-    });
-
-    const mappedChapters = userCourse?.course.chapters.map((chapter) => {
-      const { _id } = chapter;
-      const isCompleted = completedChapters.some(
-        (completedChapter) =>
-          completedChapter.chapterId.toString() === _id.toString() &&
-          completedChapter.isCompleted
-      );
+    // Map the chapters to include the `isCompleted` status from the embedded chapters in UserCourse
+    const mappedChapters = userCourse.course.chapters.map((chapter) => {
+      const isCompleted = userCourse.chapters.find(
+        (uc) => uc.chapterId.toString() === chapter._id.toString()
+      )?.isCompleted;
 
       return {
         ...chapter.toObject(),
@@ -285,6 +290,7 @@ const getACourseForUserFromDB = async (userId: string, courseId: string) => {
       };
     });
 
+    // Construct the updated course response
     const updatedCourseResponse = {
       ...userCourse.course.toObject(),
       chapters: mappedChapters,
@@ -297,6 +303,7 @@ const getACourseForUserFromDB = async (userId: string, courseId: string) => {
       } as BaseShikshaCourseResponseProps,
     };
   } catch (error) {
+    console.error('Failed to fetch courses with chapter status:', error);
     return { error: 'Failed to fetch courses with chapter status' };
   }
 };
