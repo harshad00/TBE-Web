@@ -121,13 +121,17 @@ const CoursePage = ({
             <MDXRenderer
               mdxSource={courseMeta}
               actions={[
-                <Button
-                  key='enroll'
-                  variant={isChapterCompleted ? 'SUCCESS' : 'PRIMARY'}
-                  text={isChapterCompleted ? 'Completed' : 'Mark As Completed'}
-                  className='w-fit'
-                  onClick={toggleCompletion}
-                />,
+                currentChapterId && (
+                  <Button
+                    key='enroll'
+                    variant={isChapterCompleted ? 'SUCCESS' : 'PRIMARY'}
+                    text={
+                      isChapterCompleted ? 'Completed' : 'Mark As Completed'
+                    }
+                    className='w-fit'
+                    onClick={toggleCompletion}
+                  />
+                ),
               ]}
             />
           </FlexContainer>
