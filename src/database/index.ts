@@ -9,4 +9,4 @@ export { Project, User, Course, UserCourse };
 // Query
 export * from './query/project';
 export * from './query/shiksha';
-// export * from './query/user';
+export * from './query/user';
