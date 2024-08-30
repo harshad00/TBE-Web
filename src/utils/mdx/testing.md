@@ -1,56 +1,56 @@
-# Day 8: Find Max Element in Array
+# Day 21: Calculate Shopping Cart Amount
+
+[https://www.youtube.com/embed/0Cp9k5ADc80?si=3My62tvuSMMLnEZu](https://www.youtube.com/embed/0Cp9k5ADc80?si=3My62tvuSMMLnEZu)
 
 ### Challenge
 
-Can you find the maximum element in an array of numbers? This challenge will help you practice finding the largest value in a list.
+Can you calculate the total amount of a shopping cart based on item prices and quantities? This challenge will help you practice arithmetic operations and working with arrays of objects.
 
 ### Explanation
 
-In this challenge, you'll write a program to identify the largest number in an array. This task is useful for many applications, such as finding the highest score or the maximum amount of money.
+In this challenge, you'll write a program to compute the total amount for a shopping cart. Each item in the cart has a price and quantity. You'll sum up the cost of each item to get the total amount.
 
 **Input -**
 
-- `numbers` (an array of integers where each integer is a number in the list)
+- `cart` (an array of objects, where each object contains `price` (a number) and `quantity` (a number))
 
-**Output -** The maximum number in the array.
+**Output -** The total amount of the shopping cart.
 
 **Example:**
 
-- Input: `numbers = [12, 45, 23, 67, 34]`
-- Output: `67`
-- Input: `numbers = [5, 1, 8, 9, 2]`
-- Output: `9`
+- Input: `cart = [{ price: 100, quantity: 2 }, { price: 200, quantity: 1 }, { price: 50, quantity: 4 }]`
+- Output: `500`
+- Input: `cart = [{ price: 30, quantity: 3 }, { price: 15, quantity: 2 }]`
+- Output: `105`
 
 ### Assignments
 
-Test your skills with these maximum element challenges:
+Test your skills with these shopping cart challenges:
 
-1. **Highest Score:**
-   - **Task:** Write a program to find the highest score from a list of student scores.
-   - **Input:** `scores` (an array of integers representing student scores)
-   - **Output:** The highest score.
+1. **Calculate Total Bill:**
+   - **Task:** Write a program to calculate the total bill amount for a list of purchased items. Each item has a price and quantity.
+   - **Input:** `items` (an array of objects with `price` and `quantity` properties)
+   - **Output:** The total bill amount.
    - **Example:**
-     - Input: `scores = [85, 90, 78, 88, 92]`
-     - Output: `92`
-     - Input: `scores = [70, 65, 80, 75]`
-     - Output: `80`
-2. **Largest Currency Denomination:**
-   - **Task:** Write a program to find the largest currency denomination from a list of denominations.
-   - **Input:** `denominations` (an array of integers representing different currency denominations in rupees)
-   - **Output:** The largest denomination.
+     - Input: `items = [{ price: 200, quantity: 3 }, { price: 50, quantity: 5 }]`
+     - Output: `650`
+     - Input: `items = [{ price: 10, quantity: 7 }, { price: 5, quantity: 4 }]`
+     - Output: `78`
+2. **Calculate Grocery Bill:**
+   - **Task:** Write a program to calculate the total amount for a grocery list. Each grocery item has a unit price and quantity.
+   - **Input:** `groceryList` (an array of objects with `unitPrice` and `quantity` properties)
+   - **Output:** The total amount for the grocery list.
    - **Example:**
-     - Input: `denominations = [10, 50, 100, 500, 2000]`
-     - Output: `2000`
-     - Input: `denominations = [1, 5, 10, 20]`
-     - Output: `20`
-3. **Maximum Temperature:**
-   - **Task:** Write a program to find the highest temperature recorded in a week from a list of daily temperatures.
-   - **Input:** `temperatures` (an array of integers representing temperatures for each day)
-   - **Output:** The highest temperature.
+     - Input: `groceryList = [{ unitPrice: 20, quantity: 2 }, { unitPrice: 15, quantity: 3 }]`
+     - Output: `85`
+     - Input: `groceryList = [{ unitPrice: 7, quantity: 5 }, { unitPrice: 3, quantity: 8 }]`
+     - Output: `59`
+3. **Calculate Total Invoice Amount:**
+   - **Task:** Write a program to compute the total amount for an invoice. Each invoice item has a price and quantity.
+   - **Input:** `invoice` (an array of objects with `price` and `quantity` properties)
+   - **Output:** The total amount of the invoice.
    - **Example:**
-     - Input: `temperatures = [30, 32, 28, 35, 33, 29, 31]`
-     - Output: `35`
-     - Input: `temperatures = [25, 27, 22, 26, 24, 28]`
-     - Output: `28`
-
-4o mini
+     - Input: `invoice = [{ price: 50, quantity: 10 }, { price: 25, quantity: 4 }]`
+     - Output: `250`
+     - Input: `invoice = [{ price: 100, quantity: 1 }, { price: 40, quantity: 2 }]`
+     - Output: `180`
