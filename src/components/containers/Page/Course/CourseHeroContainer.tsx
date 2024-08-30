@@ -26,6 +26,8 @@ const CourseHeroContainer = ({
         userId: user?.id,
         courseId: id,
       },
+    }).then(() => {
+      window.location.reload();
     });
   };
 
