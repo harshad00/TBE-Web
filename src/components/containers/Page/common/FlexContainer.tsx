@@ -9,13 +9,17 @@ const FlexContainer = ({
   wrap = true,
   fullWidth = false,
   id = '',
+  disabled = false,
 }: FlexContainerProps) => {
   return (
     <div
+      id={id}
       className={`flex flex-${direction} ${itemCenter && 'items-center'} ${
         justifyCenter && 'justify-center'
-      } ${className} ${wrap && 'flex-wrap'} ${fullWidth && 'w-full'}`}
-      id={id}
+      } ${className} ${wrap && 'flex-wrap'} ${fullWidth && 'w-full'} ${
+        disabled ? 'pointer-events-none opacity-40' : ''
+      }`}
+      aria-disabled={disabled} // For accessibility
     >
       {children}
     </div>

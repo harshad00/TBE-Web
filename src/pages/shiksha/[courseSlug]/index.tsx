@@ -1,26 +1,87 @@
+import React, { useEffect, useState } from 'react';
 import {
-  Accordion,
-  AccordionLinkItem,
+  Button,
+  ChapterLink,
+  CourseHeroContainer,
   FlexContainer,
   MDXRenderer,
   Section,
+  SEO,
   Text,
 } from '@/components';
-import CourseHeroContainer from '@/components/containers/Page/Course/CourseHeroContainer';
-import { envConfig } from '@/constant';
-import { CourseChapterModel } from '@/interfaces';
-import { useState } from 'react';
+import { CoursePageProps } from '@/interfaces';
+import { getCoursePageProps } from '@/utils';
+import { useApi, useUser } from '@/hooks';
+import { routes } from '@/constant';
 
-const Home = ({ course, courseSlug }: any) => {
-  const [courseMeta, setCourseMeta] = useState<string>(course.meta || '');
+const CoursePage = ({
+  course,
+  meta,
+  slug,
+  seoMeta,
+  currentChapterId,
+}: CoursePageProps) => {
+  const [courseMeta, setCourseMeta] = useState<string>(meta || '');
+  const [chapters, setChapters] = useState(course.chapters || []);
+  const [isChapterCompleted, setIsChapterCompleted] = useState(
+    chapters.find((chapter) => chapter._id.toString() === currentChapterId)
+      ?.isCompleted
+  );
+
+  useEffect(() => {
+    const currentChapter = chapters.find(
+      (chapter) => chapter._id.toString() === currentChapterId
+    );
+    setIsChapterCompleted(currentChapter?.isCompleted);
+  }, [currentChapterId, chapters]);
+
+  const { makeRequest } = useApi(`shiksha/${course}`);
+  const { user } = useUser();
+
+  if (!course) return null;
+
   const handleChapterClick = (chapterMeta: string) => {
     setCourseMeta(chapterMeta);
   };
 
+  const toggleCompletion = async () => {
+    try {
+      const newCompletionStatus = !isChapterCompleted;
+
+      await makeRequest({
+        method: 'PATCH',
+        url: routes.api.markCourseChapterAsCompleted,
+        body: {
+          userId: user?.id,
+          courseId: course._id,
+          chapterId: currentChapterId,
+          isCompleted: newCompletionStatus,
+        },
+      });
+
+      setChapters((prevChapters) =>
+        prevChapters.map((chapter) =>
+          chapter._id.toString() === currentChapterId
+            ? { ...chapter, isCompleted: newCompletionStatus }
+            : chapter
+        )
+      );
+
+      setIsChapterCompleted(newCompletionStatus);
+    } catch (error) {
+      console.error('Error toggling chapter completion:', error);
+    }
+  };
+
   return (
-    <div className='p-2'>
+    <React.Fragment>
+      <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
-        <CourseHeroContainer name={course.title} />
+        <CourseHeroContainer
+          id={course._id ?? ''}
+          name={course.name ?? ''}
+          isEnrolled={course.isEnrolled}
+        />
       </Section>
       <Section className='md:p-2 p-2'>
         <FlexContainer className='w-full gap-4' itemCenter={false}>
@@ -30,67 +91,56 @@ const Home = ({ course, courseSlug }: any) => {
             direction='col'
           >
             <Text level='h5' className='heading-5'>
-              Sections
+              Chapters
             </Text>
             <FlexContainer justifyCenter={false} className='gap-px'>
-              {course.sections.map(
-                (section: {
-                  _id: string;
-                  title: string;
-                  chapters: Partial<CourseChapterModel>[];
-                }) => {
-                  return (
-                    <Accordion title={section.title} key={section._id}>
-                      {section.chapters.map((chapter) => {
-                        return (
-                          <AccordionLinkItem
-                            key={chapter._id}
-                            label={chapter.title || ''}
-                            href={`${courseSlug}?courseId=${course._id}&sectionId=${section._id}&chapterId=${chapter._id}`}
-                            onClick={() => {
-                              handleChapterClick(chapter.content || '');
-                            }}
-                          />
-                        );
-                      })}
-                    </Accordion>
-                  );
-                }
-              )}
+              {chapters?.map(({ _id, name, content, isCompleted }) => {
+                const chapterId = _id?.toString();
+
+                return (
+                  <ChapterLink
+                    key={chapterId}
+                    href={`${slug}?courseId=${course._id}&chapterId=${chapterId}`}
+                    chapterId={chapterId}
+                    name={name}
+                    content={content}
+                    isCompleted={isCompleted}
+                    currentChapterId={currentChapterId}
+                    handleChapterClick={handleChapterClick}
+                  />
+                );
+              })}
             </FlexContainer>
           </FlexContainer>
           <FlexContainer
             className='border md:w-8/12 w-full p-2 rounded'
             justifyCenter={false}
             itemCenter={false}
+            disabled={!course.isEnrolled}
           >
-            <MDXRenderer mdxSource={courseMeta} />
+            <MDXRenderer
+              mdxSource={courseMeta}
+              actions={[
+                currentChapterId && (
+                  <Button
+                    key='enroll'
+                    variant={isChapterCompleted ? 'SUCCESS' : 'PRIMARY'}
+                    text={
+                      isChapterCompleted ? 'Completed' : 'Mark As Completed'
+                    }
+                    className='w-fit'
+                    onClick={toggleCompletion}
+                  />
+                ),
+              ]}
+            />
           </FlexContainer>
         </FlexContainer>
       </Section>
-    </div>
+    </React.Fragment>
   );
 };
 
-export const getServerSideProps = async ({
-  query,
-}: {
-  query: { courseId: string; courseSlug: string };
-}) => {
-  try {
-    if (!query.courseId) return { notFound: true };
-    const response = await fetch(
-      `${envConfig.BASE_API_URL}/courses/${query.courseId}`
-    );
-    const data = await response.json();
+export const getServerSideProps = getCoursePageProps;
 
-    if (!data.status || !response.ok || !data.data || data.data.length === 0)
-      return { notFound: true };
-
-    return { props: { course: data.data[0], courseSlug: query.courseSlug } };
-  } catch (error) {
-    return { notFound: true };
-  }
-};
-
-export default Home;
+export default CoursePage;

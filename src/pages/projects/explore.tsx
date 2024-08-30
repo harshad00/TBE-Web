@@ -1,16 +1,12 @@
 import React, { Fragment } from 'react';
 import { CardContainerB, LoadingSpinner, SEO } from '@/components';
 import { PageProps } from '@/interfaces';
-import {
-  getPreFetchProps,
-  mapProjectResponseToCard,
-  sendRequest,
-} from '@/utils';
+import { getPreFetchProps, mapProjectResponseToCard } from '@/utils';
 import { useAPIResponseMapper, useApi } from '@/hooks';
 import { routes } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
-  const { response, loading } = useApi('projects', sendRequest, {
+  const { response, loading } = useApi('projects', {
     url: routes.api.projects,
   });
 

@@ -1,4 +1,4 @@
-import { ProjectChapter } from '.';
+import { CourseChapterModel, CourseModel, ProjectChapter } from '.';
 
 export type APIMethodTypes = 'GET' | 'POST' | 'PATCH';
 
@@ -158,6 +158,9 @@ export type DifficultyType = 'Beginner' | 'Intermediate' | 'Advanced';
 export interface CreateUserRequestPayloadProps {
   name: string;
   email: string;
+  image?: string;
+  provider: string;
+  providerAccountId?: string;
 }
 
 export interface CourseEnrollmentRequestProps {
@@ -170,4 +173,13 @@ export interface UpdateUserChapterInCourseRequestProps {
   courseId: string;
   chapterId: string;
   isCompleted: boolean;
+}
+
+export interface ExtendedCourseChapterModel extends CourseChapterModel {
+  isCompleted: boolean; // Add `isCompleted` flag
+}
+
+export interface BaseShikshaCourseResponseProps extends Partial<CourseModel> {
+  isEnrolled?: boolean;
+  chapters?: ExtendedCourseChapterModel[];
 }

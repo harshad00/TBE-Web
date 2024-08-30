@@ -10,7 +10,7 @@ import {
 } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB(res);
+  await connectDB();
 
   switch (req.method) {
     case 'POST':

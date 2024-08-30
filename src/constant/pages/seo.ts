@@ -1,6 +1,6 @@
 import { GetSEOMetaResponseType } from '@/interfaces';
 import { routes } from '../routes';
-import { TBP_PROJECTS, products } from '..';
+import { SHIKSHA_COURSES, TBP_PROJECTS, products } from '..';
 
 const commonMeta = {
   type: 'website',
@@ -59,6 +59,13 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: products.shiksha.slug,
       ...commonMeta,
     },
+    [`${routes.allCourses.logicBuildingForEveryone}`]: {
+      title: `${SHIKSHA_COURSES[0].title} | The Boring Education`,
+      siteName: SHIKSHA_COURSES[0].title,
+      description: SHIKSHA_COURSES[0].content,
+      url: routes.allCourses.logicBuildingForEveryone,
+      ...commonMeta,
+    },
     [`${routes.contactUs}`]: {
       title: 'Contact | The Boring Education',
       siteName: 'The Boring Education',
@@ -84,7 +91,7 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       title: 'Explore Courses | The Boring Education',
       siteName: 'Explore Courses at The Boring Education',
       description: 'Explore Courses at The Boring Education',
-      url: routes.register,
+      url: routes.shikshaExplore,
       ...commonMeta,
     },
   };

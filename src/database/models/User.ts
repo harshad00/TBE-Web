@@ -13,6 +13,16 @@ const UserSchema: Schema<UserModel> = new Schema(
       required: [true, 'email is required'],
       unique: true,
     },
+    image: {
+      type: String,
+    },
+    provider: {
+      type: String,
+      required: [true, 'Provider is required'],
+    },
+    providerAccountId: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

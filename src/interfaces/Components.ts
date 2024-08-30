@@ -13,6 +13,7 @@ export interface LinkProps {
   href: string;
   target?: 'BLANK';
   active?: boolean;
+  scroll?: boolean;
 }
 
 export interface TextProps {
@@ -44,7 +45,7 @@ export interface LinkButtonProps extends LinkProps {
 }
 
 export interface ButtonProps {
-  variant: 'PRIMARY' | 'OUTLINE' | 'GHOST';
+  variant: 'PRIMARY' | 'OUTLINE' | 'GHOST' | 'SUCCESS';
   className?: string;
   text: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -97,6 +98,7 @@ export interface FlexContainerProps {
   wrap?: boolean;
   fullWidth?: boolean;
   id?: string;
+  disabled?: boolean;
 }
 
 export interface TestimonialCardProps {
@@ -269,6 +271,8 @@ export interface ProjectHeroContainerProps {
 
 export interface CourseHeroContainerProps {
   name: string;
+  isEnrolled?: boolean;
+  id: string;
 }
 
 export interface AccordionProps {
@@ -295,4 +299,19 @@ export interface LoginWithGoogleBtnProps {
 export interface AlertProps {
   text: string;
   className?: string;
+}
+
+export interface ChapterLinkProps {
+  href: string;
+  chapterId: string;
+  name: string;
+  content: string;
+  isCompleted: boolean;
+  currentChapterId: string;
+  handleChapterClick: (content: string) => void;
+}
+
+export interface MDXRendererProps {
+  mdxSource: string;
+  actions?: React.ReactNode[];
 }

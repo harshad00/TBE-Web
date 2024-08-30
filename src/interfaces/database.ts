@@ -2,10 +2,11 @@ import { Document, Schema } from 'mongoose';
 import { DifficultyType, RoadmapsType, SkillsType } from '.';
 
 export interface UserModel {
-  userId: string;
   name: string;
   email: string;
-  username: string;
+  image?: string;
+  provider: string;
+  providerAccountId?: string;
 }
 
 export interface ProjectChapter {
@@ -58,11 +59,10 @@ export interface UserCourseModel {
   userId: typeof Schema.Types.ObjectId;
   courseId: typeof Schema.Types.ObjectId;
   course: CourseModel;
+  chapters: UserCourseChapterModel[];
 }
 
 export interface UserCourseChapterModel {
-  userId: typeof Schema.Types.ObjectId;
-  courseId: typeof Schema.Types.ObjectId;
-  chapterId: typeof Schema.Types.ObjectId;
+  chapterId: string;
   isCompleted?: boolean;
 }

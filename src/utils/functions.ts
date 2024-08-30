@@ -1,11 +1,11 @@
 import { envConfig } from '@/constant';
 import { getUserByEmailFromDB } from '@/database/query/user';
 import {
-  CourseModel,
+  BaseShikshaCourseResponseProps,
   ProjectDocumentModel,
   ProjectPickedPageProps,
+  User,
 } from '@/interfaces';
-import { NextRequest } from 'next/server';
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
@@ -85,6 +85,19 @@ const getSelectedProjectChapterMeta = (
   return selectedChapter?.content ?? '';
 };
 
+const getSelectedCourseChapterMeta = (
+  course: BaseShikshaCourseResponseProps,
+  chapterId: string
+) => {
+  if (!course.chapters) return null;
+
+  const selectedChapter = course?.chapters.find(
+    (chapter) => chapter._id.toString() === chapterId
+  );
+
+  return selectedChapter?.content ?? '';
+};
+
 const checkTheLoggedInUser = async (email: string): Promise<string | null> => {
   try {
     const { data, error } = await getUserByEmailFromDB(email);
@@ -99,43 +112,65 @@ const isAdmin = (adminSecret: string): boolean => {
   return envConfig.ADMIN_SECRET == adminSecret;
 };
 
-const isUserAuthenticated = async (req: NextRequest) => {
+const isUserAuthenticated = async (req: any): Promise<User | null> => {
+  const cookie = req.headers.cookie || req.headers.get('cookie');
+
   try {
     const response = await fetch(
-      `${envConfig.BASE_API_URL}/user/isauthenticated`,
+      `${envConfig.BASE_AUTH_API_URL}/auth/session`,
       {
-        credentials: 'include',
-        cache: 'no-cache',
         headers: {
           'Content-Type': 'application/json',
-          Cookie: req.headers.get('cookie') || '',
+          Cookie: cookie || '',
         },
       }
     );
-    return response.ok;
+
+    const session = await response.json();
+    return session && session.user ? session.user : null;
   } catch (error) {
-    return false;
+    console.error('Error fetching session:', error);
+    return null;
   }
 };
 
-const mapCourseResponseToCard = (coursesData: CourseModel[]) => {
+const isProgramActive = (liveOn: Date) => new Date(liveOn) <= new Date();
+
+const mapCourseResponseToCard = (
+  coursesData: BaseShikshaCourseResponseProps[]
+) => {
   return coursesData?.map(
-    ({ _id, coverImageURL, name, description, liveOn, slug }) => ({
-      id: _id,
-      image: coverImageURL,
-      imageAltText: name,
+    ({
+      _id,
+      coverImageURL,
       name,
-      content: description,
-      href: `/shiksha/${slug}/?courseId=${_id}`,
-      active:
-        new Date(liveOn).getMilliseconds() <=
-        new Date(Date.now()).getMilliseconds(),
-      ctaText:
-        new Date(liveOn).getMilliseconds() <=
-        new Date(Date.now()).getMilliseconds()
-          ? 'Start The Project'
-          : 'Coming Soon',
-    })
+      description,
+      liveOn = new Date(),
+      slug,
+      isEnrolled,
+    }) => {
+      const isActive = isProgramActive(liveOn);
+
+      let ctaText = 'Coming Soon';
+
+      if (isEnrolled) {
+        ctaText = 'Continue Learning';
+      } else if (isActive) {
+        ctaText = 'Start The Project';
+      }
+
+      return {
+        id: _id,
+        image: coverImageURL,
+        title: name,
+        imageAltText: name,
+        content: description,
+        href: `/shiksha/${slug}/?courseId=${_id}`,
+        isEnrolled,
+        active: isActive,
+        ctaText,
+      };
+    }
   );
 };
 
@@ -152,4 +187,5 @@ export {
   isAdmin,
   mapCourseResponseToCard,
   isUserAuthenticated,
+  getSelectedCourseChapterMeta,
 };

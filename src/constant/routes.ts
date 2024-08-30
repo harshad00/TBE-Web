@@ -12,6 +12,10 @@ const routes = {
   },
   shiksha: '/shiksha',
   shikshaExplore: '/shiksha/explore',
+  allCourses: {
+    logicBuildingForEveryone: '/shiksha/logic-building-for-everyone',
+    basicsOfProgrammingWithJS: '/shiksha/basics-of-programming-with-js',
+  },
   workshops: '/workshops',
   os: '/os',
   contactUs: '/contact',
@@ -25,8 +29,17 @@ const routes = {
     base: '/api/v1',
     projects: '/projects',
     project: (project: string) => `/projects/${project}`,
-    courses: '/course',
-    course: (course: string) => `/course/${course}`,
+    shiksha: '/shiksha',
+    enrollCourse: '/user/shiksha/enroll',
+    markCourseChapterAsCompleted: '/user/shiksha/course',
+    courseById: (course: string) => `/shiksha/${course}`,
+    courseByIdWithUser: (course: string, userId?: string) => {
+      let url = `/shiksha/${course}`;
+      if (userId) {
+        url += `?userId=${userId}`;
+      }
+      return url;
+    },
   },
 };
 

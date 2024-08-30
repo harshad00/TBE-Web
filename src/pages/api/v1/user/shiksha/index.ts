@@ -6,7 +6,7 @@ import { getAllEnrolledCoursesFromDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    await connectDB(res);
+    await connectDB();
 
     const { method, query } = req;
     const { userId } = query;

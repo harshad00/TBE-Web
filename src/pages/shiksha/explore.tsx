@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { PageProps } from '@/interfaces';
+import { PageProps, PrimaryCardWithCTAProps } from '@/interfaces';
 import {
   SEO,
   CardContainerB,
@@ -9,43 +9,40 @@ import {
   LinkButton,
 } from '@/components';
 import { useAPIResponseMapper, useApi } from '@/hooks';
-import {
-  getPreFetchProps,
-  mapCourseResponseToCard,
-  sendRequest,
-} from '@/utils';
+import { getPreFetchProps, mapCourseResponseToCard } from '@/utils';
 import { routes } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
-  const { response, loading } = useApi('courses', sendRequest, {
-    url: routes.api.courses,
+  const { response, loading } = useApi('shiksha', {
+    url: routes.api.shiksha,
   });
 
-  const courses = useAPIResponseMapper(response?.data, mapCourseResponseToCard);
+  const courses: PrimaryCardWithCTAProps[] = useAPIResponseMapper(
+    response?.data,
+    mapCourseResponseToCard
+  );
 
   if (loading) {
     return <LoadingSpinner />;
   }
 
-  if (!courses || courses.length === 0) {
-    return (
-      <FlexContainer
-        justifyCenter={true}
-        className='w-screen h-screen item-center justify-center flex-col'
-      >
-        <Text level='h1' className='heading-4 mb-3'>
-          Oops! No Courses found.
-        </Text>
-        <LinkButton
-          buttonProps={{
-            variant: 'PRIMARY',
-            text: 'Go Back To Home',
-          }}
-          href={routes.shiksha}
-        ></LinkButton>
-      </FlexContainer>
-    );
-  }
+  const noCourseFoundUI = (!courses || courses.length === 0) && (
+    <FlexContainer
+      justifyCenter={true}
+      className='w-screen h-screen item-center justify-center flex-col'
+    >
+      <Text level='h1' className='heading-4 mb-3'>
+        Oops! No Courses found.
+      </Text>
+      <LinkButton
+        buttonProps={{
+          variant: 'PRIMARY',
+          text: 'Go Back To Home',
+        }}
+        href={routes.shiksha}
+      ></LinkButton>
+    </FlexContainer>
+  );
 
   return (
     <Fragment>
@@ -58,6 +55,7 @@ const Home = ({ seoMeta }: PageProps) => {
         subtext='Pick A Real Life Project and Start Building'
         sectionClassName='px-2 py-4'
       />
+      {noCourseFoundUI}
     </Fragment>
   );
 };

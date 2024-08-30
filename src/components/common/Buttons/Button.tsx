@@ -19,6 +19,10 @@ const Button = ({
   else if (variant === 'GHOST')
     baseClasses =
       'button bg-accent px-2 py-1 text-greyDark hover:bg-transparent hover:text-black border-2 hover:border-black transition-all';
+  // Add a variant for Success
+  else if (variant === 'SUCCESS')
+    baseClasses =
+      'button bg-success px-2 py-1 text-white hover:bg-transparent hover:text-success border-2 border-success hover:scale-105 transition-all';
   if (!active) baseClasses = 'button bg-greyDark text-contentLight px-2 py-1';
 
   const loadingContainer = isLoading && <LoadingSpinner />;

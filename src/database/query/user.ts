@@ -32,12 +32,11 @@ const getUserByEmailFromDB = async (
   }
 };
 
-const createUserInDB = async ({
-  name,
-  email,
-}: CreateUserRequestPayloadProps): Promise<DatabaseQueryResponseType> => {
+const createUserInDB = async (
+  userPayload: CreateUserRequestPayloadProps
+): Promise<DatabaseQueryResponseType> => {
   try {
-    const user = await User.create({ email, name });
+    const user = await User.create(userPayload);
     return { data: user };
   } catch (error) {
     return { error: 'Failed while creating user' };

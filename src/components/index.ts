@@ -1,5 +1,7 @@
 import dynamic from 'next/dynamic';
-
+const CourseHeroContainer = dynamic(
+  () => import('@/components/containers/Page/Course/CourseHeroContainer')
+);
 const Navbar = dynamic(() => import('@/components/layout/Navbar'));
 const LinkText = dynamic(() => import('@/components/common/Typography/Link'));
 const Text = dynamic(() => import('@/components/common/Typography/Text'));
@@ -8,7 +10,6 @@ const ImageContainer = dynamic(
 );
 const Logo = dynamic(() => import('@/components/common/Images/Logo'));
 const Button = dynamic(() => import('@/components/common/Buttons/Button'));
-
 const LinkButton = dynamic(
   () => import('@/components/common/Buttons/LinkButton')
 );
@@ -107,6 +108,9 @@ const MentorshipPlans = dynamic(
   () => import('./containers/Page/Landing/MentorshipPlans')
 );
 const Community = dynamic(() => import('./containers/Page/Landing/Community'));
+const ChapterLink = dynamic(
+  () => import('@/components/common/Learning/ChapterLink')
+);
 
 export {
   Navbar,
@@ -158,4 +162,6 @@ export {
   Alert,
   Community,
   MentorshipPlans,
+  CourseHeroContainer,
+  ChapterLink,
 };

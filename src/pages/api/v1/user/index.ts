@@ -10,7 +10,7 @@ import {
 import { CreateUserRequestPayloadProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB(res);
+  await connectDB();
 
   const { method, query } = req;
   const { email, userId } = query;
@@ -86,9 +86,8 @@ const handleGetUser = async (
 
 const handleCreateUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { name, email } = JSON.parse(
-      req.body
-    ) as CreateUserRequestPayloadProps;
+    const { name, email, provider, image, providerAccountId } =
+      req.body as CreateUserRequestPayloadProps;
 
     if (!email || !name) {
       return res.status(apiStatusCodes.BAD_REQUEST).json(
@@ -103,7 +102,13 @@ const handleCreateUser = async (req: NextApiRequest, res: NextApiResponse) => {
     const { data } = await getUserByEmailFromDB(email);
 
     if (!data) {
-      const { data, error } = await createUserInDB({ name, email });
+      const { data, error } = await createUserInDB({
+        name,
+        email,
+        provider,
+        image,
+        providerAccountId,
+      });
 
       if (error) {
         return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
@@ -128,6 +133,7 @@ const handleCreateUser = async (req: NextApiRequest, res: NextApiResponse) => {
       );
     }
   } catch (error) {
+    console.log(error);
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,

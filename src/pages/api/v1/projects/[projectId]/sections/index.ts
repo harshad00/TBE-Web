@@ -16,7 +16,7 @@ import {
 import { v4 } from 'uuid';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await connectDB(res);
+  await connectDB();
 
   const { method, query } = req;
   const projectId = query.projectId as string;
