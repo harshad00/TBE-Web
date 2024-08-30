@@ -116,15 +116,12 @@ const isUserAuthenticated = async (req: any): Promise<User | null> => {
   const cookie = req.headers.cookie || req.headers.get('cookie');
 
   try {
-    const response = await fetch(
-      `${envConfig.BASE_AUTH_API_URL}/auth/session`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Cookie: cookie || '',
-        },
-      }
-    );
+    const response = await fetch(`${envConfig.BASE_AUTH_API_URL}/session`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: cookie || '',
+      },
+    });
 
     const session = await response.json();
     return session && session.user ? session.user : null;

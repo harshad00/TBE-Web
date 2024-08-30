@@ -52,7 +52,7 @@ const Home = ({ seoMeta }: PageProps) => {
         focusText='Courses'
         cards={courses}
         borderColour={2}
-        subtext='Pick A Real Life Project and Start Building'
+        subtext='Pick A Course and Start Learning'
         sectionClassName='px-2 py-4'
       />
       {noCourseFoundUI}
