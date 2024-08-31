@@ -162,6 +162,8 @@ export interface PopoverContainerProps {
   label: string;
   children: ReactNode;
   panelClasses?: string;
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
 export interface ImageLinkProps {

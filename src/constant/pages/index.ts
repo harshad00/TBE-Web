@@ -26,9 +26,9 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
   links: [
     {
       id: v4(),
-      name: 'Free Mentorship',
-      description: 'Get Free Tech Consultation',
-      href: LINKS.freeTechConsultation,
+      name: 'Tech Mentorship',
+      description: 'Get Book Tech Consultation',
+      href: LINKS.bookTechConsultation,
       target: 'BLANK',
     },
     {
@@ -166,8 +166,8 @@ const USP: PrimaryCardProps[] = [
   // },
   {
     id: v4(),
-    title: `Free Mentorship Sessions`,
-    content: `We Provide Free Mentorship Sessions. Take Tech Guidance or Get Your Resume Reviewed.`,
+    title: `Tech Mentorship Sessions`,
+    content: `We Provide Tech Mentorship Sessions. Take Tech Guidance or Get Your Resume Reviewed.`,
     image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
     imageAltText: `doubt session`,
   },
@@ -184,14 +184,14 @@ const TBP_FEATURES: PrimaryCardProps[] = [
   {
     id: v4(),
     title: `Free Code Review`,
-    content: `Complete the Project and We’ll review your code in 1:1 Sessions.`,
+    content: `Complete the Project and We'll review your code in 1:1 Sessions.`,
     image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
     imageAltText: `peer learning`,
   },
   {
     id: v4(),
-    title: `Book Free Mentorship`,
-    content: `Discuss Every issue you’re facing in 1:1 Mentorship Sessions.`,
+    title: `Book Tech Mentorship`,
+    content: `Discuss Every issue you're facing in 1:1 Mentorship Sessions.`,
     image: `${STATIC_FILE_PATH.svg}/workshops.svg`,
     imageAltText: `doubt session`,
   },

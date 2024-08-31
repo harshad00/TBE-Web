@@ -25,11 +25,11 @@ const CanYouBeAProgrammer = () => {
               Book your session and discuss if programming is for you.
             </Text>
             <LinkButton
-              href={LINKS.freeTechConsultation}
+              href={LINKS.bookTechConsultation}
               className='pt-3'
               buttonProps={{
                 variant: 'PRIMARY',
-                text: 'Book Free Session',
+                text: 'Book Tech Session',
               }}
               target='BLANK'
             />

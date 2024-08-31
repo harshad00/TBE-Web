@@ -50,11 +50,11 @@ const Home = ({ seoMeta }: PageProps) => {
         }
         secondaryButton={
           <LinkButton
-            href={LINKS.freeTechConsultation}
+            href={LINKS.bookTechConsultation}
             className='w-full sm:w-fit'
             buttonProps={{
               variant: 'OUTLINE',
-              text: 'Book Free Session',
+              text: 'Book Tech Session',
               className: '',
             }}
             target='BLANK'

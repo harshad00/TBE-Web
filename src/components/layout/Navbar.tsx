@@ -22,6 +22,12 @@ const Navbar = () => {
   const path = usePathname();
   const session = useSession();
 
+  const [openPopover, setOpenPopover] = useState<string | null>(null);
+
+  const handleSetOpen = (popoverName: string) => {
+    setOpenPopover(openPopover === popoverName ? null : popoverName);
+  };
+
   return (
     <header>
       <nav className='flex items-center justify-between p-4 lg:px-8'>
@@ -39,10 +45,20 @@ const Navbar = () => {
           </button>
         </div>
         <div className='hidden items-center lg:flex lg:gap-x-4'>
-          <PopoverContainer label='Products'>
+          <PopoverContainer
+            label='Products'
+            isOpen={openPopover === 'products'}
+            onToggle={() => handleSetOpen('products')}
+          >
             <NavbarDropdownContainer links={TOP_NAVIGATION.products} />
           </PopoverContainer>
-          <PopoverContainer label='Links' panelClasses='-left-6'>
+
+          <PopoverContainer
+            label='Links'
+            panelClasses='-left-6'
+            isOpen={openPopover === 'links'}
+            onToggle={() => handleSetOpen('links')}
+          >
             <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
           </PopoverContainer>
           {!path?.startsWith(routes.register) && (

@@ -45,7 +45,7 @@ const products: ProductDataProps = {
 
 // Global links
 const LINKS = {
-  freeTechConsultation: 'https://topmate.io/imsks',
+  bookTechConsultation: 'https://topmate.io/imsks',
   whatsappCommunity: 'https://chat.whatsapp.com/EeB7LrPRg2p3RyMOicyIAC',
   instagram: 'https://www.instagram.com/theboringeducation',
   youtube: 'https://www.youtube.com/@TheBoringEducation',
@@ -107,14 +107,14 @@ const apiStatusCodes = {
 const mentorshipPlans: { title: string; description: string; link: string }[] =
   [
     {
-      title: 'Free Tech guidance',
+      title: 'Book Tech Guidance',
       description: 'Get mentored by working professionals',
       link: '',
     },
     {
-      title: 'Free Resume Review',
+      title: 'Book Resume Review',
       description:
-        'Get a free resume review to enhance your job application and stand out to employers.',
+        'Get a resume review to enhance your job application and stand out to employers.',
       link: '',
     },
     {
