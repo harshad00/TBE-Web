@@ -27,6 +27,7 @@ const CoursePage = ({
     chapters.find((chapter) => chapter._id.toString() === currentChapterId)
       ?.isCompleted
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const currentChapter = chapters.find(
@@ -45,6 +46,7 @@ const CoursePage = ({
   };
 
   const toggleCompletion = async () => {
+    setIsLoading(true);
     try {
       const newCompletionStatus = !isChapterCompleted;
 
@@ -70,6 +72,8 @@ const CoursePage = ({
       setIsChapterCompleted(newCompletionStatus);
     } catch (error) {
       console.error('Error toggling chapter completion:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -124,12 +128,23 @@ const CoursePage = ({
                 currentChapterId && (
                   <Button
                     key='enroll'
-                    variant={isChapterCompleted ? 'SUCCESS' : 'PRIMARY'}
+                    variant={
+                      isChapterCompleted
+                        ? 'SUCCESS'
+                        : isLoading
+                        ? 'SECONDARY'
+                        : 'PRIMARY'
+                    }
                     text={
-                      isChapterCompleted ? 'Completed' : 'Mark As Completed'
+                      isLoading
+                        ? 'Marking...'
+                        : isChapterCompleted
+                        ? 'Completed'
+                        : 'Mark As Completed'
                     }
                     className='w-fit'
                     onClick={toggleCompletion}
+                    isLoading={isLoading}
                   />
                 ),
               ]}
