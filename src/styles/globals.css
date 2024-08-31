@@ -99,7 +99,7 @@
   }
 
   .button {
-    @apply w-full rounded-1 text-button-text font-bold text-contentLight;
+    @apply rounded-1 text-button-text font-bold text-contentLight;
   }
 
   .disabled {

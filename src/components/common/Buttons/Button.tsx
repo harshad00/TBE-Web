@@ -25,16 +25,23 @@ const Button = ({
       'button bg-success px-2 py-1 text-white hover:bg-transparent hover:text-success border-2 border-success hover:scale-105 transition-all';
   if (!active) baseClasses = 'button bg-greyDark text-contentLight px-2 py-1';
 
-  const loadingContainer = isLoading && <LoadingSpinner />;
+  const loadingContainer = isLoading && (
+    <LoadingSpinner
+      height={3}
+      width={3}
+      className='bg-secondary'
+      borderColour='white'
+    />
+  );
 
   return (
     <button
-      className={`${baseClasses} ${className}`}
+      className={`${baseClasses} ${className} flex items-center justify-center gap-2`}
       disabled={!active}
       onClick={onClick}
     >
-      {text}
       {loadingContainer}
+      {text}
     </button>
   );
 };

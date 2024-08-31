@@ -6,7 +6,8 @@ import {
   Button,
 } from '@/components';
 import { routes } from '@/constant';
-import { useApi, useUser } from '@/hooks';
+import { useUser } from '@/hooks';
+import useApi from '@/hooks/useApi';
 import { CourseHeroContainerProps } from '@/interfaces';
 
 const CourseHeroContainer = ({
@@ -16,7 +17,7 @@ const CourseHeroContainer = ({
 }: CourseHeroContainerProps) => {
   const { user, isAuth } = useUser();
 
-  const { makeRequest } = useApi(`shiksha/${name}`);
+  const { makeRequest, loading } = useApi('shiksha/enrollCourse');
 
   const enrollCourse = () => {
     makeRequest({
@@ -26,9 +27,14 @@ const CourseHeroContainer = ({
         userId: user?.id,
         courseId: id,
       },
-    }).then(() => {
-      window.location.reload();
-    });
+    })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        // TODO: Handle error
+        console.error('Failed to enroll', error);
+      });
   };
 
   let headerActionButton;
@@ -48,6 +54,12 @@ const CourseHeroContainer = ({
           onClick={enrollCourse}
         />
       </FlexContainer>
+    );
+  }
+
+  if (loading) {
+    headerActionButton = (
+      <Button variant='PRIMARY' text='Enrolling...' isLoading={true} />
     );
   }
 
@@ -71,7 +83,7 @@ const CourseHeroContainer = ({
           itemCenter={false}
           className='justify-start items-start gap-3'
         >
-          <PageHeroMetaContainer subtitle="YOU'RE LEARING" title={name} />
+          <PageHeroMetaContainer subtitle="YOU'RE LEARNING" title={name} />
         </FlexContainer>
 
         {headerActionButton}

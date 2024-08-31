@@ -192,6 +192,7 @@ export interface LoadingSpinnerProps {
   width?: number;
   marginClass?: string;
   className?: string;
+  borderColour?: string;
 }
 
 export interface NavbarDropdownContainerProps {
