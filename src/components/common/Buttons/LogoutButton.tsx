@@ -9,7 +9,7 @@ const LogoutButton = () => {
     <Button
       variant='GHOST'
       text='Log out'
-      className='w-fit'
+      className='w-full'
       onClick={() => {
         signOut();
       }}

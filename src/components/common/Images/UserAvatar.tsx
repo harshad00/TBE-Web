@@ -1,8 +1,8 @@
 import React from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
-import { signOut, useSession } from 'next-auth/react';
-import { Button, Image } from '@/components';
+import { useSession } from 'next-auth/react';
+import { Image, LogoutButton } from '@/components';
 
 const UserAvatar = () => {
   const session = useSession();
@@ -39,13 +39,7 @@ const UserAvatar = () => {
                 className={`absolute z-10 mt-2 flex w-screen max-w-max -translate-x-1/2 `}
               >
                 <div className='overflow-hidden rounded-2 bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 p-1 min-w-[200px]'>
-                  <Button
-                    variant='GHOST'
-                    text='Logout'
-                    onClick={() => {
-                      signOut();
-                    }}
-                  />
+                  <LogoutButton />
                 </div>
               </Popover.Panel>
             </Transition>
