@@ -1,7 +1,6 @@
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { LINKS, TOP_NAVIGATION, routes } from '@/constant';
 import {
   FlexContainer,
   Link,
@@ -16,6 +15,7 @@ import {
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { LINKS, routes, TOP_NAVIGATION } from '@/constant';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -26,6 +26,10 @@ const Navbar = () => {
 
   const handleSetOpen = (popoverName: string) => {
     setOpenPopover(openPopover === popoverName ? null : popoverName);
+  };
+
+  const handleCloseMobileMenu = () => {
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -115,10 +119,12 @@ const Navbar = () => {
                 <MobileNavbarLinksContainer
                   title='Our Products'
                   links={TOP_NAVIGATION.products}
+                  onLinkClick={handleCloseMobileMenu}
                 />
                 <MobileNavbarLinksContainer
                   title='Links'
                   links={TOP_NAVIGATION.links}
+                  onLinkClick={handleCloseMobileMenu}
                 />
 
                 <FlexContainer

@@ -8,6 +8,7 @@ const LinkText = ({
   target,
   active = true,
   scroll = false,
+  onClick,
 }: LinkProps) => {
   return (
     <Link
@@ -15,6 +16,7 @@ const LinkText = ({
       href={href}
       target={target}
       scroll={scroll}
+      onClick={onClick}
     >
       {children}
     </Link>

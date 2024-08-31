@@ -14,6 +14,7 @@ export interface LinkProps {
   target?: 'BLANK';
   active?: boolean;
   scroll?: boolean;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 export interface TextProps {
@@ -200,6 +201,7 @@ export interface NavbarDropdownContainerProps {
 export interface MobileNavbarLinksContainerProps {
   title: string;
   links: TopNavbarLinkProps[];
+  onLinkClick: () => void;
 }
 
 export interface PrimaryCardWithCTAProps {

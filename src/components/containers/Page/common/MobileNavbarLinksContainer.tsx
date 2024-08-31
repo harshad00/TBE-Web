@@ -4,6 +4,7 @@ import { MobileNavbarLinksContainerProps } from '@/interfaces';
 const MobileNavbarLinksContainer = ({
   title,
   links,
+  onLinkClick,
 }: MobileNavbarLinksContainerProps) => {
   return (
     <FlexContainer
@@ -21,14 +22,16 @@ const MobileNavbarLinksContainer = ({
         direction='col'
         className='gap-1'
       >
-        {links.map(({ name, href, target }) => (
+        {links.map((link, index) => (
           <Link
-            key={name}
-            href={href}
-            target={target}
-            className='strong-text -mx-3 block px-3 hover:text-primary'
+            key={index}
+            href={link.href}
+            onClick={() => {
+              onLinkClick();
+            }}
+            className='text-black'
           >
-            {name}
+            {link.name}
           </Link>
         ))}
       </FlexContainer>
