@@ -25,6 +25,7 @@ const ChapterLink = ({
     <Link
       href={href}
       key={chapterId}
+      onClick={() => handleChapterClick(content)}
       className={`flex items-center gap-1 w-full p-2 rounded text-left pre-title hover:bg-gray-200 hover:text-contentLight ${additionalClasses}`}
     >
       {isCompleted ? (
@@ -32,7 +33,7 @@ const ChapterLink = ({
       ) : (
         <FaRegCircle size={24} className={iconColor} />
       )}
-      <div onClick={() => handleChapterClick(content)}>{name}</div>
+      {name}
     </Link>
   );
 };
