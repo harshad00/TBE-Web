@@ -60,7 +60,7 @@ const PRODUCTS: PrimaryCardWithCTAProps[] = [
     content: products.projects.description,
     href: products.projects.slug,
     active: true,
-    ctaText: 'Explore Projects',
+    ctaText: 'Explore Free Projects',
   },
   {
     id: 'workshops',
