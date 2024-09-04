@@ -301,11 +301,6 @@ export interface LoginWithGoogleBtnProps {
   text?: string;
 }
 
-export interface AlertProps {
-  text: string;
-  className?: string;
-}
-
 export interface ChapterLinkProps {
   href: string;
   chapterId: string;
@@ -319,4 +314,10 @@ export interface ChapterLinkProps {
 export interface MDXRendererProps {
   mdxSource: string;
   actions?: React.ReactNode[];
+}
+
+export interface AlertProps {
+  message: string;
+  type: 'SUCCESS' | 'ERROR' | 'INFO';
+  className?: string;
 }

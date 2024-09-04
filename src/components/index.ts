@@ -103,7 +103,7 @@ const LoginWithGoogleButton = dynamic(
   () => import('./common/Buttons/LoginWithGoogleButton')
 );
 const LogoutButton = dynamic(() => import('./common/Buttons/LogoutButton'));
-const Alert = dynamic(() => import('./containers/Alerts/Alert'));
+const Alert = dynamic(() => import('./common/Alert'));
 const MentorshipPlans = dynamic(
   () => import('./containers/Page/Landing/MentorshipPlans')
 );

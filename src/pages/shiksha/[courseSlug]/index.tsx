@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Button,
   ChapterLink,
   CourseHeroContainer,
@@ -81,6 +82,11 @@ const CoursePage = ({
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
+        <Alert
+          message='This Course will require you to write Code. Better open it on Laptop'
+          type='INFO'
+          className='my-2'
+        />
         <CourseHeroContainer
           id={course._id ?? ''}
           name={course.name ?? ''}
@@ -90,7 +96,7 @@ const CoursePage = ({
       <Section className='md:p-2 p-2'>
         <FlexContainer className='w-full gap-4' itemCenter={false}>
           <FlexContainer
-            className='border md:w-3/12 w-full p-2 gap-1 rounded self-baseline max-h-[80vh] overflow-y-auto sticky top-4 bg-white'
+            className='border md:w-3/12 w-full p-2 gap-1 rounded self-baseline max-h-[80vh] overflow-y-auto md:sticky top-4 bg-white'
             itemCenter={false}
           >
             <Text level='h5' className='heading-5'>
