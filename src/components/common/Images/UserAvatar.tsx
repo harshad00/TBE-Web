@@ -18,12 +18,12 @@ const UserAvatar = () => {
             <Popover.Button
               className={`
                 ${open ? 'text-white' : 'text-white/90'}
-                outline-none p-0`}
+                outline-none p-0 w-full`}
             >
               <Image
                 src={session.data.user?.image || ''}
                 alt={session.data.user?.name || ''}
-                className='w-full h-full rounded-[50%] '
+                className='rounded-[50%] '
               />
             </Popover.Button>
             <Transition
@@ -38,7 +38,7 @@ const UserAvatar = () => {
               <Popover.Panel
                 className={`absolute z-10 mt-2 flex w-screen max-w-max -translate-x-1/2 `}
               >
-                <div className='overflow-hidden rounded-2 bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 p-1 min-w-[200px]'>
+                <div className='overflow-hidden rounded-2 bg-white text-sm shadow-lg ring-1 ring-gray-900/5 min-w-[200px]'>
                   <LogoutButton />
                 </div>
               </Popover.Panel>

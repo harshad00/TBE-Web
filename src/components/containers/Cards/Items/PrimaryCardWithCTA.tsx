@@ -38,7 +38,7 @@ const PrimaryCardWithCTA = ({
             variant: 'PRIMARY',
             text: active && ctaText ? ctaText : 'Coming soon',
             active,
-            className: `${!active && 'bg-secondary'}`,
+            className: `${!active && 'bg-secondary'} w-full`,
           }}
           target={target}
           active={active}
