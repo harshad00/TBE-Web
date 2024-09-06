@@ -12,8 +12,8 @@ import {
 } from '@/components';
 import { CoursePageProps } from '@/interfaces';
 import { getCoursePageProps } from '@/utils';
-import { useApi, useUser } from '@/hooks';
-import { routes } from '@/constant';
+import { useApi, useMediaQuery, useUser } from '@/hooks';
+import { routes, SCREEN_BREAKPOINTS } from '@/constant';
 
 const CoursePage = ({
   course,
@@ -29,6 +29,7 @@ const CoursePage = ({
       ?.isCompleted
   );
   const [isLoading, setIsLoading] = useState(false);
+  const isSmallScreen = useMediaQuery(SCREEN_BREAKPOINTS.SM);
 
   useEffect(() => {
     const currentChapter = chapters.find(
@@ -78,15 +79,19 @@ const CoursePage = ({
     }
   };
 
+  const alertContainer = isSmallScreen && (
+    <Alert
+      message='This Course will require you to write Code. Better open it on Laptop'
+      type='INFO'
+      className='my-2'
+    />
+  );
+
   return (
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
-        <Alert
-          message='This Course will require you to write Code. Better open it on Laptop'
-          type='INFO'
-          className='my-2'
-        />
+        {alertContainer}
         <CourseHeroContainer
           id={course._id ?? ''}
           name={course.name ?? ''}

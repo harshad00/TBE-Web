@@ -128,6 +128,12 @@ const mentorshipPlans: { title: string; description: string; link: string }[] =
 const IN_DEV_PAGES = ['/projects'];
 const projectGroupWhatsapp = 'https://chat.whatsapp.com/D1ko12SykD1LfvJwmNQ48A';
 
+const SCREEN_BREAKPOINTS = {
+  SM: '(max-width: 800px)',
+  MD: '(max-width: 1024px)',
+  LG: '(min-width: 1025px)',
+};
+
 export {
   imageMeta,
   products,
@@ -141,4 +147,5 @@ export {
   IN_DEV_PAGES,
   projectGroupWhatsapp,
   mentorshipPlans,
+  SCREEN_BREAKPOINTS,
 };
