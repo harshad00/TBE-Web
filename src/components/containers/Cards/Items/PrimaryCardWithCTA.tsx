@@ -11,6 +11,7 @@ const PrimaryCardWithCTA = ({
   ctaText,
   borderColour = 4,
   target,
+  luanchingOn,
 }: PrimaryCardWithCTAProps) => {
   const border = `border-borderColor${borderColour}`;
 
@@ -31,6 +32,11 @@ const PrimaryCardWithCTA = ({
         <Text level='p' className='pre-title mt-1 text-grey'>
           {content}
         </Text>
+        {luanchingOn && (
+          <Text level='p' className='pre-title mt-1 text-primary'>
+            {luanchingOn}
+          </Text>
+        )}
         <LinkButton
           href={href}
           className='mt-3 block'
@@ -38,7 +44,7 @@ const PrimaryCardWithCTA = ({
             variant: 'PRIMARY',
             text: active && ctaText ? ctaText : 'Coming soon',
             active,
-            className: `${!active && 'bg-secondary'}`,
+            className: `${!active && 'bg-secondary'} w-full`,
           }}
           target={target}
           active={active}

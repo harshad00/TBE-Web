@@ -21,7 +21,7 @@ const Home = ({ seoMeta }: PageProps) => {
             buttonProps={{
               variant: 'PRIMARY',
               text: 'Explore Projects',
-              className: '',
+              className: 'w-full',
             }}
           />
         }
