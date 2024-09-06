@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+const ProgressBar = dynamic(() => import('@/components/common/ProgressBar'));
 const CourseHeroContainer = dynamic(
   () => import('@/components/containers/Page/Course/CourseHeroContainer')
 );
@@ -164,4 +165,5 @@ export {
   MentorshipPlans,
   CourseHeroContainer,
   ChapterLink,
+  ProgressBar,
 };

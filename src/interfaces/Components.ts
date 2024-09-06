@@ -322,3 +322,8 @@ export interface AlertProps {
   type: 'SUCCESS' | 'ERROR' | 'INFO';
   className?: string;
 }
+
+export interface ProgressBarProps {
+  totalChapters: number;
+  completedChapters: number;
+}
