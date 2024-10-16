@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Button,
   ChapterLink,
   CourseHeroContainer,
   FlexContainer,
   MDXRenderer,
+  ProgressBar,
   Section,
   SEO,
   Text,
 } from '@/components';
 import { CoursePageProps } from '@/interfaces';
 import { getCoursePageProps } from '@/utils';
-import { useApi, useUser } from '@/hooks';
-import { routes } from '@/constant';
+import { useApi, useMediaQuery, useUser } from '@/hooks';
+import { routes, SCREEN_BREAKPOINTS } from '@/constant';
 
 const CoursePage = ({
   course,
@@ -28,6 +30,13 @@ const CoursePage = ({
       ?.isCompleted
   );
   const [isLoading, setIsLoading] = useState(false);
+  const isSmallScreen = useMediaQuery(SCREEN_BREAKPOINTS.SM);
+
+  // Calculate the total chapters and completed chapters
+  const totalChapters = chapters.length;
+  const completedChapters = chapters.filter(
+    (chapter) => chapter.isCompleted
+  ).length;
 
   useEffect(() => {
     const currentChapter = chapters.find(
@@ -77,10 +86,19 @@ const CoursePage = ({
     }
   };
 
+  const alertContainer = isSmallScreen && (
+    <Alert
+      message='This Course will require you to write Code. Better open it on Laptop'
+      type='INFO'
+      className='my-2'
+    />
+  );
+
   return (
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
+        {alertContainer}
         <CourseHeroContainer
           id={course._id ?? ''}
           name={course.name ?? ''}
@@ -89,14 +107,22 @@ const CoursePage = ({
       </Section>
       <Section className='md:p-2 p-2'>
         <FlexContainer className='w-full gap-4' itemCenter={false}>
+          {/* Left Sidebar (Chapters) */}
           <FlexContainer
-            className='border md:w-3/12 w-full p-2 gap-1 rounded self-baseline max-h-[80vh] overflow-y-auto sticky top-4 bg-white'
+            className='border md:w-3/12 w-full p-2 gap-1 rounded self-baseline max-h-[80vh] overflow-y-auto md:sticky top-4 bg-white'
             itemCenter={false}
           >
             <Text level='h5' className='heading-5'>
               Chapters
             </Text>
-            <FlexContainer justifyCenter={false} className='gap-px'>
+
+            {/* ProgressBar */}
+            <ProgressBar
+              totalChapters={totalChapters}
+              completedChapters={completedChapters}
+            />
+
+            <FlexContainer justifyCenter={false} className='gap-px mt-4'>
               {chapters?.map(({ _id, name, content, isCompleted }) => {
                 const chapterId = _id?.toString();
 
@@ -116,6 +142,7 @@ const CoursePage = ({
             </FlexContainer>
           </FlexContainer>
 
+          {/* Main Content Area */}
           <FlexContainer
             className='border md:w-8/12 w-full p-2 rounded'
             justifyCenter={false}

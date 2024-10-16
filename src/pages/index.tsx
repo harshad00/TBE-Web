@@ -44,7 +44,7 @@ const Home = ({ seoMeta }: PageProps) => {
             buttonProps={{
               variant: 'PRIMARY',
               text: 'Get Started',
-              className: '',
+              className: 'w-full',
             }}
           />
         }
@@ -55,7 +55,7 @@ const Home = ({ seoMeta }: PageProps) => {
             buttonProps={{
               variant: 'OUTLINE',
               text: 'Book Tech Session',
-              className: '',
+              className: 'w-full',
             }}
             target='BLANK'
           />

@@ -1,56 +1,89 @@
-# Day 21: Calculate Shopping Cart Amount
+# 15: Error Handling
 
-[https://www.youtube.com/embed/0Cp9k5ADc80?si=3My62tvuSMMLnEZu](https://www.youtube.com/embed/0Cp9k5ADc80?si=3My62tvuSMMLnEZu)
+[https://www.youtube.com/embed/EXATEA5VHeo?si=4Jo1CtXKeRR46Ah1](https://www.youtube.com/embed/EXATEA5VHeo?si=4Jo1CtXKeRR46Ah1)
 
-### Challenge
+### 1. What is Error Handling?
 
-Can you calculate the total amount of a shopping cart based on item prices and quantities? This challenge will help you practice arithmetic operations and working with arrays of objects.
+Error handling is the process of anticipating, detecting, and resolving errors in code. It helps maintain control of a program’s flow even when something goes wrong, ensuring a smooth user experience.
 
-### Explanation
+### 2. Types of Errors in JavaScript
 
-In this challenge, you'll write a program to compute the total amount for a shopping cart. Each item in the cart has a price and quantity. You'll sum up the cost of each item to get the total amount.
+- **Syntax Errors**: Mistakes in the code's structure.
+- **Runtime Errors**: Errors that occur during execution, like trying to access a property of `undefined`.
+- **Logical Errors**: Code runs but produces incorrect results.
 
-**Input -**
+### 3. `try...catch` Statement
 
-- `cart` (an array of objects, where each object contains `price` (a number) and `quantity` (a number))
-
-**Output -** The total amount of the shopping cart.
+- Used to handle runtime errors in JavaScript.
+- **`try` block**: Contains the code that might throw an error.
+- **`catch` block**: Executes if an error occurs.
 
 **Example:**
 
-- Input: `cart = [{ price: 100, quantity: 2 }, { price: 200, quantity: 1 }, { price: 50, quantity: 4 }]`
-- Output: `500`
-- Input: `cart = [{ price: 30, quantity: 3 }, { price: 15, quantity: 2 }]`
-- Output: `105`
+```jsx
+try {
+  let result = someFunction(); // If this function doesn't exist, an error will be thrown.
+} catch (error) {
+  console.log('An error occurred: ' + error.message);
+}
+```
 
-### Assignments
+### 4. `finally` Block
 
-Test your skills with these shopping cart challenges:
+- The `finally` block executes whether or not an error was thrown in the `try` block.
+- It's useful for cleanup tasks, like closing resources.
 
-1. **Calculate Total Bill:**
-   - **Task:** Write a program to calculate the total bill amount for a list of purchased items. Each item has a price and quantity.
-   - **Input:** `items` (an array of objects with `price` and `quantity` properties)
-   - **Output:** The total bill amount.
-   - **Example:**
-     - Input: `items = [{ price: 200, quantity: 3 }, { price: 50, quantity: 5 }]`
-     - Output: `650`
-     - Input: `items = [{ price: 10, quantity: 7 }, { price: 5, quantity: 4 }]`
-     - Output: `78`
-2. **Calculate Grocery Bill:**
-   - **Task:** Write a program to calculate the total amount for a grocery list. Each grocery item has a unit price and quantity.
-   - **Input:** `groceryList` (an array of objects with `unitPrice` and `quantity` properties)
-   - **Output:** The total amount for the grocery list.
-   - **Example:**
-     - Input: `groceryList = [{ unitPrice: 20, quantity: 2 }, { unitPrice: 15, quantity: 3 }]`
-     - Output: `85`
-     - Input: `groceryList = [{ unitPrice: 7, quantity: 5 }, { unitPrice: 3, quantity: 8 }]`
-     - Output: `59`
-3. **Calculate Total Invoice Amount:**
-   - **Task:** Write a program to compute the total amount for an invoice. Each invoice item has a price and quantity.
-   - **Input:** `invoice` (an array of objects with `price` and `quantity` properties)
-   - **Output:** The total amount of the invoice.
-   - **Example:**
-     - Input: `invoice = [{ price: 50, quantity: 10 }, { price: 25, quantity: 4 }]`
-     - Output: `250`
-     - Input: `invoice = [{ price: 100, quantity: 1 }, { price: 40, quantity: 2 }]`
-     - Output: `180`
+**Example:**
+
+```jsx
+try {
+  let data = fetchData();
+} catch (error) {
+  console.log('An error occurred: ' + error.message);
+} finally {
+  console.log('This will always run.');
+}
+```
+
+### 5. Throwing Errors Manually
+
+You can manually throw errors when certain conditions aren’t met.
+
+**Example:**
+
+```jsx
+function validateAge(age) {
+  if (age < 18) {
+    throw new Error('User must be 18 or older.');
+  }
+  return true;
+}
+
+try {
+  validateAge(16);
+} catch (error) {
+  console.log(error.message); // "User must be 18 or older."
+}
+```
+
+### 6. Custom Error Classes
+
+JavaScript allows you to create custom error classes to provide more context to errors.
+
+**Example:**
+
+```jsx
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'ValidationError';
+  }
+}
+
+try {
+  throw new ValidationError('This is a validation error.');
+} catch (error) {
+  console.log(error.name); // "ValidationError"
+  console.log(error.message); // "This is a validation error."
+}
+```

@@ -138,11 +138,22 @@ const mapCourseResponseToCard = (
       const isActive = isProgramActive(liveOn);
 
       let ctaText = 'Coming Soon';
+      let luanchingOn = '';
 
       if (isEnrolled) {
         ctaText = 'Continue Learning';
-      } else if (isActive) {
-        ctaText = 'Start The Project';
+      }
+
+      if (isActive) {
+        ctaText = 'View Course';
+      } else {
+        const date = new Date(liveOn);
+        luanchingOn = `Launching on ${date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+        })}`;
       }
 
       return {
@@ -155,6 +166,7 @@ const mapCourseResponseToCard = (
         isEnrolled,
         active: isActive,
         ctaText,
+        luanchingOn,
       };
     }
   );

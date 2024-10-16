@@ -216,6 +216,7 @@ export interface PrimaryCardWithCTAProps {
   ctaText?: string;
   borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
   target?: 'BLANK';
+  luanchingOn?: string;
 }
 
 export interface LandingPageHeroProps {
@@ -301,11 +302,6 @@ export interface LoginWithGoogleBtnProps {
   text?: string;
 }
 
-export interface AlertProps {
-  text: string;
-  className?: string;
-}
-
 export interface ChapterLinkProps {
   href: string;
   chapterId: string;
@@ -319,4 +315,15 @@ export interface ChapterLinkProps {
 export interface MDXRendererProps {
   mdxSource: string;
   actions?: React.ReactNode[];
+}
+
+export interface AlertProps {
+  message: string;
+  type: 'SUCCESS' | 'ERROR' | 'INFO';
+  className?: string;
+}
+
+export interface ProgressBarProps {
+  totalChapters: number;
+  completedChapters: number;
 }

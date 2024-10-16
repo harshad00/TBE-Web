@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className='flex lg:hidden'>
           <button
             type='button'
-            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black'
+            className='-m-2.5 flex gap-2 items-center justify-center rounded-md p-2.5 text-black'
             onClick={() => setMobileMenuOpen(true)}
           >
             <UserAvatar />

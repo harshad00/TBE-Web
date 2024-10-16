@@ -66,6 +66,13 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: routes.allCourses.logicBuildingForEveryone,
       ...commonMeta,
     },
+    [`${routes.allCourses.basicsOfProgrammingWithJS}`]: {
+      title: `${SHIKSHA_COURSES[1].title} | The Boring Education`,
+      siteName: SHIKSHA_COURSES[1].title,
+      description: SHIKSHA_COURSES[1].content,
+      url: routes.allCourses.basicsOfProgrammingWithJS,
+      ...commonMeta,
+    },
     [`${routes.contactUs}`]: {
       title: 'Contact | The Boring Education',
       siteName: 'The Boring Education',
