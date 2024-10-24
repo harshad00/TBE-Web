@@ -9,30 +9,30 @@ import {
   LinkButton,
 } from '@/components';
 import { useAPIResponseMapper, useApi } from '@/hooks';
-import { getPreFetchProps, mapCourseResponseToCard } from '@/utils';
+import { getPreFetchProps, mapInterviewSheetResponseToCard } from '@/utils';
 import { routes } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
-  const { response, loading } = useApi('shiksha', {
-    url: routes.api.shiksha,
+  const { response, loading } = useApi('interview-prep', {
+    url: routes.api.interviewPrep,
   });
 
   const courses: PrimaryCardWithCTAProps[] = useAPIResponseMapper(
     response?.data,
-    mapCourseResponseToCard
+    mapInterviewSheetResponseToCard
   );
 
   if (loading) {
     return <LoadingSpinner />;
   }
 
-  const noCourseFoundUI = (!courses || courses.length === 0) && (
+  const noSheetFoundUI = (!courses || courses.length === 0) && (
     <FlexContainer
       justifyCenter={true}
       className='w-screen h-screen item-center justify-center flex-col'
     >
       <Text level='h1' className='heading-4 mb-3'>
-        Oops! No Courses found.
+        Oops! No Sheets found.
       </Text>
       <LinkButton
         buttonProps={{
@@ -49,13 +49,13 @@ const Home = ({ seoMeta }: PageProps) => {
       <SEO seoMeta={seoMeta} />
       <CardContainerB
         heading='Explore'
-        focusText='Courses'
+        focusText='Sheets'
         cards={courses}
         borderColour={2}
-        subtext='Pick A Course and Start Learning'
+        subtext='Pick A Sheet and Start Preparing'
         sectionClassName='px-2 py-4'
       />
-      {noCourseFoundUI}
+      {noSheetFoundUI}
     </Fragment>
   );
 };
