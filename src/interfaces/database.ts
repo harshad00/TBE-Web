@@ -1,5 +1,10 @@
 import { Document, Schema } from 'mongoose';
-import { DifficultyType, RoadmapsType, SkillsType } from '.';
+import {
+  DifficultyType,
+  QuestionFrequencyType,
+  RoadmapsType,
+  SkillsType,
+} from '.';
 
 export interface UserModel {
   name: string;
@@ -45,6 +50,26 @@ export interface CourseModel extends Document {
   chapters: CourseChapterModel[];
   roadmap: RoadmapsType;
   difficultyLevel: DifficultyType;
+}
+
+export interface InterviewSheetModel extends Document {
+  name: string;
+  meta: string;
+  slug: string;
+  description: string;
+  coverImageURL: string;
+  liveOn: Date;
+  questions: InterviewSheetQuestionModel[];
+  roadmap: RoadmapsType;
+}
+
+export interface InterviewSheetQuestionModel {
+  _id: typeof Schema.Types.ObjectId;
+  title: string;
+  question: string;
+  answer: string;
+  frequency: QuestionFrequencyType;
+  toObject: () => UserCourseModel;
 }
 
 export interface CourseChapterModel {
