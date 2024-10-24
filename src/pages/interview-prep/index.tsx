@@ -40,3 +40,4 @@ const Home = ({ seoMeta }: PageProps) => {
 export const getServerSideProps = getPreFetchProps;
 
 export default Home;
+
