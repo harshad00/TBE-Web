@@ -101,6 +101,13 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: routes.shikshaExplore,
       ...commonMeta,
     },
+    [`${routes.interviewPrepExplore}`]: {
+      title: 'Explore Sheets | The Boring Education',
+      siteName: 'Explore Sheets at The Boring Education',
+      description: 'Explore Sheets at The Boring Education',
+      url: routes.interviewPrepExplore,
+      ...commonMeta,
+    },
   };
 
   return meta[basePath];
