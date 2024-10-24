@@ -16,6 +16,7 @@ const routes = {
     logicBuildingForEveryone: '/shiksha/logic-building-for-everyone',
     basicsOfProgrammingWithJS: '/shiksha/basics-of-programming-with-js',
   },
+  interviewPrep: '/interview-prep',
   workshops: '/workshops',
   os: '/os',
   contactUs: '/contact',
