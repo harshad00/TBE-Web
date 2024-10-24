@@ -29,7 +29,7 @@ export type ProductLabelType =
   | 'Roadmaps'
   | 'The Boring Projects'
   | 'Shiksha'
-  | 'InterviewPrep'
+  | 'Interview Prep'
   | 'The Boring Workshops'
   | 'The Boring Open Source';
 

@@ -32,8 +32,8 @@ const products: ProductDataProps = {
     description: 'Learn Tech with Free Bite-sized Courses',
   },
   interviewPrep: {
-    label: 'InterviewPrep',
-    slug: '/interviewPrep',
+    label: 'Interview Prep',
+    slug: '/interview-prep',
     description: 'The Boring Interview Prep',
   },
   workshops: {
