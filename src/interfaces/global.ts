@@ -31,7 +31,8 @@ export type ProductLabelType =
   | 'Shiksha'
   | 'InterviewPrep'
   | 'The Boring Workshops'
-  | 'The Boring Open Source';
+  | 'The Boring Open Source'
+  | 'Interview Prep';
 
 export interface ProductDataProps {
   [key: string]: {

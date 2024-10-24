@@ -17,6 +17,8 @@ const routes = {
     basicsOfProgrammingWithJS: '/shiksha/basics-of-programming-with-js',
   },
   interviewPrep: '/interview-prep',
+  interviewPrepExplore: '/interview-prep/explore',
+
   workshops: '/workshops',
   os: '/os',
   contactUs: '/contact',
@@ -31,6 +33,7 @@ const routes = {
     projects: '/projects',
     project: (project: string) => `/projects/${project}`,
     shiksha: '/shiksha',
+    interviewPrep: '/interview-prep',
     enrollCourse: '/user/shiksha/enroll',
     markCourseChapterAsCompleted: '/user/shiksha/course',
     courseById: (course: string) => `/shiksha/${course}`,

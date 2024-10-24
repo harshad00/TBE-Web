@@ -203,6 +203,30 @@ const TBP_FEATURES: PrimaryCardProps[] = [
   },
 ];
 
+const TBIP_FEATURES: PrimaryCardProps[] = [
+  {
+    id: v4(),
+    title: `Crisp. No Bullshit Content`,
+    content: `Prep One Question at a Time. No Ads. No Course Selling. Only Prep.`,
+    image: `${STATIC_FILE_PATH.svg}/mentorship.svg`,
+    imageAltText: `mentorship`,
+  },
+  {
+    id: v4(),
+    title: `Prep. Apply. Prep More.`,
+    content: `Apply What You Learn, Right Away. One Question At A Time.`,
+    image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
+    imageAltText: `peer learning`,
+  },
+  {
+    id: v4(),
+    title: `Ask Questions`,
+    content: `Ask Interview Prep Questions in Community. We’re here to help.`,
+    image: `${STATIC_FILE_PATH.svg}/workshops.svg`,
+    imageAltText: `doubt session`,
+  },
+];
+
 const TESTIMONIALS: TestimonialCardProps[] = [
   {
     id: v4(),
@@ -303,4 +327,5 @@ export {
   MY_PREV_EXPERIENCE,
   TBP_PROJECTS,
   SHIKSHA_COURSES,
+  TBIP_FEATURES,
 };
