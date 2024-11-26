@@ -136,7 +136,7 @@ const ProjectPage = ({
   return (
     <React.Fragment>
       <SEO seoMeta={seoMeta} />
-      <Section className='md:p-2 p-2'>
+      <Section className='p-2 lg:px-8'>
         <ProjectHeroContainer
           id={project._id}
           name={project.name}
@@ -145,31 +145,33 @@ const ProjectPage = ({
           isEnrolled={project.isEnrolled}
         />
       </Section>
-      <Section className='md:p-2 p-2'>
+      <Section className='p-2'>
         <FlexContainer className='w-full gap-4' itemCenter={false}>
           {/* Sidebar with Progress Bar and Chapters */}
           <FlexContainer
-            className='border md:w-3/12 w-full p-2 gap-1 rounded self-baseline'
+            className='border md:w-3/12 w-full px-2 gap-1 rounded self-baseline max-h-[80vh] overflow-y-auto bg-white'
             itemCenter={false}
-            direction='col'
           >
-            <Text level='h5' className='heading-5'>
-              Sections
-            </Text>
+            <div className='w-full sticky top-0 bg-inherit py-2'>
+              <Text level='h5' className='heading-5'>
+                Sections
+              </Text>
 
-            {/* ProgressBar */}
-            <ProgressBar
-              totalChapters={totalChapters}
-              completedChapters={completedChapters}
-            />
+              {/* ProgressBar */}
+              <ProgressBar
+                totalChapters={totalChapters}
+                completedChapters={completedChapters}
+              />
+            </div>
 
-            <FlexContainer justifyCenter={false} className='gap-px mt-4'>
+            <FlexContainer justifyCenter={false} className='gap-px'>
               {sections.map(({ sectionId, sectionName, chapters }) => (
                 <Accordion title={sectionName} key={sectionId}>
-                  {chapters.map(({ chapterId, chapterName }) => (
+                  {chapters.map(({ chapterId, chapterName, isCompleted }) => (
                     <AccordionLinkItem
                       key={chapterId}
                       label={chapterName}
+                      isCompleted={isCompleted}
                       href={`${slug}?projectId=${project._id}&sectionId=${sectionId}&chapterId=${chapterId}`}
                       onClick={() =>
                         handleChapterClick({ sectionId, chapterId })

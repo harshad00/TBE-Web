@@ -303,6 +303,7 @@ export interface AccordionLinkItemProps {
   label: string;
   href: string;
   className?: string;
+  isCompleted?: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
@@ -349,4 +350,25 @@ export interface AlertProps {
 export interface ProgressBarProps {
   totalChapters: number;
   completedChapters: number;
+}
+
+export interface CertificateBannerProps {
+  backgroundColor: string;
+  heading: string;
+  subtext: string;
+  icon: React.ElementType;
+  isLocked: boolean;
+  onClick?: () => void;
+}
+
+export interface CertificateContentProps {
+  username: string;
+  courseName: string;
+  date: string;
+}
+
+export interface CertificateDataPoints {
+  username: string;
+  courseName: string;
+  date: string;
 }

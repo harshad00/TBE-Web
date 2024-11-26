@@ -1,6 +1,6 @@
 {
   "name": "tbe-webapp",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -16,9 +16,10 @@
     "format:check": "prettier -c ."
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.13",
+    "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.0.17",
     "axios": "^1.4.0",
+    "html-to-image": "^1.11.11",
     "markdown-it": "^14.1.0",
     "mongoose": "^7.4.1",
     "next": "^13.2.4",

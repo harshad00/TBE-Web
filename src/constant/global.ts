@@ -58,6 +58,13 @@ const LINKS = {
   youtube: 'https://www.youtube.com/@TheBoringEducation',
 };
 
+// User links
+const userSections = {
+  myCourses: 'https://www.theboringeducation.com/shiksha/my-courses',
+  myProjects: 'https://www.theboringeducation.com/projects/my-projects',
+  mySheets: 'https://www.theboringeducation.com/interview-prep/my-sheets',
+};
+
 // Google analytics
 const gtag = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`;
 
@@ -145,6 +152,7 @@ export {
   imageMeta,
   products,
   LINKS,
+  userSections,
   gtag,
   googleAnalyticsScript,
   STATIC_FILE_PATH,

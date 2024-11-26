@@ -35,13 +35,15 @@ const QuestionLink = ({
       href={href}
       key={questionId}
       onClick={() => handleQuestionClick(question)}
-      className={`flex items-center gap-1 w-full p-2 rounded text-left pre-title hover:bg-gray-200 hover:text-contentLight ${additionalClasses}`}
+      className={`flex items-center gap-1 w-full p-2 mb-1 rounded text-left pre-title hover:bg-gray-200 hover:text-contentLight ${additionalClasses}`}
     >
-      {isCompleted ? (
-        <IoIosCheckmarkCircle size={24} className={iconColor} />
-      ) : (
-        <FaRegCircle size={24} className={iconColor} />
-      )}
+      <div className='flex-shrink-0'>
+        {isCompleted ? (
+          <IoIosCheckmarkCircle size={24} className={iconColor} />
+        ) : (
+          <FaRegCircle size={24} className={iconColor} />
+        )}
+      </div>
       {title}
     </Link>
   );

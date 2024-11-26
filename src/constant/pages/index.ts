@@ -4,7 +4,7 @@ import {
   TopNavbarContainerProps,
   PrimaryCardWithCTAProps,
 } from '@/interfaces';
-import { LINKS, products, STATIC_FILE_PATH } from '../global';
+import { LINKS, products, STATIC_FILE_PATH, userSections } from '../global';
 import { v4 } from 'uuid';
 import { routes } from '..';
 
@@ -42,6 +42,26 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
       name: 'Join Community',
       description: 'Join our WhatsApp Community',
       href: LINKS.whatsappCommunity,
+      target: 'BLANK',
+    },
+  ],
+  user: [
+    {
+      id: v4(),
+      name: 'My Courses',
+      href: userSections.myCourses,
+      target: 'BLANK',
+    },
+    {
+      id: v4(),
+      name: 'My Projects',
+      href: userSections.myProjects,
+      target: 'BLANK',
+    },
+    {
+      id: v4(),
+      name: 'My Sheets',
+      href: userSections.mySheets,
       target: 'BLANK',
     },
   ],
