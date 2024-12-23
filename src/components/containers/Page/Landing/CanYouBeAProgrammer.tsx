@@ -31,7 +31,7 @@ const CanYouBeAProgrammer = () => {
                 variant: 'PRIMARY',
                 text: 'Book Tech Session',
               }}
-              target='BLANK'
+              target='_blank'
             />
           </FlexContainer>
         </FlexContainer>

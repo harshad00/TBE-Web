@@ -50,6 +50,7 @@ const CertificateModal = ({
           </div>
           <div ref={certificateRef} className='bg-gray-100 border'>
             <CertificateContent
+              type='shiksha'
               username={username}
               courseName={courseName}
               date={date}

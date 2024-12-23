@@ -57,7 +57,7 @@ const Home = ({ seoMeta }: PageProps) => {
               text: 'Book Tech Session',
               className: 'w-full',
             }}
-            target='BLANK'
+            target='_blank'
           />
         }
         backgroundImageUrl={`${STATIC_FILE_PATH.svg}/hero-image.svg`}

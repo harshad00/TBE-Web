@@ -251,4 +251,5 @@ export {
   getSelectedCourseChapterMeta,
   getSelectedSheetQuestionMeta,
   mapInterviewSheetResponseToCard,
+  isProgramActive,
 };

@@ -15,7 +15,7 @@ export interface LinkProps {
   children?: React.ReactNode;
   className?: string;
   href: string;
-  target?: 'BLANK';
+  target?: '_blank';
   active?: boolean;
   scroll?: boolean;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
@@ -94,6 +94,26 @@ export interface PrimaryCardProps {
   borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
+export interface PortfolioCardProps {
+  index: number;
+  imageUrl: string;
+  title: string;
+  description: string;
+}
+
+export interface PortfolioTemplateProps {
+  id: number;
+  imageUrl: string;
+  title: string;
+  description: string;
+  repo: string;
+  developer: {
+    name: string;
+    link: string;
+  };
+  previewLink: string;
+}
+
 export interface FlexContainerProps {
   children?: React.ReactNode;
   itemCenter?: boolean;
@@ -119,7 +139,7 @@ export interface FooterLinkProps {
   id?: string;
   label: string;
   href: string;
-  target?: 'BLANK';
+  target?: '_blank';
 }
 
 export interface FooterLinksContainerProps {
@@ -219,7 +239,7 @@ export interface PrimaryCardWithCTAProps {
   active?: boolean;
   ctaText?: string;
   borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
-  target?: 'BLANK';
+  target?: '_blank';
   luanchingOn?: string;
 }
 
@@ -365,6 +385,7 @@ export interface CertificateContentProps {
   username: string;
   courseName: string;
   date: string;
+  type: string;
 }
 
 export interface CertificateDataPoints {

@@ -6,7 +6,7 @@ const CertificateBanner = dynamic(
 const CertificateModal = dynamic(
   () => import('@/components/common/CertificateModal')
 );
-const  CertificateContent = dynamic(
+const CertificateContent = dynamic(
   () => import('@/components/common/CertificateContent')
 );
 const CourseHeroContainer = dynamic(
@@ -78,6 +78,12 @@ const WeTaughtAtCard = dynamic(
 const ContactCard = dynamic(
   () => import('./containers/Cards/Items/ContactCard')
 );
+const PortfolioCard = dynamic(
+  () => import('./containers/Cards/Items/PortfolioCard')
+);
+const PortfolioTemplate = dynamic(
+  () => import('./containers/Cards/Items/PortfolioTemplate')
+);
 const SEO = dynamic(() => import('./layout/SEO'));
 const Pill = dynamic(() => import('./common/Pill'));
 const IconPill = dynamic(() => import('./common/Pill/IconPill'));
@@ -111,7 +117,6 @@ const AccordionLinkItem = dynamic(
   () => import('./common/Accordion/AccordionLinkItem')
 );
 const MDXRenderer = dynamic(() => import('./common/MDXRenderer'));
-
 const UserAvatar = dynamic(() => import('./common/Images/UserAvatar'));
 const LoginWithGoogleButton = dynamic(
   () => import('./common/Buttons/LoginWithGoogleButton')
@@ -127,6 +132,9 @@ const ChapterLink = dynamic(
 );
 const QuestionLink = dynamic(
   () => import('@/components/common/Learning/QuestionLink')
+);
+const WebinarHeroContainer = dynamic(
+  () => import('@/components/containers/Page/Webinar/WebinarHeroContainer')
 );
 
 export {
@@ -157,6 +165,8 @@ export {
   WeTaughtAtCard,
   SEO,
   ContactCard,
+  PortfolioCard,
+  PortfolioTemplate,
   Pill,
   IconPill,
   ImageLink,
@@ -187,4 +197,5 @@ export {
   CertificateBanner,
   CertificateModal,
   CertificateContent,
+  WebinarHeroContainer,
 };

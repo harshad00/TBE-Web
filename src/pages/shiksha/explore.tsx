@@ -47,15 +47,17 @@ const Home = ({ seoMeta }: PageProps) => {
   return (
     <Fragment>
       <SEO seoMeta={seoMeta} />
-      <CardContainerB
-        heading='Explore'
-        focusText='Courses'
-        cards={courses}
-        borderColour={2}
-        subtext='Pick A Course and Start Learning'
-        sectionClassName='px-2 py-4'
-      />
-      {noCourseFoundUI}
+      <div className='h-screen '>
+        <CardContainerB
+          heading='Explore'
+          focusText='Courses'
+          cards={courses}
+          borderColour={2}
+          subtext='Pick A Course and Start Learning'
+          sectionClassName='px-2 py-4'
+        />
+        {noCourseFoundUI}
+      </div>
     </Fragment>
   );
 };

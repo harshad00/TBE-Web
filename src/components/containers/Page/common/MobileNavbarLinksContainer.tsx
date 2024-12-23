@@ -22,18 +22,19 @@ const MobileNavbarLinksContainer = ({
         direction='col'
         className='gap-1'
       >
-        {links.map((link, index) => (
-          <Link
-            key={index}
-            href={link.href}
-            onClick={() => {
-              onLinkClick();
-            }}
-            className='text-black'
-          >
-            {link.name}
-          </Link>
-        ))}
+        {links.map(({ name, href, target }, index) => {
+          return (
+            <Link
+              key={index}
+              href={href}
+              className='text-base font-semibold text-black'
+              target={target}
+              onClick={onLinkClick}
+            >
+              {name}
+            </Link>
+          );
+        })}
       </FlexContainer>
     </FlexContainer>
   );

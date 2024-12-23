@@ -13,10 +13,10 @@ const Footer = () => {
           Built with ❤️ in 🇮🇳
         </Text>
         <FlexContainer className='gap-1'>
-          <Link href={LINKS.instagram} target='BLANK'>
+          <Link href={LINKS.instagram} target='_blank'>
             <FaInstagram color='white' size='2em' />
           </Link>
-          <Link href={LINKS.youtube} target='BLANK'>
+          <Link href={LINKS.youtube} target='_blank'>
             <FaYoutube color='white' size='2em' />
           </Link>
         </FlexContainer>
