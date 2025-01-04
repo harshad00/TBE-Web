@@ -20,7 +20,7 @@ export type ProductLabelType =
   | 'Projects'
   | 'Shiksha'
   | 'Interview Prep'
-  | 'Workshops'
+  | 'Webinar'
   | 'Open Source'
   | 'Interview Prep'
   | 'Portfolio';
@@ -60,4 +60,16 @@ export interface ServerSessionProp {
 export interface WebinarPageProps extends WebinarModel {
   bannerImageUrl: string;
   seoMeta: GetSEOMetaResponseType;
+  date: string;
+  time: string;
+  isWebinarStarted: boolean;
+  webinarId: string;
 }
+
+export type CertificateType = 'WEBINAR' | 'SHIKSHA';
+
+export type FormatDateType = {
+  dateAndTime?: string;
+  dateFormat?: Intl.DateTimeFormatOptions;
+  timeFormat?: Intl.DateTimeFormatOptions;
+};

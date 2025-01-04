@@ -81,7 +81,7 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       description: `${products.shiksha.description} - Access a variety of online courses and enhance your tech skills.`,
       url: products.shiksha.slug,
       keywords:
-        'Shiksha, Courses, Online Learning, Free Courses, Tech Education, Programming Courses, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+        'Shiksha, online tech courses, programming tutorials for beginners, free tech education, career development for professionals, skill enhancement programs, coding bootcamps, tech webinars, online learning for college students, GitHub projects, tech career growth, free certifications, free courses',
       ...seoCommonMeta,
     },
     [`${routes.interviewPrep}`]: {
@@ -238,6 +238,17 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: routes.user.sheets,
       keywords:
         'My Sheets, Interview Preparation, The Boring Education, Personal Sheets, Job Preparation, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
+    // Implement Webinar Route
+    [`${routes.webinar}`]: {
+      title: 'Webinars | The Boring Education',
+      siteName: 'Webinars at The Boring Education',
+      description:
+        'Join our live workshops and learn trending tech skills with The Boring Education.',
+      url: routes.webinar,
+      keywords:
+        'Webinars, Live Workshops, The Boring Education, Online Learning, Programming, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
   };

@@ -1,4 +1,4 @@
-import { envConfig, getSEOMeta, routes, seoCommonMeta } from '@/constant';
+import { getSEOMeta, routes, seoCommonMeta } from '@/constant';
 import {
   BaseShikshaCourseResponseProps,
   BaseInterviewSheetResponseProps,
@@ -9,6 +9,9 @@ import {
   getSelectedSheetQuestionMeta,
   getSelectedProjectChapterMeta,
   isUserAuthenticated,
+  formatDate,
+  isProgramActive,
+  fetchAPIData,
 } from '.';
 
 const getPreFetchProps = async ({ resolvedUrl }: any) => {
@@ -114,9 +117,7 @@ const getCoursePageProps = async (context: any) => {
     slug = '/shiksha/' + courseSlug;
   }
 
-  const seoMeta = getSEOMeta(slug);
-
-  if (courseId && seoMeta) {
+  if (courseId) {
     try {
       const user = await isUserAuthenticated(req);
 
@@ -124,7 +125,7 @@ const getCoursePageProps = async (context: any) => {
         routes.api.courseByIdWithUser(courseId, user?.id)
       );
 
-      // If the project data is not found, return the message
+      // If the course data is not found, return the message
       if (!status) {
         return {
           redirect: {
@@ -135,6 +136,30 @@ const getCoursePageProps = async (context: any) => {
       }
 
       const course: BaseShikshaCourseResponseProps = data;
+
+      const { name, description, liveOn } = course;
+
+      const isCourseLive = isProgramActive(liveOn as Date);
+
+      // If Course not LIVE, redirect to home
+      if (!isCourseLive) {
+        return {
+          redirect: {
+            destination: routes.home,
+          },
+        };
+      }
+
+      const seoMeta = {
+        title: `${name} | Shiksha | The Boring Education`,
+        siteName: 'Shiksha The Boring Education',
+        description,
+        url: `${routes.shiksha}/${slug}`,
+        keywords:
+          'Shiksha online courses, advanced programming tutorials, free tech education, career development for professionals, skill enhancement programs, coding bootcamps, tech webinars, online learning for college students, GitHub projects, tech career growth, free certifications, free courses',
+        ...seoCommonMeta,
+      };
+
       let { meta } = course;
       let currentChapterId = '';
 
@@ -240,10 +265,62 @@ const getSheetPageProps = async (context: any) => {
   };
 };
 
-const fetchAPIData = async (url: string) => {
-  const response = await fetch(`${envConfig.BASE_API_URL}/${url}`);
+const getWebinarLandingPageProps = async ({ resolvedUrl }: any) => {
+  let slug = routes.home;
 
-  return await response.json();
+  if (resolvedUrl) {
+    slug = resolvedUrl;
+  }
+
+  const seoMeta = getSEOMeta(slug);
+
+  const { status, data: webinars } = await fetchAPIData(routes.api.webinar);
+
+  if (!status) {
+    return {
+      redirect: {
+        destination: routes.home,
+      },
+    };
+  }
+
+  return {
+    props: {
+      seoMeta,
+      webinars,
+    },
+  };
+};
+
+const getCertificatePageProps = async ({ query: { certificateId } }: any) => {
+  const { status, data: certificate } = await fetchAPIData(
+    routes.api.certificateById(certificateId)
+  );
+
+  if (!status) {
+    return {
+      redirect: {
+        destination: routes.home,
+      },
+    };
+  }
+
+  const seoMeta = {
+    title: `${certificate.programName} | Certificate | The Boring Education`,
+    siteName: 'The Boring Education',
+    description: 'Certificate',
+    url: `${routes.certificate}/${certificateId}`,
+    keywords:
+      'Certificate, The Boring Education, Tech Education, Online Learning',
+    ...seoCommonMeta,
+  };
+
+  return {
+    props: {
+      seoMeta,
+      certificate,
+    },
+  };
 };
 
 const getWebinarPageProps = async (context: any) => {
@@ -267,12 +344,20 @@ const getWebinarPageProps = async (context: any) => {
     name,
     description,
     isFree,
+    whatYoullLearn,
     about,
     dateAndTime,
     learnings,
     registrationUrl,
     host,
+    recordedVideoUrl = '',
   } = webinar;
+
+  const { date, time } = formatDate({
+    dateAndTime,
+  });
+
+  const isWebinarStarted = isProgramActive(dateAndTime);
 
   const seoMeta = {
     title: `${name} | The Boring Webinars`,
@@ -291,12 +376,16 @@ const getWebinarPageProps = async (context: any) => {
       name,
       slug,
       description,
+      whatYoullLearn,
       learnings,
       isFree,
       about,
       host,
-      dateAndTime,
+      date,
+      time,
+      isWebinarStarted,
       registrationUrl,
+      recordedVideoUrl,
       bannerImageUrl:
         'https://wallpapers.com/images/hd/coding-background-9izlympnd0ovmpli.jpg',
     },
@@ -309,4 +398,6 @@ export {
   getCoursePageProps,
   getSheetPageProps,
   getWebinarPageProps,
+  getWebinarLandingPageProps,
+  getCertificatePageProps,
 };

@@ -1,5 +1,6 @@
 import { HTMLInputTypeAttribute, MouseEventHandler, ReactNode } from 'react';
 import {
+  CertificateType,
   GetSEOMetaResponseType,
   QuestionFrequencyType,
   TopNavbarLinkProps,
@@ -240,7 +241,7 @@ export interface PrimaryCardWithCTAProps {
   ctaText?: string;
   borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
   target?: '_blank';
-  luanchingOn?: string;
+  launchingOn?: string;
 }
 
 export interface LandingPageHeroProps {
@@ -382,14 +383,44 @@ export interface CertificateBannerProps {
 }
 
 export interface CertificateContentProps {
-  username: string;
+  userName: string;
   courseName: string;
   date: string;
-  type: string;
+  type: CertificateType;
 }
 
-export interface CertificateDataPoints {
-  username: string;
+export interface BackgroundImageProps {
+  bannerImageUrl: string;
+  classNames?: string;
+}
+
+export interface BannerProps {
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+  imageSrc: string;
+  variant?: 'VARIANT_A' | 'VARIANT_B';
+}
+
+export interface ModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
+  title: string;
+  children: ReactNode;
+}
+
+export interface CertificateModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
   courseName: string;
-  date: string;
+  certificateId: string;
+}
+
+export interface ToggleButtonProps {
+  options: string[];
+  activeColor: string;
+  inactiveColor: string;
+  onToggle: (activeOption: string) => void;
+  textColors?: string[];
 }

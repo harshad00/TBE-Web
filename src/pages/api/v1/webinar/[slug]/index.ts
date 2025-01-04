@@ -3,7 +3,7 @@ import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import {
-  updateEnrolledUsersInWebinarDB,
+  updateWebinarInDB,
   checkUserRegistrationInWebinarDB,
   getWebinarDetailsFromDB,
   deleteAWebinarFromDB,
@@ -13,22 +13,16 @@ import { UpdateEnrolledUsersRequestPayloadProps } from '@/interfaces';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
   const { method } = req;
-  const { slug, email } = req.query;
+  const { slug, email } = req.query as { slug: string; email: string };
 
   switch (method) {
     case 'GET':
-      if (email)
-        return handleCheckUserRegistration(
-          req,
-          res,
-          slug as string,
-          email as string
-        );
+      if (email) return handleCheckUserRegistration(req, res, slug, email);
       return handleGetWebinarDetails(req, res);
     case 'PATCH':
-      return handleUpdateEnrolledUsers(req, res, slug as string);
+      return handleUpdateWebinar(req, res, slug);
     case 'DELETE':
-      return handleDeleteWebinar(req, res, slug as string);
+      return handleDeleteWebinar(req, res, slug);
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
@@ -133,24 +127,28 @@ const handleCheckUserRegistration = async (
   }
 };
 
-const handleUpdateEnrolledUsers = async (
+const handleUpdateWebinar = async (
   req: NextApiRequest,
   res: NextApiResponse,
   slug: string
 ) => {
   try {
-    const { users } = req.body as UpdateEnrolledUsersRequestPayloadProps;
+    const updatedWebinarPayload =
+      req.body as UpdateEnrolledUsersRequestPayloadProps;
 
-    if (!slug || !Array.isArray(users)) {
+    if (!slug) {
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
           status: false,
-          message: 'Invalid input data. slug and users array are required.',
+          message: 'slug is required.',
         })
       );
     }
 
-    const { data, error } = await updateEnrolledUsersInWebinarDB(slug, users);
+    const { data, error } = await updateWebinarInDB(
+      slug,
+      updatedWebinarPayload
+    );
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(

@@ -3,21 +3,21 @@ import { CertificateContentProps } from '@/interfaces';
 
 const CertificateContent = ({
   type,
-  username,
+  userName,
   courseName,
   date,
 }: CertificateContentProps) => {
   const backgroundImagePaths: Record<string, string> = {
-    webinar: 'url(/images/webinar_certificate.png)',
-    shiksha: 'url(/images/shiksha_certificate.png)',
+    WEBINAR: 'url(/images/webinar_certificate.png)',
+    SHIKSHA: 'url(/images/shiksha_certificate.png)',
   };
 
   const userNameStyles: React.CSSProperties = {
     top: '51.5%',
     left: '50%',
     transform:
-      type === 'shiksha' ? 'translate(-50%, -110%)' : 'translate(-50%,-125%)',
-    fontSize: '1.2em',
+      type === 'SHIKSHA' ? 'translate(-50%, -160%)' : 'translate(-50%,-160%)',
+    fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
     fontWeight: 'bold',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -30,33 +30,33 @@ const CertificateContent = ({
     top: '59%',
     left: '50%',
     transform:
-      type === 'shiksha' ? 'translate(-50%,-110%)' : 'translate(-50%,-150%)',
-    fontSize: '0.7em',
+      type === 'SHIKSHA' ? 'translate(-50%,-100%)' : 'translate(-50%,-140%)',
+    fontSize: 'clamp(0.8rem, 2vw, 1.2rem)',
     fontWeight: 500,
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
-    opacity: '0.9',
   };
 
   const dateStyles: React.CSSProperties = {
     top: '67%',
     left: '50%',
     transform:
-      type === 'shiksha' ? 'translate(-50%,-110%)' : 'translate(-50%,-150%)',
-    fontSize: '0.7em',
+      type === 'SHIKSHA' ? 'translate(-50%,-110%)' : 'translate(-50%,-180%)',
+    fontSize: 'clamp(0.6rem, 1.5vw, 1rem)',
     fontWeight: 500,
     opacity: '0.85',
   };
 
   return (
     <div
-      className='certificate-container relative text-center bg-white'
+      className='certificate-container relative rounded-lg shadow-lg'
       style={{
         width: '100%',
-        maxWidth: '800px',
+        height: '100%',
+        maxWidth: '600px',
         margin: 'auto',
-        aspectRatio: '3/2',
+        aspectRatio: '1',
         backgroundImage: backgroundImagePaths[type],
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -64,7 +64,7 @@ const CertificateContent = ({
       }}
     >
       <div className='absolute' style={userNameStyles}>
-        {username}
+        {userName}
       </div>
       <div className='absolute' style={courseNameStyles}>
         {courseName}

@@ -18,6 +18,12 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
     },
     {
       id: v4(),
+      name: products.webinar.label,
+      description: products.webinar.description,
+      href: products.webinar.slug,
+    },
+    {
+      id: v4(),
       name: products.interviewPrep.label,
       description: products.interviewPrep.description,
       href: products.interviewPrep.slug,
@@ -99,6 +105,16 @@ const PRODUCTS: PrimaryCardWithCTAProps[] = [
     ctaText: 'Free Interview Prep',
   },
   {
+    id: 'webinar',
+    image: `${STATIC_FILE_PATH.svg}/workshops.svg`,
+    imageAltText: products.webinar.label,
+    title: products.webinar.label,
+    content: products.webinar.description,
+    href: routes.webinar,
+    active: true,
+    ctaText: 'Explore Workshops',
+  },
+  {
     id: 'portfolio',
     image: `${STATIC_FILE_PATH.svg}/the-boring-portfolio-hero.svg`,
     imageAltText: products.portfolio.label,
@@ -127,17 +143,6 @@ const PRODUCTS: PrimaryCardWithCTAProps[] = [
     href: products.os.slug,
     ctaText: 'Start Contributing',
     active: true,
-  },
-  {
-    id: 'workshops',
-    image: `${STATIC_FILE_PATH.svg}/workshops.svg`,
-    imageAltText: products.workshops.label,
-    title: products.workshops.label,
-    content: products.workshops.description,
-    href: products.workshops.slug,
-    active: true,
-    ctaText: 'Explore Workshops',
-    target: '_blank',
   },
   {
     id: 'roadmaps',
@@ -292,7 +297,7 @@ const TBP_FEATURES: PrimaryCardProps[] = [
     id: v4(),
     title: `Book Tech Mentorship`,
     content: `Discuss Every issue you're facing in 1:1 Mentorship Sessions.`,
-    image: `${STATIC_FILE_PATH.svg}/workshops.svg`,
+    image: `${STATIC_FILE_PATH.svg}/webinar.svg`,
     imageAltText: `doubt session`,
   },
 ];
@@ -316,7 +321,7 @@ const TBIP_FEATURES: PrimaryCardProps[] = [
     id: v4(),
     title: `Ask Questions`,
     content: `Ask Interview Prep Questions in Community. We’re here to help.`,
-    image: `${STATIC_FILE_PATH.svg}/workshops.svg`,
+    image: `${STATIC_FILE_PATH.svg}/webinar.svg`,
     imageAltText: `doubt session`,
   },
 ];

@@ -71,14 +71,29 @@ const WebinarSchema = new Schema<WebinarModel>(
         },
       },
     ],
+    whatYoullLearn: {
+      type: [String],
+      required: [true, 'What you will learn is required'],
+    },
+    recordedVideoUrl: {
+      type: String,
+    },
+    coverImageURL: {
+      type: String,
+      required: [true, 'Cover image URL is required'],
+    },
   },
   {
     timestamps: true,
-    _id: true,
     toObject: {
       virtuals: true,
       transform: (doc, ret) => {
         delete ret.id;
+        if (ret.enrolledUsersList) {
+          ret.enrolledUsersList.forEach((user: any) => {
+            delete user._id;
+          });
+        }
         return ret;
       },
     },
@@ -86,6 +101,11 @@ const WebinarSchema = new Schema<WebinarModel>(
       virtuals: true,
       transform: (doc, ret) => {
         delete ret.id;
+        if (ret.enrolledUsersList) {
+          ret.enrolledUsersList.forEach((user: any) => {
+            delete user._id;
+          });
+        }
         return ret;
       },
     },

@@ -31,6 +31,7 @@ const routes = {
     nodeInterviewSheet: '/interview-prep/node-interview-questions',
     dbInterviewSheet: '/interview-prep/db-interview-questions',
   },
+  certificate: '/certificate',
   contactUs: '/contact',
   user: {
     courses: '/shiksha/my-courses',
@@ -41,6 +42,7 @@ const routes = {
     landing: {
       products: 'products',
       portfolio: 'portfolio',
+      webinar: 'webinar',
     },
   },
   404: '/404',
@@ -84,6 +86,8 @@ const routes = {
       return url;
     },
     webinarBySlug: (webinar: string) => `/webinar/${webinar}`,
+    certificate: '/certificate',
+    certificateById: (certificate: string) => `/certificate/${certificate}`,
   },
 };
 

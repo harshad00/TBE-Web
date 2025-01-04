@@ -1,5 +1,6 @@
 import { Document, Schema } from 'mongoose';
 import {
+  CertificateType,
   DifficultyType,
   QuestionFrequencyType,
   RoadmapsType,
@@ -117,6 +118,8 @@ export interface UserCourseModel {
   courseId: typeof Schema.Types.ObjectId;
   course: CourseModel;
   chapters: UserCourseChapterModel[];
+  isCompleted: boolean;
+  certificateId: string;
 }
 
 export interface UserCourseChapterModel {
@@ -141,6 +144,19 @@ export interface WebinarModel {
   };
   registrationUrl: string;
   dateAndTime: string;
+  whatYoullLearn: string[];
   enrolledUsersList: WebinarEnrolledUsersProps[];
+  recordedVideoUrl: string;
+  coverImageURL: string;
   toObject: () => WebinarModel;
+}
+
+export interface CertificateModel extends Document {
+  _id: typeof Schema.Types.ObjectId;
+  type: CertificateType;
+  userName: string;
+  userId: string;
+  date: string;
+  programName: string;
+  programId: typeof Schema.Types.ObjectId;
 }

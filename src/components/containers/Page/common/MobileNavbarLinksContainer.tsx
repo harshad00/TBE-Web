@@ -20,9 +20,9 @@ const MobileNavbarLinksContainer = ({
         itemCenter={false}
         justifyCenter={false}
         direction='col'
-        className='gap-1'
+        className='gap-2'
       >
-        {links.map(({ name, href, target }, index) => {
+        {links.map(({ name, href, target, description }, index) => {
           return (
             <Link
               key={index}
@@ -31,7 +31,13 @@ const MobileNavbarLinksContainer = ({
               target={target}
               onClick={onLinkClick}
             >
-              {name}
+              <Text level='span' className='strong-text'>
+                {name}
+              </Text>
+              <br />
+              <Text level='span' className='pre-title text-greyDark'>
+                {description}
+              </Text>
             </Link>
           );
         })}

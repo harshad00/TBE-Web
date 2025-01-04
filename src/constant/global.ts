@@ -37,10 +37,10 @@ const products: ProductDataProps = {
     slug: routes.interviewPrep,
     description: 'Prepare for Tech Interviews with Real Questions',
   },
-  workshops: {
-    label: 'Workshops',
-    slug: 'https://www.youtube.com/playlist?list=PLOPyGCrLiI_5JPAbIsv1T129b5LqdurTc',
-    description: 'Learn Skills with Hands-on Workshops',
+  webinar: {
+    label: 'Webinar',
+    slug: routes.webinar,
+    description: 'Attend Free Webinars on Latest Technologies',
   },
   os: {
     label: 'Open Source',
@@ -64,6 +64,8 @@ const LINKS = {
     'https://docs.google.com/forms/d/e/1FAIpQLSd6_B3RPRCC1clar-Kq9QdDNp_shebXj6jSyW90JPNuaRn4AA/viewform?usp=dialog',
   joinCampusAmbassador:
     'https://docs.google.com/forms/d/e/1FAIpQLSfYHF6BlVfzcela42McNzHZo3WFfjgEV_e0EBrlsxNUdmK_KA/viewform?usp=dialog',
+  sachinLinkedIn: 'https://www.linkedin.com/in/imsks/',
+  officialLinkedIn: 'https://www.linkedin.com/company/theboringeducation',
 };
 
 // Google analytics

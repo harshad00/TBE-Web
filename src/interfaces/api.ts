@@ -1,4 +1,5 @@
 import {
+  CertificateType,
   CourseChapterModel,
   CourseModel,
   InterviewSheetModel,
@@ -244,10 +245,14 @@ export interface ExtendedInterviewSheetQuestionModel
 export interface BaseShikshaCourseResponseProps extends Partial<CourseModel> {
   isEnrolled?: boolean;
   chapters?: ExtendedCourseChapterModel[];
+  isCompleted?: boolean;
+  certificateId?: string;
+  _id: string;
 }
 
 export interface BaseInterviewSheetResponseProps
   extends Partial<InterviewSheetModel> {
+  _id: string;
   isEnrolled?: boolean;
   questions?: ExtendedInterviewSheetQuestionModel[];
 }
@@ -263,12 +268,9 @@ export interface GetAllQuestionsRequestProps {
   userId: string;
 }
 
-export interface UpdateEnrolledUsersRequestPayloadProps {
-  slug: string;
-  users: Array<{
-    name: string;
-    email: string;
-  }>;
+export interface UpdateEnrolledUsersRequestPayloadProps
+  extends Partial<AddWebinarRequestPayloadProps> {
+  users: WebinarEnrolledUsersProps[];
 }
 
 export interface AddWebinarRequestPayloadProps {
@@ -293,4 +295,13 @@ export interface AddWebinarRequestPayloadProps {
 export interface WebinarEnrolledUsersProps {
   name: string;
   email: string;
+}
+
+export interface AddCertificateRequestPayloadProps {
+  type: CertificateType;
+  userName: string;
+  userId: string;
+  date: string;
+  programName: string;
+  programId: string;
 }

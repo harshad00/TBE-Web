@@ -1,13 +1,20 @@
 import dynamic from 'next/dynamic';
+import ToggleButton from '@/components/common/Buttons/ToggleButton';
+const WebibarCard = dynamic(
+  () => import('@/components/containers/Cards/WebibarCard')
+);
+const Modal = dynamic(() => import('@/components/common/Modal'));
+const Banner = dynamic(() => import('@/components/common/Banner'));
+const AboutTBE = dynamic(
+  () => import('@/components/containers/Cards/AboutTBE')
+);
 const ProgressBar = dynamic(() => import('@/components/common/ProgressBar'));
 const CertificateBanner = dynamic(
-  () => import('@/components/common/CertificateBanner')
+  () => import('@/components/common/Certificate/CertificateBanner')
 );
-const CertificateModal = dynamic(
-  () => import('@/components/common/CertificateModal')
-);
+
 const CertificateContent = dynamic(
-  () => import('@/components/common/CertificateContent')
+  () => import('@/components/common/Certificate/CertificateContent')
 );
 const CourseHeroContainer = dynamic(
   () => import('@/components/containers/Page/Course/CourseHeroContainer')
@@ -55,9 +62,6 @@ const CardContainerA = dynamic(
 );
 const FlexContainer = dynamic(
   () => import('@/components/containers/Page/common/FlexContainer')
-);
-const CanYouBeAProgrammer = dynamic(
-  () => import('@/components/containers/Page/Landing/CanYouBeAProgrammer')
 );
 const TestimonialCard = dynamic(
   () => import('@/components/containers/Cards/Items/TestimonialCard')
@@ -136,6 +140,9 @@ const QuestionLink = dynamic(
 const WebinarHeroContainer = dynamic(
   () => import('@/components/containers/Page/Webinar/WebinarHeroContainer')
 );
+const BackgroundImage = dynamic(
+  () => import('@/components/common/Images/BackgroundImage')
+);
 
 export {
   Navbar,
@@ -156,7 +163,6 @@ export {
   PrimaryCard,
   CardContainerA,
   FlexContainer,
-  CanYouBeAProgrammer,
   TestimonialCard,
   Testimonials,
   Footer,
@@ -195,7 +201,12 @@ export {
   QuestionLink,
   SheetHeroContainer,
   CertificateBanner,
-  CertificateModal,
   CertificateContent,
   WebinarHeroContainer,
+  BackgroundImage,
+  AboutTBE,
+  Banner,
+  Modal,
+  WebibarCard,
+  ToggleButton,
 };

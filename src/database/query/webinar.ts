@@ -1,8 +1,9 @@
 import { Webinar } from '@/database';
 import {
   AddWebinarRequestPayloadProps,
-  WebinarEnrolledUsersProps,
+  UpdateEnrolledUsersRequestPayloadProps,
 } from '@/interfaces';
+import { isProgramActive } from '@/utils';
 
 // Add A Webinar
 const addAWebinarToDB = async (
@@ -11,40 +12,65 @@ const addAWebinarToDB = async (
   try {
     const newWebinar = new Webinar(webinarPayload);
     const savedWebinar = await newWebinar.save();
-
-    return { data: savedWebinar, error: null };
+    return { data: savedWebinar };
   } catch (error) {
-    return { data: null, error };
+    return { error };
   }
 };
 
 const getAllWebinarsFromDB = async () => {
   try {
     const webinars = await Webinar.find();
-    return { data: webinars, error: null };
+    if (!webinars) {
+      return { error: 'No webinars found' };
+    }
+
+    const updatedWebinars = webinars.map((webinar) => {
+      const isCompleted = isProgramActive(webinar.dateAndTime);
+      return { ...webinar.toObject(), isCompleted };
+    });
+
+    return { data: updatedWebinars };
   } catch (error) {
-    return { data: null, error };
+    return { error };
   }
 };
 
-const updateEnrolledUsersInWebinarDB = async (
+const updateWebinarInDB = async (
   slug: string,
-  users: WebinarEnrolledUsersProps[]
+  updatedWebinar: UpdateEnrolledUsersRequestPayloadProps
 ) => {
   try {
-    const updatedWebinar = await Webinar.findOneAndUpdate(
+    const { users, ...otherUpdates } = updatedWebinar;
+
+    const updatedWebinarData = await Webinar.findOneAndUpdate(
       { slug },
-      { $push: { enrolledUsersList: { $each: users } } },
+      { $set: otherUpdates },
       { new: true }
     );
 
-    if (!updatedWebinar) {
-      return { data: null, error: 'Webinar not found' };
+    if (!updatedWebinarData) {
+      return { error: 'Webinar not found' };
     }
 
-    return { data: updatedWebinar, error: null };
+    // Push users into enrolledUsersList without duplicates
+    if (users && users.length > 0) {
+      await Webinar.updateOne(
+        { slug },
+        {
+          $addToSet: {
+            enrolledUsersList: { $each: users },
+          },
+        }
+      );
+    }
+
+    // Fetch the updated webinar data
+    const finalUpdatedWebinar = await Webinar.findOne({ slug });
+
+    return { data: finalUpdatedWebinar };
   } catch (error) {
-    return { data: null, error };
+    return { error };
   }
 };
 
@@ -63,9 +89,9 @@ const checkUserRegistrationInWebinarDB = async (
       (user: { email: string }) => user.email === email
     );
 
-    return { data: isRegistered, error: null };
+    return { data: isRegistered };
   } catch (error) {
-    return { data: null, error };
+    return { error };
   }
 };
 
@@ -77,18 +103,15 @@ const getWebinarDetailsFromDB = async (slug: string) => {
 
     if (!webinarDetails) {
       return {
-        data: null,
         error: 'Webinar not found',
       };
     }
 
     return {
       data: webinarDetails,
-      error: null,
     };
   } catch (error) {
     return {
-      data: null,
       error: 'Failed to fetch webinar details from the database',
     };
   }
@@ -98,12 +121,12 @@ const getWebinarBySlugFromDB = async (slug: string) => {
   try {
     const webinar = await Webinar.findOne({ slug });
     if (!webinar) {
-      return { data: null, error: 'Webinar not found' };
+      return { error: 'Webinar not found' };
     }
 
-    return { data: webinar, error: null };
+    return { data: webinar };
   } catch (error) {
-    return { data: null, error };
+    return { error };
   }
 };
 
@@ -111,12 +134,12 @@ const deleteAWebinarFromDB = async (slug: string) => {
   try {
     const webinar = await Webinar.findOne({}).where('slug').equals(slug);
     if (!webinar) {
-      return { data: null, error: 'Webinar not found' };
+      return { error: 'Webinar not found' };
     }
 
     await webinar.deleteOne();
 
-    return { error: null };
+    return {};
   } catch (error) {
     return { error };
   }
@@ -124,7 +147,7 @@ const deleteAWebinarFromDB = async (slug: string) => {
 
 export {
   getAllWebinarsFromDB,
-  updateEnrolledUsersInWebinarDB,
+  updateWebinarInDB,
   checkUserRegistrationInWebinarDB,
   getWebinarDetailsFromDB,
   getWebinarBySlugFromDB,
