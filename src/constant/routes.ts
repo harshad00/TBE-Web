@@ -49,6 +49,7 @@ const routes = {
   // YouFocus
   youfocus: '/youfocus',
   addPlaylist: '/youfocus/add',
+  playlist: (playlistId: string) => `/youfocus/playlist/${playlistId}/`,
   explorePlaylist: '/youfocus/explore-playlist',
   404: '/404',
   api: {
@@ -94,6 +95,7 @@ const routes = {
     certificate: '/certificate',
     certificateById: (certificate: string) => `/certificate/${certificate}`,
     youfocusPlaylist: '/youfocus',
+    youfocusPlaylistById: (playlist: string) => `/youfocus/${playlist}`,
     userDashboard: '/user/dashboard',
   },
 };

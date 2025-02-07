@@ -58,3 +58,18 @@ export interface WebinarsLandingPageProps extends PageProps {
 export interface CertificatePageProps extends PageProps {
   certificate: CertificateModel;
 }
+
+export interface CardItem {
+  id: string;
+  title: string;
+  description?: string;
+  thumbnail?: string;
+}
+
+export interface CardContainerAProps {
+  heading: string;
+  focusText: string;
+  subtext?: string;
+  borderColour?: string;
+  cards: CardItem[];
+}

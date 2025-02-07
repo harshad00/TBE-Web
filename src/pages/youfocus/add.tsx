@@ -47,9 +47,11 @@ const Home = ({ seoMeta }: PageProps) => {
       if (status) {
         setSuccess('Playlist added successfully! Redirecting...');
         setPlaylistUrl('');
-        // setTimeout(() => {
-        //   router.push('/playlists'); // Redirect after 2 seconds
-        // }, 2000);
+          setTimeout(() => {
+            const playlistId = response.data._id; 
+            const redirectUrl = routes.playlist(playlistId);
+              router.push(redirectUrl); 
+          }, 2000);   
       } else {
         setError(response.message || 'Failed to add playlist');
       }
