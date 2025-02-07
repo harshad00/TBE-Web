@@ -107,6 +107,47 @@ const getProjectPageProps = async (context: any) => {
   };
 };
 
+const getPlaylistPageProps = async (context: any) => {
+  const { query } = context;
+  const { playlistId } = query;
+
+  if (!playlistId) {
+    return {
+      redirect: {
+        destination: routes.home,
+      },
+    };
+  }
+
+  const { status, data: playlist } = await fetchAPIData(
+    routes.api.youfocusPlaylistById(playlistId)
+  );
+
+  if (!status) {
+    return {
+      redirect: {
+        destination: routes.home,
+      },
+    };
+  }
+
+  const seoMeta = {
+    title: `${playlist.name} | Playlists | The Boring Education`,
+    siteName: 'The Boring Education',
+    description: playlist.description,
+    url: `${routes.playlist}/${playlistId}`,
+    keywords: 'YouTube playlists, learning playlists, coding tutorials, tech education',
+    ...seoCommonMeta,
+  };
+
+  return {
+    props: {
+      seoMeta,
+      playlist,
+    },
+  };
+};
+
 const getCoursePageProps = async (context: any) => {
   const { req, query } = context;
   const { courseSlug, courseId, chapterId } = query;
@@ -390,6 +431,7 @@ const getWebinarPageProps = async (context: any) => {
         'https://wallpapers.com/images/hd/coding-background-9izlympnd0ovmpli.jpg',
     },
   };
+  
 };
 
 export {
@@ -400,4 +442,5 @@ export {
   getWebinarPageProps,
   getWebinarLandingPageProps,
   getCertificatePageProps,
+  getPlaylistPageProps
 };
