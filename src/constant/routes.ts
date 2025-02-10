@@ -97,6 +97,7 @@ const routes = {
     youfocusPlaylist: '/youfocus',
     youfocusPlaylistById: (playlist: string) => `/youfocus/${playlist}`,
     userDashboard: '/user/dashboard',
+    notification: '/notification',
   },
 };
 
