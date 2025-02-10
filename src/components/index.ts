@@ -1,5 +1,10 @@
 import dynamic from 'next/dynamic';
-import ToggleButton from '@/components/common/Buttons/ToggleButton';
+const ToggleButton = dynamic(
+  () => import('@/components/common/Buttons/ToggleButton')
+);
+const NotificationContainer = dynamic(
+  () => import('@/components/containers/Cards/NotificationContainer')
+);
 const WebibarCard = dynamic(
   () => import('@/components/containers/Cards/WebibarCard')
 );
@@ -218,5 +223,6 @@ export {
   ToggleButton,
   PlaylistCantainerCard,
   PlaylistCard,
-  PlaylistVideoCard
+  PlaylistVideoCard,
+  NotificationContainer,
 };

@@ -25,8 +25,7 @@ const Home = ({ seoMeta }: PageProps) => {
   const handleInputChange = (value: string) => {
     setPlaylistUrl(value);
     setError(null);
-
-  }
+  };
 
   const { makeRequest, loading } = useApi('youfocus-add-playlist');
 
@@ -59,7 +58,6 @@ const Home = ({ seoMeta }: PageProps) => {
       setError('Failed to add playlist. Please try again later.');
     }
   };
-
 
   return (
     <React.Fragment>
