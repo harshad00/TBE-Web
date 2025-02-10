@@ -2,7 +2,7 @@ import React from "react";
 import {
   Section,
   FlexContainer,
-  PrimaryLongCard,
+  PlaylistVideoCard,
   CardSectionContainer,
   PlaylistCard,
 } from "@/components";
@@ -23,7 +23,7 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
         {/* Scrollable Playlist Videos */}
         <CardSectionContainer className="w-full h-[300px] md:h-[500px] overflow-y-auto space-y-4 px-2">
           {playlist.videos?.map((video, key) => (
-            <PrimaryLongCard
+            <PlaylistVideoCard
               key={video.title}
               title={video.title}
               image={video.thumbnail}
