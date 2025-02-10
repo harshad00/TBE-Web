@@ -111,40 +111,55 @@ const getPlaylistPageProps = async (context: any) => {
   const { query } = context;
   const { playlistId } = query;
 
-  if (!playlistId) {
-    return {
-      redirect: {
-        destination: routes.home,
-      },
-    };
+  let slug = routes.home;
+  
+  if (playlistId) {
+    slug = `${routes.playlistById}/${playlistId}`;
   }
 
-  const { status, data: playlist } = await fetchAPIData(
-    routes.api.youfocusPlaylistById(playlistId)
-  );
+  const seoMeta = getSEOMeta(slug);
 
-  if (!status) {
-    return {
-      redirect: {
-        destination: routes.home,
-      },
-    };
+  if (playlistId && seoMeta) {
+    try {
+      // Fetch playlist data
+      const { status, data } = await fetchAPIData(
+        routes.api.youfocusPlaylistById(playlistId)
+      );
+
+      // If playlist data is not found, redirect
+      if (!status || !data) {
+        return {
+          redirect: {
+            destination: routes.home,
+            permanent: false,
+          },
+        };
+      }
+
+      return {
+        props: {
+          slug,
+          seoMeta,
+          playlist: data,
+        },
+      };
+    } catch (error) {
+      return {
+        redirect: {
+          destination: routes.home,
+          permanent: false,
+        },
+        props: { slug },
+      };
+    }
   }
-
-  const seoMeta = {
-    title: `${playlist.name} | Playlists | The Boring Education`,
-    siteName: 'The Boring Education',
-    description: playlist.description,
-    url: `${routes.playlist}/${playlistId}`,
-    keywords: 'YouTube playlists, learning playlists, coding tutorials, tech education',
-    ...seoCommonMeta,
-  };
 
   return {
-    props: {
-      seoMeta,
-      playlist,
+    redirect: {
+      destination: routes.home,
+      permanent: false,
     },
+    props: { slug },
   };
 };
 
@@ -431,7 +446,7 @@ const getWebinarPageProps = async (context: any) => {
         'https://wallpapers.com/images/hd/coding-background-9izlympnd0ovmpli.jpg',
     },
   };
-  
+
 };
 
 export {

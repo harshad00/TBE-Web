@@ -278,6 +278,17 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
         'Focus,concentration, The Boring Education, Online Learning, Programming, College Students, Working professional, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
+    
+    [`${basePath}`]: {
+      title: 'YouFocus - Playlist | The Boring Education',
+      siteName: 'YouFocus Playlist at The Boring Education',
+      description:
+        'Access and manage your YouTube playlist in YouFocus to enhance your study experience without distractions.',
+      url: `${basePath}`,
+      keywords:
+        'YouTube Playlist, Focus, Study, Productivity, The Boring Education, Online Learning, Distraction-Free Learning, Study Tools, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
   };
 
   return meta[basePath];

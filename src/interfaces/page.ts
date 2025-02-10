@@ -6,6 +6,7 @@ import {
   CertificateModel,
   ProjectDocumentModel,
   WebinarModel,
+  PlaylistModel,
 } from './database';
 import { GetSEOMetaResponseType } from './global';
 
@@ -33,6 +34,11 @@ export interface ProjectPageProps extends PageProps {
   project: ProjectPickedPageProps;
   meta: string;
   currentChapterId: string;
+}
+
+export interface PlaylistPageProps extends PageProps {
+  playlist: PlaylistPickedPageProps;
+  PlaylistId: string;
 }
 
 export interface CoursePageProps extends PageProps {
@@ -73,3 +79,17 @@ export interface CardContainerAProps {
   borderColour?: string;
   cards: CardItem[];
 }
+
+
+export type PlaylistPickedPageProps = Pick<
+  PlaylistModel & { _id: string }, // Explicitly adding _id
+  | '_id' 
+  | 'playlistId' 
+  | 'playlistName' 
+  | 'description'
+  | 'thumbnail' 
+  | 'tags' 
+  | 'videos' 
+  | 'referrerBy'
+>;
+

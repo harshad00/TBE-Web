@@ -136,9 +136,9 @@ export interface Video {
 export interface PlaylistModel {
   playlistId: string;
   playlistName: string;
-  description?: string;
+  description: string;
   referrerBy?: number;
-  thumbnail?: string;
+  thumbnail: string;
   tags?: string[];
   videos: Video[];
 }

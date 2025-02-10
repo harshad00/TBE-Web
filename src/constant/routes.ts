@@ -49,7 +49,7 @@ const routes = {
   // YouFocus
   youfocus: '/youfocus',
   addPlaylist: '/youfocus/add',
-  playlist: (playlistId: string) => `/youfocus/playlist/${playlistId}/`,
+  playlistById: '/youfocus/playlist',
   explorePlaylist: '/youfocus/explore-playlist',
   404: '/404',
   api: {
