@@ -10,7 +10,6 @@ const PrimaryLongCard = ({
   href, 
   borderColour = 4,
 }: PrimaryLongCardProps) => {
-  const border = `border-borderColor${borderColour}`;
 
   return (
     <div

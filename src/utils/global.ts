@@ -112,55 +112,51 @@ const getPlaylistPageProps = async (context: any) => {
   const { playlistId } = query;
 
   let slug = routes.home;
-  
+
   if (playlistId) {
-    slug = `${routes.playlistById}/${playlistId}`;
+    slug = routes.youfocusplaylist;
   }
 
   const seoMeta = getSEOMeta(slug);
 
-  if (playlistId && seoMeta) {
-    try {
-      // Fetch playlist data
-      const { status, data } = await fetchAPIData(
-        routes.api.youfocusPlaylistById(playlistId)
-      );
+  // If we don’t have a playlistId or seoMeta, redirect to home.
+  if (!playlistId || !seoMeta) {
+    return {
+      redirect: {
+        destination: routes.home,
+        permanent: false
+      },
+      props: { slug },
+    };
+  }
 
-      // If playlist data is not found, redirect
-      if (!status || !data) {
-        return {
-          redirect: {
-            destination: routes.home,
-            permanent: false,
-          },
-        };
-      }
-
-      return {
-        props: {
-          slug,
-          seoMeta,
-          playlist: data,
-        },
-      };
-    } catch (error) {
+  try {
+    const { status, data } = await fetchAPIData(
+      routes.api.youfocusPlaylistById(playlistId)
+    );
+    if (!status || !data) {
       return {
         redirect: {
           destination: routes.home,
-          permanent: false,
+          permanent: false
         },
-        props: { slug },
       };
     }
+    return {
+      props: {
+        slug, seoMeta,
+        playlist: data
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: routes.home,
+        permanent: false
+      },
+      props: { slug },
+    };
   }
-
-  return {
-    redirect: {
-      destination: routes.home,
-      permanent: false,
-    },
-    props: { slug },
-  };
 };
 
 const getCoursePageProps = async (context: any) => {

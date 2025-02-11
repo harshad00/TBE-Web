@@ -48,7 +48,7 @@ const Home = ({ seoMeta }: PageProps) => {
         setPlaylistUrl('');
         setTimeout(() => {
           const playlistId = response.data._id; 
-          const redirectUrl = `${routes.playlistById}/${playlistId}`
+          const redirectUrl = `${routes.youfocusplaylist}/${playlistId}`
           router.push(redirectUrl);
       }, 2000);   
       } else {
