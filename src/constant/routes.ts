@@ -48,8 +48,8 @@ const routes = {
   },
   // YouFocus
   youfocus: '/youfocus',
-  youfocusaddPlaylist: '/youfocus/add',
-  youfocusplaylist: '/youfocus/playlist',
+  youfocusAddPlaylist: '/youfocus/add',
+  youfocusPlaylist: '/youfocus/playlist',
   explorePlaylist: '/youfocus/explore-playlist',
   404: '/404',
   api: {
