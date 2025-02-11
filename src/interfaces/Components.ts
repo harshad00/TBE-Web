@@ -431,6 +431,7 @@ export interface PlaylistCardProps {
   title: string;
   description: string;
   thumbnail: string;
+  route: string;
 }
 
 export interface PrimaryLongCardProps {

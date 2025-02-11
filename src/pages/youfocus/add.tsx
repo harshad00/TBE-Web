@@ -48,7 +48,7 @@ const Home = ({ seoMeta }: PageProps) => {
         setPlaylistUrl('');
         setTimeout(() => {
           const playlistId = response.data._id; 
-          const redirectUrl = `${routes.youfocusplaylist}/${playlistId}`
+          const redirectUrl = `${routes.youfocusPlaylist}/${playlistId}`
           router.push(redirectUrl);
       }, 2000);   
       } else {
@@ -77,8 +77,7 @@ const Home = ({ seoMeta }: PageProps) => {
               onChange={handleInputChange}
               className='md:w-1/2 md:px-5 text-black'
             />
-            {error && <p className='error text-red-500'>{error}</p>}
-            {success && <p className='success text-green-500'>{success}</p>}
+            
             <Button
               variant='PRIMARY'
               className=''
@@ -87,6 +86,8 @@ const Home = ({ seoMeta }: PageProps) => {
               isLoading={loading}
               onClick={handleAddPlaylist}
             />
+            {error && <p className='error text-red-500'>{error}</p>}
+            {success && <p className='success text-green-500'>{success}</p>}
           </FlexContainer>
         </FlexContainer>
       </Section>

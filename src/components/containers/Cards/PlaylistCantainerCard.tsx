@@ -1,9 +1,7 @@
 import React from "react";
 import {
   Section,
-  FlexContainer,
   PlaylistVideoCard,
-  CardSectionContainer,
   PlaylistCard,
 } from "@/components";
 
@@ -11,16 +9,17 @@ import { CardContainerCProps } from "@/interfaces";
 
 const CardContainerC = ({ playlist }: CardContainerCProps) => {
   return (
-    <Section className="py-2 px-4 md:px-0">
-      <FlexContainer
-        direction="col"
-        className="gap-6 items-center max-w-full md:max-w-[80%] mx-auto"
+    <Section className="py-2 md:px-0">
+      <div className="flex flex-col gap-6 max-w-full md:max-w-[90%] mx-auto"
       >
+        <div className=" w-full">
         <PlaylistCard
           title={playlist.playlistName}
           description={playlist.description}
           thumbnail={playlist.thumbnail}
+          route=""
         />
+        </div>
       
           {playlist.videos?.map((video) => (
             <PlaylistVideoCard
@@ -31,7 +30,8 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
               content=""
             />
           ))}
-      </FlexContainer>
+         
+      </div>
     </Section>
 
   );
