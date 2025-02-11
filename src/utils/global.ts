@@ -114,7 +114,7 @@ const getPlaylistPageProps = async (context: any) => {
   let slug = routes.home;
 
   if (playlistId) {
-    slug = routes.youfocusplaylist;
+    slug = routes.youfocusPlaylist;
   }
 
   const seoMeta = getSEOMeta(slug);
