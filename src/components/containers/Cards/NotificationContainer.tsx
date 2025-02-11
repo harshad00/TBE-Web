@@ -12,8 +12,11 @@ const NotificationContainer = () => {
   );
 
   return (
-    <div className='px-2 py-4 m-auto gradient-6 md:w-1/3 w-full rounded-2 border flex-col justify-center items-center gap-2.5 flex'>
-      <div className='flex-col justify-start items-center gap-4 flex'>
+    <FlexContainer
+      direction='col'
+      className='px-2 py-4 m-auto gradient-6 md:w-1/3 w-full rounded-2 border gap-4'
+    >
+      <FlexContainer direction='col' className='gap-4'>
         <FlexContainer direction='col' className='gap-1.5'>
           <Text level='span' className='pre-title text-greyDark'>
             What’s Happening at
@@ -57,8 +60,8 @@ const NotificationContainer = () => {
             })}
           </FlexContainer>
         )}
-      </div>
-    </div>
+      </FlexContainer>
+    </FlexContainer>
   );
 };
 

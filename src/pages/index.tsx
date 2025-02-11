@@ -9,6 +9,7 @@ import {
   Community,
   MentorshipPlans,
   Banner,
+  NotificationContainer,
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
@@ -70,6 +71,7 @@ const Home = ({ seoMeta }: PageProps) => {
         cards={PRODUCTS}
         borderColour={2}
       />
+      <NotificationContainer />
       <Banner
         title='Feeling Stuck?'
         description='Need a Resume Review or help with Learning Tech. We can help.'

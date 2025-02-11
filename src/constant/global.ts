@@ -1,4 +1,8 @@
-import { PortfolioTemplateProps, ProductDataProps } from '@/interfaces';
+import {
+  MentorshipCardProps,
+  PortfolioTemplateProps,
+  ProductDataProps,
+} from '@/interfaces';
 import { routes } from './routes';
 import { envConfig } from './envConfig';
 
@@ -67,6 +71,8 @@ const LINKS = {
     'https://docs.google.com/forms/d/e/1FAIpQLSfYHF6BlVfzcela42McNzHZo3WFfjgEV_e0EBrlsxNUdmK_KA/viewform?usp=dialog',
   sachinLinkedIn: 'https://www.linkedin.com/in/imsks/',
   officialLinkedIn: 'https://www.linkedin.com/company/theboringeducation',
+  contributeOpenSource:
+    'https://theboringeducation.notion.site/Contribute-The-Boring-Education-8171f19257fd4ef99b7287555eb5062b',
 };
 
 // Google analytics
@@ -122,26 +128,19 @@ const apiStatusCodes = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
-const mentorshipPlans: { title: string; description: string; link: string }[] =
-  [
-    {
-      title: 'Book Tech Guidance',
-      description: 'Get mentored by working professionals',
-      link: '',
-    },
-    {
-      title: 'Book Resume Review',
-      description:
-        'Get a resume review to enhance your job application and stand out to employers.',
-      link: '',
-    },
-    {
-      title: 'Cracking Remote Jobs',
-      description:
-        'know the secret behind cracking remote jobs by industry experts.',
-      link: '',
-    },
-  ];
+const MENTORSHIP_CARDS: MentorshipCardProps[] = [
+  {
+    heading: 'Book Tech Guidance',
+    description: 'Get mentored by working professionals',
+    link: 'https://topmate.io/imsks/714265',
+  },
+  {
+    heading: 'Book Resume Review',
+    description:
+      'Get a resume review to enhance your job application and stand out to employers.',
+    link: 'https://topmate.io/imsks/714264',
+  },
+];
 
 const IN_DEV_PAGES = ['/projects'];
 const projectGroupWhatsapp = 'https://chat.whatsapp.com/D1ko12SykD1LfvJwmNQ48A';
@@ -269,7 +268,7 @@ export {
   apiStatusCodes,
   IN_DEV_PAGES,
   projectGroupWhatsapp,
-  mentorshipPlans,
+  MENTORSHIP_CARDS,
   SCREEN_BREAKPOINTS,
   PORTFOLIO_CARDS,
   PORTFOLIO_TEMPLATES,
