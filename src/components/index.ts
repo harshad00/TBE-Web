@@ -151,6 +151,13 @@ const WebinarHeroContainer = dynamic(
 const BackgroundImage = dynamic(
   () => import('@/components/common/Images/BackgroundImage')
 );
+const PlaylistCard = dynamic(() => import('@/components/containers/Cards/Items/PlaylistCard')
+);
+const PlaylistCantainerCard = dynamic(
+  () => import('@/components/containers/Cards/PlaylistCantainerCard')
+);
+const PlaylistVideoCard = dynamic(() => import('@/components/containers/Cards/Items/PlaylistVideoCard')
+);
 
 export {
   Navbar,
@@ -217,6 +224,9 @@ export {
   Modal,
   WebibarCard,
   ToggleButton,
+  PlaylistCantainerCard,
+  PlaylistCard,
+  PlaylistVideoCard,
   NotificationContainer,
   MentorshipCard,
 };

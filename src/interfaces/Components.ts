@@ -426,6 +426,41 @@ export interface ToggleButtonProps {
   textColors?: string[];
 }
 
+
+export interface PlaylistCardProps {
+  title: string;
+  description: string;
+  thumbnail: string;
+  route: string;
+}
+
+export interface PrimaryLongCardProps {
+  image: string;
+  imageAltText: string;
+  title: string;
+  content: string;
+  href?: string;
+  active?: boolean;
+  borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
+  target?: '_blank';
+  launchingOn?: string;
+}
+interface Video {
+  title: string;
+  thumbnail: string;
+}
+
+interface PlaylistData {
+  playlistName: string;
+  description: string;
+  thumbnail: string;
+  videos?: Video[];
+}
+
+export interface CardContainerCProps {
+  playlist: PlaylistData;
+}
+
 export interface MentorshipCardProps {
   heading: string;
   description: string;

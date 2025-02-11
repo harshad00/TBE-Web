@@ -16,7 +16,7 @@ const Home = ({ seoMeta }: PageProps) => {
         heroText='Master Skills, Minus the Distractions'
         primaryButton={
           <LinkButton
-            href={routes.addPlaylist}
+            href={routes.youfocusAddPlaylist}
             className='w-full sm:w-fit'
             buttonProps={{
               variant: 'PRIMARY',
