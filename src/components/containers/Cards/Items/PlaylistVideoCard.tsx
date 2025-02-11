@@ -8,55 +8,68 @@ const PrimaryLongCard = ({
   title,
   content,
   href, 
-  borderColour = 4,
 }: PrimaryLongCardProps) => {
-
   return (
-    <div
-      className={`w-full border border-gray-500/5 hover:bg-slate-200 flex flex-row items-center rounded-lg`}
-    >
+    <div className="w-full border border-gray-500/5 hover:bg-slate-200 rounded-lg">
       {href ? (
         <Link href={href} className="flex flex-row w-full items-center">
+          {/* Image Section */}
           <div className="w-1/3 flex-shrink-0">
-            <Image
-              className=" w-full h-[120px] md:h-[100px] rounded-lg object-cover"
-              src={image}
-              alt={imageAltText}
-            />
+            <div className="relative w-full aspect-video">
+              <Image
+                className="absolute inset-0 w-full h-full object-cover"
+                src={image}
+                alt={imageAltText}
+              />
+            </div>
           </div>
-
-          {/* Text always on the Right */}
-          <div className="flex-grow ml-4 md:ml-0 text-left">
-            <Text level="label" className="heading-4 md:heading-5 font-semibold line-clamp-2">
+          {/* Text Section */}
+          <div className="flex-grow p-4 text-left">
+            <Text
+              level="label"
+              className="heading-4 font-semibold text-lg md:text-xl lg:text-2xl line-clamp-2"
+            >
               {title}
             </Text>
-            <Text level="p" className="paragraph mt-1 text-sm md:text-base line-clamp-2">
+            <Text
+              level="p"
+              className="paragraph mt-1 text-sm md:text-base lg:text-lg line-clamp-2"
+            >
               {content}
             </Text>
           </div>
         </Link>
       ) : (
         <div className="flex flex-row items-center w-full">
+          {/* Image Section */}
           <div className="w-1/2 flex-shrink-0">
-            <Image
-              className=" w-full md:w-2/3 h-[120px] md:h-[200px] rounded-lg object-cover"
-              src={image}
-              alt={imageAltText}
-            />
+            <div className="relative w-full aspect-video">
+              <Image
+                className="absolute inset-0 w-full h-full object-cover"
+                src={image}
+                alt={imageAltText}
+              />
+            </div>
           </div>
-
-          <div className="flex-grow ml-4 md:ml-0 md:w-[80%] text-start">
-            <Text level="h6" className="heading-5 ms:heading-6 font-primary line-clamp-2">
+          {/* Text Section */}
+          <div className="flex-grow p-2 text-left">
+            <Text
+              level="h6"
+              className="heading-5 font-primary text-lg md:text-xl lg:text-2xl line-clamp-2"
+            >
               {title}
             </Text>
-            <Text level="p" className="paragraph mt-1 text-sm md:text-base line-clamp-2">
+            <Text
+              level="p"
+              className="paragraph mt-1 text-sm md:text-base lg:text-lg line-clamp-2"
+            >
               {content}
             </Text>
           </div>
         </div>
       )}
     </div>
-  );
+  )
 };
 
 export default PrimaryLongCard;
