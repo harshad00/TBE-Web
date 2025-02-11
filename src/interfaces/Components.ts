@@ -425,3 +425,9 @@ export interface ToggleButtonProps {
   onToggle: (activeOption: string) => void;
   textColors?: string[];
 }
+
+export interface MentorshipCardProps {
+  heading: string;
+  description: string;
+  link: string;
+}
