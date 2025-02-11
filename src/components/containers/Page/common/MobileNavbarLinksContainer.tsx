@@ -11,10 +11,10 @@ const MobileNavbarLinksContainer = ({
       itemCenter={false}
       justifyCenter={false}
       direction='col'
-      className='gap-1'
+      className='gap-2'
     >
-      <Text level='span' className='pre-title text-greyDark'>
-        {title}
+      <Text level='span' className='pre-title text-primary'>
+        {title.toLocaleUpperCase()}
       </Text>
       <FlexContainer
         itemCenter={false}
