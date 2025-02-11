@@ -426,6 +426,7 @@ export interface ToggleButtonProps {
   textColors?: string[];
 }
 
+
 export interface PlaylistCardProps {
   title: string;
   description: string;
@@ -457,4 +458,10 @@ interface PlaylistData {
 
 export interface CardContainerCProps {
   playlist: PlaylistData;
+}
+
+export interface MentorshipCardProps {
+  heading: string;
+  description: string;
+  link: string;
 }

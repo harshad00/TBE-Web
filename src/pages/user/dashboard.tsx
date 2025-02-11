@@ -11,6 +11,7 @@ import {
   SEO,
   Section,
   NotificationContainer,
+  Banner,
 } from '@/components';
 import { useAPIResponseMapper, useApi, useUser } from '@/hooks';
 import {
@@ -19,7 +20,7 @@ import {
   mapInterviewSheetResponseToCard,
   mapProjectResponseToCard,
 } from '@/utils';
-import { routes } from '@/constant';
+import { LINKS, routes, STATIC_FILE_PATH } from '@/constant';
 
 const MyCourses = ({ seoMeta }: PageProps) => {
   const session = useSession();
@@ -78,17 +79,25 @@ const MyCourses = ({ seoMeta }: PageProps) => {
   return (
     <Fragment>
       <SEO seoMeta={seoMeta} />
-      <Section className='md:px-2 md:py-4 px-0'>
+      <Section className='md:py-4 px-2'>
         <CardContainerB
           heading='Your'
           focusText='Learning Space'
           cards={courses.concat(projects).concat(interviewSheets)}
           borderColour={2}
           subtext='Continue Learning From Where You Left'
-          sectionClassName='px-2 py-4'
+          sectionClassName='md:px-2 px-0 py-4'
         />
         {noCourseFoundUI}
         <NotificationContainer />
+        <Banner
+          title='Contribute at The Boring Education'
+          description='We’re an Open Source Tech Ed Startup. Feel free to contribute to Building Tech Education for Everyone'
+          buttonText='See Open Issues'
+          buttonLink={LINKS.contributeOpenSource}
+          imageSrc={`${STATIC_FILE_PATH.svg}/community.svg`}
+          variant='VARIANT_B'
+        />
       </Section>
     </Fragment>
   );

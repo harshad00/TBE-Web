@@ -12,7 +12,7 @@ import {
   Text,
   UserAvatar,
 } from '..';
-import { FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { LINKS, routes, TOP_NAVIGATION } from '@/constant';
@@ -34,7 +34,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className='flex items-center justify-between p-4 lg:px-8'>
+      <nav className='flex items-center justify-between p-2 lg:px-8'>
         <div className='w-100 flex'>
           <Logo />
         </div>
@@ -78,7 +78,7 @@ const Navbar = () => {
         onClose={setMobileMenuOpen}
       >
         <div className='fixed inset-0 z-50' />
-        <Dialog.Panel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-4 py-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
+        <Dialog.Panel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-2 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
           <div className='flex items-center justify-between'>
             <Logo />
             <button
@@ -146,6 +146,9 @@ const Navbar = () => {
                     </Link>
                     <Link href={LINKS.youtube} target='_blank'>
                       <FaYoutube color='black' size='2em' />
+                    </Link>
+                    <Link href={LINKS.officialLinkedIn} target='_blank'>
+                      <FaLinkedin color='black' size='2em' />
                     </Link>
                   </FlexContainer>
                 </FlexContainer>

@@ -1,4 +1,7 @@
 import dynamic from 'next/dynamic';
+const MentorshipCard = dynamic(
+  () => import('@/components/containers/Cards/MentorshipCard')
+);
 const ToggleButton = dynamic(
   () => import('@/components/common/Buttons/ToggleButton')
 );
@@ -225,4 +228,5 @@ export {
   PlaylistCard,
   PlaylistVideoCard,
   NotificationContainer,
+  MentorshipCard,
 };

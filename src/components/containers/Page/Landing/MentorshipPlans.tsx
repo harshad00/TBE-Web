@@ -1,25 +1,26 @@
-import { FlexContainer, Text } from '@/components';
-import { mentorshipPlans } from '@/constant';
+import { FlexContainer, MentorshipCard, Section, Text } from '@/components';
+import { MENTORSHIP_CARDS } from '@/constant';
 import React from 'react';
-import Mentorship from '../../Cards/Mentorship';
 
 const MentorshipPlans = () => {
   return (
-    <FlexContainer className='p-5'>
-      <Text level='h1' className='heading-3'>
-        Mentorship Plans
-      </Text>
-      <FlexContainer className='gap-2 m-2'>
-        {mentorshipPlans.map((plan) => (
-          <Mentorship
-            key={plan.title}
-            heading={plan.title}
-            description={plan.description}
-            link={plan.link}
-          />
-        ))}
+    <Section className='md:p-5 px-2 py-4'>
+      <FlexContainer className='gap-2' direction='col'>
+        <Text level='h3' className='heading-3'>
+          Get Personalised Mentorship
+        </Text>
+        <FlexContainer className='gap-2 h-full'>
+          {MENTORSHIP_CARDS.map((plan) => (
+            <MentorshipCard
+              key={plan.heading}
+              heading={plan.heading}
+              description={plan.description}
+              link={plan.link}
+            />
+          ))}
+        </FlexContainer>
       </FlexContainer>
-    </FlexContainer>
+    </Section>
   );
 };
 
