@@ -1,34 +1,39 @@
 import { LINKS, STATIC_FILE_PATH } from '@/constant';
 import Link from 'next/link';
 import React from 'react';
-import FlexContainer from '../common/FlexContainer';
-import { Image, Pill, Section } from '@/components';
+import { Image, Pill, Section, FlexContainer } from '@/components';
 import { Text } from '@/components';
 
 const Community = () => {
   return (
     <Section>
       <FlexContainer className='gradient-5 w-full p-4 flex-col  gap-4 rounded-2'>
-        <FlexContainer className='w-full max-w-[98%] md:max-w-[50%]'>
-          <Image
-            src={`${STATIC_FILE_PATH.svg}/community.svg`}
-            fullHeight={true}
-            fullWidth={true}
-            alt='community'
-          />
-        </FlexContainer>
-        <FlexContainer className='text-accent gap-1  max-w-[98%] md:max-w-[50%]'>
-          <Text level='h1' className='heading-3 text-accent mb-[28px]'>
+        <Image
+          src={`${STATIC_FILE_PATH.svg}/community.svg`}
+          fullHeight={false}
+          fullWidth={false}
+          alt='community'
+        />
+        <FlexContainer className='gap-1' direction='col'>
+          <Text
+            level='h3'
+            className='heading-3 text-contentDark'
+            textCenter={true}
+          >
             Community For Everyone
           </Text>
-          <Text level='p' className='text-center'>
+          <Text level='p' textCenter={true} className='text-contentDark'>
             You excel where you’re supported. Connect with like-minded peers who
             share the same goal as you.
           </Text>
         </FlexContainer>
-        <FlexContainer className='flex-col text-accent gap-2'>
-          <Text level='h1' className='heading-5  text-accent'>
-            In Community, You can
+        <FlexContainer direction='col' className='gap-2'>
+          <Text
+            level='h5'
+            className='heading-5 text-contentDark'
+            textCenter={true}
+          >
+            In Community, You'll
           </Text>
           <FlexContainer className='gap-1 justify-center items-center flex-wrap'>
             {[

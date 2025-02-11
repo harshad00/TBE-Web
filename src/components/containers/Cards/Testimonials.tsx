@@ -10,7 +10,7 @@ import { TESTIMONIALS } from '@/constant';
 const Testimonials = () => {
   return (
     <Section>
-      <FlexContainer direction='col'>
+      <FlexContainer direction='col' className='gap-2'>
         <SectionHeaderContainer
           heading='Hear the words of'
           focusText='ex-learners'
