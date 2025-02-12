@@ -450,6 +450,10 @@ interface Video {
   thumbnail: string;
 }
 
+export interface  PlaylistVideoTimeCard {
+  usertime: number;
+}
+
 interface PlaylistData {
   playlistName: string;
   description: string;
