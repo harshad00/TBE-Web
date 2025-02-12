@@ -14,7 +14,6 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
       <div className="flex flex-col gap-6 max-w-full md:max-w-[90%] mx-auto"
       >
         <div>
-          <PlaylistVideoTimeCard usertime={5}  />
         </div>
         <div className=" w-full">
         <PlaylistCard
