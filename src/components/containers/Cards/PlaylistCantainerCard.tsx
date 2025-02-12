@@ -6,12 +6,16 @@ import {
 } from "@/components";
 
 import { CardContainerCProps } from "@/interfaces";
+import PlaylistVideoTimeCard from "./Items/PlaylistViseoTimeCard";
 
 const CardContainerC = ({ playlist }: CardContainerCProps) => {
   return (
     <Section className="py-2 md:px-0">
       <div className="flex flex-col gap-6 max-w-full md:max-w-[90%] mx-auto"
       >
+        <div>
+          <PlaylistVideoTimeCard usertime={5}  />
+        </div>
         <div className=" w-full">
         <PlaylistCard
           title={playlist.playlistName}
