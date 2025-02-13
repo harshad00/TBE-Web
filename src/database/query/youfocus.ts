@@ -76,39 +76,22 @@ const getPlaylistsFormDB = async (): Promise<DatabaseQueryResponseType> => {
 };
 
 // Get a playlist by its ID
-const getPlaylistByIDFromDB = async (
-  playlistId: string
+const getUserPlaylistByIDFromDB = async (
+  playlistId: string,
+  userId?: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const playlist = await Playlist.findById({ _id: playlistId });
+    const userPlaylist = await UserPlaylist.findOne({ playlistId, userId }).populate({
+      path: 'playlistId',
+    }).exec();
 
-    if (!playlist) {
+    if (!userPlaylist) {
       return { error: 'Playlist not found' };
     }
 
-    return { data: playlist };
+    return { data: userPlaylist };
   } catch (error) {
     return { error };
-  }
-};
-
-// Get Playlist Video my Id Form DB
-const getPlaylistVideoByIDFromDB = async (
-  videoId: string
-): Promise<DatabaseQueryResponseType> => {
-  try {
-    const playlist = await Playlist.findOne({ 'videos.videoId': videoId });
-
-    if (!playlist) {
-      return { error: 'Video not found in any playlist' };
-    }
-
-    // Find the specific video in the playlist
-    const video = playlist.videos.find((v) => v.videoId === videoId);
-
-    return { data: video };
-  } catch (error) {
-    return { error: 'An error occurred while fetching video' };
   }
 };
 
@@ -150,89 +133,79 @@ const deleteUserPlaylistFromDB = async (
   }
 };
 
-const updateUserPlaylistWatchTime = async (
+const updateUserPlaylistData = async (
   userId: string,
   playlistId: string,
-  time: number
+  updateData: { isRecommended?: boolean; learningTime?: number } = {}
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    console.log('Updating watch time with:', time);
+    // Initialize update object with provided values
+    const updateFields: any = {};
 
-    const userPlaylist = await UserPlaylist.findOneAndUpdate(
-      { userId, playlistId },
-      { $set: { learningTime: time } },
-      { new: true }
-    );
-
-    if (!userPlaylist) {
-      return { error: 'UserPlaylist not found' };
+    if (updateData.isRecommended !== undefined) {
+      updateFields.isRecommended = updateData.isRecommended;
+    }
+    if (updateData.learningTime !== undefined) {
+      updateFields.learningTime = updateData.learningTime;
     }
 
-    console.log('Updated userPlaylist:', userPlaylist);
+    // If no valid updates, return an error
+    if (Object.keys(updateFields).length === 0) {
+      return { error: 'No valid updates provided' };
+    }
 
-    return { data: userPlaylist };
-  } catch (error) {
-    console.error('Error updating watch time:', error);
-    return { error: 'An error occurred while updating watch time' };
-  }
-};
-
-const recommendedPlaylist = async (
-  userId: string,
-  playlistId: string
-): Promise<DatabaseQueryResponseType> => {
-  try {
-    // Check if the playlist is already recommended
-    const existingUserPlaylist = await UserPlaylist.findOne(
-      { userId, playlistId },
-      { isRecommended: 1, _id: 0 } // Fetch only isRecommended field
-    );
+    // Retrieve existing UserPlaylist document
+    const existingUserPlaylist = await UserPlaylist.findOne({ userId, playlistId });
 
     if (!existingUserPlaylist) {
       return { error: 'UserPlaylist not found' };
     }
 
-    if (existingUserPlaylist.isRecommended) {
-      return { error: 'This playlist is already recommended' };
-    }
+    // Check if `isRecommended` was previously false and is now being set to true
+    const shouldIncrementReferrerBy =
+      updateData.isRecommended === true && existingUserPlaylist.isRecommended === false;
 
-    // Update isRecommended to true
+    // Update UserPlaylist
     const userPlaylist = await UserPlaylist.findOneAndUpdate(
       { userId, playlistId },
-      { $set: { isRecommended: true } },
-      { new: true, fields: { isRecommended: 1, _id: 0 } } // Return only isRecommended
+      { $set: updateFields },
+      { new: true }
     );
 
     if (!userPlaylist) {
-      return { error: 'Failed to update recommendation' };
+      return { error: 'Failed to update UserPlaylist' };
     }
 
-    // Increment referrerBy in Playlist
-    const addreferrerinPlaylist = await Playlist.findByIdAndUpdate(
-      playlistId,
-      { $inc: { referrerBy: 1 } },
-      { new: true, fields: { referrerBy: 1, _id: 0 } } // Return only referrerBy
-    );
+    // Increment referrerBy in Playlist only if transitioning from false to true
+    let addreferrerinPlaylist = null;
+    if (shouldIncrementReferrerBy) {
+      addreferrerinPlaylist = await Playlist.findByIdAndUpdate(
+        playlistId,
+        { $inc: { referrerBy: 1 } },
+        { new: true, fields: { referrerBy: 1, _id: 0 } }
+      );
 
-    if (!addreferrerinPlaylist) {
-      return { error: 'Playlist not found' };
+      if (!addreferrerinPlaylist) {
+        return { error: 'Playlist not found' };
+      }
     }
 
     return { data: { userPlaylist, addreferrerinPlaylist } };
   } catch (error) {
-    return { error: 'An error occurred while updating userPlaylist' };
+    return { error: 'An error occurred while updating UserPlaylist' };
   }
 };
+
+
+
 
 export {
   addPlaylistToDB,
   checkPlaylistExistsByPlaylistId,
   addUserPlaylistEntry,
   getPlaylistsFormDB,
-  getPlaylistByIDFromDB,
+  getUserPlaylistByIDFromDB,
   getUserPlaylistsFromDB,
   deleteUserPlaylistFromDB,
-  getPlaylistVideoByIDFromDB,
-  updateUserPlaylistWatchTime,
-  recommendedPlaylist,
+  updateUserPlaylistData
 };
