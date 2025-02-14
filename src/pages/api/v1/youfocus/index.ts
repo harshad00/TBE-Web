@@ -12,7 +12,7 @@ import {
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
-  const { method, query } = req;
+  const { query } = req;
   const { userId } = query as { userId: string };
 
   switch (req.method) {

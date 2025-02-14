@@ -2,22 +2,24 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { getPlaylistByIDFromDB, RecommendedPlaylist } from '@/database';
+import { getUserPlaylistByIDFromDB, updateUserPlaylistData } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
 
-  const { query } = req;
-  const { youfocusId, userId } = query as {
-    youfocusId: string;
+  const { method, query } = req;
+  const { playlistId, userId } = query as {
+    playlistId: string;
     userId: string;
   };
 
-  switch (req.method) {
+  switch (method) {
     case 'GET':
-      return handleGetYouFocusById(req, res, youfocusId);
-    case 'PUT':
-      return handleRecommendedPlaylist(req, res, youfocusId, userId);
+      return getUserPlaylistById(req, res, playlistId, userId);
+    case 'PATCH': {
+      const { isRecommended, learningTime } = req.body;
+      return handleUpdateUserPlaylist(req, res, playlistId, userId, isRecommended, learningTime);
+    }
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
@@ -28,21 +30,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-const handleGetYouFocusById = async (
+const getUserPlaylistById = async (
   req: NextApiRequest,
   res: NextApiResponse,
-  youfocusId: string
+  playlistId: string,
+  userId: string
 ) => {
-  if (!youfocusId) {
-    return res.status(apiStatusCodes.BAD_REQUEST).json(
-      sendAPIResponse({
-        status: false,
-        message: 'YouFocus ID is required',
-      })
-    );
-  }
-
-  const { data, error } = await getPlaylistByIDFromDB(youfocusId);
+  const { data, error } = await getUserPlaylistByIDFromDB(playlistId, userId);
 
   if (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
@@ -71,13 +65,15 @@ const handleGetYouFocusById = async (
   );
 };
 
-const handleRecommendedPlaylist = async (
+const handleUpdateUserPlaylist = async (
   req: NextApiRequest,
   res: NextApiResponse,
   youfocusId: string,
-  userId: string
+  userId: string,
+  isRecommended: boolean,
+  learningTime: number
 ) => {
-  const { data, error } = await RecommendedPlaylist(userId, youfocusId);
+  const { data, error } = await updateUserPlaylistData(userId, youfocusId, isRecommended, learningTime);
 
   if (error) {
     return res.status(apiStatusCodes.BAD_REQUEST).json(
@@ -91,7 +87,7 @@ const handleRecommendedPlaylist = async (
   return res.status(apiStatusCodes.OKAY).json(
     sendAPIResponse({
       status: true,
-      message: 'Playlist recommended successfully',
+      message: 'Playlist updated successfully',
       data,
     })
   );
