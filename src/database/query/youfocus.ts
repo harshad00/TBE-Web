@@ -133,6 +133,14 @@ const deleteUserPlaylistFromDB = async (
   }
 };
 
+const incrementReferrerCount = async (playlistId: string): Promise<any> => {
+  return await Playlist.findByIdAndUpdate(
+    playlistId,
+    { $inc: { referrerBy: 1 } },
+    { new: true, fields: { referrerBy: 1, _id: 0 } }
+  );
+};
+
 const updateUserPlaylistData = async (
   userId: string,
   playlistId: string,
@@ -140,7 +148,6 @@ const updateUserPlaylistData = async (
   learningTime: number
 ): Promise<DatabaseQueryResponseType> => {
   try {
-   
     const userPlaylist = await UserPlaylist.findOne({ userId, playlistId });
     if (!userPlaylist) return { error: 'UserPlaylist not found' };
 
@@ -155,11 +162,7 @@ const updateUserPlaylistData = async (
     // Only increment referrerBy if isRecommended changes from false to true
     let updatedPlaylist = null;
     if (isRecommended && !userPlaylist.isRecommended) {
-      updatedPlaylist = await Playlist.findByIdAndUpdate(
-        playlistId,
-        { $inc: { referrerBy: 1 } },
-        { new: true, fields: { referrerBy: 1, _id: 0 } }
-      );
+      updatedPlaylist = await incrementReferrerCount(playlistId);
     }
 
     return { data: { updatedUserPlaylist, updatedPlaylist } };
