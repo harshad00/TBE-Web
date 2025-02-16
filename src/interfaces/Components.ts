@@ -1,4 +1,8 @@
-import { HTMLInputTypeAttribute, MouseEventHandler, ReactNode } from 'react';
+import React, {
+  HTMLInputTypeAttribute,
+  MouseEventHandler,
+  ReactNode,
+} from 'react';
 import {
   CertificateType,
   GetSEOMetaResponseType,
@@ -388,6 +392,7 @@ export interface CertificateContentProps {
   courseName: string;
   date: string;
   type: CertificateType;
+  certificateRef: React.RefObject<HTMLDivElement>;
 }
 
 export interface BackgroundImageProps {
@@ -426,7 +431,6 @@ export interface ToggleButtonProps {
   textColors?: string[];
 }
 
-
 export interface PlaylistCardProps {
   title: string;
   description: string;
@@ -450,7 +454,7 @@ interface Video {
   thumbnail: string;
 }
 
-export interface  PlaylistVideoTimeCard {
+export interface PlaylistVideoTimeCard {
   usertime: number;
 }
 
