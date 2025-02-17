@@ -1,17 +1,14 @@
 require('dotenv').config();
 
 async function reviewPR() {
-  // Dynamically import ESM modules
   const { Octokit } = await import('@octokit/rest');
   const OpenAI = (await import('openai')).default;
 
-  // Initialize instances after import
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   const [owner, repo] = 'The-Boring-Education/TBE-Web'.split('/');
 
-  // Get the latest open PR
   const { data: pulls } = await octokit.pulls.list({
     owner,
     repo,
@@ -31,9 +28,12 @@ async function reviewPR() {
     .map((file) => `File: ${file.filename}\n\n${file.patch}`)
     .join('\n\n');
 
-  if (!diffText) return console.log('No changes detected in PR.');
+  // 🔥 Reduce token usage by limiting diffText to the first 1000 characters
+  if (diffText.length > 1000) {
+    diffText = diffText.slice(0, 1000) + '\n... (truncated)';
+  }
 
-  // GPT Code Review Request (Updated API Format)
+  // GPT Code Review Request (Using `gpt-4o`)
   const response = await openai.chat.completions.create({
     model: 'gpt-4o',
     messages: [
@@ -46,7 +46,6 @@ async function reviewPR() {
     ],
   });
 
-  // Post the GPT review as a comment on the PR
   await octokit.issues.createComment({
     owner,
     repo,
