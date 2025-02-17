@@ -9,7 +9,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { Fragment } from 'react';
 import { getPreFetchProps } from '@/utils';
-import { PageProps } from '@/interfaces';
+import { PageProps, TestimonialCardProps } from '@/interfaces';
 import {
   Button,
   SEO,
@@ -18,102 +18,42 @@ import {
   Section,
   Text,
   FlexContainer,
+  SectionHeaderContainer,
+  LinkButton,
+  IconCard,
+  HeaderLabel,
 } from '@/components';
-
-const Card = ({
-  children,
-  className = '',
-  ...props
-}: {
-  children: React.ReactNode;
-  className?: string;
-  [key: string]: any;
-}) => (
-  <div
-    className={`bg-white rounded-xl shadow-lg overflow-hidden ${className}`}
-    {...props}
-  >
-    {children}
-  </div>
-);
-
-const Banner = ({
-  title,
-  subtitle,
-  image,
-  cta,
-  reverse = false,
-}: {
-  title: string;
-  subtitle: string;
-  image: string;
-  cta: string;
-  reverse?: boolean;
-}) => (
-  <FlexContainer direction='col' className='gap-4' itemCenter={false}>
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className={`container mx-auto px-4 py-8 flex flex-col flex-col-reverse ${
-        reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'
-      } items-center gap-8 lg:gap-12`}
-    >
-      <FlexContainer direction='col' className='gap-4' itemCenter={false}>
-        <FlexContainer direction='col' className='gap-2' itemCenter={false}>
-          <Text level='h2' className='heading-3'>
-            {title}
-          </Text>
-          <Text level='p' className='paragraph'>
-            {subtitle}
-          </Text>
-        </FlexContainer>
-        <Button
-          variant='PRIMARY'
-          className='w-full sm:w-auto'
-          text={cta}
-        ></Button>
-      </FlexContainer>
-      <motion.div
-        className='flex-1'
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
-      >
-        <Image
-          src={image}
-          alt={title}
-          className='rounded-2xl shadow-2xl w-full object-cover aspect-video'
-        />
-      </motion.div>
-    </motion.div>
-  </FlexContainer>
-);
+import { LINKS, routes, TESTIMONIALS } from '@/constant';
 
 const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
   const projectIdeas = [
     {
-      title: 'AI-Powered Learning Platform',
-      description: 'Personalized education using artificial intelligence',
+      title: 'App to track your habits',
+      description: 'Habit tracker app to help you build good habits',
       icon: <LightBulbIcon className='w-8 h-8 text-primary' />,
     },
     {
-      title: 'Social Impact Tech',
-      description: 'Technology solutions for community challenges',
+      title: 'AI Chatbot for your website',
+      description: 'AI chatbot for your website to help you get more leads',
       icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
     },
     {
-      title: 'Future of Work',
-      description: 'Innovative tools for remote collaboration',
+      title: 'Send Crypoto Currency to your friends',
+      description: 'Send crypto currency to your friends and family',
       icon: <RocketLaunchIcon className='w-8 h-8 text-primary' />,
     },
   ];
 
   const whyUs = [
     {
-      title: 'Expert Mentorship',
-      description: 'Learn from industry veterans and successful entrepreneurs',
+      title: 'Live Mentorship Every Week',
+      description: 'Get mentorship from industry experts every week',
       icon: <AcademicCapIcon className='w-8 h-8 text-primary' />,
+    },
+    {
+      title: 'Join with Your Friends',
+      description: 'Bring up to 4 friends and build together as a team',
+      icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
     },
     {
       title: 'Hands-on Experience',
@@ -121,56 +61,22 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
       icon: <SparklesIcon className='w-8 h-8 text-primary' />,
     },
     {
-      title: 'Network Growth',
-      description: 'Connect with like-minded innovators',
+      title: 'Idea to Product Launch Journey',
+      description:
+        'From idea to product launch, we will guide you every step of the way',
       icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
     },
-  ];
-
-  const testimonials = [
     {
-      name: 'Sarah Johnson',
-      role: 'Startup Founder',
-      image:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200',
-      quote:
-        'The cohort program gave me the structure and support I needed to turn my idea into reality.',
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Tech Entrepreneur',
-      image:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200',
-      quote:
-        "The mentorship and community aspect of this program is unmatched. It's been transformative.",
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Product Developer',
-      image:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200',
-      quote:
-        'From ideation to execution, this program equipped me with all the necessary tools.',
+      title: 'Access to Builder Community',
+      description: 'Join a community of builders to learn and grow together',
+      icon: <SparklesIcon className='w-8 h-8 text-primary' />,
     },
   ];
 
   return (
     <Fragment>
       <SEO seoMeta={seoMeta} />
-      <motion.div
-        className='bg-gradient-to-r from-primary/20 to-primary/10 p-2 text-center text-primary'
-        initial='initial'
-        animate='animate'
-        exit='exit'
-        variants={{
-          initial: { x: -1000 },
-          animate: { x: 0 },
-          exit: { x: 1000 },
-        }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-      >
-        🚀 Next cohort starting soon - Limited spots available!
-      </motion.div>
+      <HeaderLabel label='🚀 Next cohort starting soon - Limited spots available!' />
 
       <Section className='relative py-12 md:py-20 text-white'>
         <div className='absolute inset-0 overflow-hidden'>
@@ -204,17 +110,14 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
                 direction='col'
                 className='sm:flex-row gap-2 justify-center lg:justify-start'
               >
-                <Button
-                  className='w-full'
-                  variant='PRIMARY'
-                  text='Apply Now'
-                  animationClasses='w-full sm:w-auto'
-                />
-                <Button
-                  className='w-full'
-                  variant='GHOST'
-                  text='Learn More'
-                  animationClasses='w-full sm:w-auto'
+                <LinkButton
+                  href={LINKS.applyBYICohort}
+                  buttonProps={{
+                    text: 'Apply Now',
+                    variant: 'PRIMARY',
+                    className: 'w-full sm:w-auto',
+                  }}
+                  target='_blank'
                 />
               </FlexContainer>
             </motion.div>
@@ -233,7 +136,7 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
                 <div className='flex items-center gap-2'>
                   <SparklesIcon className='w-6 h-6 text-primary' />
                   <span className='text-primary font-semibold'>
-                    500+ Success Stories
+                    20+ Projects Launched
                   </span>
                 </div>
               </div>
@@ -242,183 +145,179 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
         </div>
       </Section>
 
-      <Section>
-        <Banner
-          title='Learn from Industry Experts'
-          subtitle="Get mentored by successful entrepreneurs and tech leaders who've been there, done that."
-          image='https://images.unsplash.com/photo-1475506631979-72412c606f4d?w=1200&h=800&q=80'
-          cta='Meet Our Mentors'
-        />
-
-        <Banner
-          title='Build Real-World Projects'
-          subtitle='Work on meaningful projects that solve actual problems and build your portfolio.'
-          image='https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=800&q=80'
-          cta='View Previous Projects'
-          reverse
-        />
+      <Section className='py-12 md:py-20 bg-gray-50'>
+        <div className='mx-auto md:px-4 px-2'>
+          <motion.h2
+            className='text-2xl md:text-3xl font-bold text-center mb-6 md:mb-12'
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <SectionHeaderContainer
+              heading='What You Can'
+              focusText='Build'
+              headingLevel={3}
+            />
+          </motion.h2>
+          <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4'>
+            {projectIdeas.map((idea, index) => (
+              <IconCard
+                key={index}
+                icon={idea.icon}
+                title={idea.title}
+                description={idea.description}
+              />
+            ))}
+          </div>
+        </div>
       </Section>
 
-      {/* Project Ideas Section */}
-      <section className='py-12 md:py-20 bg-gray-50'>
-        <div className='container mx-auto px-4'>
+      <Section className='py-12 md:py-20'>
+        <div className='mx-auto md:px-4 px-2'>
           <motion.h2
-            className='text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12'
+            className='text-2xl md:text-3xl font-bold text-center mb-6 md:mb-12'
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            What You Can Build
+            <SectionHeaderContainer
+              heading='Why Choose'
+              focusText='Us'
+              headingLevel={3}
+            />
           </motion.h2>
-          <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
-            {projectIdeas.map((idea, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-              >
-                <Card className='p-6 hover:shadow-xl transition-shadow duration-300 h-full'>
-                  <div className='mb-4'>{idea.icon}</div>
-                  <h3 className='text-xl font-semibold mb-2'>{idea.title}</h3>
-                  <p className='text-gray-600'>{idea.description}</p>
-                </Card>
-              </motion.div>
-            ))}
+          <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4'>
+            {whyUs.map((item, index) => {
+              return <IconCard key={index} {...item} />;
+            })}
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Why Us Section */}
-      <section className='py-12 md:py-20'>
-        <div className='container mx-auto px-4'>
+      <Section className='py-12 md:py-20'>
+        <div className='md:px-4 px-2'>
           <motion.h2
-            className='text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12'
+            className='text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6'
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Why Choose Us
-          </motion.h2>
-          <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
-            {whyUs.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-              >
-                <Card className='p-6 hover:shadow-xl transition-shadow duration-300 h-full'>
-                  <div className='mb-4'>{item.icon}</div>
-                  <h3 className='text-xl font-semibold mb-2'>{item.title}</h3>
-                  <p className='text-gray-600'>{item.description}</p>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className='py-12 md:py-20 bg-gray-50'>
-        <div className='container mx-auto px-4'>
-          <motion.h2
-            className='text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12'
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            What Our Alumni Say
-          </motion.h2>
-          <Carousel
-            items={testimonials}
-            renderItem={(item) => (
-              <Card className='p-6 md:p-8'>
-                <div className='flex flex-col md:flex-row items-center gap-6'>
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    className='w-24 h-24 rounded-full object-cover'
-                    fullWidth={false}
-                    fullHeight={false}
-                  />
-                  <div className='flex-1 text-center md:text-left'>
-                    <p className='text-lg md:text-xl italic mb-4'>
-                      &ldquo;{item.quote}&rdquo;
-                    </p>
-                    <div>
-                      <h4 className='font-semibold text-lg'>{item.name}</h4>
-                      <p className='text-gray-600'>{item.role}</p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            )}
-          />
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className='py-12 md:py-20'>
-        <div className='container mx-auto px-4'>
-          <motion.h2
-            className='text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12'
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Investment in Your Future
+            <SectionHeaderContainer
+              heading='Investment in'
+              focusText='Your Future'
+            />
           </motion.h2>
           <motion.div
-            className='max-w-md mx-auto'
+            className='md:px-10 md:py-8 py-4 px-2 w-fit bg-white mx-auto rounded-lg'
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <Card className='p-6 md:p-8 hover:shadow-xl transition-shadow duration-300'>
-              <div className='text-center mb-6 md:mb-8'>
-                <h3 className='text-xl md:text-2xl font-bold mb-2'>
-                  Cohort Program
-                </h3>
-                <div>
-                  <span className='text-3xl md:text-4xl font-bold'>$999</span>
-                  <span className='text-gray-600'> / cohort</span>
-                </div>
-              </div>
-              <ul className='space-y-4 mb-6 md:mb-8'>
-                {[
-                  '12-week intensive program',
-                  '1-on-1 mentorship sessions',
-                  'Weekly group workshops',
-                  'Access to resource library',
-                  'Lifetime alumni network',
-                  'Demo day opportunity',
-                ].map((feature, index) => (
-                  <motion.li
-                    key={index}
-                    className='flex items-center'
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <CheckCircleIcon className='w-5 h-5 text-primary mr-2 flex-shrink-0' />
-                    <span>{feature}</span>
-                  </motion.li>
-                ))}
-              </ul>
-              <Button
-                className='m-auto group'
-                variant='PRIMARY'
-                text='Register Now'
-                animationClasses='w-full sm:w-auto'
-              />
-            </Card>
+            <FlexContainer direction='col' className='gap-3'>
+              <Text level='h5' className='heading-5'>
+                Bring Your Idea Cohort
+              </Text>
+              <FlexContainer direction='col' className='gap-1'>
+                <Text
+                  level='h5'
+                  className='heading-5 line-through text-gray-400'
+                >
+                  ₹ 9999
+                </Text>
+                <FlexContainer direction='col' className='gap-1'>
+                  <Text level='h3' className='heading-3 text-primary'>
+                    ₹ 4999
+                  </Text>
+                  <span className='bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium'>
+                    50% OFF
+                  </span>
+                </FlexContainer>
+              </FlexContainer>
+            </FlexContainer>
+            <ul className='space-y-2 md:space-y-4 my-4'>
+              {[
+                '2 Months Intensive Program',
+                'Weekly 1:1 Live Mentorship',
+                'Join with Your Friends(Max 4 people)',
+                'Access to Builder Community',
+                'Access to Free Resources',
+                'Lifetime Alumni Network',
+                '24x7 QnA with Mentors',
+              ].map((feature, index) => (
+                <motion.li
+                  key={index}
+                  className='flex items-center'
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <CheckCircleIcon className='w-5 h-5 text-primary mr-2 flex-shrink-0' />
+                  <Text level='span' className='span'>
+                    {feature}
+                  </Text>
+                </motion.li>
+              ))}
+            </ul>
+            <LinkButton
+              href={LINKS.applyBYICohort}
+              buttonProps={{
+                text: 'Register Now',
+                variant: 'PRIMARY',
+                animationClasses: 'w-full sm:w-auto',
+                className: 'm-auto',
+              }}
+              target='_blank'
+            />
           </motion.div>
         </div>
-      </section>
+      </Section>
+
+      <Section className='py-12 md:py-20 bg-gray-50'>
+        <div className='mx-auto md:px-4 px-2'>
+          <motion.h2
+            className='text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6'
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <SectionHeaderContainer
+              heading='What Our'
+              focusText='Alumni Say'
+              headingLevel={3}
+            />
+          </motion.h2>
+          <Carousel
+            items={TESTIMONIALS}
+            renderItem={(item: TestimonialCardProps) => {
+              const { title, content, image, work } = item;
+
+              return (
+                <div className='md:px-10 md:py-8 py-4 px-2 w-fit bg-white mx-auto rounded-lg'>
+                  <div className='flex flex-col md:flex-row items-center gap-6'>
+                    <Image
+                      src={image}
+                      alt={title}
+                      className='w-24 h-24 rounded-full object-cover'
+                      fullWidth={false}
+                      fullHeight={false}
+                    />
+                    <div className='flex-1 text-center md:text-left'>
+                      <p className='text-lg md:text-xl italic mb-4'>
+                        &ldquo;{content}&rdquo;
+                      </p>
+                      <div>
+                        <h4 className='font-semibold text-lg'>{title}</h4>
+                        <p className='text-gray-600'>{work}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            }}
+          />
+        </div>
+      </Section>
     </Fragment>
   );
 };

@@ -1,5 +1,11 @@
 import dynamic from 'next/dynamic';
+const IconCard = dynamic(
+  () => import('@/components/containers/Cards/Items/IconCard')
+);
 const Carousel = dynamic(() => import('@/components/common/Carousel'));
+const HeaderLabel = dynamic(
+  () => import('@/components/containers/Page/common/HeaderLabel')
+);
 const MentorshipCard = dynamic(
   () => import('@/components/containers/Cards/MentorshipCard')
 );
@@ -233,4 +239,6 @@ export {
   NotificationContainer,
   MentorshipCard,
   Carousel,
+  IconCard,
+  HeaderLabel,
 };

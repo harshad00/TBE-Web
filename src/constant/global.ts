@@ -82,6 +82,8 @@ const LINKS = {
   officialLinkedIn: 'https://www.linkedin.com/company/theboringeducation',
   contributeOpenSource:
     'https://theboringeducation.notion.site/Contribute-The-Boring-Education-8171f19257fd4ef99b7287555eb5062b',
+  applyBYICohort:
+    'https://docs.google.com/forms/d/e/1FAIpQLScvm2cajYfHkg-j6EBfJv-oRYZkPqVn9_qpmggvgCNeHY2cMw/viewform',
 };
 
 // Google analytics

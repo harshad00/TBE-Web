@@ -1,14 +1,9 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
+import { CarouselProps } from '@/interfaces';
 
-const Carousel = ({
-  items,
-  renderItem,
-}: {
-  items: any[];
-  renderItem: (item: any) => React.ReactNode;
-}) => {
+const Carousel = ({ items, renderItem }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -42,8 +37,8 @@ const Carousel = ({
   };
 
   return (
-    <div className='relative w-full max-w-4xl mx-auto px-4'>
-      <div className='relative h-[300px] overflow-hidden'>
+    <div className='relative w-full max-w-4xl mx-auto md:px-4 px-2'>
+      <div className='relative md:h-[300px] h-[520px] overflow-hidden'>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentIndex}
