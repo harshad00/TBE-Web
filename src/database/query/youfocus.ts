@@ -81,9 +81,11 @@ const getUserPlaylistByIDFromDB = async (
   userId?: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const userPlaylist = await UserPlaylist.findOne({ playlistId, userId }).populate({
-      path: 'playlistId',
-    }).exec();
+    const userPlaylist = await UserPlaylist.findOne({ playlistId, userId })
+      .populate({
+        path: 'playlistId',
+      })
+      .exec();
 
     if (!userPlaylist) {
       return { error: 'Playlist not found' };
@@ -172,10 +174,6 @@ const updateUserPlaylistData = async (
   }
 };
 
-
-
-
-
 export {
   addPlaylistToDB,
   checkPlaylistExistsByPlaylistId,
@@ -184,5 +182,5 @@ export {
   getUserPlaylistByIDFromDB,
   getUserPlaylistsFromDB,
   deleteUserPlaylistFromDB,
-  updateUserPlaylistData
+  updateUserPlaylistData,
 };

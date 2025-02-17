@@ -152,12 +152,14 @@ const WebinarHeroContainer = dynamic(
 const BackgroundImage = dynamic(
   () => import('@/components/common/Images/BackgroundImage')
 );
-const PlaylistCard = dynamic(() => import('@/components/containers/Cards/Items/PlaylistCard')
+const PlaylistCard = dynamic(
+  () => import('@/components/containers/Cards/Items/PlaylistCard')
 );
 const PlaylistCantainerCard = dynamic(
   () => import('@/components/containers/Cards/PlaylistCantainerCard')
 );
-const PlaylistVideoCard = dynamic(() => import('@/components/containers/Cards/Items/PlaylistVideoCard')
+const PlaylistVideoCard = dynamic(
+  () => import('@/components/containers/Cards/Items/PlaylistVideoCard')
 );
 
 export {
