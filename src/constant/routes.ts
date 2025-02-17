@@ -48,7 +48,8 @@ const routes = {
   },
   // YouFocus
   youfocus: '/youfocus',
-  addPlaylist: '/youfocus/add',
+  youfocusAddPlaylist: '/youfocus/add',
+  youfocusPlaylist: '/youfocus/playlist',
   explorePlaylist: '/youfocus/explore-playlist',
   // Cohort
   cohort: {
@@ -98,6 +99,7 @@ const routes = {
     certificate: '/certificate',
     certificateById: (certificate: string) => `/certificate/${certificate}`,
     youfocusPlaylist: '/youfocus',
+    youfocusPlaylistById: (playlist: string) => `/youfocus/${playlist}`,
     userDashboard: '/user/dashboard',
     notification: '/notification',
   },

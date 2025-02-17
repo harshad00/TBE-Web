@@ -107,6 +107,58 @@ const getProjectPageProps = async (context: any) => {
   };
 };
 
+const getPlaylistPageProps = async (context: any) => {
+  const { query } = context;
+  const { playlistId } = query;
+
+  let slug = routes.home;
+
+  if (playlistId) {
+    slug = routes.youfocusPlaylist;
+  }
+
+  const seoMeta = getSEOMeta(slug);
+
+  // If we don’t have a playlistId or seoMeta, redirect to home.
+  if (!playlistId || !seoMeta) {
+    return {
+      redirect: {
+        destination: routes.home,
+        permanent: false
+      },
+      props: { slug },
+    };
+  }
+
+  try {
+    const { status, data } = await fetchAPIData(
+      routes.api.youfocusPlaylistById(playlistId)
+    );
+    if (!status || !data) {
+      return {
+        redirect: {
+          destination: routes.home,
+          permanent: false
+        },
+      };
+    }
+    return {
+      props: {
+        slug, seoMeta,
+        playlist: data
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: routes.home,
+        permanent: false
+      },
+      props: { slug },
+    };
+  }
+};
+
 const getCoursePageProps = async (context: any) => {
   const { req, query } = context;
   const { courseSlug, courseId, chapterId } = query;
@@ -390,6 +442,7 @@ const getWebinarPageProps = async (context: any) => {
         'https://wallpapers.com/images/hd/coding-background-9izlympnd0ovmpli.jpg',
     },
   };
+
 };
 
 export {
@@ -400,4 +453,5 @@ export {
   getWebinarPageProps,
   getWebinarLandingPageProps,
   getCertificatePageProps,
+  getPlaylistPageProps
 };

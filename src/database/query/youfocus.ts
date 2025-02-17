@@ -76,39 +76,22 @@ const getPlaylistsFormDB = async (): Promise<DatabaseQueryResponseType> => {
 };
 
 // Get a playlist by its ID
-const getPlaylistByIDFromDB = async (
-  playlistId: string
+const getUserPlaylistByIDFromDB = async (
+  playlistId: string,
+  userId?: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const playlist = await Playlist.findById({ _id: playlistId });
+    const userPlaylist = await UserPlaylist.findOne({ playlistId, userId }).populate({
+      path: 'playlistId',
+    }).exec();
 
-    if (!playlist) {
+    if (!userPlaylist) {
       return { error: 'Playlist not found' };
     }
 
-    return { data: playlist };
+    return { data: userPlaylist };
   } catch (error) {
     return { error };
-  }
-};
-
-// Get Playlist Video my Id Form DB
-const getPlaylistVideoByIDFromDB = async (
-  videoId: string
-): Promise<DatabaseQueryResponseType> => {
-  try {
-    const playlist = await Playlist.findOne({ 'videos.videoId': videoId });
-
-    if (!playlist) {
-      return { error: 'Video not found in any playlist' };
-    }
-
-    // Find the specific video in the playlist
-    const video = playlist.videos.find((v) => v.videoId === videoId);
-
-    return { data: video };
-  } catch (error) {
-    return { error: 'An error occurred while fetching video' };
   }
 };
 
@@ -150,89 +133,56 @@ const deleteUserPlaylistFromDB = async (
   }
 };
 
-const updateUserPlaylistWatchTime = async (
+const incrementReferrerCount = async (playlistId: string): Promise<any> => {
+  return await Playlist.findByIdAndUpdate(
+    playlistId,
+    { $inc: { referrerBy: 1 } },
+    { new: true, fields: { referrerBy: 1, _id: 0 } }
+  );
+};
+
+const updateUserPlaylistData = async (
   userId: string,
   playlistId: string,
-  time: number
+  isRecommended: boolean,
+  learningTime: number
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    console.log('Updating watch time with:', time);
+    const userPlaylist = await UserPlaylist.findOne({ userId, playlistId });
+    if (!userPlaylist) return { error: 'UserPlaylist not found' };
 
-    const userPlaylist = await UserPlaylist.findOneAndUpdate(
+    // Update the UserPlaylist directly
+    const updatedUserPlaylist = await UserPlaylist.findOneAndUpdate(
       { userId, playlistId },
-      { $set: { learningTime: time } },
+      { $set: { isRecommended, learningTime } },
       { new: true }
     );
+    if (!updatedUserPlaylist) return { error: 'Failed to update UserPlaylist' };
 
-    if (!userPlaylist) {
-      return { error: 'UserPlaylist not found' };
+    // Only increment referrerBy if isRecommended changes from false to true
+    let updatedPlaylist = null;
+    if (isRecommended && !userPlaylist.isRecommended) {
+      updatedPlaylist = await incrementReferrerCount(playlistId);
     }
 
-    console.log('Updated userPlaylist:', userPlaylist);
-
-    return { data: userPlaylist };
+    return { data: { updatedUserPlaylist, updatedPlaylist } };
   } catch (error) {
-    console.error('Error updating watch time:', error);
-    return { error: 'An error occurred while updating watch time' };
+    console.error('Update UserPlaylist Error:', error);
+    return { error: `An error occurred: ${error}` };
   }
 };
 
-const recommendedPlaylist = async (
-  userId: string,
-  playlistId: string
-): Promise<DatabaseQueryResponseType> => {
-  try {
-    // Check if the playlist is already recommended
-    const existingUserPlaylist = await UserPlaylist.findOne(
-      { userId, playlistId },
-      { isRecommended: 1, _id: 0 } // Fetch only isRecommended field
-    );
 
-    if (!existingUserPlaylist) {
-      return { error: 'UserPlaylist not found' };
-    }
 
-    if (existingUserPlaylist.isRecommended) {
-      return { error: 'This playlist is already recommended' };
-    }
 
-    // Update isRecommended to true
-    const userPlaylist = await UserPlaylist.findOneAndUpdate(
-      { userId, playlistId },
-      { $set: { isRecommended: true } },
-      { new: true, fields: { isRecommended: 1, _id: 0 } } // Return only isRecommended
-    );
-
-    if (!userPlaylist) {
-      return { error: 'Failed to update recommendation' };
-    }
-
-    // Increment referrerBy in Playlist
-    const addreferrerinPlaylist = await Playlist.findByIdAndUpdate(
-      playlistId,
-      { $inc: { referrerBy: 1 } },
-      { new: true, fields: { referrerBy: 1, _id: 0 } } // Return only referrerBy
-    );
-
-    if (!addreferrerinPlaylist) {
-      return { error: 'Playlist not found' };
-    }
-
-    return { data: { userPlaylist, addreferrerinPlaylist } };
-  } catch (error) {
-    return { error: 'An error occurred while updating userPlaylist' };
-  }
-};
 
 export {
   addPlaylistToDB,
   checkPlaylistExistsByPlaylistId,
   addUserPlaylistEntry,
   getPlaylistsFormDB,
-  getPlaylistByIDFromDB,
+  getUserPlaylistByIDFromDB,
   getUserPlaylistsFromDB,
   deleteUserPlaylistFromDB,
-  getPlaylistVideoByIDFromDB,
-  updateUserPlaylistWatchTime,
-  recommendedPlaylist,
+  updateUserPlaylistData
 };

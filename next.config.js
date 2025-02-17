@@ -13,6 +13,8 @@ const nextConfig = {
       'lh3.google.com',
       'ik.imagekit.io',
       'images.unsplash.com',
+      'i.ytimg.com',
+      'via.placeholder.com',
     ],
   },
 
