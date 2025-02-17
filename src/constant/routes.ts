@@ -99,7 +99,14 @@ const routes = {
     certificate: '/certificate',
     certificateById: (certificate: string) => `/certificate/${certificate}`,
     youfocusPlaylist: '/youfocus',
-    youfocusPlaylistById: (playlist: string) => `/youfocus/${playlist}`,
+    // youfocusUserPlaylistById: (playlist: string, userId: string) => `/youfocus/${playlist}?userId=${userId}`,
+    youfocusUserPlaylistById: (playlistId: string, userId?: string) => {
+      let url = `/youfocus/${playlistId}`;
+      if (userId) {
+        url += `?userId=${userId}`;
+      }
+      return url;
+    },
     userDashboard: '/user/dashboard',
     notification: '/notification',
   },

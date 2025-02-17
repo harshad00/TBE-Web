@@ -2,7 +2,7 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { getUserPlaylistByIDFromDB, updateUserPlaylistData } from '@/database';
+import {updateUserPlaylistData,getPlaylistByIdFormDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (method) {
     case 'GET':
-      return getUserPlaylistById(req, res, playlistId, userId);
+      return getPlaylistById(req, res, playlistId, userId);
     case 'PATCH': {
       const { isRecommended, learningTime } = req.body;
       return handleUpdateUserPlaylist(
@@ -37,14 +37,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-const getUserPlaylistById = async (
+const getPlaylistById = async (
   req: NextApiRequest,
   res: NextApiResponse,
   playlistId: string,
-  userId: string
+  userId?: string
 ) => {
-  const { data, error } = await getUserPlaylistByIDFromDB(playlistId, userId);
+  let { data, error } = await getPlaylistByIdFormDB(playlistId, userId);
 
+  console.log("DEBUG: Retrieved data:", data);
+  console.log("DEBUG: Error:", error);
+  
   if (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
