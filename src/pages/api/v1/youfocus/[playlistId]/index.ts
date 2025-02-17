@@ -18,7 +18,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return getUserPlaylistById(req, res, playlistId, userId);
     case 'PATCH': {
       const { isRecommended, learningTime } = req.body;
-      return handleUpdateUserPlaylist(req, res, playlistId, userId, isRecommended, learningTime);
+      return handleUpdateUserPlaylist(
+        req,
+        res,
+        playlistId,
+        userId,
+        isRecommended,
+        learningTime
+      );
     }
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
@@ -73,7 +80,12 @@ const handleUpdateUserPlaylist = async (
   isRecommended: boolean,
   learningTime: number
 ) => {
-  const { data, error } = await updateUserPlaylistData(userId, youfocusId, isRecommended, learningTime);
+  const { data, error } = await updateUserPlaylistData(
+    userId,
+    youfocusId,
+    isRecommended,
+    learningTime
+  );
 
   if (error) {
     return res.status(apiStatusCodes.BAD_REQUEST).json(

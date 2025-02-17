@@ -80,16 +80,14 @@ export interface CardContainerAProps {
   cards: CardItem[];
 }
 
-
 export type PlaylistPickedPageProps = Pick<
   PlaylistModel & { _id: string }, // Explicitly adding _id
-  | '_id' 
-  | 'playlistId' 
-  | 'playlistName' 
+  | '_id'
+  | 'playlistId'
+  | 'playlistName'
   | 'description'
-  | 'thumbnail' 
-  | 'tags' 
-  | 'videos' 
+  | 'thumbnail'
+  | 'tags'
+  | 'videos'
   | 'referrerBy'
 >;
-

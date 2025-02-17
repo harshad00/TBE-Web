@@ -61,6 +61,7 @@ export interface ButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   active?: boolean;
   isLoading?: boolean;
+  animationClasses?: string;
 }
 
 export interface PageLayoutProps {
@@ -473,4 +474,23 @@ export interface MentorshipCardProps {
   heading: string;
   description: string;
   link: string;
+}
+
+export interface CarouselProps {
+  items: any[];
+  renderItem: (item: any) => React.ReactNode;
+}
+
+export interface IconCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  className?: string;
+  bgColor?: string;
+  key: number;
+}
+
+export interface HeaderLabelProps {
+  label: string;
+  className?: string;
 }
