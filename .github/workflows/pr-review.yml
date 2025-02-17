@@ -16,8 +16,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: 'npm' # Caches `node_modules`
 
-      - name: Install Dependencies
+      - name: Restore Cached Dependencies
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm # Cache location
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies (Only if Cache Miss)
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm install openai @octokit/rest dotenv
 
       - name: Run GPT Code Review
