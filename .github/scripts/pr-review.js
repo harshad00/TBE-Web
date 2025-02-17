@@ -3,13 +3,11 @@ require('dotenv').config();
 async function reviewPR() {
   // Dynamically import ESM modules
   const { Octokit } = await import('@octokit/rest');
-  const { Configuration, OpenAIApi } = await import('openai');
+  const OpenAI = (await import('openai')).default;
 
   // Initialize instances after import
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-  const openai = new OpenAIApi(
-    new Configuration({ apiKey: process.env.OPENAI_API_KEY })
-  );
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   const [owner, repo] = 'The-Boring-Education/TBE-Web'.split('/');
 
@@ -35,8 +33,8 @@ async function reviewPR() {
 
   if (!diffText) return console.log('No changes detected in PR.');
 
-  // GPT Code Review Request
-  const response = await openai.createChatCompletion({
+  // GPT Code Review Request (Updated API Format)
+  const response = await openai.chat.completions.create({
     model: 'gpt-4',
     messages: [
       {
@@ -53,7 +51,7 @@ async function reviewPR() {
     owner,
     repo,
     issue_number: pr.number,
-    body: response.data.choices[0].message.content,
+    body: response.choices[0].message.content,
   });
 
   console.log('PR Review Completed!');
