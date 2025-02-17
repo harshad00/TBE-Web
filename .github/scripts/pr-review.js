@@ -1,13 +1,16 @@
-import 'dotenv/config';
-import { Octokit } from '@octokit/rest';
-import { OpenAIApi, Configuration } from 'openai';
-
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-const openai = new OpenAIApi(
-  new Configuration({ apiKey: process.env.OPENAI_API_KEY })
-);
+require('dotenv').config();
 
 async function reviewPR() {
+  // Dynamically import ESM modules
+  const { Octokit } = await import('@octokit/rest');
+  const { Configuration, OpenAIApi } = await import('openai');
+
+  // Initialize instances after import
+  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+  const openai = new OpenAIApi(
+    new Configuration({ apiKey: process.env.OPENAI_API_KEY })
+  );
+
   const [owner, repo] = 'The-Boring-Education/TBE-Web'.split('/');
 
   // Get the latest open PR
@@ -56,4 +59,5 @@ async function reviewPR() {
   console.log('PR Review Completed!');
 }
 
+// Run the function
 reviewPR();
