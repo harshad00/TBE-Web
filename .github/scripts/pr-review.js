@@ -1,15 +1,6 @@
 require('dotenv').config();
 
 async function reviewPR() {
-  console.log(
-    '🔍 OpenAI API Key (masked):',
-    process.env.OPENAI_API_KEY
-      ? process.env.OPENAI_API_KEY.slice(0, 5) + '...'
-      : 'NOT SET'
-  );
-
-  console.log('🔍 GitHub Token (masked):', process.env.GITHUB_TOKEN);
-
   const { Octokit } = await import('@octokit/rest');
   const OpenAI = (await import('openai')).default;
 
@@ -18,51 +9,62 @@ async function reviewPR() {
 
   const [owner, repo] = 'The-Boring-Education/TBE-Web'.split('/');
 
-  const { data: pulls } = await octokit.pulls.list({
-    owner,
-    repo,
-    state: 'open',
-    per_page: 1,
-  });
-  if (pulls.length === 0) return console.log('No open PRs found.');
+  try {
+    const { data: pulls } = await octokit.pulls.list({
+      owner,
+      repo,
+      state: 'open',
+      per_page: 1,
+    });
 
-  const pr = pulls[0];
-  const { data: files } = await octokit.pulls.listFiles({
-    owner,
-    repo,
-    pull_number: pr.number,
-  });
+    if (pulls.length === 0) return console.log('No open PRs found.');
 
-  let diffText = files
-    .map((file) => `File: ${file.filename}\n\n${file.patch}`)
-    .join('\n\n');
+    const pr = pulls[0];
+    const { data: files } = await octokit.pulls.listFiles({
+      owner,
+      repo,
+      pull_number: pr.number,
+    });
 
-  // 🔥 Reduce token usage by limiting diffText to the first 1000 characters
-  if (diffText.length > 1000) {
-    diffText = diffText.slice(0, 1000) + '\n... (truncated)';
+    let diffText = files
+      .map((file) => `File: ${file.filename}\n\n${file.patch}`)
+      .join('\n\n');
+
+    // 🔥 Reduce token usage by limiting diffText to the first 1000 characters
+    if (diffText.length > 1000) {
+      diffText = diffText.slice(0, 1000) + '\n... (truncated)';
+    }
+
+    // GPT Code Review Request (Using `gpt-4o`)
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        {
+          role: 'system',
+          content:
+            'You are an experienced software engineer reviewing code. \n' +
+            'Provide constructive feedback and best practices. \n' +
+            'You are reviewing a PR for a web application. \n' +
+            'You are reviewing the code for any security issues, and any other issues that you think are important. \n' +
+            'Always include a summary of the changes and the issues you found. \n' +
+            'Always suggest changes in Code. Keep it Short and Simple',
+        },
+        { role: 'user', content: diffText },
+      ],
+    });
+
+    await octokit.issues.createComment({
+      owner,
+      repo,
+      issue_number: pr.number,
+      body: response.choices[0].message.content,
+    });
+
+    console.log('PR Review Completed!');
+  } catch (error) {
+    console.error('Error fetching pull requests:', error);
+    return;
   }
-
-  // GPT Code Review Request (Using `gpt-4o`)
-  const response = await openai.chat.completions.create({
-    model: 'gpt-4o-mini',
-    messages: [
-      {
-        role: 'system',
-        content:
-          'You are an experienced software engineer reviewing code. Provide constructive feedback and best practices.',
-      },
-      { role: 'user', content: diffText },
-    ],
-  });
-
-  await octokit.issues.createComment({
-    owner,
-    repo,
-    issue_number: pr.number,
-    body: response.choices[0].message.content,
-  });
-
-  console.log('PR Review Completed!');
 }
 
 // Run the function
