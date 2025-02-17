@@ -1,6 +1,15 @@
 require('dotenv').config();
 
 async function reviewPR() {
+  console.log(
+    '🔍 OpenAI API Key (masked):',
+    process.env.OPENAI_API_KEY
+      ? process.env.OPENAI_API_KEY.slice(0, 5) + '...'
+      : 'NOT SET'
+  );
+
+  console.log('🔍 GitHub Token (masked):', process.env.GITHUB_TOKEN);
+
   const { Octokit } = await import('@octokit/rest');
   const OpenAI = (await import('openai')).default;
 
