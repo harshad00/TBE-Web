@@ -11,7 +11,6 @@ import { Fragment } from 'react';
 import { getPreFetchProps } from '@/utils';
 import { PageProps, TestimonialCardProps } from '@/interfaces';
 import {
-  Button,
   SEO,
   Image,
   Carousel,
@@ -23,7 +22,7 @@ import {
   IconCard,
   HeaderLabel,
 } from '@/components';
-import { LINKS, routes, TESTIMONIALS } from '@/constant';
+import { LINKS, TESTIMONIALS } from '@/constant';
 
 const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
   const projectIdeas = [
