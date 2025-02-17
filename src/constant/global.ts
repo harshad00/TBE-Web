@@ -1,4 +1,5 @@
 import {
+  CohortDataProps,
   MentorshipCardProps,
   PortfolioTemplateProps,
   ProductDataProps,
@@ -56,6 +57,14 @@ const products: ProductDataProps = {
     label: 'Portfolio',
     slug: routes.portfolio,
     description: 'Create Your Personal Portfolio Website',
+  },
+};
+
+const cohorts: CohortDataProps = {
+  bringYourIdea: {
+    label: 'Bring Your Idea',
+    slug: routes.cohort.bringYourIdea,
+    description: 'Build & Launch Your First Startup with Mentorship',
   },
 };
 
@@ -272,4 +281,5 @@ export {
   SCREEN_BREAKPOINTS,
   PORTFOLIO_CARDS,
   PORTFOLIO_TEMPLATES,
+  cohorts,
 };

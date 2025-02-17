@@ -284,7 +284,7 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       description: 'Bring your idea to The Boring Education.',
       url: routes.cohort.bringYourIdea,
       keywords:
-        'Bring Your Idea, Tech Idea, The Boring Education, Online Learning, Programming, College Students, Working professional, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+        'Bring Your Idea, Tech Idea, Cohort, The Boring Education, Online Learning, Programming, College Students, Working professional, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
   };

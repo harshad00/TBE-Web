@@ -57,6 +57,7 @@ export interface ButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   active?: boolean;
   isLoading?: boolean;
+  animationClasses?: string;
 }
 
 export interface PageLayoutProps {

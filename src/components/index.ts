@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+const Carousel = dynamic(() => import('@/components/common/Carousel'));
 const MentorshipCard = dynamic(
   () => import('@/components/containers/Cards/MentorshipCard')
 );
@@ -219,4 +220,5 @@ export {
   ToggleButton,
   NotificationContainer,
   MentorshipCard,
+  Carousel,
 };
