@@ -453,6 +453,15 @@ export interface PrimaryLongCardProps {
   target?: '_blank';
   launchingOn?: string;
 }
+
+export interface PlaylistVideoCardProps {
+  title: string;
+  image: string;
+  imageAltText: string;
+  content: string;
+  href?: string;
+  onClick: () => void;  
+}
 interface Video {
   title: string;
   thumbnail: string;
