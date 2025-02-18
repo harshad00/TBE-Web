@@ -6,7 +6,6 @@ const PlaylistVideoCard = ({
   title,
   image,
   imageAltText,
-  content,
   href,
   onClick,
 }: PlaylistVideoCardProps) => {

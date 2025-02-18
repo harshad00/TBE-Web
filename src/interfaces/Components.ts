@@ -439,7 +439,7 @@ export interface PlaylistCardProps {
   title: string;
   description: string;
   thumbnail: string;
-  playlistVideo?: string;
+  playlistVideo?: boolean;
   videoId?: string;
 }
 
@@ -459,13 +459,13 @@ export interface PlaylistVideoCardProps {
   title: string;
   image: string;
   imageAltText: string;
-  content: string;
   href?: string;
   onClick: () => void;
 }
 interface Video {
   title: string;
   thumbnail: string;
+  videoId?: string;
 }
 
 export interface PlaylistVideoTimeCard {
