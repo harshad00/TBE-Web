@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import {
   FlexContainer,
   Section,
@@ -246,7 +246,7 @@ const WebinarPage = ({
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:px-8 md:py-2 px-2 py-2'>
         <FlexContainer className='relative'>
@@ -456,7 +456,7 @@ const WebinarPage = ({
           </CardSectionContainer>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

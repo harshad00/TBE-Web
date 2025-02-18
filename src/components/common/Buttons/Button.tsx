@@ -9,7 +9,7 @@ const Button = ({
   active = true,
   isLoading = false,
   onClick,
-  animationClasses,
+  animationClasses = 'w-full',
 }: ButtonProps) => {
   let baseClasses = 'button bg-light px-2 py-1 text-white';
   if (variant === 'PRIMARY')
@@ -38,7 +38,7 @@ const Button = ({
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className={`${animationClasses} w-fit`}
+      className={`${animationClasses}`}
     >
       <button
         className={`${baseClasses} ${className} shadow-md flex items-center justify-center gap-2`}

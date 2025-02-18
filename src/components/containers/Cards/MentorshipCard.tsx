@@ -9,7 +9,7 @@ const MentorshipCard = ({
   return (
     <FlexContainer
       justifyCenter={false}
-      className='max-w-sm min-h-60 p-2 border rounded shadow gap-4'
+      className='max-w-sm min-h-60 p-4 border rounded shadow gap-4'
     >
       <FlexContainer direction='col' className='gap-1' itemCenter={false}>
         <Text level='h5' className='heading-5'>

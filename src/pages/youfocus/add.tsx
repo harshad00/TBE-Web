@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { PageProps } from '@/interfaces';
 import { useRouter } from 'next/router';
 import {
@@ -60,7 +60,7 @@ const Home = ({ seoMeta }: PageProps) => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section>
         <FlexContainer direction='col' className='md:gap-6 gap-4'>
@@ -91,7 +91,7 @@ const Home = ({ seoMeta }: PageProps) => {
           </FlexContainer>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 export const getServerSideProps = getPreFetchProps;

@@ -75,8 +75,8 @@ const getPlaylistsFormDB = async (): Promise<DatabaseQueryResponseType> => {
   }
 };
 
-// Get Playlists IF have usert Id than give usert Playlist Otherwise give Plylist DATA.
-const getPlaylistByIdFormDB = async (
+// Get Playlists IF have user Id than give usert Playlist Otherwise give Plylist DATA.
+const getPlaylistByIdFromDB = async (
   playlistId: string,
   userId?: string
 ): Promise<DatabaseQueryResponseType> => {
@@ -106,7 +106,6 @@ const getPlaylistByIdFormDB = async (
     return { error };
   }
 };
-
 
 // Get all playlists of a user  from `UserPlaylist`
 const getUserPlaylistsFromDB = async (
@@ -190,7 +189,7 @@ export {
   checkPlaylistExistsByPlaylistId,
   addUserPlaylistEntry,
   getPlaylistsFormDB,
-  getPlaylistByIdFormDB,
+  getPlaylistByIdFromDB,
   getUserPlaylistsFromDB,
   deleteUserPlaylistFromDB,
   updateUserPlaylistData,

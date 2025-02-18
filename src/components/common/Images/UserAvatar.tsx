@@ -1,4 +1,3 @@
-import React from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useSession, signOut } from 'next-auth/react';

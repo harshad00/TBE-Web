@@ -6,6 +6,7 @@ import {
 } from '@/interfaces';
 import { routes } from './routes';
 import { envConfig } from './envConfig';
+import { ComponentPropsWithoutRef } from 'react';
 
 // Paths
 const STATIC_FILE_PATH = {
@@ -96,7 +97,7 @@ const googleAnalyticsScript = `
           gtag('config', '${envConfig.GA_TRACKING_ID}');
           `;
 
-const favicons: Array<React.ComponentPropsWithoutRef<'link'>> = [
+const favicons: Array<ComponentPropsWithoutRef<'link'>> = [
   {
     rel: 'apple-touch-icon',
     sizes: '180x180',

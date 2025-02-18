@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   LandingPageHero,
   CardContainerA,
@@ -22,12 +21,13 @@ import {
   routes,
 } from '@/constant';
 import { useRouter } from 'next/router';
+import { Fragment } from 'react';
 
 const Home = ({ seoMeta }: PageProps) => {
   const router = useRouter();
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <LandingPageHero
         sectionHeaderProps={{
@@ -96,7 +96,7 @@ const Home = ({ seoMeta }: PageProps) => {
         cards={USP}
       />
       <Testimonials />
-    </React.Fragment>
+    </Fragment>
   );
 };
 

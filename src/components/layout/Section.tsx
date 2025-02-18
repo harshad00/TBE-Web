@@ -1,5 +1,4 @@
 import { SectionProps } from '@/interfaces';
-import React from 'react';
 
 const Section = ({
   children,
