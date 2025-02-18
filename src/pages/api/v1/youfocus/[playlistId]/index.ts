@@ -2,7 +2,7 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import {updateUserPlaylistData,getPlaylistByIdFormDB } from '@/database';
+import {updateUserPlaylistData,getPlaylistByIdFromDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -43,10 +43,7 @@ const getPlaylistById = async (
   playlistId: string,
   userId?: string
 ) => {
-  let { data, error } = await getPlaylistByIdFormDB(playlistId, userId);
-
-  console.log("DEBUG: Retrieved data:", data);
-  console.log("DEBUG: Error:", error);
+  let { data, error } = await getPlaylistByIdFromDB(playlistId, userId);
   
   if (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
