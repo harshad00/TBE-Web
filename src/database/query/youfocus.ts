@@ -107,7 +107,6 @@ const getPlaylistByIdFromDB = async (
   }
 };
 
-
 // Get all playlists of a user  from `UserPlaylist`
 const getUserPlaylistsFromDB = async (
   userId: string
