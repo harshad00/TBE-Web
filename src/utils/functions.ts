@@ -27,7 +27,7 @@ const formatDate = ({
     hour: 'numeric',
     minute: 'numeric',
     hour12: true,
-    timeZone: 'UTC',
+    timeZone: 'Asia/Kolkata',
   },
 }: FormatDateType) => {
   const date = new Date(dateAndTime);
