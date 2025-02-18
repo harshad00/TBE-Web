@@ -75,27 +75,38 @@ const getPlaylistsFormDB = async (): Promise<DatabaseQueryResponseType> => {
   }
 };
 
-// Get a playlist by its ID
-const getUserPlaylistByIDFromDB = async (
+// Get Playlists IF have user Id than give usert Playlist Otherwise give Plylist DATA.
+const getPlaylistByIdFromDB = async (
   playlistId: string,
   userId?: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const userPlaylist = await UserPlaylist.findOne({ playlistId, userId })
-      .populate({
-        path: 'playlistId',
-      })
-      .exec();
+    let result;
 
-    if (!userPlaylist) {
-      return { error: 'Playlist not found' };
+    if (userId) {
+      // Fetch user-specific playlist
+      result = await UserPlaylist.findOne({ playlistId, userId })
+        .populate({
+          path: 'playlistId',
+        })
+        .exec();
+
+      if (!result) {
+        return { error: 'Playlist not found for the user' };
+      }
+    } else {
+      // Fetch general playlist
+      result = await Playlist.findOne({ _id: playlistId });
+      if (!result) {
+        return { error: 'Playlist not found' };
+      }
     }
-
-    return { data: userPlaylist };
+    return { data: result };
   } catch (error) {
     return { error };
   }
 };
+
 
 // Get all playlists of a user  from `UserPlaylist`
 const getUserPlaylistsFromDB = async (
@@ -179,7 +190,7 @@ export {
   checkPlaylistExistsByPlaylistId,
   addUserPlaylistEntry,
   getPlaylistsFormDB,
-  getUserPlaylistByIDFromDB,
+  getPlaylistByIdFromDB,
   getUserPlaylistsFromDB,
   deleteUserPlaylistFromDB,
   updateUserPlaylistData,
