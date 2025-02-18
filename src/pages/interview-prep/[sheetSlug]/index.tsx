@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import {
   Button,
   QuestionLink,
@@ -123,7 +123,7 @@ const SheetPage = ({
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
         <SheetHeroContainer
@@ -211,7 +211,7 @@ const SheetPage = ({
           </FlexContainer>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

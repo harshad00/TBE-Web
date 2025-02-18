@@ -1,4 +1,3 @@
-import React from 'react';
 import { getPlaylistPageProps } from '@/utils';
 import Section from '@/components/layout/Section';
 

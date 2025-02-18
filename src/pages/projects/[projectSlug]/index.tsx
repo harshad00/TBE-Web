@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 import {
   Accordion,
   AccordionLinkItem,
@@ -146,7 +146,7 @@ const ProjectPage = ({
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='p-2 lg:px-8'>
         <ProjectHeroContainer
@@ -232,7 +232,7 @@ const ProjectPage = ({
           </FlexContainer>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

@@ -1,12 +1,12 @@
-import React from 'react';
 import { PageProps } from '@/interfaces';
 import { CardContainerA, LandingPageHero, LinkButton, SEO } from '@/components';
 import { getPreFetchProps } from '@/utils';
 import { routes, STATIC_FILE_PATH, YOUFOCUS_FEATURES } from '@/constant';
+import { Fragment } from 'react';
 
 const Home = ({ seoMeta }: PageProps) => {
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <LandingPageHero
         sectionHeaderProps={{
@@ -44,7 +44,7 @@ const Home = ({ seoMeta }: PageProps) => {
         cards={YOUFOCUS_FEATURES}
         borderColour={4}
       />
-    </React.Fragment>
+    </Fragment>
   );
 };
 export const getServerSideProps = getPreFetchProps;

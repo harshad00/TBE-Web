@@ -1,14 +1,20 @@
-import { FlexContainer, MentorshipCard, Section, Text } from '@/components';
+import {
+  FlexContainer,
+  MentorshipCard,
+  Section,
+  SectionHeaderContainer,
+} from '@/components';
 import { MENTORSHIP_CARDS } from '@/constant';
-import React from 'react';
 
 const MentorshipPlans = () => {
   return (
     <Section className='md:p-5 px-2 py-4'>
-      <FlexContainer className='gap-2' direction='col'>
-        <Text level='h3' className='heading-3'>
-          Get Personalised Mentorship
-        </Text>
+      <FlexContainer className='gap-4' direction='col'>
+        <SectionHeaderContainer
+          headingLevel={3}
+          heading='Get Personalised'
+          focusText='Mentorship'
+        />
         <FlexContainer className='gap-2 h-full'>
           {MENTORSHIP_CARDS.map((plan) => (
             <MentorshipCard

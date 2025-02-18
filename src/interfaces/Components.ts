@@ -1,7 +1,9 @@
-import React, {
+import {
+  ElementType,
   HTMLInputTypeAttribute,
   MouseEventHandler,
   ReactNode,
+  RefObject,
 } from 'react';
 import {
   CertificateType,
@@ -11,13 +13,13 @@ import {
 } from '.';
 
 export interface SectionProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   id?: string;
 }
 
 export interface LinkProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   href: string;
   target?: '_blank';
@@ -28,7 +30,7 @@ export interface LinkProps {
 
 export interface TextProps {
   level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'label';
-  children: React.ReactNode;
+  children: ReactNode;
   variant?: 'SUCCESS' | 'ERROR';
   className?: string;
   textCenter?: boolean;
@@ -65,7 +67,7 @@ export interface ButtonProps {
 }
 
 export interface PageLayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export interface SectionHeaderProps {
@@ -78,14 +80,14 @@ export interface SectionHeaderProps {
 }
 
 export interface CardSectionContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   isWidthFull?: boolean;
   className?: string;
   gap?: string;
 }
 
 export interface GradientContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   backgroundColor?: string;
   childrenClassName?: string;
@@ -121,7 +123,7 @@ export interface PortfolioTemplateProps {
 }
 
 export interface FlexContainerProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   itemCenter?: boolean;
   justifyCenter?: boolean;
   className?: string;
@@ -154,7 +156,7 @@ export interface FooterLinksContainerProps {
 }
 
 export interface GridContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
@@ -322,7 +324,7 @@ export interface SheetHeroContainerProps {
 
 export interface AccordionProps {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   open?: boolean;
 }
 
@@ -365,7 +367,7 @@ export interface QuestionLinkProps {
 
 export interface MDXRendererProps {
   mdxSource: string;
-  actions?: React.ReactNode[];
+  actions?: ReactNode[];
 }
 
 export interface AlertProps {
@@ -383,7 +385,7 @@ export interface CertificateBannerProps {
   backgroundColor: string;
   heading: string;
   subtext: string;
-  icon: React.ElementType;
+  icon: ElementType;
   isLocked: boolean;
   onClick?: () => void;
 }
@@ -393,7 +395,7 @@ export interface CertificateContentProps {
   courseName: string;
   date: string;
   type: CertificateType;
-  certificateRef: React.RefObject<HTMLDivElement>;
+  certificateRef: RefObject<HTMLDivElement>;
 }
 
 export interface BackgroundImageProps {
@@ -478,11 +480,11 @@ export interface MentorshipCardProps {
 
 export interface CarouselProps {
   items: any[];
-  renderItem: (item: any) => React.ReactNode;
+  renderItem: (item: any) => ReactNode;
 }
 
 export interface IconCardProps {
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   description: string;
   className?: string;

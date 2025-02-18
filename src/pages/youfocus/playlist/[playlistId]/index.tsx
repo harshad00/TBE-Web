@@ -1,4 +1,3 @@
-import React from 'react';
 import { PlaylistPageProps } from '@/interfaces';
 import { SEO, PlaylistCantainerCard } from '@/components';
 import { getPlaylistPageProps } from '@/utils';

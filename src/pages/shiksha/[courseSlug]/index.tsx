@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { FaTrophy, FaLock } from 'react-icons/fa';
 import {
   Alert,
@@ -155,7 +155,7 @@ const CoursePage = ({
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
         {alertContainer}
@@ -266,7 +266,7 @@ const CoursePage = ({
           </FlexContainer>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

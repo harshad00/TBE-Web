@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Banner,
   Button,
@@ -16,6 +15,7 @@ import {
 } from '@/utils';
 import { useCertificate, useUser } from '@/hooks';
 import { routes, STATIC_FILE_PATH } from '@/constant';
+import { Fragment } from 'react';
 
 const Home = ({
   seoMeta,
@@ -27,7 +27,7 @@ const Home = ({
   const socialShareContent = generateShareTemplate(programName, userName, type);
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:px-4 md:py-4 px-2 py-2'>
         <FlexContainer direction='col' className='gap-1'>
@@ -46,44 +46,45 @@ const Home = ({
             date={formatDate({}).date}
             certificateRef={certificateRef}
           />
-          {isAuth && (
-            <FlexContainer direction='col' className='gap-2'>
-              <FlexContainer className='py-2 gap-1'>
+          <FlexContainer direction='col' className='gap-2'>
+            <FlexContainer className='py-2 gap-1'>
+              <Button
+                variant='PRIMARY'
+                text='Download'
+                onClick={() => handleDownload(programName)}
+                animationClasses='w-fit'
+              />
+              <Button
+                variant='OUTLINE'
+                text='Copy Link'
+                onClick={() =>
+                  navigator.clipboard.writeText(window.location.href)
+                }
+                animationClasses='w-fit'
+              />
+            </FlexContainer>
+            <FlexContainer
+              direction='col'
+              className='gap-2 mt-4 md:w-1/2 w-full m-auto'
+            >
+              <Text level='h5' className='heading-5' textCenter={true}>
+                Share your achievement on social media:
+              </Text>
+              <FlexContainer direction='col' className='gap-2 w-full'>
+                <pre className='bg-gray-100 border p-2 rounded w-full overflow-x-auto'>
+                  {socialShareContent}
+                </pre>
                 <Button
-                  variant='PRIMARY'
-                  text='Download'
-                  onClick={() => handleDownload(programName)}
-                />
-                <Button
-                  variant='OUTLINE'
-                  text='Copy Link'
+                  variant='SUCCESS'
+                  text='Copy'
                   onClick={() =>
-                    navigator.clipboard.writeText(window.location.href)
+                    navigator.clipboard.writeText(socialShareContent)
                   }
+                  animationClasses='w-fit'
                 />
-              </FlexContainer>
-              <FlexContainer
-                direction='col'
-                className='gap-2 mt-4 md:w-1/2 w-full m-auto'
-              >
-                <Text level='h5' className='heading-5' textCenter={true}>
-                  Share your achievement on social media:
-                </Text>
-                <FlexContainer direction='col' className='gap-2 w-full'>
-                  <pre className='bg-gray-100 border p-2 rounded w-full overflow-x-auto'>
-                    {socialShareContent}
-                  </pre>
-                  <Button
-                    variant='SUCCESS'
-                    text='Copy'
-                    onClick={() =>
-                      navigator.clipboard.writeText(socialShareContent)
-                    }
-                  />
-                </FlexContainer>
               </FlexContainer>
             </FlexContainer>
-          )}
+          </FlexContainer>
           {!isAuth && (
             <Banner
               title='Start Your Tech Journey'
@@ -96,7 +97,7 @@ const Home = ({
           )}
         </div>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

@@ -1,6 +1,6 @@
 import { LINKS, STATIC_FILE_PATH } from '@/constant';
 import Link from 'next/link';
-import React from 'react';
+
 import { Image, Pill, Section, FlexContainer } from '@/components';
 import { Text } from '@/components';
 

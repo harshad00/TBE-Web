@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { PlaylistVideoTimeCard as PlaylistVideoTimeCardProps } from '@/interfaces';
 
 const PlaylistVideoTimeCard = ({

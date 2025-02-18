@@ -126,7 +126,7 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       description: `${INTERVIEW_PREP_SHEETS[1].content} - Get ready for React interviews with our comprehensive interview sheet.`,
       url: routes.allInterviewSheets.reactInterviewSheet,
       keywords:
-        'React, Interview Preparation, Coding Sheet, React Interview Questions, Tech Interviews, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+        ' Interview Preparation, Coding Sheet, React Interview Questions, Tech Interviews, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
     [`${routes.allInterviewSheets.nodeInterviewSheet}`]: {

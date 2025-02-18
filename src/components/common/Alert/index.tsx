@@ -1,4 +1,3 @@
-import React from 'react';
 import { AlertProps } from '@/interfaces';
 
 const Alert = ({ message, type = 'INFO', className = '' }: AlertProps) => {

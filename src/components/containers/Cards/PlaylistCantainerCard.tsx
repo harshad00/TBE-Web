@@ -1,4 +1,3 @@
-import React from 'react';
 import { Section, PlaylistVideoCard, PlaylistCard } from '@/components';
 
 import { CardContainerCProps } from '@/interfaces';
