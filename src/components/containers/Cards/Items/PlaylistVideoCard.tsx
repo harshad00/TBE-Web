@@ -15,7 +15,7 @@ const PlaylistVideoCard = ({
     <div className= "flex border-gray-900 md:w-3/4 mb-1 hover:bg-slate-200 rounded-lg" >
     {
       href?(
-        <button onClick = { onClick } >
+        <div onClick = { onClick } >
           <div className="w-full flex flex-row">
     <div className="flex-1 w-64 max-w-60 md:h-32 relative" >
       <Image src={ image } alt = { imageAltText }
@@ -28,7 +28,7 @@ const PlaylistVideoCard = ({
         </Text>
         </div>
         </div>
-        </button>
+        </div>
       ) : (
         <div className= "w-full flex flex-row" >
          <div className="flex-1 w-64 max-w-60 md:h-32 relative" >
