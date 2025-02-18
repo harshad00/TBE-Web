@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PlaylistVideoTimeCard as PlaylistVideoTimeCardProps } from '@/interfaces';
-import {convertSecondsToMinutes} from '@/utils';
+import { convertSecondsToMinutes } from '@/utils';
 
 const PlaylistVideoTimeCard = ({
   usertime = 0,
@@ -34,7 +34,7 @@ const PlaylistVideoTimeCard = ({
     <div className='flex items-center justify-between w-full max-w-sm p-4 bg-gray-900 text-white rounded-lg shadow-md'>
       <button
         className='w-10 h-10 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-600'
-        aria-label="Go back"
+        aria-label='Go back'
       >
         <img className='w-5 h-5 p-1' src='/images/arrowback.svg' alt='Back' />
       </button>

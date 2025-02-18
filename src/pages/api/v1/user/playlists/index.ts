@@ -2,10 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
-import {
-  getUserPlaylistsFromDB,
-  deleteUserPlaylistFromDB,
-} from '@/database';
+import { getUserPlaylistsFromDB, deleteUserPlaylistFromDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
