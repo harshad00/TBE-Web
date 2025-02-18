@@ -27,6 +27,7 @@ const ToggleButton = ({
           onClick={() => handleClick(option)}
           variant='GHOST'
           text={option}
+          animationClasses='w-fit'
         />
       ))}
     </FlexContainer>

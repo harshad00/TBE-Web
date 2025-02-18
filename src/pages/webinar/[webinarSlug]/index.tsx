@@ -192,6 +192,7 @@ const WebinarPage = ({
               text='Generate Certificate'
               onClick={onGenerateCertificate}
               variant='SUCCESS'
+              animationClasses='w-fit'
             />
           </FlexContainer>
 
@@ -321,7 +322,7 @@ const WebinarPage = ({
             className='justify-start rounded-lg md:w-1/2 w-full gap-6'
           >
             <FlexContainer direction='col' className='justify-start gap-4'>
-              <FlexContainer direction='col' className='gap-2'>
+              <FlexContainer direction='col' className='gap-4'>
                 <Text level='h4' className='heading-4'>
                   About webinar
                 </Text>

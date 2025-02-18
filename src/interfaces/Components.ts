@@ -269,6 +269,7 @@ interface BaseCardContainerProps {
 
 export interface CardContainerAProps extends BaseCardContainerProps {
   cards: PrimaryCardProps[];
+  subtext?: string;
 }
 
 export interface CardContainerBProps extends BaseCardContainerProps {

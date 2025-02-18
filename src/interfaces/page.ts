@@ -72,14 +72,6 @@ export interface CardItem {
   thumbnail?: string;
 }
 
-export interface CardContainerAProps {
-  heading: string;
-  focusText: string;
-  subtext?: string;
-  borderColour?: string;
-  cards: CardItem[];
-}
-
 export type PlaylistPickedPageProps = Pick<
   PlaylistModel & { _id: string }, // Explicitly adding _id
   | '_id'

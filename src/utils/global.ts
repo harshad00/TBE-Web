@@ -132,7 +132,7 @@ const getPlaylistPageProps = async (context: any) => {
 
   try {
     const { status, data } = await fetchAPIData(
-      routes.api.youfocusPlaylistById(playlistId)
+      routes.api.youfocusUserPlaylistById(playlistId)
     );
     if (!status || !data) {
       return {
