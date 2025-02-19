@@ -87,7 +87,11 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
 
       {playlistVideo && (
         <div className='w-full flex justify-center'>
-          <PlaylistRecommend userId={userId} playlistId={playlistdata._id} />
+          <PlaylistRecommend
+            userId={userId}
+            playlistId={playlistdata._id}
+            recommend={playlist.isRecommended}
+          />
         </div>
       )}
     </div>
