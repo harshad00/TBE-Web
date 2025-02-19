@@ -6,6 +6,7 @@ import {
   CertificateModel,
   ProjectDocumentModel,
   WebinarModel,
+  UserPlaylistModel,
   PlaylistModel,
 } from './database';
 import { GetSEOMetaResponseType } from './global';
@@ -73,13 +74,15 @@ export interface CardItem {
 }
 
 export type PlaylistPickedPageProps = Pick<
-  PlaylistModel & { _id: string }, // Explicitly adding _id
-  | '_id'
-  | 'playlistId'
-  | 'playlistName'
-  | 'description'
-  | 'thumbnail'
-  | 'tags'
-  | 'videos'
-  | 'referrerBy'
->;
+  UserPlaylistModel & { _id: string },
+  '_id' | 'playlistId' | 'isRecommended' | 'learningTime'
+> &
+  Pick<
+    PlaylistModel,
+    | 'playlistName'
+    | 'description'
+    | 'thumbnail'
+    | 'tags'
+    | 'videos'
+    | 'referrerBy'
+  >;

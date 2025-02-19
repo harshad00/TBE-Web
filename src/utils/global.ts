@@ -108,8 +108,9 @@ const getProjectPageProps = async (context: any) => {
 };
 
 const getPlaylistPageProps = async (context: any) => {
-  const { query } = context;
+  const { req, query } = context;
   const { playlistId } = query;
+  const user = await isUserAuthenticated(req);
 
   let slug = routes.home;
 
@@ -132,7 +133,7 @@ const getPlaylistPageProps = async (context: any) => {
 
   try {
     const { status, data } = await fetchAPIData(
-      routes.api.youfocusUserPlaylistById(playlistId)
+      routes.api.youfocusUserPlaylistById(playlistId, user?.id)
     );
     if (!status || !data) {
       return {
