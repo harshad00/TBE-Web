@@ -7,13 +7,15 @@ import PlaylistVideoTimeCard from './Items/PlaylistVideoTimeCard';
 import PlaylistRecommend from './Items/PlaylistRecommend';
 
 const CardContainerC = ({ playlist }: CardContainerCProps) => {
+  const playlistdata = playlist.playlistId;
   const [playlistVideo, setPlaylistVideo] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState({
-    videoId: playlist.videos?.[0]?.videoId ?? undefined,
-    title: playlist.videos?.[0]?.title ?? '',
+    videoId: playlistdata.videos?.[0]?.videoId ?? undefined,
+    title: playlistdata.videos?.[0]?.title ?? '',
   });
-  const { data: session, status } = useSession();
 
+  const { data: session, status } = useSession();
+  const userId = session?.user?.id;
   const togglePlaylistVideo = () => {
     if (status === 'loading') return;
     if (!session) {
@@ -28,14 +30,18 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
       <div className='gap-6 md:w-[70%] mx-auto md:border-2 md:border-black md:rounded-md md:p-2'>
         {playlistVideo && (
           <div className='w-full flex justify-center'>
-            <PlaylistVideoTimeCard usertime={0} />
+            <PlaylistVideoTimeCard
+              usertime={playlist.learningTime}
+              userId={userId}
+              playlistId={playlistdata._id}
+            />
           </div>
         )}
         <div className='w-full m-auto'>
           <PlaylistCard
-            title={selectedVideo.title || playlist.playlistName}
-            description={playlist.description}
-            thumbnail={playlist.thumbnail}
+            title={selectedVideo.title || playlistdata.playlistName}
+            description={playlistdata.description}
+            thumbnail={playlistdata.thumbnail}
             videoId={selectedVideo.videoId}
             playlistVideo={playlistVideo}
           />
@@ -53,7 +59,7 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
         )}
         <div className='flex flex-col md:items-center'>
           {playlistVideo
-            ? playlist.videos?.map((video) => (
+            ? playlistdata.videos?.map((video) => (
                 <PlaylistVideoCard
                   key={video.title}
                   title={video.title}
@@ -68,7 +74,7 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
                   }
                 />
               ))
-            : playlist.videos?.map((video) => (
+            : playlistdata.videos?.map((video) => (
                 <PlaylistVideoCard
                   key={video.title}
                   title={video.title}
@@ -81,7 +87,7 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
 
       {playlistVideo && (
         <div className='w-full flex justify-center'>
-          <PlaylistRecommend />
+          <PlaylistRecommend userId={userId} playlistId={playlistdata._id} />
         </div>
       )}
     </div>
