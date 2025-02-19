@@ -12,7 +12,6 @@ const routes = {
     zeroToOneBackend: '/shiksha/zero-to-one-backend-development',
   },
   roadmaps: '/roadmaps',
-  register: '/register',
   workshops: '/workshops',
   webinar: '/webinar',
   portfolio: '/portfolio',
