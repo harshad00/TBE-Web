@@ -70,7 +70,7 @@ const Home = ({ seoMeta }: PageProps) => {
             headingLevel={2}
             subtext='Learn Undistracted with Youtube Playlist'
           />
-          <FlexContainer className='gap-3 w-full' direction='col'>
+          <FlexContainer className='gap-3 w-full ' direction='col'>
             <InputFieldContainer
               label='Paste YouTube Playlist Link'
               type='text'
@@ -80,7 +80,7 @@ const Home = ({ seoMeta }: PageProps) => {
 
             <Button
               variant='PRIMARY'
-              className=''
+              className='m-auto'
               text='Add Playlist'
               active={!!playlistUrl || !error}
               isLoading={loading}

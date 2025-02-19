@@ -460,12 +460,12 @@ export interface PlaylistVideoCardProps {
   image: string;
   imageAltText: string;
   href?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 interface Video {
   title: string;
   thumbnail: string;
-  videoId?: string;
+  videoId: string;
 }
 
 export interface PlaylistVideoTimeCard {

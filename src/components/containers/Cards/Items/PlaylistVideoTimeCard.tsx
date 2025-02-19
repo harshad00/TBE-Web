@@ -31,7 +31,7 @@ const PlaylistVideoTimeCard = ({
   }, [isRunning]);
 
   return (
-    <div className='flex items-center justify-between w-full max-w-sm p-4 bg-gray-900 text-white rounded-lg shadow-md'>
+    <div className='flex items-center justify-between w-full md:w-[65%] p-4 bg-gray-900 text-white rounded-lg shadow-md'>
       <button
         className='w-10 h-10 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-600'
         aria-label='Go back'

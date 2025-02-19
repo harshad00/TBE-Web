@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text } from '@/components';
+import { Image, Text, FlexContainer } from '@/components';
 import { PlaylistCardProps } from '@/interfaces';
 
 const PlaylistCard = ({
@@ -8,42 +8,39 @@ const PlaylistCard = ({
   thumbnail,
   playlistVideo,
   videoId,
+  selectedVideoId,
 }: PlaylistCardProps) => {
   return (
-    <div className='flex justify-center'>
-      <div className='w-full p-2 md:max-w-[70%] flex flex-col gap-4'>
-        <div className='w-full border-2 border-black rounded-md overflow-hidden transition-transform duration-300 hover:scale-105'>
-          {playlistVideo ? (
+    <>
+      <FlexContainer direction='col' className='relative gap-4 mt-4'>
+        <div className='w-full md:w-[65%] border-1 border-black rounded-md overflow-hidden'>
+          {!playlistVideo ? (
+            <Image className='w-full' src={thumbnail} alt={title} />
+          ) : (
             <iframe
-              className='w-full h-56 md:h-72 lg:h-96 rounded-md'
-              src={`https://www.youtube.com/embed/${videoId}`}
+              className='w-full aspect-video rounded-sm'
+              src={`https://www.youtube.com/embed/${
+                selectedVideoId ?? videoId ?? ''
+              }`}
               title='YouTube Video'
-              frame-Border='0'
+              frameBorder='0'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               allowFullScreen
             ></iframe>
-          ) : (
-            <Image
-              className='w-full h-auto md:h-[20rem] lg:h-[25rem] object-cover shadow-lg rounded-lg'
-              src={thumbnail}
-              alt={title}
-            />
           )}
         </div>
-
-        <div className='w-full text-center'>
-          <Text level='h2' className='font-bold text-lg md:text-xl lg:text-2xl'>
+      </FlexContainer>
+      <FlexContainer direction='col' className='relative py-3'>
+        <div className='w-full md:w-[65%]'>
+          <Text level='h3' className='heading-4 font-bold py-1'>
             {title}
           </Text>
-          <Text
-            level='p'
-            className='text-sm md:text-base lg:text-lg mt-1 pt-1 line-clamp-2'
-          >
+          <Text level='p' className='line-clamp-2 '>
             {description}
           </Text>
         </div>
-      </div>
-    </div>
+      </FlexContainer>
+    </>
   );
 };
 

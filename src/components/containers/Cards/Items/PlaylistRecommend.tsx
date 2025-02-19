@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, SectionHeaderContainer } from '@/components';
+import { Button, SectionHeaderContainer, FlexContainer } from '@/components';
 
 const PlaylistRecommend = () => {
   const [copied, setCopied] = useState(false);
@@ -14,38 +14,41 @@ const PlaylistRecommend = () => {
       })
       .catch((err) => console.error('Failed to copy URL:', err));
   };
-
+  const Recommend = () => {
+    //  for Recommend
+  };
   return (
-    <div className='w-full max-w-md p-4 bg-white shadow-lg rounded-lg text-center relative'>
-      <SectionHeaderContainer
-        heading='Recommend'
-        focusText='Playlist'
-        headingLevel={4}
-        subtext='Share it With Your Friend and Learn Together'
-      />
+    <FlexContainer direction='col' className='relative rounded-lg mt-2 md:mt-4'>
+      <div className='w-full max-w-md  '>
+        <SectionHeaderContainer
+          heading='Recommend'
+          focusText='Playlist'
+          headingLevel={3}
+          subtext='Share it With Your Friend and Learn Together'
+        />
+      </div>
 
       <div className='mt-2 md:mt-4 flex justify-center gap-2'>
         <Button
           variant='PRIMARY'
-          className='="bg-red-500 text-nowrap text-white px-4 py-1 md:py-2 rounded-lg shadow-md hover:bg-red-600"'
+          className='text-nowrap text-white rounded-s-md'
           text='Recommend'
-          onClick=''
+          onClick={Recommend}
         />
         <Button
           variant='OUTLINE'
-          className='="bg-red-500 text-nowrap px-4 py-1 md:py-2 rounded-lg shadow-md hover:bg-red-600"'
+          className='text-nowrap rounded-s-md '
           text='Copy Link'
           onClick={copyCurrentPageUrl}
         />
       </div>
-
       {/* Show popup when copied */}
       {copied && (
         <div className='absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded-md shadow-md'>
           ✅ Playlist URL copied!
         </div>
       )}
-    </div>
+    </FlexContainer>
   );
 };
 
