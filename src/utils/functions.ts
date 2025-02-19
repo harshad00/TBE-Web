@@ -1,4 +1,4 @@
-import { envConfig, LINKS, YOUTUBE_API_PATH } from '@/constant';
+import { envConfig, LINKS, routes, YOUTUBE_API_PATH } from '@/constant';
 import {
   BaseInterviewSheetResponseProps,
   BaseShikshaCourseResponseProps,
@@ -74,7 +74,7 @@ const removeLocalStorageItem = (key: string) => {
 
 const mapProjectResponseToCard = (
   projectsData: ProjectDocumentModel[],
-  addtionalParams: any
+  addtionalParams: any = { isEnrolled: false }
 ) => {
   const { isEnrolled } = addtionalParams;
 
@@ -378,6 +378,39 @@ const convertSecondsToMinutes = (seconds: number) => {
     .padStart(2, '0')}`;
 };
 
+const generateSitemap = () => {
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+  sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+  const sitemapRoutes = flattenRoutesForSitemap(routes);
+
+  sitemapRoutes.forEach((url) => {
+    sitemap += `<url><loc>${url}</loc></url>\n`;
+  });
+
+  sitemap += `</urlset>`;
+
+  return sitemap;
+};
+
+const flattenRoutesForSitemap = (routesObj: Record<string, any>): string[] => {
+  const SITE_URL = 'https://theboringeducation.com';
+
+  let urls: string[] = [];
+
+  for (const key in routesObj) {
+    if (key === 'api' || key === 'internals') continue;
+
+    const value = routesObj[key];
+
+    if (typeof value === 'string') urls.push(`${SITE_URL}${value}`);
+    else if (typeof value === 'object')
+      urls = urls.concat(flattenRoutesForSitemap(value));
+  }
+
+  return urls;
+};
+
 export {
   formatDate,
   formatTime,
@@ -400,4 +433,6 @@ export {
   fetchPlaylistData,
   extractPlaylistId,
   convertSecondsToMinutes,
+  flattenRoutesForSitemap,
+  generateSitemap,
 };

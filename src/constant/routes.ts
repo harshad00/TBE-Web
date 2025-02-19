@@ -8,19 +8,19 @@ const routes = {
   allCourses: {
     logicBuildingForEveryone: '/shiksha/logic-building-for-everyone',
     basicsOfProgrammingWithJS: '/shiksha/basics-of-programming-with-js',
+    zeroToOneFrontend: '/shiksha/zero-to-one-frontend-development',
+    zeroToOneBackend: '/shiksha/zero-to-one-backend-development',
   },
   roadmaps: '/roadmaps',
   register: '/register',
   workshops: '/workshops',
   webinar: '/webinar',
   portfolio: '/portfolio',
-  os: '/os',
   // Projects
   projects: '/projects',
   projectsExplore: '/projects/explore',
   allProjects: {
     pharmashiftI: '/projects/pharmasift-i',
-    pharmashiftII: '/projects/pharmasift-ii',
   },
   // Interview Prep
   interviewPrep: '/interview-prep',

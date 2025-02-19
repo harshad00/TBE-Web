@@ -1,11 +1,6 @@
 import { GetSEOMetaResponseType } from '@/interfaces';
 import { routes } from '../routes';
-import {
-  SHIKSHA_COURSES,
-  TBP_PROJECTS,
-  products,
-  INTERVIEW_PREP_SHEETS,
-} from '..';
+import { TBP_PROJECTS, products, INTERVIEW_PREP_SHEETS } from '..';
 
 export const seoCommonMeta = {
   type: 'website',
@@ -91,24 +86,6 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: products.interviewPrep.slug,
       keywords:
         'Interview Preparation, Coding Interviews, Tech Interviews, Interview Questions, Job Preparation, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
-      ...seoCommonMeta,
-    },
-    [`${routes.allCourses.logicBuildingForEveryone}`]: {
-      title: `${SHIKSHA_COURSES[0].title} | The Boring Education`,
-      siteName: SHIKSHA_COURSES[0].title,
-      description: `${SHIKSHA_COURSES[0].content} - Learn the basics of programming and logic building with this beginner-friendly course.`,
-      url: routes.allCourses.logicBuildingForEveryone,
-      keywords:
-        'Logic Building, Programming Basics, Online Course, Beginner Programming, Coding Fundamentals, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
-      ...seoCommonMeta,
-    },
-    [`${routes.allCourses.basicsOfProgrammingWithJS}`]: {
-      title: `${SHIKSHA_COURSES[1].title} | The Boring Education`,
-      siteName: SHIKSHA_COURSES[1].title,
-      description: `${SHIKSHA_COURSES[1].content} - Master the basics of programming with JavaScript in this comprehensive course.`,
-      url: routes.allCourses.basicsOfProgrammingWithJS,
-      keywords:
-        'JavaScript, Programming Basics, Online Course, JavaScript Fundamentals, Coding for Beginners, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
     [`${routes.allInterviewSheets.javascriptInterviewSheet}`]: {

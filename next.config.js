@@ -6,7 +6,6 @@ const nextConfig = {
 
   reactStrictMode: true,
 
-  // Uncoment to add domain whitelist
   images: {
     domains: [
       'lh3.googleusercontent.com',
@@ -36,15 +35,15 @@ const nextConfig = {
 
     return config;
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/micro-camps/:microCamp',
-  //       destination: '/',
-  //       permanent: true,
-  //     },
-  //   ]
-  // },
+  async redirects() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
