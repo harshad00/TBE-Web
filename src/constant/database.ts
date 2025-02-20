@@ -1,4 +1,4 @@
-const databaseModels = {
+const DATABASE_MODELS = {
   PROJECT: 'Project',
   USER: 'User',
   USER_PROJECT: 'UserProject',
@@ -13,6 +13,7 @@ const databaseModels = {
   WEBINAR: 'Webinar',
   CERTIFICATE: 'Certificate',
   NOTIFICATION: 'Notification',
+  JOB: 'Job',
 };
 
 const modelSelectParams = {
@@ -20,4 +21,4 @@ const modelSelectParams = {
   projectPreview: '_id name slug coverImageURL description isActive',
 };
 
-export { databaseModels, modelSelectParams };
+export { DATABASE_MODELS, modelSelectParams };

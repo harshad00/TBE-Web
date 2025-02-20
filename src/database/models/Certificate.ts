@@ -1,6 +1,6 @@
 import { Model, Schema, model, models } from 'mongoose';
 import { CertificateModel } from '@/interfaces';
-import { CERTIFICATE_TYPE, databaseModels } from '@/constant';
+import { CERTIFICATE_TYPE, DATABASE_MODELS } from '@/constant';
 
 const CertificateSchema = new Schema<CertificateModel>(
   {
@@ -52,6 +52,6 @@ const CertificateSchema = new Schema<CertificateModel>(
 
 const Certificate: Model<CertificateModel> =
   models?.Certificate ||
-  model<CertificateModel>(databaseModels.CERTIFICATE, CertificateSchema);
+  model<CertificateModel>(DATABASE_MODELS.CERTIFICATE, CertificateSchema);
 
 export default Certificate;

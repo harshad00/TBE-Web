@@ -1,5 +1,5 @@
 import {
-  databaseModels,
+  DATABASE_MODELS,
   INTERVIEW_QUESTION_FREQUENCY,
   ROADMAPS,
 } from '@/constant';
@@ -82,7 +82,7 @@ const InterviewSheetSchema = new Schema<InterviewSheetModel>(
 const InterviewSheet: Model<InterviewSheetModel> =
   models?.InterviewSheet ||
   model<InterviewSheetModel>(
-    databaseModels.INTERVIEW_SHEET,
+    DATABASE_MODELS.INTERVIEW_SHEET,
     InterviewSheetSchema
   );
 export default InterviewSheet;

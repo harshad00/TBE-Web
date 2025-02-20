@@ -1,5 +1,6 @@
 import {
   CertificateType,
+  CompanyDetails,
   CourseChapterModel,
   CourseModel,
   InterviewSheetModel,
@@ -318,4 +319,24 @@ export interface AddNotificationRequestPayloadProps {
 export interface UpdateNotificationRequestPayloadProps {
   notificationId: string;
   updatedNotification: Partial<AddNotificationRequestPayloadProps>;
+}
+
+export interface AddJobRequestPayloadProps {
+  id: string;
+  company: CompanyDetails;
+  skills: string[];
+  role: string;
+  location: string;
+  experience?: {
+    min: number;
+    max: number;
+  };
+  jobUrl: string;
+  salary?: {
+    min: number;
+    max: number;
+  };
+  isInternship?: boolean;
+  stipend?: number;
+  platform: string;
 }
