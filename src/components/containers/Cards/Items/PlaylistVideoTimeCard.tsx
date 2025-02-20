@@ -4,11 +4,11 @@ import { convertSecondsToMinutes } from '@/utils';
 import { routes } from '@/constant';
 
 const PlaylistVideoTimeCard = ({
-  usertime,
+  usertime = 0,
   playlistId,
   userId,
 }: PlaylistVideoTimeCardProps) => {
-  const [time, setTime] = useState(usertime * 60); // Convert minutes to seconds
+  const [time, setTime] = useState(usertime * 60);
   const [isRunning, setIsRunning] = useState(false);
 
   const apiUrl = `${routes.api.base}${routes.api.youfocusUserPlaylistById(
@@ -16,7 +16,7 @@ const PlaylistVideoTimeCard = ({
     userId
   )}`;
 
-  // Function to update learningTime in DB (only store minutes)
+  // Function to update learningTime in DB
   const updateLearningTime = useCallback(() => {
     const minutes = Math.floor(time / 60); // Convert seconds to minutes
 
@@ -25,9 +25,7 @@ const PlaylistVideoTimeCard = ({
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        learningTime: minutes, // Store only minutes
-      }),
+      body: JSON.stringify({ learningTime: minutes }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -37,23 +35,17 @@ const PlaylistVideoTimeCard = ({
       })
       .then((data) => console.log('Minutes saved in DB:', data))
       .catch((error) => console.error('Error updating timer:', error));
-  }, [time, apiUrl]);
+  }, [time, apiUrl]); // Use `time` instead of `usertime` for correct updates
 
-  // Effect to handle the timer logic
+  // Timer logic
   useEffect(() => {
-    let timer: number | undefined;
+    if (!isRunning) return;
 
-    if (isRunning) {
-      timer = window.setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
-      }, 1000);
-    } else {
-      if (timer) window.clearInterval(timer);
-    }
+    const timer = setInterval(() => {
+      setTime((prevTime) => prevTime + 1);
+    }, 1000);
 
-    return () => {
-      if (timer) window.clearInterval(timer);
-    };
+    return () => clearInterval(timer);
   }, [isRunning]);
 
   // Auto-save every 2 minutes
@@ -61,18 +53,17 @@ const PlaylistVideoTimeCard = ({
     if (!isRunning) return;
 
     const interval = setInterval(() => {
-      updateLearningTime(); // Save every 2 minutes
-    }, 120000); // 120,000ms = 2 minutes
+      updateLearningTime();
+    }, 120000);
 
     return () => clearInterval(interval);
-  }, [isRunning, time, updateLearningTime]);
+  }, [isRunning, updateLearningTime]);
 
   // Save when paused
   const toggleTimer = useCallback(() => {
     setIsRunning((prev) => {
-      const newState = !prev;
       if (prev) updateLearningTime(); // If pausing, save immediately
-      return newState;
+      return !prev;
     });
   }, [updateLearningTime]);
 
