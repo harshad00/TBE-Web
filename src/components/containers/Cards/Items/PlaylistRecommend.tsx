@@ -86,7 +86,7 @@ const PlaylistRecommend = ({
 
       {/* ✅ Show thank-you message when recommended */}
       {thankYouMessage && (
-        <div className='absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-sm px-3 py-1 rounded-md shadow-md'>
+        <div className='absolute bottom-[-80px] left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-sm px-3 py-1 rounded-md shadow-md'>
           ✅ Thank you for your recommendation! 😊
         </div>
       )}

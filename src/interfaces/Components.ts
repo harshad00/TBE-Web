@@ -474,16 +474,21 @@ export interface PlaylistVideoTimeCard {
   playlistId?: string;
 }
 
-interface PlaylistData {
-  playlistName: string;
-  description: string;
-  thumbnail: string;
-  videos?: Video[];
-  learningTime: number;
-}
-
 export interface CardContainerCProps {
-  playlist: PlaylistData;
+  playlist: {
+    playlistId: {
+      _id: string;
+      playlistName: string;
+      description?: string;
+      thumbnail?: string;
+      videos?: Video[];
+    };
+    learningTime?: number;
+    description?: string;
+    thumbnail?: string;
+    videos?: Video[];
+    isRecommended?: boolean;
+  };
 }
 
 export interface MentorshipCardProps {

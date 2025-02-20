@@ -40,9 +40,9 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
         <div className='w-full m-auto'>
           <PlaylistCard
             title={selectedVideo.title || playlistdata.playlistName}
-            description={playlistdata.description}
-            thumbnail={playlistdata.thumbnail}
-            videoId={selectedVideo.videoId}
+            description={playlistdata.description || playlist.description}
+            thumbnail={playlistdata.thumbnail || playlist.thumbnail}
+            videoId={selectedVideo.videoId || playlistdata.videoId}
             playlistVideo={playlistVideo}
           />
         </div>
@@ -74,7 +74,7 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
                   }
                 />
               ))
-            : playlistdata.videos?.map((video) => (
+            : playlist.videos?.map((video) => (
                 <PlaylistVideoCard
                   key={video.title}
                   title={video.title}
