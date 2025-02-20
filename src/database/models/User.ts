@@ -1,4 +1,4 @@
-import { databaseModels } from '@/constant';
+import { DATABASE_MODELS } from '@/constant';
 import { UserModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
 
@@ -28,5 +28,5 @@ const UserSchema: Schema<UserModel> = new Schema(
 );
 
 const User: Model<UserModel> =
-  models?.User || model<UserModel>(databaseModels.USER, UserSchema);
+  models?.User || model<UserModel>(DATABASE_MODELS.USER, UserSchema);
 export default User;

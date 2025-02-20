@@ -1,4 +1,4 @@
-import { databaseModels, NOTIFICATION_TYPE } from '@/constant';
+import { DATABASE_MODELS, NOTIFICATION_TYPE } from '@/constant';
 import { NotificationModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
 
@@ -32,5 +32,5 @@ const NotificationSchema: Schema<NotificationModel> = new Schema(
 
 const Notification: Model<NotificationModel> =
   models?.Notification ||
-  model<NotificationModel>(databaseModels.NOTIFICATION, NotificationSchema);
+  model<NotificationModel>(DATABASE_MODELS.NOTIFICATION, NotificationSchema);
 export default Notification;

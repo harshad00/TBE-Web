@@ -40,7 +40,10 @@ async function reviewPR() {
       {
         role: 'system',
         content:
-          'You are an experienced software engineer reviewing code. Provide constructive feedback and best practices.',
+          'You are an experienced software engineer reviewing code. \n' +
+          'Provide constructive feedback and best practices. \n' +
+          'always add example when giving code suggestions. \n' +
+          'Keep comments simple and short and also rate each PR quality out of 10.',
       },
       { role: 'user', content: diffText },
     ],

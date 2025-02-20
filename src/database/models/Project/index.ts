@@ -2,7 +2,7 @@ import {
   DIFFICULTY_LEVEL,
   PROJECT_SKILLS,
   ROADMAPS,
-  databaseModels,
+  DATABASE_MODELS,
 } from '@/constant';
 import {
   ProjectChapter,
@@ -54,6 +54,6 @@ const projectSchema: Schema<ProjectDocumentModel> =
 
 const Project: Model<ProjectDocumentModel> =
   models?.Project ||
-  model<ProjectDocumentModel>(databaseModels.PROJECT, projectSchema);
+  model<ProjectDocumentModel>(DATABASE_MODELS.PROJECT, projectSchema);
 
 export default Project;

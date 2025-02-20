@@ -1,4 +1,4 @@
-import { databaseModels } from '@/constant';
+import { DATABASE_MODELS } from '@/constant';
 import { JobModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
 
@@ -34,5 +34,5 @@ const JobSchema: Schema<JobModel> = new Schema(
 );
 
 const Job: Model<JobModel> =
-  models?.Job || model<JobModel>(databaseModels.JOB, JobSchema);
+  models?.Job || model<JobModel>(DATABASE_MODELS.JOB, JobSchema);
 export default Job;

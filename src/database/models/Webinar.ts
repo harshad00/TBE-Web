@@ -1,5 +1,5 @@
 import { Schema, model, models, Model } from 'mongoose';
-import { databaseModels } from '@/constant';
+import { DATABASE_MODELS } from '@/constant';
 import { WebinarModel } from '@/interfaces';
 
 const WebinarSchema = new Schema<WebinarModel>(
@@ -113,5 +113,6 @@ const WebinarSchema = new Schema<WebinarModel>(
 );
 
 const Webinar: Model<WebinarModel> =
-  models?.Webinar || model<WebinarModel>(databaseModels.WEBINAR, WebinarSchema);
+  models?.Webinar ||
+  model<WebinarModel>(DATABASE_MODELS.WEBINAR, WebinarSchema);
 export default Webinar;
