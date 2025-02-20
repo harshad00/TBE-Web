@@ -35,7 +35,7 @@ const PlaylistVideoTimeCard = ({
       })
       .then((data) => console.log('Minutes saved in DB:', data))
       .catch((error) => console.error('Error updating timer:', error));
-  }, [time, apiUrl]); // Use `time` instead of `usertime` for correct updates
+  }, [time, apiUrl]);
 
   // Timer logic
   useEffect(() => {
@@ -65,6 +65,19 @@ const PlaylistVideoTimeCard = ({
       if (prev) updateLearningTime(); // If pausing, save immediately
       return !prev;
     });
+  }, [updateLearningTime]);
+
+  // Save time when the user reloads or closes the tab
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      updateLearningTime();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
   }, [updateLearningTime]);
 
   return (
