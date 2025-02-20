@@ -74,7 +74,7 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
                   }
                 />
               ))
-            : playlist.videos?.map((video) => (
+            : (playlistdata ?? playlist).videos?.map((video) => (
                 <PlaylistVideoCard
                   key={video.title}
                   title={video.title}

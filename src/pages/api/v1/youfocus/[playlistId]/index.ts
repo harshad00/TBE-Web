@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (method) {
     case 'GET':
       return getPlaylistById(req, res, playlistId, userId);
-    case 'PUT': {
+    case 'PATCH': {
       const { isRecommended, learningTime } = req.body;
       return handleUpdateUserPlaylist(
         req,

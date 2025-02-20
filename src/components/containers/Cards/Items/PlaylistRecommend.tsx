@@ -34,7 +34,7 @@ const PlaylistRecommend = ({
           userId
         )}`,
         {
-          method: 'PUT',
+          method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
           },
