@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, SectionHeaderContainer, FlexContainer } from '@/components';
 import { routes } from '@/constant';
+import useApi from '@/hooks/useApi';
 
 const PlaylistRecommend = ({
   playlistId,
@@ -15,6 +16,8 @@ const PlaylistRecommend = ({
   const [copied, setCopied] = useState(false);
   const [thankYouMessage, setThankYouMessage] = useState(false);
 
+  const { makeRequest, loading } = useApi('updateRecommendation');
+
   const copyCurrentPageUrl = () => {
     const currentUrl = window.location.href;
     navigator.clipboard
@@ -27,30 +30,21 @@ const PlaylistRecommend = ({
   };
 
   const handleRecommend = async () => {
+    if (isRecommended) return;
+
     try {
-      const response = await fetch(
-        `${routes.api.base}${routes.api.youfocusUserPlaylistById(
-          playlistId,
-          userId
-        )}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ isRecommended: true }),
-        }
-      );
+      await makeRequest({
+        url: `${routes.api.youfocusUserPlaylistById(playlistId, userId)}`,
+        method: 'PATCH',
+        body: JSON.stringify({ isRecommended: true }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-      if (response.ok) {
-        setIsRecommended(true); // ✅ Disable button after success
-        setThankYouMessage(true); // ✅ Show thank-you message
-
-        setTimeout(() => setThankYouMessage(false), 3000); // Hide after 3s
-      } else {
-        const errorText = await response.text();
-        throw new Error(`HTTP ${response.status}: ${errorText}`);
-      }
+      setIsRecommended(true);
+      setThankYouMessage(true);
+      setTimeout(() => setThankYouMessage(false), 3000);
     } catch (error) {
       console.error('Error recommending playlist:', error);
     }
@@ -71,11 +65,12 @@ const PlaylistRecommend = ({
         <Button
           variant='PRIMARY'
           className={`text-nowrap text-white rounded-s-md ${
-            isRecommended ? 'opacity-50 cursor-not-allowed' : ''
+            isRecommended || loading ? 'opacity-50 cursor-not-allowed' : ''
           }`}
-          text='Recommend'
+          text={loading ? 'Recommending...' : 'Recommend'}
           onClick={!isRecommended ? handleRecommend : undefined}
         />
+
         <Button
           variant='OUTLINE'
           className='text-nowrap rounded-s-md'
@@ -84,14 +79,12 @@ const PlaylistRecommend = ({
         />
       </div>
 
-      {/* ✅ Show thank-you message when recommended */}
       {thankYouMessage && (
         <div className='absolute bottom-[-80px] left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-sm px-3 py-1 rounded-md shadow-md'>
           ✅ Thank you for your recommendation! 😊
         </div>
       )}
 
-      {/* ✅ Show copied message */}
       {copied && (
         <div className='absolute bottom-[-80px] left-1/2 transform -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded-md shadow-md'>
           ✅ Playlist URL copied!

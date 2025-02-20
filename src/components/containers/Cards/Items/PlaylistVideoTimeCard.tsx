@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { PlaylistVideoTimeCard as PlaylistVideoTimeCardProps } from '@/interfaces';
 import { convertSecondsToMinutes } from '@/utils';
 import { routes } from '@/constant';
+import useApi from '@/hooks/useApi'; // Import the custom API hook
 
 const PlaylistVideoTimeCard = ({
   usertime = 0,
@@ -11,31 +12,26 @@ const PlaylistVideoTimeCard = ({
   const [time, setTime] = useState(usertime * 60);
   const [isRunning, setIsRunning] = useState(false);
 
-  const apiUrl = `${routes.api.base}${routes.api.youfocusUserPlaylistById(
-    playlistId,
-    userId
-  )}`;
+  const apiUrl = `${routes.api.youfocusUserPlaylistById(playlistId, userId)}`;
+
+  // Use the custom hook for API interaction
+  const { makeRequest } = useApi('updateLearningTime');
 
   // Function to update learningTime in DB
   const updateLearningTime = useCallback(() => {
     const minutes = Math.floor(time / 60); // Convert seconds to minutes
 
-    fetch(apiUrl, {
+    makeRequest({
+      url: apiUrl,
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ learningTime: minutes }),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => console.log('Minutes saved in DB:', data))
+      // .then((data) => console.log('Minutes saved in DB:', data))
       .catch((error) => console.error('Error updating timer:', error));
-  }, [time, apiUrl]);
+  }, [time, makeRequest, apiUrl]);
 
   // Timer logic
   useEffect(() => {
