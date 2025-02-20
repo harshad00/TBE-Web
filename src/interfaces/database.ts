@@ -192,3 +192,32 @@ export interface NotificationModel extends Document {
   link?: string;
   isExternalLink: boolean;
 }
+
+export interface CompanyDetails extends Document {
+  name: string;
+  email: string;
+  location: string;
+  linkedIn?: string;
+  website?: string;
+  description: string;
+  logo: string;
+}
+
+export interface JobModel extends Document {
+  company: CompanyDetails;
+  skills: string[];
+  role: string;
+  location: string;
+  experience: {
+    min: number;
+    max: number;
+  };
+  jobUrl: string;
+  salary?: {
+    min: number;
+    max: number;
+  };
+  isInternship: boolean;
+  stipend?: number;
+  platform: string;
+}

@@ -13,6 +13,7 @@ const databaseModels = {
   WEBINAR: 'Webinar',
   CERTIFICATE: 'Certificate',
   NOTIFICATION: 'Notification',
+  JOB: 'Job',
 };
 
 const modelSelectParams = {
