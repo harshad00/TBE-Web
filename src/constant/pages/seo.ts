@@ -274,6 +274,17 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
         'YouTube Playlist, Focus, Study, Productivity, The Boring Education, Online Learning, Distraction-Free Learning, Study Tools, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
+
+    [`${routes.user.playlists}`]: {
+      title: 'My Playlist | The Boring Education',
+      siteName: 'My Playlist at The Boring Education',
+      description:
+        'Access your playlists and continue learning at The Boring Education.',
+      url: routes.user.playlists,
+      keywords:
+        'My Playlist, Hands-on Learning, The Boring Education, Personal Playlists, Learning Platform, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
   };
 
   return meta[basePath];

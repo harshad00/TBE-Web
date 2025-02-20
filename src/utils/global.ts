@@ -33,6 +33,25 @@ const getPreFetchProps = async ({ resolvedUrl }: any) => {
   };
 };
 
+const getAllUserPlaylist = async ({ resolvedUrl }: any) => {
+  let slug = routes.home;
+
+  if (resolvedUrl) {
+    slug = resolvedUrl;
+  }
+
+  const seoMeta = getSEOMeta(slug);
+
+  const redirect = !seoMeta && {
+    destination: routes.home,
+  };
+
+  return {
+    props: { slug, seoMeta },
+    redirect,
+  };
+};
+
 const getProjectPageProps = async (context: any) => {
   const { req, query } = context;
   const { projectSlug, projectId, sectionId, chapterId } = query;
@@ -455,4 +474,5 @@ export {
   getWebinarLandingPageProps,
   getCertificatePageProps,
   getPlaylistPageProps,
+  getAllUserPlaylist,
 };
