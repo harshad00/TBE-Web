@@ -1,34 +1,80 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PlaylistVideoTimeCard as PlaylistVideoTimeCardProps } from '@/interfaces';
 import { convertSecondsToMinutes } from '@/utils';
+import { routes } from '@/constant';
 
 const PlaylistVideoTimeCard = ({
-  usertime = 0,
+  usertime,
+  playlistId,
+  userId,
 }: PlaylistVideoTimeCardProps) => {
   const [time, setTime] = useState(usertime * 60); // Convert minutes to seconds
   const [isRunning, setIsRunning] = useState(false);
 
-  useEffect(() => {
-    setTime(usertime * 60);
-  }, [usertime]);
+  const apiUrl = `${routes.api.base}${routes.api.youfocusUserPlaylistById(
+    playlistId,
+    userId
+  )}`;
 
-  const toggleTimer = useCallback(() => {
-    setIsRunning((prev) => !prev);
-  }, []);
+  // Function to update learningTime in DB (only store minutes)
+  const updateLearningTime = useCallback(() => {
+    const minutes = Math.floor(time / 60); // Convert seconds to minutes
 
+    fetch(apiUrl, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        learningTime: minutes, // Store only minutes
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => console.log('Minutes saved in DB:', data))
+      .catch((error) => console.error('Error updating timer:', error));
+  }, [time, apiUrl]);
+
+  // Effect to handle the timer logic
   useEffect(() => {
     let timer: number | undefined;
+
     if (isRunning) {
       timer = window.setInterval(() => {
         setTime((prevTime) => prevTime + 1);
       }, 1000);
-    } else if (!isRunning && timer) {
-      window.clearInterval(timer);
+    } else {
+      if (timer) window.clearInterval(timer);
     }
+
     return () => {
       if (timer) window.clearInterval(timer);
     };
   }, [isRunning]);
+
+  // Auto-save every 2 minutes
+  useEffect(() => {
+    if (!isRunning) return;
+
+    const interval = setInterval(() => {
+      updateLearningTime(); // Save every 2 minutes
+    }, 120000); // 120,000ms = 2 minutes
+
+    return () => clearInterval(interval);
+  }, [isRunning, time, updateLearningTime]);
+
+  // Save when paused
+  const toggleTimer = useCallback(() => {
+    setIsRunning((prev) => {
+      const newState = !prev;
+      if (prev) updateLearningTime(); // If pausing, save immediately
+      return newState;
+    });
+  }, [updateLearningTime]);
 
   return (
     <div className='flex items-center justify-between w-full md:w-[65%] p-4 bg-gray-900 text-white rounded-lg shadow-md'>

@@ -470,8 +470,8 @@ interface Video {
 
 export interface PlaylistVideoTimeCard {
   usertime: number;
-  userId?: string;
-  playlistId?: string;
+  userId: string;
+  playlistId: string;
 }
 
 export interface CardContainerCProps {
