@@ -4,6 +4,7 @@ import { Model, Schema, model, models } from 'mongoose';
 
 const JobSchema: Schema<JobModel> = new Schema(
   {
+    id: { type: String, required: true },
     company: {
       name: { type: String, required: true },
       email: { type: String },

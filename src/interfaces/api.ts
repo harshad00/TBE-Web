@@ -322,6 +322,7 @@ export interface UpdateNotificationRequestPayloadProps {
 }
 
 export interface AddJobRequestPayloadProps {
+  id: string;
   company: CompanyDetails;
   skills: string[];
   role: string;

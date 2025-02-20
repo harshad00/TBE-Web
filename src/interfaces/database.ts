@@ -204,6 +204,7 @@ export interface CompanyDetails {
 }
 
 export interface JobModel extends Document {
+  id: string;
   company: CompanyDetails;
   skills: string[];
   role: string;
