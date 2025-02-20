@@ -11,6 +11,7 @@ import Certificate from './models/Certificate';
 import Playlist from './models/YouFocus/Playlist';
 import UserPlaylist from './models/YouFocus/UserPlaylist';
 import Notification from './models/Notification';
+import Job from './models/Unskilled/Jobs';
 
 export {
   Project,
@@ -25,6 +26,7 @@ export {
   Playlist,
   UserPlaylist,
   Notification,
+  Job,
 };
 
 // Query
@@ -36,3 +38,4 @@ export * from './query/webinar';
 export * from './query/certificate';
 export * from './query/youfocus';
 export * from './query/notification';
+export * from './query/unskilled';

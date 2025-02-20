@@ -193,10 +193,10 @@ export interface NotificationModel extends Document {
   isExternalLink: boolean;
 }
 
-export interface CompanyDetails extends Document {
+export interface CompanyDetails {
   name: string;
-  email: string;
-  location: string;
+  email?: string;
+  location?: string;
   linkedIn?: string;
   website?: string;
   description: string;
@@ -208,7 +208,7 @@ export interface JobModel extends Document {
   skills: string[];
   role: string;
   location: string;
-  experience: {
+  experience?: {
     min: number;
     max: number;
   };
@@ -217,7 +217,7 @@ export interface JobModel extends Document {
     min: number;
     max: number;
   };
-  isInternship: boolean;
+  isInternship?: boolean;
   stipend?: number;
   platform: string;
 }
