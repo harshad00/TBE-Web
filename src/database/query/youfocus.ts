@@ -120,7 +120,13 @@ const getUserPlaylistsFromDB = async (
       return { error: 'User does not have any playlists' };
     }
 
-    return { data: userPlaylists };
+    // Rename `playlistId` to `playlist` but keep everything else the same
+    const playlists = userPlaylists.map((userPlaylist) => ({
+      ...userPlaylist.toObject(),
+      playlist: userPlaylist.playlistId,
+    }));
+
+    return { data: playlists };
   } catch (error) {
     return { error: 'An error occurred while fetching playlists' };
   }

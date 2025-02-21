@@ -266,6 +266,12 @@ export interface MarkQuestionCompletedRequestProps {
   isCompleted: boolean;
 }
 
+export interface UserPlaylistResponseProps extends Partial<UserPlaylistModel> {
+  _id: string;
+  userId: string;
+  playlist: PlaylistModel[];
+  liveOn: string;
+}
 export interface GetAllQuestionsRequestProps {
   userId: string;
 }

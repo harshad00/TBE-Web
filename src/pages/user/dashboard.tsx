@@ -56,8 +56,7 @@ const MyCourses = ({ seoMeta }: PageProps) => {
     mapUserPlaylistResponseToCard
   );
 
-  console.log('HERE', userPlaylist);
-
+  console.log(courses.concat(userPlaylist));
   if (session.status === 'loading') return null;
   if (session.status !== 'authenticated') {
     router.push('/');
