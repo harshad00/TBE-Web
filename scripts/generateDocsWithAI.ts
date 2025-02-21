@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { OpenAI } from 'openai';
+import { OpenAI, RateLimitError } from 'openai';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env.local' });
@@ -9,9 +9,15 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const apiFolderPath = 'src/pages/api/v1';
+const API_FOLDER_PATH = 'src/pages/api/v1';
+const BASE_PATH = './docs';
 
-const generateDocumentation = async (filePath: string) => {
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const generateDocumentation = async (
+  filePath: string,
+  retries = 3
+): Promise<any> => {
   const fileContent = fs.readFileSync(filePath, 'utf-8');
 
   const prompt = `Analyze the following Next.js API route and generate OpenAPI documentation in JSON format. 
@@ -35,17 +41,24 @@ const generateDocumentation = async (filePath: string) => {
       .replace(/```/g, '')
       .trim();
 
-    const parsedDoc = JSON.parse(rawResponse); // Ensure it's a valid JSON
+    const parsedDoc = JSON.parse(rawResponse);
 
-    // 🔥 If the response isn't a valid Swagger JSON, return empty structure
     if (!parsedDoc.paths) {
       return { paths: {} };
     }
 
     return parsedDoc;
   } catch (error) {
+    if (error instanceof RateLimitError && retries > 0) {
+      console.warn(
+        `Rate limit hit. Retrying after 20 seconds... Remaining retries: ${retries}`
+      );
+      await delay(20000); // Wait 20 seconds
+      return generateDocumentation(filePath, retries - 1); // Retry
+    }
+
     console.error(`Error generating documentation for ${filePath}:`, error);
-    return { paths: {} }; // Return empty structure on error
+    return { paths: {} }; // Return empty structure on failure
   }
 };
 
@@ -54,8 +67,11 @@ const getAllFiles = (dirPath: string): string[] => {
   let files: string[] = [];
   fs.readdirSync(dirPath).forEach((file) => {
     const fullPath = path.join(dirPath, file);
-    if (fs.statSync(fullPath).isDirectory()) {
-      // Recursively scan subdirectories
+    const whitelistedFolders = ['unskilled'];
+    if (
+      fs.statSync(fullPath).isDirectory() &&
+      whitelistedFolders.includes(file)
+    ) {
       files = [...files, ...getAllFiles(fullPath)];
     } else if (file.endsWith('.ts')) {
       files.push(fullPath);
@@ -65,15 +81,13 @@ const getAllFiles = (dirPath: string): string[] => {
 };
 
 const processAllAPIFiles = async () => {
-  const apiFiles = getAllFiles(apiFolderPath);
+  const apiFiles = getAllFiles(API_FOLDER_PATH);
 
   const swaggerSpec = {
     openapi: '3.0.0',
     info: { title: 'The Boring Education API', version: '1.0.0' },
     paths: {},
   };
-
-  const BASE_PATH = './public/docs';
 
   for (let index = 0; index < apiFiles.length; index++) {
     const file = apiFiles[index];
@@ -89,7 +103,6 @@ const processAllAPIFiles = async () => {
     );
 
     try {
-      // Also store the parsedDoc in a file
       fs.writeFileSync(
         `${BASE_PATH}/swagger-${index}.json`,
         JSON.stringify(parsedDoc, null, 2)
@@ -112,6 +125,13 @@ const processAllAPIFiles = async () => {
 
   try {
     writeToFile(`${BASE_PATH}/swagger-base.json`, swaggerSpec);
+
+    // Delete all files in the docs folder except for the swagger-base.json file
+    fs.readdirSync(BASE_PATH).forEach((file) => {
+      if (file !== 'swagger-base.json') {
+        fs.unlinkSync(path.join(BASE_PATH, file));
+      }
+    });
 
     console.log(
       `Swagger documentation generated with AI at ${BASE_PATH}/swagger-base.json`

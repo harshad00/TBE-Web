@@ -1,8 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "The Boring Education API",
-    "version": "1.0.0"
+    "title": "The Boring Education API Documentation",
+    "version": "1.0.0",
+    "description": "TBEs API"
   },
   "paths": {
     "/api/certificate": {
@@ -60,7 +61,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": ["SHIKSHA", "OTHER_TYPES"]
+              "enum": [
+                "SHIKSHA",
+                "OTHER_TYPES"
+              ]
             }
           },
           {
@@ -179,11 +183,16 @@
                           "type": "string"
                         }
                       },
-                      "required": ["name", "path"]
+                      "required": [
+                        "name",
+                        "path"
+                      ]
                     }
                   }
                 },
-                "required": ["bulkMDPayload"]
+                "required": [
+                  "bulkMDPayload"
+                ]
               }
             }
           },
@@ -204,7 +213,10 @@
                           "type": "object"
                         }
                       },
-                      "required": ["name", "content"]
+                      "required": [
+                        "name",
+                        "content"
+                      ]
                     }
                   }
                 }
@@ -1060,7 +1072,9 @@
                     "type": "string"
                   }
                 },
-                "required": ["updatedSectionName"]
+                "required": [
+                  "updatedSectionName"
+                ]
               }
             }
           }
@@ -1320,7 +1334,9 @@
                     }
                   }
                 },
-                "required": ["chaptersData"]
+                "required": [
+                  "chaptersData"
+                ]
               }
             }
           },
@@ -1802,7 +1818,10 @@
                     "type": "string"
                   }
                 },
-                "required": ["email", "name"]
+                "required": [
+                  "email",
+                  "name"
+                ]
               }
             }
           },
@@ -1839,7 +1858,10 @@
                     "description": "The ID of the project the user wants to enroll in"
                   }
                 },
-                "required": ["userId", "projectId"]
+                "required": [
+                  "userId",
+                  "projectId"
+                ]
               }
             }
           },
@@ -2019,7 +2041,12 @@
                     "type": "boolean"
                   }
                 },
-                "required": ["userId", "sheetId", "questionId", "isCompleted"]
+                "required": [
+                  "userId",
+                  "sheetId",
+                  "questionId",
+                  "isCompleted"
+                ]
               }
             }
           },
@@ -2428,7 +2455,12 @@
                     "description": "Completion status of the chapter."
                   }
                 },
-                "required": ["userId", "courseId", "chapterId", "isCompleted"]
+                "required": [
+                  "userId",
+                  "courseId",
+                  "chapterId",
+                  "isCompleted"
+                ]
               }
             }
           }

@@ -10,6 +10,7 @@ const SwaggerPage = () => {
 
   useEffect(() => {
     // Fetch the generated Swagger JSON
+    // TODO: Change to useAPI Hook
     fetch('/api/docs')
       .then((res) => res.json())
       .then((data) => setSwaggerSpec(data));
