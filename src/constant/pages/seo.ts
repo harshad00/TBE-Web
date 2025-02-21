@@ -246,15 +246,6 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
         'Focus,concentration, The Boring Education, Online Learning, Programming, College Students, Working professional, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
-    [`${routes.youfocusAddPlaylist}`]: {
-      title: 'YouFocus-Add Playlist | The Boring Education',
-      siteName: 'Add Playlist in YouFocus at The Boring Education',
-      description: 'Add you playlist here.',
-      url: routes.youfocusAddPlaylist,
-      keywords:
-        'Focus,concentration, The Boring Education, Online Learning, Programming, College Students, Working professional, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
-      ...seoCommonMeta,
-    },
     [`${routes.cohort.bringYourIdea}`]: {
       title: 'Bring Your Idea | The Boring Education',
       siteName: 'Bring Your Idea at The Boring Education',
