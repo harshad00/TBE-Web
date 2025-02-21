@@ -134,6 +134,7 @@ export interface Video {
 }
 
 export interface PlaylistModel {
+  _id?: typeof Schema.Types.ObjectId;
   playlistId: string;
   playlistName: string;
   description: string;

@@ -7,7 +7,7 @@ import {
   ProjectPickedPageProps,
   User,
   Video,
-  UserPlaylistModel,
+  UserPlaylistResponseProps,
   PlaylistModel,
 } from '@/interfaces';
 
@@ -272,28 +272,26 @@ const mapInterviewSheetResponseToCard = (
 };
 
 const mapUserPlaylistResponseToCard = (
-  playlistsData: UserPlaylistModel[] // Accepts an array of user playlists
+  playlistsData: UserPlaylistResponseProps[]
 ) => {
-  return playlistsData?.map(
-    ({ _id, playlistId, isPublic, isRecommended, learningTime }) => {
-      const isActive = learningTime > 0;
+  return playlistsData?.map(({ _id, playlist, liveOn = new Date() }) => {
+    const ctaText = 'Start Learning';
+    const isActive = isProgramActive(liveOn);
 
-      let ctaText = 'Start Learning';
-      if (isActive) {
-        ctaText = 'Continue Learning';
-      }
+    console.log('THIS IS MY PLAYLIST DATA ', playlist);
 
-      return {
-        id: _id,
-        title: `Playlist - ${_id}`,
-        isPublic,
-        isRecommended,
-        learningTime,
-        ctaText,
-        href: `/playlist/${playlistId}`,
-      };
-    }
-  );
+    return {
+      id: _id,
+      title: playlist?.playlistName,
+      image: playlist?.thumbnail,
+      imageAltText: playlist?.playlistName,
+      content: playlist?.description,
+      ctaText,
+      active: isActive,
+      href: `youfocus/playlist/${playlist?._id}`,
+      playlist,
+    };
+  });
 };
 
 const generatePublicCertificateLink = (host: string, certificateId: string) =>
