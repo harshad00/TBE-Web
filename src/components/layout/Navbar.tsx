@@ -15,7 +15,7 @@ import {
 import { FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { LINKS, routes, TOP_NAVIGATION } from '@/constant';
+import { LINKS, TOP_NAVIGATION } from '@/constant';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

@@ -1,5 +1,4 @@
 import { LINKS, STATIC_FILE_PATH } from '@/constant';
-import Link from 'next/link';
 
 import { Image, Pill, Section, FlexContainer, LinkButton } from '@/components';
 import { Text } from '@/components';

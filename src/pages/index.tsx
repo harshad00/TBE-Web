@@ -6,7 +6,6 @@ import {
   LinkButton,
   CardContainerB,
   Community,
-  MentorshipPlans,
   Banner,
   NotificationContainer,
 } from '@/components';
