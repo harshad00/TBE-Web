@@ -37,6 +37,7 @@ const routes = {
     courses: '/shiksha/my-courses',
     projects: '/projects/my-projects',
     sheets: '/interview-prep/my-sheets',
+    playlists: 'youfocus/my-playlist',
   },
   internals: {
     landing: {
@@ -64,6 +65,7 @@ const routes = {
     myCourses: '/user/shiksha',
     myProjects: '/user/projects',
     mySheets: '/user/interview-prep',
+    myPlaylists: 'user/plylists',
     interviewPrep: '/interview-prep',
     enrollCourse: '/user/shiksha/enroll',
     enrollProject: '/user/projects/enroll',

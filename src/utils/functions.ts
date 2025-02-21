@@ -7,6 +7,7 @@ import {
   ProjectPickedPageProps,
   User,
   Video,
+  UserPlaylistModel,
   PlaylistModel,
 } from '@/interfaces';
 
@@ -270,6 +271,31 @@ const mapInterviewSheetResponseToCard = (
   );
 };
 
+const mapUserPlaylistResponseToCard = (
+  playlistsData: UserPlaylistModel[] // Accepts an array of user playlists
+) => {
+  return playlistsData?.map(
+    ({ _id, playlistId, isPublic, isRecommended, learningTime }) => {
+      const isActive = learningTime > 0;
+
+      let ctaText = 'Start Learning';
+      if (isActive) {
+        ctaText = 'Continue Learning';
+      }
+
+      return {
+        id: _id,
+        title: `Playlist - ${_id}`, // Placeholder title (can be replaced with actual playlist name)
+        isPublic,
+        isRecommended,
+        learningTime,
+        ctaText, // Call-to-action button text
+        href: `/playlist/${playlistId}`, // Dynamic link to the playlist page
+      };
+    }
+  );
+};
+
 const generatePublicCertificateLink = (host: string, certificateId: string) =>
   `${host}/certificate/${certificateId}`;
 
@@ -435,4 +461,5 @@ export {
   convertSecondsToMinutes,
   flattenRoutesForSitemap,
   generateSitemap,
+  mapUserPlaylistResponseToCard,
 };
