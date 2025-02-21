@@ -283,7 +283,7 @@ const mapUserPlaylistResponseToCard = (playlistsData: UserPlaylistModel[]) => {
 
       return {
         id: _id,
-        title: playlistId?.playlistName || 'Untitled Playlist',
+        title: playlistId?.playlistName,
         isPublic,
         isRecommended,
         learningTime,
