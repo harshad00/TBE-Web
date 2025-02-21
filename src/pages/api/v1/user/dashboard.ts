@@ -45,7 +45,7 @@ const handleGetUserDashboard = async (
       let enrolledCourses = [];
       let enrolledProjects = [];
       let enrolledSheets = [];
-      let enrollPlaylists = [];
+      let enrolledPlaylists = [];
 
       // 1. Shiksha
       const { data: allCourses } = await getAllEnrolledCoursesFromDB(userId);
@@ -59,10 +59,9 @@ const handleGetUserDashboard = async (
       const { data: allUserSheets } = await getAllEnrolledSheetsFromDB(userId);
       if (allUserSheets) enrolledSheets = allUserSheets;
 
-      // 4. playlists
-
-      const allPlaylists = await getUserPlaylistsFromDB(userId);
-      if (allPlaylists) enrollPlaylists = allPlaylists;
+      // 4. Playlists
+      const { data: allPlaylists } = await getUserPlaylistsFromDB(userId);
+      if (allPlaylists) enrolledPlaylists = allPlaylists;
 
       const userDashboard = {
         enrolledCourses,

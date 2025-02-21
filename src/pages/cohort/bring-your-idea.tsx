@@ -21,25 +21,29 @@ import {
   LinkButton,
   IconCard,
   HeaderLabel,
+  Banner,
 } from '@/components';
-import { LINKS, TESTIMONIALS } from '@/constant';
+import { LINKS, STATIC_FILE_PATH, TESTIMONIALS } from '@/constant';
 
 const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
   const projectIdeas = [
     {
-      title: 'App to track your habits',
-      description: 'Habit tracker app to help you build good habits',
-      icon: <LightBulbIcon className='w-8 h-8 text-primary' />,
+      title: 'AI-Powered Resume Analyzer',
+      description:
+        'Build an AI tool that analyzes resumes and provides personalized feedback',
+      icon: <SparklesIcon className='w-8 h-8 text-primary' />,
     },
     {
-      title: 'AI Chatbot for your website',
-      description: 'AI chatbot for your website to help you get more leads',
-      icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
-    },
-    {
-      title: 'Send Crypoto Currency to your friends',
-      description: 'Send crypto currency to your friends and family',
+      title: 'NFT Marketplace for Digital Art',
+      description:
+        'Create a decentralized marketplace for artists to sell their digital creations',
       icon: <RocketLaunchIcon className='w-8 h-8 text-primary' />,
+    },
+    {
+      title: 'Full Stack Social Learning Platform',
+      description:
+        'Build a platform where developers can share knowledge and collaborate on projects',
+      icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
     },
   ];
 
@@ -52,23 +56,43 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
     {
       title: 'Join with Your Friends',
       description: 'Bring up to 4 friends and build together as a team',
-      icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
+      icon: <RocketLaunchIcon className='w-8 h-8 text-primary' />,
     },
     {
       title: 'Hands-on Experience',
       description: 'Build real projects with modern tech stack',
-      icon: <SparklesIcon className='w-8 h-8 text-primary' />,
+      icon: <LightBulbIcon className='w-8 h-8 text-primary' />,
     },
     {
       title: 'Idea to Product Launch Journey',
       description:
         'From idea to product launch, we will guide you every step of the way',
-      icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
+      icon: <RocketLaunchIcon className='w-8 h-8 text-primary' />,
     },
     {
       title: 'Access to Builder Community',
       description: 'Join a community of builders to learn and grow together',
-      icon: <SparklesIcon className='w-8 h-8 text-primary' />,
+      icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
+    },
+    {
+      title: 'Free Resources',
+      description: 'Get free resources to help you build your idea',
+      icon: <LightBulbIcon className='w-8 h-8 text-primary' />,
+    },
+    {
+      title: 'Lifetime Alumni Network',
+      description: 'Join a network of alumni to learn and grow together',
+      icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
+    },
+    {
+      title: '24x7 QnA with Mentors',
+      description: 'Get help with your idea anytime you need',
+      icon: <AcademicCapIcon className='w-8 h-8 text-primary' />,
+    },
+    {
+      title: '7 Days Money Back Guarantee',
+      description: '7-day money back guarantee - no questions asked.',
+      icon: <CheckCircleIcon className='w-8 h-8 text-primary' />,
     },
   ];
 
@@ -242,6 +266,7 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
                 'Access to Free Resources',
                 'Lifetime Alumni Network',
                 '24x7 QnA with Mentors',
+                '7 Days Money Back Guarantee',
               ].map((feature, index) => (
                 <motion.li
                   key={index}
@@ -271,6 +296,15 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
           </motion.div>
         </div>
       </Section>
+
+      <Banner
+        title='We Offer 7 Days Money Back Guarantee'
+        description='If you are not satisfied with the program, we will refund your money within 7 days. No questions asked.'
+        buttonText='Register Now'
+        buttonLink={LINKS.applyBYICohort}
+        imageSrc={`${STATIC_FILE_PATH.svg}/community.svg`}
+        variant='VARIANT_B'
+      />
 
       <Section className='py-12 md:py-20 bg-gray-50'>
         <div className='mx-auto md:px-4 px-2'>

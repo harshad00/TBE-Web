@@ -73,23 +73,22 @@ const Home = ({ seoMeta }: PageProps) => {
       />
       <NotificationContainer />
       <Banner
-        title='Feeling Stuck?'
-        description='Need a Resume Review or help with Learning Tech. We can help.'
-        buttonText='Book Free Session'
-        buttonLink='https://topmate.io/imsks'
+        title='Bring Your Idea Cohort 2 Starts Soon'
+        description='Join our Cohort and learn how to Build Tech Products.'
+        buttonText='Register Now'
+        buttonLink={routes.cohort.bringYourIdea}
         imageSrc={`${STATIC_FILE_PATH.svg}/laptop.svg`}
         variant='VARIANT_A'
       />
       <Banner
         title='Join as DevRel Advocate'
         description='Join our Community as a DevRel Advocate and help us grow.'
-        buttonText='Join us'
+        buttonText='Apply as DevRel Advocate'
         buttonLink={LINKS.joinDevRelAdvocate}
         imageSrc={`${STATIC_FILE_PATH.svg}/community.svg`}
         variant='VARIANT_B'
       />
       <Community />
-      <MentorshipPlans />
       <CardContainerA
         heading='What We Do'
         focusText='Differently'

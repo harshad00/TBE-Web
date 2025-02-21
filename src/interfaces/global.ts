@@ -23,7 +23,8 @@ export type ProductLabelType =
   | 'Webinar'
   | 'Open Source'
   | 'Interview Prep'
-  | 'Portfolio';
+  | 'Portfolio'
+  | 'YouFocus';
 
 export type CohortLabelType = 'Bring Your Idea';
 

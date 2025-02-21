@@ -61,15 +61,6 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
         'PharmaShift, Project I, Programming Projects, Healthcare Projects, Coding Projects, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
-    [`${routes.allProjects.pharmashiftII}`]: {
-      title: `${TBP_PROJECTS[1].title} | The Boring Education`,
-      siteName: TBP_PROJECTS[1].title,
-      description: `${TBP_PROJECTS[1].content} - Continue your journey with PharmaShift Project II and gain more practical experience.`,
-      url: routes.allProjects.pharmashiftII,
-      keywords:
-        'PharmaShift, Project II, Programming Projects, Healthcare Projects, Coding Projects, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
-      ...seoCommonMeta,
-    },
     [`${routes.shiksha}`]: {
       title: `${products.shiksha.label} | The Boring Education`,
       siteName: products.shiksha.label,
@@ -142,16 +133,6 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: routes[404],
       keywords:
         '404, Page Not Found, The Boring Education, Error Page, Lost Page, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
-      ...seoCommonMeta,
-    },
-    [`${routes.register}`]: {
-      title: 'Register | The Boring Education',
-      siteName: 'Register at The Boring Education',
-      description:
-        'Create an account and join The Boring Education to access a variety of tech education resources.',
-      url: routes.register,
-      keywords:
-        'Register, Sign Up, The Boring Education, Create Account, Join Now, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
     [`${routes.shikshaExplore}`]: {
@@ -244,6 +225,16 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: routes.youfocus,
       keywords:
         'Focus,concentration, The Boring Education, Online Learning, Programming, College Students, Working professional, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
+    [`${routes.youfocusAddPlaylist}`]: {
+      title: 'Add Playlist | The Boring Education',
+      siteName: 'Add Playlist at The Boring Education',
+      description:
+        'Add your YouTube playlist to YouFocus to enhance your study experience without distractions.',
+      url: routes.youfocusAddPlaylist,
+      keywords:
+        'YouTube Playlist, Focus, Study, Productivity, The Boring Education, Online Learning, Distraction-Free Learning, Study Tools, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
     [`${routes.cohort.bringYourIdea}`]: {

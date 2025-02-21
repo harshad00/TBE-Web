@@ -18,7 +18,9 @@ const Home = ({ seoMeta }: PageProps) => {
   const userId = user?.id;
   const router = useRouter();
 
-  const [playlistUrl, setPlaylistUrl] = useState<string>('');
+  const [playlistUrl, setPlaylistUrl] = useState<string>(
+    'https://www.youtube.com/watch?v=ohIAiuHMKMI&list=PLinedj3B30sDby4Al-i13hQJGQoRQDfPo'
+  );
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
@@ -76,6 +78,7 @@ const Home = ({ seoMeta }: PageProps) => {
               type='text'
               onChange={handleInputChange}
               className='md:w-1/2 md:px-5 text-black'
+              value={playlistUrl}
             />
 
             <Button

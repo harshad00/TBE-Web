@@ -26,15 +26,21 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
     },
     {
       id: v4(),
+      name: products.interviewPrep.label,
+      description: products.interviewPrep.description,
+      href: products.interviewPrep.slug,
+    },
+    {
+      id: v4(),
       name: products.webinar.label,
       description: products.webinar.description,
       href: products.webinar.slug,
     },
     {
       id: v4(),
-      name: products.interviewPrep.label,
-      description: products.interviewPrep.description,
-      href: products.interviewPrep.slug,
+      name: products.youfocus.label,
+      description: products.youfocus.description,
+      href: products.youfocus.slug,
     },
     {
       id: v4(),
@@ -113,6 +119,16 @@ const PRODUCTS: PrimaryCardWithCTAProps[] = [
     ctaText: 'Explore Workshops',
   },
   {
+    id: 'youfocus',
+    image: `${STATIC_FILE_PATH.svg}/workshops.svg`,
+    imageAltText: products.youfocus.label,
+    title: products.youfocus.label,
+    content: products.youfocus.description,
+    href: routes.youfocus,
+    active: true,
+    ctaText: 'Explore YouFocus',
+  },
+  {
     id: 'portfolio',
     image: `${STATIC_FILE_PATH.svg}/the-boring-portfolio-hero.svg`,
     imageAltText: products.portfolio.label,
@@ -164,17 +180,6 @@ const TBP_PROJECTS: PrimaryCardWithCTAProps[] = [
       'Design and Develop A Medicine App that compares Med Prices with HTML & CSS.',
     href: routes.allProjects.pharmashiftI,
     active: true,
-    ctaText: 'Start The Project',
-  },
-  {
-    id: 'pharmasift-ii',
-    image: `${STATIC_FILE_PATH.svg}/tbp-pharmasift-2.svg`,
-    imageAltText: 'The Boring Projects Pharmasift Part II',
-    title: 'Pharmasift Part II',
-    content:
-      'Design and Develop A Medicine App that Compares Med Prices with JavaScript',
-    href: routes.allProjects.pharmashiftII,
-    active: false,
     ctaText: 'Start The Project',
   },
 ];

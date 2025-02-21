@@ -1,7 +1,7 @@
 import { LINKS, STATIC_FILE_PATH } from '@/constant';
 import Link from 'next/link';
 
-import { Image, Pill, Section, FlexContainer } from '@/components';
+import { Image, Pill, Section, FlexContainer, LinkButton } from '@/components';
 import { Text } from '@/components';
 
 const Community = () => {
@@ -47,13 +47,15 @@ const Community = () => {
               </FlexContainer>
             ))}
           </FlexContainer>
-          <Link
+          <LinkButton
             href={LINKS.whatsappCommunity}
-            className='gradient-3 button-text rounded-[5px] text-center px-5 py-2 w-full sm:w-auto'
-            target='block'
-          >
-            Join Community
-          </Link>
+            className='pt-3'
+            buttonProps={{
+              variant: 'PRIMARY',
+              text: 'Join Community',
+            }}
+            target='_blank'
+          />
         </FlexContainer>
       </FlexContainer>
     </Section>

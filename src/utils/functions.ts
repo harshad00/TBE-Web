@@ -285,12 +285,12 @@ const mapUserPlaylistResponseToCard = (
 
       return {
         id: _id,
-        title: `Playlist - ${_id}`, // Placeholder title (can be replaced with actual playlist name)
+        title: `Playlist - ${_id}`,
         isPublic,
         isRecommended,
         learningTime,
-        ctaText, // Call-to-action button text
-        href: `/playlist/${playlistId}`, // Dynamic link to the playlist page
+        ctaText,
+        href: `/playlist/${playlistId}`,
       };
     }
   );

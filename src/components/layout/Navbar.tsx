@@ -71,9 +71,6 @@ const Navbar = () => {
           >
             <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
           </PopoverContainer>
-          {!path?.startsWith(routes.register) && (
-            <LoginWithGoogleButton text='Login' />
-          )}
           <UserAvatar />
         </div>
       </nav>

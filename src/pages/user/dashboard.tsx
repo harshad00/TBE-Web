@@ -19,6 +19,7 @@ import {
   mapCourseResponseToCard,
   mapInterviewSheetResponseToCard,
   mapProjectResponseToCard,
+  mapUserPlaylistResponseToCard,
 } from '@/utils';
 import { LINKS, routes, STATIC_FILE_PATH } from '@/constant';
 
@@ -53,8 +54,10 @@ const MyCourses = ({ seoMeta }: PageProps) => {
 
   const userPlaylist: PrimaryCardWithCTAProps[] = useAPIResponseMapper(
     response?.data.enrolledPlaylists,
-    mapCourseResponseToCard // Adjust mapping function if needed
+    mapUserPlaylistResponseToCard
   );
+
+  console.log('HERE', userPlaylist);
 
   if (session.status === 'loading') return null;
   if (session.status !== 'authenticated') {
@@ -64,24 +67,20 @@ const MyCourses = ({ seoMeta }: PageProps) => {
 
   if (loading) return <LoadingSpinner />;
 
-  const noCourseFoundUI = (!courses ||
-    !courses.length ||
-    !projects ||
-    !projects.length ||
-    !interviewSheets ||
-    !interviewSheets.length ||
-    !userPlaylist ||
-    !userPlaylist.length) && (
-    <FlexContainer className='w-screen h-screen flex-col justify-center items-center'>
-      <Text level='h1' className='heading-4 mb-3'>
-        Oops! No Courses, Projects, Interview Sheet or Playlists found.
-      </Text>
-      <LinkButton
-        buttonProps={{ variant: 'PRIMARY', text: 'Go Back To Home' }}
-        href={routes.home}
-      />
-    </FlexContainer>
-  );
+  const noCourseFoundUI = !courses.length &&
+    !projects.length &&
+    !interviewSheets.length &&
+    !userPlaylist.length && (
+      <FlexContainer className='w-screen h-screen flex-col justify-center items-center'>
+        <Text level='h1' className='heading-4 mb-3'>
+          Oops! No Courses, Projects, Interview Sheet or Playlists found.
+        </Text>
+        <LinkButton
+          buttonProps={{ variant: 'PRIMARY', text: 'Go Back To Home' }}
+          href={routes.home}
+        />
+      </FlexContainer>
+    );
 
   return (
     <Fragment>
@@ -99,7 +98,7 @@ const MyCourses = ({ seoMeta }: PageProps) => {
           sectionClassName='md:px-2 px-0 py-4'
         />
         {noCourseFoundUI}
-        <NotificationContainer />
+        {/* <NotificationContainer /> */}
         <Banner
           title='Contribute at The Boring Education'
           description='We’re an Open Source Tech Ed Startup. Feel free to contribute to Building Tech Education for Everyone'

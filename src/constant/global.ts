@@ -59,6 +59,11 @@ const products: ProductDataProps = {
     slug: routes.portfolio,
     description: 'Create Your Personal Portfolio Website',
   },
+  youfocus: {
+    label: 'YouFocus',
+    slug: routes.youfocus,
+    description: 'Learn Tech From YouTube with 0 Distractions',
+  },
 };
 
 const cohorts: CohortDataProps = {
