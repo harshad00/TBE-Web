@@ -73,26 +73,56 @@ const processAllAPIFiles = async () => {
     paths: {},
   };
 
-  for (const file of apiFiles) {
-    console.log(`Generating documentation for ${file}...`);
+  const BASE_PATH = './public/docs';
+
+  for (let index = 0; index < apiFiles.length; index++) {
+    const file = apiFiles[index];
+    console.log(
+      `${index + 1}/${
+        apiFiles.length
+      } A. Generating documentation for ${file}...`
+    );
     const filePath = path.join('', file);
     const parsedDoc = await generateDocumentation(filePath);
-    console.log('HERE', parsedDoc, typeof parsedDoc);
+    console.log(
+      `${index + 1}/${apiFiles.length} B. Documentation generated for ${file}`
+    );
 
     try {
+      // Also store the parsedDoc in a file
+      fs.writeFileSync(
+        `${BASE_PATH}/swagger-${index}.json`,
+        JSON.stringify(parsedDoc, null, 2)
+      );
+
       swaggerSpec.paths = { ...swaggerSpec.paths, ...parsedDoc.paths };
+      writeToFile(`${BASE_PATH}/swagger-${filePath}.json`, swaggerSpec);
+
+      console.log(
+        `${index + 1}/${
+          apiFiles.length
+        } C. Paths updated for ${file} \n\n ---\n\n`
+      );
     } catch (error) {
-      console.error(`Failed to parse JSON for ${file}`);
+      console.error(
+        `${index + 1}/${apiFiles.length} Failed to parse JSON for ${file}`
+      );
     }
   }
 
-  fs.writeFileSync(
-    './public/swagger-ai.json',
-    JSON.stringify(swaggerSpec, null, 2)
-  );
-  console.log(
-    'Swagger documentation generated with AI at public/swagger-ai.json'
-  );
+  try {
+    writeToFile(`${BASE_PATH}/swagger-base.json`, swaggerSpec);
+
+    console.log(
+      `Swagger documentation generated with AI at ${BASE_PATH}/swagger-base.json`
+    );
+  } catch (error) {
+    console.error('Failed to write Swagger documentation:', error);
+  }
 };
 
 processAllAPIFiles();
+
+const writeToFile = (fileName: string, data: any, indent = 2) => {
+  fs.writeFileSync(fileName, JSON.stringify(data, null, indent));
+};
