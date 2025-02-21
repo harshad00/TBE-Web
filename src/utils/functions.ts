@@ -271,9 +271,7 @@ const mapInterviewSheetResponseToCard = (
   );
 };
 
-const mapUserPlaylistResponseToCard = (
-  playlistsData: UserPlaylistModel[] // Accepts an array of user playlists
-) => {
+const mapUserPlaylistResponseToCard = (playlistsData: UserPlaylistModel[]) => {
   return playlistsData?.map(
     ({ _id, playlistId, isPublic, isRecommended, learningTime }) => {
       const isActive = learningTime > 0;
@@ -285,12 +283,13 @@ const mapUserPlaylistResponseToCard = (
 
       return {
         id: _id,
-        title: `Playlist - ${_id}`,
+        title: playlistId?.playlistName || 'Untitled Playlist',
         isPublic,
         isRecommended,
         learningTime,
         ctaText,
-        href: `/playlist/${playlistId}`,
+        href: `/playlist/${playlistId?._id}`,
+        playlist: playlistId,
       };
     }
   );
