@@ -7,6 +7,7 @@ import {
   getAllEnrolledProjectsFromDB,
   getAllEnrolledSheetsFromDB,
   getUserByIdFromDB,
+  getUserPlaylistsFromDB,
 } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -44,6 +45,7 @@ const handleGetUserDashboard = async (
       let enrolledCourses = [];
       let enrolledProjects = [];
       let enrolledSheets = [];
+      let enrollPlaylists = [];
 
       // 1. Shiksha
       const { data: allCourses } = await getAllEnrolledCoursesFromDB(userId);
@@ -57,10 +59,16 @@ const handleGetUserDashboard = async (
       const { data: allUserSheets } = await getAllEnrolledSheetsFromDB(userId);
       if (allUserSheets) enrolledSheets = allUserSheets;
 
+      // 4. playlists
+
+      const allPlaylists = await getUserPlaylistsFromDB(userId);
+      if (allPlaylists) enrollPlaylists = allPlaylists;
+
       const userDashboard = {
         enrolledCourses,
         enrolledProjects,
         enrolledSheets,
+        enrolledPlaylists,
       };
 
       return res

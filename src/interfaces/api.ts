@@ -340,3 +340,31 @@ export interface AddJobRequestPayloadProps {
   stipend?: number;
   platform: string;
 }
+
+interface Video {
+  title: string;
+  videoId: string;
+  thumbnail: string;
+}
+
+interface PlaylistModel {
+  _id: string;
+  playlistId: string;
+  playlistName: string;
+  description?: string;
+  referrerBy: number;
+  thumbnail: string;
+  tags?: string[];
+  videos: Video[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface UserPlaylistModel {
+  _id: string;
+  userId: string;
+  playlistId: PlaylistModel[];
+  isPublic: boolean;
+  isRecommended: boolean;
+  learningTime: number;
+}

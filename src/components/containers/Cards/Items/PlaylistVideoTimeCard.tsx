@@ -1,34 +1,80 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PlaylistVideoTimeCard as PlaylistVideoTimeCardProps } from '@/interfaces';
 import { convertSecondsToMinutes } from '@/utils';
+import { routes } from '@/constant';
+import useApi from '@/hooks/useApi'; // Import the custom API hook
 
 const PlaylistVideoTimeCard = ({
   usertime = 0,
+  playlistId,
+  userId,
 }: PlaylistVideoTimeCardProps) => {
-  const [time, setTime] = useState(usertime * 60); // Convert minutes to seconds
+  const [time, setTime] = useState(usertime * 60);
   const [isRunning, setIsRunning] = useState(false);
 
-  useEffect(() => {
-    setTime(usertime * 60);
-  }, [usertime]);
+  const apiUrl = `${routes.api.youfocusUserPlaylistById(playlistId, userId)}`;
 
-  const toggleTimer = useCallback(() => {
-    setIsRunning((prev) => !prev);
-  }, []);
+  // Use the custom hook for API interaction
+  const { makeRequest } = useApi('updateLearningTime');
 
+  // Function to update learningTime in DB
+  const updateLearningTime = useCallback(() => {
+    const minutes = Math.floor(time / 60); // Convert seconds to minutes
+
+    makeRequest({
+      url: apiUrl,
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ learningTime: minutes }),
+    })
+      // .then((data) => console.log('Minutes saved in DB:', data))
+      .catch((error) => console.error('Error updating timer:', error));
+  }, [time, makeRequest, apiUrl]);
+
+  // Timer logic
   useEffect(() => {
-    let timer: number | undefined;
-    if (isRunning) {
-      timer = window.setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
-      }, 1000);
-    } else if (!isRunning && timer) {
-      window.clearInterval(timer);
-    }
-    return () => {
-      if (timer) window.clearInterval(timer);
-    };
+    if (!isRunning) return;
+
+    const timer = setInterval(() => {
+      setTime((prevTime) => prevTime + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, [isRunning]);
+
+  // Auto-save every 2 minutes
+  useEffect(() => {
+    if (!isRunning) return;
+
+    const interval = setInterval(() => {
+      updateLearningTime();
+    }, 120000);
+
+    return () => clearInterval(interval);
+  }, [isRunning, updateLearningTime]);
+
+  // Save when paused
+  const toggleTimer = useCallback(() => {
+    setIsRunning((prev) => {
+      if (prev) updateLearningTime(); // If pausing, save immediately
+      return !prev;
+    });
+  }, [updateLearningTime]);
+
+  // Save time when the user reloads or closes the tab
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      updateLearningTime();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [updateLearningTime]);
 
   return (
     <div className='flex items-center justify-between w-full md:w-[65%] p-4 bg-gray-900 text-white rounded-lg shadow-md'>

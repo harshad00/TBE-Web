@@ -51,6 +51,11 @@ const MyCourses = ({ seoMeta }: PageProps) => {
     mapInterviewSheetResponseToCard
   );
 
+  const userPlaylist: PrimaryCardWithCTAProps[] = useAPIResponseMapper(
+    response?.data.enrolledPlaylists,
+    mapCourseResponseToCard // Adjust mapping function if needed
+  );
+
   if (session.status === 'loading') return null;
   if (session.status !== 'authenticated') {
     router.push('/');
@@ -64,10 +69,12 @@ const MyCourses = ({ seoMeta }: PageProps) => {
     !projects ||
     !projects.length ||
     !interviewSheets ||
-    !interviewSheets.length) && (
+    !interviewSheets.length ||
+    !userPlaylist ||
+    !userPlaylist.length) && (
     <FlexContainer className='w-screen h-screen flex-col justify-center items-center'>
       <Text level='h1' className='heading-4 mb-3'>
-        Oops! No Courses, Projects or Interview Sheet found.
+        Oops! No Courses, Projects, Interview Sheet or Playlists found.
       </Text>
       <LinkButton
         buttonProps={{ variant: 'PRIMARY', text: 'Go Back To Home' }}
@@ -83,7 +90,10 @@ const MyCourses = ({ seoMeta }: PageProps) => {
         <CardContainerB
           heading='Your'
           focusText='Learning Space'
-          cards={courses.concat(projects).concat(interviewSheets)}
+          cards={courses
+            .concat(projects)
+            .concat(interviewSheets)
+            .concat(userPlaylist)}
           borderColour={2}
           subtext='Continue Learning From Where You Left'
           sectionClassName='md:px-2 px-0 py-4'
