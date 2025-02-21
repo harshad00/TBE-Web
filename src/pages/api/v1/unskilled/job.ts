@@ -9,6 +9,30 @@ import {
 } from '@/database';
 import { AddJobRequestPayloadProps } from '@/interfaces';
 
+/**
+ * @swagger
+ * /api/v1/unskilled/job:
+ *   get:
+ *     summary: Get all unskilled jobs
+ *     description: Fetch a paginated list of unskilled jobs.
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Number of jobs per page
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *       500:
+ *         description: Server error
+ */
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
 
