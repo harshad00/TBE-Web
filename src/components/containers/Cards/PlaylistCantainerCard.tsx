@@ -5,6 +5,8 @@ import { PlaylistVideoCard, PlaylistCard } from '@/components';
 import { CardContainerCProps } from '@/interfaces';
 import PlaylistVideoTimeCard from './Items/PlaylistVideoTimeCard';
 import PlaylistRecommend from './Items/PlaylistRecommend';
+import { routes } from '@/constant';
+import { useRouter } from 'next/router';
 
 const CardContainerC = ({ playlist }: CardContainerCProps) => {
   const playlistdata = playlist.playlistId;
@@ -13,13 +15,13 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
     videoId: playlistdata.videos?.[0]?.videoId ?? undefined,
     title: playlistdata.videos?.[0]?.title ?? '',
   });
-
+  const router = useRouter();
   const { data: session, status } = useSession();
   const userId = session?.user?.id;
   const togglePlaylistVideo = () => {
     if (status === 'loading') return;
     if (!session) {
-      alert('You need to log in to start learning!');
+      router.push(routes.home);
       return;
     }
     setPlaylistVideo((prev) => !prev);
