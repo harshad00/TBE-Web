@@ -5,7 +5,6 @@ import { PlaylistVideoCard, PlaylistCard } from '@/components';
 import { CardContainerCProps } from '@/interfaces';
 import PlaylistVideoTimeCard from './Items/PlaylistVideoTimeCard';
 import PlaylistRecommend from './Items/PlaylistRecommend';
-import { routes } from '@/constant';
 import { useRouter } from 'next/router';
 
 const CardContainerC = ({ playlist }: CardContainerCProps) => {
@@ -15,13 +14,16 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
     videoId: playlistdata.videos?.[0]?.videoId ?? undefined,
     title: playlistdata.videos?.[0]?.title ?? '',
   });
+  console.log(playlist);
+
+  const [login, setLogin] = useState('');
   const router = useRouter();
   const { data: session, status } = useSession();
   const userId = session?.user?.id;
   const togglePlaylistVideo = () => {
     if (status === 'loading') return;
     if (!session) {
-      router.push(routes.home);
+      setLogin('You need to login to start learning');
       return;
     }
     setPlaylistVideo((prev) => !prev);
@@ -41,10 +43,10 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
         )}
         <div className='w-full m-auto'>
           <PlaylistCard
-            title={selectedVideo.title || playlistdata.playlistName}
+            title={selectedVideo.title || playlist.playlistName}
             description={playlistdata.description || playlist.description}
             thumbnail={playlistdata.thumbnail || playlist.thumbnail}
-            videoId={selectedVideo.videoId || playlistdata.videoId}
+            videoId={selectedVideo.videoId}
             playlistVideo={playlistVideo}
           />
         </div>
@@ -59,6 +61,8 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
             />
           </div>
         )}
+        {login ? <div className='text-red-500 text-center'>{login}</div> : null}
+
         <div className='flex flex-col md:items-center'>
           {playlistVideo
             ? playlistdata.videos?.map((video) => (
