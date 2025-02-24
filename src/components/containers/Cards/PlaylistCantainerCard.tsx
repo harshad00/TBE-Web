@@ -54,9 +54,9 @@ const PlaylistCantainerCard = ({
         )}
 
         <PlaylistCard
-          title={selectedVideo.title || playlistData.playlistName}
-          description={description || playlistData.description}
-          thumbnail={thumbnail || playlistData.thumbnail}
+          title={selectedVideo.title || playlistData?.playlistName}
+          description={description || playlistData?.description}
+          thumbnail={thumbnail || playlistData?.thumbnail}
           videoId={selectedVideo.videoId}
           playlistVideo={playlistVideo}
         />
@@ -74,7 +74,7 @@ const PlaylistCantainerCard = ({
           {playlistVideo
             ? playlistData.videos?.map((video) => (
                 <PlaylistVideoCard
-                  key={video.videoId || playlistData.playlistName}
+                  key={video.videoId || playlistData?.playlistName}
                   title={video.title}
                   image={video.thumbnail}
                   imageAltText={video.title}
@@ -89,7 +89,7 @@ const PlaylistCantainerCard = ({
               ))
             : videoList.map((video) => (
                 <PlaylistVideoCard
-                  key={video.videoId || playlistData.playlistName}
+                  key={video.videoId || playlistData?.playlistName}
                   title={video.title}
                   image={video.thumbnail}
                   imageAltText={video.title}
