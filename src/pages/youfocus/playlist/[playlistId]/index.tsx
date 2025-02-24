@@ -1,16 +1,16 @@
 import { PlaylistPageProps } from '@/interfaces';
-import { SEO, PlaylistCantainerCard } from '@/components';
+import { SEO, PlaylistCantainerCard, Section } from '@/components';
 import { getPlaylistPageProps } from '@/utils';
-import Section from '@/components/layout/Section';
+import { Fragment } from 'react';
 
 const PlaylistPage = ({ playlist, seoMeta }: PlaylistPageProps) => {
   return (
-    <>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='p-2'>
-        <PlaylistCantainerCard playlist={playlist} />
+        <PlaylistCantainerCard {...playlist} id={playlist._id} />
       </Section>
-    </>
+    </Fragment>
   );
 };
 

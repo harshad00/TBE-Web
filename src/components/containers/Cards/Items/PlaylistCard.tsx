@@ -8,39 +8,32 @@ const PlaylistCard = ({
   thumbnail,
   playlistVideo,
   videoId,
-  selectedVideoId,
 }: PlaylistCardProps) => {
   return (
-    <>
-      <FlexContainer direction='col' className='relative gap-4 mt-4'>
-        <div className='w-full md:w-[65%] border-1 border-black rounded-md overflow-hidden'>
-          {!playlistVideo ? (
-            <Image className='w-full' src={thumbnail} alt={title} />
-          ) : (
-            <iframe
-              className='w-full aspect-video rounded-sm'
-              src={`https://www.youtube.com/embed/${
-                selectedVideoId ?? videoId ?? ''
-              }`}
-              title='YouTube Video'
-              frameBorder='0'
-              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-              allowFullScreen
-            ></iframe>
-          )}
-        </div>
+    <FlexContainer direction='col' className='gap-4 w-full'>
+      <div className='w-full border-1 border-black rounded-md overflow-hidden'>
+        {!playlistVideo ? (
+          <Image src={thumbnail} alt={title} />
+        ) : (
+          <iframe
+            className='w-full aspect-video rounded-sm'
+            src={`https://www.youtube.com/embed/${videoId}`}
+            title='YouTube Video'
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+          ></iframe>
+        )}
+      </div>
+      <FlexContainer direction='col' className='gap-1 items-baseline'>
+        <Text level='h3' className='heading-3 font-bold'>
+          {title}
+        </Text>
+        <Text level='p' className='line-clamp-2 text-grey'>
+          {description}
+        </Text>
       </FlexContainer>
-      <FlexContainer direction='col' className='relative py-3'>
-        <div className='w-full md:w-[65%]'>
-          <Text level='h3' className='heading-4 font-bold py-1'>
-            {title}
-          </Text>
-          <Text level='p' className='line-clamp-2 '>
-            {description}
-          </Text>
-        </div>
-      </FlexContainer>
-    </>
+    </FlexContainer>
   );
 };
 

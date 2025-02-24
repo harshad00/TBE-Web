@@ -14,12 +14,10 @@ const PlaylistVideoTimeCard = ({
 
   const apiUrl = `${routes.api.youfocusUserPlaylistById(playlistId, userId)}`;
 
-  // Use the custom hook for API interaction
   const { makeRequest } = useApi('updateLearningTime');
 
-  // Function to update learningTime in DB
   const updateLearningTime = useCallback(() => {
-    const minutes = Math.floor(time / 60); // Convert seconds to minutes
+    const minutes = Math.floor(time / 60);
 
     makeRequest({
       url: apiUrl,
