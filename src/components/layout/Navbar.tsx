@@ -13,13 +13,11 @@ import {
   UserAvatar,
 } from '..';
 import { FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
-import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { LINKS, TOP_NAVIGATION } from '@/constant';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const path = usePathname();
   const session = useSession();
 
   const [openPopover, setOpenPopover] = useState<string | null>(null);
@@ -71,6 +69,7 @@ const Navbar = () => {
           >
             <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
           </PopoverContainer>
+          <LoginWithGoogleButton text='Login' />
           <UserAvatar />
         </div>
       </nav>
