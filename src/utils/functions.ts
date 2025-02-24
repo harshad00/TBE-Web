@@ -278,8 +278,6 @@ const mapUserPlaylistResponseToCard = (
     const ctaText = 'Start Learning';
     const isActive = isProgramActive(liveOn);
 
-    console.log('THIS IS MY PLAYLIST DATA ', playlist);
-
     return {
       id: _id,
       title: playlist?.playlistName,
