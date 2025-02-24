@@ -80,7 +80,7 @@ const getPlaylistByIdFromDB = async (
   userId?: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    let result;
+    let result: any = null; // Initialize properly
 
     if (userId) {
       result = await UserPlaylist.findOne({ playlistId, userId })
@@ -88,26 +88,32 @@ const getPlaylistByIdFromDB = async (
         .lean()
         .exec();
 
-      if (result && result.playlistId) {
-        result = {
-          ...result,
-          ...result.playlistId,
-          playlistId: undefined,
-        };
+      if (!result) {
+        await addUserPlaylistEntry(userId, playlistId); // Corrected order
+
+        // Fetch again after insertion
+        result = await UserPlaylist.findOne({ playlistId, userId })
+          .populate('playlistId')
+          .lean()
+          .exec();
       }
 
-      if (!result) {
-        return { error: 'Playlist not found for the user' };
+      if (result?.playlistId) {
+        result = {
+          ...result,
+          playlistData: result.playlistId, // Store playlist details under a new key
+          playlistId: result.playlistId._id, // Retain ID reference
+        };
       }
     } else {
-      result = await Playlist.findOne({ _id: playlistId });
+      result = await Playlist.findById(playlistId).lean();
       if (!result) {
         return { error: 'Playlist not found' };
       }
     }
     return { data: result };
   } catch (error) {
-    return { error };
+    return { error: error || 'Error fetching playlist' };
   }
 };
 

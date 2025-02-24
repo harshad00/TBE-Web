@@ -4,40 +4,27 @@ import { PlaylistVideoCard, PlaylistCard } from '@/components';
 import { PlaylistCantainerCardProps } from '@/interfaces';
 import PlaylistVideoTimeCard from './Items/PlaylistVideoTimeCard';
 import PlaylistRecommend from './Items/PlaylistRecommend';
-<<<<<<< HEAD
-import { useRouter } from 'next/router';
-=======
 import { useUser } from '@/hooks';
 import { signIn } from 'next-auth/react';
->>>>>>> 500b3e3e9271558cbbc133cfac9af7609c4aa015
 
 const PlaylistCantainerCard = ({
   id,
+  playlistData,
   playlistName,
   description,
   thumbnail,
-  videos,
-  learningTime,
+  videos = [],
+  learningTime = 0,
   isRecommended,
 }: PlaylistCantainerCardProps) => {
   const [playlistVideo, setPlaylistVideo] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState({
-    videoId: videos?.[0]?.videoId ?? undefined,
-    title: videos?.[0]?.title ?? '',
+    videoId: playlistData?.videos?.[0]?.videoId || '',
+    title: playlistData?.videos?.[0]?.title || '',
   });
-  console.log(playlist);
 
-<<<<<<< HEAD
-  const [login, setLogin] = useState('');
-  const router = useRouter();
-  const { data: session, status } = useSession();
-  const userId = session?.user?.id;
-  const togglePlaylistVideo = () => {
-    if (status === 'loading') return;
-    if (!session) {
-      setLogin('You need to login to start learning');
-      return;
-=======
+  const videoList = videos?.length ? videos : playlistData?.videos ?? [];
+
   const { user, isAuth, loading } = useUser();
   const userId = user?.id;
 
@@ -45,7 +32,7 @@ const PlaylistCantainerCard = ({
     if (loading) return;
     if (!isAuth) {
       signIn('google');
->>>>>>> 500b3e3e9271558cbbc133cfac9af7609c4aa015
+      return;
     }
     setPlaylistVideo((prev) => !prev);
   };
@@ -59,32 +46,20 @@ const PlaylistCantainerCard = ({
         {playlistVideo && userId && (
           <div className='w-full flex justify-center'>
             <PlaylistVideoTimeCard
-              usertime={learningTime ?? 0}
+              usertime={learningTime}
               userId={userId}
               playlistId={id}
             />
           </div>
         )}
-<<<<<<< HEAD
-        <div className='w-full m-auto'>
-          <PlaylistCard
-            title={selectedVideo.title || playlist.playlistName}
-            description={playlistdata.description || playlist.description}
-            thumbnail={playlistdata.thumbnail || playlist.thumbnail}
-            videoId={selectedVideo.videoId}
-            playlistVideo={playlistVideo}
-          />
-        </div>
-=======
 
         <PlaylistCard
-          title={selectedVideo.title || playlistName}
-          description={description}
-          thumbnail={thumbnail}
+          title={selectedVideo.title || playlistData.playlistName}
+          description={description || playlistData.description}
+          thumbnail={thumbnail || playlistData.thumbnail}
           videoId={selectedVideo.videoId}
           playlistVideo={playlistVideo}
         />
->>>>>>> 500b3e3e9271558cbbc133cfac9af7609c4aa015
 
         {!playlistVideo && (
           <Button
@@ -94,17 +69,12 @@ const PlaylistCantainerCard = ({
             onClick={togglePlaylistVideo}
           />
         )}
-<<<<<<< HEAD
-        {login ? <div className='text-red-500 text-center'>{login}</div> : null}
 
-        <div className='flex flex-col md:items-center'>
-=======
         <FlexContainer direction='col' className='gap-2 px-6'>
->>>>>>> 500b3e3e9271558cbbc133cfac9af7609c4aa015
           {playlistVideo
-            ? videos?.map((video) => (
+            ? playlistData.videos?.map((video) => (
                 <PlaylistVideoCard
-                  key={video.title}
+                  key={video.videoId || playlistData.playlistName}
                   title={video.title}
                   image={video.thumbnail}
                   imageAltText={video.title}
@@ -117,18 +87,19 @@ const PlaylistCantainerCard = ({
                   }
                 />
               ))
-            : videos?.map((video) => (
+            : videoList.map((video) => (
                 <PlaylistVideoCard
-                  key={video.title}
+                  key={video.videoId || playlistData.playlistName}
                   title={video.title}
                   image={video.thumbnail}
                   imageAltText={video.title}
+                  href={video.videoId}
                 />
               ))}
         </FlexContainer>
       </FlexContainer>
 
-      {playlistVideo && userId && isRecommended && (
+      {playlistVideo && userId && (
         <div className='w-full flex justify-center'>
           <PlaylistRecommend
             userId={userId}

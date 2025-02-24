@@ -474,6 +474,13 @@ export interface PlaylistVideoTimeCard {
   playlistId: string;
 }
 
+interface playlistData {
+  playlistName: string;
+  description: string;
+  thumbnail: string;
+  videos: Video[];
+}
+
 export interface PlaylistCantainerCardProps {
   id: string;
   playlistName: string;
@@ -482,6 +489,7 @@ export interface PlaylistCantainerCardProps {
   videos: Video[];
   learningTime?: number;
   isRecommended?: boolean;
+  playlistData: playlistData;
 }
 
 export interface MentorshipCardProps {
