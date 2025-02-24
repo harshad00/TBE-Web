@@ -120,7 +120,6 @@ const getPlaylistPageProps = async (context: any) => {
 
   const seoMeta = getSEOMeta(slug);
 
-  // If we don’t have a playlistId or seoMeta, redirect to home.
   if (!playlistId || !seoMeta) {
     return {
       redirect: {
@@ -135,6 +134,7 @@ const getPlaylistPageProps = async (context: any) => {
     const { status, data } = await fetchAPIData(
       routes.api.youfocusUserPlaylistById(playlistId, user?.id)
     );
+
     if (!status || !data) {
       return {
         redirect: {

@@ -5,6 +5,7 @@ import { PlaylistCantainerCardProps } from '@/interfaces';
 import PlaylistVideoTimeCard from './Items/PlaylistVideoTimeCard';
 import PlaylistRecommend from './Items/PlaylistRecommend';
 import { useUser } from '@/hooks';
+import { signIn } from 'next-auth/react';
 
 const PlaylistCantainerCard = ({
   id,
@@ -27,8 +28,7 @@ const PlaylistCantainerCard = ({
   const togglePlaylistVideo = () => {
     if (loading) return;
     if (!isAuth) {
-      alert('You need to log in to start learning!');
-      return;
+      signIn('google');
     }
     setPlaylistVideo((prev) => !prev);
   };
