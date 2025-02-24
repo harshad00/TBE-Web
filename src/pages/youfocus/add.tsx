@@ -18,46 +18,44 @@ const Home = ({ seoMeta }: PageProps) => {
   const userId = user?.id;
   const router = useRouter();
 
-  const [playlistUrl, setPlaylistUrl] = useState<string>(
-    'https://www.youtube.com/watch?v=ohIAiuHMKMI&list=PLinedj3B30sDby4Al-i13hQJGQoRQDfPo'
-  );
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  // TODO: Remove this -> https://www.youtube.com/watch?v=ohIAiuHMKMI&list=PLinedj3B30sDby4Al-i13hQJGQoRQDfPo
+  const [playlistUrl, setPlaylistUrl] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleInputChange = (value: string) => {
     setPlaylistUrl(value);
-    setError(null);
+    setErrorMessage(null);
   };
 
   const { makeRequest, loading } = useApi('youfocus-add-playlist');
 
   const handleAddPlaylist = async () => {
     if (!playlistUrl) {
-      setError('Playlist link is required');
+      setErrorMessage('Playlist link is required');
       return;
     }
 
     try {
-      const response = await makeRequest({
+      const { status, data, message } = await makeRequest({
         method: 'POST',
         url: `${routes.api.youfocusPlaylist}?userId=${userId}`,
         body: { playlistUrl },
       });
-      // console.log(response);
-      const { status } = response;
+
       if (status) {
-        setSuccess('Playlist added successfully! Redirecting...');
+        setSuccessMessage('Playlist added successfully! Redirecting...');
         setPlaylistUrl('');
         setTimeout(() => {
-          const playlistId = response.data._id;
+          const playlistId = data._id;
           const redirectUrl = `${routes.youfocusPlaylist}/${playlistId}`;
           router.push(redirectUrl);
         }, 2000);
       } else {
-        setError(response.message || 'Failed to add playlist');
+        setErrorMessage(message || 'Failed to add playlist');
       }
     } catch (error) {
-      setError('Failed to add playlist. Please try again later.');
+      setErrorMessage('Failed to add playlist. Please try again later.');
     }
   };
 
@@ -85,12 +83,16 @@ const Home = ({ seoMeta }: PageProps) => {
               variant='PRIMARY'
               className='m-auto'
               text='Add Playlist'
-              active={!!playlistUrl || !error}
+              active={!!playlistUrl || !!errorMessage}
               isLoading={loading}
               onClick={handleAddPlaylist}
             />
-            {error && <p className='error text-red-500'>{error}</p>}
-            {success && <p className='success text-green-500'>{success}</p>}
+            {errorMessage && (
+              <p className='error text-red-500'>{errorMessage}</p>
+            )}
+            {successMessage && (
+              <p className='successMessage text-green-500'>{successMessage}</p>
+            )}
           </FlexContainer>
         </FlexContainer>
       </Section>

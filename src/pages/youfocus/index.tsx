@@ -36,7 +36,7 @@ const Home = ({ seoMeta }: PageProps) => {
             }}
           />
         }
-        backgroundImageUrl={`${STATIC_FILE_PATH.svg}/hero-image.svg`}
+        backgroundImageUrl={`${STATIC_FILE_PATH.svg}/youfocus.svg`}
       />
       <CardContainerA
         heading='What We Do'

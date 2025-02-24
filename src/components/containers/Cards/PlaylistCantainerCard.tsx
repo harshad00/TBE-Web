@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
-import { Button } from '@/components';
-import { useSession } from 'next-auth/react';
+import { Button, FlexContainer } from '@/components';
 import { PlaylistVideoCard, PlaylistCard } from '@/components';
-import { CardContainerCProps } from '@/interfaces';
+import { PlaylistCantainerCardProps } from '@/interfaces';
 import PlaylistVideoTimeCard from './Items/PlaylistVideoTimeCard';
 import PlaylistRecommend from './Items/PlaylistRecommend';
+<<<<<<< HEAD
 import { useRouter } from 'next/router';
+=======
+import { useUser } from '@/hooks';
+import { signIn } from 'next-auth/react';
+>>>>>>> 500b3e3e9271558cbbc133cfac9af7609c4aa015
 
-const CardContainerC = ({ playlist }: CardContainerCProps) => {
-  const playlistdata = playlist.playlistId;
+const PlaylistCantainerCard = ({
+  id,
+  playlistName,
+  description,
+  thumbnail,
+  videos,
+  learningTime,
+  isRecommended,
+}: PlaylistCantainerCardProps) => {
   const [playlistVideo, setPlaylistVideo] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState({
-    videoId: playlistdata.videos?.[0]?.videoId ?? undefined,
-    title: playlistdata.videos?.[0]?.title ?? '',
+    videoId: videos?.[0]?.videoId ?? undefined,
+    title: videos?.[0]?.title ?? '',
   });
   console.log(playlist);
 
+<<<<<<< HEAD
   const [login, setLogin] = useState('');
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -25,22 +37,35 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
     if (!session) {
       setLogin('You need to login to start learning');
       return;
+=======
+  const { user, isAuth, loading } = useUser();
+  const userId = user?.id;
+
+  const togglePlaylistVideo = () => {
+    if (loading) return;
+    if (!isAuth) {
+      signIn('google');
+>>>>>>> 500b3e3e9271558cbbc133cfac9af7609c4aa015
     }
     setPlaylistVideo((prev) => !prev);
   };
 
   return (
     <div className='py-2'>
-      <div className='gap-6 md:w-[70%] mx-auto md:border-2 md:border-black md:rounded-md md:p-2'>
-        {playlistVideo && (
+      <FlexContainer
+        direction='col'
+        className='gap-3 md:w-1/2 mx-auto border md:border-grey rounded-md md:p-2'
+      >
+        {playlistVideo && userId && (
           <div className='w-full flex justify-center'>
             <PlaylistVideoTimeCard
-              usertime={playlist.learningTime}
+              usertime={learningTime ?? 0}
               userId={userId}
-              playlistId={playlistdata._id}
+              playlistId={id}
             />
           </div>
         )}
+<<<<<<< HEAD
         <div className='w-full m-auto'>
           <PlaylistCard
             title={selectedVideo.title || playlist.playlistName}
@@ -50,22 +75,34 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
             playlistVideo={playlistVideo}
           />
         </div>
+=======
+
+        <PlaylistCard
+          title={selectedVideo.title || playlistName}
+          description={description}
+          thumbnail={thumbnail}
+          videoId={selectedVideo.videoId}
+          playlistVideo={playlistVideo}
+        />
+>>>>>>> 500b3e3e9271558cbbc133cfac9af7609c4aa015
 
         {!playlistVideo && (
-          <div className='w-full max-w-[25rem] py-2 m-auto'>
-            <Button
-              variant='PRIMARY'
-              className='w-full'
-              text='Start Learning'
-              onClick={togglePlaylistVideo}
-            />
-          </div>
+          <Button
+            variant='PRIMARY'
+            className='w-full'
+            text='Start Learning'
+            onClick={togglePlaylistVideo}
+          />
         )}
+<<<<<<< HEAD
         {login ? <div className='text-red-500 text-center'>{login}</div> : null}
 
         <div className='flex flex-col md:items-center'>
+=======
+        <FlexContainer direction='col' className='gap-2 px-6'>
+>>>>>>> 500b3e3e9271558cbbc133cfac9af7609c4aa015
           {playlistVideo
-            ? playlistdata.videos?.map((video) => (
+            ? videos?.map((video) => (
                 <PlaylistVideoCard
                   key={video.title}
                   title={video.title}
@@ -80,7 +117,7 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
                   }
                 />
               ))
-            : (playlistdata ?? playlist).videos?.map((video) => (
+            : videos?.map((video) => (
                 <PlaylistVideoCard
                   key={video.title}
                   title={video.title}
@@ -88,15 +125,15 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
                   imageAltText={video.title}
                 />
               ))}
-        </div>
-      </div>
+        </FlexContainer>
+      </FlexContainer>
 
-      {playlistVideo && (
+      {playlistVideo && userId && isRecommended && (
         <div className='w-full flex justify-center'>
           <PlaylistRecommend
             userId={userId}
-            playlistId={playlistdata._id}
-            recommend={playlist.isRecommended}
+            playlistId={id}
+            recommend={isRecommended}
           />
         </div>
       )}
@@ -104,4 +141,4 @@ const CardContainerC = ({ playlist }: CardContainerCProps) => {
   );
 };
 
-export default CardContainerC;
+export default PlaylistCantainerCard;

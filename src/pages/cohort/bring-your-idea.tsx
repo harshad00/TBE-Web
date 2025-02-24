@@ -119,14 +119,15 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
                   level='h1'
                   className='heading-1 text-contentDark leading-tight md:text-left text-center'
                 >
-                  Turn Your Tech Idea Into Reality
+                  Build Your First Tech Startup in 2 Months
                 </Text>
                 <Text
                   level='p'
                   className='text-contentDark md:text-left text-center'
                 >
                   Join our cohort program and get the mentorship, resources, and
-                  community you need to build your next big thing.
+                  community you need to build your first tech startup in 2
+                  months.
                 </Text>
               </FlexContainer>
               <FlexContainer

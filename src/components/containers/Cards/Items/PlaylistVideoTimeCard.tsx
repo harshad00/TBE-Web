@@ -2,7 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { PlaylistVideoTimeCard as PlaylistVideoTimeCardProps } from '@/interfaces';
 import { convertSecondsToMinutes } from '@/utils';
 import { routes } from '@/constant';
-import useApi from '@/hooks/useApi'; // Import the custom API hook
+import useApi from '@/hooks/useApi';
+import { FlexContainer, Image, Text } from '@/components';
+import { PauseIcon, PlayIcon } from '@heroicons/react/20/solid';
 
 const PlaylistVideoTimeCard = ({
   usertime = 0,
@@ -14,12 +16,10 @@ const PlaylistVideoTimeCard = ({
 
   const apiUrl = `${routes.api.youfocusUserPlaylistById(playlistId, userId)}`;
 
-  // Use the custom hook for API interaction
-  const { makeRequest } = useApi('updateLearningTime');
+  const { makeRequest } = useApi('update-user-learning-time');
 
-  // Function to update learningTime in DB
   const updateLearningTime = useCallback(() => {
-    const minutes = Math.floor(time / 60); // Convert seconds to minutes
+    const minutes = Math.floor(time / 60);
 
     makeRequest({
       url: apiUrl,
@@ -28,12 +28,9 @@ const PlaylistVideoTimeCard = ({
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ learningTime: minutes }),
-    })
-      // .then((data) => console.log('Minutes saved in DB:', data))
-      .catch((error) => console.error('Error updating timer:', error));
+    }).catch((error) => console.error('Error updating timer:', error));
   }, [time, makeRequest, apiUrl]);
 
-  // Timer logic
   useEffect(() => {
     if (!isRunning) return;
 
@@ -44,7 +41,6 @@ const PlaylistVideoTimeCard = ({
     return () => clearInterval(timer);
   }, [isRunning]);
 
-  // Auto-save every 2 minutes
   useEffect(() => {
     if (!isRunning) return;
 
@@ -55,15 +51,13 @@ const PlaylistVideoTimeCard = ({
     return () => clearInterval(interval);
   }, [isRunning, updateLearningTime]);
 
-  // Save when paused
   const toggleTimer = useCallback(() => {
     setIsRunning((prev) => {
-      if (prev) updateLearningTime(); // If pausing, save immediately
+      if (prev) updateLearningTime();
       return !prev;
     });
   }, [updateLearningTime]);
 
-  // Save time when the user reloads or closes the tab
   useEffect(() => {
     const handleBeforeUnload = () => {
       updateLearningTime();
@@ -77,28 +71,45 @@ const PlaylistVideoTimeCard = ({
   }, [updateLearningTime]);
 
   return (
-    <div className='flex items-center justify-between w-full md:w-[65%] p-4 bg-gray-900 text-white rounded-lg shadow-md'>
+    <FlexContainer
+      direction='row'
+      className='gap-2 w-full justify-between p-2 bg-dark text-white rounded-lg shadow-md'
+    >
       <button
-        className='w-10 h-10 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-600'
+        className='w-10 h-10 flex items-center justify-center bg-white text-white rounded-full hover:bg-gray-200'
         aria-label='Go back'
       >
-        <img className='w-5 h-5 p-1' src='/images/arrowback.svg' alt='Back' />
+        <Image
+          className='w-5 h-5 p-[4px]'
+          src='/images/arrowback.svg'
+          alt='Back'
+          fullWidth={false}
+          fullHeight={false}
+        />
       </button>
 
-      <div className='text-lg font-bold'>{convertSecondsToMinutes(time)}</div>
+      <Text level='span' className='strong-text text-contentDark'>
+        {convertSecondsToMinutes(time)}
+      </Text>
 
       <button
-        className='w-12 h-12 flex items-center justify-center bg-blue-500 text-white rounded-full hover:bg-blue-700'
+        className='w-12 h-12 flex items-center justify-center bg-white text-white rounded-full hover:bg-gray-200'
         onClick={toggleTimer}
         aria-label={isRunning ? 'Pause' : 'Play'}
       >
-        <img
-          className='w-6 h-6 p-1'
-          src={isRunning ? '/images/pause.svg' : '/images/play.svg'}
-          alt={isRunning ? 'Pause' : 'Play'}
-        />
+        {isRunning ? (
+          <PauseIcon
+            className='w-5 h-5 p-[4px] text-gray-700'
+            aria-hidden='true'
+          />
+        ) : (
+          <PlayIcon
+            className='w-5 h-5 p-[4px] text-gray-700'
+            aria-hidden='true'
+          />
+        )}
       </button>
-    </div>
+    </FlexContainer>
   );
 };
 

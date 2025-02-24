@@ -9,30 +9,6 @@ import {
 } from '@/database';
 import { AddJobRequestPayloadProps } from '@/interfaces';
 
-/**
- * @swagger
- * /api/v1/unskilled/job:
- *   get:
- *     summary: Get all unskilled jobs
- *     description: Fetch a paginated list of unskilled jobs.
- *     parameters:
- *       - in: query
- *         name: page
- *         schema:
- *           type: integer
- *         description: Page number
- *       - in: query
- *         name: limit
- *         schema:
- *           type: integer
- *         description: Number of jobs per page
- *     responses:
- *       200:
- *         description: Successful response
- *       500:
- *         description: Server error
- */
-
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
 
@@ -52,8 +28,19 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 const handleAddJob = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const jobPayload = req.body as AddJobRequestPayloadProps;
-    const { id, company, skills, role, location, jobUrl, platform } =
-      jobPayload;
+    const {
+      id,
+      company,
+      skills,
+      role,
+      location,
+      jobUrl,
+      platform,
+      experience,
+      salary,
+      isInternship,
+      stipend,
+    } = jobPayload;
 
     if (
       !id ||
@@ -79,7 +66,19 @@ const handleAddJob = async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
 
-    const { error, data: newJob } = await addJobToDB(jobPayload);
+    const { error, data: newJob } = await addJobToDB({
+      id,
+      company,
+      skills,
+      role,
+      location,
+      jobUrl,
+      platform,
+      experience,
+      salary,
+      isInternship,
+      stipend,
+    });
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({

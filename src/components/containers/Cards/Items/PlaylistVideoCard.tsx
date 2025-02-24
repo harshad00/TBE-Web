@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text } from '@/components';
+import { FlexContainer, Image, Text } from '@/components';
 import { PlaylistVideoCardProps } from '@/interfaces';
 
 const PlaylistVideoCard = ({
@@ -10,7 +10,10 @@ const PlaylistVideoCard = ({
   onClick,
 }: PlaylistVideoCardProps) => {
   return (
-    <div className='flex mt-4 border-gray-900 md:w-[65%] mb-1 hover:bg-slate-200 rounded-lg'>
+    <FlexContainer
+      direction='row'
+      className='w-full hover:bg-slate-200 rounded-md'
+    >
       {href ? (
         <div onClick={onClick} className='w-full flex flex-row'>
           <div className='w-32 h-20 md:w-40 md:h-28 flex-shrink-0 relative'>
@@ -30,25 +33,29 @@ const PlaylistVideoCard = ({
           </div>
         </div>
       ) : (
-        <div className='w-full flex flex-row'>
-          <div className='w-32 h-20 md:w-40 md:h-28 flex-shrink-0 relative'>
+        <FlexContainer direction='row' className='w-full'>
+          <div className='w-32 h-20 md:w-40 md:h-28 flex-shrink-0'>
             <Image
               src={image}
               alt={imageAltText}
-              className='object-cover w-full h-full rounded-md'
+              className='object-cover rounded'
             />
           </div>
-          <div className='flex-1 p-2'>
+          <FlexContainer
+            direction='row'
+            justifyCenter={false}
+            className='w-full flex-1 pl-2'
+          >
             <Text
               level='h6'
               className='heading-5 font-primary text-[1rem] md:text-[1.1rem] line-clamp-2'
             >
               {title}
             </Text>
-          </div>
-        </div>
+          </FlexContainer>
+        </FlexContainer>
       )}
-    </div>
+    </FlexContainer>
   );
 };
 

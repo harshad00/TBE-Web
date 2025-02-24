@@ -75,7 +75,6 @@ const getPlaylistsFormDB = async (): Promise<DatabaseQueryResponseType> => {
   }
 };
 
-// Get Playlists IF have user Id than give usert Playlist Otherwise give Plylist DATA.
 const getPlaylistByIdFromDB = async (
   playlistId: string,
   userId?: string
@@ -84,18 +83,23 @@ const getPlaylistByIdFromDB = async (
     let result;
 
     if (userId) {
-      // Fetch user-specific playlist
       result = await UserPlaylist.findOne({ playlistId, userId })
-        .populate({
-          path: 'playlistId',
-        })
+        .populate('playlistId')
+        .lean()
         .exec();
+
+      if (result && result.playlistId) {
+        result = {
+          ...result,
+          ...result.playlistId,
+          playlistId: undefined,
+        };
+      }
 
       if (!result) {
         return { error: 'Playlist not found for the user' };
       }
     } else {
-      // Fetch general playlist
       result = await Playlist.findOne({ _id: playlistId });
       if (!result) {
         return { error: 'Playlist not found' };

@@ -14,7 +14,6 @@ const PrimaryCardWithCTA = ({
   launchingOn,
 }: PrimaryCardWithCTAProps) => {
   const border = `border-borderColor${borderColour}`;
-  console.log(href);
 
   return (
     <GradientContainer
@@ -23,9 +22,11 @@ const PrimaryCardWithCTA = ({
     >
       {image && (
         <Image
-          className='m-auto w-3/5 rounded-t-lg'
+          className='m-auto w-4/5 rounded-t-lg'
           src={`${image}`}
           alt={imageAltText}
+          fullWidth={false}
+          fullHeight={false}
         />
       )}
       <div className='mt-2'>
