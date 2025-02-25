@@ -7,7 +7,7 @@ import PlaylistRecommend from './Items/PlaylistRecommend';
 import { useUser } from '@/hooks';
 import { signIn } from 'next-auth/react';
 
-const PlaylistCantainerCard = ({
+const PlaylistContainerCard = ({
   id,
   playlistName,
   playlistId,
@@ -110,4 +110,4 @@ const PlaylistCantainerCard = ({
   );
 };
 
-export default PlaylistCantainerCard;
+export default PlaylistContainerCard;

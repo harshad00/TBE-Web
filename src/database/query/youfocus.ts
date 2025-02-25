@@ -109,9 +109,9 @@ const getPlaylistByIdFromDB = async (
         } = result.playlistId;
 
         result = {
-          playlist_id: _id,
+          _id: _id,
           userId: result.userId,
-          playlistId: playlistId, // Flatten playlistId
+          playlistId: playlistId,
           isRecommended: result.isRecommended,
           learningTime: result.learningTime,
           playlistName,
@@ -129,7 +129,7 @@ const getPlaylistByIdFromDB = async (
       }
 
       result = {
-        playlist_id: playlist._id,
+        _id: playlist._id,
         playlistId: playlist.playlistId,
         playlistName: playlist.playlistName,
         description: playlist.description,
