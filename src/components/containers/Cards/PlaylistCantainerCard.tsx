@@ -9,8 +9,8 @@ import { signIn } from 'next-auth/react';
 
 const PlaylistCantainerCard = ({
   id,
-  playlistData,
   playlistName,
+  playlistId,
   description,
   thumbnail,
   videos = [],
@@ -19,11 +19,9 @@ const PlaylistCantainerCard = ({
 }: PlaylistCantainerCardProps) => {
   const [playlistVideo, setPlaylistVideo] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState({
-    videoId: playlistData?.videos?.[0]?.videoId || '',
-    title: playlistData?.videos?.[0]?.title || '',
+    videoId: videos?.[0]?.videoId || '',
+    title: videos?.[0]?.title || '',
   });
-
-  const videoList = videos?.length ? videos : playlistData?.videos ?? [];
 
   const { user, isAuth, loading } = useUser();
   const userId = user?.id;
@@ -54,9 +52,9 @@ const PlaylistCantainerCard = ({
         )}
 
         <PlaylistCard
-          title={selectedVideo.title || playlistData?.playlistName}
-          description={description || playlistData?.description}
-          thumbnail={thumbnail || playlistData?.thumbnail}
+          title={playlistName || selectedVideo.title}
+          description={description}
+          thumbnail={thumbnail}
           videoId={selectedVideo.videoId}
           playlistVideo={playlistVideo}
         />
@@ -72,9 +70,9 @@ const PlaylistCantainerCard = ({
 
         <FlexContainer direction='col' className='gap-2 px-6'>
           {playlistVideo
-            ? playlistData.videos?.map((video) => (
+            ? videos?.map((video) => (
                 <PlaylistVideoCard
-                  key={video.videoId || playlistData?.playlistName}
+                  key={video.videoId}
                   title={video.title}
                   image={video.thumbnail}
                   imageAltText={video.title}
@@ -87,9 +85,9 @@ const PlaylistCantainerCard = ({
                   }
                 />
               ))
-            : videoList.map((video) => (
+            : videos?.map((video) => (
                 <PlaylistVideoCard
-                  key={video.videoId || playlistData?.playlistName}
+                  key={video.videoId}
                   title={video.title}
                   image={video.thumbnail}
                   imageAltText={video.title}
