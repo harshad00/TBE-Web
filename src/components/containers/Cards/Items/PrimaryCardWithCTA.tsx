@@ -25,8 +25,6 @@ const PrimaryCardWithCTA = ({
           className='m-auto w-4/5 rounded-t-lg'
           src={`${image}`}
           alt={imageAltText}
-          fullWidth={false}
-          fullHeight={false}
         />
       )}
       <div className='mt-2'>

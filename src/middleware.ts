@@ -49,7 +49,7 @@ const middleware = async (req: NextRequest) => {
     );
 
     if (isProtectedUIRoute) {
-      return NextResponse.redirect(new URL(routes.register, req.url));
+      return NextResponse.redirect(new URL(routes.home, req.url));
     }
   } else {
     return NextResponse.next();
