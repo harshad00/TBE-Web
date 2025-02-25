@@ -80,7 +80,7 @@ const getPlaylistByIdFromDB = async (
   userId?: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    let result: any = null; // Initialize properly
+    let result: any = null;
 
     if (userId) {
       result = await UserPlaylist.findOne({ playlistId, userId })
@@ -89,9 +89,7 @@ const getPlaylistByIdFromDB = async (
         .exec();
 
       if (!result) {
-        await addUserPlaylistEntry(userId, playlistId); // Corrected order
-
-        // Fetch again after insertion
+        await addUserPlaylistEntry(userId, playlistId);
         result = await UserPlaylist.findOne({ playlistId, userId })
           .populate('playlistId')
           .lean()
@@ -99,21 +97,52 @@ const getPlaylistByIdFromDB = async (
       }
 
       if (result?.playlistId) {
+        const {
+          _id,
+          playlistName,
+          playlistId,
+          description,
+          referrerBy,
+          thumbnail,
+          tags,
+          videos,
+        } = result.playlistId;
+
         result = {
-          ...result,
-          playlistData: result.playlistId, // Store playlist details under a new key
-          playlistId: result.playlistId._id, // Retain ID reference
+          _id: _id,
+          userId: result.userId,
+          playlistId: playlistId,
+          isRecommended: result.isRecommended,
+          learningTime: result.learningTime,
+          playlistName,
+          description,
+          referrerBy,
+          thumbnail,
+          tags,
+          videos,
         };
       }
     } else {
-      result = await Playlist.findById(playlistId).lean();
-      if (!result) {
+      const playlist = await Playlist.findById(playlistId).lean();
+      if (!playlist) {
         return { error: 'Playlist not found' };
       }
+
+      result = {
+        _id: playlist._id,
+        playlistId: playlist.playlistId,
+        playlistName: playlist.playlistName,
+        description: playlist.description,
+        referrerBy: playlist.referrerBy,
+        thumbnail: playlist.thumbnail,
+        tags: playlist.tags,
+        videos: playlist.videos,
+      };
     }
+
     return { data: result };
   } catch (error) {
-    return { error: error || 'Error fetching playlist' };
+    return { error };
   }
 };
 

@@ -2,9 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { PlaylistVideoTimeCard as PlaylistVideoTimeCardProps } from '@/interfaces';
 import { convertSecondsToMinutes } from '@/utils';
 import { routes } from '@/constant';
-import useApi from '@/hooks/useApi';
-import { FlexContainer, Image, Text } from '@/components';
-import { PauseIcon, PlayIcon } from '@heroicons/react/20/solid';
+import { useApi } from '@/hooks';
+import { FlexContainer, Text } from '@/components';
+import { PauseIcon, PlayIcon, ArrowLeftIcon } from '@heroicons/react/20/solid';
+import { useRouter } from 'next/navigation';
 
 const PlaylistVideoTimeCard = ({
   usertime = 0,
@@ -13,8 +14,7 @@ const PlaylistVideoTimeCard = ({
 }: PlaylistVideoTimeCardProps) => {
   const [time, setTime] = useState(usertime * 60);
   const [isRunning, setIsRunning] = useState(false);
-
-  const apiUrl = `${routes.api.youfocusUserPlaylistById(playlistId, userId)}`;
+  const router = useRouter();
 
   const { makeRequest } = useApi('update-user-learning-time');
 
@@ -22,39 +22,38 @@ const PlaylistVideoTimeCard = ({
     const minutes = Math.floor(time / 60);
 
     makeRequest({
-      url: apiUrl,
+      url: `${routes.api.youfocusUserPlaylistById(playlistId, userId)}`,
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ learningTime: minutes }),
     }).catch((error) => console.error('Error updating timer:', error));
-  }, [time, makeRequest, apiUrl]);
+  }, [time]);
 
   useEffect(() => {
     if (!isRunning) return;
 
+    // Timer for UI
     const timer = setInterval(() => {
       setTime((prevTime) => prevTime + 1);
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, [isRunning]);
-
-  useEffect(() => {
-    if (!isRunning) return;
-
+    // Timer for updating learning time every 5 minutes
     const interval = setInterval(() => {
       updateLearningTime();
     }, 120000);
 
-    return () => clearInterval(interval);
-  }, [isRunning, updateLearningTime]);
+    return () => {
+      clearInterval(timer);
+      clearInterval(interval);
+    };
+  }, [isRunning]);
 
   const toggleTimer = useCallback(() => {
-    setIsRunning((prev) => {
-      if (prev) updateLearningTime();
-      return !prev;
+    setIsRunning((isRunning) => {
+      if (isRunning) updateLearningTime();
+      return !isRunning;
     });
   }, [updateLearningTime]);
 
@@ -70,6 +69,10 @@ const PlaylistVideoTimeCard = ({
     };
   }, [updateLearningTime]);
 
+  const handleBackButton = () => {
+    router.push(routes.user.dashboard);
+  };
+
   return (
     <FlexContainer
       direction='row'
@@ -78,13 +81,11 @@ const PlaylistVideoTimeCard = ({
       <button
         className='w-10 h-10 flex items-center justify-center bg-white text-white rounded-full hover:bg-gray-200'
         aria-label='Go back'
+        onClick={handleBackButton}
       >
-        <Image
-          className='w-5 h-5 p-[4px]'
-          src='/images/arrowback.svg'
-          alt='Back'
-          fullWidth={false}
-          fullHeight={false}
+        <ArrowLeftIcon
+          className='w-5 h-5 p-[4px] text-gray-700'
+          aria-hidden='true'
         />
       </button>
 

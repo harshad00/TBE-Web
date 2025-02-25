@@ -11,6 +11,7 @@ import {
   SEO,
   Section,
   Banner,
+  NotificationContainer,
 } from '@/components';
 import { useAPIResponseMapper, useApi, useUser } from '@/hooks';
 import {
@@ -95,7 +96,7 @@ const MyCourses = ({ seoMeta }: PageProps) => {
           sectionClassName='md:px-2 px-0 py-4'
         />
         {noCourseFoundUI}
-        {/* <NotificationContainer /> */}
+        <NotificationContainer />
         <Banner
           title='Contribute at The Boring Education'
           description='We’re an Open Source Tech Ed Startup. Feel free to contribute to Building Tech Education for Everyone'

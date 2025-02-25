@@ -489,7 +489,7 @@ export interface PlaylistCantainerCardProps {
   videos: Video[];
   learningTime?: number;
   isRecommended?: boolean;
-  playlistData: playlistData;
+  playlistId?: string;
 }
 
 export interface MentorshipCardProps {
