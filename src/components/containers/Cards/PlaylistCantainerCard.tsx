@@ -41,7 +41,7 @@ const PlaylistCantainerCard = ({
     <div className='py-2'>
       <FlexContainer
         direction='col'
-        className='gap-3 md:w-1/2 mx-auto border md:border-grey rounded-md md:p-2'
+        className='gap-3 md:w-1/2 mx-auto  border md:border-grey rounded-md md:p-2'
       >
         {playlistVideo && userId && (
           <div className='w-full flex justify-center'>
@@ -64,13 +64,13 @@ const PlaylistCantainerCard = ({
         {!playlistVideo && (
           <Button
             variant='PRIMARY'
-            className='w-full'
+            className='w-full mx-auto'
             text='Start Learning'
             onClick={togglePlaylistVideo}
           />
         )}
 
-        <FlexContainer direction='col' className='gap-2 px-6'>
+        <FlexContainer direction='col' className='gap-2 '>
           {playlistVideo
             ? playlistData.videos?.map((video) => (
                 <PlaylistVideoCard

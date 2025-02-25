@@ -10,7 +10,7 @@ const PlaylistCard = ({
   videoId,
 }: PlaylistCardProps) => {
   return (
-    <FlexContainer direction='col' className='gap-4 w-full'>
+    <FlexContainer direction='col' className='gap-4 w-full items-baseline'>
       <div className='w-full border-1 border-black rounded-md overflow-hidden'>
         {!playlistVideo ? (
           <Image src={thumbnail} alt={title} />
@@ -19,17 +19,17 @@ const PlaylistCard = ({
             className='w-full aspect-video rounded-sm'
             src={`https://www.youtube.com/embed/${videoId}`}
             title='YouTube Video'
-            frameBorder='0'
+            frame-Border='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
           ></iframe>
         )}
       </div>
-      <FlexContainer direction='col' className='gap-1 items-baseline'>
-        <Text level='h3' className='heading-3 font-bold'>
+      <FlexContainer direction='col' className='w-full gap-1 items-baseline'>
+        <Text level='h4' className='heading-4 font-bold'>
           {title}
         </Text>
-        <Text level='p' className='line-clamp-2 text-grey'>
+        <Text level='p' className=' w-full line-clamp-2 text-grey'>
           {description}
         </Text>
       </FlexContainer>
