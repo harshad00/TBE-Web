@@ -80,7 +80,7 @@ const getPlaylistByIdFromDB = async (
   userId?: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    let result;
+    let result: any = null;
 
     if (userId) {
       result = await UserPlaylist.findOne({ playlistId, userId })
@@ -88,23 +88,58 @@ const getPlaylistByIdFromDB = async (
         .lean()
         .exec();
 
-      if (result && result.playlistId) {
-        result = {
-          ...result,
-          ...result.playlistId,
-          playlistId: undefined,
-        };
+      if (!result) {
+        await addUserPlaylistEntry(userId, playlistId);
+        result = await UserPlaylist.findOne({ playlistId, userId })
+          .populate('playlistId')
+          .lean()
+          .exec();
       }
 
-      if (!result) {
-        return { error: 'Playlist not found for the user' };
+      if (result?.playlistId) {
+        const {
+          _id,
+          playlistName,
+          playlistId,
+          description,
+          referrerBy,
+          thumbnail,
+          tags,
+          videos,
+        } = result.playlistId;
+
+        result = {
+          _id: _id,
+          userId: result.userId,
+          playlistId: playlistId,
+          isRecommended: result.isRecommended,
+          learningTime: result.learningTime,
+          playlistName,
+          description,
+          referrerBy,
+          thumbnail,
+          tags,
+          videos,
+        };
       }
     } else {
-      result = await Playlist.findOne({ _id: playlistId });
-      if (!result) {
+      const playlist = await Playlist.findById(playlistId).lean();
+      if (!playlist) {
         return { error: 'Playlist not found' };
       }
+
+      result = {
+        _id: playlist._id,
+        playlistId: playlist.playlistId,
+        playlistName: playlist.playlistName,
+        description: playlist.description,
+        referrerBy: playlist.referrerBy,
+        thumbnail: playlist.thumbnail,
+        tags: playlist.tags,
+        videos: playlist.videos,
+      };
     }
+
     return { data: result };
   } catch (error) {
     return { error };

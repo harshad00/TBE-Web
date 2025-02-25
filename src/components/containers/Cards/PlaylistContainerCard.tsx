@@ -7,19 +7,20 @@ import PlaylistRecommend from './Items/PlaylistRecommend';
 import { useUser } from '@/hooks';
 import { signIn } from 'next-auth/react';
 
-const PlaylistCantainerCard = ({
+const PlaylistContainerCard = ({
   id,
   playlistName,
+  playlistId,
   description,
   thumbnail,
-  videos,
-  learningTime,
+  videos = [],
+  learningTime = 0,
   isRecommended,
 }: PlaylistCantainerCardProps) => {
   const [playlistVideo, setPlaylistVideo] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState({
-    videoId: videos?.[0]?.videoId ?? undefined,
-    title: videos?.[0]?.title ?? '',
+    videoId: videos?.[0]?.videoId || '',
+    title: videos?.[0]?.title || '',
   });
 
   const { user, isAuth, loading } = useUser();
@@ -29,6 +30,7 @@ const PlaylistCantainerCard = ({
     if (loading) return;
     if (!isAuth) {
       signIn('google');
+      return;
     }
     setPlaylistVideo((prev) => !prev);
   };
@@ -42,7 +44,7 @@ const PlaylistCantainerCard = ({
         {playlistVideo && userId && (
           <div className='w-full flex justify-center'>
             <PlaylistVideoTimeCard
-              usertime={learningTime ?? 0}
+              usertime={learningTime}
               userId={userId}
               playlistId={id}
             />
@@ -50,7 +52,7 @@ const PlaylistCantainerCard = ({
         )}
 
         <PlaylistCard
-          title={selectedVideo.title || playlistName}
+          title={playlistName || selectedVideo.title}
           description={description}
           thumbnail={thumbnail}
           videoId={selectedVideo.videoId}
@@ -65,11 +67,12 @@ const PlaylistCantainerCard = ({
             onClick={togglePlaylistVideo}
           />
         )}
+
         <FlexContainer direction='col' className='gap-2 px-6'>
           {playlistVideo
             ? videos?.map((video) => (
                 <PlaylistVideoCard
-                  key={video.title}
+                  key={video.videoId}
                   title={video.title}
                   image={video.thumbnail}
                   imageAltText={video.title}
@@ -84,16 +87,17 @@ const PlaylistCantainerCard = ({
               ))
             : videos?.map((video) => (
                 <PlaylistVideoCard
-                  key={video.title}
+                  key={video.videoId}
                   title={video.title}
                   image={video.thumbnail}
                   imageAltText={video.title}
+                  href={video.videoId}
                 />
               ))}
         </FlexContainer>
       </FlexContainer>
 
-      {playlistVideo && userId && isRecommended && (
+      {playlistVideo && userId && (
         <div className='w-full flex justify-center'>
           <PlaylistRecommend
             userId={userId}
@@ -106,4 +110,4 @@ const PlaylistCantainerCard = ({
   );
 };
 
-export default PlaylistCantainerCard;
+export default PlaylistContainerCard;
