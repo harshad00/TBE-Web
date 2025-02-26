@@ -6,6 +6,7 @@ import {
   InterviewSheetModel,
   InterviewSheetQuestionModel,
   NotificationType,
+  PlaylistModel,
   ProjectChapter,
 } from '.';
 
@@ -266,12 +267,6 @@ export interface MarkQuestionCompletedRequestProps {
   isCompleted: boolean;
 }
 
-export interface UserPlaylistResponseProps extends Partial<UserPlaylistModel> {
-  _id: string;
-  userId: string;
-  playlist: PlaylistModel[];
-  liveOn: string;
-}
 export interface GetAllQuestionsRequestProps {
   userId: string;
 }
@@ -347,29 +342,9 @@ export interface AddJobRequestPayloadProps {
   platform: string;
 }
 
-interface Video {
-  title: string;
-  videoId: string;
-  thumbnail: string;
-}
-
-interface PlaylistModel {
-  _id: string;
-  playlistId: string;
-  playlistName: string;
-  description?: string;
-  referrerBy: number;
-  thumbnail: string;
-  tags?: string[];
-  videos: Video[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface UserPlaylistModel {
+export interface UserPlaylistResponseProps extends PlaylistModel {
   _id: string;
   userId: string;
-  playlistId: PlaylistModel[];
   isPublic: boolean;
   isRecommended: boolean;
   learningTime: number;

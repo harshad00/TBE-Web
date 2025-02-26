@@ -22,7 +22,7 @@ const useNotifications = () => {
       .catch(() => {
         setLoading(false);
       });
-  }, [notifications]);
+  }, []);
 
   return { notifications, loading };
 };

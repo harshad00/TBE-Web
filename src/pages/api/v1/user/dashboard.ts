@@ -69,7 +69,6 @@ const handleGetUserDashboard = async (
         enrolledSheets,
         enrolledPlaylists,
       };
-      // console.log(allPlaylists);
 
       return res
         .status(apiStatusCodes.OKAY)

@@ -37,7 +37,7 @@ const MySheets = ({ seoMeta }: PageProps) => {
 
   if (session.status === 'loading') return null;
   if (session.status !== 'authenticated') {
-    router.push('/');
+    router.push(routes.home);
     return null;
   }
 

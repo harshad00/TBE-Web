@@ -4,10 +4,11 @@ import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
 import { extractPlaylistId, fetchPlaylistData } from '@/utils';
 import {
-  checkPlaylistExistsByPlaylistId,
+  checkPlaylistExistsByID,
   addPlaylistToDB,
-  getPlaylistsFormDB,
-  addUserPlaylistEntry,
+  getPlaylistsFromDB,
+  addUserPlaylistToDB,
+  incrementReferredByInPlaylist,
 } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -44,12 +45,14 @@ const handleAddPlaylist = async (
     });
   }
 
-  const { data: existingPlaylist } = await checkPlaylistExistsByPlaylistId(
-    playlistId
-  );
+  const { data: existingPlaylist } = await checkPlaylistExistsByID(playlistId);
 
   if (existingPlaylist) {
-    await addUserPlaylistEntry(userId, existingPlaylist._id);
+    // 1. Add playlist to user
+    await addUserPlaylistToDB(userId, existingPlaylist._id);
+
+    // 2. Increment referredBy in playlist
+    await incrementReferredByInPlaylist(existingPlaylist._id);
 
     return res.status(apiStatusCodes.RESOURCE_CREATED).json(
       sendAPIResponse({
@@ -84,7 +87,7 @@ const handleAddPlaylist = async (
       );
     }
 
-    const { error: userPlaylistError } = await addUserPlaylistEntry(
+    const { error: userPlaylistError } = await addUserPlaylistToDB(
       userId,
       newPlaylist._id
     );
@@ -117,7 +120,7 @@ const handleGetPlaylists = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const { data, error } = await getPlaylistsFormDB();
+  const { data, error } = await getPlaylistsFromDB();
 
   if (error) {
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({

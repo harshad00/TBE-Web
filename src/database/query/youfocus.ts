@@ -1,4 +1,4 @@
-import { Playlist, UserPlaylist, User } from '@/database';
+import { Playlist, UserPlaylist } from '@/database';
 import { DatabaseQueryResponseType, PlaylistModel } from '@/interfaces';
 
 // Add a playlist to the database
@@ -14,25 +14,20 @@ const addPlaylistToDB = async (
   }
 };
 
-// Link a user to a playlist in `UserPlaylist`
-const addUserPlaylistEntry = async (
+const addUserPlaylistToDB = async (
   userId: string,
   playlistId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    // Check if Userplaylist exists
     const existingUserPlaylist = await UserPlaylist.findOne({
       userId,
       playlistId,
     });
+
     if (existingUserPlaylist) {
       return { error: 'UserPlaylist already exists' };
     }
-    // Check if user exists
-    const user = await User.findById(userId);
-    if (!user) {
-      return { error: 'User not found' };
-    }
+
     const userPlaylist = new UserPlaylist({
       userId,
       playlistId,
@@ -45,28 +40,43 @@ const addUserPlaylistEntry = async (
   }
 };
 
-// Check if a playlist exists by its ID
-const checkPlaylistExistsByPlaylistId = async (
+const incrementReferredByInPlaylist = async (
   playlistId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const existingPlaylist = await Playlist.findOne({ playlistId });
+    const updatedPlaylist = await Playlist.findOneAndUpdate(
+      { playlistId },
+      { $inc: { referrerBy: 1 } },
+      { new: true }
+    );
 
-    if (!existingPlaylist) {
-      return { error: 'Playlist does not exist' };
+    if (!updatedPlaylist) {
+      return { error: 'Playlist not found' };
     }
-    // Increment referrerBy only if playlist is found
-    existingPlaylist.referrerBy = (existingPlaylist.referrerBy || 0) + 1;
-    await existingPlaylist.save();
 
-    return { data: existingPlaylist };
+    return { data: updatedPlaylist };
   } catch (error) {
     return { error };
   }
 };
 
-// Get Allplaylist data FormDB
-const getPlaylistsFormDB = async (): Promise<DatabaseQueryResponseType> => {
+const checkPlaylistExistsByID = async (
+  playlistId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const platlist = await Playlist.findOne({ playlistId });
+
+    if (!platlist) {
+      return { error: 'Playlist does not exist' };
+    }
+
+    return { data: platlist };
+  } catch (error) {
+    return { error };
+  }
+};
+
+const getPlaylistsFromDB = async (): Promise<DatabaseQueryResponseType> => {
   try {
     const playlists = await Playlist.find();
     return { data: playlists };
@@ -75,69 +85,59 @@ const getPlaylistsFormDB = async (): Promise<DatabaseQueryResponseType> => {
   }
 };
 
+const formatPlaylistResponse = (playlist: any, userData?: any) => {
+  if (!playlist) return null;
+
+  const formattedPlaylist = {
+    _id: playlist._id,
+    playlistId: playlist.playlistId,
+    playlistName: playlist.playlistName,
+    description: playlist.description,
+    referrerBy: playlist.referrerBy,
+    thumbnail: playlist.thumbnail,
+    tags: playlist.tags,
+    videos: playlist.videos,
+  };
+
+  if (userData) {
+    return {
+      ...formattedPlaylist,
+      userId: userData.userId,
+      isRecommended: userData.isRecommended,
+      learningTime: userData.learningTime,
+    };
+  }
+
+  return formattedPlaylist;
+};
+
 const getPlaylistByIdFromDB = async (
   playlistId: string,
   userId?: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    let result: any = null;
+    let result: any;
 
     if (userId) {
-      result = await UserPlaylist.findOne({ playlistId, userId })
+      let userPlaylist = await UserPlaylist.findOne({ playlistId, userId })
         .populate('playlistId')
         .lean()
         .exec();
 
-      if (!result) {
-        await addUserPlaylistEntry(userId, playlistId);
-        result = await UserPlaylist.findOne({ playlistId, userId })
+      if (!userPlaylist) {
+        await addUserPlaylistToDB(userId, playlistId);
+        userPlaylist = await UserPlaylist.findOne({ playlistId, userId })
           .populate('playlistId')
           .lean()
           .exec();
       }
 
-      if (result?.playlistId) {
-        const {
-          _id,
-          playlistName,
-          playlistId,
-          description,
-          referrerBy,
-          thumbnail,
-          tags,
-          videos,
-        } = result.playlistId;
-
-        result = {
-          _id: _id,
-          userId: result.userId,
-          playlistId: playlistId,
-          isRecommended: result.isRecommended,
-          learningTime: result.learningTime,
-          playlistName,
-          description,
-          referrerBy,
-          thumbnail,
-          tags,
-          videos,
-        };
-      }
+      result = formatPlaylistResponse(userPlaylist?.playlistId, userPlaylist);
     } else {
       const playlist = await Playlist.findById(playlistId).lean();
-      if (!playlist) {
-        return { error: 'Playlist not found' };
-      }
+      if (!playlist) return { error: 'Playlist not found' };
 
-      result = {
-        _id: playlist._id,
-        playlistId: playlist.playlistId,
-        playlistName: playlist.playlistName,
-        description: playlist.description,
-        referrerBy: playlist.referrerBy,
-        thumbnail: playlist.thumbnail,
-        tags: playlist.tags,
-        videos: playlist.videos,
-      };
+      result = formatPlaylistResponse(playlist);
     }
 
     return { data: result };
@@ -146,24 +146,22 @@ const getPlaylistByIdFromDB = async (
   }
 };
 
-// Get all playlists of a user  from `UserPlaylist`
 const getUserPlaylistsFromDB = async (
   userId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const userPlaylists = await UserPlaylist.find({ userId }).populate(
-      'playlistId'
-    );
+    const userPlaylists = await UserPlaylist.find({ userId })
+      .populate('playlistId')
+      .lean()
+      .exec();
 
-    if (userPlaylists.length === 0) {
+    if (!userPlaylists.length) {
       return { error: 'User does not have any playlists' };
     }
 
-    // Rename `playlistId` to `playlist` but keep everything else the same
-    const playlists = userPlaylists.map((userPlaylist) => ({
-      ...userPlaylist.toObject(),
-      playlist: userPlaylist.playlistId,
-    }));
+    const playlists = userPlaylists.map((userPlaylist) =>
+      formatPlaylistResponse(userPlaylist.playlistId, userPlaylist)
+    );
 
     return { data: playlists };
   } catch (error) {
@@ -190,52 +188,52 @@ const deleteUserPlaylistFromDB = async (
   }
 };
 
-const incrementReferrerCount = async (playlistId: string): Promise<any> => {
-  return await Playlist.findByIdAndUpdate(
-    playlistId,
-    { $inc: { referrerBy: 1 } },
-    { new: true, fields: { referrerBy: 1, _id: 0 } }
-  );
-};
-
 const updateUserPlaylistData = async (
   userId: string,
   playlistId: string,
-  isRecommended: boolean,
-  learningTime: number
+  isRecommended?: boolean,
+  learningTime?: number
 ): Promise<DatabaseQueryResponseType> => {
   try {
     const userPlaylist = await UserPlaylist.findOne({ userId, playlistId });
+
     if (!userPlaylist) return { error: 'UserPlaylist not found' };
 
-    // Update the UserPlaylist directly
+    const updateFields: Record<string, any> = {};
+    if (isRecommended !== undefined) updateFields.isRecommended = isRecommended;
+    if (learningTime !== undefined) updateFields.learningTime = learningTime;
+
+    if (Object.keys(updateFields).length === 0) {
+      return { error: 'No fields provided for update' };
+    }
+
     const updatedUserPlaylist = await UserPlaylist.findOneAndUpdate(
       { userId, playlistId },
-      { $set: { isRecommended, learningTime } },
+      { $set: updateFields },
       { new: true }
     );
+
     if (!updatedUserPlaylist) return { error: 'Failed to update UserPlaylist' };
 
-    // Only increment referrerBy if isRecommended changes from false to true
     let updatedPlaylist = null;
-    if (isRecommended && !userPlaylist.isRecommended) {
-      updatedPlaylist = await incrementReferrerCount(playlistId);
+    if (isRecommended === true && userPlaylist.isRecommended === false) {
+      updatedPlaylist = await incrementReferredByInPlaylist(playlistId);
     }
 
     return { data: { updatedUserPlaylist, updatedPlaylist } };
   } catch (error) {
-    console.error('Update UserPlaylist Error:', error);
     return { error: `An error occurred: ${error}` };
   }
 };
 
 export {
   addPlaylistToDB,
-  checkPlaylistExistsByPlaylistId,
-  addUserPlaylistEntry,
-  getPlaylistsFormDB,
+  checkPlaylistExistsByID,
+  addUserPlaylistToDB,
+  getPlaylistsFromDB,
   getPlaylistByIdFromDB,
   getUserPlaylistsFromDB,
   deleteUserPlaylistFromDB,
   updateUserPlaylistData,
+  incrementReferredByInPlaylist,
 };
