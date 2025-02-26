@@ -6,6 +6,7 @@ import Script from 'next/script';
 import { googleAnalyticsScript, gtag } from '@/constant';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { SessionProvider } from 'next-auth/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const TheBoringEducation = ({
           </PageLayout>
         </QueryClientProvider>
       </SessionProvider>
+      <SpeedInsights />
     </>
   );
 };
