@@ -37,62 +37,61 @@ const PlaylistContainerCard = ({
   return (
     <div className='py-2'>
       <FlexContainer
-        direction='col'
-        className='gap-3 md:w-1/2 mx-auto  border md:border-grey rounded-md md:p-2'
+        className='gap-3 border w-full md:border-grey gap-4 rounded-md md:p-2 p-1 items-start'
+        itemCenter={false}
       >
-        {isPlaylistVideoVisible && userId && (
-          <div className='w-full flex justify-center'>
-            <PlaylistVideoTimeCard
-              usertime={learningTime}
-              userId={userId}
-              playlistId={id}
-            />
-          </div>
-        )}
+        <FlexContainer className='flex-1 max-w-full gap-2 sticky top-2 z-10'>
+          {isPlaylistVideoVisible && userId && (
+            <div className='w-full flex justify-center'>
+              <PlaylistVideoTimeCard
+                usertime={learningTime}
+                userId={userId}
+                playlistId={id}
+              />
+            </div>
+          )}
 
-        <PlaylistCard
-          title={playlistName || selectedVideo.title}
-          description={description}
-          thumbnail={thumbnail}
-          videoId={selectedVideo.videoId}
-          isPlaylistVideoVisible={isPlaylistVideoVisible}
-        />
-
-        {!isPlaylistVideoVisible && (
-          <Button
-            variant='PRIMARY'
-            className='w-full mx-auto'
-            text='Start Learning'
-            onClick={togglePlaylistVideo}
+          <PlaylistCard
+            title={playlistName || selectedVideo.title}
+            description={description}
+            thumbnail={thumbnail}
+            videoId={selectedVideo.videoId}
+            isPlaylistVideoVisible={isPlaylistVideoVisible}
           />
-        )}
 
-        <FlexContainer direction='col' className='gap-2 '>
-          {isPlaylistVideoVisible
-            ? videos?.map((video) => (
-                <PlaylistVideoCard
-                  key={video.videoId}
-                  title={video.title}
-                  image={video.thumbnail}
-                  imageAltText={video.title}
-                  href={video.videoId}
-                  onClick={() =>
-                    setSelectedVideo({
-                      videoId: video.videoId,
-                      title: video.title,
-                    })
-                  }
-                />
-              ))
-            : videos?.map((video) => (
-                <PlaylistVideoCard
-                  key={video.videoId}
-                  title={video.title}
-                  image={video.thumbnail}
-                  imageAltText={video.title}
-                  href={video.videoId}
-                />
-              ))}
+          {!isPlaylistVideoVisible && (
+            <Button
+              variant='PRIMARY'
+              className='w-full mx-auto'
+              text='Start Learning'
+              onClick={togglePlaylistVideo}
+            />
+          )}
+        </FlexContainer>
+        <FlexContainer direction='col' className='flex-1 max-w-full gap-2'>
+          {videos?.map(({ videoId, title, thumbnail }) => {
+            const commonProps = {
+              key: videoId,
+              title: title,
+              image: thumbnail,
+              imageAltText: `${title} thumbnail | ${playlistName} | YouFocus`,
+              href: videoId,
+            };
+
+            return isPlaylistVideoVisible ? (
+              <PlaylistVideoCard
+                {...commonProps}
+                onClick={() =>
+                  setSelectedVideo({
+                    videoId: videoId,
+                    title: title,
+                  })
+                }
+              />
+            ) : (
+              <PlaylistVideoCard {...commonProps} />
+            );
+          })}
         </FlexContainer>
       </FlexContainer>
 

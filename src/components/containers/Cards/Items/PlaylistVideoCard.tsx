@@ -15,7 +15,7 @@ const PlaylistVideoCard = ({
       className='w-full hover:bg-slate-200 rounded-md'
     >
       {href ? (
-        <div onClick={onClick} className='w-full flex flex-row'>
+        <div onClick={onClick} className='w-full flex flex-row cursor-pointer'>
           <div className='w-32 h-20 md:w-40 md:h-28 flex-shrink-0 relative'>
             <Image
               src={image}

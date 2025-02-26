@@ -13,7 +13,13 @@ const PlaylistCard = ({
     <FlexContainer direction='col' className='gap-4 w-full items-baseline'>
       <div className='w-full border-1 border-black rounded-md overflow-hidden'>
         {!isPlaylistVideoVisible ? (
-          <Image src={thumbnail} alt={title} />
+          <Image
+            src={thumbnail}
+            alt={title}
+            fullHeight={false}
+            fullWidth={false}
+            className='aspect-image rounded-sm'
+          />
         ) : (
           <iframe
             className='w-full aspect-video rounded-sm'
