@@ -439,7 +439,7 @@ export interface PlaylistCardProps {
   title: string;
   description: string;
   thumbnail: string;
-  playlistVideo?: boolean;
+  isPlaylistVideoVisible?: boolean;
   videoId?: string;
 }
 
@@ -472,13 +472,6 @@ export interface PlaylistVideoTimeCard {
   usertime: number;
   userId: string;
   playlistId: string;
-}
-
-interface playlistData {
-  playlistName: string;
-  description: string;
-  thumbnail: string;
-  videos: Video[];
 }
 
 export interface PlaylistCantainerCardProps {
@@ -515,4 +508,10 @@ export interface IconCardProps {
 export interface HeaderLabelProps {
   label: string;
   className?: string;
+}
+
+export interface PlaylistRecommendProps {
+  playlistId: string;
+  userId: string;
+  recommend?: boolean;
 }

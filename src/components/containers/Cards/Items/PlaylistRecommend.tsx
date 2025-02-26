@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import { Button, SectionHeaderContainer, FlexContainer } from '@/components';
 import { routes } from '@/constant';
 import useApi from '@/hooks/useApi';
+import { PlaylistRecommendProps } from '@/interfaces';
 
 const PlaylistRecommend = ({
   playlistId,
   userId,
   recommend,
-}: {
-  playlistId: string;
-  userId: string;
-  recommend: boolean;
-}) => {
+}: PlaylistRecommendProps) => {
   const [isRecommended, setIsRecommended] = useState(recommend);
   const [copied, setCopied] = useState(false);
   const [thankYouMessage, setThankYouMessage] = useState(false);
@@ -29,7 +26,7 @@ const PlaylistRecommend = ({
       .catch((err) => console.error('Failed to copy URL:', err));
   };
 
-  const handleRecommend = async () => {
+  const handleRecommendPlaylist = async () => {
     if (isRecommended) return;
 
     try {
@@ -68,7 +65,8 @@ const PlaylistRecommend = ({
             isRecommended || loading ? 'opacity-50 cursor-not-allowed' : ''
           }`}
           text={loading ? 'Recommending...' : 'Recommend'}
-          onClick={!isRecommended ? handleRecommend : undefined}
+          active={!isRecommended}
+          onClick={handleRecommendPlaylist}
         />
 
         <Button

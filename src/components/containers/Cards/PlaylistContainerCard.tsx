@@ -10,14 +10,13 @@ import { signIn } from 'next-auth/react';
 const PlaylistContainerCard = ({
   id,
   playlistName,
-  playlistId,
   description,
   thumbnail,
   videos = [],
   learningTime = 0,
   isRecommended,
 }: PlaylistCantainerCardProps) => {
-  const [playlistVideo, setPlaylistVideo] = useState(false);
+  const [isPlaylistVideoVisible, setIsPlaylistVideoVisible] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState({
     videoId: videos?.[0]?.videoId || '',
     title: videos?.[0]?.title || '',
@@ -32,7 +31,7 @@ const PlaylistContainerCard = ({
       signIn('google');
       return;
     }
-    setPlaylistVideo((prev) => !prev);
+    setIsPlaylistVideoVisible((prev) => !prev);
   };
 
   return (
@@ -41,7 +40,7 @@ const PlaylistContainerCard = ({
         direction='col'
         className='gap-3 md:w-1/2 mx-auto  border md:border-grey rounded-md md:p-2'
       >
-        {playlistVideo && userId && (
+        {isPlaylistVideoVisible && userId && (
           <div className='w-full flex justify-center'>
             <PlaylistVideoTimeCard
               usertime={learningTime}
@@ -56,10 +55,10 @@ const PlaylistContainerCard = ({
           description={description}
           thumbnail={thumbnail}
           videoId={selectedVideo.videoId}
-          playlistVideo={playlistVideo}
+          isPlaylistVideoVisible={isPlaylistVideoVisible}
         />
 
-        {!playlistVideo && (
+        {!isPlaylistVideoVisible && (
           <Button
             variant='PRIMARY'
             className='w-full mx-auto'
@@ -69,7 +68,7 @@ const PlaylistContainerCard = ({
         )}
 
         <FlexContainer direction='col' className='gap-2 '>
-          {playlistVideo
+          {isPlaylistVideoVisible
             ? videos?.map((video) => (
                 <PlaylistVideoCard
                   key={video.videoId}
@@ -97,7 +96,7 @@ const PlaylistContainerCard = ({
         </FlexContainer>
       </FlexContainer>
 
-      {playlistVideo && userId && (
+      {userId && (
         <div className='w-full flex justify-center'>
           <PlaylistRecommend
             userId={userId}
