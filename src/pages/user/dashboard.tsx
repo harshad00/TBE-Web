@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { PageProps, PrimaryCardWithCTAProps } from '@/interfaces';
 import {
