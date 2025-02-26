@@ -272,22 +272,18 @@ const mapInterviewSheetResponseToCard = (
 };
 
 const mapUserPlaylistResponseToCard = (
-  playlistsData: UserPlaylistResponseProps[]
+  playlists: UserPlaylistResponseProps[]
 ) => {
-  return playlistsData?.map(({ _id, playlist, liveOn = new Date() }) => {
-    const ctaText = 'Start Learning';
-    const isActive = isProgramActive(liveOn);
-
+  return playlists?.map(({ _id, playlistName, description, thumbnail }) => {
     return {
       id: _id,
-      title: playlist?.playlistName,
-      image: playlist?.thumbnail,
-      imageAltText: playlist?.playlistName,
-      content: playlist?.description,
-      ctaText,
-      active: isActive,
-      href: `youfocus/playlist/${playlist?._id}`,
-      playlist,
+      title: playlistName,
+      image: thumbnail,
+      imageAltText: playlistName,
+      content: description,
+      ctaText: 'Continue Learning',
+      active: true,
+      href: `/youfocus/playlist/${_id}`,
     };
   });
 };

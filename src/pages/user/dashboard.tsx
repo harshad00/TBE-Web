@@ -24,9 +24,8 @@ import {
 import { LINKS, routes, STATIC_FILE_PATH } from '@/constant';
 
 const MyCourses = ({ seoMeta }: PageProps) => {
-  const session = useSession();
   const router = useRouter();
-  const { user } = useUser();
+  const { user, isAuth, loading: loadingUser } = useUser();
 
   const { response, loading } = useApi(
     'user-dashboard',
@@ -57,10 +56,10 @@ const MyCourses = ({ seoMeta }: PageProps) => {
     mapUserPlaylistResponseToCard
   );
 
-  if (session.status === 'loading') return null;
-  if (session.status !== 'authenticated') {
-    router.push('/');
-    return null;
+  if (loadingUser) return;
+  if (!isAuth) {
+    router.push(routes.home);
+    return;
   }
 
   if (loading) return <LoadingSpinner />;
