@@ -28,8 +28,10 @@ const PlaylistVideoTimeCard = ({
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ learningTime: minutes }),
-    }).catch((error) => console.error('Error updating timer:', error));
-  }, [time]);
+    }).catch((error) => {
+      return error;
+    });
+  }, [time, makeRequest, playlistId, userId]);
 
   useEffect(() => {
     if (!isRunning) return;
@@ -48,7 +50,7 @@ const PlaylistVideoTimeCard = ({
       clearInterval(timer);
       clearInterval(interval);
     };
-  }, [isRunning]);
+  }, [isRunning, updateLearningTime]);
 
   const toggleTimer = useCallback(() => {
     setIsRunning((isRunning) => {

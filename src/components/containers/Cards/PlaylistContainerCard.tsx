@@ -37,7 +37,7 @@ const PlaylistContainerCard = ({
   return (
     <div className='py-2'>
       <FlexContainer
-        className='gap-3 border w-full md:border-grey gap-4 rounded-md md:p-2 p-1 items-start'
+        className='border w-full md:border-grey gap-4 rounded-md md:p-2 p-1 items-start'
         itemCenter={false}
       >
         <FlexContainer className='flex-1 max-w-full gap-2 md:sticky md:top-2 z-10'>

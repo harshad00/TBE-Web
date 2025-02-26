@@ -39,6 +39,7 @@ const routes = {
     sheets: '/interview-prep/my-sheets',
     playlists: 'youfocus/my-playlist',
   },
+  register: '/register',
   internals: {
     landing: {
       products: 'products',

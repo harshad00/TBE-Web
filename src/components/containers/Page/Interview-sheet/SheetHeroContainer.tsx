@@ -44,7 +44,7 @@ const SheetHeroContainer = ({
         window.location.reload();
       })
       .catch((error) => {
-        console.error('Failed to enroll', error);
+        return error;
       });
   };
 

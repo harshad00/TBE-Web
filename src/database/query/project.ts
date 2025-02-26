@@ -521,7 +521,6 @@ const getAllEnrolledProjectsFromDB = async (
       data: projectData,
     };
   } catch (error) {
-    console.error('Error while fetching enrolled projects:', error);
     return { error: 'Failed while fetching enrolled projects' };
   }
 };
@@ -589,7 +588,6 @@ const getAProjectForUserFromDB = async (userId: string, projectId: string) => {
       },
     };
   } catch (error) {
-    console.error('Error fetching project for user:', error);
     return { error: 'Failed to fetch project with task status' };
   }
 };
