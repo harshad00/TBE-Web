@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { Button, SectionHeaderContainer, FlexContainer } from '@/components';
+import {
+  Button,
+  SectionHeaderContainer,
+  FlexContainer,
+  Toast,
+} from '@/components';
 import { routes } from '@/constant';
 import useApi from '@/hooks/useApi';
 import { PlaylistRecommendProps } from '@/interfaces';
@@ -78,16 +83,10 @@ const PlaylistRecommend = ({
       </div>
 
       {thankYouMessage && (
-        <div className='absolute bottom-[-80px] left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-sm px-3 py-1 rounded-md shadow-md'>
-          ✅ Thank you for your recommendation! 😊
-        </div>
+        <Toast message='✅ Thank you for your recommendation! 😊' />
       )}
 
-      {copied && (
-        <div className='absolute bottom-[-80px] left-1/2 transform -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded-md shadow-md'>
-          ✅ Playlist URL copied!
-        </div>
-      )}
+      {copied && <Toast message='✅ Playlist URL copied!' />}
     </FlexContainer>
   );
 };

@@ -40,7 +40,7 @@ const PlaylistContainerCard = ({
         className='gap-3 border w-full md:border-grey gap-4 rounded-md md:p-2 p-1 items-start'
         itemCenter={false}
       >
-        <FlexContainer className='flex-1 max-w-full gap-2 sticky top-2 z-10'>
+        <FlexContainer className='flex-1 max-w-full gap-2 md:sticky md:top-2 z-10'>
           {isPlaylistVideoVisible && userId && (
             <div className='w-full flex justify-center'>
               <PlaylistVideoTimeCard

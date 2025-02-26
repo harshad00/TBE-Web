@@ -515,3 +515,11 @@ export interface PlaylistRecommendProps {
   userId: string;
   recommend?: boolean;
 }
+
+export interface ToastProps {
+  message: string;
+  type?: 'success' | 'error' | 'info' | 'warning';
+  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+  duration?: number;
+  onClose?: () => void;
+}

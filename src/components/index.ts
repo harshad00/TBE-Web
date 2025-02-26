@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+const Toast = dynamic(() => import('@/components/common/Toast'));
 const IconCard = dynamic(
   () => import('@/components/containers/Cards/Items/IconCard')
 );
@@ -241,4 +242,5 @@ export {
   Carousel,
   IconCard,
   HeaderLabel,
+  Toast,
 };
