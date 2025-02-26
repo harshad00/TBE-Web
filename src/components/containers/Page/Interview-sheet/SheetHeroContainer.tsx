@@ -4,10 +4,11 @@ import {
   PageHeroMetaContainer,
   LoginWithGoogleButton,
   Button,
+  LinkButton,
 } from '@/components';
 import { routes } from '@/constant';
-import { useUser } from '@/hooks';
-import useApi from '@/hooks/useApi';
+import { useAnalytics, useUser } from '@/hooks';
+import { useApi } from '@/hooks';
 import { SheetHeroContainerProps } from '@/interfaces';
 
 const SheetHeroContainer = ({
@@ -16,6 +17,7 @@ const SheetHeroContainer = ({
   isEnrolled,
 }: SheetHeroContainerProps) => {
   const { user, isAuth } = useUser();
+  const { trackEvent } = useAnalytics();
 
   const { makeRequest, loading } = useApi('interview-prep/enrollSheet');
 
@@ -29,10 +31,20 @@ const SheetHeroContainer = ({
       },
     })
       .then(() => {
+        trackEvent({
+          action: 'INTERVIEW_SHEET_ENROLL',
+          category: 'InterviewSheet',
+          label: 'Interview Sheet Enrolled',
+          value: {
+            userId: user?.id,
+            sheetId: id,
+          },
+        });
+
         window.location.reload();
       })
       .catch((error) => {
-        console.error('Failed to enroll', error);
+        return error;
       });
   };
 
@@ -65,6 +77,16 @@ const SheetHeroContainer = ({
   return (
     <FlexContainer>
       <FlexContainer className='border md:w-4/5 gap-4 w-full p-2 justify-between rounded'>
+        {/* Back Button */}
+        <LinkButton
+          href={routes.user.sheets}
+          buttonProps={{
+            variant: 'GHOST',
+            text: 'Back',
+          }}
+        />
+
+        {/* Heading and Subheading */}
         <FlexContainer
           itemCenter={false}
           direction='col'
@@ -77,6 +99,7 @@ const SheetHeroContainer = ({
             Ready to prepare for interviews?
           </Text>
         </FlexContainer>
+
         <FlexContainer
           justifyCenter={false}
           itemCenter={false}

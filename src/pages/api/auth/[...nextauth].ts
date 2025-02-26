@@ -66,7 +66,7 @@ const authOptions = {
     },
   },
   pages: {
-    signIn: routes.register,
+    signIn: routes?.register,
   },
 };
 

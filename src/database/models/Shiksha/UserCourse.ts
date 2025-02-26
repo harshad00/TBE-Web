@@ -1,12 +1,12 @@
 import { UserCourseModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
-import { databaseModels } from '@/constant';
+import { DATABASE_MODELS } from '@/constant';
 
 const UserChapterSchema = new Schema(
   {
     chapterId: {
       type: Schema.Types.ObjectId,
-      ref: databaseModels.COURSE_CHAPTER,
+      ref: DATABASE_MODELS.COURSE_CHAPTER,
       required: [true, 'Chapter id is required'],
     },
     isCompleted: {
@@ -32,13 +32,13 @@ const UserCourseSchema = new Schema<UserCourseModel>(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      ref: databaseModels.USER,
+      ref: DATABASE_MODELS.USER,
       required: [true, 'User id is required'],
       index: true,
     },
     courseId: {
       type: Schema.Types.ObjectId,
-      ref: databaseModels.COURSE,
+      ref: DATABASE_MODELS.COURSE,
       required: [true, 'Course id is required'],
       index: true,
     },
@@ -73,7 +73,7 @@ const UserCourseSchema = new Schema<UserCourseModel>(
 );
 
 UserCourseSchema.virtual('course', {
-  ref: databaseModels.COURSE,
+  ref: DATABASE_MODELS.COURSE,
   localField: 'courseId',
   foreignField: '_id',
   justOne: true,
@@ -81,6 +81,6 @@ UserCourseSchema.virtual('course', {
 
 const UserCourse: Model<UserCourseModel> =
   models?.UserCourse ||
-  model<UserCourseModel>(databaseModels.USER_COURSE, UserCourseSchema);
+  model<UserCourseModel>(DATABASE_MODELS.USER_COURSE, UserCourseSchema);
 
 export default UserCourse;

@@ -1,6 +1,6 @@
 import { Schema, model, models, Model } from 'mongoose';
 import { PlaylistModel, Video } from '@/interfaces';
-import { databaseModels } from '@/constant';
+import { DATABASE_MODELS } from '@/constant';
 
 const VideoSchema = new Schema<Video>(
   {
@@ -28,6 +28,10 @@ const PlaylistSchema = new Schema<PlaylistModel>(
       type: Number,
       default: 0,
     },
+    thumbnail: {
+      type: String,
+      required: [true, 'Thumbnail URL is required'],
+    },
     tags: {
       type: [String],
     },
@@ -39,5 +43,5 @@ const PlaylistSchema = new Schema<PlaylistModel>(
 // Create or retrieve the model
 const Playlist: Model<PlaylistModel> =
   models.Playlist ||
-  model<PlaylistModel>(databaseModels.PLAYLIST, PlaylistSchema);
+  model<PlaylistModel>(DATABASE_MODELS.PLAYLIST, PlaylistSchema);
 export default Playlist;

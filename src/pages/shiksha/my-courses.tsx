@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { PageProps, PrimaryCardWithCTAProps } from '@/interfaces';
@@ -37,7 +37,7 @@ const MyCourses = ({ seoMeta }: PageProps) => {
 
   if (session.status === 'loading') return null;
   if (session.status !== 'authenticated') {
-    router.push('/');
+    router.push(routes.home);
     return null;
   }
 
@@ -63,7 +63,7 @@ const MyCourses = ({ seoMeta }: PageProps) => {
         focusText='Courses'
         cards={courses}
         borderColour={2}
-        subtext='Pick A Course and Start Learning'
+        subtext='Continue Learning From Where You Left'
         sectionClassName='px-2 py-4'
       />
       {noCourseFoundUI}

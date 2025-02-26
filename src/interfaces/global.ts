@@ -23,11 +23,22 @@ export type ProductLabelType =
   | 'Webinar'
   | 'Open Source'
   | 'Interview Prep'
-  | 'Portfolio';
+  | 'Portfolio'
+  | 'YouFocus';
+
+export type CohortLabelType = 'Bring Your Idea';
 
 export interface ProductDataProps {
   [key: string]: {
     label: ProductLabelType;
+    slug: string;
+    description: string;
+  };
+}
+
+export interface CohortDataProps {
+  [key: string]: {
+    label: CohortLabelType;
     slug: string;
     description: string;
   };
@@ -45,6 +56,7 @@ export interface TopNavbarLinkProps {
 export interface TopNavbarContainerProps {
   user: TopNavbarLinkProps[];
   products: TopNavbarLinkProps[];
+  cohorts: TopNavbarLinkProps[];
   links: TopNavbarLinkProps[];
 }
 
@@ -67,6 +79,13 @@ export interface WebinarPageProps extends WebinarModel {
 }
 
 export type CertificateType = 'WEBINAR' | 'SHIKSHA';
+
+export type NotificationType =
+  | 'WEBINAR'
+  | 'SHIKSHA'
+  | 'PROJECT'
+  | 'INTERVIEW PREP'
+  | 'UPDATE';
 
 export type FormatDateType = {
   dateAndTime?: string;

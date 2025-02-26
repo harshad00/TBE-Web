@@ -136,17 +136,20 @@ export interface Video {
 export interface PlaylistModel {
   playlistId: string;
   playlistName: string;
-  description?: string;
+  description: string;
   referrerBy?: number;
+  thumbnail: string;
   tags?: string[];
   videos: Video[];
 }
-
 export interface UserPlaylistModel {
+  _id: typeof Schema.Types.ObjectId;
   userId: typeof Schema.Types.ObjectId;
   playlistId: typeof Schema.Types.ObjectId;
   playlist: PlaylistModel;
   isPublic: boolean;
+  learningTime: number;
+  isRecommended?: boolean;
 }
 
 export interface WebinarModel {
@@ -181,4 +184,42 @@ export interface CertificateModel extends Document {
   date: string;
   programName: string;
   programId: typeof Schema.Types.ObjectId;
+}
+
+export interface NotificationModel extends Document {
+  type: string;
+  text: string;
+  isHTML: boolean;
+  link?: string;
+  isExternalLink: boolean;
+}
+
+export interface CompanyDetails {
+  name: string;
+  email?: string;
+  location?: string;
+  linkedIn?: string;
+  website?: string;
+  description: string;
+  logo: string;
+}
+
+export interface JobModel extends Document {
+  id: string;
+  company: CompanyDetails;
+  skills: string[];
+  role: string;
+  location: string;
+  experience?: {
+    min: number;
+    max: number;
+  };
+  jobUrl: string;
+  salary?: {
+    min: number;
+    max: number;
+  };
+  isInternship?: boolean;
+  stipend?: number;
+  platform: string;
 }

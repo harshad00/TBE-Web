@@ -1,4 +1,3 @@
-import React from 'react';
 import { LoadingSpinnerProps } from '@/interfaces';
 
 const LoadingSpinner = ({

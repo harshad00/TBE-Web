@@ -1,11 +1,6 @@
 import { GetSEOMetaResponseType } from '@/interfaces';
 import { routes } from '../routes';
-import {
-  SHIKSHA_COURSES,
-  TBP_PROJECTS,
-  products,
-  INTERVIEW_PREP_SHEETS,
-} from '..';
+import { TBP_PROJECTS, products, INTERVIEW_PREP_SHEETS } from '..';
 
 export const seoCommonMeta = {
   type: 'website',
@@ -66,15 +61,6 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
         'PharmaShift, Project I, Programming Projects, Healthcare Projects, Coding Projects, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
-    [`${routes.allProjects.pharmashiftII}`]: {
-      title: `${TBP_PROJECTS[1].title} | The Boring Education`,
-      siteName: TBP_PROJECTS[1].title,
-      description: `${TBP_PROJECTS[1].content} - Continue your journey with PharmaShift Project II and gain more practical experience.`,
-      url: routes.allProjects.pharmashiftII,
-      keywords:
-        'PharmaShift, Project II, Programming Projects, Healthcare Projects, Coding Projects, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
-      ...seoCommonMeta,
-    },
     [`${routes.shiksha}`]: {
       title: `${products.shiksha.label} | The Boring Education`,
       siteName: products.shiksha.label,
@@ -93,24 +79,6 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
         'Interview Preparation, Coding Interviews, Tech Interviews, Interview Questions, Job Preparation, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
-    [`${routes.allCourses.logicBuildingForEveryone}`]: {
-      title: `${SHIKSHA_COURSES[0].title} | The Boring Education`,
-      siteName: SHIKSHA_COURSES[0].title,
-      description: `${SHIKSHA_COURSES[0].content} - Learn the basics of programming and logic building with this beginner-friendly course.`,
-      url: routes.allCourses.logicBuildingForEveryone,
-      keywords:
-        'Logic Building, Programming Basics, Online Course, Beginner Programming, Coding Fundamentals, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
-      ...seoCommonMeta,
-    },
-    [`${routes.allCourses.basicsOfProgrammingWithJS}`]: {
-      title: `${SHIKSHA_COURSES[1].title} | The Boring Education`,
-      siteName: SHIKSHA_COURSES[1].title,
-      description: `${SHIKSHA_COURSES[1].content} - Master the basics of programming with JavaScript in this comprehensive course.`,
-      url: routes.allCourses.basicsOfProgrammingWithJS,
-      keywords:
-        'JavaScript, Programming Basics, Online Course, JavaScript Fundamentals, Coding for Beginners, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
-      ...seoCommonMeta,
-    },
     [`${routes.allInterviewSheets.javascriptInterviewSheet}`]: {
       title: `${INTERVIEW_PREP_SHEETS[0].title} | The Boring Education`,
       siteName: INTERVIEW_PREP_SHEETS[0].title,
@@ -126,7 +94,7 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       description: `${INTERVIEW_PREP_SHEETS[1].content} - Get ready for React interviews with our comprehensive interview sheet.`,
       url: routes.allInterviewSheets.reactInterviewSheet,
       keywords:
-        'React, Interview Preparation, Coding Sheet, React Interview Questions, Tech Interviews, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+        ' Interview Preparation, Coding Sheet, React Interview Questions, Tech Interviews, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
     [`${routes.allInterviewSheets.nodeInterviewSheet}`]: {
@@ -167,16 +135,6 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
         '404, Page Not Found, The Boring Education, Error Page, Lost Page, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
-    [`${routes.register}`]: {
-      title: 'Register | The Boring Education',
-      siteName: 'Register at The Boring Education',
-      description:
-        'Create an account and join The Boring Education to access a variety of tech education resources.',
-      url: routes.register,
-      keywords:
-        'Register, Sign Up, The Boring Education, Create Account, Join Now, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
-      ...seoCommonMeta,
-    },
     [`${routes.shikshaExplore}`]: {
       title: 'Explore Courses | The Boring Education',
       siteName: 'Explore Courses at The Boring Education',
@@ -208,6 +166,16 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       ...seoCommonMeta,
     },
     // Implement User Shiksha Route
+    [`${routes.user.dashboard}`]: {
+      title: 'Dashboard | The Boring Education',
+      siteName: 'User Dashboard at The Boring Education',
+      description:
+        'Access your courses, projects, and interview preparation sheets at The Boring Education.',
+      url: routes.user.dashboard,
+      keywords:
+        'Dashboard, Online Learning, The Boring Education, User Dashboard, Learning Platform, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
     [`${routes.user.courses}`]: {
       title: 'My Courses | The Boring Education',
       siteName: 'My Courses at The Boring Education',
@@ -218,7 +186,6 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
         'My Courses, Online Learning, The Boring Education, Enrolled Courses, Learning Platform, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
-    // Implement User Projects Route
     [`${routes.user.projects}`]: {
       title: 'My Projects | The Boring Education',
       siteName: 'My Projects at The Boring Education',
@@ -249,6 +216,55 @@ const getSEOMeta = (basePath: any): GetSEOMetaResponseType => {
       url: routes.webinar,
       keywords:
         'Webinars, Live Workshops, The Boring Education, Online Learning, Programming, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
+    [`${routes.youfocus}`]: {
+      title: 'YouFocus | The Boring Education',
+      siteName: 'Focus at The Boring Education',
+      description: 'Focus on your study keeping distractions aside.',
+      url: routes.youfocus,
+      keywords:
+        'Focus,concentration, The Boring Education, Online Learning, Programming, College Students, Working professional, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
+    [`${routes.youfocusAddPlaylist}`]: {
+      title: 'Add Playlist | The Boring Education',
+      siteName: 'Add Playlist at The Boring Education',
+      description:
+        'Add your YouTube playlist to YouFocus to enhance your study experience without distractions.',
+      url: routes.youfocusAddPlaylist,
+      keywords:
+        'YouTube Playlist, Focus, Study, Productivity, The Boring Education, Online Learning, Distraction-Free Learning, Study Tools, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
+    [`${routes.cohort.bringYourIdea}`]: {
+      title: 'Bring Your Idea | The Boring Education',
+      siteName: 'Bring Your Idea at The Boring Education',
+      description: 'Bring your idea to The Boring Education.',
+      url: routes.cohort.bringYourIdea,
+      keywords:
+        'Bring Your Idea, Tech Idea, Cohort, The Boring Education, Online Learning, Programming, College Students, Working professional, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
+    [`${routes.youfocusPlaylist}`]: {
+      title: 'YouFocus - Playlist | The Boring Education',
+      siteName: 'YouFocus Playlist at The Boring Education',
+      description:
+        'Access and manage your YouTube playlist in YouFocus to enhance your study experience without distractions.',
+      url: routes.youfocusPlaylist,
+      keywords:
+        'YouTube Playlist, Focus, Study, Productivity, The Boring Education, Online Learning, Distraction-Free Learning, Study Tools, GitHub, Instagram, Twitter, LinkedIn',
+      ...seoCommonMeta,
+    },
+
+    [`${routes.user.playlists}`]: {
+      title: 'My Playlist | The Boring Education',
+      siteName: 'My Playlist at The Boring Education',
+      description:
+        'Access your playlists and continue learning at The Boring Education.',
+      url: routes.user.playlists,
+      keywords:
+        'My Playlist, Hands-on Learning, The Boring Education, Personal Playlists, Learning Platform, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
       ...seoCommonMeta,
     },
   };

@@ -1,5 +1,21 @@
 import dynamic from 'next/dynamic';
-import ToggleButton from '@/components/common/Buttons/ToggleButton';
+const Toast = dynamic(() => import('@/components/common/Toast'));
+const IconCard = dynamic(
+  () => import('@/components/containers/Cards/Items/IconCard')
+);
+const Carousel = dynamic(() => import('@/components/common/Carousel'));
+const HeaderLabel = dynamic(
+  () => import('@/components/containers/Page/common/HeaderLabel')
+);
+const MentorshipCard = dynamic(
+  () => import('@/components/containers/Cards/MentorshipCard')
+);
+const ToggleButton = dynamic(
+  () => import('@/components/common/Buttons/ToggleButton')
+);
+const NotificationContainer = dynamic(
+  () => import('@/components/containers/Cards/NotificationContainer')
+);
 const WebibarCard = dynamic(
   () => import('@/components/containers/Cards/WebibarCard')
 );
@@ -143,6 +159,15 @@ const WebinarHeroContainer = dynamic(
 const BackgroundImage = dynamic(
   () => import('@/components/common/Images/BackgroundImage')
 );
+const PlaylistCard = dynamic(
+  () => import('@/components/containers/Cards/Items/PlaylistCard')
+);
+const PlaylistContainerCard = dynamic(
+  () => import('@/components/containers/Cards/PlaylistContainerCard')
+);
+const PlaylistVideoCard = dynamic(
+  () => import('@/components/containers/Cards/Items/PlaylistVideoCard')
+);
 
 export {
   Navbar,
@@ -209,4 +234,13 @@ export {
   Modal,
   WebibarCard,
   ToggleButton,
+  PlaylistContainerCard,
+  PlaylistCard,
+  PlaylistVideoCard,
+  NotificationContainer,
+  MentorshipCard,
+  Carousel,
+  IconCard,
+  HeaderLabel,
+  Toast,
 };
