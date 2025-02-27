@@ -57,7 +57,7 @@ const getJobByCustomIdFromDB = async (
       return { error: 'Invalid job ID' };
     }
 
-    const job = await Job.findOne({ id: jobId }).lean();
+    const job = await Job.findOne({ job_id: jobId }).lean();
 
     if (!job) {
       return { error: 'Job not found' };

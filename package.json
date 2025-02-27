@@ -14,7 +14,8 @@
     "test": "jest",
     "format": "prettier -w .",
     "format:check": "prettier -c .",
-    "pre-release": "npm run lint:fix && npm run build"
+    "generate:api_docs": "node scripts/generateApiDocs.ts",
+    "pre-release": "npm run generate:api_docs && npm run lint:fix && npm run build"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",

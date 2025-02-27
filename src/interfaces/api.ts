@@ -323,10 +323,11 @@ export interface UpdateNotificationRequestPayloadProps {
 }
 
 export interface AddJobRequestPayloadProps {
-  id: string;
+  job_id: string;
+  job_title: string;
   company: CompanyDetails;
   skills: string[];
-  role: string;
+  role: string[];
   location: string;
   experience?: {
     min: number;
@@ -334,11 +335,10 @@ export interface AddJobRequestPayloadProps {
   };
   jobUrl: string;
   salary?: {
-    min: number;
-    max: number;
+    min: string;
+    max: string;
   };
   isInternship?: boolean;
-  stipend?: number;
   platform: string;
 }
 
