@@ -59,5 +59,4 @@ async function reviewPR() {
   console.log('PR Review Completed!');
 }
 
-// Run the function
 reviewPR();

@@ -4,7 +4,8 @@ import { Model, Schema, model, models } from 'mongoose';
 
 const JobSchema: Schema<JobModel> = new Schema(
   {
-    id: { type: String, required: true },
+    job_id: { type: String, required: true },
+    job_title: { type: String, required: true },
     company: {
       name: { type: String, required: true },
       email: { type: String },
@@ -12,10 +13,12 @@ const JobSchema: Schema<JobModel> = new Schema(
       linkedIn: { type: String },
       website: { type: String },
       description: { type: String, required: true },
-      logo: { type: String, required: true },
+      logo: { type: String },
+      emp_count: { type: Number },
+      company_founded: { type: Number },
     },
     skills: [{ type: String, required: true }],
-    role: { type: String, required: true },
+    role: [{ type: String, required: true }],
     location: { type: String, required: true },
     experience: {
       min: { type: Number },
@@ -23,11 +26,10 @@ const JobSchema: Schema<JobModel> = new Schema(
     },
     jobUrl: { type: String, required: true },
     salary: {
-      min: { type: Number },
-      max: { type: Number },
+      min: { type: String },
+      max: { type: String },
     },
     isInternship: { type: Boolean, default: false },
-    stipend: { type: Number },
     platform: { type: String, required: true },
   },
   { timestamps: true }

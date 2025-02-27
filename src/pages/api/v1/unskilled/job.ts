@@ -29,27 +29,26 @@ const handleAddJob = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const jobPayload = req.body as AddJobRequestPayloadProps;
     const {
-      id,
+      job_id,
+      job_title,
       company,
       skills,
       role,
       location,
-      jobUrl,
-      platform,
       experience,
+      jobUrl,
       salary,
-      isInternship,
-      stipend,
+      platform,
     } = jobPayload;
 
     if (
-      !id ||
-      !company ||
-      !role ||
+      !job_id ||
+      !job_title ||
+      !role?.length ||
       !location ||
       !jobUrl ||
       !platform ||
-      !skills
+      !skills?.length
     ) {
       return res.status(apiStatusCodes.BAD_REQUEST).json({
         success: false,
@@ -57,8 +56,7 @@ const handleAddJob = async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
 
-    const { data: existingJob } = await getJobByCustomIdFromDB(id);
-
+    const { data: existingJob } = await getJobByCustomIdFromDB(job_id);
     if (existingJob) {
       return res.status(apiStatusCodes.BAD_REQUEST).json({
         success: false,
@@ -67,18 +65,18 @@ const handleAddJob = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const { error, data: newJob } = await addJobToDB({
-      id,
+      job_id,
+      job_title,
       company,
       skills,
       role,
       location,
-      jobUrl,
-      platform,
       experience,
+      jobUrl,
       salary,
-      isInternship,
-      stipend,
+      platform,
     });
+
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({

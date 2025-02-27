@@ -202,24 +202,26 @@ export interface CompanyDetails {
   website?: string;
   description: string;
   logo: string;
+  emp_count?: number;
+  company_founded?: number;
 }
 
 export interface JobModel extends Document {
-  id: string;
+  job_id: string;
+  job_title: string;
   company: CompanyDetails;
   skills: string[];
-  role: string;
+  role: string[];
   location: string;
   experience?: {
-    min: number;
-    max: number;
+    min?: number;
+    max?: number;
   };
   jobUrl: string;
   salary?: {
-    min: number;
-    max: number;
+    min?: number;
+    max?: number;
   };
   isInternship?: boolean;
-  stipend?: number;
   platform: string;
 }
