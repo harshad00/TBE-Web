@@ -1,5 +1,6 @@
 import { LoadingSpinner } from '@/components';
 import { ButtonProps } from '@/interfaces';
+import { motion } from 'framer-motion';
 
 const Button = ({
   variant,
@@ -8,6 +9,7 @@ const Button = ({
   active = true,
   isLoading = false,
   onClick,
+  animationClasses = 'w-full',
 }: ButtonProps) => {
   let baseClasses = 'button bg-light px-2 py-1 text-white';
   if (variant === 'PRIMARY')
@@ -26,21 +28,29 @@ const Button = ({
   else if (variant === 'SUCCESS')
     baseClasses =
       'button bg-success px-2 py-1 text-white border-2 border-success hover:scale-105 transition-all';
-  if (!active) baseClasses = 'button bg-greyDark text-contentLight px-2 py-1';
+  if (!active)
+    baseClasses =
+      'button bg-greyLight text-greyDark px-2 py-1 border border-greyDark';
 
   const loadingContainer = isLoading && (
     <LoadingSpinner height={3} width={3} borderColour='white' />
   );
 
   return (
-    <button
-      className={`${baseClasses} ${className} shadow-md flex items-center justify-center gap-2`}
-      disabled={!active || isLoading}
-      onClick={onClick}
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`${animationClasses}`}
     >
-      {loadingContainer}
-      {text}
-    </button>
+      <button
+        className={`${baseClasses} ${className} shadow-md flex items-center justify-center gap-2`}
+        disabled={!active || isLoading}
+        onClick={onClick}
+      >
+        {loadingContainer}
+        {text}
+      </button>
+    </motion.div>
   );
 };
 

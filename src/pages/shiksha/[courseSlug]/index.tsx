@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { FaTrophy, FaLock } from 'react-icons/fa';
 import {
   Alert,
@@ -18,7 +18,7 @@ import {
   CoursePageProps,
 } from '@/interfaces';
 import { formatDate, getCoursePageProps } from '@/utils';
-import { useApi, useMediaQuery, useUser } from '@/hooks';
+import { useAnalytics, useApi, useMediaQuery, useUser } from '@/hooks';
 import { routes, SCREEN_BREAKPOINTS } from '@/constant';
 import router from 'next/router';
 
@@ -57,6 +57,7 @@ const CoursePage = ({
 
   const { makeRequest } = useApi(`shiksha/${course}`);
   const { user } = useUser();
+  const { trackEvent } = useAnalytics();
 
   if (!course) return null;
 
@@ -77,6 +78,16 @@ const CoursePage = ({
           courseId: course._id,
           chapterId: currentChapterId,
           isCompleted: newCompletionStatus,
+        },
+      });
+
+      trackEvent({
+        action: newCompletionStatus ? 'COURSE_COMPLETE' : 'COURSE_PROGRESS',
+        category: 'Course',
+        label: newCompletionStatus ? 'Course Completed' : 'Course Progress',
+        value: {
+          userId: user?.id,
+          courseId: course._id,
         },
       });
 
@@ -144,7 +155,7 @@ const CoursePage = ({
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
         {alertContainer}
@@ -255,7 +266,7 @@ const CoursePage = ({
           </FlexContainer>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

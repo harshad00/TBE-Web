@@ -19,7 +19,7 @@ const PrimaryCard = ({
         fullWidth={false}
         alt={imageAltText}
       />
-      <Text level='h4' className='heading-4 mt-4'>
+      <Text level='h5' className='heading-5 mt-4'>
         {title}
       </Text>
 

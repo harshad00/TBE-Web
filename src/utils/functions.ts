@@ -1,4 +1,4 @@
-import { envConfig, LINKS } from '@/constant';
+import { envConfig, LINKS, routes, YOUTUBE_API_PATH } from '@/constant';
 import {
   BaseInterviewSheetResponseProps,
   BaseShikshaCourseResponseProps,
@@ -6,6 +6,9 @@ import {
   ProjectDocumentModel,
   ProjectPickedPageProps,
   User,
+  Video,
+  UserPlaylistResponseProps,
+  PlaylistModel,
 } from '@/interfaces';
 
 const fetchAPIData = async (url: string) => {
@@ -25,7 +28,7 @@ const formatDate = ({
     hour: 'numeric',
     minute: 'numeric',
     hour12: true,
-    timeZone: 'UTC',
+    timeZone: 'Asia/Kolkata',
   },
 }: FormatDateType) => {
   const date = new Date(dateAndTime);
@@ -70,18 +73,35 @@ const removeLocalStorageItem = (key: string) => {
   }
 };
 
-const mapProjectResponseToCard = (projectsData: ProjectDocumentModel[]) => {
+const mapProjectResponseToCard = (
+  projectsData: ProjectDocumentModel[],
+  addtionalParams: any = { isEnrolled: false }
+) => {
+  const { isEnrolled } = addtionalParams;
+
   return projectsData?.map(
-    ({ _id, coverImageURL, name, description, slug, isActive }) => ({
-      id: _id,
-      image: coverImageURL,
-      imageAltText: name,
-      title: name,
-      content: description,
-      href: `/projects/${slug}?projectId=${_id}`,
-      active: isActive,
-      ctaText: isActive ? 'Start The Project' : 'Coming Soon',
-    })
+    ({ _id, coverImageURL, name, description, slug, isActive }) => {
+      let ctaText = 'Start The Project';
+
+      if (!isActive) {
+        ctaText = 'Coming Soon';
+      }
+
+      if (isEnrolled) {
+        ctaText = 'Continue Building';
+      }
+
+      return {
+        id: _id,
+        image: coverImageURL,
+        imageAltText: name,
+        title: name,
+        content: description,
+        href: `/projects/${slug}?projectId=${_id}`,
+        active: isActive,
+        ctaText,
+      };
+    }
   );
 };
 
@@ -132,7 +152,7 @@ const getSelectedSheetQuestionMeta = (
 };
 
 const isUserAuthenticated = async (req: any): Promise<User | null> => {
-  const cookie = req.headers.cookie || req.headers.get('cookie');
+  const cookie = req.headers.cookie || req.headers?.get('cookie');
 
   try {
     const response = await fetch(`${envConfig.BASE_AUTH_API_URL}/session`, {
@@ -171,10 +191,6 @@ const mapCourseResponseToCard = (
       let ctaText = 'Coming Soon';
       let launchingOn = '';
 
-      if (isEnrolled) {
-        ctaText = 'Continue Learning';
-      }
-
       if (isActive) {
         ctaText = 'View Course';
       } else {
@@ -183,6 +199,10 @@ const mapCourseResponseToCard = (
           dateAndTime: date.toString(),
         });
         launchingOn = `Launching on ${dateAndTime.date} at ${dateAndTime.time}`;
+      }
+
+      if (isEnrolled) {
+        ctaText = 'Continue Learning';
       }
 
       return {
@@ -219,10 +239,6 @@ const mapInterviewSheetResponseToCard = (
       let ctaText = 'Coming Soon';
       let launchingOn = '';
 
-      if (isEnrolled) {
-        ctaText = 'Continue Learning';
-      }
-
       if (isActive) {
         ctaText = 'View Sheet';
       } else {
@@ -233,6 +249,10 @@ const mapInterviewSheetResponseToCard = (
           day: 'numeric',
           hour: 'numeric',
         })}`;
+      }
+
+      if (isEnrolled) {
+        ctaText = 'Continue Preparing';
       }
 
       return {
@@ -249,6 +269,23 @@ const mapInterviewSheetResponseToCard = (
       };
     }
   );
+};
+
+const mapUserPlaylistResponseToCard = (
+  playlists: UserPlaylistResponseProps[]
+) => {
+  return playlists?.map(({ _id, playlistName, description, thumbnail }) => {
+    return {
+      id: _id,
+      title: playlistName,
+      image: thumbnail,
+      imageAltText: playlistName,
+      content: description,
+      ctaText: 'Continue Learning',
+      active: true,
+      href: `/youfocus/playlist/${_id}`,
+    };
+  });
 };
 
 const generatePublicCertificateLink = (host: string, certificateId: string) =>
@@ -284,6 +321,113 @@ const generateShareTemplate = (
   return baseMessage;
 };
 
+// fetches playlist data (metadata and videos)
+const fetchPlaylistData = async (
+  playlistId: string,
+  pageToken = '',
+  accumulatedVideos: Video[] = [],
+  metadata: {
+    playlistName?: string;
+    description?: string;
+    thumbnail?: string;
+  } = {}
+): Promise<PlaylistModel> => {
+  const response = await fetch(
+    `${YOUTUBE_API_PATH}/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=50&pageToken=${pageToken}&key=${process.env.YOUTUBE_API_KEY}`
+  );
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch playlist data: ${data.error.message}`);
+  }
+
+  // Extract playlist metadata if not already set
+  if (!metadata.playlistName && data.items.length > 0) {
+    metadata.playlistName = data.items[0].snippet.title || '';
+    metadata.description =
+      data.items[0].snippet.description || 'No Description Available';
+    metadata.thumbnail = data.items[0].snippet.thumbnails?.maxres?.url || '';
+  }
+
+  // Extract video details
+  const videos: Video[] = data.items.map((item: any) => ({
+    title: item.snippet.title,
+    videoId: item.snippet.resourceId.videoId,
+    thumbnail:
+      item.snippet.thumbnails?.default?.url ||
+      'https://via.placeholder.com/150',
+  }));
+
+  // Accumulate videos
+  const allVideos = [...accumulatedVideos, ...videos];
+
+  // Continue fetching if there's a nextPageToken
+  if (data.nextPageToken) {
+    return fetchPlaylistData(
+      playlistId,
+      data.nextPageToken,
+      allVideos,
+      metadata
+    );
+  }
+
+  // Return the complete data when no more pages
+  return {
+    playlistId,
+    playlistName: metadata.playlistName || ' ',
+    description: metadata.description || '',
+    thumbnail: metadata.thumbnail || '',
+    videos: allVideos,
+  };
+};
+
+const extractPlaylistId = (url: string) => {
+  const regex = /(?:list=|\/playlist\/)([a-zA-Z0-9_-]{10,})/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
+};
+
+const convertSecondsToMinutes = (seconds: number) => {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins.toString().padStart(2, '0')}:${secs
+    .toString()
+    .padStart(2, '0')}`;
+};
+
+const generateSitemap = () => {
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+  sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+  const sitemapRoutes = flattenRoutesForSitemap(routes);
+
+  sitemapRoutes.forEach((url) => {
+    sitemap += `<url><loc>${url}</loc></url>\n`;
+  });
+
+  sitemap += `</urlset>`;
+
+  return sitemap;
+};
+
+const flattenRoutesForSitemap = (routesObj: Record<string, any>): string[] => {
+  const SITE_URL = 'https://theboringeducation.com';
+
+  let urls: string[] = [];
+
+  for (const key in routesObj) {
+    if (key === 'api' || key === 'internals') continue;
+
+    const value = routesObj[key];
+
+    if (typeof value === 'string') urls.push(`${SITE_URL}${value}`);
+    else if (typeof value === 'object')
+      urls = urls.concat(flattenRoutesForSitemap(value));
+  }
+
+  return urls;
+};
+
 export {
   formatDate,
   formatTime,
@@ -303,4 +447,10 @@ export {
   generatePublicCertificateLink,
   fetchAPIData,
   generateShareTemplate,
+  fetchPlaylistData,
+  extractPlaylistId,
+  convertSecondsToMinutes,
+  flattenRoutesForSitemap,
+  generateSitemap,
+  mapUserPlaylistResponseToCard,
 };

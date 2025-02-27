@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import {
   FlexContainer,
   Section,
@@ -19,7 +19,7 @@ import {
   WebinarPageProps,
 } from '@/interfaces';
 import { formatDate, getWebinarPageProps } from '@/utils';
-import { useApi, useUser } from '@/hooks';
+import { useAnalytics, useApi, useUser } from '@/hooks';
 import { routes, TESTIMONIALS } from '@/constant';
 import { FiCalendar } from 'react-icons/fi';
 import { LuClock3 } from 'react-icons/lu';
@@ -44,6 +44,7 @@ const WebinarPage = ({
   recordedVideoUrl,
 }: WebinarPageProps) => {
   const { user, isAuth } = useUser();
+  const { trackEvent } = useAnalytics();
   const router = useRouter();
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -98,6 +99,16 @@ const WebinarPage = ({
         });
 
         if (status) {
+          trackEvent({
+            action: 'CERTIFICATE_GENERATED',
+            category: 'Webinar',
+            label: 'Certificate Generated',
+            value: {
+              userId: user?.id,
+              webinarId: webinarId,
+            },
+          });
+
           router.push(`/certificate/${data._id}`);
         }
       } else {
@@ -181,6 +192,7 @@ const WebinarPage = ({
               text='Generate Certificate'
               onClick={onGenerateCertificate}
               variant='SUCCESS'
+              animationClasses='w-fit'
             />
           </FlexContainer>
 
@@ -235,7 +247,7 @@ const WebinarPage = ({
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:px-8 md:py-2 px-2 py-2'>
         <FlexContainer className='relative'>
@@ -310,7 +322,7 @@ const WebinarPage = ({
             className='justify-start rounded-lg md:w-1/2 w-full gap-6'
           >
             <FlexContainer direction='col' className='justify-start gap-4'>
-              <FlexContainer direction='col' className='gap-2'>
+              <FlexContainer direction='col' className='gap-4'>
                 <Text level='h4' className='heading-4'>
                   About webinar
                 </Text>
@@ -445,7 +457,7 @@ const WebinarPage = ({
           </CardSectionContainer>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

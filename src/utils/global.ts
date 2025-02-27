@@ -107,6 +107,60 @@ const getProjectPageProps = async (context: any) => {
   };
 };
 
+const getPlaylistPageProps = async (context: any) => {
+  const { req, query } = context;
+  const { playlistId } = query;
+  const user = await isUserAuthenticated(req);
+
+  let slug = routes.home;
+
+  if (playlistId) {
+    slug = routes.youfocusPlaylist;
+  }
+
+  const seoMeta = getSEOMeta(slug);
+
+  if (!playlistId || !seoMeta) {
+    return {
+      redirect: {
+        destination: routes.home,
+        permanent: false,
+      },
+      props: { slug },
+    };
+  }
+
+  try {
+    const { status, data } = await fetchAPIData(
+      routes.api.youfocusUserPlaylistById(playlistId, user?.id)
+    );
+
+    if (!status || !data) {
+      return {
+        redirect: {
+          destination: routes.home,
+          permanent: false,
+        },
+      };
+    }
+    return {
+      props: {
+        slug,
+        seoMeta,
+        playlist: data,
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: routes.home,
+        permanent: false,
+      },
+      props: { slug },
+    };
+  }
+};
+
 const getCoursePageProps = async (context: any) => {
   const { req, query } = context;
   const { courseSlug, courseId, chapterId } = query;
@@ -400,4 +454,5 @@ export {
   getWebinarPageProps,
   getWebinarLandingPageProps,
   getCertificatePageProps,
+  getPlaylistPageProps,
 };

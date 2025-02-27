@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   LandingPageHero,
   SEO,
@@ -12,9 +11,10 @@ import {
 import { WebinarsLandingPageProps } from '@/interfaces';
 import { getWebinarLandingPageProps } from '@/utils';
 import { STATIC_FILE_PATH, routes } from '@/constant';
+import { Fragment, useState } from 'react';
 
 const Home = ({ seoMeta, webinars }: WebinarsLandingPageProps) => {
-  const [filteredWebinars, setFilteredWebinars] = React.useState(webinars);
+  const [filteredWebinars, setFilteredWebinars] = useState(webinars);
 
   const handleToggle = (activeOption: string) => {
     if (activeOption === 'Upcoming') {
@@ -27,7 +27,7 @@ const Home = ({ seoMeta, webinars }: WebinarsLandingPageProps) => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <LandingPageHero
         sectionHeaderProps={{
@@ -72,7 +72,7 @@ const Home = ({ seoMeta, webinars }: WebinarsLandingPageProps) => {
           </FlexContainer>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

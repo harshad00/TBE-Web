@@ -1,4 +1,4 @@
-import { databaseModels, DIFFICULTY_LEVEL, ROADMAPS } from '@/constant';
+import { DATABASE_MODELS, DIFFICULTY_LEVEL, ROADMAPS } from '@/constant';
 import { CourseChapterModel, CourseModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
 
@@ -70,5 +70,5 @@ const CourseSchema = new Schema<CourseModel>(
 );
 
 const Course: Model<CourseModel> =
-  models?.Course || model<CourseModel>(databaseModels.COURSE, CourseSchema);
+  models?.Course || model<CourseModel>(DATABASE_MODELS.COURSE, CourseSchema);
 export default Course;

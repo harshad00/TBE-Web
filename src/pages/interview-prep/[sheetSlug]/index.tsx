@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import {
   Button,
   QuestionLink,
@@ -12,7 +12,7 @@ import {
 } from '@/components';
 import { SheetPageProps } from '@/interfaces';
 import { getSheetPageProps } from '@/utils';
-import { useApi, useUser } from '@/hooks';
+import { useAnalytics, useApi, useUser } from '@/hooks';
 import { routes } from '@/constant';
 
 const SheetPage = ({
@@ -50,6 +50,7 @@ const SheetPage = ({
 
   const { makeRequest } = useApi(`interview-prep/${sheet}`);
   const { user } = useUser();
+  const { trackEvent } = useAnalytics();
 
   if (!sheet) return null;
 
@@ -70,6 +71,17 @@ const SheetPage = ({
           sheetId: sheet._id,
           questionId: currentQuestionId,
           isCompleted: newCompletionStatus,
+        },
+      });
+
+      trackEvent({
+        action: 'INTERVIEW_SHEET_PROGRESS',
+        category: 'InterviewSheet',
+        label: 'Interview Sheet Progress',
+        value: {
+          userId: user?.id,
+          sheetId: sheet._id,
+          questionId: currentQuestionId,
         },
       });
 
@@ -111,7 +123,7 @@ const SheetPage = ({
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section className='md:p-2 p-2'>
         <SheetHeroContainer
@@ -199,7 +211,7 @@ const SheetPage = ({
           </FlexContainer>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

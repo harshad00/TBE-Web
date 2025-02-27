@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { CardContainerB, LoadingSpinner, SEO } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps, mapProjectResponseToCard } from '@/utils';

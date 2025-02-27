@@ -54,24 +54,24 @@
 
   /* 2. Fonts */
   .heading-1 {
-    @apply text-header-1 font-black text-contentLight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-black text-contentLight;
   }
 
   .heading-2 {
-    @apply text-header-2 font-bold text-contentLight;
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-contentLight;
   }
 
   .heading-3 {
-    @apply text-header-3 font-bold text-contentLight;
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold text-contentLight;
   }
 
   .heading-4,
   .md-1 {
-    @apply text-header-4 font-semibold text-contentLight;
+    @apply text-xl md:text-2xl lg:text-3xl font-semibold text-contentLight;
   }
 
   .heading-5 {
-    @apply text-header-5 font-semibold text-contentLight;
+    @apply text-lg md:text-xl lg:text-2xl font-semibold text-contentLight;
   }
 
   .subtitle {
@@ -92,6 +92,10 @@
 
   .button-text {
     @apply text-button-text font-bold text-contentLight;
+  }
+
+  .label {
+    @apply text-label font-semibold text-greyDark;
   }
 
   /* Image */
@@ -118,7 +122,23 @@
     @apply list-disc;
   }
 
+  .error {
+    @apply text-grey text-contentLight font-semibold;
+  }
+
   .text-accent {
     color: #ecf1f4;
+  }
+
+  .certificate-username {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[160%] font-bold capitalize whitespace-nowrap overflow-hidden text-ellipsis text-[0.8rem] text-[0.6rem] md:text-[2rem] lg:text-[2.5rem];
+  }
+
+  .certificate-coursename {
+    @apply absolute top-[54%] left-1/2 transform -translate-x-1/2 font-bold capitalize whitespace-nowrap overflow-hidden text-ellipsis text-[0.6rem] sm:text-[1.2rem] md:text-[2rem] lg:text-[2.5rem] text-[#FF5757];
+  }
+
+  .certificate-date {
+    @apply absolute top-[62%] left-1/2 transform -translate-x-1/2 font-bold text-[0.6rem] sm:text-[1.5rem] md:text-[2rem];
   }
 }

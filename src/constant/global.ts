@@ -1,5 +1,12 @@
-import { PortfolioTemplateProps, ProductDataProps } from '@/interfaces';
+import {
+  CohortDataProps,
+  MentorshipCardProps,
+  PortfolioTemplateProps,
+  ProductDataProps,
+} from '@/interfaces';
 import { routes } from './routes';
+import { envConfig } from './envConfig';
+import { ComponentPropsWithoutRef } from 'react';
 
 // Paths
 const STATIC_FILE_PATH = {
@@ -52,6 +59,19 @@ const products: ProductDataProps = {
     slug: routes.portfolio,
     description: 'Create Your Personal Portfolio Website',
   },
+  youfocus: {
+    label: 'YouFocus',
+    slug: routes.youfocus,
+    description: 'Learn Tech From YouTube with 0 Distractions',
+  },
+};
+
+const cohorts: CohortDataProps = {
+  bringYourIdea: {
+    label: 'Bring Your Idea',
+    slug: routes.cohort.bringYourIdea,
+    description: 'Build & Launch Your First Startup with Mentorship',
+  },
 };
 
 // Global links
@@ -62,23 +82,28 @@ const LINKS = {
   youtube: 'https://www.youtube.com/@TheBoringEducation',
   submitPortfolio:
     'https://docs.google.com/forms/d/e/1FAIpQLSd6_B3RPRCC1clar-Kq9QdDNp_shebXj6jSyW90JPNuaRn4AA/viewform?usp=dialog',
-  joinCampusAmbassador:
+  joinDevRelAdvocate:
     'https://docs.google.com/forms/d/e/1FAIpQLSfYHF6BlVfzcela42McNzHZo3WFfjgEV_e0EBrlsxNUdmK_KA/viewform?usp=dialog',
   sachinLinkedIn: 'https://www.linkedin.com/in/imsks/',
   officialLinkedIn: 'https://www.linkedin.com/company/theboringeducation',
+  contributeOpenSource:
+    'https://theboringeducation.notion.site/Contribute-The-Boring-Education-8171f19257fd4ef99b7287555eb5062b',
+  applyBYICohort:
+    'https://docs.google.com/forms/d/e/1FAIpQLScvm2cajYfHkg-j6EBfJv-oRYZkPqVn9_qpmggvgCNeHY2cMw/viewform',
+  postmanDocs: 'https://documenter.getpostman.com/view/10360102/2sAYdcsYK3',
 };
 
 // Google analytics
-const gtag = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`;
+const gtag = `https://www.googletagmanager.com/gtag/js?id=${envConfig.GA_TRACKING_ID}`;
 
 const googleAnalyticsScript = `
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+          gtag('config', '${envConfig.GA_TRACKING_ID}');
           `;
 
-const favicons: Array<React.ComponentPropsWithoutRef<'link'>> = [
+const favicons: Array<ComponentPropsWithoutRef<'link'>> = [
   {
     rel: 'apple-touch-icon',
     sizes: '180x180',
@@ -121,26 +146,19 @@ const apiStatusCodes = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
-const mentorshipPlans: { title: string; description: string; link: string }[] =
-  [
-    {
-      title: 'Book Tech Guidance',
-      description: 'Get mentored by working professionals',
-      link: '',
-    },
-    {
-      title: 'Book Resume Review',
-      description:
-        'Get a resume review to enhance your job application and stand out to employers.',
-      link: '',
-    },
-    {
-      title: 'Cracking Remote Jobs',
-      description:
-        'know the secret behind cracking remote jobs by industry experts.',
-      link: '',
-    },
-  ];
+const MENTORSHIP_CARDS: MentorshipCardProps[] = [
+  {
+    heading: 'Book Tech Guidance',
+    description: 'Get mentored by working professionals',
+    link: 'https://topmate.io/imsks/714265',
+  },
+  {
+    heading: 'Book Resume Review',
+    description:
+      'Get a resume review to enhance your job application and stand out to employers.',
+    link: 'https://topmate.io/imsks/714264',
+  },
+];
 
 const IN_DEV_PAGES = ['/projects'];
 const projectGroupWhatsapp = 'https://chat.whatsapp.com/D1ko12SykD1LfvJwmNQ48A';
@@ -268,8 +286,9 @@ export {
   apiStatusCodes,
   IN_DEV_PAGES,
   projectGroupWhatsapp,
-  mentorshipPlans,
+  MENTORSHIP_CARDS,
   SCREEN_BREAKPOINTS,
   PORTFOLIO_CARDS,
   PORTFOLIO_TEMPLATES,
+  cohorts,
 };

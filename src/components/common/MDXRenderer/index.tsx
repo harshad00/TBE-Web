@@ -1,6 +1,6 @@
-import React from 'react';
 import MarkdownIt from 'markdown-it';
 import { MDXRendererProps } from '@/interfaces';
+import { Fragment } from 'react';
 
 const MDXRenderer = ({ mdxSource, actions }: MDXRendererProps) => {
   const md = new MarkdownIt({
@@ -74,7 +74,7 @@ const MDXRenderer = ({ mdxSource, actions }: MDXRendererProps) => {
   const actionContainer = actions && (
     <div className='flex justify-end gap-2'>
       {actions.map((action, index) => (
-        <React.Fragment key={index}>{action}</React.Fragment>
+        <Fragment key={index}>{action}</Fragment>
       ))}
     </div>
   );
