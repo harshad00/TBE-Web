@@ -10,28 +10,17 @@ const Home = ({ seoMeta }: PageProps) => {
       <SEO seoMeta={seoMeta} />
       <LandingPageHero
         sectionHeaderProps={{
-          heading: 'Always Distracted While Learning?',
-          focusText: '',
+          heading: 'Learn From YouTube',
+          focusText: 'without Distractions',
         }}
-        heroText='Master Skills, Minus the Distractions'
+        heroText='Just Add A YouTube Playlist and Start Learning'
         primaryButton={
           <LinkButton
             href={routes.youfocusAddPlaylist}
             className='w-full sm:w-fit'
             buttonProps={{
               variant: 'PRIMARY',
-              text: 'Add Playlist',
-              className: 'w-full',
-            }}
-          />
-        }
-        secondaryButton={
-          <LinkButton
-            href={routes.explorePlaylist}
-            className='w-full sm:w-fit'
-            buttonProps={{
-              variant: 'OUTLINE',
-              text: 'Explore',
+              text: 'Add YouTube Playlist',
               className: 'w-full',
             }}
           />

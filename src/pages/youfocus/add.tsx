@@ -8,6 +8,7 @@ import {
   SectionHeaderContainer,
   SEO,
   InputFieldContainer,
+  Toast,
 } from '@/components';
 import { getPreFetchProps } from '@/utils';
 import { useApi, useUser } from '@/hooks';
@@ -87,11 +88,9 @@ const Home = ({ seoMeta }: PageProps) => {
               isLoading={loading}
               onClick={handleAddPlaylist}
             />
-            {errorMessage && (
-              <p className='error text-red-500'>{errorMessage}</p>
-            )}
+            {errorMessage && <Toast message={errorMessage} type='error' />}
             {successMessage && (
-              <p className='successMessage text-green-500'>{successMessage}</p>
+              <Toast message={successMessage} type='success' />
             )}
           </FlexContainer>
         </FlexContainer>
