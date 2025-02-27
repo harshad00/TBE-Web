@@ -4,7 +4,7 @@ import {
   UserProjectChapterModel,
 } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
-import { databaseModels } from '@/constant';
+import { DATABASE_MODELS } from '@/constant';
 
 const UserProjectChapterSchema = new Schema<UserProjectChapterModel>(
   {
@@ -41,13 +41,13 @@ const UserProjectSchema = new Schema<UserProjectModel>(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      ref: databaseModels.USER,
+      ref: DATABASE_MODELS.USER,
       required: [true, 'User ID is required'],
       index: true,
     },
     projectId: {
       type: Schema.Types.ObjectId,
-      ref: databaseModels.PROJECT,
+      ref: DATABASE_MODELS.PROJECT,
       required: [true, 'Project ID is required'],
       index: true,
     },
@@ -74,7 +74,7 @@ const UserProjectSchema = new Schema<UserProjectModel>(
 );
 
 UserProjectSchema.virtual('project', {
-  ref: databaseModels.PROJECT,
+  ref: DATABASE_MODELS.PROJECT,
   localField: 'projectId',
   foreignField: '_id',
   justOne: true,
@@ -82,6 +82,6 @@ UserProjectSchema.virtual('project', {
 
 const UserProject: Model<UserProjectModel> =
   models?.UserProject ||
-  model<UserProjectModel>(databaseModels.USER_PROJECT, UserProjectSchema);
+  model<UserProjectModel>(DATABASE_MODELS.USER_PROJECT, UserProjectSchema);
 
 export default UserProject;

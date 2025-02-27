@@ -1,12 +1,12 @@
-import React from 'react';
 import { LandingPageHero, CardContainerA, SEO, LinkButton } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
 import { STATIC_FILE_PATH, TBP_FEATURES, routes } from '@/constant';
+import { Fragment } from 'react';
 
 const Home = ({ seoMeta }: PageProps) => {
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <LandingPageHero
         sectionHeaderProps={{
@@ -25,7 +25,7 @@ const Home = ({ seoMeta }: PageProps) => {
             }}
           />
         }
-        backgroundImageUrl={`${STATIC_FILE_PATH.svg}/hero-image.svg`}
+        backgroundImageUrl={`${STATIC_FILE_PATH.svg}/shiksha.svg`}
       />
       <CardContainerA
         heading='What We Do'
@@ -33,7 +33,7 @@ const Home = ({ seoMeta }: PageProps) => {
         cards={TBP_FEATURES}
         borderColour={4}
       />
-    </React.Fragment>
+    </Fragment>
   );
 };
 

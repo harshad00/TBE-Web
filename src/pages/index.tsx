@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   LandingPageHero,
   CardContainerA,
@@ -7,8 +6,8 @@ import {
   LinkButton,
   CardContainerB,
   Community,
-  MentorshipPlans,
   Banner,
+  NotificationContainer,
 } from '@/components';
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
@@ -21,12 +20,13 @@ import {
   routes,
 } from '@/constant';
 import { useRouter } from 'next/router';
+import { Fragment } from 'react';
 
 const Home = ({ seoMeta }: PageProps) => {
   const router = useRouter();
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <LandingPageHero
         sectionHeaderProps={{
@@ -70,31 +70,31 @@ const Home = ({ seoMeta }: PageProps) => {
         cards={PRODUCTS}
         borderColour={2}
       />
+      <NotificationContainer />
       <Banner
-        title='Feeling Stuck?'
-        description='Need a Resume Review or help with Learning Tech. We can help.'
-        buttonText='Book Free Session'
-        buttonLink='https://topmate.io/imsks'
+        title='Bring Your Idea Cohort 2 Starts Soon'
+        description='Join our Cohort and learn how to Build Tech Products.'
+        buttonText='Register Now'
+        buttonLink={routes.cohort.bringYourIdea}
         imageSrc={`${STATIC_FILE_PATH.svg}/laptop.svg`}
         variant='VARIANT_A'
       />
       <Banner
-        title='Become Our Brand Ambassador!'
-        description='Represent us at Your Campus by Joining us as Campus Ambassador.'
-        buttonText='Join us'
-        buttonLink={LINKS.joinCampusAmbassador}
+        title='Join as DevRel Advocate'
+        description='Join our Community as a DevRel Advocate and help us grow.'
+        buttonText='Apply as DevRel Advocate'
+        buttonLink={LINKS.joinDevRelAdvocate}
         imageSrc={`${STATIC_FILE_PATH.svg}/community.svg`}
         variant='VARIANT_B'
       />
       <Community />
-      <MentorshipPlans />
       <CardContainerA
         heading='What We Do'
         focusText='Differently'
         cards={USP}
       />
       <Testimonials />
-    </React.Fragment>
+    </Fragment>
   );
 };
 

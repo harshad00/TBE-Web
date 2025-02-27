@@ -1,5 +1,5 @@
-import React from 'react';
 import { CertificateBannerProps } from '@/interfaces';
+import { createElement } from 'react';
 
 const CertificateBanner = ({
   backgroundColor,
@@ -20,7 +20,7 @@ const CertificateBanner = ({
         <h2 className='text-lg font-bold'>{heading}</h2>
         <p className='text-sm'>{subtext}</p>
       </div>
-      <div className='text-2xl'>{icon && React.createElement(icon)} </div>
+      <div className='text-2xl'>{icon && createElement(icon)} </div>
     </div>
   );
 };

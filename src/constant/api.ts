@@ -1,6 +1,7 @@
 import {
   CertificateType,
   DifficultyType,
+  NotificationType,
   QuestionFrequencyType,
   RoadmapsType,
   SkillsType,
@@ -34,10 +35,22 @@ const DIFFICULTY_LEVEL: DifficultyType[] = [
 
 const CERTIFICATE_TYPE: CertificateType[] = ['WEBINAR', 'SHIKSHA'];
 
+const NOTIFICATION_TYPE: NotificationType[] = [
+  'WEBINAR',
+  'SHIKSHA',
+  'PROJECT',
+  'INTERVIEW PREP',
+  'UPDATE',
+];
+
+const YOUTUBE_API_PATH = 'https://www.googleapis.com/youtube/v3';
+
 export {
   PROJECT_SKILLS,
   ROADMAPS,
   DIFFICULTY_LEVEL,
   INTERVIEW_QUESTION_FREQUENCY,
   CERTIFICATE_TYPE,
+  YOUTUBE_API_PATH,
+  NOTIFICATION_TYPE,
 };

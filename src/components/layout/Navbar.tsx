@@ -12,14 +12,12 @@ import {
   Text,
   UserAvatar,
 } from '..';
-import { FaInstagram, FaYoutube } from 'react-icons/fa';
-import { usePathname } from 'next/navigation';
+import { FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { useSession } from 'next-auth/react';
-import { LINKS, routes, TOP_NAVIGATION } from '@/constant';
+import { LINKS, TOP_NAVIGATION } from '@/constant';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const path = usePathname();
   const session = useSession();
 
   const [openPopover, setOpenPopover] = useState<string | null>(null);
@@ -34,7 +32,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className='flex items-center justify-between p-4 lg:px-8'>
+      <nav className='flex items-center justify-between p-2 lg:px-8'>
         <div className='w-100 flex'>
           <Logo />
         </div>
@@ -50,13 +48,19 @@ const Navbar = () => {
         </div>
         <div className='hidden items-center lg:flex lg:gap-x-4'>
           <PopoverContainer
+            label='Cohorts'
+            isOpen={openPopover === 'cohorts'}
+            onToggle={() => handleSetOpen('cohorts')}
+          >
+            <NavbarDropdownContainer links={TOP_NAVIGATION.cohorts} />
+          </PopoverContainer>
+          <PopoverContainer
             label='Products'
             isOpen={openPopover === 'products'}
             onToggle={() => handleSetOpen('products')}
           >
             <NavbarDropdownContainer links={TOP_NAVIGATION.products} />
           </PopoverContainer>
-
           <PopoverContainer
             label='Links'
             panelClasses='-left-6'
@@ -65,9 +69,7 @@ const Navbar = () => {
           >
             <NavbarDropdownContainer links={TOP_NAVIGATION.links} />
           </PopoverContainer>
-          {!path?.startsWith(routes.register) && (
-            <LoginWithGoogleButton text='Login' />
-          )}
+          <LoginWithGoogleButton text='Login' />
           <UserAvatar />
         </div>
       </nav>
@@ -78,7 +80,7 @@ const Navbar = () => {
         onClose={setMobileMenuOpen}
       >
         <div className='fixed inset-0 z-50' />
-        <Dialog.Panel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-4 py-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
+        <Dialog.Panel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-2 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
           <div className='flex items-center justify-between'>
             <Logo />
             <button
@@ -117,7 +119,12 @@ const Navbar = () => {
                   </FlexContainer>
                 )}
                 <MobileNavbarLinksContainer
-                  title='Our Products'
+                  title='Cohorts'
+                  links={TOP_NAVIGATION.cohorts}
+                  onLinkClick={handleCloseMobileMenu}
+                />
+                <MobileNavbarLinksContainer
+                  title='Products'
                   links={TOP_NAVIGATION.products}
                   onLinkClick={handleCloseMobileMenu}
                 />
@@ -146,6 +153,9 @@ const Navbar = () => {
                     </Link>
                     <Link href={LINKS.youtube} target='_blank'>
                       <FaYoutube color='black' size='2em' />
+                    </Link>
+                    <Link href={LINKS.officialLinkedIn} target='_blank'>
+                      <FaLinkedin color='black' size='2em' />
                     </Link>
                   </FlexContainer>
                 </FlexContainer>

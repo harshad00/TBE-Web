@@ -40,5 +40,4 @@ next-env.d.ts
 
 # next-sitemap
 sitemap-*.xml
-package-lock.json
 .gitignore

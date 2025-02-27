@@ -8,19 +8,18 @@ const routes = {
   allCourses: {
     logicBuildingForEveryone: '/shiksha/logic-building-for-everyone',
     basicsOfProgrammingWithJS: '/shiksha/basics-of-programming-with-js',
+    zeroToOneFrontend: '/shiksha/zero-to-one-frontend-development',
+    zeroToOneBackend: '/shiksha/zero-to-one-backend-development',
   },
   roadmaps: '/roadmaps',
-  register: '/register',
   workshops: '/workshops',
   webinar: '/webinar',
   portfolio: '/portfolio',
-  os: '/os',
   // Projects
   projects: '/projects',
   projectsExplore: '/projects/explore',
   allProjects: {
     pharmashiftI: '/projects/pharmasift-i',
-    pharmashiftII: '/projects/pharmasift-ii',
   },
   // Interview Prep
   interviewPrep: '/interview-prep',
@@ -34,16 +33,28 @@ const routes = {
   certificate: '/certificate',
   contactUs: '/contact',
   user: {
+    dashboard: '/user/dashboard',
     courses: '/shiksha/my-courses',
     projects: '/projects/my-projects',
     sheets: '/interview-prep/my-sheets',
+    playlists: 'youfocus/my-playlist',
   },
+  register: '/register',
   internals: {
     landing: {
       products: 'products',
       portfolio: 'portfolio',
       webinar: 'webinar',
     },
+  },
+  // YouFocus
+  youfocus: '/youfocus',
+  youfocusAddPlaylist: '/youfocus/add',
+  youfocusPlaylist: '/youfocus/playlist',
+  explorePlaylist: '/youfocus/explore-playlist',
+  // Cohort
+  cohort: {
+    bringYourIdea: '/cohort/bring-your-idea',
   },
   404: '/404',
   api: {
@@ -55,6 +66,7 @@ const routes = {
     myCourses: '/user/shiksha',
     myProjects: '/user/projects',
     mySheets: '/user/interview-prep',
+    myPlaylists: 'user/plylists',
     interviewPrep: '/interview-prep',
     enrollCourse: '/user/shiksha/enroll',
     enrollProject: '/user/projects/enroll',
@@ -88,6 +100,16 @@ const routes = {
     webinarBySlug: (webinar: string) => `/webinar/${webinar}`,
     certificate: '/certificate',
     certificateById: (certificate: string) => `/certificate/${certificate}`,
+    youfocusPlaylist: '/youfocus',
+    youfocusUserPlaylistById: (playlistId: string, userId?: string) => {
+      let url = `/youfocus/${playlistId}`;
+      if (userId) {
+        url += `?userId=${userId}`;
+      }
+      return url;
+    },
+    userDashboard: '/user/dashboard',
+    notification: '/notification',
   },
 };
 

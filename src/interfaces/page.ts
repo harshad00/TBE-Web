@@ -6,6 +6,8 @@ import {
   CertificateModel,
   ProjectDocumentModel,
   WebinarModel,
+  UserPlaylistModel,
+  PlaylistModel,
 } from './database';
 import { GetSEOMetaResponseType } from './global';
 
@@ -35,6 +37,11 @@ export interface ProjectPageProps extends PageProps {
   currentChapterId: string;
 }
 
+export interface PlaylistPageProps extends PageProps {
+  playlist: PlaylistPickedPageProps;
+  PlaylistId: string;
+}
+
 export interface CoursePageProps extends PageProps {
   course: BaseShikshaCourseResponseProps;
   meta: string;
@@ -58,3 +65,24 @@ export interface WebinarsLandingPageProps extends PageProps {
 export interface CertificatePageProps extends PageProps {
   certificate: CertificateModel;
 }
+
+export interface CardItem {
+  id: string;
+  title: string;
+  description?: string;
+  thumbnail?: string;
+}
+
+export type PlaylistPickedPageProps = Pick<
+  UserPlaylistModel & { _id: string },
+  '_id' | 'playlistId' | 'isRecommended' | 'learningTime'
+> &
+  Pick<
+    PlaylistModel,
+    | 'playlistName'
+    | 'description'
+    | 'thumbnail'
+    | 'tags'
+    | 'videos'
+    | 'referrerBy'
+  >;

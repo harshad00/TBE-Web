@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Section,
   FlexContainer,
@@ -19,12 +18,13 @@ import {
 import { getPreFetchProps } from '@/utils';
 import { PageProps } from '@/interfaces';
 import { useRouter } from 'next/router';
+import { Fragment } from 'react';
 
 const Portfolio = ({ seoMeta }: PageProps) => {
   const router = useRouter();
 
   return (
-    <React.Fragment>
+    <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section>
         <FlexContainer
@@ -129,7 +129,7 @@ const Portfolio = ({ seoMeta }: PageProps) => {
           </Section>
         </FlexContainer>
       </Section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

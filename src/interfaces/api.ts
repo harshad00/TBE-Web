@@ -1,9 +1,12 @@
 import {
   CertificateType,
+  CompanyDetails,
   CourseChapterModel,
   CourseModel,
   InterviewSheetModel,
   InterviewSheetQuestionModel,
+  NotificationType,
+  PlaylistModel,
   ProjectChapter,
 } from '.';
 
@@ -304,4 +307,45 @@ export interface AddCertificateRequestPayloadProps {
   date: string;
   programName: string;
   programId: string;
+}
+
+export interface AddNotificationRequestPayloadProps {
+  type: NotificationType;
+  text: string;
+  isHTML?: boolean;
+  link?: string;
+  isExternalLink?: boolean;
+}
+
+export interface UpdateNotificationRequestPayloadProps {
+  notificationId: string;
+  updatedNotification: Partial<AddNotificationRequestPayloadProps>;
+}
+
+export interface AddJobRequestPayloadProps {
+  job_id: string;
+  job_title: string;
+  company: CompanyDetails;
+  skills: string[];
+  role: string[];
+  location: string;
+  experience?: {
+    min: number;
+    max: number;
+  };
+  jobUrl: string;
+  salary?: {
+    min: string;
+    max: string;
+  };
+  isInternship?: boolean;
+  platform: string;
+}
+
+export interface UserPlaylistResponseProps extends PlaylistModel {
+  _id: string;
+  userId: string;
+  isPublic: boolean;
+  isRecommended: boolean;
+  learningTime: number;
 }

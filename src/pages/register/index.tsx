@@ -3,7 +3,6 @@ import LoginWithGoogleButton from '@/components/common/Buttons/LoginWithGoogleBu
 import { PageProps } from '@/interfaces';
 import { getPreFetchProps } from '@/utils';
 import Image from 'next/image';
-import React from 'react';
 
 const Register = ({ seoMeta }: PageProps) => {
   return (

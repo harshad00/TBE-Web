@@ -4,11 +4,19 @@ import {
   TopNavbarContainerProps,
   PrimaryCardWithCTAProps,
 } from '@/interfaces';
-import { LINKS, products, STATIC_FILE_PATH } from '../global';
+import { cohorts, LINKS, products, STATIC_FILE_PATH } from '../global';
 import { v4 } from 'uuid';
 import { routes } from '..';
 
 const TOP_NAVIGATION: TopNavbarContainerProps = {
+  cohorts: [
+    {
+      id: v4(),
+      name: cohorts.bringYourIdea.label,
+      description: cohorts.bringYourIdea.description,
+      href: cohorts.bringYourIdea.slug,
+    },
+  ],
   products: [
     {
       id: v4(),
@@ -18,15 +26,21 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
     },
     {
       id: v4(),
+      name: products.interviewPrep.label,
+      description: products.interviewPrep.description,
+      href: products.interviewPrep.slug,
+    },
+    {
+      id: v4(),
       name: products.webinar.label,
       description: products.webinar.description,
       href: products.webinar.slug,
     },
     {
       id: v4(),
-      name: products.interviewPrep.label,
-      description: products.interviewPrep.description,
-      href: products.interviewPrep.slug,
+      name: products.youfocus.label,
+      description: products.youfocus.description,
+      href: products.youfocus.slug,
     },
     {
       id: v4(),
@@ -58,27 +72,17 @@ const TOP_NAVIGATION: TopNavbarContainerProps = {
     },
     {
       id: v4(),
-      name: 'Join Campus Ambassador',
-      description: 'Join our Campus Ambassador Program',
-      href: LINKS.joinCampusAmbassador,
+      name: 'Join as DevRel Advocate',
+      description: 'Join our DevRel Advocate',
+      href: LINKS.joinDevRelAdvocate,
       target: '_blank',
     },
   ],
   user: [
     {
       id: v4(),
-      name: 'My Courses',
-      href: routes.user.courses,
-    },
-    {
-      id: v4(),
-      name: 'My Projects',
-      href: routes.user.projects,
-    },
-    {
-      id: v4(),
-      name: 'My Sheets',
-      href: routes.user.sheets,
+      name: 'Dashboard',
+      href: routes.user.dashboard,
     },
   ],
 };
@@ -96,7 +100,7 @@ const PRODUCTS: PrimaryCardWithCTAProps[] = [
   },
   {
     id: 'interview Prep',
-    image: `${STATIC_FILE_PATH.svg}/shiksha.svg`,
+    image: `${STATIC_FILE_PATH.svg}/interview.svg`,
     imageAltText: products.interviewPrep.label,
     title: products.interviewPrep.label,
     content: products.interviewPrep.description,
@@ -106,13 +110,23 @@ const PRODUCTS: PrimaryCardWithCTAProps[] = [
   },
   {
     id: 'webinar',
-    image: `${STATIC_FILE_PATH.svg}/workshops.svg`,
+    image: `${STATIC_FILE_PATH.svg}/webinar-hero.svg`,
     imageAltText: products.webinar.label,
     title: products.webinar.label,
     content: products.webinar.description,
     href: routes.webinar,
     active: true,
-    ctaText: 'Explore Workshops',
+    ctaText: 'Explore Webinars',
+  },
+  {
+    id: 'youfocus',
+    image: `${STATIC_FILE_PATH.svg}/youfocus.svg`,
+    imageAltText: products.youfocus.label,
+    title: products.youfocus.label,
+    content: products.youfocus.description,
+    href: routes.youfocus,
+    active: true,
+    ctaText: 'Explore YouFocus',
   },
   {
     id: 'portfolio',
@@ -167,40 +181,6 @@ const TBP_PROJECTS: PrimaryCardWithCTAProps[] = [
     href: routes.allProjects.pharmashiftI,
     active: true,
     ctaText: 'Start The Project',
-  },
-  {
-    id: 'pharmasift-ii',
-    image: `${STATIC_FILE_PATH.svg}/tbp-pharmasift-2.svg`,
-    imageAltText: 'The Boring Projects Pharmasift Part II',
-    title: 'Pharmasift Part II',
-    content:
-      'Design and Develop A Medicine App that Compares Med Prices with JavaScript',
-    href: routes.allProjects.pharmashiftII,
-    active: false,
-    ctaText: 'Start The Project',
-  },
-];
-
-const SHIKSHA_COURSES: PrimaryCardWithCTAProps[] = [
-  {
-    id: 'logic-building-for-everyone',
-    image: `${STATIC_FILE_PATH.svg}/tbp-pharmasift-1.svg`,
-    imageAltText: 'Learn Logic Building with Real-world Coding Challenges.',
-    title: 'Logic Building For Everyone',
-    content: 'Learn Logic Building with Real-world Coding Challenges.',
-    href: routes.allCourses.logicBuildingForEveryone,
-    active: true,
-    ctaText: 'Start The Course',
-  },
-  {
-    id: 'basics-of-programming-with-js',
-    image: `${STATIC_FILE_PATH.svg}/tbp-pharmasift-1.svg`,
-    imageAltText: 'Start Your Programming Journey with JavaScript.',
-    title: 'Basics of Programming with JS',
-    content: 'Start Your Programming Journey with JavaScript.',
-    href: routes.allCourses.basicsOfProgrammingWithJS,
-    active: false,
-    ctaText: 'Start The Course',
   },
 ];
 
@@ -297,7 +277,7 @@ const TBP_FEATURES: PrimaryCardProps[] = [
     id: v4(),
     title: `Book Tech Mentorship`,
     content: `Discuss Every issue you're facing in 1:1 Mentorship Sessions.`,
-    image: `${STATIC_FILE_PATH.svg}/webinar.svg`,
+    image: `${STATIC_FILE_PATH.svg}/workshop.svg`,
     imageAltText: `doubt session`,
   },
 ];
@@ -321,7 +301,7 @@ const TBIP_FEATURES: PrimaryCardProps[] = [
     id: v4(),
     title: `Ask Questions`,
     content: `Ask Interview Prep Questions in Community. We’re here to help.`,
-    image: `${STATIC_FILE_PATH.svg}/webinar.svg`,
+    image: `${STATIC_FILE_PATH.svg}/workshop.svg`,
     imageAltText: `doubt session`,
   },
 ];
@@ -417,6 +397,29 @@ const MY_PREV_EXPERIENCE = [
   },
 ];
 
+const YOUFOCUS_FEATURES: PrimaryCardProps[] = [
+  {
+    id: v4(),
+    title: `Distraction-Free Learning Environment`,
+    content: `Eliminate irrelevant videos and other distractions to stay fully focused on learning.`,
+    image: `${STATIC_FILE_PATH.svg}/mentorship.svg`,
+    imageAltText: `Less distraction`,
+  },
+  {
+    id: v4(),
+    title: `Integrated Timer`,
+    content: `Optimize the learning process fro efficiency and retention using a timer.`,
+    image: `${STATIC_FILE_PATH.svg}/peer-to-peer-learning.svg`,
+    imageAltText: `Timer based`,
+  },
+  {
+    id: v4(),
+    title: `Community Recommended Playlists`,
+    content: `Leverage user reviews and ratings to surface the best playlists for any skill.`,
+    image: `${STATIC_FILE_PATH.svg}/workshop.svg`,
+    imageAltText: `Recommendation`,
+  },
+];
 export {
   PRODUCTS,
   TESTIMONIALS,
@@ -425,7 +428,7 @@ export {
   TBP_FEATURES,
   MY_PREV_EXPERIENCE,
   TBP_PROJECTS,
-  SHIKSHA_COURSES,
   INTERVIEW_PREP_SHEETS,
   TBIP_FEATURES,
+  YOUFOCUS_FEATURES,
 };

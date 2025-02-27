@@ -1,4 +1,10 @@
-import { HTMLInputTypeAttribute, MouseEventHandler, ReactNode } from 'react';
+import {
+  ElementType,
+  HTMLInputTypeAttribute,
+  MouseEventHandler,
+  ReactNode,
+  RefObject,
+} from 'react';
 import {
   CertificateType,
   GetSEOMetaResponseType,
@@ -7,13 +13,13 @@ import {
 } from '.';
 
 export interface SectionProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   id?: string;
 }
 
 export interface LinkProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   href: string;
   target?: '_blank';
@@ -24,7 +30,7 @@ export interface LinkProps {
 
 export interface TextProps {
   level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'label';
-  children: React.ReactNode;
+  children: ReactNode;
   variant?: 'SUCCESS' | 'ERROR';
   className?: string;
   textCenter?: boolean;
@@ -57,10 +63,11 @@ export interface ButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   active?: boolean;
   isLoading?: boolean;
+  animationClasses?: string;
 }
 
 export interface PageLayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export interface SectionHeaderProps {
@@ -73,14 +80,14 @@ export interface SectionHeaderProps {
 }
 
 export interface CardSectionContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   isWidthFull?: boolean;
   className?: string;
   gap?: string;
 }
 
 export interface GradientContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   backgroundColor?: string;
   childrenClassName?: string;
@@ -116,7 +123,7 @@ export interface PortfolioTemplateProps {
 }
 
 export interface FlexContainerProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   itemCenter?: boolean;
   justifyCenter?: boolean;
   className?: string;
@@ -149,7 +156,7 @@ export interface FooterLinksContainerProps {
 }
 
 export interface GridContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
@@ -209,6 +216,7 @@ export interface InputFieldContainerProps {
   onChange: (value: string) => void;
   className?: string;
   value?: string;
+  labelClass?: string;
   isOptional?: boolean;
 }
 
@@ -261,6 +269,7 @@ interface BaseCardContainerProps {
 
 export interface CardContainerAProps extends BaseCardContainerProps {
   cards: PrimaryCardProps[];
+  subtext?: string;
 }
 
 export interface CardContainerBProps extends BaseCardContainerProps {
@@ -316,7 +325,7 @@ export interface SheetHeroContainerProps {
 
 export interface AccordionProps {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   open?: boolean;
 }
 
@@ -359,7 +368,7 @@ export interface QuestionLinkProps {
 
 export interface MDXRendererProps {
   mdxSource: string;
-  actions?: React.ReactNode[];
+  actions?: ReactNode[];
 }
 
 export interface AlertProps {
@@ -377,7 +386,7 @@ export interface CertificateBannerProps {
   backgroundColor: string;
   heading: string;
   subtext: string;
-  icon: React.ElementType;
+  icon: ElementType;
   isLocked: boolean;
   onClick?: () => void;
 }
@@ -387,6 +396,7 @@ export interface CertificateContentProps {
   courseName: string;
   date: string;
   type: CertificateType;
+  certificateRef: RefObject<HTMLDivElement>;
 }
 
 export interface BackgroundImageProps {
@@ -423,4 +433,93 @@ export interface ToggleButtonProps {
   inactiveColor: string;
   onToggle: (activeOption: string) => void;
   textColors?: string[];
+}
+
+export interface PlaylistCardProps {
+  title: string;
+  description: string;
+  thumbnail: string;
+  isPlaylistVideoVisible?: boolean;
+  videoId?: string;
+}
+
+export interface PrimaryLongCardProps {
+  image: string;
+  imageAltText: string;
+  title: string;
+  content: string;
+  href?: string;
+  active?: boolean;
+  borderColour?: 1 | 2 | 3 | 4 | 5 | 6;
+  target?: '_blank';
+  launchingOn?: string;
+}
+
+export interface PlaylistVideoCardProps {
+  title: string;
+  image: string;
+  imageAltText: string;
+  href?: string;
+  onClick?: () => void;
+}
+interface Video {
+  title: string;
+  thumbnail: string;
+  videoId: string;
+}
+
+export interface PlaylistVideoTimeCard {
+  usertime: number;
+  userId: string;
+  playlistId: string;
+}
+
+export interface PlaylistCantainerCardProps {
+  id: string;
+  playlistName: string;
+  description: string;
+  thumbnail: string;
+  videos: Video[];
+  learningTime?: number;
+  isRecommended?: boolean;
+  playlistId?: string;
+}
+
+export interface MentorshipCardProps {
+  heading: string;
+  description: string;
+  link: string;
+}
+
+export interface CarouselProps {
+  items: any[];
+  renderItem: (item: any) => ReactNode;
+}
+
+export interface IconCardProps {
+  icon: ReactNode;
+  title: string;
+  description: string;
+  className?: string;
+  bgColor?: string;
+  key: number;
+}
+
+export interface HeaderLabelProps {
+  label: string;
+  className?: string;
+}
+
+export interface PlaylistRecommendProps {
+  playlistId: string;
+  userId: string;
+  recommend?: boolean;
+}
+
+export interface ToastProps {
+  message: string;
+  type?: 'success' | 'error' | 'info' | 'warning';
+  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+  duration?: number;
+  onClose?: () => void;
 }

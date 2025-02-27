@@ -1,0 +1,40 @@
+import { DATABASE_MODELS } from '@/constant';
+import { JobModel } from '@/interfaces';
+import { Model, Schema, model, models } from 'mongoose';
+
+const JobSchema: Schema<JobModel> = new Schema(
+  {
+    job_id: { type: String, required: true },
+    job_title: { type: String, required: true },
+    company: {
+      name: { type: String, required: true },
+      email: { type: String },
+      location: { type: String },
+      linkedIn: { type: String },
+      website: { type: String },
+      description: { type: String, required: true },
+      logo: { type: String },
+      emp_count: { type: Number },
+      company_founded: { type: Number },
+    },
+    skills: [{ type: String, required: true }],
+    role: [{ type: String, required: true }],
+    location: { type: String, required: true },
+    experience: {
+      min: { type: Number },
+      max: { type: Number },
+    },
+    jobUrl: { type: String, required: true },
+    salary: {
+      min: { type: String },
+      max: { type: String },
+    },
+    isInternship: { type: Boolean, default: false },
+    platform: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+
+const Job: Model<JobModel> =
+  models?.Job || model<JobModel>(DATABASE_MODELS.JOB, JobSchema);
+export default Job;
