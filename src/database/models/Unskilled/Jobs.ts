@@ -6,6 +6,7 @@ const JobSchema: Schema<JobModel> = new Schema(
   {
     job_id: { type: String, required: true },
     job_title: { type: String, required: true },
+    job_description: { type: String, required: true },
     company: {
       name: { type: String, required: true },
       email: { type: String },
