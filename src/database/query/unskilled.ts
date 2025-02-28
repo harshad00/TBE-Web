@@ -49,7 +49,7 @@ const getAllJobsFromDB = async (
   }
 };
 
-const getJobByCustomIdFromDB = async (
+const getJobByJobIdFromDB = async (
   jobId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
@@ -68,4 +68,4 @@ const getJobByCustomIdFromDB = async (
   }
 };
 
-export { addJobToDB, getAllJobsFromDB, getJobByCustomIdFromDB };
+export { addJobToDB, getAllJobsFromDB, getJobByJobIdFromDB };

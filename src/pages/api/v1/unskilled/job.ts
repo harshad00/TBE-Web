@@ -2,11 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
-import {
-  addJobToDB,
-  getAllJobsFromDB,
-  getJobByCustomIdFromDB,
-} from '@/database';
+import { addJobToDB, getAllJobsFromDB, getJobByJobIdFromDB } from '@/database';
 import { AddJobRequestPayloadProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -31,6 +27,7 @@ const handleAddJob = async (req: NextApiRequest, res: NextApiResponse) => {
     const {
       job_id,
       job_title,
+      job_description,
       company,
       skills,
       role,
@@ -44,6 +41,7 @@ const handleAddJob = async (req: NextApiRequest, res: NextApiResponse) => {
     if (
       !job_id ||
       !job_title ||
+      !job_description ||
       !role?.length ||
       !location ||
       !jobUrl ||
@@ -56,7 +54,7 @@ const handleAddJob = async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
 
-    const { data: existingJob } = await getJobByCustomIdFromDB(job_id);
+    const { data: existingJob } = await getJobByJobIdFromDB(job_id);
     if (existingJob) {
       return res.status(apiStatusCodes.BAD_REQUEST).json({
         success: false,
@@ -67,6 +65,7 @@ const handleAddJob = async (req: NextApiRequest, res: NextApiResponse) => {
     const { error, data: newJob } = await addJobToDB({
       job_id,
       job_title,
+      job_description,
       company,
       skills,
       role,

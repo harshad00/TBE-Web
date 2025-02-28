@@ -209,6 +209,7 @@ export interface CompanyDetails {
 export interface JobModel extends Document {
   job_id: string;
   job_title: string;
+  job_description: string;
   company: CompanyDetails;
   skills: string[];
   role: string[];
