@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
-import { PlaylistByTagFromDB } from '@/database';
+import { playlistByTagFromDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -32,7 +32,7 @@ const handleGetPlaylistsBySkill = async (
   }
 
   try {
-    const { data, error } = await PlaylistByTagFromDB(skill);
+    const { data, error } = await playlistByTagFromDB(skill);
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({

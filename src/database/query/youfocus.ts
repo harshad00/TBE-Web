@@ -226,7 +226,7 @@ const updateUserPlaylistData = async (
   }
 };
 
-const PlaylistByTagFromDB = async (
+const playlistByTagFromDB = async (
   tags: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
@@ -252,5 +252,5 @@ export {
   deleteUserPlaylistFromDB,
   updateUserPlaylistData,
   incrementReferredByInPlaylist,
-  PlaylistByTagFromDB,
+  playlistByTagFromDB,
 };
