@@ -22,7 +22,7 @@ const handleGetPlaylistsBySkill = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const { skill } = req.query; // Extract 'skill' from URL
+  const { skill } = req.query;
 
   if (!skill || typeof skill !== 'string') {
     return res.status(apiStatusCodes.BAD_REQUEST).json({
@@ -32,12 +32,9 @@ const handleGetPlaylistsBySkill = async (
   }
 
   try {
-    console.log(`Fetching playlists for skill: ${skill}`);
-
     const { data, error } = await PlaylistByTags(skill);
 
     if (error) {
-      console.error('Database query error:', error);
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: 'Error fetching YouFocus playlists',
@@ -53,7 +50,6 @@ const handleGetPlaylistsBySkill = async (
       })
     );
   } catch (error) {
-    console.error('Unexpected error:', error);
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       message: 'An unexpected error occurred while fetching playlists',
