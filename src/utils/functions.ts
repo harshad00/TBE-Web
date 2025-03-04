@@ -416,7 +416,7 @@ const flattenRoutesForSitemap = (routesObj: Record<string, any>): string[] => {
   let urls: string[] = [];
 
   for (const key in routesObj) {
-    if (key === 'api' || key === 'internals') continue;
+    if (key === 'api' || key === 'internals' || key === '404') continue;
 
     const value = routesObj[key];
 

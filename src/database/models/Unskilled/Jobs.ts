@@ -8,6 +8,7 @@ const JobSchema: Schema<JobModel> = new Schema(
     job_title: { type: String, required: true },
     job_description: { type: String, required: true },
     company: {
+      id: { type: String, required: true },
       name: { type: String, required: true },
       email: { type: String },
       location: { type: String },
