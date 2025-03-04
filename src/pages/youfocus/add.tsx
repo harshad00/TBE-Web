@@ -9,10 +9,11 @@ import {
   SEO,
   InputFieldContainer,
   Toast,
+  RadioGroup,
 } from '@/components';
 import { getPreFetchProps } from '@/utils';
 import { useApi, useUser } from '@/hooks';
-import { routes } from '@/constant';
+import { routes, Skills } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
   const { user } = useUser();
@@ -60,6 +61,16 @@ const Home = ({ seoMeta }: PageProps) => {
     }
   };
 
+  const handleExploreClick = () => {
+    router.push(routes.explorePlaylist);
+  };
+
+  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+
+  const handleSkillClick = (value: string) => {
+    setSelectedSkill(value);
+  };
+
   return (
     <Fragment>
       <SEO seoMeta={seoMeta} />
@@ -93,6 +104,38 @@ const Home = ({ seoMeta }: PageProps) => {
               <Toast message={successMessage} type='success' />
             )}
           </FlexContainer>
+        </FlexContainer>
+
+        {/* Skill Selection Section */}
+        <FlexContainer
+          direction='col'
+          className='w-full py-11 mt-12 justify-center items-center'
+        >
+          <div className='w-full max-w-md'>
+            <SectionHeaderContainer
+              heading='Don’t Have A '
+              focusText=' Playlist?'
+              headingLevel={3}
+              subtext='We’ll Recommend You, Don’t Worry'
+            />
+          </div>
+          {/* Skill Selection Buttons */}
+          <FlexContainer className='flex-wrap justify-center gap-1 md:gap-2 mx-auto max-w-lg py-5'>
+            <RadioGroup
+              options={Skills}
+              selectedValue={selectedSkill}
+              onChange={handleSkillClick}
+            />
+          </FlexContainer>
+          {/* Explore Button */}
+          <div className='w-full max-w-md'>
+            <Button
+              variant='PRIMARY'
+              className='w-full mx-auto'
+              text='Explore Playlists'
+              onClick={handleExploreClick}
+            />
+          </div>
         </FlexContainer>
       </Section>
     </Fragment>
