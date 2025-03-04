@@ -275,7 +275,7 @@ const PORTFOLIO_TEMPLATES: PortfolioTemplateProps[] = [
   },
 ];
 
-export const Skills: RadioButtonOptionsProps[] = [
+const Skills: RadioButtonOptionsProps[] = [
   { label: 'React.js', value: 'react' },
   { label: 'Node.js', value: 'node' },
   { label: 'Java', value: 'java' },
@@ -308,4 +308,5 @@ export {
   PORTFOLIO_CARDS,
   PORTFOLIO_TEMPLATES,
   cohorts,
+  Skills,
 };
