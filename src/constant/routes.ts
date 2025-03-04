@@ -101,6 +101,7 @@ const routes = {
     certificate: '/certificate',
     certificateById: (certificate: string) => `/certificate/${certificate}`,
     youfocusPlaylist: '/youfocus',
+    youfocusExplore: '/youfocus/explore',
     youfocusUserPlaylistById: (playlistId: string, userId?: string) => {
       let url = `/youfocus/${playlistId}`;
       if (userId) {
