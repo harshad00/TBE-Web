@@ -195,6 +195,7 @@ export interface NotificationModel extends Document {
 }
 
 export interface CompanyDetails {
+  id: string;
   name: string;
   email?: string;
   location?: string;
