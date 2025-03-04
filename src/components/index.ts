@@ -169,6 +169,14 @@ const PlaylistVideoCard = dynamic(
   () => import('@/components/containers/Cards/Items/PlaylistVideoCard')
 );
 
+const RadioGroup = dynamic(
+  () => import('@/components/containers/Page/common/RadioGroup')
+);
+
+const RadioButton = dynamic(
+  () => import('@/components/common/Form/RadioButton')
+);
+
 export {
   Navbar,
   LinkText as Link,
@@ -243,4 +251,6 @@ export {
   IconCard,
   HeaderLabel,
   Toast,
+  RadioButton,
+  RadioGroup,
 };
