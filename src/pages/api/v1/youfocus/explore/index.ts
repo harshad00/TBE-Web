@@ -22,17 +22,17 @@ const handleGetPlaylistsBySkill = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const { skill } = req.query;
+  const { q } = req.query;
 
-  if (!skill || typeof skill !== 'string') {
+  if (!q || typeof q !== 'string') {
     return res.status(apiStatusCodes.BAD_REQUEST).json({
       success: false,
-      message: 'Skill parameter is required',
+      message: "Query parameter 'q' is required",
     });
   }
 
   try {
-    const { data, error } = await playlistByTagFromDB(skill);
+    const { data, error } = await playlistByTagFromDB(q);
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({
