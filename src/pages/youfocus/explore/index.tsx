@@ -116,7 +116,7 @@ const Home = () => {
         (playlists.length > 0 ? (
           <FlexContainer className='w-full gap-4 flex-wrap py-3 '>
             {playlists.map((playlist) => (
-              <PlaylistSkillCard key={playlist._id} playlist={playlist} />
+              <PlaylistSkillCard key={playlist._id} {...playlist} />
             ))}
           </FlexContainer>
         ) : (

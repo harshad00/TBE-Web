@@ -541,11 +541,9 @@ export interface RadioButtonOptionsProps {
   value: string;
 }
 export interface PlaylistSkillCardProps {
-  playlist: {
-    _id: string;
-    playlistName: string;
-    description: string;
-    thumbnail?: string;
-    referrerBy: number;
-  };
+  _id: string;
+  playlistName: string;
+  description: string;
+  thumbnail?: string;
+  referrerBy: number;
 }
