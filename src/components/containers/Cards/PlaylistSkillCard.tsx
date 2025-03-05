@@ -11,9 +11,6 @@ const PlaylistSkillCard = ({
   _id,
 }: PlaylistSkillCardProps) => {
   const router = useRouter();
-  const active = true; // Change this based on your logic
-  const ctaText = 'View Playlist'; // Define CTA text
-  const target = '_self'; // Adjust if needed
 
   return (
     <FlexContainer
@@ -43,11 +40,10 @@ const PlaylistSkillCard = ({
         className='w-full mt-3 block'
         buttonProps={{
           variant: 'PRIMARY',
-          text: active ? ctaText : 'Coming soon',
-          active,
-          className: `${!active ? 'bg-secondary' : ''} w-full`,
+          text: 'View Playlist',
+          active: true,
+          className: `w-full`,
         }}
-        active={active}
       />
     </FlexContainer>
   );
