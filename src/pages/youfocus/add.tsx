@@ -126,6 +126,7 @@ const Home = ({ seoMeta }: PageProps) => {
           <div className='w-full max-w-md'>
             <Button
               variant='PRIMARY'
+              active={!!selectedSkill}
               className='w-full mx-auto'
               text={`Explore ${selectedSkill ? selectedSkill : 'Skills'}`}
               onClick={() => {
@@ -135,8 +136,6 @@ const Home = ({ seoMeta }: PageProps) => {
                       selectedSkill
                     )}`
                   );
-                } else {
-                  setErrorMessage('Please select a skill to explore');
                 }
               }}
             />

@@ -67,6 +67,7 @@ const Home = () => {
               className='w-full mx-auto'
               text='Explore Playlists'
               onClick={handleExploreClick}
+              active={!!selectedSkill}
             />
           </div>
           {errorMessage && <Toast message={errorMessage} type='error' />}
