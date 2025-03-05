@@ -6,17 +6,13 @@ import {
   Section,
   SectionHeaderContainer,
   RadioGroup,
-  PlaylistSkillCard,
 } from '@/components';
 import { Skills, routes } from '@/constant';
-import { useApi } from '@/hooks';
 
 const Home = () => {
   const router = useRouter();
-  const { makeRequest, loading } = useApi('fetchPlaylists');
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [playlists, setPlaylists] = useState([]);
   const [showSelection, setShowSelection] = useState(true);
 
   const handleSkillClick = (value: string) => {
@@ -24,37 +20,16 @@ const Home = () => {
     setErrorMessage(null);
   };
 
-  const handleExploreClick = async () => {
+  const handleExploreClick = () => {
     if (!selectedSkill) {
       setErrorMessage('Please select a skill before exploring.');
       return;
     }
 
-    try {
-      setErrorMessage(null);
-      setShowSelection(false);
-
-      router.push(
-        `${routes.explorePlaylist}?q=${encodeURIComponent(selectedSkill)}`
-      );
-
-      const response = await makeRequest({
-        method: 'GET',
-        url: `${routes.api.youfocusExplore}?q=${encodeURIComponent(
-          selectedSkill
-        )}`,
-      });
-
-      if (!response.data || response.data.length === 0) {
-        setErrorMessage('No playlists found for this skill.');
-        setPlaylists([]);
-      } else {
-        setPlaylists(response.data);
-      }
-    } catch (error) {
-      setErrorMessage('Failed to fetch playlists. Please try again.');
-      setPlaylists([]);
-    }
+    // Navigate to explore page with the selected skill as a query parameter
+    router.push(
+      `${routes.explorePlaylistSkill}?q=${encodeURIComponent(selectedSkill)}`
+    );
   };
 
   return (
@@ -109,21 +84,6 @@ const Home = () => {
           </div>
         </FlexContainer>
       )}
-
-      {loading && <p className='text-blue-500 mt-4'>⏳ Loading playlists...</p>}
-
-      {!showSelection &&
-        (playlists.length > 0 ? (
-          <FlexContainer className='w-full gap-4 flex-wrap py-3 '>
-            {playlists.map((playlist) => (
-              <PlaylistSkillCard key={playlist._id} {...playlist} />
-            ))}
-          </FlexContainer>
-        ) : (
-          <p className='text-red-500 text-sm mt-2 text-center'>
-            No playlists found for this skill.
-          </p>
-        ))}
     </Section>
   );
 };
