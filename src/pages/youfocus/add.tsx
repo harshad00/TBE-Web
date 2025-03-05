@@ -94,13 +94,15 @@ const Home = ({ seoMeta }: PageProps) => {
               isLoading={loading}
               onClick={handleAddPlaylist}
             />
-            {errorMessage && <Toast message={errorMessage} type='error' />}
+
             {successMessage && (
               <Toast message={successMessage} type='success' />
             )}
           </FlexContainer>
         </FlexContainer>
-
+        <div className='w-full text-center text-red-500 mt-2'>
+          {errorMessage && errorMessage}
+        </div>
         {/* Skill Selection Section */}
         <FlexContainer
           direction='col'
@@ -136,8 +138,7 @@ const Home = ({ seoMeta }: PageProps) => {
                     )}`
                   );
                 } else {
-                  // Handle the case when no skill is selected
-                  alert('Please select a skill to explore.');
+                  setErrorMessage('Please select a skill to explore');
                 }
               }}
             />
