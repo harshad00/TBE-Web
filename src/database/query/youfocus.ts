@@ -226,6 +226,22 @@ const updateUserPlaylistData = async (
   }
 };
 
+const getPlaylistByTagFromDB = async (
+  tags: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const playlists = await Playlist.find({ tags: { $in: [tags] } });
+
+    if (!playlists || playlists.length === 0) {
+      return { error: 'No playlists found for the given skill.' };
+    }
+
+    return { data: playlists };
+  } catch (error) {
+    return { error: error };
+  }
+};
+
 export {
   addPlaylistToDB,
   checkPlaylistExistsByID,
@@ -236,4 +252,5 @@ export {
   deleteUserPlaylistFromDB,
   updateUserPlaylistData,
   incrementReferredByInPlaylist,
+  getPlaylistByTagFromDB,
 };
