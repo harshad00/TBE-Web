@@ -5,6 +5,7 @@ import {
   Button,
   Section,
   SectionHeaderContainer,
+  Toast,
   RadioGroup,
 } from '@/components';
 import { Skills, routes } from '@/constant';
@@ -39,26 +40,12 @@ const Home = () => {
         className='w-full justify-center items-center'
       >
         <div className='w-full max-w-md'>
-          {showSelection ? (
-            <SectionHeaderContainer
-              heading='Pick A '
-              focusText='Skill'
-              headingLevel={3}
-              subtext='What Do You Want to Learn?'
-            />
-          ) : (
-            <SectionHeaderContainer
-              heading={
-                selectedSkill
-                  ? selectedSkill.charAt(0).toUpperCase() +
-                    selectedSkill.slice(1)
-                  : 'Explore'
-              }
-              focusText='Playlists'
-              headingLevel={3}
-              subtext='Here are the playlists based on your selected skill.'
-            />
-          )}
+          <SectionHeaderContainer
+            heading='Pick A '
+            focusText='Skill'
+            headingLevel={3}
+            subtext='What Do You Want to Learn?'
+          />
         </div>
       </FlexContainer>
       {showSelection && (
@@ -82,6 +69,7 @@ const Home = () => {
               onClick={handleExploreClick}
             />
           </div>
+          {errorMessage && <Toast message={errorMessage} type='error' />}
         </FlexContainer>
       )}
     </Section>

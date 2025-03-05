@@ -55,7 +55,6 @@ const Explore = () => {
         />
       </div>
       {loading && <p className='text-blue-500'>⏳ Loading playlists...</p>}
-      {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
 
       <FlexContainer className='w-full gap-4 flex-wrap py-3'>
         {playlists.length > 0 ? (
