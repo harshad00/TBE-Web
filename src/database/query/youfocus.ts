@@ -45,7 +45,7 @@ const incrementReferredByInPlaylist = async (
 ): Promise<DatabaseQueryResponseType> => {
   try {
     const updatedPlaylist = await Playlist.findOneAndUpdate(
-      { playlistId },
+      { _id: playlistId },
       { $inc: { referrerBy: 1 } },
       { new: true }
     );
@@ -57,6 +57,26 @@ const incrementReferredByInPlaylist = async (
     return { data: updatedPlaylist };
   } catch (error) {
     return { error };
+  }
+};
+
+const decreaseReferredByInPlaylist = async (
+  playlistId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const updatedPlaylist = await Playlist.findOneAndUpdate(
+      { _id: playlistId },
+      { $inc: { referrerBy: -1 } }, // Decrement referredBy count by 1
+      { new: true }
+    );
+
+    if (!updatedPlaylist) {
+      return { error: 'Playlist not found' };
+    }
+
+    return { data: updatedPlaylist };
+  } catch (error) {
+    return { error: `An error occurred: ${error}` };
   }
 };
 
@@ -218,6 +238,10 @@ const updateUserPlaylistData = async (
     let updatedPlaylist = null;
     if (isRecommended === true && userPlaylist.isRecommended === false) {
       updatedPlaylist = await incrementReferredByInPlaylist(playlistId);
+    }
+
+    if (isRecommended === false && userPlaylist.isRecommended === true) {
+      updatedPlaylist = await decreaseReferredByInPlaylist(playlistId);
     }
 
     return { data: { updatedUserPlaylist, updatedPlaylist } };
