@@ -92,3 +92,8 @@ export type FormatDateType = {
   dateFormat?: Intl.DateTimeFormatOptions;
   timeFormat?: Intl.DateTimeFormatOptions;
 };
+
+interface Playlist {
+  _id: string;
+  name: string;
+}

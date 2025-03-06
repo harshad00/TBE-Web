@@ -24,6 +24,7 @@ const Home = ({ seoMeta }: PageProps) => {
   const [playlistUrl, setPlaylistUrl] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
   const handleInputChange = (value: string) => {
     setPlaylistUrl(value);
@@ -60,12 +61,6 @@ const Home = ({ seoMeta }: PageProps) => {
       setErrorMessage('Failed to add playlist. Please try again later.');
     }
   };
-
-  const handleExploreClick = () => {
-    router.push(routes.explorePlaylist);
-  };
-
-  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
   const handleSkillClick = (value: string) => {
     setSelectedSkill(value);
@@ -131,9 +126,18 @@ const Home = ({ seoMeta }: PageProps) => {
           <div className='w-full max-w-md'>
             <Button
               variant='PRIMARY'
+              active={!!selectedSkill}
               className='w-full mx-auto'
-              text='Explore Playlists'
-              onClick={handleExploreClick}
+              text={`Explore ${selectedSkill ? selectedSkill : 'Skills'}`}
+              onClick={() => {
+                if (selectedSkill) {
+                  router.push(
+                    `${routes.explorePlaylistSkill}?q=${encodeURIComponent(
+                      selectedSkill
+                    )}`
+                  );
+                }
+              }}
             />
           </div>
         </FlexContainer>
@@ -141,5 +145,6 @@ const Home = ({ seoMeta }: PageProps) => {
     </Fragment>
   );
 };
+
 export const getServerSideProps = getPreFetchProps;
 export default Home;

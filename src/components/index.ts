@@ -177,6 +177,10 @@ const RadioButton = dynamic(
   () => import('@/components/common/Form/RadioButton')
 );
 
+const PlaylistSkillCard = dynamic(
+  () => import('@/components/containers/Cards/PlaylistSkillCard')
+);
+
 export {
   Navbar,
   LinkText as Link,
@@ -253,4 +257,5 @@ export {
   Toast,
   RadioButton,
   RadioGroup,
+  PlaylistSkillCard,
 };
