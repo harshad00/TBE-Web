@@ -40,13 +40,14 @@ const addUserPlaylistToDB = async (
   }
 };
 
-const incrementReferredByInPlaylist = async (
-  playlistId: string
+const updateReferredByInPlaylist = async (
+  playlistId: string,
+  increment: boolean
 ): Promise<DatabaseQueryResponseType> => {
   try {
     const updatedPlaylist = await Playlist.findOneAndUpdate(
-      { playlistId },
-      { $inc: { referrerBy: 1 } },
+      { _id: playlistId },
+      { $inc: { referrerBy: increment ? 1 : -1 } },
       { new: true }
     );
 
@@ -56,7 +57,7 @@ const incrementReferredByInPlaylist = async (
 
     return { data: updatedPlaylist };
   } catch (error) {
-    return { error };
+    return { error: `An error occurred: ${error}` };
   }
 };
 
@@ -216,10 +217,15 @@ const updateUserPlaylistData = async (
     if (!updatedUserPlaylist) return { error: 'Failed to update UserPlaylist' };
 
     let updatedPlaylist = null;
-    if (isRecommended === true && userPlaylist.isRecommended === false) {
-      updatedPlaylist = await incrementReferredByInPlaylist(playlistId);
+    if (
+      isRecommended !== undefined &&
+      userPlaylist.isRecommended !== isRecommended
+    ) {
+      updatedPlaylist = await updateReferredByInPlaylist(
+        playlistId,
+        isRecommended
+      );
     }
-
     return { data: { updatedUserPlaylist, updatedPlaylist } };
   } catch (error) {
     return { error: `An error occurred: ${error}` };
@@ -251,6 +257,6 @@ export {
   getUserPlaylistsFromDB,
   deleteUserPlaylistFromDB,
   updateUserPlaylistData,
-  incrementReferredByInPlaylist,
+  updateReferredByInPlaylist,
   getPlaylistByTagFromDB,
 };
