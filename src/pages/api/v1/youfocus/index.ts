@@ -8,7 +8,7 @@ import {
   addPlaylistToDB,
   getPlaylistsFromDB,
   addUserPlaylistToDB,
-  incrementReferredByInPlaylist,
+  updateReferredByInPlaylist,
 } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -52,7 +52,7 @@ const handleAddPlaylist = async (
     await addUserPlaylistToDB(userId, existingPlaylist._id);
 
     // 2. Increment referredBy in playlist
-    await incrementReferredByInPlaylist(existingPlaylist._id);
+    await updateReferredByInPlaylist(existingPlaylist._id, true);
 
     return res.status(apiStatusCodes.RESOURCE_CREATED).json(
       sendAPIResponse({

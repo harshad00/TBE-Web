@@ -40,33 +40,14 @@ const addUserPlaylistToDB = async (
   }
 };
 
-const incrementReferredByInPlaylist = async (
-  playlistId: string
+const updateReferredByInPlaylist = async (
+  playlistId: string,
+  increment: boolean
 ): Promise<DatabaseQueryResponseType> => {
   try {
     const updatedPlaylist = await Playlist.findOneAndUpdate(
       { _id: playlistId },
-      { $inc: { referrerBy: 1 } },
-      { new: true }
-    );
-
-    if (!updatedPlaylist) {
-      return { error: 'Playlist not found' };
-    }
-
-    return { data: updatedPlaylist };
-  } catch (error) {
-    return { error };
-  }
-};
-
-const decreaseReferredByInPlaylist = async (
-  playlistId: string
-): Promise<DatabaseQueryResponseType> => {
-  try {
-    const updatedPlaylist = await Playlist.findOneAndUpdate(
-      { _id: playlistId },
-      { $inc: { referrerBy: -1 } }, // Decrement referredBy count by 1
+      { $inc: { referrerBy: increment ? 1 : -1 } },
       { new: true }
     );
 
@@ -236,14 +217,15 @@ const updateUserPlaylistData = async (
     if (!updatedUserPlaylist) return { error: 'Failed to update UserPlaylist' };
 
     let updatedPlaylist = null;
-    if (isRecommended === true && userPlaylist.isRecommended === false) {
-      updatedPlaylist = await incrementReferredByInPlaylist(playlistId);
+    if (
+      isRecommended !== undefined &&
+      userPlaylist.isRecommended !== isRecommended
+    ) {
+      updatedPlaylist = await updateReferredByInPlaylist(
+        playlistId,
+        isRecommended
+      );
     }
-
-    if (isRecommended === false && userPlaylist.isRecommended === true) {
-      updatedPlaylist = await decreaseReferredByInPlaylist(playlistId);
-    }
-
     return { data: { updatedUserPlaylist, updatedPlaylist } };
   } catch (error) {
     return { error: `An error occurred: ${error}` };
@@ -275,6 +257,6 @@ export {
   getUserPlaylistsFromDB,
   deleteUserPlaylistFromDB,
   updateUserPlaylistData,
-  incrementReferredByInPlaylist,
+  updateReferredByInPlaylist,
   getPlaylistByTagFromDB,
 };
