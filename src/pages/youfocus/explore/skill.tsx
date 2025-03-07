@@ -38,7 +38,13 @@ const Explore = () => {
       <FlexContainer className='w-full gap-4 flex-wrap py-3'>
         {playlists.length > 0
           ? playlists.map((playlist) => (
-              <PlaylistSkillCard key={playlist._id} {...playlist} />
+              <PlaylistSkillCard
+                key={playlist._id}
+                _id={playlist._id}
+                playlistName={playlist.name}
+                thumbnail={playlist.thumbnail}
+                referrerBy={playlist.referrerBy || 0}
+              />
             ))
           : !loading &&
             !errorMessage && (

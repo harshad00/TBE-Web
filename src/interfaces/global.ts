@@ -96,4 +96,6 @@ export type FormatDateType = {
 export interface Playlist {
   _id: string;
   name: string;
+  thumbnail: string;
+  referrerBy: number;
 }
