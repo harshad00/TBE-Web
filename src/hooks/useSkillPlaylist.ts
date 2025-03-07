@@ -3,7 +3,7 @@ import { useApi } from '@/hooks';
 import { routes } from '@/constant';
 import { Playlist } from '@/interfaces';
 
-const useFetchPlaylistSkill = (q: string) => {
+const useSkillPlaylist = (q: string) => {
   const { makeRequest, loading } = useApi('fetchPlaylists');
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -36,4 +36,4 @@ const useFetchPlaylistSkill = (q: string) => {
   return { playlists, loading, errorMessage };
 };
 
-export default useFetchPlaylistSkill;
+export default useSkillPlaylist;

@@ -181,8 +181,8 @@ const PlaylistSkillCard = dynamic(
   () => import('@/components/containers/Cards/PlaylistSkillCard')
 );
 
-const ExploreContainer = dynamic(
-  () => import('@/components/containers/Page/YouFocus/ExploreContainer')
+const ExplorePlaylistContainer = dynamic(
+  () => import('@/components/containers/Page/YouFocus/ExplorePlaylistContainer')
 );
 
 export {
@@ -262,5 +262,5 @@ export {
   RadioButton,
   RadioGroup,
   PlaylistSkillCard,
-  ExploreContainer,
+  ExplorePlaylistContainer,
 };

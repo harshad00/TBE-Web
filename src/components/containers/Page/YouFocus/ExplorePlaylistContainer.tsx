@@ -10,7 +10,7 @@ import {
 import { ExploreCantainerCardProps } from '@/interfaces';
 import { YOUFOCUS_SKILL_PLAYLISTS, routes } from '@/constant';
 
-const ExploreContainer = ({
+const ExplorePlaylistContainer = ({
   heading,
   focusText,
   subtext,
@@ -70,4 +70,4 @@ const ExploreContainer = ({
   );
 };
 
-export default ExploreContainer;
+export default ExplorePlaylistContainer;

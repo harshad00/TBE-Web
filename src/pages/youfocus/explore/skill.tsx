@@ -4,15 +4,15 @@ import {
   FlexContainer,
   PlaylistSkillCard,
   SectionHeaderContainer,
+  Toast,
 } from '@/components';
-import { useFetchPlaylistSkill } from '@/hooks';
+import { useSkillPlaylist } from '@/hooks';
 
 const Explore = () => {
   const router = useRouter();
   const { q } = router.query;
   const skillQuery = typeof q === 'string' ? q : ''; // Ensure q is always a string
-  const { playlists, loading, errorMessage } =
-    useFetchPlaylistSkill(skillQuery);
+  const { playlists, loading, errorMessage } = useSkillPlaylist(skillQuery);
 
   return (
     <FlexContainer
@@ -33,9 +33,7 @@ const Explore = () => {
       </div>
 
       {loading && <p className='text-blue-500'>⏳ Loading playlists...</p>}
-      {errorMessage && (
-        <p className='text-red-500 text-2xl mt-2 text-center'>{errorMessage}</p>
-      )}
+      {errorMessage && <Toast type='error' message={errorMessage} />}
 
       <FlexContainer className='w-full gap-4 flex-wrap py-3'>
         {playlists.length > 0
@@ -44,9 +42,10 @@ const Explore = () => {
             ))
           : !loading &&
             !errorMessage && (
-              <p className='text-red-500 text-2xl mt-2 text-center'>
-                No playlists found for this skill.
-              </p>
+              <Toast
+                type='error'
+                message='No playlists found for this skill.'
+              />
             )}
       </FlexContainer>
     </FlexContainer>
