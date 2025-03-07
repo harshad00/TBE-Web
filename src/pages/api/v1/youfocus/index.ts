@@ -49,7 +49,7 @@ const handleAddPlaylist = async (
 
   if (existingPlaylist) {
     // 1. Add playlist to user
-    await addUserPlaylistToDB(userId, existingPlaylist._id);
+    if (userId) await addUserPlaylistToDB(userId, existingPlaylist._id);
 
     // 2. Increment referredBy in playlist
     await updateReferredByInPlaylist(existingPlaylist._id, true);
@@ -75,7 +75,7 @@ const handleAddPlaylist = async (
     }
 
     // Add playlist to the database
-    const { error, data: newPlaylist } = await addPlaylistToDB(playlistData);
+    const { error, data: playlist } = await addPlaylistToDB(playlistData);
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
@@ -87,24 +87,26 @@ const handleAddPlaylist = async (
       );
     }
 
-    const { error: userPlaylistError } = await addUserPlaylistToDB(
-      userId,
-      newPlaylist._id
-    );
+    if (userId) {
+      const { error: userPlaylistError } = await addUserPlaylistToDB(
+        userId,
+        playlist._id
+      );
 
-    if (userPlaylistError) {
-      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({
-        status: false,
-        message: 'Failed to link user and playlist',
-        error: userPlaylistError,
-      });
+      if (userPlaylistError) {
+        return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({
+          status: false,
+          message: 'Failed to link user and playlist',
+          error: userPlaylistError,
+        });
+      }
     }
 
     return res.status(apiStatusCodes.RESOURCE_CREATED).json(
       sendAPIResponse({
         status: true,
         message: 'Playlist added successfully!',
-        data: newPlaylist,
+        data: playlist,
       })
     );
   } catch (error) {

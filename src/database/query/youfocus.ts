@@ -36,7 +36,7 @@ const addUserPlaylistToDB = async (
     await userPlaylist.save();
     return { data: userPlaylist };
   } catch (error) {
-    return { error: 'Failed to link playlist to user' };
+    return { error };
   }
 };
 
