@@ -8,7 +8,7 @@ import {
   Toast,
   RadioGroup,
 } from '@/components';
-import { Skills, routes } from '@/constant';
+import { YOUFOCUS_SKILL_PLAYLISTS, routes } from '@/constant';
 
 const Home = () => {
   const router = useRouter();
@@ -55,7 +55,7 @@ const Home = () => {
         >
           <FlexContainer className='flex-wrap justify-center gap-1 md:gap-2 mx-auto max-w-lg py-5'>
             <RadioGroup
-              options={Skills}
+              options={YOUFOCUS_SKILL_PLAYLISTS}
               selectedValue={selectedSkill}
               onChange={handleSkillClick}
             />

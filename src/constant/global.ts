@@ -281,14 +281,9 @@ const YOUFOCUS_SKILL_PLAYLISTS: RadioButtonOptionsProps[] = [
   { label: 'Java', value: 'java' },
   { label: 'DSA', value: 'dsa' },
   { label: 'Python', value: 'python' },
-  { label: 'Flask', value: 'flask' },
-  { label: 'Django', value: 'django' },
   { label: 'HTML', value: 'html' },
   { label: 'CSS', value: 'css' },
   { label: 'C++', value: 'cpp' },
-  { label: 'Data Science', value: 'datascience' },
-  { label: 'Data Analysis', value: 'dataanalysis' },
-  { label: 'AI', value: 'ai' },
 ];
 
 export {

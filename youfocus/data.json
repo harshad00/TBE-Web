@@ -1,0 +1,22 @@
+{
+    "playlists": [
+        {
+            "playlistUrl": "https://www.youtube.com/watch?v=TfE2c7SXaUo&list=PLzjZaW71kMwTH13to25eMh8D-IEN8u0vI",
+            "tags": [
+                "DSA"
+            ]
+        },
+        {
+            "playlistUrl": "https://www.youtube.com/watch?v=VTLCoHnyACE&list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt",
+            "tags": [
+                "DSA"
+            ]
+        },
+        {
+            "playlistUrl": "https://www.youtube.com/watch?v=FPu9Uld7W-E&list=PLCk6AZ41b5hIw-6hn7WYPrwxPL0TH8QRk",
+            "tags": [
+                "DSA"
+            ]
+        }
+    ]
+}
