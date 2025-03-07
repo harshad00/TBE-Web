@@ -1,8 +1,8 @@
-import { ExploreContainer } from '@/components';
+import { ExplorePlaylistContainer } from '@/components';
 
 const Home = () => {
   return (
-    <ExploreContainer
+    <ExplorePlaylistContainer
       heading='Pick An'
       focusText='Skill'
       subtext='What Do You Want to Learn?'
