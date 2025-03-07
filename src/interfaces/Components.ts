@@ -547,3 +547,9 @@ export interface PlaylistSkillCardProps {
   thumbnail?: string;
   referrerBy: number;
 }
+
+export interface ExploreCantainerCardProps {
+  heading: string;
+  focusText: string;
+  subtext: string;
+}

@@ -93,7 +93,7 @@ export type FormatDateType = {
   timeFormat?: Intl.DateTimeFormatOptions;
 };
 
-interface Playlist {
+export interface Playlist {
   _id: string;
   name: string;
 }

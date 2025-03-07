@@ -5,6 +5,7 @@ import { useCertificate } from './useCertificate';
 import useMediaQuery from './useMediaQuery';
 import useNotifications from './useNotifications';
 import useUser from './useUser';
+import useSkillPlaylist from './useSkillPlaylist';
 
 export {
   useApi,
@@ -14,4 +15,5 @@ export {
   useCertificate,
   useAnalytics,
   useNotifications,
+  useSkillPlaylist,
 };
