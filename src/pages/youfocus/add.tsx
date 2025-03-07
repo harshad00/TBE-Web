@@ -107,8 +107,8 @@ const Home = ({ seoMeta }: PageProps) => {
         >
           <div className='w-full max-w-md'>
             <SectionHeaderContainer
-              heading='Don’t Have A '
-              focusText=' Playlist?'
+              heading='Don’t Have A'
+              focusText='Playlist?'
               headingLevel={3}
               subtext='We’ll Recommend You, Don’t Worry'
             />
@@ -126,7 +126,7 @@ const Home = ({ seoMeta }: PageProps) => {
             <Button
               variant='PRIMARY'
               active={!!selectedSkill}
-              className='w-full mx-auto'
+              className='mx-auto'
               text={`Explore ${selectedSkill ? selectedSkill : 'Skills'}`}
               onClick={() => {
                 if (selectedSkill) {

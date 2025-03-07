@@ -8,7 +8,7 @@ import {
   Toast,
   RadioGroup,
 } from '@/components';
-import { Skills, routes } from '@/constant';
+import { YOUFOCUS_SKILL_PLAYLISTS, routes } from '@/constant';
 
 const Home = () => {
   const router = useRouter();
@@ -41,7 +41,7 @@ const Home = () => {
       >
         <div className='w-full max-w-md'>
           <SectionHeaderContainer
-            heading='Pick A '
+            heading='Pick A'
             focusText='Skill'
             headingLevel={3}
             subtext='What Do You Want to Learn?'
@@ -55,7 +55,7 @@ const Home = () => {
         >
           <FlexContainer className='flex-wrap justify-center gap-1 md:gap-2 mx-auto max-w-lg py-5'>
             <RadioGroup
-              options={Skills}
+              options={YOUFOCUS_SKILL_PLAYLISTS}
               selectedValue={selectedSkill}
               onChange={handleSkillClick}
             />
@@ -64,7 +64,7 @@ const Home = () => {
           <div className='w-full max-w-md'>
             <Button
               variant='PRIMARY'
-              className='w-full mx-auto'
+              className='mx-auto'
               text='Explore Playlists'
               onClick={handleExploreClick}
               active={!!selectedSkill}
