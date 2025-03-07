@@ -14,6 +14,23 @@ const addPlaylistToDB = async (
   }
 };
 
+const updateTagsInPlaylist = async (
+  playlistId: string,
+  tags: string[]
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const updatedPlaylist = await Playlist.findOneAndUpdate(
+      { _id: playlistId },
+      { $set: { tags } },
+      { new: true }
+    );
+
+    return { data: updatedPlaylist };
+  } catch (error) {
+    return { error };
+  }
+};
+
 const addUserPlaylistToDB = async (
   userId: string,
   playlistId: string
@@ -259,4 +276,5 @@ export {
   updateUserPlaylistData,
   updateReferredByInPlaylist,
   getPlaylistByTagFromDB,
+  updateTagsInPlaylist,
 };

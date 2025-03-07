@@ -9,6 +9,7 @@ import {
   getPlaylistsFromDB,
   addUserPlaylistToDB,
   updateReferredByInPlaylist,
+  updateTagsInPlaylist,
 } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -34,7 +35,7 @@ const handleAddPlaylist = async (
   res: NextApiResponse,
   userId: string
 ) => {
-  const { playlistUrl } = req.body;
+  const { playlistUrl, tags } = req.body;
 
   const playlistId = extractPlaylistId(playlistUrl);
 
@@ -53,6 +54,19 @@ const handleAddPlaylist = async (
 
     // 2. Increment referredBy in playlist
     await updateReferredByInPlaylist(existingPlaylist._id, true);
+
+    // 3. If Tags exist, update tags in playlist
+    if (tags) {
+      const { data } = await updateTagsInPlaylist(existingPlaylist._id, tags);
+
+      return res.status(apiStatusCodes.RESOURCE_CREATED).json(
+        sendAPIResponse({
+          status: true,
+          message: 'Playlist already exists',
+          data,
+        })
+      );
+    }
 
     return res.status(apiStatusCodes.RESOURCE_CREATED).json(
       sendAPIResponse({
@@ -75,7 +89,10 @@ const handleAddPlaylist = async (
     }
 
     // Add playlist to the database
-    const { error, data: playlist } = await addPlaylistToDB(playlistData);
+    const { error, data: playlist } = await addPlaylistToDB({
+      ...playlistData,
+      tags,
+    });
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
@@ -110,6 +127,7 @@ const handleAddPlaylist = async (
       })
     );
   } catch (error) {
+    console.log('HERE', error);
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       message: `We can't fetch this playlist. Try another one.`,

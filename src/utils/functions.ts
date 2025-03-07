@@ -331,54 +331,59 @@ const fetchPlaylistData = async (
     description?: string;
     thumbnail?: string;
   } = {}
-): Promise<PlaylistModel> => {
-  const response = await fetch(
-    `${YOUTUBE_API_PATH}/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=50&pageToken=${pageToken}&key=${process.env.YOUTUBE_API_KEY}`
-  );
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch playlist data: ${data.error.message}`);
-  }
-
-  // Extract playlist metadata if not already set
-  if (!metadata.playlistName && data.items.length > 0) {
-    metadata.playlistName = data.items[0].snippet.title || '';
-    metadata.description =
-      data.items[0].snippet.description || 'No Description Available';
-    metadata.thumbnail = data.items[0].snippet.thumbnails?.maxres?.url || '';
-  }
-
-  // Extract video details
-  const videos: Video[] = data.items.map((item: any) => ({
-    title: item.snippet.title,
-    videoId: item.snippet.resourceId.videoId,
-    thumbnail:
-      item.snippet.thumbnails?.default?.url ||
-      'https://via.placeholder.com/150',
-  }));
-
-  // Accumulate videos
-  const allVideos = [...accumulatedVideos, ...videos];
-
-  // Continue fetching if there's a nextPageToken
-  if (data.nextPageToken) {
-    return fetchPlaylistData(
-      playlistId,
-      data.nextPageToken,
-      allVideos,
-      metadata
+): Promise<PlaylistModel | undefined> => {
+  try {
+    const response = await fetch(
+      `${YOUTUBE_API_PATH}/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=50&pageToken=${pageToken}&key=${process.env.YOUTUBE_API_KEY}`
     );
-  }
 
-  // Return the complete data when no more pages
-  return {
-    playlistId,
-    playlistName: metadata.playlistName || ' ',
-    description: metadata.description || '',
-    thumbnail: metadata.thumbnail || '',
-    videos: allVideos,
-  };
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch playlist data: ${data.error.message}`);
+    }
+
+    // Extract playlist metadata if not already set
+    if (!metadata.playlistName && data.items.length > 0) {
+      metadata.playlistName = data.items[0].snippet.title || '';
+      metadata.description =
+        data.items[0].snippet.description || 'No Description Available';
+      metadata.thumbnail = data.items[0].snippet.thumbnails?.maxres?.url || '';
+    }
+
+    // Extract video details
+    const videos: Video[] = data.items.map((item: any) => ({
+      title: item.snippet.title,
+      videoId: item.snippet.resourceId.videoId,
+      thumbnail:
+        item.snippet.thumbnails?.default?.url ||
+        'https://via.placeholder.com/150',
+    }));
+
+    // Accumulate videos
+    const allVideos = [...accumulatedVideos, ...videos];
+
+    // Continue fetching if there's a nextPageToken
+    if (data.nextPageToken) {
+      return fetchPlaylistData(
+        playlistId,
+        data.nextPageToken,
+        allVideos,
+        metadata
+      );
+    }
+
+    // Return the complete data when no more pages
+    return {
+      playlistId,
+      playlistName: metadata.playlistName || '',
+      description: metadata.description || '',
+      thumbnail: metadata.thumbnail || '',
+      videos: allVideos,
+    };
+  } catch (error) {
+    console.error('Error fetching playlist data:', error);
+  }
 };
 
 const extractPlaylistId = (url: string) => {

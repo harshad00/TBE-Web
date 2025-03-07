@@ -13,14 +13,13 @@ import {
 } from '@/components';
 import { getPreFetchProps } from '@/utils';
 import { useApi, useUser } from '@/hooks';
-import { routes, Skills } from '@/constant';
+import { routes, YOUFOCUS_SKILL_PLAYLISTS } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
   const { user } = useUser();
   const userId = user?.id;
   const router = useRouter();
 
-  // TODO: Remove this -> https://www.youtube.com/watch?v=ohIAiuHMKMI&list=PLinedj3B30sDby4Al-i13hQJGQoRQDfPo
   const [playlistUrl, setPlaylistUrl] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -117,7 +116,7 @@ const Home = ({ seoMeta }: PageProps) => {
           {/* Skill Selection Buttons */}
           <FlexContainer className='flex-wrap justify-center gap-1 md:gap-2 mx-auto max-w-lg py-5'>
             <RadioGroup
-              options={Skills}
+              options={YOUFOCUS_SKILL_PLAYLISTS}
               selectedValue={selectedSkill}
               onChange={handleSkillClick}
             />
