@@ -9,7 +9,7 @@ import {
   SEO,
   InputFieldContainer,
   Toast,
-  ExploreContainer,
+  ExplorePlaylistContainer,
 } from '@/components';
 import { getPreFetchProps } from '@/utils';
 import { useApi, useUser } from '@/hooks';
@@ -95,11 +95,10 @@ const Home = ({ seoMeta }: PageProps) => {
         </FlexContainer>
 
         {/* Skill Selection Section */}
-        <ExploreContainer
+        <ExplorePlaylistContainer
           heading='Don’t Have A'
           focusText='Playlist?'
           subtext='We’ll Recommend You, Don’t Worry'
-          selectedSkill={selectedSkill}
         />
       </Section>
     </Fragment>
