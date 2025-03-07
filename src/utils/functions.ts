@@ -152,7 +152,7 @@ const getSelectedSheetQuestionMeta = (
 };
 
 const isUserAuthenticated = async (req: any): Promise<User | null> => {
-  const cookie = req.headers.cookie || req.headers?.get('cookie');
+  const cookie = req.headers.cookie;
 
   try {
     const response = await fetch(`${envConfig.BASE_AUTH_API_URL}/session`, {

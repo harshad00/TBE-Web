@@ -162,8 +162,8 @@ const BackgroundImage = dynamic(
 const PlaylistCard = dynamic(
   () => import('@/components/containers/Cards/Items/PlaylistCard')
 );
-const PlaylistContainerCard = dynamic(
-  () => import('@/components/containers/Cards/PlaylistContainerCard')
+const PlaylistContainer = dynamic(
+  () => import('@/components/containers/Page/YouFocus/PlaylistContainer')
 );
 const PlaylistVideoCard = dynamic(
   () => import('@/components/containers/Cards/Items/PlaylistVideoCard')
@@ -246,7 +246,7 @@ export {
   Modal,
   WebibarCard,
   ToggleButton,
-  PlaylistContainerCard,
+  PlaylistContainer,
   PlaylistCard,
   PlaylistVideoCard,
   NotificationContainer,

@@ -439,7 +439,7 @@ export interface PlaylistCardProps {
   title: string;
   description: string;
   thumbnail: string;
-  isPlaylistVideoVisible?: boolean;
+  isStartedLearningFromPlaylist?: boolean;
   videoId?: string;
 }
 
