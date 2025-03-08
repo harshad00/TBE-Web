@@ -181,6 +181,10 @@ const PlaylistSkillCard = dynamic(
   () => import('@/components/containers/Cards/PlaylistSkillCard')
 );
 
+const ExplorePlaylistContainer = dynamic(
+  () => import('@/components/containers/Page/YouFocus/ExplorePlaylistContainer')
+);
+
 export {
   Navbar,
   LinkText as Link,
@@ -258,4 +262,5 @@ export {
   RadioButton,
   RadioGroup,
   PlaylistSkillCard,
+  ExplorePlaylistContainer,
 };

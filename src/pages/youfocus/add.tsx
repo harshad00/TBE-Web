@@ -9,11 +9,11 @@ import {
   SEO,
   InputFieldContainer,
   Toast,
-  RadioGroup,
+  ExplorePlaylistContainer,
 } from '@/components';
 import { getPreFetchProps } from '@/utils';
 import { useApi, useUser } from '@/hooks';
-import { routes, YOUFOCUS_SKILL_PLAYLISTS } from '@/constant';
+import { routes } from '@/constant';
 
 const Home = ({ seoMeta }: PageProps) => {
   const { user } = useUser();
@@ -39,30 +39,24 @@ const Home = ({ seoMeta }: PageProps) => {
     }
 
     try {
-      const { status, data, message } = await makeRequest({
+      const response = await makeRequest({
         method: 'POST',
         url: `${routes.api.youfocusPlaylist}?userId=${userId}`,
         body: { playlistUrl },
       });
 
-      if (status) {
+      if (response?.status && response.data?._id) {
         setSuccessMessage('Playlist added successfully! Redirecting...');
         setPlaylistUrl('');
         setTimeout(() => {
-          const playlistId = data._id;
-          const redirectUrl = `${routes.youfocusPlaylist}/${playlistId}`;
-          router.push(redirectUrl);
+          router.push(`${routes.youfocusPlaylist}/${response.data._id}`);
         }, 2000);
       } else {
-        setErrorMessage(message || 'Failed to add playlist');
+        setErrorMessage(response?.message || 'Failed to add playlist');
       }
     } catch (error) {
       setErrorMessage('Failed to add playlist. Please try again later.');
     }
-  };
-
-  const handleSkillClick = (value: string) => {
-    setSelectedSkill(value);
   };
 
   return (
@@ -74,9 +68,9 @@ const Home = ({ seoMeta }: PageProps) => {
             heading='Add Your'
             focusText='Playlist'
             headingLevel={2}
-            subtext='Learn Undistracted with Youtube Playlist'
+            subtext='Learn Undistracted with YouTube Playlist'
           />
-          <FlexContainer className='gap-3 w-full ' direction='col'>
+          <FlexContainer className='gap-3 w-full' direction='col'>
             <InputFieldContainer
               label='Paste YouTube Playlist Link'
               type='text'
@@ -89,7 +83,7 @@ const Home = ({ seoMeta }: PageProps) => {
               variant='PRIMARY'
               className='m-auto'
               text='Add Playlist'
-              active={!!playlistUrl || !!errorMessage}
+              active={!!playlistUrl}
               isLoading={loading}
               onClick={handleAddPlaylist}
             />
@@ -101,45 +95,11 @@ const Home = ({ seoMeta }: PageProps) => {
         </FlexContainer>
 
         {/* Skill Selection Section */}
-        <FlexContainer
-          direction='col'
-          className='w-full py-11 mt-12 justify-center items-center'
-        >
-          <div className='w-full max-w-md'>
-            <SectionHeaderContainer
-              heading='Don’t Have A '
-              focusText=' Playlist?'
-              headingLevel={3}
-              subtext='We’ll Recommend You, Don’t Worry'
-            />
-          </div>
-          {/* Skill Selection Buttons */}
-          <FlexContainer className='flex-wrap justify-center gap-1 md:gap-2 mx-auto max-w-lg py-5'>
-            <RadioGroup
-              options={YOUFOCUS_SKILL_PLAYLISTS}
-              selectedValue={selectedSkill}
-              onChange={handleSkillClick}
-            />
-          </FlexContainer>
-          {/* Explore Button */}
-          <div className='w-full max-w-md'>
-            <Button
-              variant='PRIMARY'
-              active={!!selectedSkill}
-              className='w-full mx-auto'
-              text={`Explore ${selectedSkill ? selectedSkill : 'Skills'}`}
-              onClick={() => {
-                if (selectedSkill) {
-                  router.push(
-                    `${routes.explorePlaylistSkill}?q=${encodeURIComponent(
-                      selectedSkill
-                    )}`
-                  );
-                }
-              }}
-            />
-          </div>
-        </FlexContainer>
+        <ExplorePlaylistContainer
+          heading='Don’t Have A'
+          focusText='Playlist?'
+          subtext='We’ll Recommend You, Don’t Worry'
+        />
       </Section>
     </Fragment>
   );

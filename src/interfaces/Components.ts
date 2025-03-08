@@ -543,7 +543,13 @@ export interface RadioButtonOptionsProps {
 export interface PlaylistSkillCardProps {
   _id: string;
   playlistName: string;
-  description: string;
-  thumbnail?: string;
+  description?: string;
+  thumbnail: string;
   referrerBy: number;
+}
+
+export interface ExploreCantainerCardProps {
+  heading: string;
+  focusText: string;
+  subtext: string;
 }
