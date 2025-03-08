@@ -30,7 +30,10 @@ const ExplorePlaylistContainer = ({
   };
 
   return (
-    <FlexContainer className='' direction='col'>
+    <FlexContainer
+      className='border py-4 px-20 w-fit m-auto rounded-2'
+      direction='col'
+    >
       <SectionHeaderContainer
         heading={heading}
         focusText={focusText}

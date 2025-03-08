@@ -22,14 +22,15 @@ const getPreFetchProps = async ({ resolvedUrl }: any) => {
   }
 
   const seoMeta = getSEOMeta(slug);
+  console.log('HERE', slug, seoMeta);
 
-  const redirect = !seoMeta && {
-    destination: routes.home,
-  };
+  // const redirect = !seoMeta && {
+  //   destination: routes.home,
+  // };
 
   return {
     props: { slug, seoMeta },
-    redirect,
+    // redirect,
   };
 };
 
@@ -446,6 +447,42 @@ const getWebinarPageProps = async (context: any) => {
   };
 };
 
+const getSkillPlaylistPageProps = async (context: any) => {
+  const { query } = context;
+  const { q } = query;
+  const skillQuery = typeof q === 'string' ? q : '';
+
+  const { status, data: playlists } = await fetchAPIData(
+    routes.api.playlistByQuery(skillQuery)
+  );
+
+  if (!status) {
+    return {
+      redirect: {
+        destination: routes.home,
+      },
+    };
+  }
+
+  const seoMeta = {
+    title: `${skillQuery} | The Boring Education`,
+    siteName: 'The Boring Education',
+    description: `Explore ${skillQuery} playlists and start learning`,
+    url: `${routes.explorePlaylistSkill}?q=${skillQuery}`,
+    keywords:
+      'Tech Education, Online Learning, Programming, Free Courses, Open Source, Webinars, The Boring Education, College Students, Working Professionals, Career Development, Skill Enhancement, GitHub, Instagram, Twitter, LinkedIn',
+    ...seoCommonMeta,
+  };
+
+  return {
+    props: {
+      seoMeta,
+      playlists,
+      skillQuery,
+    },
+  };
+};
+
 export {
   getPreFetchProps,
   getProjectPageProps,
@@ -455,4 +492,5 @@ export {
   getWebinarLandingPageProps,
   getCertificatePageProps,
   getPlaylistPageProps,
+  getSkillPlaylistPageProps,
 };

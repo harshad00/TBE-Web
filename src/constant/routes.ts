@@ -110,6 +110,7 @@ const routes = {
       }
       return url;
     },
+    playlistByQuery: (query: string) => `/youfocus/explore?q=${query}`,
     userDashboard: '/user/dashboard',
     notification: '/notification',
   },

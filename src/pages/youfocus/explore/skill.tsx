@@ -1,61 +1,68 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useRouter } from 'next/router';
 import {
   FlexContainer,
   PlaylistSkillCard,
+  Section,
   SectionHeaderContainer,
+  SEO,
   Toast,
 } from '@/components';
 import { useSkillPlaylist } from '@/hooks';
+import { getSkillPlaylistPageProps } from '@/utils';
+import { PageProps } from '@/interfaces';
 
-const Explore = () => {
+const Explore = ({ seoMeta }: PageProps) => {
   const router = useRouter();
   const { q } = router.query;
   const skillQuery = typeof q === 'string' ? q : ''; // Ensure q is always a string
   const { playlists, loading, errorMessage } = useSkillPlaylist(skillQuery);
 
   return (
-    <FlexContainer
-      direction='col'
-      className='w-full justify-center items-center'
-    >
-      <div className='w-full max-w-md'>
-        <SectionHeaderContainer
-          heading={`${
-            skillQuery
-              ? skillQuery.charAt(0).toUpperCase() + skillQuery.slice(1)
-              : 'Explore'
-          }`}
-          focusText='Playlist'
-          headingLevel={3}
-          subtext='Pick A Playlist and Start Learning'
-        />
-      </div>
+    <Fragment>
+      <SEO seoMeta={seoMeta} />
+      <Section>
+        <FlexContainer
+          direction='col'
+          className='w-full justify-center items-center'
+        >
+          <div className='w-full max-w-md'>
+            <SectionHeaderContainer
+              heading={`${
+                skillQuery
+                  ? skillQuery.charAt(0).toUpperCase() + skillQuery.slice(1)
+                  : 'Explore'
+              }`}
+              focusText='Playlist'
+              headingLevel={3}
+              subtext='Pick A Playlist and Start Learning'
+            />
+          </div>
 
-      {loading && <p className='text-blue-500'>⏳ Loading playlists...</p>}
-      {errorMessage && <Toast type='error' message={errorMessage} />}
+          {loading && <Toast type='error' message='Playlists Loading...' />}
+          {errorMessage && <Toast type='error' message={errorMessage} />}
 
-      <FlexContainer className='w-full gap-4 flex-wrap py-3'>
-        {playlists.length > 0
-          ? playlists.map((playlist) => (
-              <PlaylistSkillCard
-                key={playlist._id}
-                _id={playlist._id}
-                playlistName={playlist.name}
-                thumbnail={playlist.thumbnail}
-                referrerBy={playlist.referrerBy || 0}
-              />
-            ))
-          : !loading &&
-            !errorMessage && (
-              <Toast
-                type='error'
-                message='No playlists found for this skill.'
-              />
-            )}
-      </FlexContainer>
-    </FlexContainer>
+          <FlexContainer className='w-full gap-4 py-3'>
+            {playlists.length > 0 &&
+              playlists.map((playlist, key) => {
+                const { _id, name, thumbnail, referrerBy } = playlist;
+
+                return (
+                  <PlaylistSkillCard
+                    key={key}
+                    _id={_id}
+                    playlistName={name}
+                    thumbnail={thumbnail}
+                    referrerBy={referrerBy}
+                  />
+                );
+              })}
+          </FlexContainer>
+        </FlexContainer>
+      </Section>
+    </Fragment>
   );
 };
 
+export const getServerSideProps = getSkillPlaylistPageProps;
 export default Explore;

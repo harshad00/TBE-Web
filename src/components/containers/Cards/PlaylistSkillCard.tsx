@@ -1,52 +1,44 @@
 import React from 'react';
-import { FlexContainer, Image, Text, LinkButton } from '@/components';
-import { useRouter } from 'next/router';
+import { GradientContainer, Image, Text, LinkButton } from '@/components';
 import { routes } from '@/constant';
 import { PlaylistSkillCardProps } from '@/interfaces';
 
-const PlaylistSkillCard = ({
+const SkillCard = ({
   thumbnail,
   playlistName,
   referrerBy,
   _id,
 }: PlaylistSkillCardProps) => {
-  const router = useRouter();
-
   return (
-    <FlexContainer
-      direction='col'
-      className='bg-white shadow-md rounded-md py-4 px-2 border border-gray-200 w-full md:w-96'
-    >
-      {/* Thumbnail Image */}
+    <GradientContainer className='max-w-sm border border-gray-200 shadow-md rounded-md'>
       <Image
         src={thumbnail}
         alt={playlistName}
-        className='w-full h-44 object-cover rounded-lg'
+        className='w-full object-cover rounded-md'
       />
 
-      {/* Title & Recommendation Count */}
-      <FlexContainer direction='col' className='mt-3 w-full items-baseline'>
-        <Text level='h5' className='heading-5 font-bold text-gray-900'>
-          {playlistName}
-        </Text>
-        <Text level='h6' className='heading-6 font-medium text-red-500 mt-1'>
-          {referrerBy || '0'} Learners Recommended
-        </Text>
-      </FlexContainer>
+      <Text level='h5' className='heading-5 font-bold text-gray-900 mt-3'>
+        {playlistName}
+      </Text>
 
-      {/* View Playlist Button */}
+      {referrerBy > 0 && (
+        <Text level='h6' className='heading-6 font-medium text-red-500 mt-1'>
+          {referrerBy} Learners Recommended
+        </Text>
+      )}
+
       <LinkButton
-        href={`${routes.youfocusPlaylist}/${_id}`}
+        href={`${routes.youfocus}/${_id}`}
         className='w-full mt-3 block'
         buttonProps={{
           variant: 'PRIMARY',
-          text: 'View Playlist',
+          text: 'Explore Skill',
           active: true,
           className: `w-full`,
         }}
       />
-    </FlexContainer>
+    </GradientContainer>
   );
 };
 
-export default PlaylistSkillCard;
+export default SkillCard;
