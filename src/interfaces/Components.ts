@@ -8,7 +8,6 @@ import {
 import {
   CertificateType,
   GetSEOMetaResponseType,
-  PlaylistModel,
   QuestionFrequencyType,
   TopNavbarLinkProps,
 } from '.';
