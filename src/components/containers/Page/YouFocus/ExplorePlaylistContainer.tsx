@@ -4,7 +4,7 @@ import {
   FlexContainer,
   Button,
   SectionHeaderContainer,
-  RadioGroup,
+  RadioButtonContainer,
 } from '@/components';
 import { ExploreCantainerCardProps } from '@/interfaces';
 import { YOUFOCUS_SKILL_PLAYLISTS, routes } from '@/constant';
@@ -15,7 +15,7 @@ const ExplorePlaylistContainer = ({
   subtext,
 }: ExploreCantainerCardProps) => {
   const router = useRouter();
-  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<string>('');
 
   const handleSkillClick = (value: string) => {
     setSelectedSkill(value);
@@ -38,8 +38,8 @@ const ExplorePlaylistContainer = ({
         subtext={subtext}
       />
       <FlexContainer direction='col' className='justify-center items-center'>
-        <FlexContainer className='flex-wrap justify-center gap-1 md:gap-2 mx-auto max-w-lg py-5'>
-          <RadioGroup
+        <FlexContainer className='flex-wrap justify-center gap-1 mx-auto max-w-lg py-5'>
+          <RadioButtonContainer
             options={YOUFOCUS_SKILL_PLAYLISTS}
             selectedValue={selectedSkill}
             onChange={handleSkillClick}

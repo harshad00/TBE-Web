@@ -169,8 +169,8 @@ const PlaylistVideoCard = dynamic(
   () => import('@/components/containers/Cards/Items/PlaylistVideoCard')
 );
 
-const RadioGroup = dynamic(
-  () => import('@/components/containers/Page/common/RadioGroup')
+const RadioButtonContainer = dynamic(
+  () => import('@/components/containers/Forms/RadioButtonContainer')
 );
 
 const RadioButton = dynamic(
@@ -260,7 +260,7 @@ export {
   HeaderLabel,
   Toast,
   RadioButton,
-  RadioGroup,
+  RadioButtonContainer,
   PlaylistSkillCard,
   ExplorePlaylistContainer,
 };

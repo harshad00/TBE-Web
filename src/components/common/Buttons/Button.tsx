@@ -28,9 +28,7 @@ const Button = ({
   else if (variant === 'SUCCESS')
     baseClasses =
       'button bg-success px-2 py-1 text-white border-2 border-success hover:scale-105 transition-all';
-  if (!active)
-    baseClasses =
-      'button bg-greyLight text-greyDark px-2 py-1 border border-greyDark';
+  if (!active) baseClasses = 'button bg-greyLight text-greyDark px-2 py-1';
 
   const loadingContainer = isLoading && (
     <LoadingSpinner height={3} width={3} borderColour='white' />

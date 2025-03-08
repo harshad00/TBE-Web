@@ -60,8 +60,8 @@ const Home = ({ seoMeta }: PageProps) => {
   return (
     <Fragment>
       <SEO seoMeta={seoMeta} />
-      <FlexContainer className='rounded-md gap-40 items-baseline border rounded-md py-6 my-6 mx-24'>
-        <FlexContainer direction='col' className='md:gap-6 gap-4'>
+      <FlexContainer className='rounded-md md:gap-40 sm:gap-16 gap-8 items-baseline border rounded-md py-6 md:px-0 md:my-6 md:mx-24 mx-2 my-4'>
+        <FlexContainer direction='col' className='gap-6 px-2'>
           <SectionHeaderContainer
             heading='Add Your'
             focusText='Playlist'

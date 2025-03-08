@@ -278,20 +278,19 @@ export interface CardContainerBProps extends BaseCardContainerProps {
   sectionClassName?: string;
 }
 
-export interface RadioOptionProps {
-  id: string;
+export interface RadioButtonOptionsProps {
   label: string;
-  description?: string;
+  value: string;
 }
 
 export interface InputRadioContainerProps {
-  radioItems: RadioOptionProps[];
+  radioItems: RadioButtonOptionsProps[];
   onChange: (itemId: string) => void;
-  selectedItemId?: string;
+  selectedItemValue?: string;
   className?: string;
 }
 
-export interface RadioInputFieldProps extends RadioOptionProps {
+export interface RadioInputFieldProps extends RadioButtonOptionsProps {
   onChange: (itemId: string) => void;
   selected?: boolean;
   className?: string;
@@ -536,10 +535,7 @@ export interface RadioGroupProps {
   selectedValue: string | null;
   onChange: (value: string) => void;
 }
-export interface RadioButtonOptionsProps {
-  label: string;
-  value: string;
-}
+
 export interface PlaylistSkillCardProps {
   _id: string;
   playlistName: string;
