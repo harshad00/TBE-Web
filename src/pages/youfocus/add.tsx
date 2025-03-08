@@ -9,6 +9,7 @@ import {
   InputFieldContainer,
   Toast,
   ExplorePlaylistContainer,
+  Section,
 } from '@/components';
 import { getPreFetchProps } from '@/utils';
 import { useApi, useUser } from '@/hooks';
@@ -60,42 +61,47 @@ const Home = ({ seoMeta }: PageProps) => {
   return (
     <Fragment>
       <SEO seoMeta={seoMeta} />
-      <FlexContainer className='rounded-md md:gap-40 sm:gap-16 gap-8 items-baseline border rounded-md py-6 md:px-0 md:my-6 md:mx-24 mx-2 my-4'>
-        <FlexContainer direction='col' className='gap-6 px-2'>
-          <SectionHeaderContainer
-            heading='Add Your'
-            focusText='Playlist'
-            headingLevel={4}
-            subtext='Learn Undistracted with YouTube Playlist'
-          />
-          <FlexContainer className='gap-3 w-full' direction='col'>
-            <InputFieldContainer
-              label='Paste YouTube Playlist Link'
-              type='text'
-              onChange={handleInputChange}
-              className='text-black'
-              value={playlistUrl}
+      <Section>
+        <FlexContainer className='rounded-md gap-4 items-baseline rounded-md'>
+          <FlexContainer
+            direction='col'
+            className='gap-6 px-4 py-4 self-stretch border'
+          >
+            <SectionHeaderContainer
+              heading='Add Your'
+              focusText='Playlist'
+              headingLevel={4}
+              subtext='Learn Undistracted with YouTube Playlist'
             />
-            <Button
-              variant='PRIMARY'
-              className='m-auto'
-              text='Add Playlist'
-              active={!!playlistUrl}
-              isLoading={loading}
-              onClick={handleAddPlaylist}
-            />
-            {errorMessage && <Toast message={errorMessage} type='error' />}
-            {successMessage && (
-              <Toast message={successMessage} type='success' />
-            )}
+            <FlexContainer className='gap-3 w-full' direction='col'>
+              <InputFieldContainer
+                label='Paste YouTube Playlist Link'
+                type='text'
+                onChange={handleInputChange}
+                className='text-black'
+                value={playlistUrl}
+              />
+              <Button
+                variant='PRIMARY'
+                className='m-auto'
+                text='Add Playlist'
+                active={!!playlistUrl}
+                isLoading={loading}
+                onClick={handleAddPlaylist}
+              />
+              {errorMessage && <Toast message={errorMessage} type='error' />}
+              {successMessage && (
+                <Toast message={successMessage} type='success' />
+              )}
+            </FlexContainer>
           </FlexContainer>
+          <ExplorePlaylistContainer
+            heading='Don’t Have A'
+            focusText='Playlist?'
+            subtext='We’ll Recommend You, Don’t Worry'
+          />
         </FlexContainer>
-        <ExplorePlaylistContainer
-          heading='Don’t Have A'
-          focusText='Playlist?'
-          subtext='We’ll Recommend You, Don’t Worry'
-        />
-      </FlexContainer>
+      </Section>
     </Fragment>
   );
 };

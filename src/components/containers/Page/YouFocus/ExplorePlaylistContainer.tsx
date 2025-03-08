@@ -31,7 +31,7 @@ const ExplorePlaylistContainer = ({
 
   return (
     <FlexContainer
-      className='border py-4 px-20 w-fit m-auto rounded-2'
+      className='border py-4 md:px-12 px-4 w-fit rounded-2 gap-4'
       direction='col'
     >
       <SectionHeaderContainer
@@ -40,8 +40,8 @@ const ExplorePlaylistContainer = ({
         headingLevel={4}
         subtext={subtext}
       />
-      <FlexContainer direction='col' className='justify-center items-center'>
-        <FlexContainer className='flex-wrap justify-center gap-1 mx-auto max-w-lg py-5'>
+      <FlexContainer direction='col' className='gap-4'>
+        <FlexContainer className='gap-1 mx-auto max-w-lg'>
           <RadioButtonContainer
             options={YOUFOCUS_SKILL_PLAYLISTS}
             selectedValue={selectedSkill}
