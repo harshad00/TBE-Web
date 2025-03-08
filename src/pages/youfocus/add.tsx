@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import {
   Button,
   FlexContainer,
-  Section,
   SectionHeaderContainer,
   SEO,
   InputFieldContainer,
