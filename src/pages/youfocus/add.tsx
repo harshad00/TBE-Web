@@ -23,7 +23,6 @@ const Home = ({ seoMeta }: PageProps) => {
   const [playlistUrl, setPlaylistUrl] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
   const handleInputChange = (value: string) => {
     setPlaylistUrl(value);
@@ -62,12 +61,12 @@ const Home = ({ seoMeta }: PageProps) => {
   return (
     <Fragment>
       <SEO seoMeta={seoMeta} />
-      <Section>
+      <FlexContainer className='rounded-md gap-40 items-baseline border rounded-md py-6 my-6 mx-24'>
         <FlexContainer direction='col' className='md:gap-6 gap-4'>
           <SectionHeaderContainer
             heading='Add Your'
             focusText='Playlist'
-            headingLevel={2}
+            headingLevel={4}
             subtext='Learn Undistracted with YouTube Playlist'
           />
           <FlexContainer className='gap-3 w-full' direction='col'>
@@ -75,10 +74,9 @@ const Home = ({ seoMeta }: PageProps) => {
               label='Paste YouTube Playlist Link'
               type='text'
               onChange={handleInputChange}
-              className='md:w-1/2 md:px-5 text-black'
+              className='text-black'
               value={playlistUrl}
             />
-
             <Button
               variant='PRIMARY'
               className='m-auto'
@@ -93,14 +91,12 @@ const Home = ({ seoMeta }: PageProps) => {
             )}
           </FlexContainer>
         </FlexContainer>
-
-        {/* Skill Selection Section */}
         <ExplorePlaylistContainer
           heading='Don’t Have A'
           focusText='Playlist?'
           subtext='We’ll Recommend You, Don’t Worry'
         />
-      </Section>
+      </FlexContainer>
     </Fragment>
   );
 };

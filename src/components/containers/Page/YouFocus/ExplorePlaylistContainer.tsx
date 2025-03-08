@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import {
   FlexContainer,
   Button,
-  Section,
   SectionHeaderContainer,
   RadioGroup,
 } from '@/components';
@@ -31,24 +30,14 @@ const ExplorePlaylistContainer = ({
   };
 
   return (
-    <Section>
-      <FlexContainer
-        direction='col'
-        className='w-full mt-3 justify-center items-center'
-      >
-        <div className='w-full max-w-md'>
-          <SectionHeaderContainer
-            heading={heading}
-            focusText={focusText}
-            headingLevel={3}
-            subtext={subtext}
-          />
-        </div>
-      </FlexContainer>
-      <FlexContainer
-        direction='col'
-        className='w-full justify-center items-center'
-      >
+    <FlexContainer className='' direction='col'>
+      <SectionHeaderContainer
+        heading={heading}
+        focusText={focusText}
+        headingLevel={4}
+        subtext={subtext}
+      />
+      <FlexContainer direction='col' className='justify-center items-center'>
         <FlexContainer className='flex-wrap justify-center gap-1 md:gap-2 mx-auto max-w-lg py-5'>
           <RadioGroup
             options={YOUFOCUS_SKILL_PLAYLISTS}
@@ -56,7 +45,7 @@ const ExplorePlaylistContainer = ({
             onChange={handleSkillClick}
           />
         </FlexContainer>
-        <div className='w-full max-w-md'>
+        <div className='max-w-md'>
           <Button
             variant='PRIMARY'
             className='mx-auto'
@@ -66,7 +55,7 @@ const ExplorePlaylistContainer = ({
           />
         </div>
       </FlexContainer>
-    </Section>
+    </FlexContainer>
   );
 };
 
