@@ -8,6 +8,7 @@ import {
 import {
   CertificateType,
   GetSEOMetaResponseType,
+  PlaylistModel,
   QuestionFrequencyType,
   TopNavbarLinkProps,
 } from '.';
@@ -538,10 +539,11 @@ export interface RadioGroupProps {
 
 export interface PlaylistSkillCardProps {
   _id: string;
-  playlistName: string;
-  description?: string;
   thumbnail: string;
+  playlistName: string;
   referrerBy: number;
+  videos?: Video[];
+  noOfVideos: number;
 }
 
 export interface ExploreCantainerCardProps {

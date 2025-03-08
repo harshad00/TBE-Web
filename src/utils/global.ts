@@ -12,6 +12,7 @@ import {
   formatDate,
   isProgramActive,
   fetchAPIData,
+  getYoufocusSkillName,
 } from '.';
 
 const getPreFetchProps = async ({ resolvedUrl }: any) => {
@@ -465,8 +466,10 @@ const getSkillPlaylistPageProps = async (context: any) => {
   }
 
   const seoMeta = {
-    title: `${skillQuery} | The Boring Education`,
-    siteName: 'The Boring Education',
+    title: `${getYoufocusSkillName(
+      skillQuery
+    )} Playlists | YouFocus| The Boring Education`,
+    siteName: 'YouFocus The Boring Education',
     description: `Explore ${skillQuery} playlists and start learning`,
     url: `${routes.explorePlaylistSkill}?q=${skillQuery}`,
     keywords:

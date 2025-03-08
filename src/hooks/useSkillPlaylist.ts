@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useApi } from '@/hooks';
 import { routes } from '@/constant';
-import { Playlist } from '@/interfaces';
+import { PlaylistSkillCardProps } from '@/interfaces';
 
 const useSkillPlaylist = (q: string) => {
   const { makeRequest, loading } = useApi('fetchPlaylists');
-  const [playlists, setPlaylists] = useState<Playlist[]>([]);
+  const [playlists, setPlaylists] = useState<PlaylistSkillCardProps[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {

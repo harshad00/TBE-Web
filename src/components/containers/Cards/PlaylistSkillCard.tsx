@@ -1,43 +1,47 @@
 import React from 'react';
-import { GradientContainer, Image, Text, LinkButton } from '@/components';
+import { Image, Text, FlexContainer } from '@/components';
 import { routes } from '@/constant';
 import { PlaylistSkillCardProps } from '@/interfaces';
+import { useRouter } from 'next/navigation';
 
 const SkillCard = ({
   thumbnail,
   playlistName,
   referrerBy,
+  noOfVideos,
   _id,
 }: PlaylistSkillCardProps) => {
+  const router = useRouter();
+
   return (
-    <GradientContainer className='max-w-sm border border-gray-200 shadow-md rounded-md'>
-      <Image
-        src={thumbnail}
-        alt={playlistName}
-        className='w-full object-cover rounded-md'
-      />
+    <FlexContainer className='rounded-md hover:scale-105 transition-transform duration-300 md:w-fit w-full relative'>
+      <div
+        onClick={() => router.push(`${routes.youfocusPlaylistPageById(_id)}`)}
+        className='cursor-pointer relative md:w-fit w-full'
+      >
+        <Image
+          src={thumbnail}
+          alt={playlistName}
+          className='w-full object-cover rounded-md'
+        />
 
-      <Text level='h5' className='heading-5 font-bold text-gray-900 mt-3'>
-        {playlistName}
-      </Text>
+        {referrerBy > 0 && (
+          <div className='absolute bottom-2 left-2 bg-white text-primary shadow-md px-1 md:px-3 py-1 rounded-full flex items-center justify-center'>
+            <Text level='p' className='text-xs font-semibold text-center'>
+              {referrerBy} Learners Suggested
+            </Text>
+          </div>
+        )}
 
-      {referrerBy > 0 && (
-        <Text level='h6' className='heading-6 font-medium text-red-500 mt-1'>
-          {referrerBy} Learners Recommended
-        </Text>
-      )}
-
-      <LinkButton
-        href={`${routes.youfocus}/${_id}`}
-        className='w-full mt-3 block'
-        buttonProps={{
-          variant: 'PRIMARY',
-          text: 'Explore Skill',
-          active: true,
-          className: `w-full`,
-        }}
-      />
-    </GradientContainer>
+        {noOfVideos > 0 && (
+          <div className='absolute bottom-2 right-2 bg-primary text-white shadow-md px-1 md:px-3 py-1 rounded-full flex items-center justify-center'>
+            <Text level='p' className='text-xs font-semibold text-center'>
+              {noOfVideos} Videos
+            </Text>
+          </div>
+        )}
+      </div>
+    </FlexContainer>
   );
 };
 

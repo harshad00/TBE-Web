@@ -1,4 +1,8 @@
-import { FooterLinksContainerProps, WebinarModel } from '.';
+import {
+  FooterLinksContainerProps,
+  PlaylistSkillCardProps,
+  WebinarModel,
+} from '.';
 
 export interface FooterNavigationDataProps extends FooterLinksContainerProps {
   id: string;
@@ -92,10 +96,3 @@ export type FormatDateType = {
   dateFormat?: Intl.DateTimeFormatOptions;
   timeFormat?: Intl.DateTimeFormatOptions;
 };
-
-export interface Playlist {
-  _id: string;
-  name: string;
-  thumbnail: string;
-  referrerBy: number;
-}

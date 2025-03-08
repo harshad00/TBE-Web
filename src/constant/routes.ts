@@ -53,6 +53,8 @@ const routes = {
   youfocusPlaylist: '/youfocus/playlist',
   explorePlaylist: '/youfocus/explore',
   explorePlaylistSkill: '/youfocus/explore/skill',
+  youfocusPlaylistPageById: (playlistId: string) =>
+    `/youfocus/playlist/${playlistId}`,
   // Cohort
   cohort: {
     bringYourIdea: '/cohort/bring-your-idea',

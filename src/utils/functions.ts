@@ -1,4 +1,10 @@
-import { envConfig, LINKS, routes, YOUTUBE_API_PATH } from '@/constant';
+import {
+  envConfig,
+  LINKS,
+  routes,
+  YOUFOCUS_SKILL_PLAYLISTS,
+  YOUTUBE_API_PATH,
+} from '@/constant';
 import {
   BaseInterviewSheetResponseProps,
   BaseShikshaCourseResponseProps,
@@ -433,6 +439,12 @@ const flattenRoutesForSitemap = (routesObj: Record<string, any>): string[] => {
   return urls;
 };
 
+const getYoufocusSkillName = (query?: string) => {
+  if (!query) return 'Explore';
+
+  return YOUFOCUS_SKILL_PLAYLISTS.find((skill) => skill.value === query)?.label;
+};
+
 export {
   formatDate,
   formatTime,
@@ -458,4 +470,5 @@ export {
   flattenRoutesForSitemap,
   generateSitemap,
   mapUserPlaylistResponseToCard,
+  getYoufocusSkillName,
 };
