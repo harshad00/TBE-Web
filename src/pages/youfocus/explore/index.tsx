@@ -12,6 +12,7 @@ const Home = ({ seoMeta }: PageProps) => {
           heading='Pick An'
           focusText='Skill'
           subtext='What Do You Want to Learn?'
+          isCenterAligned={true}
         />
       </Section>
     </Fragment>

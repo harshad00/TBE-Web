@@ -1,5 +1,10 @@
 import { PlaylistPageProps } from '@/interfaces';
-import { SEO, PlaylistContainer, Section } from '@/components';
+import {
+  SEO,
+  PlaylistContainer,
+  Section,
+  ScrollToTopBottomButton,
+} from '@/components';
 import { getPlaylistPageProps } from '@/utils';
 import { Fragment } from 'react';
 
@@ -28,6 +33,7 @@ const PlaylistPage = ({
           learningTime={learningTime}
           isRecommended={isRecommended}
         />
+        <ScrollToTopBottomButton />
       </Section>
     </Fragment>
   );

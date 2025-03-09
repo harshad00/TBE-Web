@@ -78,7 +78,6 @@ const Home = ({ seoMeta }: PageProps) => {
                 label='Paste YouTube Playlist Link'
                 type='text'
                 onChange={handleInputChange}
-                className='text-black'
                 value={playlistUrl}
               />
               <Button

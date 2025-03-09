@@ -6,6 +6,7 @@ import useMediaQuery from './useMediaQuery';
 import useNotifications from './useNotifications';
 import useUser from './useUser';
 import useSkillPlaylist from './useSkillPlaylist';
+import useScrollPosition from './useScrollPosition';
 
 export {
   useApi,
@@ -16,4 +17,5 @@ export {
   useAnalytics,
   useNotifications,
   useSkillPlaylist,
+  useScrollPosition,
 };

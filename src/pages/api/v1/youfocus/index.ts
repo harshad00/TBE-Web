@@ -127,7 +127,6 @@ const handleAddPlaylist = async (
       })
     );
   } catch (error) {
-    console.log('HERE', error);
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       message: `We can't fetch this playlist. Try another one.`,

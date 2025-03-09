@@ -1,4 +1,10 @@
 import dynamic from 'next/dynamic';
+const ScrollToTopBottomButton = dynamic(
+  () => import('@/components/common/Buttons/ScrollToTopBottomButton')
+);
+const FloatingActionButton = dynamic(
+  () => import('@/components/common/Buttons/FloatingActionButton')
+);
 const Toast = dynamic(() => import('@/components/common/Toast'));
 const IconCard = dynamic(
   () => import('@/components/containers/Cards/Items/IconCard')
@@ -263,4 +269,6 @@ export {
   RadioButtonContainer,
   PlaylistSkillCard,
   ExplorePlaylistContainer,
+  FloatingActionButton,
+  ScrollToTopBottomButton,
 };

@@ -85,6 +85,7 @@ const PlaylistContainer = ({
                 key={title}
                 onClick={() => {
                   handleStartLearning();
+                  scrollTo(0, 0);
                   setSelectedVideo({
                     videoId: videoId,
                     title: title,

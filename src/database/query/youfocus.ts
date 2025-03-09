@@ -171,7 +171,10 @@ const getUserPlaylistsFromDB = async (
     const userPlaylists = await UserPlaylist.find({ userId })
       .populate('playlistId')
       .lean()
-      .exec();
+      .exec()
+      .then((data) => {
+        return data.filter((item) => item.playlistId); // If Playlist ID doesn't exist -> Skip
+      });
 
     if (!userPlaylists.length) {
       return { error: 'User does not have any playlists' };

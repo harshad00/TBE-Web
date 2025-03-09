@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Text, FlexContainer } from '@/components';
-import { PlaylistSkillCardProps } from '@/interfaces';
+import { PlaylistCardProps } from '@/interfaces';
 
 const PlaylistCard = ({
   title,
@@ -8,7 +8,7 @@ const PlaylistCard = ({
   thumbnail,
   isStartedLearningFromPlaylist,
   videoId,
-}: PlaylistSkillCardProps) => {
+}: PlaylistCardProps) => {
   return (
     <FlexContainer direction='col' className='gap-4 w-full items-baseline'>
       <div className='w-full border-1 border-black rounded-md overflow-hidden'>

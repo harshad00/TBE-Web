@@ -13,6 +13,7 @@ const ExplorePlaylistContainer = ({
   heading,
   focusText,
   subtext,
+  isCenterAligned = false,
 }: ExploreCantainerCardProps) => {
   const router = useRouter();
   const [selectedSkill, setSelectedSkill] = useState<string>('');
@@ -31,7 +32,9 @@ const ExplorePlaylistContainer = ({
 
   return (
     <FlexContainer
-      className='border py-4 md:px-12 px-4 w-fit rounded-2 gap-4'
+      className={`border py-4 md:px-12 px-4 w-fit rounded-2 gap-4 ${
+        isCenterAligned && 'mx-auto'
+      }`}
       direction='col'
     >
       <SectionHeaderContainer

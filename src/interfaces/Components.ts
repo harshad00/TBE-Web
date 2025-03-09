@@ -549,4 +549,11 @@ export interface ExploreCantainerCardProps {
   heading: string;
   focusText: string;
   subtext: string;
+  isCenterAligned?: boolean;
+}
+
+export interface FloatingActionButtonProps {
+  icon: React.ReactNode;
+  onClick: () => void;
+  className?: string;
 }
