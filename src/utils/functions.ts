@@ -381,7 +381,6 @@ const fetchPlaylistData = async (
   } = {}
 ): Promise<PlaylistModel | undefined> => {
   try {
-    // ✅ Fetch playlist metadata only once
     if (!metadata.playlistName) {
       const playlistMetadata = await fetchPlaylistName(playlistId);
       metadata.playlistName =
