@@ -334,6 +334,7 @@ export interface AccordionLinkItemProps {
   href: string;
   className?: string;
   isCompleted?: boolean;
+  isActive: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
