@@ -327,7 +327,49 @@ const generateShareTemplate = (
   return baseMessage;
 };
 
-// fetches playlist data (metadata and videos)
+const fetchPlaylistName = async (
+  playlistId: string
+): Promise<{
+  playlistName?: string;
+  description?: string;
+  thumbnail?: string;
+}> => {
+  try {
+    const response = await fetch(
+      `${YOUTUBE_API_PATH}/playlists?part=snippet&id=${playlistId}&key=${process.env.YOUTUBE_API_KEY}`
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch playlist metadata: ${data.error.message}`
+      );
+    }
+
+    if (data.items.length === 0) {
+      throw new Error('No playlist found with the given ID');
+    }
+
+    const playlist = data.items[0].snippet;
+
+    return {
+      playlistName: playlist.title || 'Unknown Playlist',
+      description: playlist.description || 'No Description Available',
+      thumbnail:
+        playlist.thumbnails?.maxres?.url ||
+        playlist.thumbnails?.standard?.url ||
+        playlist.thumbnails?.high?.url ||
+        playlist.thumbnails?.medium?.url ||
+        playlist.thumbnails?.default?.url ||
+        '',
+    };
+  } catch (error) {
+    console.error('Error fetching playlist name:', error);
+    return {};
+  }
+};
+
 const fetchPlaylistData = async (
   playlistId: string,
   pageToken = '',
@@ -339,6 +381,17 @@ const fetchPlaylistData = async (
   } = {}
 ): Promise<PlaylistModel | undefined> => {
   try {
+    // ✅ Fetch playlist metadata only once
+    if (!metadata.playlistName) {
+      const playlistMetadata = await fetchPlaylistName(playlistId);
+      metadata.playlistName =
+        playlistMetadata.playlistName || 'Unknown Playlist';
+      metadata.description =
+        playlistMetadata.description || 'No Description Available';
+      metadata.thumbnail = playlistMetadata.thumbnail || '';
+    }
+
+    // Fetch videos
     const response = await fetch(
       `${YOUTUBE_API_PATH}/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=50&pageToken=${pageToken}&key=${process.env.YOUTUBE_API_KEY}`
     );
@@ -347,14 +400,6 @@ const fetchPlaylistData = async (
 
     if (!response.ok) {
       throw new Error(`Failed to fetch playlist data: ${data.error.message}`);
-    }
-
-    // Extract playlist metadata if not already set
-    if (!metadata.playlistName && data.items.length > 0) {
-      metadata.playlistName = data.items[0].snippet.title || '';
-      metadata.description =
-        data.items[0].snippet.description || 'No Description Available';
-      metadata.thumbnail = data.items[0].snippet.thumbnails?.maxres?.url || '';
     }
 
     // Extract video details

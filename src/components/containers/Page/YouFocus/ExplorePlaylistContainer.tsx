@@ -32,7 +32,7 @@ const ExplorePlaylistContainer = ({
 
   return (
     <FlexContainer
-      className={`border py-4 md:px-12 px-4 w-fit rounded-2 gap-4 ${
+      className={`border px-4 py-4 md:px-8 md:py-8 w-fit rounded-2 gap-4 ${
         isCenterAligned && 'mx-auto'
       }`}
       direction='col'

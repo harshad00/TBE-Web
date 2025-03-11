@@ -14,7 +14,7 @@ const SkillCard = ({
   const router = useRouter();
 
   return (
-    <FlexContainer className='rounded-md hover:scale-105 transition-transform duration-300 md:w-fit w-full relative'>
+    <FlexContainer className='rounded-md hover:scale-105 transition-transform duration-300 md:w-fit w-full relative border border-black p-[6px]'>
       <div
         onClick={() => router.push(`${routes.youfocusPlaylistPageById(_id)}`)}
         className='cursor-pointer relative md:w-fit w-full'

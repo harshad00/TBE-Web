@@ -278,12 +278,12 @@ const PORTFOLIO_TEMPLATES: PortfolioTemplateProps[] = [
 const YOUFOCUS_SKILL_PLAYLISTS: RadioButtonOptionsProps[] = [
   { label: 'React.js', value: 'reactjs' },
   { label: 'Node.js', value: 'nodejs' },
-  { label: 'Java', value: 'java' },
-  { label: 'DSA', value: 'dsa' },
-  { label: 'Python', value: 'python' },
   { label: 'HTML', value: 'html' },
   { label: 'CSS', value: 'css' },
   { label: 'C++', value: 'cpp' },
+  { label: 'Java', value: 'java' },
+  { label: 'Python', value: 'python' },
+  { label: 'DSA', value: 'dsa' },
 ];
 
 export {

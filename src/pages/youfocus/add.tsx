@@ -62,10 +62,10 @@ const Home = ({ seoMeta }: PageProps) => {
     <Fragment>
       <SEO seoMeta={seoMeta} />
       <Section>
-        <FlexContainer className='rounded-md gap-4 items-baseline rounded-md'>
+        <FlexContainer className='gap-4 items-baseline'>
           <FlexContainer
             direction='col'
-            className='gap-6 px-4 py-4 self-stretch border'
+            className='gap-6 px-4 py-4 md:px-8 md:py-8 self-stretch border rounded-2'
           >
             <SectionHeaderContainer
               heading='Add Your'
@@ -97,7 +97,7 @@ const Home = ({ seoMeta }: PageProps) => {
           <ExplorePlaylistContainer
             heading='Don’t Have A'
             focusText='Playlist?'
-            subtext='We’ll Recommend You, Don’t Worry'
+            subtext='Select an Skill, We’ll Recommend Playlists'
           />
         </FlexContainer>
       </Section>

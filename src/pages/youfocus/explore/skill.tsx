@@ -38,7 +38,7 @@ const Explore = ({ seoMeta }: PageProps) => {
           {loading && <Toast type='error' message='Playlists Loading...' />}
           {errorMessage && <Toast type='error' message={errorMessage} />}
 
-          <FlexContainer className='w-full gap-4'>
+          <FlexContainer className='w-full md:gap-4 gap-2'>
             {playlists.length > 0 &&
               playlists.map((playlist, key) => {
                 const { _id, playlistName, thumbnail, referrerBy, videos } =

@@ -71,7 +71,6 @@ const handleAddBulkPlaylist = async (
       continue;
     }
 
-    // Fetch playlist data from YouTube
     try {
       const playlistFetchedData = await fetchPlaylistData(playlistId);
 
@@ -83,7 +82,6 @@ const handleAddBulkPlaylist = async (
         continue;
       }
 
-      // Add playlist to the database
       const { error, data: newPlaylist } = await addPlaylistToDB({
         ...playlistFetchedData,
         tags,
