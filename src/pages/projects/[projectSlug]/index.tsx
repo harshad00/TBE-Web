@@ -182,6 +182,8 @@ const ProjectPage = ({
                   {chapters.map(({ chapterId, chapterName, isCompleted }) => (
                     <AccordionLinkItem
                       key={chapterId}
+                      chapterId={chapterId}
+                      currentChapterId={currentChapterId}
                       label={chapterName}
                       isCompleted={isCompleted}
                       href={`${slug}?projectId=${project._id}&sectionId=${sectionId}&chapterId=${chapterId}`}
