@@ -9,18 +9,16 @@ const AccordionLinkItem = ({
   href,
   className,
   isCompleted,
-  currentChapterId,
-  chapterId,
+  isActive,
   onClick,
 }: AccordionLinkItemProps) => {
   const iconColor = isCompleted ? 'text-green-500' : 'text-greyDark';
 
-  const additionalClasses =
-    currentChapterId === chapterId
-      ? isCompleted
-        ? 'text-dark font-semibold bg-green-200'
-        : 'text-dark font-semibold bg-gray-200'
-      : '';
+  const additionalClasses = isActive
+    ? isCompleted
+      ? 'text-dark font-semibold bg-green-200'
+      : 'text-dark font-semibold bg-gray-200'
+    : '';
 
   return (
     <Link href={href} className='w-full'>
