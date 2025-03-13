@@ -203,10 +203,12 @@ const ProgressRing = dynamic(
 );
 
 const LevelInfo = dynamic(
-  () => import('@/components/containers/Cards/Items/LevelInfo '));
+  () => import('@/components/containers/Cards/Items/LevelInfo')
+);
 
 const ActionBanner = dynamic(
-  () => import('@/components/common/Banner/ActionBanner'));
+  () => import('@/components/common/Banner/ActionBanner')
+);
 
 export {
   Navbar,
@@ -293,5 +295,4 @@ export {
   ProgressRing,
   LevelInfo,
   ActionBanner,
-
 };
