@@ -12,6 +12,7 @@ import {
   SEO,
   Text,
   CertificateBanner,
+  ActionBanner,
 } from '@/components';
 import {
   AddCertificateRequestPayloadProps,
@@ -229,7 +230,7 @@ const CoursePage = ({
 
               {/* New Banner for Interview Prep */}
               {isCourseCompleted && (
-                <CertificateBanner
+                <ActionBanner
                   backgroundColor='bg-blue-400'
                   heading='Start Interview Prep'
                   subtext='Take one more step and start preparing for Coding Interviews'
