@@ -1,30 +1,44 @@
-import { Schema, model, models } from 'mongoose';
+import { Schema, model, models, Model } from 'mongoose';
+import { Action, GamificationModel } from '@/interfaces';
+import { DATABASE_MODELS } from '@/constant';
 
-const GamificationSchema = new Schema(
+// Define the Action schema
+const ActionSchema = new Schema<Action>(
   {
-    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    actionType: {
+      type: String,
+      enum: [
+        'enroll',
+        'complete_chapter',
+        'complete_course',
+        'streak',
+        'refer',
+      ],
+      required: true,
+    },
+    pointsEarned: { type: Number, required: true },
+    timestamp: { type: Date, default: Date.now },
+  },
+  { _id: false } // Disable the creation of _id for embedded documents
+);
+
+// Create the Gamification schema
+const GamificationSchema = new Schema<GamificationModel>(
+  {
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: DATABASE_MODELS.USER,
+      required: true,
+    },
     points: { type: Number, default: 0 },
-    actions: [
-      {
-        actionType: {
-          type: String,
-          enum: [
-            'enroll',
-            'complete_chapter',
-            'complete_course',
-            'streak',
-            'refer',
-          ],
-          required: true,
-        },
-        pointsEarned: { type: Number, required: true },
-        timestamp: { type: Date, default: Date.now },
-      },
-    ],
+    actions: [ActionSchema], // Use the ActionSchema for actions
   },
   { timestamps: true }
 );
 
-const Gamification =
-  models?.Gamification || model('Gamification', GamificationSchema);
+// Create or retrieve the model
+const Gamification: Model<GamificationModel> =
+  models.Gamification ||
+  model<GamificationModel>(DATABASE_MODELS.GAMIFICATION, GamificationSchema);
+
 export default Gamification;

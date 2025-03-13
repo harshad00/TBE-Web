@@ -227,3 +227,20 @@ export interface JobModel extends Document {
   isInternship?: boolean;
   platform: string;
 }
+
+export interface Action {
+  actionType:
+    | 'enroll'
+    | 'complete_chapter'
+    | 'complete_course'
+    | 'streak'
+    | 'refer';
+  pointsEarned: number;
+  timestamp: Date;
+}
+
+export interface GamificationModel {
+  userId: Schema.Types.ObjectId; // Reference to User
+  points: number;
+  actions: Action[];
+}
