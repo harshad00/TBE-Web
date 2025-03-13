@@ -145,7 +145,7 @@ const AccordionLinkItem = dynamic(
 const MDXRenderer = dynamic(() => import('./common/MDXRenderer'));
 const UserAvatar = dynamic(() => import('./common/Images/UserAvatar'));
 const UserPointButton = dynamic(
-  () => import('./common/Buttons/UserpointButtion')
+  () => import('./common/Buttons/UserPointButton')
 );
 const LoginWithGoogleButton = dynamic(
   () => import('./common/Buttons/LoginWithGoogleButton')
