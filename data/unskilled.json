@@ -1,0 +1,65 @@
+{
+  "lastUpdated": "2025-03-13",
+  "trendingSkills": [
+    {
+      "skill": "JavaScript",
+      "jobs": 1
+    },
+    {
+      "skill": "C++",
+      "jobs": 1
+    },
+    {
+      "skill": "MongoDB",
+      "jobs": 1
+    },
+    {
+      "skill": "Django",
+      "jobs": 1
+    },
+    {
+      "skill": "C",
+      "jobs": 1
+    },
+    {
+      "skill": "React",
+      "jobs": 1
+    },
+    {
+      "skill": "Python",
+      "jobs": 1
+    },
+    {
+      "skill": "Node.js",
+      "jobs": 1
+    },
+    {
+      "skill": "Golang",
+      "jobs": 1
+    },
+    {
+      "skill": "Flask",
+      "jobs": 1
+    }
+  ],
+  "topLocations": [
+    {
+      "location": "Bangalore",
+      "jobs": 2
+    },
+    {
+      "location": "Remote",
+      "jobs": 1
+    }
+  ],
+  "jobDomains": [
+    {
+      "domain": "Backend Development",
+      "jobs": 2
+    },
+    {
+      "domain": "Full Stack Developer",
+      "jobs": 1
+    }
+  ]
+}
