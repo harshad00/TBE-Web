@@ -191,6 +191,10 @@ const ExplorePlaylistContainer = dynamic(
   () => import('@/components/containers/Page/YouFocus/ExplorePlaylistContainer')
 );
 
+const ActionBanner = dynamic(
+  () => import('@/components/common/Banner/ActionBanner')
+);
+
 export {
   Navbar,
   LinkText as Link,
@@ -271,4 +275,5 @@ export {
   ExplorePlaylistContainer,
   FloatingActionButton,
   ScrollToTopBottomButton,
+  ActionBanner,
 };
