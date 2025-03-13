@@ -226,6 +226,20 @@ const CoursePage = ({
                   }
                 }}
               />
+
+              {/* New Banner for Interview Prep */}
+              {isCourseCompleted && (
+                <CertificateBanner
+                  backgroundColor='bg-blue-400'
+                  heading='Start Interview Prep'
+                  subtext='Take one more step and start preparing for Coding Interviews'
+                  icon={FaTrophy}
+                  isLocked={false}
+                  onClick={() => {
+                    router.push(routes.interviewPrep);
+                  }}
+                />
+              )}
             </div>
           </FlexContainer>
           <FlexContainer
