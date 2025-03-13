@@ -6,6 +6,7 @@ import {
   RoadmapsType,
   SkillsType,
   WebinarEnrolledUsersProps,
+  UserPointsActionType,
 } from '.';
 
 export interface UserModel {
@@ -227,14 +228,8 @@ export interface JobModel extends Document {
   isInternship?: boolean;
   platform: string;
 }
-
-export interface Action {
-  actionType:
-    | 'enroll'
-    | 'complete_chapter'
-    | 'complete_course'
-    | 'streak'
-    | 'refer';
+export interface UserPointsAction extends Document {
+  actionType: UserPointsActionType;
   pointsEarned: number;
   timestamp: Date;
 }
@@ -242,5 +237,5 @@ export interface Action {
 export interface GamificationModel {
   userId: Schema.Types.ObjectId; // Reference to User
   points: number;
-  actions: Action[];
+  actions: UserPointsAction[];
 }

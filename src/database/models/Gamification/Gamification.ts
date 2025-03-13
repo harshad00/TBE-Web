@@ -1,19 +1,13 @@
 import { Schema, model, models, Model } from 'mongoose';
-import { Action, GamificationModel } from '@/interfaces';
-import { DATABASE_MODELS } from '@/constant';
+import { UserPointsAction, GamificationModel } from '@/interfaces';
+import { DATABASE_MODELS, USER_POINTS_ACTION } from '@/constant';
 
 // Define the Action schema
-const ActionSchema = new Schema<Action>(
+const ActionSchema = new Schema<UserPointsAction>(
   {
     actionType: {
       type: String,
-      enum: [
-        'enroll',
-        'complete_chapter',
-        'complete_course',
-        'streak',
-        'refer',
-      ],
+      enum: USER_POINTS_ACTION,
       required: true,
     },
     pointsEarned: { type: Number, required: true },
@@ -39,6 +33,6 @@ const GamificationSchema = new Schema<GamificationModel>(
 // Create or retrieve the model
 const Gamification: Model<GamificationModel> =
   models.Gamification ||
-  model<GamificationModel>(DATABASE_MODELS.GAMIFICATION, GamificationSchema);
+  model<GamificationModel>(DATABASE_MODELS.USERPOINTS, GamificationSchema);
 
 export default Gamification;

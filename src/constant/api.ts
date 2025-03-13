@@ -5,6 +5,7 @@ import {
   QuestionFrequencyType,
   RoadmapsType,
   SkillsType,
+  UserPointsActionType,
 } from '@/interfaces';
 
 const PROJECT_SKILLS: SkillsType[] = [
@@ -35,6 +36,14 @@ const DIFFICULTY_LEVEL: DifficultyType[] = [
 
 const CERTIFICATE_TYPE: CertificateType[] = ['WEBINAR', 'SHIKSHA'];
 
+const USER_POINTS_ACTION: UserPointsActionType[] = [
+  'enroll',
+  'complete_chapter',
+  'complete_course',
+  'streak',
+  'refer',
+];
+
 const NOTIFICATION_TYPE: NotificationType[] = [
   'WEBINAR',
   'SHIKSHA',
@@ -53,4 +62,5 @@ export {
   CERTIFICATE_TYPE,
   YOUTUBE_API_PATH,
   NOTIFICATION_TYPE,
+  USER_POINTS_ACTION,
 };
