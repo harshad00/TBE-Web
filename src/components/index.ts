@@ -194,6 +194,7 @@ const ExplorePlaylistContainer = dynamic(
   () => import('@/components/containers/Page/YouFocus/ExplorePlaylistContainer')
 );
 
+<<<<<<< HEAD
 const LevelProgressCard = dynamic(
   () => import('@/components/containers/Cards/LevelProgressCard')
 );
@@ -204,6 +205,10 @@ const ProgressRing = dynamic(
 
 const LevelInfo = dynamic(
   () => import('@/components/containers/Cards/Items/LevelInfo ')
+=======
+const ActionBanner = dynamic(
+  () => import('@/components/common/Banner/ActionBanner')
+>>>>>>> 2ce407a1a7594f0b815c1f611ff6aa0a14ee4b96
 );
 
 export {
@@ -286,8 +291,12 @@ export {
   ExplorePlaylistContainer,
   FloatingActionButton,
   ScrollToTopBottomButton,
+<<<<<<< HEAD
   LevelProgressCard,
   UserPointButton,
   ProgressRing,
   LevelInfo,
+=======
+  ActionBanner,
+>>>>>>> 2ce407a1a7594f0b815c1f611ff6aa0a14ee4b96
 };
