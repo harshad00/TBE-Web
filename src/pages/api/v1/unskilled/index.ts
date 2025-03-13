@@ -1,17 +1,8 @@
-import fs from 'fs';
-import path from 'path';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
-import { apiStatusCodes } from '@/constant';
-import { sendAPIResponse } from '@/utils';
+import { apiStatusCodes, UNSKILL_DATA_FILE } from '@/constant';
+import { readJSONFile, sendAPIResponse, writeJSONFile } from '@/utils';
 import { getJobsAggregationFromDB } from '@/database';
-
-const DATA_FILE = path.resolve('data/unskilled.json');
-
-const readJSON = (): any | null => {
-  if (!fs.existsSync(DATA_FILE)) return null;
-  return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-};
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -34,7 +25,7 @@ const handleFetchJobData = async (
   res: NextApiResponse
 ) => {
   try {
-    const data = readJSON();
+    const data = readJSONFile(UNSKILL_DATA_FILE);
     const today = new Date().toISOString().split('T')[0];
 
     if (data && data.lastUpdated === today) {
@@ -64,7 +55,6 @@ const handleFetchJobData = async (
   }
 };
 
-// 📌 **2️⃣ Handle POST Request → Aggregate & Store Job Data**
 const handleAggregateJobData = async (
   _req: NextApiRequest,
   res: NextApiResponse
@@ -89,7 +79,7 @@ const handleAggregateJobData = async (
       ...data,
     };
 
-    fs.writeFileSync(DATA_FILE, JSON.stringify(aggregatedData, null, 2));
+    writeJSONFile(UNSKILL_DATA_FILE, aggregatedData);
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

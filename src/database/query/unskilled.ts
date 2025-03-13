@@ -74,24 +74,24 @@ const getJobsAggregationFromDB =
       const trendingSkills = await Job.aggregate([
         { $unwind: '$skills' },
         { $group: { _id: '$skills', totalJobs: { $sum: 1 } } },
-        { $project: { skill: '$_id', jobs: '$totalJobs', _id: 0 } },
-        { $sort: { jobs: -1 } },
+        { $project: { name: '$_id', count: '$totalJobs', _id: 0 } },
+        { $sort: { count: -1 } },
         { $limit: 10 },
       ]);
 
       const topLocations = await Job.aggregate([
         { $match: { location: { $ne: null } } },
         { $group: { _id: '$location', totalJobs: { $sum: 1 } } },
-        { $project: { location: '$_id', jobs: '$totalJobs', _id: 0 } },
-        { $sort: { jobs: -1 } },
+        { $project: { name: '$_id', count: '$totalJobs', _id: 0 } },
+        { $sort: { count: -1 } },
         { $limit: 10 },
       ]);
 
       const jobDomains = await Job.aggregate([
         { $unwind: '$role' },
         { $group: { _id: '$role', totalJobs: { $sum: 1 } } },
-        { $project: { domain: '$_id', jobs: '$totalJobs', _id: 0 } },
-        { $sort: { jobs: -1 } },
+        { $project: { name: '$_id', count: '$totalJobs', _id: 0 } },
+        { $sort: { count: -1 } },
         { $limit: 10 },
       ]);
 

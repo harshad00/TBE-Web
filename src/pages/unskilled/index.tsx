@@ -21,7 +21,7 @@ import { Image } from '@/components';
 interface JobData {
   trendingSkills: { name: string; count: number }[];
   topLocations: { name: string; count: number }[];
-  domainDistribution: { name: string; count: number }[];
+  jobDomains: { name: string; count: number }[];
 }
 
 const mockData: JobData = {
@@ -39,7 +39,7 @@ const mockData: JobData = {
     { name: 'New York', count: 1400 },
     { name: 'Singapore', count: 1200 },
   ],
-  domainDistribution: [
+  jobDomains: [
     { name: 'Full-stack', count: 3000 },
     { name: 'Frontend', count: 2500 },
     { name: 'Backend', count: 2000 },
@@ -154,7 +154,7 @@ export default function Home() {
                 {[
                   jobData.trendingSkills,
                   jobData.topLocations,
-                  jobData.domainDistribution,
+                  jobData.jobDomains,
                 ].map((data, index) => (
                   <Tab.Panel key={index} className='mt-0'>
                     <h3 className='text-xl font-semibold mb-6'>

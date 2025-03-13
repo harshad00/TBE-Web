@@ -1,3 +1,4 @@
+import fs from 'fs';
 import {
   envConfig,
   LINKS,
@@ -489,6 +490,15 @@ const getYoufocusSkillName = (query?: string) => {
   return YOUFOCUS_SKILL_PLAYLISTS.find((skill) => skill.value === query)?.label;
 };
 
+const readJSONFile = (path: string): any | null => {
+  if (!fs.existsSync(path)) return null;
+  return JSON.parse(fs.readFileSync(path, 'utf8'));
+};
+
+const writeJSONFile = (path: string, data: any) => {
+  fs.writeFileSync(path, JSON.stringify(data, null, 2));
+};
+
 export {
   formatDate,
   formatTime,
@@ -515,4 +525,6 @@ export {
   generateSitemap,
   mapUserPlaylistResponseToCard,
   getYoufocusSkillName,
+  readJSONFile,
+  writeJSONFile,
 };
