@@ -413,6 +413,15 @@ export interface BannerProps {
   variant?: 'VARIANT_A' | 'VARIANT_B';
 }
 
+export interface ActionBannerProps {
+  backgroundColor: string;
+  heading: string;
+  subtext: string;
+  icon: React.ElementType;
+  isLocked: boolean;
+  onClick: () => void;
+}
+
 export interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;

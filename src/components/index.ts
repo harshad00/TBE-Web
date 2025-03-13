@@ -204,6 +204,9 @@ const ProgressRing = dynamic(
 
 const LevelInfo = dynamic(
   () => import('@/components/containers/Cards/Items/LevelInfo ')
+
+const ActionBanner = dynamic(
+  () => import('@/components/common/Banner/ActionBanner')
 );
 
 export {
@@ -290,4 +293,5 @@ export {
   UserPointButton,
   ProgressRing,
   LevelInfo,
+  ActionBanner,
 };
