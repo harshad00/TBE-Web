@@ -13,7 +13,7 @@ const ActionSchema = new Schema<UserPointsAction>(
     pointsEarned: { type: Number, required: true },
     timestamp: { type: Date, default: Date.now },
   },
-  { _id: false } // Disable the creation of _id for embedded documents
+  { _id: false }
 );
 
 // Create the Gamification schema
@@ -25,14 +25,14 @@ const GamificationSchema = new Schema<GamificationModel>(
       required: true,
     },
     points: { type: Number, default: 0 },
-    actions: [ActionSchema], // Use the ActionSchema for actions
+    actions: [ActionSchema],
   },
   { timestamps: true }
 );
 
-// Create or retrieve the model
+
 const Gamification: Model<GamificationModel> =
-  models.Gamification ||
+  models[DATABASE_MODELS.USERPOINTS] ||
   model<GamificationModel>(DATABASE_MODELS.USERPOINTS, GamificationSchema);
 
 export default Gamification;

@@ -99,3 +99,7 @@ export type FormatDateType = {
   dateFormat?: Intl.DateTimeFormatOptions;
   timeFormat?: Intl.DateTimeFormatOptions;
 };
+
+export interface UpdateGamificationRecordBody {
+  gamificationRecordId: UserPointsActionType; // Assuming this is the correct type
+}

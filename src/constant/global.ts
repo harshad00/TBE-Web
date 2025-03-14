@@ -4,6 +4,7 @@ import {
   PortfolioTemplateProps,
   ProductDataProps,
   RadioButtonOptionsProps,
+  PointsRulesProps,
 } from '@/interfaces';
 import { routes } from './routes';
 import { envConfig } from './envConfig';
@@ -286,6 +287,14 @@ const YOUFOCUS_SKILL_PLAYLISTS: RadioButtonOptionsProps[] = [
   { label: 'DSA', value: 'dsa' },
 ];
 
+const POINTS_RULES: PointsRulesProps = {
+  enroll: 10,
+  complete_chapter: 5,
+  complete_course: 50,
+  streak: 3,
+  refer: 20,
+};
+
 export {
   imageMeta,
   products,
@@ -304,4 +313,5 @@ export {
   PORTFOLIO_TEMPLATES,
   cohorts,
   YOUFOCUS_SKILL_PLAYLISTS,
+  POINTS_RULES,
 };
