@@ -2,7 +2,7 @@ import { Gamification } from '@/database';
 import { POINTS_RULES } from '@/constant';
 import { UserPointsAction, UserPointsActionType } from '@/interfaces';
 
-export const updateGamificationRecord = async (
+const updateGamificationRecord = async (
   userId: string,
   actionType: UserPointsActionType
 ) => {
@@ -38,3 +38,5 @@ export const updateGamificationRecord = async (
     return { success: false, message: 'Error updating gamification record' };
   }
 };
+
+export { updateGamificationRecord };

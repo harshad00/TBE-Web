@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
 import { updateGamificationRecord } from '@/database';
-import { UserPointsActionType, UpdateGamificationRecordBody } from '@/interfaces';
+import { UpdateGamificationRecordBody } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();

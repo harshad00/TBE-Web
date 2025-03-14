@@ -30,7 +30,6 @@ const GamificationSchema = new Schema<GamificationModel>(
   { timestamps: true }
 );
 
-
 const Gamification: Model<GamificationModel> =
   models[DATABASE_MODELS.USERPOINTS] ||
   model<GamificationModel>(DATABASE_MODELS.USERPOINTS, GamificationSchema);
