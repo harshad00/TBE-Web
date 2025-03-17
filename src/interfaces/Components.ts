@@ -283,14 +283,6 @@ export interface RadioButtonOptionsProps {
   value: string;
 }
 
-export interface PointsRulesProps {
-  enroll: number;
-  complete_chapter: number;
-  complete_course: number;
-  streak: number;
-  refer: number;
-}
-
 export interface InputRadioContainerProps {
   radioItems: RadioButtonOptionsProps[];
   onChange: (itemId: string) => void;
