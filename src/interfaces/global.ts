@@ -101,5 +101,5 @@ export type FormatDateType = {
 };
 
 export interface UpdateGamificationRecordBody {
-  gamificationRecordId: UserPointsActionType; // Assuming this is the correct type
+  gamificationRecordId: UserPointsActionType;
 }

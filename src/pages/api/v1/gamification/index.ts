@@ -26,17 +26,15 @@ const handleUpdateGamificationRecord = async (
   userId: string
 ) => {
   const { body } = req;
-  const { gamificationRecordId } = body as UpdateGamificationRecordBody; // Use the defined interface
+  const { gamificationRecordId } = body as UpdateGamificationRecordBody;
 
   if (!gamificationRecordId) {
-    // Check for missing gamificationRecordId
     return res.status(apiStatusCodes.BAD_REQUEST).json({
       success: false,
       message: 'Missing required fields',
     });
   }
 
-  // Call the updateGamificationRecord function with the userId and gamificationRecordId
   const result = await updateGamificationRecord(userId, gamificationRecordId);
   return res.status(apiStatusCodes.OKAY).json({
     success: true,

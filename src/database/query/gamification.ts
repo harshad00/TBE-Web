@@ -13,23 +13,14 @@ const updateGamificationRecord = async (
       gamification = new Gamification({ userId, points: 0, actions: [] });
     }
 
-    // Get points for the action
     const pointsEarned = POINTS_RULES[actionType] || 0;
-
-    // Create action object
     const action: UserPointsAction = {
       actionType,
       pointsEarned,
-      timestamp: new Date(),
     };
 
-    // Add action to the list
     gamification.actions.push(action);
-
-    // Update total points
     gamification.points += pointsEarned;
-
-    // Save changes
     await gamification.save();
 
     return { success: true, points: gamification.points };
