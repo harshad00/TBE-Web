@@ -1,6 +1,10 @@
 import { Gamification } from '@/database';
 import { POINTS_RULES } from '@/constant';
-import { UserPointsAction, UserPointsActionType } from '@/interfaces';
+import {
+  UserPointsAction,
+  UserPointsActionType,
+  DatabaseQueryResponseType,
+} from '@/interfaces';
 
 const updateGamificationRecord = async (
   userId: string,
@@ -30,4 +34,20 @@ const updateGamificationRecord = async (
   }
 };
 
-export { updateGamificationRecord };
+const getUserPointFromDB = async (
+  userId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const gamification = await Gamification.findOne({ userId });
+
+    if (!gamification) {
+      return { error: 'User Data not found' };
+    }
+
+    return { data: gamification };
+  } catch (error) {
+    return { error: 'Error fetching user points' };
+  }
+};
+
+export { updateGamificationRecord, getUserPointFromDB };
