@@ -1,129 +1,249 @@
 {
-  "lastUpdated": "2025-03-13",
+  "lastUpdated": "2025-03-18",
   "trendingSkills": [
     {
       "name": "Java",
-      "count": 2576
+      "count": 2662
     },
     {
       "name": "Python",
-      "count": 2286
+      "count": 2423
     },
     {
       "name": "React.js",
-      "count": 1504
+      "count": 1569
     },
     {
       "name": "JavaScript",
-      "count": 1434
+      "count": 1503
     },
     {
       "name": "AWS",
-      "count": 1293
+      "count": 1364
     },
     {
       "name": "Node.js",
-      "count": 961
+      "count": 991
     },
     {
       "name": "SQL",
-      "count": 899
+      "count": 932
     },
     {
       "name": "Data Structures",
-      "count": 793
+      "count": 814
     },
     {
       "name": "Golang",
-      "count": 693
+      "count": 719
     },
     {
       "name": "Spring",
-      "count": 622
+      "count": 644
+    },
+    {
+      "name": "Angular",
+      "count": 586
+    },
+    {
+      "name": "Microservices",
+      "count": 568
+    },
+    {
+      "name": "HTML",
+      "count": 563
+    },
+    {
+      "name": "Machine Learning",
+      "count": 550
+    },
+    {
+      "name": "Spring Boot",
+      "count": 531
+    },
+    {
+      "name": "Algorithms",
+      "count": 491
+    },
+    {
+      "name": "CSS",
+      "count": 489
+    },
+    {
+      "name": "Django",
+      "count": 430
+    },
+    {
+      "name": "Kubernetes",
+      "count": 429
+    },
+    {
+      "name": "Automation Testing",
+      "count": 416
     }
   ],
   "topLocations": [
     {
       "name": "Bangalore",
-      "count": 4486
+      "count": 4737
     },
     {
       "name": "Work From Home",
-      "count": 758
+      "count": 817
     },
     {
       "name": "Hyderabad",
-      "count": 700
+      "count": 731
     },
     {
       "name": "Gurgaon",
-      "count": 555
+      "count": 584
     },
     {
       "name": "Mumbai",
-      "count": 490
+      "count": 519
     },
     {
       "name": "Pune",
-      "count": 370
+      "count": 383
     },
     {
       "name": "Chennai",
-      "count": 316
+      "count": 327
     },
     {
       "name": "Noida",
-      "count": 168
+      "count": 180
     },
     {
       "name": "Delhi",
-      "count": 125
+      "count": 126
     },
     {
       "name": "Bangalore,Hyderabad",
-      "count": 64
+      "count": 70
+    },
+    {
+      "name": "Jaipur",
+      "count": 45
+    },
+    {
+      "name": "Ahmedabad",
+      "count": 31
+    },
+    {
+      "name": "Bangalore,Work From Home",
+      "count": 22
+    },
+    {
+      "name": "Kochi",
+      "count": 21
+    },
+    {
+      "name": "Bangalore,Chennai",
+      "count": 18
+    },
+    {
+      "name": "Bangalore,Gurgaon",
+      "count": 14
+    },
+    {
+      "name": "Bangalore,Gurgaon,Hyderabad",
+      "count": 14
+    },
+    {
+      "name": "Mohali",
+      "count": 13
+    },
+    {
+      "name": "Navi Mumbai",
+      "count": 12
+    },
+    {
+      "name": "Bangalore,Gurgaon,Mumbai",
+      "count": 12
     }
   ],
   "jobDomains": [
     {
       "name": "Backend Development",
-      "count": 3580
+      "count": 3706
     },
     {
       "name": "Full-Stack Development",
-      "count": 1727
+      "count": 1789
     },
     {
       "name": "Frontend Development",
-      "count": 1174
+      "count": 1228
     },
     {
       "name": "Other Software Development",
-      "count": 661
-    },
-    {
-      "name": "QA / SDET",
-      "count": 556
+      "count": 694
     },
     {
       "name": "Data Science / Machine Learning",
-      "count": 550
+      "count": 605
+    },
+    {
+      "name": "QA / SDET",
+      "count": 600
     },
     {
       "name": "DevOps / Cloud",
-      "count": 519
+      "count": 563
     },
     {
       "name": "Big Data / DWH / ETL",
-      "count": 467
-    },
-    {
-      "name": "Engineering Management",
-      "count": 353
+      "count": 492
     },
     {
       "name": "Mobile Development",
-      "count": 345
+      "count": 373
+    },
+    {
+      "name": "Engineering Management",
+      "count": 373
+    },
+    {
+      "name": "Data Analysis / Business Intelligence",
+      "count": 350
+    },
+    {
+      "name": "Product Management",
+      "count": 289
+    },
+    {
+      "name": "Database Admin / Development",
+      "count": 140
+    },
+    {
+      "name": "IT Security",
+      "count": 129
+    },
+    {
+      "name": "UX / Visual Design",
+      "count": 127
+    },
+    {
+      "name": "IT Management / IT Support",
+      "count": 115
+    },
+    {
+      "name": "Functional / Technical Consulting",
+      "count": 92
+    },
+    {
+      "name": "Technical / Production Support",
+      "count": 90
+    },
+    {
+      "name": "Project Management",
+      "count": 50
+    },
+    {
+      "name": "Other Design",
+      "count": 48
     }
   ]
 }

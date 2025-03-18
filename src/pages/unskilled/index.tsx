@@ -142,6 +142,10 @@ const UnskilledLandingPage = ({ seoMeta }: PageProps) => {
           </Text>
 
           <TabComponent tabLabels={tabLabels} tabPanels={jobMarketPanels} />
+
+          <Text level='p' className='text-gray-500 text-sm text-center'>
+            Data aggregated from multiple leading job portals and updated daily
+          </Text>
         </FlexContainer>
       </Section>
     </Fragment>

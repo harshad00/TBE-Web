@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes, UNSKILL_DATA_FILE } from '@/constant';
-import { readJSONFile, sendAPIResponse, writeJSONFile } from '@/utils';
+import { readJSONFile, writeJSONFile } from '@/utils/server';
 import { getJobsAggregationFromDB } from '@/database';
+import { sendAPIResponse } from '@/utils';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -38,10 +39,30 @@ const handleFetchJobData = async (
       );
     }
 
-    return res.status(apiStatusCodes.NOT_FOUND).json(
+    const { error, data: unskilledData } = await getJobsAggregationFromDB();
+
+    if (error) {
+      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Failed to aggregate job data',
+          error,
+        })
+      );
+    }
+
+    const aggregatedData = {
+      lastUpdated: today,
+      ...unskilledData,
+    };
+
+    writeJSONFile(UNSKILL_DATA_FILE, aggregatedData);
+
+    return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({
-        status: false,
-        message: 'No recent data found. Please run the aggregation.',
+        status: true,
+        message: 'Job data aggregated and saved successfully',
+        data: aggregatedData,
       })
     );
   } catch (error) {
