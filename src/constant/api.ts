@@ -55,7 +55,7 @@ const NOTIFICATION_TYPE: NotificationType[] = [
 
 const YOUTUBE_API_PATH = 'https://www.googleapis.com/youtube/v3';
 
-const UNSKILL_DATA_FILE = path.resolve('data/unskilled.json');
+const UNSKILL_DATA_FILE = path.resolve('src/data/unskilled.json');
 
 export {
   PROJECT_SKILLS,

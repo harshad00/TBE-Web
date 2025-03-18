@@ -64,6 +64,7 @@ export interface ButtonProps {
   active?: boolean;
   isLoading?: boolean;
   animationClasses?: string;
+  icon?: React.ReactNode;
 }
 
 export interface PageLayoutProps {
