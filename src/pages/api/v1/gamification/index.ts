@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
 import { updateGamificationRecord, getUserPointFromDB } from '@/database';
-import { UpdateGamificationRecordBody } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -28,7 +27,7 @@ const handleUpdateGamificationRecord = async (
   userId: string
 ) => {
   const { body } = req;
-  const { gamificationRecordId } = body as UpdateGamificationRecordBody;
+  const { gamificationRecordId } = body as { gamificationRecordId: string };
 
   if (!gamificationRecordId) {
     return res.status(apiStatusCodes.BAD_REQUEST).json({

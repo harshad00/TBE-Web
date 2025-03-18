@@ -37,11 +37,11 @@ const DIFFICULTY_LEVEL: DifficultyType[] = [
 const CERTIFICATE_TYPE: CertificateType[] = ['WEBINAR', 'SHIKSHA'];
 
 const USER_POINTS_ACTION: UserPointsActionType[] = [
-  'enroll',
-  'complete_chapter',
-  'complete_course',
-  'streak',
-  'refer',
+  'ENROLL',
+  'COMPLETE_CHAPTER',
+  'COMPLETE_COURSE',
+  'STREAK',
+  'REFER',
 ];
 
 const NOTIFICATION_TYPE: NotificationType[] = [
