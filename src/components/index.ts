@@ -1,4 +1,8 @@
 import dynamic from 'next/dynamic';
+const TabComponent = dynamic(() => import('@/components/common/Tab'));
+const OutlineCard = dynamic(
+  () => import('@/components/containers/Cards/Items/OutlineCard')
+);
 const ScrollToTopBottomButton = dynamic(
   () => import('@/components/common/Buttons/ScrollToTopBottomButton')
 );
@@ -295,4 +299,6 @@ export {
   ProgressRing,
   LevelInfo,
   ActionBanner,
+  OutlineCard,
+  TabComponent,
 };
