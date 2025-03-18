@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
-import { updateGamificationRecord } from '@/database';
+import { updateGamificationRecord, getUserPointFromDB } from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -9,6 +9,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { userId } = query as { userId: string };
 
   switch (req.method) {
+    case 'GET':
+      return handleGetUserGamificationRecords(req, res, userId);
     case 'POST':
       return handleUpdateGamificationRecord(req, res, userId);
     default:
@@ -38,6 +40,19 @@ const handleUpdateGamificationRecord = async (
   return res.status(apiStatusCodes.OKAY).json({
     success: true,
     message: 'Gamification record updated successfully',
+    data: result,
+  });
+};
+
+const handleGetUserGamificationRecords = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  userId: string
+) => {
+  const result = await getUserPointFromDB(userId);
+  return res.status(apiStatusCodes.OKAY).json({
+    success: true,
+    message: 'Gamification records fetched successfully',
     data: result,
   });
 };
