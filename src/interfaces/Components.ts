@@ -568,3 +568,8 @@ export interface FloatingActionButtonProps {
   onClick: () => void;
   className?: string;
 }
+
+export interface TabProps {
+  tabLabels: string[];
+  tabPanels: React.ReactNode[];
+}

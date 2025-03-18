@@ -1,4 +1,3 @@
-import { Tab } from '@headlessui/react';
 import {
   BarChart,
   Bar,
@@ -14,24 +13,57 @@ import {
   MapPinIcon,
   CodeBracketIcon,
 } from '@heroicons/react/20/solid';
-import { motion } from 'framer-motion';
 import {
   FlexContainer,
   Image,
   LinkButton,
+  OutlineCard,
   Section,
   SEO,
+  TabComponent,
   Text,
 } from '@/components';
 import JobData from '@/data/unskilled.json';
 import { Fragment } from 'react';
 import { getPreFetchProps } from '@/utils';
-import { PageProps } from '@/interfaces';
+import { OutlineCardProps, PageProps } from '@/interfaces';
 import { routes } from '@/constant';
 
-const MotionDiv = motion.div;
+const tabLabels = ['Skills', 'Locations', 'Domains'];
 
-const features = [
+const jobMarketPanels = [
+  <ResponsiveContainer key={0} width='100%' height={400}>
+    <BarChart data={JobData.trendingSkills} layout='horizontal'>
+      <CartesianGrid strokeDasharray='3 3' />
+      <YAxis type='number' />
+      <XAxis dataKey='name' type='category' width={100} />
+      <Tooltip />
+      <Bar dataKey='count' fill='bg-primary' />
+    </BarChart>
+  </ResponsiveContainer>,
+
+  <ResponsiveContainer key={1} width='100%' height={400}>
+    <BarChart data={JobData.topLocations} layout='horizontal'>
+      <CartesianGrid strokeDasharray='3 3' />
+      <YAxis type='number' />
+      <XAxis dataKey='name' type='category' width={100} />
+      <Tooltip />
+      <Bar dataKey='count' fill='hsl(var(--chart-1))' />
+    </BarChart>
+  </ResponsiveContainer>,
+
+  <ResponsiveContainer key={2} width='100%' height={400}>
+    <BarChart data={JobData.jobDomains} layout='horizontal'>
+      <CartesianGrid strokeDasharray='3 3' />
+      <YAxis type='number' />
+      <XAxis dataKey='name' type='category' width={100} />
+      <Tooltip />
+      <Bar dataKey='count' fill='hsl(var(--chart-1))' />
+    </BarChart>
+  </ResponsiveContainer>,
+];
+
+const UNSKILLED_FEATURES: OutlineCardProps[] = [
   {
     icon: <ArrowTrendingUpIcon className='h-6 w-6 text-primary' />,
     title: 'Stay Updated on Trending Tech',
@@ -51,8 +83,6 @@ const features = [
       'Find the most sought-after software engineering domains and roles to focus your learning journey.',
   },
 ];
-
-const tabLabels = ['Skills', 'Locations', 'Domains'];
 
 const UnskilledLandingPage = ({ seoMeta }: PageProps) => {
   return (
@@ -97,87 +127,22 @@ const UnskilledLandingPage = ({ seoMeta }: PageProps) => {
         </FlexContainer>
       </Section>
 
-      <Section className='py-16 px-4 sm:px-6 lg:px-8'>
+      <Section>
         <div className='mx-auto grid grid-cols-1 md:grid-cols-3 gap-8'>
-          {features.map((feature, index) => (
-            <MotionDiv
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-              className='bg-gradient-to-br from-card to-card/50 p-8 rounded-xl shadow-md border border-primary/10 hover:border-primary/30 transition-all'
-            >
-              <div className='h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6'>
-                {feature.icon}
-              </div>
-              <h3 className='text-xl font-semibold mb-4'>{feature.title}</h3>
-              <p className='text-muted-foreground'>{feature.description}</p>
-            </MotionDiv>
+          {UNSKILLED_FEATURES.map((feature, index) => (
+            <OutlineCard key={index} {...feature} />
           ))}
         </div>
       </Section>
 
-      <Section
-        className='py-16 px-4 sm:px-6 lg:px-8 bg-muted/30'
-        id={`${routes.internals.landing.explore}`}
-      >
-        <div className='mx-auto'>
-          <h2 className='text-3xl font-bold text-center mb-12'>
+      <Section id={`${routes.internals.landing.explore}`}>
+        <FlexContainer className='gap-6' direction='col'>
+          <Text level='h3' className='heading-3'>
             Job Market Insights
-          </h2>
+          </Text>
 
-          <Tab.Group>
-            <Tab.List className='flex justify-center space-x-4 mb-8'>
-              {tabLabels.map((tab, index) => (
-                <Tab
-                  key={index}
-                  className={({ selected }) =>
-                    `px-4 py-2 text-lg font-medium rounded-lg transition-colors ${
-                      selected
-                        ? 'bg-primary text-white'
-                        : 'bg-gray-200 text-gray-700'
-                    } hover:bg-primary/70 focus:outline-none focus:ring-2 focus:ring-primary`
-                  }
-                >
-                  {tab}
-                </Tab>
-              ))}
-            </Tab.List>
-
-            <div className='bg-card p-6 rounded-xl shadow-sm max-w-4xl mx-auto'>
-              <Tab.Panels>
-                {[
-                  JobData.trendingSkills,
-                  JobData.topLocations,
-                  JobData.jobDomains,
-                ].map((data, index) => (
-                  <Tab.Panel key={index} className='mt-0'>
-                    <h3 className='text-xl font-semibold mb-6'>
-                      {index === 0
-                        ? 'Top Trending Skills'
-                        : index === 1
-                        ? 'Top Job Locations'
-                        : 'Job Distribution by Domain'}
-                    </h3>
-                    <div className='h-[400px]'>
-                      <ResponsiveContainer width='100%' height='100%'>
-                        <BarChart data={data} layout='vertical'>
-                          <CartesianGrid strokeDasharray='3 3' />
-                          <XAxis type='number' />
-                          <YAxis dataKey='name' type='category' width={100} />
-                          <Tooltip />
-                          <Bar dataKey='count' fill='hsl(var(--chart-1))' />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                  </Tab.Panel>
-                ))}
-              </Tab.Panels>
-            </div>
-          </Tab.Group>
-        </div>
+          <TabComponent tabLabels={tabLabels} tabPanels={jobMarketPanels} />
+        </FlexContainer>
       </Section>
     </Fragment>
   );
