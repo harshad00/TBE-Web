@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
 import { updateGamificationRecord, getUserPointFromDB } from '@/database';
+import { getPointsForAction } from '@/utils';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -27,16 +28,22 @@ const handleUpdateGamificationRecord = async (
   userId: string
 ) => {
   const { body } = req;
-  const { gamificationRecordId } = body as { gamificationRecordId: string };
+  const { actionType } = body as { actionType: string };
 
-  if (!gamificationRecordId) {
+  if (!actionType || typeof actionType !== 'string') {
     return res.status(apiStatusCodes.BAD_REQUEST).json({
       success: false,
-      message: 'Missing required fields',
+      message: 'Missing or invalid actionType field',
     });
   }
 
-  const result = await updateGamificationRecord(userId, gamificationRecordId);
+  const { normalizedActionType, pointsEarned } = getPointsForAction(actionType);
+  const result = await updateGamificationRecord(
+    userId,
+    normalizedActionType,
+    pointsEarned
+  );
+
   return res.status(apiStatusCodes.OKAY).json({
     success: true,
     message: 'Gamification record updated successfully',
