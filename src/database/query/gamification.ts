@@ -1,5 +1,8 @@
 import { Gamification } from '@/database';
-import { UserPointsAction, DatabaseQueryResponseType } from '@/interfaces';
+import {
+  UserPointsAction,
+  DatabaseQueryResponseType 
+} from '@/interfaces';
 
 const updateGamificationRecord = async (
   userId: string,
@@ -37,6 +40,22 @@ const getUserPointFromDB = async (
 
     if (!gamification) {
       return { error: 'User Data not found' };
+    }
+
+    return { data: gamification };
+  } catch (error) {
+    return { error: 'Error fetching user points' };
+  }
+};
+
+const getUserPointFromDB = async (
+  userId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const gamification = await Gamification.findOne({ userId });
+
+    if (!gamification) {
+      return { error: 'User not found' };
     }
 
     return { data: gamification };
