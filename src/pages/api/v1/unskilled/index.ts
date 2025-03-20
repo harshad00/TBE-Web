@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
-import { apiStatusCodes, UNSKILL_DATA_FILE } from '@/constant';
-import { readJSONFile, writeJSONFile } from '@/utils/server';
+import { apiStatusCodes } from '@/constant';
+import { readJSONFile, UNSKILL_DATA_FILE, writeJSONFile } from '@/utils/server';
 import { getJobsAggregationFromDB } from '@/database';
 import { sendAPIResponse } from '@/utils';
 
