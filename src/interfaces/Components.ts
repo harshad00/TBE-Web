@@ -64,6 +64,7 @@ export interface ButtonProps {
   active?: boolean;
   isLoading?: boolean;
   animationClasses?: string;
+  icon?: React.ReactNode;
 }
 
 export interface PageLayoutProps {
@@ -566,4 +567,9 @@ export interface FloatingActionButtonProps {
   icon: React.ReactNode;
   onClick: () => void;
   className?: string;
+}
+
+export interface TabProps {
+  tabLabels: string[];
+  tabPanels: React.ReactNode[];
 }

@@ -4,6 +4,7 @@ import { apiStatusCodes } from '@/constant';
 import { updateGamificationRecord, getUserPointFromDB } from '@/database';
 import { getPointsForAction } from '@/utils';
 
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
   const { query } = req;
@@ -63,4 +64,5 @@ const handleGetUserGamificationRecords = async (
     data: result,
   });
 };
+
 export default handler;
