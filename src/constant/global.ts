@@ -66,6 +66,11 @@ const products: ProductDataProps = {
     slug: routes.youfocus,
     description: 'Learn Tech From YouTube with 0 Distractions',
   },
+  unskilled: {
+    label: 'UnSkilled',
+    slug: routes.unskilled,
+    description: 'Find Your Next Tech Job with Insights',
+  },
 };
 
 const cohorts: CohortDataProps = {

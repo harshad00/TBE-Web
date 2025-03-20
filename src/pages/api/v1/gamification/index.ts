@@ -57,4 +57,5 @@ const handleGetUserGamificationRecords = async (
     data: result,
   });
 };
+
 export default handler;

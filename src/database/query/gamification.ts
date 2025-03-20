@@ -45,4 +45,20 @@ const getUserPointFromDB = async (
   }
 };
 
+const getUserPointFromDB = async (
+  userId: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const gamification = await Gamification.findOne({ userId });
+
+    if (!gamification) {
+      return { error: 'User not found' };
+    }
+
+    return { data: gamification };
+  } catch (error) {
+    return { error: 'Error fetching user points' };
+  }
+};
+
 export { updateGamificationRecord, getUserPointFromDB };

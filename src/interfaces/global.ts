@@ -24,7 +24,8 @@ export type ProductLabelType =
   | 'Open Source'
   | 'Interview Prep'
   | 'Portfolio'
-  | 'YouFocus';
+  | 'YouFocus'
+  | 'UnSkilled';
 
 export type CohortLabelType = 'Bring Your Idea';
 
