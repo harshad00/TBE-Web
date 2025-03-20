@@ -2,7 +2,11 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { enrollInACourse, getEnrolledCourseFromDB } from '@/database';
+import {
+  enrollInACourse,
+  getEnrolledCourseFromDB,
+  updateGamificationRecord,
+} from '@/database';
 import { CourseEnrollmentRequestProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -65,6 +69,10 @@ const handleCourseEnrollment = async (
           message: 'Failed while enrolling course',
         })
       );
+
+    // Enrollment was successful
+    const actionType = 'ENROLL';
+    await updateGamificationRecord(userId, actionType);
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

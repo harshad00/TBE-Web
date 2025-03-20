@@ -1,12 +1,12 @@
 import { Gamification } from '@/database';
 import { UserPointsAction, DatabaseQueryResponseType } from '@/interfaces';
+import { getPointsForAction } from '@/utils';
 
-const updateGamificationRecord = async (
-  userId: string,
-  normalizedActionType: string,
-  pointsEarned: number
-) => {
+const updateGamificationRecord = async (userId: string, actionType: string) => {
   try {
+    const { normalizedActionType, pointsEarned } =
+      getPointsForAction(actionType);
+
     let gamification = await Gamification.findOne({ userId });
 
     if (!gamification) {

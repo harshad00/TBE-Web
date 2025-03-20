@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
 import { updateGamificationRecord, getUserPointFromDB } from '@/database';
-import { getPointsForAction } from '@/utils';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -37,12 +36,7 @@ const handleUpdateGamificationRecord = async (
     });
   }
 
-  const { normalizedActionType, pointsEarned } = getPointsForAction(actionType);
-  const result = await updateGamificationRecord(
-    userId,
-    normalizedActionType,
-    pointsEarned
-  );
+  const result = await updateGamificationRecord(userId, actionType);
 
   return res.status(apiStatusCodes.OKAY).json({
     success: true,
