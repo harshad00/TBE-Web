@@ -19,7 +19,7 @@ import {
   CoursePageProps,
 } from '@/interfaces';
 import { formatDate, getCoursePageProps } from '@/utils';
-import { useAnalytics, useApi, useMediaQuery, useUser } from '@/hooks';
+import { useAnalytics, useApi, useMediaQuery, useUser,useGamification} from '@/hooks';
 import { routes, SCREEN_BREAKPOINTS } from '@/constant';
 import router from 'next/router';
 
@@ -65,6 +65,9 @@ const CoursePage = ({
   const handleChapterClick = (chapterMeta: string) => {
     setCourseMeta(chapterMeta);
   };
+  
+  // gamification hook 
+  useGamification(course, isChapterCompleted, isCourseCompleted);
 
   const toggleCompletion = async () => {
     setIsLoading(true);

@@ -113,6 +113,7 @@ const routes = {
       return url;
     },
     playlistByQuery: (query: string) => `/youfocus/explore?q=${query}`,
+    gamification:'/gamification',
     userDashboard: '/user/dashboard',
     notification: '/notification',
   },
