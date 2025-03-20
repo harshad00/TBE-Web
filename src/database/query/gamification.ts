@@ -25,7 +25,7 @@ const updateGamificationRecord = async (
     return { success: true, points: gamification.points };
   } catch (error) {
     console.error('Gamification Error:', error);
-    return { success: false, message: error || 'An error occurred' };
+    return { success: false, message: 'An error occurred', error };
   }
 };
 
