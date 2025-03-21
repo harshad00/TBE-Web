@@ -184,8 +184,7 @@ const enrollInACourse = async ({
     });
 
     // Enrollment was successful
-    const actionType = 'ENROLL';
-    await updateGamificationRecord(userId, actionType);
+    await updateGamificationRecord(userId, 'ENROLL');
 
     return { data: userCourse };
   } catch (error) {
@@ -345,10 +344,6 @@ const updateCertificateToUserShikshaCourseDoc = async (
     if (!userCourse) {
       return { error: 'User course not found' };
     }
-
-    // Course was Completed successful
-    const actionType = 'COMPLETE_COURSE';
-    await updateGamificationRecord(userId, actionType);
 
     return { data: userCourse };
   } catch (error) {

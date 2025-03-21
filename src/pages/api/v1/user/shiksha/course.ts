@@ -61,8 +61,7 @@ const handleUpdateChapterStatus = async (
     }
 
     // Chaoter was Completed successful
-    const actionType = 'COMPLETE_CHAPTER';
-    await updateGamificationRecord(userId, actionType);
+    await updateGamificationRecord(userId, 'COMPLETE_CHAPTER');
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

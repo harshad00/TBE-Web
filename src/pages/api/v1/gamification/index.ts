@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
 import { updateGamificationRecord, getUserPointFromDB } from '@/database';
+import { UserPointsActionType } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -27,7 +28,7 @@ const handleUpdateGamificationRecord = async (
   userId: string
 ) => {
   const { body } = req;
-  const { actionType } = body as { actionType: string };
+  const { actionType } = body as { actionType: UserPointsActionType };
 
   if (!actionType) {
     return res.status(apiStatusCodes.BAD_REQUEST).json({
