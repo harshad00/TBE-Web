@@ -8,7 +8,7 @@ import {
   UpdateCourseRequestPayloadProps,
   UpdateUserChapterInCourseRequestProps,
 } from '@/interfaces';
-import { Course, UserCourse } from '@/database';
+import { Course, UserCourse, updateGamificationRecord } from '@/database';
 import { modelSelectParams } from '@/constant';
 
 const addACourseToDB = async (
@@ -183,6 +183,10 @@ const enrollInACourse = async ({
       chapters,
     });
 
+    // Enrollment was successful
+    const actionType = 'ENROLL';
+    await updateGamificationRecord(userId, actionType);
+
     return { data: userCourse };
   } catch (error) {
     return { error: 'Failed while enrolling in a course' };
@@ -341,6 +345,10 @@ const updateCertificateToUserShikshaCourseDoc = async (
     if (!userCourse) {
       return { error: 'User course not found' };
     }
+
+    // Course was Completed successful
+    const actionType = 'COMPLETE_COURSE';
+    await updateGamificationRecord(userId, actionType);
 
     return { data: userCourse };
   } catch (error) {
