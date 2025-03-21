@@ -4,6 +4,7 @@ import {
   routes,
   YOUFOCUS_SKILL_PLAYLISTS,
   YOUTUBE_API_PATH,
+  POINTS_RULES,
 } from '@/constant';
 import {
   BaseInterviewSheetResponseProps,
@@ -15,6 +16,7 @@ import {
   Video,
   UserPlaylistResponseProps,
   PlaylistModel,
+  UserPointsActionType,
 } from '@/interfaces';
 
 const fetchAPIData = async (url: string) => {
@@ -489,6 +491,11 @@ const getYoufocusSkillName = (query?: string) => {
   return YOUFOCUS_SKILL_PLAYLISTS.find((skill) => skill.value === query)?.label;
 };
 
+const getPointsForAction = (actionType: string): { pointsEarned: number } => {
+  const pointsEarned = POINTS_RULES[actionType as UserPointsActionType] || 0;
+  return { pointsEarned };
+};
+
 export {
   formatDate,
   formatTime,
@@ -515,4 +522,5 @@ export {
   generateSitemap,
   mapUserPlaylistResponseToCard,
   getYoufocusSkillName,
+  getPointsForAction,
 };
