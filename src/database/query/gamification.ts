@@ -1,5 +1,9 @@
 import { Gamification } from '@/database';
-import { UserPointsAction, DatabaseQueryResponseType } from '@/interfaces';
+import {
+  UserPointsAction,
+  DatabaseQueryResponseType,
+  UserPointsActionType,
+} from '@/interfaces';
 import { getPointsForAction } from '@/utils';
 
 const updateGamificationRecord = async (userId: string, actionType: string) => {
@@ -46,4 +50,34 @@ const getUserPointFromDB = async (
   }
 };
 
-export { updateGamificationRecord, getUserPointFromDB };
+const reducePoints = async (
+  userId: string,
+  actionType: UserPointsActionType
+) => {
+  try {
+    const gamification = await Gamification.findOne({ userId });
+
+    if (!gamification || gamification.points <= 0) {
+      return { success: false, message: 'Insufficient points' };
+    }
+
+    const { pointsEarned } = getPointsForAction(actionType);
+
+    if (gamification.points < pointsEarned) {
+      return {
+        success: false,
+        message: 'Not enough points to perform this action',
+      };
+    }
+
+    gamification.points -= pointsEarned;
+    await gamification.save();
+
+    return { success: true, points: gamification.points };
+  } catch (error) {
+    console.error('Error reducing points:', error);
+    return { success: false, message: 'Error reducing points', error };
+  }
+};
+
+export { updateGamificationRecord, getUserPointFromDB, reducePoints };

@@ -1,18 +1,23 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
-import { updateGamificationRecord, getUserPointFromDB } from '@/database';
+import {
+  updateGamificationRecord,
+  getUserPointFromDB,
+  reducePoints,
+} from '@/database';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
   const { query } = req;
   const { userId } = query as { userId: string };
-
   switch (req.method) {
     case 'GET':
       return handleGetUserGamificationRecords(req, res, userId);
     case 'POST':
       return handleUpdateGamificationRecord(req, res, userId);
+    case 'PATCH':
+      return handleUpdateGamificationPoints(req, res, userId);
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json({
         success: false,
@@ -55,6 +60,33 @@ const handleGetUserGamificationRecords = async (
     message: 'Gamification records fetched successfully',
     data: result,
   });
+};
+
+const handleUpdateGamificationPoints = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  userId: string
+) => {
+  const { points } = req.body;
+
+  if (!points) {
+    return res.status(apiStatusCodes.BAD_REQUEST).json({
+      success: false,
+      message: 'Missing required fields',
+    });
+  }
+  try {
+    await reducePoints(userId, points);
+    return res.status(apiStatusCodes.OKAY).json({
+      success: true,
+      message: 'Points updated successfully',
+    });
+  } catch (error) {
+    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: error,
+    });
+  }
 };
 
 export default handler;
