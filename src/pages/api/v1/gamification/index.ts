@@ -27,16 +27,16 @@ const handleUpdateGamificationRecord = async (
   userId: string
 ) => {
   const { body } = req;
-  const { gamificationRecordId } = body as { gamificationRecordId: string };
+  const { actionType } = body as { actionType: string };
 
-  if (!gamificationRecordId) {
+  if (!actionType) {
     return res.status(apiStatusCodes.BAD_REQUEST).json({
       success: false,
       message: 'Missing required fields',
     });
   }
 
-  const result = await updateGamificationRecord(userId, gamificationRecordId);
+  const result = await updateGamificationRecord(userId, actionType);
   return res.status(apiStatusCodes.OKAY).json({
     success: true,
     message: 'Gamification record updated successfully',

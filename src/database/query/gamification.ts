@@ -1,25 +1,19 @@
 import { Gamification } from '@/database';
-import { POINTS_RULES } from '@/constant';
-import {
-  UserPointsAction,
-  UserPointsActionType,
-  DatabaseQueryResponseType,
-} from '@/interfaces';
+import { UserPointsAction, DatabaseQueryResponseType } from '@/interfaces';
+import { getPointsForAction } from '@/utils';
 
 const updateGamificationRecord = async (userId: string, actionType: string) => {
   try {
-    console.log('Received ActionType:', actionType);
-
     let gamification = await Gamification.findOne({ userId });
 
     if (!gamification) {
       gamification = new Gamification({ userId, points: 0, actions: [] });
     }
 
-    const pointsEarned =
-      POINTS_RULES[actionType.toUpperCase() as UserPointsActionType] || 0;
-    console.log(pointsEarned);
+    // Get points for the action
+    const { pointsEarned } = getPointsForAction(actionType);
 
+    // Create an action object
     const action: UserPointsAction = {
       actionType,
       pointsEarned,
@@ -32,7 +26,7 @@ const updateGamificationRecord = async (userId: string, actionType: string) => {
     return { success: true, points: gamification.points };
   } catch (error) {
     console.error('Gamification Error:', error);
-    return { success: false, message: error };
+    return { success: false, message: 'Error updating user points', error };
   }
 };
 
