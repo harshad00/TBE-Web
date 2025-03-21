@@ -7,6 +7,7 @@ import {
   reducePoints,
 } from '@/database';
 
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
   const { query } = req;
@@ -32,7 +33,7 @@ const handleUpdateGamificationRecord = async (
   userId: string
 ) => {
   const { body } = req;
-  const { actionType } = body as { actionType: string };
+  const { actionType } = body as { actionType: UserPointsActionType };
 
   if (!actionType) {
     return res.status(apiStatusCodes.BAD_REQUEST).json({
