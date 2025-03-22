@@ -300,13 +300,19 @@ const POINTS_RULES: Record<UserPointsActionType, number> = {
   REFER: 20,
 };
 
-const USER_LEVELS = {
-  BEGINNER: 50,
-  INTERMEDIATE: 200,
-  ADVANCED: 500,
-  EXPERT: 1000,
-  LEGEND: 5000,
+const userLevels: Record<string, number> = {
+  Noob: 0,
+  Coder: 500,
+  Debugger: 1000,
+  Ninja: 2000,
+  Squasher: 3000,
+  Hacker: 4500,
+  Wizard: 6000,
+  Guru: 7500,
+  Architect: 9000,
+  Legend: 10000,
 };
+
 export {
   imageMeta,
   products,
@@ -326,5 +332,5 @@ export {
   cohorts,
   YOUFOCUS_SKILL_PLAYLISTS,
   POINTS_RULES,
-  USER_LEVELS,
+  userLevels,
 };

@@ -5,9 +5,7 @@ import { useUser, useGamification } from '@/hooks';
 
 const UserPointButton = () => {
   const { user, isAuth, loading } = useUser();
-
-  const { data: gamification } = useGamification();
-  console.log('Gamification:', gamification);
+  const { points, userLevelData } = useGamification(); // Extract level details
 
   if (!isAuth || loading) return null;
 
@@ -16,7 +14,7 @@ const UserPointButton = () => {
       {({ open }) => (
         <>
           <Popover.Button className='outline-none rounded-full border-2 border-primary p-2 w-[40px] h-[40px] flex items-center justify-center text-primary'>
-            {gamification ?? 0}
+            {points ?? 0}
           </Popover.Button>
 
           <Transition
@@ -30,9 +28,9 @@ const UserPointButton = () => {
           >
             <Popover.Panel className='absolute z-10 mt-1 flex w-screen max-w-max -translate-x-2/3'>
               <LevelProgressCard
-                progress={gamification}
-                level={2}
-                pointsNeeded={100}
+                progress={points}
+                level={userLevelData?.currentLevel || 'Noob'}
+                pointsNeeded={userLevelData?.pointsNeeded || 0}
               />
             </Popover.Panel>
           </Transition>
