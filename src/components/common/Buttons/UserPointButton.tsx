@@ -13,7 +13,7 @@ const UserPointButton = () => {
     <Popover className='relative p-0 w-[40px] h-[40px] rounded-[50%] border-[2px]'>
       {({ open }) => (
         <>
-          <Popover.Button className='outline-none rounded-full border-2 border-primary p-2 w-[40px] h-[40px] flex items-center justify-center text-primary'>
+          <Popover.Button className='outline-none font-bold  text-xs rounded-full border-2 border-primary p-2 w-[40px] h-[40px] flex items-center justify-center text-primary'>
             {points ?? 0}
           </Popover.Button>
 
