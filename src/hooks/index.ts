@@ -7,6 +7,7 @@ import useNotifications from './useNotifications';
 import useUser from './useUser';
 import useSkillPlaylist from './useSkillPlaylist';
 import useScrollPosition from './useScrollPosition';
+import { useUserPoint } from './useUserPoint';
 
 export {
   useApi,
@@ -18,4 +19,5 @@ export {
   useNotifications,
   useSkillPlaylist,
   useScrollPosition,
+  useUserPoint,
 };
