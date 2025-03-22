@@ -70,10 +70,10 @@ const handleAddACertificate = async (
         certificatePayload.programId,
         addedCertificate._id.toString()
       );
-      // Course was Completed successful
+      // Course was Completed successful add Points
       await updateGamificationRecord(
         certificatePayload.userId,
-        'COMPLETE_COURSE'
+        'COMPLETE_COURSE_CERTIFICATE'
       );
     }
 

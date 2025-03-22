@@ -491,7 +491,9 @@ const getYoufocusSkillName = (query?: string) => {
   return YOUFOCUS_SKILL_PLAYLISTS.find((skill) => skill.value === query)?.label;
 };
 
-const getPointsForAction = (actionType: string): { pointsEarned: number } => {
+const getPointsForAction = (
+  actionType: UserPointsActionType
+): { pointsEarned: number } => {
   const pointsEarned = POINTS_RULES[actionType as UserPointsActionType] || 0;
   return { pointsEarned };
 };
