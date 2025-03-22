@@ -6,7 +6,11 @@ import {
   BaseInterviewSheetResponseProps,
   UpdateInterviewSheetRequestPayloadProps,
 } from '@/interfaces';
-import { InterviewSheet, UserSheet } from '@/database';
+import {
+  InterviewSheet,
+  UserSheet,
+  updateGamificationRecord,
+} from '@/database';
 import { modelSelectParams } from '@/constant';
 
 const addAInterviewSheetToDB = async (
@@ -179,6 +183,9 @@ const enrollInASheet = async ({
       questions,
     });
 
+    // Enrollment Sheet was successful add Points
+    await updateGamificationRecord(userId, 'ENROLL_SHEET');
+
     return { data: userSheet };
   } catch (error) {
     return { error: 'Failed while enrolling in a sheet' };
@@ -237,6 +244,9 @@ const markQuestionCompletedByUser = async (
     if (!updatedSheet) {
       return { error: 'User or question not found' };
     }
+
+    // Question Completed successful add Points
+    await updateGamificationRecord(userId, 'COMPLETE_QUESTION');
 
     return { data: updatedSheet };
   } catch (error) {
