@@ -1,11 +1,7 @@
 import React from 'react';
 import { FlexContainer } from '@/components';
 import { ProgressRing, LevelInfo } from '@/components';
-interface LevelProgressCardProps {
-  progress: number;
-  level: number;
-  pointsNeeded: number;
-}
+import { LevelProgressCardProps } from '@/interfaces';
 
 const LevelProgressCard = ({
   progress,

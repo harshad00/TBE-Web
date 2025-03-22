@@ -59,4 +59,10 @@ export type TrackEventProps = {
   value?: any;
 };
 
+export interface LevelProgressCardProps {
+  progress: number;
+  level: number;
+  pointsNeeded: number;
+}
+
 export type NotificationItemProps = Partial<NotificationModel>;
