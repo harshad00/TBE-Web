@@ -12,7 +12,7 @@ import {
   ProjectPickedPageProps,
 } from '@/interfaces';
 
-import { Project, UserProject } from '@/database';
+import { Project, UserProject, updateGamificationRecord } from '@/database';
 import { modelSelectParams } from '@/constant';
 
 const addAProjectToDB = async ({
@@ -463,6 +463,9 @@ const updateUserProjectChapterInDB = async ({
     // Save the updated document
     await userProject.save();
 
+    // Project Chapter was successful add Points
+    await updateGamificationRecord(userId, 'COMPLETE_PROJECT_CHAPTER');
+
     return { data: userProject };
   } catch (error) {
     return { error: 'Failed to update chapter in user project' };
@@ -493,6 +496,9 @@ const enrollInAProject = async ({
       projectId,
       sections,
     });
+
+    // Enrollment Project was successful add Points
+    await updateGamificationRecord(userId, 'ENROLL_PROJECT');
 
     return { data: userProject };
   } catch (error) {
