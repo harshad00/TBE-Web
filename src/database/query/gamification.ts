@@ -57,23 +57,16 @@ const reducePoints = async (
   userId: string,
   actionType: UserPointsActionType
 ) => {
+  if (!userId || !actionType) {
+    return { success: false, message: 'Missing required fields' };
+  }
   try {
     const gamification = await Gamification.findOne({ userId });
 
-    if (!gamification || gamification.points <= 0) {
-      return { success: false, message: 'Insufficient points' };
-    }
+    if (!gamification) return { success: false, message: 'User not found' };
 
-    const { pointsEarned } = getPointsForAction(actionType);
+    gamification.points -= getPointsForAction(actionType).pointsEarned;
 
-    if (gamification.points < pointsEarned) {
-      return {
-        success: false,
-        message: 'Not enough points to perform this action',
-      };
-    }
-
-    gamification.points -= pointsEarned;
     await gamification.save();
 
     return { success: true, points: gamification.points };

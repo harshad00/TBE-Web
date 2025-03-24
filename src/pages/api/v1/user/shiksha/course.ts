@@ -5,6 +5,7 @@ import { connectDB } from '@/middlewares';
 import {
   updateUserCourseChapterInDB,
   updateGamificationRecord,
+  reducePoints,
 } from '@/database';
 import { UpdateUserChapterInCourseRequestProps } from '@/interfaces';
 
@@ -60,8 +61,17 @@ const handleUpdateChapterStatus = async (
       );
     }
 
-    // Chapter was Completed successful add Points
-    await updateGamificationRecord(userId, 'COMPLETE_COURSE_CHAPTER');
+    // Convert isCompleted to a proper boolean
+    const isCompletedBool = isCompleted === true || isCompleted === 'true';
+
+    if (!isCompletedBool) {
+      await reducePoints(userId, 'COMPLETE_COURSE_CHAPTER');
+    }
+
+    // Chapter was Completed successfully, add Points
+    if (isCompletedBool) {
+      await updateGamificationRecord(userId, 'COMPLETE_COURSE_CHAPTER');
+    }
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

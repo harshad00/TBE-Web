@@ -6,7 +6,7 @@ import {
   getUserPointFromDB,
   reducePoints,
 } from '@/database';
-
+import { UserPointsActionType } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
@@ -68,16 +68,18 @@ const handleUpdateGamificationPoints = async (
   res: NextApiResponse,
   userId: string
 ) => {
-  const { points } = req.body;
+  const { body } = req;
+  const { actionType } = body as { actionType: UserPointsActionType };
 
-  if (!points) {
+  if (!actionType) {
     return res.status(apiStatusCodes.BAD_REQUEST).json({
       success: false,
       message: 'Missing required fields',
     });
   }
   try {
-    await reducePoints(userId, points);
+    await reducePoints(userId, actionType);
+
     return res.status(apiStatusCodes.OKAY).json({
       success: true,
       message: 'Points updated successfully',
