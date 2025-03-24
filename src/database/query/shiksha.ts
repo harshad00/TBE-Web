@@ -8,7 +8,7 @@ import {
   UpdateCourseRequestPayloadProps,
   UpdateUserChapterInCourseRequestProps,
 } from '@/interfaces';
-import { Course, UserCourse, updateGamificationRecord } from '@/database';
+import { Course, UserCourse } from '@/database';
 import { modelSelectParams } from '@/constant';
 
 const addACourseToDB = async (
@@ -182,9 +182,6 @@ const enrollInACourse = async ({
       courseId,
       chapters,
     });
-
-    // Enrollment was successful add Points
-    await updateGamificationRecord(userId, 'ENROLL_COURSE');
 
     return { data: userCourse };
   } catch (error) {

@@ -2,7 +2,11 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { updateUserProjectChapterInDB } from '@/database';
+import {
+  updateUserProjectChapterInDB,
+  reducePoints,
+  updateGamificationRecord,
+} from '@/database';
 import { UpdateUserChapterInProjectRequestProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -56,6 +60,17 @@ const handleUpdateChapterStatus = async (
           message: 'Failed to update project chapter status',
         })
       );
+    }
+
+    const isCompletedBool = isCompleted === true || isCompleted === 'true';
+
+    if (!isCompleted) {
+      await reducePoints(userId, 'COMPLETE_PROJECT_CHAPTER');
+    }
+
+    // Chapter was Completed successfully, add Points
+    if (isCompletedBool) {
+      await updateGamificationRecord(userId, 'COMPLETE_PROJECT_CHAPTER');
     }
 
     return res.status(apiStatusCodes.OKAY).json(
