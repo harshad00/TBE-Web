@@ -8,9 +8,9 @@ const LevelInfo = ({ level, pointsNeeded }) => {
         YOU'RE AT
       </Text>
       <Text className='text-red-500 font-bold text-base md:text-lg' level='p'>
-        Level {level}: Beginner
+        Level : {level}
       </Text>
-      <div className='mt-2 w-full bg-gradient-to-r from-pink-400 to-yellow-400 font-semibold py-1.5 rounded-md text-center text-sm md:text-base'>
+      <div className='mt-2 p-1 w-full bg-gradient-to-r from-pink-400 to-yellow-400 font-semibold py-1.5 rounded-md text-center text-sm md:text-base'>
         {pointsNeeded} Pts to Expert
       </div>
     </div>
