@@ -60,8 +60,8 @@ const handleUpdateChapterStatus = async (
       );
     }
 
-    // Chaoter was Completed successful
-    await updateGamificationRecord(userId, 'COMPLETE_CHAPTER');
+    // Chapter was Completed successful add Points
+    await updateGamificationRecord(userId, 'COMPLETE_COURSE_CHAPTER');
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

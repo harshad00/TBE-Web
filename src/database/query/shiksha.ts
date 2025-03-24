@@ -183,8 +183,8 @@ const enrollInACourse = async ({
       chapters,
     });
 
-    // Enrollment was successful
-    await updateGamificationRecord(userId, 'ENROLL');
+    // Enrollment was successful add Points
+    await updateGamificationRecord(userId, 'ENROLL_COURSE');
 
     return { data: userCourse };
   } catch (error) {
