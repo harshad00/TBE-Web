@@ -2,7 +2,12 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { markQuestionCompletedByUser, getAllQuestionsByUser } from '@/database';
+import {
+  markQuestionCompletedByUser,
+  getAllQuestionsByUser,
+  reducePoints,
+  updateGamificationRecord,
+} from '@/database';
 import {
   MarkQuestionCompletedRequestProps,
   GetAllQuestionsRequestProps,
@@ -60,6 +65,17 @@ const handleMarkQuestionCompleted = async (
           message: 'Failed to update question status',
         })
       );
+    }
+
+    // Convert isCompleted to a proper boolean
+    const isCompletedBool = isCompleted === true || isCompleted === 'true';
+
+    if (!isCompletedBool) {
+      await reducePoints(userId, 'COMPLETE_QUESTION');
+    }
+
+    if (isCompletedBool) {
+      await updateGamificationRecord(userId, 'COMPLETE_QUESTION');
     }
 
     return res.status(apiStatusCodes.OKAY).json(
