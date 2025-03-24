@@ -300,7 +300,7 @@ const POINTS_RULES: Record<UserPointsActionType, number> = {
   REFER: 20,
 };
 
-const userLevels: Record<string, number> = {
+const USER_LEVELS: Record<string, number> = {
   Noob: 0,
   Coder: 500,
   Debugger: 1000,
@@ -332,5 +332,5 @@ export {
   cohorts,
   YOUFOCUS_SKILL_PLAYLISTS,
   POINTS_RULES,
-  userLevels,
+  USER_LEVELS,
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useApi, useUser } from '@/hooks';
 import { routes } from '@/constant';
-import { userLevels } from '@/constant';
+import { USER_LEVELS } from '@/constant';
 
 const useGamification = () => {
   const { makeRequest } = useApi(`useGamification`);
@@ -43,7 +43,7 @@ const useGamification = () => {
     let nextLevel = null;
     let pointsNeeded = 0;
 
-    const levels = Object.entries(userLevels);
+    const levels = Object.entries(USER_LEVELS);
 
     for (let i = 0; i < levels.length; i++) {
       const [level, requiredPoints] = levels[i];
