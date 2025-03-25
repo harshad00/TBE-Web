@@ -5,8 +5,7 @@ import { connectDB } from '@/middlewares';
 import {
   markQuestionCompletedByUser,
   getAllQuestionsByUser,
-  deductUserPointsFromDB,
-  updateGamificationRecord,
+  handleGamificationPoints,
 } from '@/database';
 import {
   MarkQuestionCompletedRequestProps,
@@ -67,13 +66,7 @@ const handleMarkQuestionCompleted = async (
       );
     }
 
-    if (!isCompleted) {
-      await deductUserPointsFromDB(userId, 'COMPLETE_QUESTION');
-    }
-
-    if (isCompleted) {
-      await updateGamificationRecord(userId, 'COMPLETE_QUESTION');
-    }
+    await handleGamificationPoints(isCompleted, userId, 'COMPLETE_QUESTION');
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

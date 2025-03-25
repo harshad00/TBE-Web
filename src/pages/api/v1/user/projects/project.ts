@@ -4,8 +4,7 @@ import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import {
   updateUserProjectChapterInDB,
-  deductUserPointsFromDB,
-  updateGamificationRecord,
+  handleGamificationPoints,
 } from '@/database';
 import { UpdateUserChapterInProjectRequestProps } from '@/interfaces';
 
@@ -62,13 +61,7 @@ const handleUpdateChapterStatus = async (
       );
     }
 
-    if (!isCompleted) {
-      await deductUserPointsFromDB(userId, 'COMPLETE_PROJECT_CHAPTER');
-    }
-
-    if (isCompleted) {
-      await updateGamificationRecord(userId, 'COMPLETE_PROJECT_CHAPTER');
-    }
+    await handleGamificationPoints( isCompleted, userId, 'COMPLETE_PROJECT_CHAPTER' );
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

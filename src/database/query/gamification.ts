@@ -76,4 +76,28 @@ const deductUserPointsFromDB = async (
   }
 };
 
-export { updateGamificationRecord, getUserPointFromDB, deductUserPointsFromDB };
+const handleGamificationPoints = async (
+  isCompleted: boolean,
+  userId: string,
+  actionType: UserPointsActionType  
+) => {
+
+  try {
+    if (!isCompleted) {
+      console.log('Deducting Points...');
+      await deductUserPointsFromDB(userId, actionType);
+    } else {
+      console.log('Updating Gamification Record...');
+      await updateGamificationRecord(userId, actionType);
+    }
+    console.log('Gamification update success');
+  } catch (error) {
+    console.error('Error in handleGamificationPoints:', error);
+  }
+};
+
+export {
+  updateGamificationRecord,
+  getUserPointFromDB,
+  handleGamificationPoints,
+};
