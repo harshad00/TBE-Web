@@ -284,6 +284,13 @@ export interface RadioButtonOptionsProps {
   value: string;
 }
 
+export interface UserLevel {
+  name: string;
+  value: string;
+  minPoints: number;
+  level: number;
+}
+
 export interface InputRadioContainerProps {
   radioItems: RadioButtonOptionsProps[];
   onChange: (itemId: string) => void;
@@ -311,6 +318,12 @@ export interface ProjectHeroContainerProps {
   isEnrolled?: boolean;
 }
 
+export interface LevelInfoProps {
+  level: number;
+  pointsNeeded: number;
+  currentLevel: string;
+  nextLevel: string;
+}
 export interface CourseHeroContainerProps {
   name: string;
   isEnrolled?: boolean;
