@@ -206,8 +206,8 @@ const ProgressRing = dynamic(
   () => import('@/components/containers/Cards/Items/ProgressRing')
 );
 
-const LevelInfo = dynamic(
-  () => import('@/components/containers/Cards/Items/LevelInfo')
+const UserLevelContainer = dynamic(
+  () => import('@/components/containers/Cards/Items/UserLevelContainer')
 );
 
 const ActionBanner = dynamic(
@@ -297,7 +297,7 @@ export {
   LevelProgressCard,
   UserPointButton,
   ProgressRing,
-  LevelInfo,
+  UserLevelContainer,
   ActionBanner,
   OutlineCard,
   TabComponent,

@@ -1,22 +1,25 @@
 import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { LevelProgressCard } from '@/components';
-import { useUser } from '@/hooks';
+import { useUser, useGamification } from '@/hooks';
 
 const UserPointButton = () => {
   const { user, isAuth, loading } = useUser();
+  const { points, userLevelData } = useGamification();
 
+  // If the user is not authenticated or still loading, return null
   if (!isAuth || loading) return null;
 
   return (
-    <Popover className='relative p-0 w-[40px] h-[40px] rounded-[50%] border-[2px]'>
+    <Popover className='relative p-0 w-10 h-10 rounded-full border-2 border-primary'>
       {({ open }) => (
         <>
-          <Popover.Button className='outline-none rounded-full border-2 border-primary p-2 w-[40px] h-[40px] flex items-center justify-center text-primary'>
-            {user?.points ?? 0}
-            {/* Replace `points` with the actual property from your User model */}
+          {/* User Points Display */}
+          <Popover.Button className='outline-none font-bold text-xs rounded-full p-1 w-10 h-10 flex items-center justify-center text-primary'>
+            {points}
           </Popover.Button>
 
+          {/* Progress Card (Popover) */}
           <Transition
             as={Fragment}
             enter='transition ease-out duration-200'
@@ -27,7 +30,15 @@ const UserPointButton = () => {
             leaveTo='opacity-0 translate-y-1'
           >
             <Popover.Panel className='absolute z-10 mt-1 flex w-screen max-w-max -translate-x-2/3'>
-              <LevelProgressCard />
+              <LevelProgressCard
+                progress={points}
+                level={userLevelData?.level}
+                currentLevel={userLevelData?.currentLevel}
+                nextLevel={userLevelData?.nextLevelName}
+                pointsNeeded={userLevelData?.pointsNeeded}
+                minPoints={userLevelData?.minPoints}
+                nextMinPoints={userLevelData?.nextMinPoints}
+              />
             </Popover.Panel>
           </Transition>
         </>

@@ -102,6 +102,7 @@ const routes = {
       }
       return url;
     },
+    gamification: '/gamification',
     webinarBySlug: (webinar: string) => `/webinar/${webinar}`,
     certificate: '/certificate',
     certificateById: (certificate: string) => `/certificate/${certificate}`,
