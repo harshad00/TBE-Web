@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from '@/components';
 import { LevelInfoProps } from '@/interfaces';
 
-const LevelInfo = ({
+const UserLevelContainer = ({
   level,
   pointsNeeded,
   currentLevel,
@@ -17,10 +17,13 @@ const LevelInfo = ({
         Level {level} : {currentLevel}
       </Text>
       <div className='mt-2 p-1 w-full bg-gradient-to-r from-pink-400 to-yellow-400 font-semibold py-1.5 rounded-md text-center text-xs md:text-base'>
-        {pointsNeeded} Pts to {nextLevel}
+        <Text level='p'>
+          {' '}
+          {pointsNeeded} Pts to {nextLevel}{' '}
+        </Text>
       </div>
     </div>
   );
 };
 
-export default LevelInfo;
+export default UserLevelContainer;

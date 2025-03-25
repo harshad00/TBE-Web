@@ -33,11 +33,11 @@ const UserPointButton = () => {
               <LevelProgressCard
                 progress={points}
                 level={userLevelData?.level}
-                currentLevel={userLevelData?.currentLevel ?? ''}
-                nextLevel={userLevelData?.nextLevelName ?? ''}
-                pointsNeeded={userLevelData?.pointsNeeded ?? 0}
-                minPoints={userLevelData?.minPoints ?? 0}
-                nextMinPoints={userLevelData?.nextMinPoints ?? 0}
+                currentLevel={userLevelData?.currentLevel}
+                nextLevel={userLevelData?.nextLevelName}
+                pointsNeeded={userLevelData?.pointsNeeded}
+                minPoints={userLevelData?.minPoints}
+                nextMinPoints={userLevelData?.nextMinPoints}
               />
             </Popover.Panel>
           </Transition>

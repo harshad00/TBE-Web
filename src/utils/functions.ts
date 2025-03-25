@@ -504,14 +504,12 @@ const getUserLevel = (userPoints: number) => {
   let nextLevel = null;
   let pointsNeeded = 0;
 
-  for (let i = 0; i < USER_LEVELS.length; i++) {
-    if (userPoints >= USER_LEVELS[i].minPoints) {
-      currentLevel = USER_LEVELS[i];
-      nextLevel = USER_LEVELS[i + 1] || null;
-    } else {
-      break;
+  USER_LEVELS.forEach((level, index) => {
+    if (userPoints >= level.minPoints) {
+      currentLevel = level;
+      nextLevel = USER_LEVELS[index + 1] || null;
     }
-  }
+  });
 
   if (nextLevel) {
     pointsNeeded = nextLevel.minPoints - userPoints;
@@ -524,7 +522,7 @@ const getUserLevel = (userPoints: number) => {
     nextLevelName: nextLevel?.name || null,
     nextLevelValue: nextLevel?.value || null,
     minPoints: currentLevel.minPoints,
-    nextMinPoints: nextLevel?.minPoints || null,
+    nextMinPoints: nextLevel?.minPoints || 0,
     pointsNeeded,
   };
 };

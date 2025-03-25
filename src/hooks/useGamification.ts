@@ -25,7 +25,7 @@ const useGamification = () => {
           headers: { 'Content-Type': 'application/json' },
         });
 
-        setPoints( response?.data?.data?.points ); 
+        setPoints(response?.data?.data?.points);
       } catch (error) {
         console.error('Error updating gamification progress:', error);
         setError(error as Error);
