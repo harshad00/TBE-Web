@@ -53,7 +53,7 @@ const getUserPointFromDB = async (
   }
 };
 
-const reducePoints = async (
+const deductUserPointsFromDB = async (
   userId: string,
   actionType: UserPointsActionType
 ) => {
@@ -76,4 +76,4 @@ const reducePoints = async (
   }
 };
 
-export { updateGamificationRecord, getUserPointFromDB, reducePoints };
+export { updateGamificationRecord, getUserPointFromDB, deductUserPointsFromDB };

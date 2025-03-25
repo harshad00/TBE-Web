@@ -4,7 +4,7 @@ import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
 import {
   updateUserProjectChapterInDB,
-  reducePoints,
+  deductUserPointsFromDB,
   updateGamificationRecord,
 } from '@/database';
 import { UpdateUserChapterInProjectRequestProps } from '@/interfaces';
@@ -62,16 +62,12 @@ const handleUpdateChapterStatus = async (
       );
     }
 
-    console.log('isCompleted:', isCompleted, 'Type:', typeof isCompleted);
-
-    const isCompletedBool = isCompleted === true || isCompleted === 'true';
-
     if (!isCompleted) {
-      await reducePoints(userId, 'COMPLETE_PROJECT_CHAPTER');
+      await deductUserPointsFromDB(userId, 'COMPLETE_PROJECT_CHAPTER');
     }
 
     // Chapter was Completed successfully, add Points
-    if (isCompletedBool) {
+    if (isCompleted) {
       await updateGamificationRecord(userId, 'COMPLETE_PROJECT_CHAPTER');
     }
 

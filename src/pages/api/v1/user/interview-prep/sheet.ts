@@ -5,7 +5,7 @@ import { connectDB } from '@/middlewares';
 import {
   markQuestionCompletedByUser,
   getAllQuestionsByUser,
-  reducePoints,
+  deductUserPointsFromDB,
   updateGamificationRecord,
 } from '@/database';
 import {
@@ -67,14 +67,11 @@ const handleMarkQuestionCompleted = async (
       );
     }
 
-    // Convert isCompleted to a proper boolean
-    const isCompletedBool = isCompleted === true || isCompleted === 'true';
-
-    if (!isCompletedBool) {
-      await reducePoints(userId, 'COMPLETE_QUESTION');
+    if (!isCompleted) {
+      await deductUserPointsFromDB(userId, 'COMPLETE_QUESTION');
     }
 
-    if (isCompletedBool) {
+    if (isCompleted) {
       await updateGamificationRecord(userId, 'COMPLETE_QUESTION');
     }
 

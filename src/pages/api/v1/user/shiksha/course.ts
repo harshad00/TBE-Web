@@ -5,7 +5,7 @@ import { connectDB } from '@/middlewares';
 import {
   updateUserCourseChapterInDB,
   updateGamificationRecord,
-  reducePoints,
+  deductUserPointsFromDB,
 } from '@/database';
 import { UpdateUserChapterInCourseRequestProps } from '@/interfaces';
 
@@ -61,15 +61,13 @@ const handleUpdateChapterStatus = async (
       );
     }
 
-    // Convert isCompleted to a proper boolean
-    const isCompletedBool = isCompleted === true || isCompleted === 'true';
-
-    if (!isCompletedBool) {
-      await reducePoints(userId, 'COMPLETE_COURSE_CHAPTER');
+    // Chapter was not Completed, deduct Points
+    if (!isCompleted) {
+      await deductUserPointsFromDB(userId, 'COMPLETE_COURSE_CHAPTER');
     }
 
     // Chapter was Completed successfully, add Points
-    if (isCompletedBool) {
+    if (isCompleted) {
       await updateGamificationRecord(userId, 'COMPLETE_COURSE_CHAPTER');
     }
 
