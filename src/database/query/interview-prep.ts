@@ -245,9 +245,6 @@ const markQuestionCompletedByUser = async (
       return { error: 'User or question not found' };
     }
 
-    // Question Completed successful add Points
-    await updateGamificationRecord(userId, 'COMPLETE_QUESTION');
-
     return { data: updatedSheet };
   } catch (error) {
     return { error: 'Failed to mark question as completed' };

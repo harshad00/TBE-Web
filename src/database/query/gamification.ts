@@ -53,4 +53,51 @@ const getUserPointFromDB = async (
   }
 };
 
-export { updateGamificationRecord, getUserPointFromDB };
+const deductUserPointsFromDB = async (
+  userId: string,
+  actionType: UserPointsActionType
+) => {
+  if (!userId || !actionType) {
+    return { success: false, message: 'Missing required fields' };
+  }
+  try {
+    const gamification = await Gamification.findOne({ userId });
+
+    if (!gamification) return { success: false, message: 'User not found' };
+
+    gamification.points -= getPointsForAction(actionType).pointsEarned;
+
+    await gamification.save();
+
+    return { success: true, points: gamification.points };
+  } catch (error) {
+    console.error('Error reducing points:', error);
+    return { success: false, message: 'Error reducing points', error };
+  }
+};
+
+const handleGamificationPoints = async (
+  isCompleted: boolean,
+  userId: string,
+  actionType: UserPointsActionType  
+) => {
+
+  try {
+    if (!isCompleted) {
+      console.log('Deducting Points...');
+      await deductUserPointsFromDB(userId, actionType);
+    } else {
+      console.log('Updating Gamification Record...');
+      await updateGamificationRecord(userId, actionType);
+    }
+    console.log('Gamification update success');
+  } catch (error) {
+    console.error('Error in handleGamificationPoints:', error);
+  }
+};
+
+export {
+  updateGamificationRecord,
+  getUserPointFromDB,
+  handleGamificationPoints,
+};

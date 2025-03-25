@@ -463,9 +463,6 @@ const updateUserProjectChapterInDB = async ({
     // Save the updated document
     await userProject.save();
 
-    // Project Chapter was successful add Points
-    await updateGamificationRecord(userId, 'COMPLETE_PROJECT_CHAPTER');
-
     return { data: userProject };
   } catch (error) {
     return { error: 'Failed to update chapter in user project' };
