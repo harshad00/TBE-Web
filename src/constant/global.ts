@@ -5,6 +5,7 @@ import {
   ProductDataProps,
   RadioButtonOptionsProps,
   UserPointsActionType,
+  UserLevel,
 } from '@/interfaces';
 import { routes } from './routes';
 import { envConfig } from './envConfig';
@@ -304,18 +305,18 @@ const POINTS_RULES: Record<UserPointsActionType, number> = {
   REFER: 20,
 };
 
-const USER_LEVELS: Record<string, number> = {
-  Noob: 0,
-  Coder: 500,
-  Debugger: 1000,
-  Ninja: 2000,
-  Squasher: 3000,
-  Hacker: 4500,
-  Wizard: 6000,
-  Guru: 7500,
-  Architect: 9000,
-  Legend: 10000,
-};
+const USER_LEVELS: UserLevel[] = [
+  { name: 'Noob', value: 'NOOB', minPoints: 0, level: 1 },
+  { name: 'Coder', value: 'CODER', minPoints: 500, level: 2 },
+  { name: 'Debugger', value: 'DEBUGGER', minPoints: 1000, level: 3 },
+  { name: 'Ninja', value: 'NINJA', minPoints: 2000, level: 4 },
+  { name: 'Squasher', value: 'SQUASHER', minPoints: 3000, level: 5 },
+  { name: 'Hacker', value: 'HACKER', minPoints: 4500, level: 6 },
+  { name: 'Wizard', value: 'WIZARD', minPoints: 6000, level: 7 },
+  { name: 'Guru', value: 'GURU', minPoints: 7500, level: 8 },
+  { name: 'Architect', value: 'ARCHITECT', minPoints: 9000, level: 9 },
+  { name: 'Legend', value: 'LEGEND', minPoints: 10000, level: 10 },
+];
 
 export {
   imageMeta,

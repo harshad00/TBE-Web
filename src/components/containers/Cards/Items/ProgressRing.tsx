@@ -1,17 +1,27 @@
 import React from 'react';
 import { Text } from '@/components';
 
-const ProgressRing = ({ progress = 0, max = 100 }) => {
+const ProgressRing = ({
+  progress = 0,
+  point,
+}: {
+  progress: number;
+  point: number;
+}) => {
   const radius = 42;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (progress / max) * circumference;
 
-  // Calculate the percentage
-  const percentage = Math.round((progress / max) * 100);
+  // Ensure progress is between 0-100%
+  const clampedProgress = Math.min(100, Math.max(0, progress));
+
+  // Calculate stroke offset
+  const strokeDashoffset =
+    circumference - (clampedProgress / 100) * circumference;
 
   return (
     <div className='relative w-20 h-20 flex items-center justify-center'>
       <svg className='absolute w-full h-full' viewBox='0 0 100 100'>
+        {/* Background Circle */}
         <circle
           cx='50'
           cy='50'
@@ -20,6 +30,7 @@ const ProgressRing = ({ progress = 0, max = 100 }) => {
           strokeWidth='8'
           fill='transparent'
         />
+        {/* Progress Circle */}
         <circle
           cx='50'
           cy='50'
@@ -30,10 +41,12 @@ const ProgressRing = ({ progress = 0, max = 100 }) => {
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
           strokeLinecap='round'
+          className='transition-all duration-300 ease-in-out'
         />
       </svg>
+      {/* Display Progress Percentage */}
       <Text className='p-3 text-base md:text-lg font-bold' level='span'>
-        {progress}
+        {point}
       </Text>
     </div>
   );

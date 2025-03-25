@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useApi, useUser } from '@/hooks';
 import { routes } from '@/constant';
-import { USER_LEVELS } from '@/constant';
+import { getUserLevel } from '@/utils';
 
 const useGamification = () => {
-  const { makeRequest } = useApi(`useGamification`);
+  const { makeRequest } = useApi('useGamification');
   const { user } = useUser();
-  const [points, setPoints] = useState<number | null>(null);
+  const [points, setPoints] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -25,7 +25,7 @@ const useGamification = () => {
           headers: { 'Content-Type': 'application/json' },
         });
 
-        setPoints(response?.data?.data?.points || 0); // Ensure default value is 0
+        setPoints(response?.data?.data?.points);
       } catch (error) {
         console.error('Error updating gamification progress:', error);
         setError(error as Error);
@@ -37,30 +37,10 @@ const useGamification = () => {
     fetchData();
   }, [user?.id]);
 
-  // Function to get current user level and points required for the next level
-  const getUserLevel = (userPoints: number) => {
-    let currentLevel = 'Noob';
-    let nextLevel = null;
-    let pointsNeeded = 0;
+  console.log(points);
 
-    const levels = Object.entries(USER_LEVELS);
-
-    for (let i = 0; i < levels.length; i++) {
-      const [level, requiredPoints] = levels[i];
-
-      if (userPoints >= requiredPoints) {
-        currentLevel = level;
-      } else {
-        nextLevel = level;
-        pointsNeeded = requiredPoints - userPoints;
-        break;
-      }
-    }
-
-    return { currentLevel, nextLevel, pointsNeeded };
-  };
-
-  const userLevelData = points !== null ? getUserLevel(points) : null;
+  // Call the updated utility function
+  const userLevelData = getUserLevel(points);
 
   return { points, loading, error, userLevelData };
 };

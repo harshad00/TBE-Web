@@ -5,6 +5,7 @@ import {
   YOUFOCUS_SKILL_PLAYLISTS,
   YOUTUBE_API_PATH,
   POINTS_RULES,
+  USER_LEVELS,
 } from '@/constant';
 import {
   BaseInterviewSheetResponseProps,
@@ -498,6 +499,46 @@ const getPointsForAction = (
   return { pointsEarned };
 };
 
+const getUserLevel = (userPoints: number) => {
+  let currentLevel = USER_LEVELS[0];
+  let nextLevel = null;
+  let pointsNeeded = 0;
+
+  for (let i = 0; i < USER_LEVELS.length; i++) {
+    if (userPoints >= USER_LEVELS[i].minPoints) {
+      currentLevel = USER_LEVELS[i];
+      nextLevel = USER_LEVELS[i + 1] || null;
+    } else {
+      break;
+    }
+  }
+
+  if (nextLevel) {
+    pointsNeeded = nextLevel.minPoints - userPoints;
+  }
+
+  return {
+    currentLevel: currentLevel.name,
+    currentLevelValue: currentLevel.value,
+    level: currentLevel.level,
+    nextLevelName: nextLevel?.name || null,
+    nextLevelValue: nextLevel?.value || null,
+    minPoints: currentLevel.minPoints,
+    nextMinPoints: nextLevel?.minPoints || null,
+    pointsNeeded,
+  };
+};
+
+const calculateProgressPercentage = (
+  progress: number,
+  nextMinPoints: number
+): number => {
+  if (nextMinPoints === 0) {
+    return 100;
+  }
+  return (progress / nextMinPoints) * 100;
+};
+
 export {
   formatDate,
   formatTime,
@@ -525,4 +566,6 @@ export {
   mapUserPlaylistResponseToCard,
   getYoufocusSkillName,
   getPointsForAction,
+  getUserLevel,
+  calculateProgressPercentage,
 };
