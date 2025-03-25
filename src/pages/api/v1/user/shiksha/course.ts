@@ -61,12 +61,10 @@ const handleUpdateChapterStatus = async (
       );
     }
 
-    // Chapter was not Completed, deduct Points
     if (!isCompleted) {
       await deductUserPointsFromDB(userId, 'COMPLETE_COURSE_CHAPTER');
     }
 
-    // Chapter was Completed successfully, add Points
     if (isCompleted) {
       await updateGamificationRecord(userId, 'COMPLETE_COURSE_CHAPTER');
     }

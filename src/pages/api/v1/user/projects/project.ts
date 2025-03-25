@@ -66,7 +66,6 @@ const handleUpdateChapterStatus = async (
       await deductUserPointsFromDB(userId, 'COMPLETE_PROJECT_CHAPTER');
     }
 
-    // Chapter was Completed successfully, add Points
     if (isCompleted) {
       await updateGamificationRecord(userId, 'COMPLETE_PROJECT_CHAPTER');
     }
