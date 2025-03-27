@@ -1,9 +1,9 @@
 import { Schema, model, models, Model } from 'mongoose';
-import { UserPointsAction, GamificationModel } from '@/interfaces';
+import { GamificationModel } from '@/interfaces';
 import { DATABASE_MODELS, USER_POINTS_ACTION } from '@/constant';
 
 // Define the Action schema
-const ActionSchema = new Schema<UserPointsAction>(
+const ActionSchema = new Schema(
   {
     actionType: {
       type: String,

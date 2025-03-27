@@ -2,10 +2,7 @@ import { apiStatusCodes } from '@/constant';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import {
-  updateUserProjectChapterInDB,
-  handleGamificationPoints,
-} from '@/database';
+import { updateUserProjectChapterInDB, updateUserPointsInDB } from '@/database';
 import { UpdateUserChapterInProjectRequestProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -61,11 +58,7 @@ const handleUpdateChapterStatus = async (
       );
     }
 
-    await handleGamificationPoints(
-      isCompleted,
-      userId,
-      'COMPLETE_PROJECT_CHAPTER'
-    );
+    await updateUserPointsInDB(isCompleted, userId, 'COMPLETE_PROJECT_CHAPTER');
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

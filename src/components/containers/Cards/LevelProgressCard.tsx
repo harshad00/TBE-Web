@@ -13,7 +13,6 @@ const LevelProgressCard = ({
   nextMinPoints,
 }: LevelProgressCardProps) => {
   const percentage = calculateProgressPercentage(progress, nextMinPoints);
-  // console.log('Percentage:', percentage);
 
   return (
     <div className='bg-white p-3 rounded-2xl  shadow-md border relative w-full min-w-[200px] max-w-[320px]'>

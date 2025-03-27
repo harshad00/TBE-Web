@@ -231,7 +231,6 @@ export interface JobModel extends Document {
 export interface UserPointsAction {
   actionType: UserPointsActionType;
   pointsEarned: number;
-  timestamp?: Date;
 }
 
 export interface GamificationModel {

@@ -13,8 +13,13 @@ const updateGamificationRecord = async (
   try {
     let gamification = await Gamification.findOne({ userId });
 
+    // If user does not exist, create a new record with 0 points
     if (!gamification) {
-      gamification = new Gamification({ userId, points: 0, actions: [] });
+      gamification = new Gamification({
+        userId,
+        points: 0,
+        actions: [],
+      });
     }
 
     // Get points for the action
@@ -41,10 +46,15 @@ const getUserPointFromDB = async (
   userId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    const gamification = await Gamification.findOne({ userId });
+    let gamification = await Gamification.findOne({ userId });
 
     if (!gamification) {
-      return { error: 'User not found' };
+      gamification = new Gamification({
+        userId,
+        points: 0,
+        actions: [],
+      });
+      await gamification.save();
     }
 
     return { data: gamification };
@@ -80,7 +90,7 @@ const deductUserPointsFromDB = async (
   }
 };
 
-const handleGamificationPoints = async (
+const updateUserPointsInDB = async (
   isCompleted: boolean,
   userId: string,
   actionType: UserPointsActionType
@@ -95,12 +105,8 @@ const handleGamificationPoints = async (
     }
     console.log('Gamification update success');
   } catch (error) {
-    console.error('Error in handleGamificationPoints:', error);
+    console.error('Error in updateUserPointsInDB:', error);
   }
 };
 
-export {
-  updateGamificationRecord,
-  getUserPointFromDB,
-  handleGamificationPoints,
-};
+export { updateGamificationRecord, getUserPointFromDB, updateUserPointsInDB };

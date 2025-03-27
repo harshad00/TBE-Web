@@ -5,7 +5,7 @@ import { connectDB } from '@/middlewares';
 import {
   markQuestionCompletedByUser,
   getAllQuestionsByUser,
-  handleGamificationPoints,
+  updateUserPointsInDB,
 } from '@/database';
 import {
   MarkQuestionCompletedRequestProps,
@@ -66,7 +66,7 @@ const handleMarkQuestionCompleted = async (
       );
     }
 
-    await handleGamificationPoints(isCompleted, userId, 'COMPLETE_QUESTION');
+    await updateUserPointsInDB(isCompleted, userId, 'COMPLETE_QUESTION');
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

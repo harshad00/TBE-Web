@@ -20,7 +20,7 @@ const UserLevelContainer = ({
         <Text level='p'>
           {' '}
           {pointsNeeded !== 0
-            ? `${pointsNeeded || 500} Pts to ${nextLevel}`
+            ? `${pointsNeeded} Pts to ${nextLevel}`
             : `You are at the highest level!`}
         </Text>
       </div>

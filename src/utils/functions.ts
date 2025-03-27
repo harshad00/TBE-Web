@@ -501,6 +501,7 @@ const getPointsForAction = (
 };
 
 const getUserLevel = (userPoints: number) => {
+
   let currentLevel: UserLevel = USER_LEVELS[0];
   let nextLevel: UserLevel = USER_LEVELS[1];
   let pointsNeeded = 0;

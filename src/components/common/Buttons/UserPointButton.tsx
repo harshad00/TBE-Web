@@ -19,12 +19,15 @@ const UserPointButton = () => {
   if (!isAuth || loading) return null;
 
   return (
-    <Popover className='relative p-0 w-10 h-10 rounded-full border-2 border-primary'>
+    <Popover className='relative'>
       {({ open }) => (
         <>
           {/* User Points Display */}
-          <Popover.Button className='outline-none font-bold text-xs rounded-full pr-[5px] w-10 h-10 flex items-center justify-center text-primary'>
-            {points ?? 0}
+          <Popover.Button
+            className='outline-none font-bold text-xs rounded-full w-10 h-10 flex items-center justify-center border-2 border-primary text-primary'
+            disabled={loading}
+          >
+            {points}
           </Popover.Button>
 
           {/* Progress Card (Popover) */}
@@ -37,7 +40,7 @@ const UserPointButton = () => {
             leaveFrom='opacity-100 translate-y-0'
             leaveTo='opacity-0 translate-y-1'
           >
-            <Popover.Panel className='absolute z-10 mt-1 flex w-screen max-w-max -translate-x-2/3'>
+            <Popover.Panel className='absolute z-10 mt-2 left-1/2 -translate-x-1/2 w-max'>
               <LevelProgressCard
                 progress={points}
                 level={level}
