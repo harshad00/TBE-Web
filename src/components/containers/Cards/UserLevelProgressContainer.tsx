@@ -15,8 +15,12 @@ const UserLevelProgressContainer = ({
     <div className='bg-white px-2 py-2 rounded-2xl  shadow-md border relative w-full min-w-[200px] max-w-[320px]'>
       <FlexContainer className='flex-col flex-nowrap sm:flex-row gap-2'>
         <ProgressRing progress={percentageProgress} point={points} />
-        <FlexContainer direction='col' className='' itemCenter={false}>
-          <FlexContainer direction='col' className='' itemCenter={false}>
+        <FlexContainer
+          direction='col'
+          className='gap-1 w-full'
+          itemCenter={false}
+        >
+          <FlexContainer direction='col' itemCenter={false}>
             <Text className='pre-title text-greyDark' level='span'>
               YOU'RE AT
             </Text>
@@ -25,8 +29,8 @@ const UserLevelProgressContainer = ({
             </Text>
           </FlexContainer>
           {nextLevelName && (
-            <FlexContainer className='mt-2 p-1 w-full bg-gradient-to-r from-pink-400 to-yellow-400 font-semibold py-1.5 rounded-md text-center text-xs md:text-base'>
-              <Text level='p'>
+            <FlexContainer className='py-1 md:px-1 w-full bg-gradient-to-r from-pink-400 to-yellow-400 font-semibold rounded-md text-center text-xs md:text-base'>
+              <Text className='button-text' level='p'>
                 {pointsLeftToNextLevel} Pts to {nextLevelName}
               </Text>
             </FlexContainer>
