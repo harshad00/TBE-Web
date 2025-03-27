@@ -79,9 +79,8 @@ const deductUserPointsFromDB = async (
 const handleGamificationPoints = async (
   isCompleted: boolean,
   userId: string,
-  actionType: UserPointsActionType  
+  actionType: UserPointsActionType
 ) => {
-
   try {
     if (!isCompleted) {
       console.log('Deducting Points...');
