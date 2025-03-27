@@ -198,16 +198,12 @@ const ExplorePlaylistContainer = dynamic(
   () => import('@/components/containers/Page/YouFocus/ExplorePlaylistContainer')
 );
 
-const LevelProgressCard = dynamic(
-  () => import('@/components/containers/Cards/LevelProgressCard')
+const UserLevelProgressContainer = dynamic(
+  () => import('@/components/containers/Cards/UserLevelProgressContainer')
 );
 
 const ProgressRing = dynamic(
   () => import('@/components/containers/Cards/Items/ProgressRing')
-);
-
-const UserLevelContainer = dynamic(
-  () => import('@/components/containers/Cards/Items/UserLevelContainer')
 );
 
 const ActionBanner = dynamic(
@@ -294,10 +290,9 @@ export {
   ExplorePlaylistContainer,
   FloatingActionButton,
   ScrollToTopBottomButton,
-  LevelProgressCard,
+  UserLevelProgressContainer,
   UserPointButton,
   ProgressRing,
-  UserLevelContainer,
   ActionBanner,
   OutlineCard,
   TabComponent,

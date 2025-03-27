@@ -497,31 +497,37 @@ const calculateUserPointsForAction = (actionType: UserPointsActionType) => {
   return points;
 };
 
-const getUserLevel = (userPoints: number) => {
+const getUserGamificationLevel = (userPoints: number) => {
   let currentLevel = USER_LEVELS[0];
   let nextLevel = null;
-  let pointsNeeded = 0;
 
-  USER_LEVELS.forEach((level, index) => {
-    if (userPoints >= level.minPoints) {
-      currentLevel = level;
-      nextLevel = USER_LEVELS[index + 1] || null;
+  for (let i = 0; i < USER_LEVELS.length; i++) {
+    if (userPoints >= USER_LEVELS[i].minPoints) {
+      currentLevel = USER_LEVELS[i];
+      nextLevel = USER_LEVELS[i + 1] || null;
+    } else {
+      break;
     }
-  });
-
-  if (nextLevel) {
-    pointsNeeded = nextLevel.minPoints - userPoints;
   }
 
+  const pointsLeftToNextLevel = nextLevel
+    ? nextLevel.minPoints - userPoints
+    : 0;
+
+  const progress = userPoints - currentLevel.minPoints;
+  const nextMinPoints = nextLevel?.minPoints || 0;
+
+  const percentageProgress = calculateProgressPercentage(
+    progress,
+    nextMinPoints - currentLevel.minPoints
+  );
+
   return {
-    currentLevel: currentLevel.name,
-    currentLevelValue: currentLevel.value,
-    level: currentLevel.level,
-    nextLevelName: nextLevel?.name || null,
-    nextLevelValue: nextLevel?.value || null,
-    minPoints: currentLevel.minPoints,
-    nextMinPoints: nextLevel?.minPoints || 0,
-    pointsNeeded,
+    currentLevel: currentLevel.level,
+    currentLevelName: currentLevel.name,
+    pointsLeftToNextLevel,
+    nextLevelName: nextLevel?.name,
+    percentageProgress: Math.min(percentageProgress, 100),
   };
 };
 
@@ -562,6 +568,6 @@ export {
   mapUserPlaylistResponseToCard,
   getYoufocusSkillName,
   calculateUserPointsForAction,
-  getUserLevel,
+  getUserGamificationLevel,
   calculateProgressPercentage,
 };

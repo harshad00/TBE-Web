@@ -1,13 +1,8 @@
 import React from 'react';
 import { Text } from '@/components';
+import { ProgressRingProps } from '@/interfaces';
 
-const ProgressRing = ({
-  progress = 0,
-  point,
-}: {
-  progress: number;
-  point: number;
-}) => {
+const ProgressRing = ({ progress = 0, point }: ProgressRingProps) => {
   const radius = 42;
   const circumference = 2 * Math.PI * radius;
 

@@ -586,3 +586,17 @@ export interface TabProps {
   tabLabels: string[];
   tabPanels: React.ReactNode[];
 }
+
+export interface ProgressRingProps {
+  progress: number;
+  point: number;
+}
+
+export interface LevelProgressCardProps {
+  points: number;
+  currentLevel: number;
+  currentLevelName: string;
+  nextLevelName?: string;
+  pointsLeftToNextLevel: number;
+  percentageProgress: number;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useApi, useUser } from '@/hooks';
 import { routes } from '@/constant';
-import { getUserLevel } from '@/utils';
+import { getUserGamificationLevel } from '@/utils';
 
 const useGamification = () => {
   const { makeRequest } = useApi('useGamification');
@@ -25,9 +25,8 @@ const useGamification = () => {
           headers: { 'Content-Type': 'application/json' },
         });
 
-        setPoints(response?.data?.data?.points);
+        setPoints(response?.data?.points);
       } catch (error) {
-        console.error('Error updating gamification progress:', error);
         setError(error as Error);
       } finally {
         setLoading(false);
@@ -37,10 +36,24 @@ const useGamification = () => {
     fetchData();
   }, [user?.id]);
 
-  // Call the updated utility function
-  const userLevelData = getUserLevel(points);
+  const {
+    currentLevel,
+    currentLevelName,
+    pointsLeftToNextLevel,
+    nextLevelName,
+    percentageProgress,
+  } = getUserGamificationLevel(points);
 
-  return { points, loading, error, userLevelData };
+  return {
+    loading,
+    error,
+    points,
+    currentLevel,
+    currentLevelName,
+    pointsLeftToNextLevel,
+    nextLevelName,
+    percentageProgress,
+  };
 };
 
 export default useGamification;
