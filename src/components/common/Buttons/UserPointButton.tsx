@@ -26,7 +26,7 @@ const UserPointButton = () => {
       {() => (
         <>
           <PopoverButton className='flex p-1 w-10 h-10 justify-center items-center rounded-full border-2 border-primary text-primary hover:text-white hover:bg-primary outline-none font-bold'>
-            <span className='w-full h-full flex items-center justify-center'>
+            <span className='w-full h-full flex text-xs items-center justify-center'>
               {points}
             </span>
           </PopoverButton>
