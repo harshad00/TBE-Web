@@ -2,7 +2,6 @@ import { Schema, model, models, Model } from 'mongoose';
 import { UserPointsAction, GamificationModel } from '@/interfaces';
 import { DATABASE_MODELS, USER_POINTS_ACTION } from '@/constant';
 
-// Define the Action schema
 const ActionSchema = new Schema<UserPointsAction>(
   {
     actionType: {
@@ -11,12 +10,10 @@ const ActionSchema = new Schema<UserPointsAction>(
       required: true,
     },
     pointsEarned: { type: Number, required: true },
-    timestamp: { type: Date, default: Date.now },
   },
-  { _id: false }
+  { timestamps: true }
 );
 
-// Create the Gamification schema
 const GamificationSchema = new Schema<GamificationModel>(
   {
     userId: {
@@ -31,7 +28,7 @@ const GamificationSchema = new Schema<GamificationModel>(
 );
 
 const Gamification: Model<GamificationModel> =
-  models[DATABASE_MODELS.USERPOINTS] ||
-  model<GamificationModel>(DATABASE_MODELS.USERPOINTS, GamificationSchema);
+  models[DATABASE_MODELS.GAMIFICATION] ||
+  model<GamificationModel>(DATABASE_MODELS.GAMIFICATION, GamificationSchema);
 
 export default Gamification;

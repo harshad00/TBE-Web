@@ -12,7 +12,7 @@ import Playlist from './models/YouFocus/Playlist';
 import UserPlaylist from './models/YouFocus/UserPlaylist';
 import Notification from './models/Notification';
 import Job from './models/Unskilled/Jobs';
-import Gamification from './models/Gamification/Gamification';
+import Gamification from './models/Gamification';
 
 export {
   Project,

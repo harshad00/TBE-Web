@@ -13,7 +13,7 @@ const DATABASE_MODELS = {
   WEBINAR: 'Webinar',
   CERTIFICATE: 'Certificate',
   NOTIFICATION: 'Notification',
-  USERPOINTS: 'UserPoints',
+  GAMIFICATION: 'Gamification',
   JOB: 'Job',
 };
 
