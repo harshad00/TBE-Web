@@ -492,11 +492,9 @@ const getYoufocusSkillName = (query?: string) => {
   return YOUFOCUS_SKILL_PLAYLISTS.find((skill) => skill.value === query)?.label;
 };
 
-const getPointsForAction = (
-  actionType: UserPointsActionType
-): { pointsEarned: number } => {
-  const pointsEarned = POINTS_RULES[actionType as UserPointsActionType] || 0;
-  return { pointsEarned };
+const calculateUserPointsForAction = (actionType: UserPointsActionType) => {
+  const points = POINTS_RULES[actionType as UserPointsActionType] || 0;
+  return points;
 };
 
 const getUserLevel = (userPoints: number) => {
@@ -563,7 +561,7 @@ export {
   generateSitemap,
   mapUserPlaylistResponseToCard,
   getYoufocusSkillName,
-  getPointsForAction,
+  calculateUserPointsForAction,
   getUserLevel,
   calculateProgressPercentage,
 };

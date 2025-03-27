@@ -12,7 +12,7 @@ import {
   ProjectPickedPageProps,
 } from '@/interfaces';
 
-import { Project, UserProject, updateGamificationRecord } from '@/database';
+import { Project, UserProject, updateUserPointsInDB } from '@/database';
 import { modelSelectParams } from '@/constant';
 
 const addAProjectToDB = async ({
@@ -495,7 +495,7 @@ const enrollInAProject = async ({
     });
 
     // Enrollment Project was successful add Points
-    await updateGamificationRecord(userId, 'ENROLL_PROJECT');
+    await updateUserPointsInDB(userId, 'ENROLL_PROJECT');
 
     return { data: userProject };
   } catch (error) {

@@ -4,40 +4,21 @@ import {
   DatabaseQueryResponseType,
   UserPointsActionType,
 } from '@/interfaces';
-import { getPointsForAction } from '@/utils';
+import { calculateUserPointsForAction } from '@/utils';
 
-const updateGamificationRecord = async (
-  userId: string,
-  actionType: UserPointsActionType
-) => {
+const addGamificationDocInDB = async (
+  userId: string
+): Promise<DatabaseQueryResponseType> => {
   try {
-    let gamification = await Gamification.findOne({ userId });
-
-    if (!gamification) {
-      gamification = new Gamification({ userId, points: 0, actions: [] });
-    }
-
-    // Get points for the action
-    const { pointsEarned } = getPointsForAction(actionType);
-
-    // Create an action object
-    const action: UserPointsAction = {
-      actionType,
-      pointsEarned,
-    };
-
-    gamification.actions.push(action);
-    gamification.points += pointsEarned;
+    const gamification = new Gamification({ userId });
     await gamification.save();
-
-    return { success: true, points: gamification.points };
+    return { data: gamification };
   } catch (error) {
-    console.error('Gamification Error:', error);
-    return { success: false, message: 'Error updating user points', error };
+    return { error };
   }
 };
 
-const getUserPointFromDB = async (
+const getUserPointsFromDB = async (
   userId: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
@@ -53,26 +34,57 @@ const getUserPointFromDB = async (
   }
 };
 
+const updateUserPointsInDB = async (
+  userId: string,
+  actionType: UserPointsActionType
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const pointsEarned = calculateUserPointsForAction(actionType);
+
+    const action: UserPointsAction = {
+      actionType,
+      pointsEarned,
+    };
+
+    const updatedGamification = await Gamification.findOneAndUpdate(
+      { userId },
+      {
+        $push: { actions: action },
+        $inc: { points: pointsEarned },
+      },
+      { new: true }
+    );
+
+    if (!updatedGamification) {
+      return { error: 'User not found' };
+    }
+
+    return { data: updatedGamification };
+  } catch (error) {
+    return { error: 'Error updating user points' };
+  }
+};
+
 const deductUserPointsFromDB = async (
   userId: string,
   actionType: UserPointsActionType
-) => {
-  if (!userId || !actionType) {
-    return { success: false, message: 'Missing required fields' };
-  }
+): Promise<DatabaseQueryResponseType> => {
   try {
-    const gamification = await Gamification.findOne({ userId });
+    const pointsToDeduct = calculateUserPointsForAction(actionType);
 
-    if (!gamification) return { success: false, message: 'User not found' };
+    const updatedGamification = await Gamification.findOneAndUpdate(
+      { userId },
+      { $inc: { points: -pointsToDeduct } },
+      { new: true }
+    );
 
-    gamification.points -= getPointsForAction(actionType).pointsEarned;
+    if (!updatedGamification) {
+      return { error: 'User not found' };
+    }
 
-    await gamification.save();
-
-    return { success: true, points: gamification.points };
+    return { data: updatedGamification };
   } catch (error) {
-    console.error('Error reducing points:', error);
-    return { success: false, message: 'Error reducing points', error };
+    return { error: 'Error reducing points' };
   }
 };
 
@@ -80,23 +92,28 @@ const handleGamificationPoints = async (
   isCompleted: boolean,
   userId: string,
   actionType: UserPointsActionType
-) => {
+): Promise<DatabaseQueryResponseType> => {
   try {
-    if (!isCompleted) {
-      console.log('Deducting Points...');
-      await deductUserPointsFromDB(userId, actionType);
-    } else {
-      console.log('Updating Gamification Record...');
-      await updateGamificationRecord(userId, actionType);
-    }
-    console.log('Gamification update success');
+    const { error, data } = isCompleted
+      ? await updateUserPointsInDB(userId, actionType)
+      : await deductUserPointsFromDB(userId, actionType);
+
+    if (error)
+      return {
+        error: 'Gamification action failed',
+      };
+
+    return {
+      data,
+    };
   } catch (error) {
-    console.error('Error in handleGamificationPoints:', error);
+    return { error: 'Unexpected error in handleGamificationPoints' };
   }
 };
 
 export {
-  updateGamificationRecord,
-  getUserPointFromDB,
+  updateUserPointsInDB,
+  getUserPointsFromDB,
   handleGamificationPoints,
+  addGamificationDocInDB,
 };

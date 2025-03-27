@@ -6,7 +6,7 @@ import {
   addACertificateToDB,
   checkCertificateExistForAProgram,
   updateCertificateToUserShikshaCourseDoc,
-  updateGamificationRecord,
+  updateUserPointsInDB,
 } from '@/database';
 import {
   AddCertificateRequestPayloadProps,
@@ -71,7 +71,7 @@ const handleAddACertificate = async (
         addedCertificate._id.toString()
       );
       // Course was Completed successful add Points
-      await updateGamificationRecord(
+      await updateUserPointsInDB(
         certificatePayload.userId,
         'COMPLETE_COURSE_CERTIFICATE'
       );

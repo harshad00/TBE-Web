@@ -228,7 +228,7 @@ export interface JobModel extends Document {
   isInternship?: boolean;
   platform: string;
 }
-export interface UserPointsAction extends Document {
+export interface UserPointsAction {
   actionType: UserPointsActionType;
   pointsEarned: number;
 }

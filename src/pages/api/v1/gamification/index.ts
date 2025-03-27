@@ -1,7 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
-import { updateGamificationRecord, getUserPointFromDB } from '@/database';
+import {
+  updateUserPointsInDB,
+  getUserPointsFromDB,
+  addGamificationDocInDB,
+} from '@/database';
 import { UserPointsActionType } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -37,7 +41,7 @@ const handleUpdateGamificationRecord = async (
     });
   }
 
-  const result = await updateGamificationRecord(userId, actionType);
+  const result = await updateUserPointsInDB(userId, actionType);
   return res.status(apiStatusCodes.OKAY).json({
     success: true,
     message: 'Gamification record updated successfully',
@@ -50,11 +54,23 @@ const handleGetUserGamificationRecords = async (
   res: NextApiResponse,
   userId: string
 ) => {
-  const result = await getUserPointFromDB(userId);
+  const { data, error } = await getUserPointsFromDB(userId);
+
+  // Add gamification record if not found
+  if (error) {
+    const { data } = await addGamificationDocInDB(userId);
+
+    return res.status(apiStatusCodes.OKAY).json({
+      success: true,
+      message: 'Gamification record created successfully',
+      data,
+    });
+  }
+
   return res.status(apiStatusCodes.OKAY).json({
     success: true,
     message: 'Gamification records fetched successfully',
-    data: result,
+    data,
   });
 };
 
