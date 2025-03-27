@@ -60,8 +60,11 @@ const handleUpdateChapterStatus = async (
       );
     }
 
-  
-    await handleGamificationPoints( isCompleted, userId, 'COMPLETE_COURSE_CHAPTER' );
+    await handleGamificationPoints(
+      isCompleted,
+      userId,
+      'COMPLETE_COURSE_CHAPTER'
+    );
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({

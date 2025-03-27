@@ -19,7 +19,9 @@ const UserLevelContainer = ({
       <div className='mt-2 p-1 w-full bg-gradient-to-r from-pink-400 to-yellow-400 font-semibold py-1.5 rounded-md text-center text-xs md:text-base'>
         <Text level='p'>
           {' '}
-          {pointsNeeded} Pts to {nextLevel}{' '}
+          {pointsNeeded !== 0
+            ? `${pointsNeeded || 500} Pts to ${nextLevel}`
+            : `You are at the highest level!`}
         </Text>
       </div>
     </div>

@@ -228,14 +228,14 @@ export interface JobModel extends Document {
   isInternship?: boolean;
   platform: string;
 }
-export interface UserPointsAction extends Document {
+export interface UserPointsAction {
   actionType: UserPointsActionType;
   pointsEarned: number;
-  timestamp: Date;
+  timestamp?: Date;
 }
 
 export interface GamificationModel {
-  userId: Schema.Types.ObjectId; // Reference to User
+  userId: Schema.Types.ObjectId;
   points: number;
   actions: UserPointsAction[];
 }

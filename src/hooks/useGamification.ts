@@ -40,7 +40,7 @@ const useGamification = () => {
   // Call the updated utility function
   const userLevelData = getUserLevel(points);
 
-  return { points, loading, error, userLevelData };
+  return { points, loading, error, ...userLevelData };
 };
 
 export default useGamification;

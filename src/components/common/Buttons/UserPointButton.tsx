@@ -5,7 +5,15 @@ import { useUser, useGamification } from '@/hooks';
 
 const UserPointButton = () => {
   const { user, isAuth, loading } = useUser();
-  const { points, userLevelData } = useGamification();
+  const {
+    points,
+    level,
+    currentLevel,
+    nextLevelName,
+    pointsNeeded,
+    minPoints,
+    nextMinPoints,
+  } = useGamification();
 
   // If the user is not authenticated or still loading, return null
   if (!isAuth || loading) return null;
@@ -15,8 +23,8 @@ const UserPointButton = () => {
       {({ open }) => (
         <>
           {/* User Points Display */}
-          <Popover.Button className='outline-none font-bold text-xs rounded-full p-1 w-10 h-10 flex items-center justify-center text-primary'>
-            {points}
+          <Popover.Button className='outline-none font-bold text-xs rounded-full pr-[5px] w-10 h-10 flex items-center justify-center text-primary'>
+            {points ?? 0}
           </Popover.Button>
 
           {/* Progress Card (Popover) */}
@@ -32,12 +40,12 @@ const UserPointButton = () => {
             <Popover.Panel className='absolute z-10 mt-1 flex w-screen max-w-max -translate-x-2/3'>
               <LevelProgressCard
                 progress={points}
-                level={userLevelData?.level}
-                currentLevel={userLevelData?.currentLevel}
-                nextLevel={userLevelData?.nextLevelName}
-                pointsNeeded={userLevelData?.pointsNeeded}
-                minPoints={userLevelData?.minPoints}
-                nextMinPoints={userLevelData?.nextMinPoints}
+                level={level}
+                currentLevel={currentLevel}
+                nextLevel={nextLevelName}
+                pointsNeeded={pointsNeeded}
+                minPoints={minPoints}
+                nextMinPoints={nextMinPoints}
               />
             </Popover.Panel>
           </Transition>

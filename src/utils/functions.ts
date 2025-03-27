@@ -18,6 +18,7 @@ import {
   UserPlaylistResponseProps,
   PlaylistModel,
   UserPointsActionType,
+  UserLevel,
 } from '@/interfaces';
 
 const fetchAPIData = async (url: string) => {
@@ -500,29 +501,28 @@ const getPointsForAction = (
 };
 
 const getUserLevel = (userPoints: number) => {
-  let currentLevel = USER_LEVELS[0];
-  let nextLevel = null;
+  let currentLevel: UserLevel = USER_LEVELS[0];
+  let nextLevel: UserLevel = USER_LEVELS[1];
   let pointsNeeded = 0;
 
   USER_LEVELS.forEach((level, index) => {
     if (userPoints >= level.minPoints) {
       currentLevel = level;
-      nextLevel = USER_LEVELS[index + 1] || null;
+      nextLevel = USER_LEVELS[index + 1] ?? null;
     }
   });
 
   if (nextLevel) {
-    pointsNeeded = nextLevel.minPoints - userPoints;
+    pointsNeeded = userPoints === 0 ? 500 : nextLevel.minPoints - userPoints;
   }
+  console.log(pointsNeeded);
 
   return {
     currentLevel: currentLevel.name,
-    currentLevelValue: currentLevel.value,
     level: currentLevel.level,
-    nextLevelName: nextLevel?.name || null,
-    nextLevelValue: nextLevel?.value || null,
+    nextLevelName: nextLevel?.name ?? null,
     minPoints: currentLevel.minPoints,
-    nextMinPoints: nextLevel?.minPoints || 0,
+    nextMinPoints: nextLevel?.minPoints ?? 0,
     pointsNeeded,
   };
 };

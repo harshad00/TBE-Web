@@ -67,6 +67,7 @@ export interface LevelProgressCardProps {
   nextLevel: string;
   minPoints: number;
   nextMinPoints: number;
+  nextLevelName?: string;
 }
 
 export type NotificationItemProps = Partial<NotificationModel>;

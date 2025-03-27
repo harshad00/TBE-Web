@@ -60,12 +60,16 @@ const deductUserPointsFromDB = async (
   if (!userId || !actionType) {
     return { success: false, message: 'Missing required fields' };
   }
+
   try {
     const gamification = await Gamification.findOne({ userId });
 
     if (!gamification) return { success: false, message: 'User not found' };
 
-    gamification.points -= getPointsForAction(actionType).pointsEarned;
+    const pointsToDeduct = getPointsForAction(actionType).pointsEarned;
+
+    // Ensure points do not go below zero
+    gamification.points = Math.max(0, gamification.points - pointsToDeduct);
 
     await gamification.save();
 
@@ -79,9 +83,8 @@ const deductUserPointsFromDB = async (
 const handleGamificationPoints = async (
   isCompleted: boolean,
   userId: string,
-  actionType: UserPointsActionType  
+  actionType: UserPointsActionType
 ) => {
-
   try {
     if (!isCompleted) {
       console.log('Deducting Points...');
