@@ -509,17 +509,15 @@ const getUserGamificationLevel = (userPoints: number) => {
       break;
     }
   }
-
   const pointsLeftToNextLevel = nextLevel
     ? nextLevel.minPoints - userPoints
     : 0;
 
-  const progress = userPoints - currentLevel.minPoints;
   const nextMinPoints = nextLevel?.minPoints || 0;
 
   const percentageProgress = calculateProgressPercentage(
-    progress,
-    nextMinPoints - currentLevel.minPoints
+    userPoints,
+    nextMinPoints
   );
 
   return {

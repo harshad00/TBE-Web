@@ -74,7 +74,15 @@ const deductUserPointsFromDB = async (
 
     const updatedGamification = await Gamification.findOneAndUpdate(
       { userId },
-      { $inc: { points: -pointsToDeduct } },
+      [
+        {
+          $set: {
+            points: {
+              $max: [{ $subtract: ["$points", pointsToDeduct] }, 0],
+            },
+          },
+        },
+      ],
       { new: true }
     );
 
@@ -87,6 +95,7 @@ const deductUserPointsFromDB = async (
     return { error: 'Error reducing points' };
   }
 };
+
 
 const handleGamificationPoints = async (
   isCompleted: boolean,
