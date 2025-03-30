@@ -78,7 +78,7 @@ const deductUserPointsFromDB = async (
         {
           $set: {
             points: {
-              $max: [{ $subtract: ["$points", pointsToDeduct] }, 0],
+              $max: [{ $subtract: ['$points', pointsToDeduct] }, 0],
             },
           },
         },
@@ -95,7 +95,6 @@ const deductUserPointsFromDB = async (
     return { error: 'Error reducing points' };
   }
 };
-
 
 const handleGamificationPoints = async (
   isCompleted: boolean,
