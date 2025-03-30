@@ -31,7 +31,7 @@ const UserLevelProgressContainer = ({
           {nextLevelName && (
             <FlexContainer className='py-1 md:px-1 w-full bg-gradient-to-r from-pink-400 to-yellow-400 font-semibold rounded-md text-center text-xs md:text-base'>
               <Text className='button-text' level='p'>
-                {pointsLeftToNextLevel} Pts to {nextLevelName}
+                {pointsLeftToNextLevel} Points to {nextLevelName}
               </Text>
             </FlexContainer>
           )}

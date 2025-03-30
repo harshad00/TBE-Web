@@ -80,9 +80,37 @@ const getJobsAggregationFromDB =
       ]);
 
       const topLocations = await Job.aggregate([
-        { $match: { location: { $ne: null } } },
-        { $group: { _id: '$location', totalJobs: { $sum: 1 } } },
-        { $project: { name: '$_id', count: '$totalJobs', _id: 0 } },
+        // Exclude null or empty location arrays
+        { $match: { location: { $exists: true, $not: { $size: 0 } } } },
+
+        // Flatten the array: one document per location entry
+        { $unwind: '$location' },
+
+        // Clean location strings (optional: trim)
+        {
+          $project: {
+            location: { $trim: { input: '$location' } },
+          },
+        },
+
+        // Group by cleaned location name
+        {
+          $group: {
+            _id: '$location',
+            count: { $sum: 1 },
+          },
+        },
+
+        // Rename fields
+        {
+          $project: {
+            name: '$_id',
+            count: 1,
+            _id: 0,
+          },
+        },
+
+        // Sort and limit
         { $sort: { count: -1 } },
         { $limit: 20 },
       ]);

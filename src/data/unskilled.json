@@ -1,249 +1,249 @@
 {
-  "lastUpdated": "2025-03-18",
+  "lastUpdated": "2025-03-30",
   "trendingSkills": [
     {
       "name": "Java",
-      "count": 2662
+      "count": 3095
     },
     {
       "name": "Python",
-      "count": 2423
+      "count": 2899
     },
     {
       "name": "React.js",
-      "count": 1569
+      "count": 1802
     },
     {
       "name": "JavaScript",
-      "count": 1503
+      "count": 1727
     },
     {
       "name": "AWS",
-      "count": 1364
+      "count": 1622
     },
     {
       "name": "Node.js",
-      "count": 991
+      "count": 1135
     },
     {
       "name": "SQL",
-      "count": 932
+      "count": 1130
     },
     {
       "name": "Data Structures",
-      "count": 814
+      "count": 897
     },
     {
       "name": "Golang",
-      "count": 719
+      "count": 818
     },
     {
       "name": "Spring",
-      "count": 644
-    },
-    {
-      "name": "Angular",
-      "count": 586
-    },
-    {
-      "name": "Microservices",
-      "count": 568
-    },
-    {
-      "name": "HTML",
-      "count": 563
+      "count": 735
     },
     {
       "name": "Machine Learning",
-      "count": 550
+      "count": 699
+    },
+    {
+      "name": "Angular",
+      "count": 670
+    },
+    {
+      "name": "HTML",
+      "count": 649
+    },
+    {
+      "name": "Microservices",
+      "count": 645
     },
     {
       "name": "Spring Boot",
-      "count": 531
-    },
-    {
-      "name": "Algorithms",
-      "count": 491
+      "count": 595
     },
     {
       "name": "CSS",
-      "count": 489
-    },
-    {
-      "name": "Django",
-      "count": 430
+      "count": 566
     },
     {
       "name": "Kubernetes",
-      "count": 429
+      "count": 551
+    },
+    {
+      "name": "Algorithms",
+      "count": 545
     },
     {
       "name": "Automation Testing",
-      "count": 416
+      "count": 543
+    },
+    {
+      "name": "CI - CD",
+      "count": 495
     }
   ],
   "topLocations": [
     {
-      "name": "Bangalore",
-      "count": 4737
+      "count": 5927,
+      "name": "Bangalore"
     },
     {
-      "name": "Work From Home",
-      "count": 817
+      "count": 1032,
+      "name": "Work From Home"
     },
     {
-      "name": "Hyderabad",
-      "count": 731
+      "count": 1007,
+      "name": "Hyderabad"
     },
     {
-      "name": "Gurgaon",
-      "count": 584
+      "count": 814,
+      "name": "Gurgaon"
     },
     {
-      "name": "Mumbai",
-      "count": 519
+      "count": 647,
+      "name": "Mumbai"
     },
     {
-      "name": "Pune",
-      "count": 383
+      "count": 519,
+      "name": "Pune"
     },
     {
-      "name": "Chennai",
-      "count": 327
+      "count": 445,
+      "name": "Chennai"
     },
     {
-      "name": "Noida",
-      "count": 180
+      "count": 274,
+      "name": "Noida"
     },
     {
-      "name": "Delhi",
-      "count": 126
+      "count": 170,
+      "name": "Delhi"
     },
     {
-      "name": "Bangalore,Hyderabad",
-      "count": 70
+      "count": 52,
+      "name": "Jaipur"
     },
     {
-      "name": "Jaipur",
-      "count": 45
+      "count": 51,
+      "name": "Ahmedabad"
     },
     {
-      "name": "Ahmedabad",
-      "count": 31
+      "count": 26,
+      "name": "Kochi"
     },
     {
-      "name": "Bangalore,Work From Home",
-      "count": 22
+      "count": 22,
+      "name": "Indore"
     },
     {
-      "name": "Kochi",
-      "count": 21
+      "count": 21,
+      "name": "Navi Mumbai"
     },
     {
-      "name": "Bangalore,Chennai",
-      "count": 18
+      "count": 18,
+      "name": "Chandigarh"
     },
     {
-      "name": "Bangalore,Gurgaon",
-      "count": 14
+      "count": 18,
+      "name": "Coimbatore"
     },
     {
-      "name": "Bangalore,Gurgaon,Hyderabad",
-      "count": 14
+      "count": 16,
+      "name": "Kolkata"
     },
     {
-      "name": "Mohali",
-      "count": 13
+      "count": 14,
+      "name": "Mohali"
     },
     {
-      "name": "Navi Mumbai",
-      "count": 12
+      "count": 9,
+      "name": "Greater Noida"
     },
     {
-      "name": "Bangalore,Gurgaon,Mumbai",
-      "count": 12
+      "count": 8,
+      "name": "Dubai"
     }
   ],
   "jobDomains": [
     {
       "name": "Backend Development",
-      "count": 3706
+      "count": 4178
     },
     {
       "name": "Full-Stack Development",
-      "count": 1789
+      "count": 2002
     },
     {
       "name": "Frontend Development",
-      "count": 1228
+      "count": 1402
     },
     {
       "name": "Other Software Development",
-      "count": 694
-    },
-    {
-      "name": "Data Science / Machine Learning",
-      "count": 605
+      "count": 844
     },
     {
       "name": "QA / SDET",
-      "count": 600
+      "count": 779
+    },
+    {
+      "name": "Data Science / Machine Learning",
+      "count": 777
     },
     {
       "name": "DevOps / Cloud",
-      "count": 563
+      "count": 739
     },
     {
       "name": "Big Data / DWH / ETL",
-      "count": 492
+      "count": 612
     },
     {
       "name": "Mobile Development",
-      "count": 373
+      "count": 460
     },
     {
       "name": "Engineering Management",
-      "count": 373
+      "count": 446
     },
     {
       "name": "Data Analysis / Business Intelligence",
-      "count": 350
+      "count": 445
     },
     {
       "name": "Product Management",
-      "count": 289
-    },
-    {
-      "name": "Database Admin / Development",
-      "count": 140
+      "count": 380
     },
     {
       "name": "IT Security",
-      "count": 129
+      "count": 182
+    },
+    {
+      "name": "Database Admin / Development",
+      "count": 175
     },
     {
       "name": "UX / Visual Design",
-      "count": 127
+      "count": 158
     },
     {
       "name": "IT Management / IT Support",
-      "count": 115
+      "count": 152
     },
     {
       "name": "Functional / Technical Consulting",
-      "count": 92
+      "count": 118
     },
     {
       "name": "Technical / Production Support",
-      "count": 90
+      "count": 109
     },
     {
       "name": "Project Management",
-      "count": 50
+      "count": 65
     },
     {
       "name": "Other Design",
-      "count": 48
+      "count": 58
     }
   ]
 }
