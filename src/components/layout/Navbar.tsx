@@ -1,17 +1,17 @@
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   FlexContainer,
   Link,
-  LoginWithGoogleButton,
   Logo,
   MobileNavbarLinksContainer,
   NavbarDropdownContainer,
   PopoverContainer,
-  Text,
   UserAvatar,
   UserPointButton,
+  LoginRedirectButton
 } from '..';
 import { FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { useSession } from 'next-auth/react';
@@ -20,8 +20,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const session = useSession();
+  const { status } = useSession(); // Get authentication status
   const [openPopover, setOpenPopover] = useState<string | null>(null);
+  const router = useRouter(); // Initialize useRouter
 
   const handleSetOpen = (popoverName: string) => {
     setOpenPopover(openPopover === popoverName ? null : popoverName);
@@ -73,10 +74,17 @@ const Navbar = () => {
           </PopoverContainer>
 
           <UserPointButton />
-          <LoginWithGoogleButton text='Login' />
+          
+          {/* Show login button only if user is NOT authenticated and NOT on login page */}
+          {status === 'unauthenticated' && router.pathname !== '/login' && (
+            <LoginRedirectButton text='Login' />
+          )}
+          
           <UserAvatar />
         </div>
       </nav>
+
+      {/* Mobile Navigation */}
       <Dialog
         as='div'
         className='lg:hidden'
@@ -110,26 +118,18 @@ const Navbar = () => {
                     direction='col'
                     itemCenter={false}
                   >
-                    {session.status === 'unauthenticated' && (
+                    {/* Show login button only if user is NOT authenticated and NOT on login page */}
+                    {status === 'unauthenticated' && router.pathname !== '/login' && (
                       <FlexContainer
                         itemCenter={false}
                         justifyCenter={false}
                         direction='col'
                         className='gap-1'
                       >
-                        <Text level='span' className='pre-title text-greyDark'>
-                          Get Started
-                        </Text>
-                        <FlexContainer
-                          itemCenter={false}
-                          justifyCenter={false}
-                          direction='col'
-                          className='gap-1'
-                        >
-                          <LoginWithGoogleButton text='Login' />
-                        </FlexContainer>
+                        <LoginRedirectButton text='Login' />
                       </FlexContainer>
                     )}
+
                     <MobileNavbarLinksContainer
                       title='Cohorts'
                       links={TOP_NAVIGATION.cohorts}
@@ -145,31 +145,21 @@ const Navbar = () => {
                       links={TOP_NAVIGATION.links}
                       onLinkClick={handleCloseMobileMenu}
                     />
-
                     <FlexContainer
                       itemCenter={false}
                       justifyCenter={false}
                       direction='col'
                       className='gap-1'
                     >
-                      <Text level='span' className='pre-title text-greyDark'>
-                        Connect with us
-                      </Text>
-                      <FlexContainer
-                        itemCenter={false}
-                        justifyCenter={false}
-                        className='gap-1'
-                      >
-                        <Link href={LINKS.instagram} target='_blank'>
-                          <FaInstagram color='black' size='2em' />
-                        </Link>
-                        <Link href={LINKS.youtube} target='_blank'>
-                          <FaYoutube color='black' size='2em' />
-                        </Link>
-                        <Link href={LINKS.officialLinkedIn} target='_blank'>
-                          <FaLinkedin color='black' size='2em' />
-                        </Link>
-                      </FlexContainer>
+                      <Link href={LINKS.instagram} target='_blank'>
+                        <FaInstagram color='black' size='2em' />
+                      </Link>
+                      <Link href={LINKS.youtube} target='_blank'>
+                        <FaYoutube color='black' size='2em' />
+                      </Link>
+                      <Link href={LINKS.officialLinkedIn} target='_blank'>
+                        <FaLinkedin color='black' size='2em' />
+                      </Link>
                     </FlexContainer>
                   </FlexContainer>
                 </div>

@@ -3,6 +3,7 @@ import { GenerateSectionPathProps } from '@/interfaces';
 const routes = {
   home: '/',
   // Shiksha
+  login: '/login',
   shiksha: '/shiksha',
   shikshaExplore: '/shiksha/explore',
   allCourses: {
