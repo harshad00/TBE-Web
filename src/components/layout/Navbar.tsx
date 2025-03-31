@@ -11,7 +11,7 @@ import {
   PopoverContainer,
   UserAvatar,
   UserPointButton,
-  LoginRedirectButton
+  LoginRedirectButton,
 } from '..';
 import { FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { useSession } from 'next-auth/react';
@@ -74,12 +74,12 @@ const Navbar = () => {
           </PopoverContainer>
 
           <UserPointButton />
-          
+
           {/* Show login button only if user is NOT authenticated and NOT on login page */}
           {status === 'unauthenticated' && router.pathname !== '/login' && (
             <LoginRedirectButton text='Login' />
           )}
-          
+
           <UserAvatar />
         </div>
       </nav>
@@ -119,16 +119,17 @@ const Navbar = () => {
                     itemCenter={false}
                   >
                     {/* Show login button only if user is NOT authenticated and NOT on login page */}
-                    {status === 'unauthenticated' && router.pathname !== '/login' && (
-                      <FlexContainer
-                        itemCenter={false}
-                        justifyCenter={false}
-                        direction='col'
-                        className='gap-1'
-                      >
-                        <LoginRedirectButton text='Login' />
-                      </FlexContainer>
-                    )}
+                    {status === 'unauthenticated' &&
+                      router.pathname !== '/login' && (
+                        <FlexContainer
+                          itemCenter={false}
+                          justifyCenter={false}
+                          direction='col'
+                          className='gap-1'
+                        >
+                          <LoginRedirectButton text='Login' />
+                        </FlexContainer>
+                      )}
 
                     <MobileNavbarLinksContainer
                       title='Cohorts'

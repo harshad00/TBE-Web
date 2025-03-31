@@ -6,7 +6,9 @@ import { LoginCard } from '@/components';
 const Login = () => {
   const { status } = useSession();
   const router = useRouter();
-  const redirectPath = router.query.redirect ? String(router.query.redirect) : '/';
+  const redirectPath = router.query.redirect
+    ? String(router.query.redirect)
+    : '/';
 
   useEffect(() => {
     if (status === 'authenticated') {
