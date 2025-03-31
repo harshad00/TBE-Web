@@ -9,6 +9,7 @@ import {
   MobileNavbarLinksContainer,
   NavbarDropdownContainer,
   PopoverContainer,
+  Text,
   UserAvatar,
   UserPointButton,
   LoginRedirectButton,
@@ -152,15 +153,24 @@ const Navbar = () => {
                       direction='col'
                       className='gap-1'
                     >
-                      <Link href={LINKS.instagram} target='_blank'>
-                        <FaInstagram color='black' size='2em' />
-                      </Link>
-                      <Link href={LINKS.youtube} target='_blank'>
-                        <FaYoutube color='black' size='2em' />
-                      </Link>
-                      <Link href={LINKS.officialLinkedIn} target='_blank'>
-                        <FaLinkedin color='black' size='2em' />
-                      </Link>
+                      <Text level='span' className='pre-title text-greyDark'>
+                        Connect with us
+                      </Text>
+                      <FlexContainer
+                        itemCenter={false}
+                        justifyCenter={false}
+                        className='gap-1'
+                      >
+                        <Link href={LINKS.instagram} target='_blank'>
+                          <FaInstagram color='black' size='2em' />
+                        </Link>
+                        <Link href={LINKS.youtube} target='_blank'>
+                          <FaYoutube color='black' size='2em' />
+                        </Link>
+                        <Link href={LINKS.officialLinkedIn} target='_blank'>
+                          <FaLinkedin color='black' size='2em' />
+                        </Link>
+                      </FlexContainer>
                     </FlexContainer>
                   </FlexContainer>
                 </div>
