@@ -15,11 +15,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     case 'POST':
       return handleUserOnboarding(req, res, userId);
     default:
-      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+      return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
           status: false,
-          message: 'Method not allowed',
-          error: 'Only POST method is allowed',
+          message: `Method ${req.method} Not Allowed`,
         })
       );
   }
