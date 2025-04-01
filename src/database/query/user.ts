@@ -45,19 +45,19 @@ const createUserInDB = async (
   }
 };
 
-const addUserOnboardInDB = async (
+const UserOnboardInDB = async (
   userId: string,
-  onboardData: boolean,
-  name: string,
+  userName: string,
+  isOnboarded: boolean,
   profession: UserRoleType,
   purpose: PlatformUsageType[],
   contactNo: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
     // Check if the username already exists for another user
-    const existingUser = await User.findOne({ name });
+    const existingUserName = await User.findOne({ userName });
 
-    if (existingUser && existingUser._id.toString() !== userId) {
+    if (existingUserName && existingUserName._id.toString() !== userId) {
       return { error: 'Username already exists' };
     }
 
@@ -65,8 +65,8 @@ const addUserOnboardInDB = async (
     const user = await User.findByIdAndUpdate(
       userId,
       {
-        isOnboarded: onboardData,
-        name,
+        isOnboarded,
+        userName,
         profession,
         purpose,
         contactNo,
@@ -89,5 +89,5 @@ export {
   getUserByIdFromDB,
   getUserByEmailFromDB,
   createUserInDB,
-  addUserOnboardInDB,
+  UserOnboardInDB,
 };

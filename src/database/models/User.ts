@@ -1,14 +1,14 @@
-import {
-  DATABASE_MODELS,
-  USER_ROLE,
-  PLATFORM_USAGE,
-} from '@/constant';
+import { DATABASE_MODELS, USER_ROLE, PLATFORM_USAGE } from '@/constant';
 import { UserModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
 
 const UserSchema: Schema<UserModel> = new Schema(
   {
     name: {
+      type: String,
+      required: [true, 'user name is required'],
+    },
+    userName: {
       type: String,
       required: [true, 'user name is required'],
       unique: true,

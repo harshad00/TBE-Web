@@ -13,6 +13,7 @@ import {
 
 export interface UserModel {
   name: string;
+  userName: string;
   email: string;
   image?: string;
   provider: string;

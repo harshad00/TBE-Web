@@ -2,10 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { addUserOnboardInDB } from '@/database/query/user';
+import { UserOnboardInDB } from '@/database';
 import { AddOnboardingPayloadProps } from '@/interfaces';
 
-const onboarding = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
 
   const { method } = req;
@@ -31,10 +31,17 @@ const handleUserOnboarding = async (
   userId: string
 ) => {
   try {
-    const { onboardData, name, profession, purpose, contactNo } =
+    const { userName, isOnboarded, profession, purpose, contactNo } =
       req.body as AddOnboardingPayloadProps;
 
-    if (!userId || !name || !profession || !purpose) {
+    if (
+      !userId ||
+      !userName ||
+      !profession ||
+      !purpose ||
+      !contactNo ||
+      !isOnboarded
+    ) {
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
           status: false,
@@ -45,13 +52,13 @@ const handleUserOnboarding = async (
     }
 
     // Call the function to update or add onboarding data for the user
-    const { data, error } = await addUserOnboardInDB(
+    const { data, error } = await UserOnboardInDB(
       userId,
-      onboardData,
-      name,
+      userName,
+      isOnboarded,
       profession,
       purpose,
-      contactNo || ''
+      contactNo
     );
 
     if (error) {
@@ -82,4 +89,4 @@ const handleUserOnboarding = async (
   }
 };
 
-export default onboarding;
+export default handler;

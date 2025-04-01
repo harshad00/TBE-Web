@@ -209,11 +209,11 @@ export interface CreateUserRequestPayloadProps {
 }
 export interface AddOnboardingPayloadProps {
   userId: string;
-  onboardData: boolean;
-  name: string;
+  userName: string;
   profession: UserRoleType;
   purpose: PlatformUsageType[];
-  contactNo?: string;
+  isOnboarded: boolean;
+  contactNo: string;
 }
 export interface CourseEnrollmentRequestProps {
   courseId: string;
