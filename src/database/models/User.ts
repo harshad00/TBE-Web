@@ -22,7 +22,6 @@ const UserSchema: Schema<UserModel> = new Schema(
     },
     provider: {
       type: String,
-      required: [true, 'Provider is required'],
     },
     providerAccountId: {
       type: String,
