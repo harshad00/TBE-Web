@@ -10,7 +10,6 @@ const UserSchema: Schema<UserModel> = new Schema(
     },
     userName: {
       type: String,
-      required: [true, 'user name is required'],
       unique: true,
     },
     email: {
