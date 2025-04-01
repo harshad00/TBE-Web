@@ -15,7 +15,6 @@ const DATABASE_MODELS = {
   NOTIFICATION: 'Notification',
   GAMIFICATION: 'Gamification',
   JOB: 'Job',
-  ONBOARDING: 'Onboarding',
 };
 
 const modelSelectParams = {
