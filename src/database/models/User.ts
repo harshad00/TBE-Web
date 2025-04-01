@@ -8,7 +8,7 @@ import { Model, Schema, model, models } from 'mongoose';
 
 const UserSchema: Schema<UserModel> = new Schema(
   {
-    userName: {
+    name: {
       type: String,
       required: [true, 'user name is required'],
       unique: true,

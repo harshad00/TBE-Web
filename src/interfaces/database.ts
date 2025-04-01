@@ -12,7 +12,7 @@ import {
 } from '.';
 
 export interface UserModel {
-  userName: string;
+  name: string;
   email: string;
   image?: string;
   provider: string;

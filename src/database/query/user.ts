@@ -1,6 +1,8 @@
 import {
   CreateUserRequestPayloadProps,
   DatabaseQueryResponseType,
+  PlatformUsageType,
+  UserRoleType,
 } from '@/interfaces';
 import { User } from '@/database';
 
@@ -43,4 +45,49 @@ const createUserInDB = async (
   }
 };
 
-export { getUserByIdFromDB, getUserByEmailFromDB, createUserInDB };
+const addUserOnboardInDB = async (
+  userId: string,
+  onboardData: boolean,
+  name: string,
+  profession: UserRoleType,
+  purpose: PlatformUsageType[],
+  contactNo: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    // Check if the username already exists for another user
+    const existingUser = await User.findOne({ name });
+
+    if (existingUser && existingUser._id.toString() !== userId) {
+      return { error: 'Username already exists' };
+    }
+
+    // Update user by userId
+    const user = await User.findByIdAndUpdate(
+      userId,
+      {
+        isOnboarded: onboardData,
+        name,
+        profession,
+        purpose,
+        contactNo,
+      },
+      { new: true }
+    );
+
+    if (!user) return { error: 'User does not exist' };
+
+    return { data: user };
+  } catch (error) {
+    return {
+      error:
+        'Failed while updating onboard status, username, profession, purpose, or contact number',
+    };
+  }
+};
+
+export {
+  getUserByIdFromDB,
+  getUserByEmailFromDB,
+  createUserInDB,
+  addUserOnboardInDB,
+};
