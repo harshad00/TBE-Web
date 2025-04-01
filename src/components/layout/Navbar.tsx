@@ -21,9 +21,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { status } = useSession(); // Get authentication status
+  const { status } = useSession(); 
   const [openPopover, setOpenPopover] = useState<string | null>(null);
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter(); 
 
   const handleSetOpen = (popoverName: string) => {
     setOpenPopover(openPopover === popoverName ? null : popoverName);
