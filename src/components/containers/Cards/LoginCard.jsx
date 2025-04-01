@@ -20,7 +20,7 @@ const Login = () => {
   }, [status, router, redirectPath]);
 
   return (
-    <FlexContainer className='h-screen p-4 bg-gray-100'>
+    <FlexContainer className='h-screen md:p-4 bg-gray-100'>
       <motion.div
         className='flex w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden'
         initial={{ opacity: 0, scale: 0.9 }}
@@ -28,7 +28,7 @@ const Login = () => {
         transition={{ duration: 0.5 }}
       >
         {/* Left Section */}
-        <div className='w-full md:w-1/2 p-8 flex flex-col items-start justify-start text-left'>
+        <div className='w-full md:w-1/2 p-4  md:p-8 flex flex-col items-start justify-start text-left'>
           <Logo />
           <motion.div
             initial={{ opacity: 0, y: -10 }}
