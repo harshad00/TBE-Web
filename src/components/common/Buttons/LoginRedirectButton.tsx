@@ -1,10 +1,6 @@
 import { useRouter } from 'next/router';
 import { Button } from '@/components';
-
-interface LoginRedirectButtonProps {
-  text?: string;
-  className?: string;
-}
+import { LoginRedirectButtonProps } from '@/interfaces';
 
 const LoginRedirectButton = ({
   text = 'Login to Start',
