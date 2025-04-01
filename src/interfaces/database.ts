@@ -7,6 +7,9 @@ import {
   SkillsType,
   WebinarEnrolledUsersProps,
   UserPointsActionType,
+  UserRoleType,
+  PlatformUsageType,
+  CountryCodeType,
 } from '.';
 
 export interface UserModel {
@@ -193,6 +196,18 @@ export interface NotificationModel extends Document {
   isHTML: boolean;
   link?: string;
   isExternalLink: boolean;
+}
+
+export interface OnboardingModel {
+  username: string;
+  role: UserRoleType;
+  usage: PlatformUsageType[];
+  contactNo?: ContactInfo;
+}
+
+export interface ContactInfo {
+  countryCode: CountryCodeType;
+  number: string;
 }
 
 export interface CompanyDetails {
