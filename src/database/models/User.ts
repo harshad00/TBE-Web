@@ -6,7 +6,7 @@ import {
 } from '@/constant';
 import { UserModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
-import { OnboardingModel, ContactInfo } from '@/interfaces';
+import { ContactInfo } from '@/interfaces';
 
 const ContactSchema = new Schema<ContactInfo>(
   {
@@ -14,25 +14,6 @@ const ContactSchema = new Schema<ContactInfo>(
     number: { type: String },
   },
   { _id: false }
-);
-
-const OnboardingSchema: Schema<OnboardingModel> = new Schema(
-  {
-    profession: {
-      type: String,
-      enum: USER_ROLE,
-      required: [true, 'Profession is required'],
-    },
-    purpose: {
-      type: [String],
-      enum: PLATFORM_USAGE,
-      required: [true, 'Purpose is required'],
-    },
-    contactNo: ContactSchema,
-  },
-  {
-    timestamps: true,
-  }
 );
 
 const UserSchema: Schema<UserModel> = new Schema(
@@ -57,11 +38,26 @@ const UserSchema: Schema<UserModel> = new Schema(
     providerAccountId: {
       type: String,
     },
-    isOnboarded: OnboardingSchema,
+    isOnboarded: {
+      type: Boolean,
+      default: false,
+    },
+    profession: {
+      type: String,
+      enum: USER_ROLE,
+      required: [true, 'Profession is required'],
+    },
+    purpose: {
+      type: [String],
+      enum: PLATFORM_USAGE,
+      required: [true, 'Purpose is required'],
+    },
+    contactNo: ContactSchema,
   },
   { timestamps: true }
 );
 
 const User: Model<UserModel> =
   models?.User || model<UserModel>(DATABASE_MODELS.USER, UserSchema);
+
 export default User;

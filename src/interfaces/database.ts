@@ -18,7 +18,10 @@ export interface UserModel {
   image?: string;
   provider: string;
   providerAccountId?: string;
-  isOnboarded: OnboardingModel;
+  profession: UserRoleType;
+  purpose: PlatformUsageType[];
+  contactNo?: ContactInfo;
+  isOnboarded: boolean;
 }
 
 export interface ProjectChapter {
@@ -197,12 +200,6 @@ export interface NotificationModel extends Document {
   isHTML: boolean;
   link?: string;
   isExternalLink: boolean;
-}
-
-export interface OnboardingModel {
-  profession: UserRoleType;
-  purpose: PlatformUsageType[];
-  contactNo?: ContactInfo;
 }
 
 export interface ContactInfo {
