@@ -76,10 +76,7 @@ const Navbar = () => {
 
           <UserPointButton />
 
-          {/* Show login button only if user is NOT authenticated and NOT on login page */}
-          {status === 'unauthenticated' && router.pathname !== '/login' && (
-            <LoginRedirectButton text='Login' />
-          )}
+          <LoginRedirectButton text='Login' />
 
           <UserAvatar />
         </div>
@@ -119,18 +116,14 @@ const Navbar = () => {
                     direction='col'
                     itemCenter={false}
                   >
-                    {/* Show login button only if user is NOT authenticated and NOT on login page */}
-                    {status === 'unauthenticated' &&
-                      router.pathname !== '/login' && (
-                        <FlexContainer
-                          itemCenter={false}
-                          justifyCenter={false}
-                          direction='col'
-                          className='gap-1'
-                        >
-                          <LoginRedirectButton text='Login' />
-                        </FlexContainer>
-                      )}
+                    <FlexContainer
+                      itemCenter={false}
+                      justifyCenter={false}
+                      direction='col'
+                      className='gap-1'
+                    >
+                      <LoginRedirectButton text='Login' />
+                    </FlexContainer>
 
                     <MobileNavbarLinksContainer
                       title='Cohorts'
