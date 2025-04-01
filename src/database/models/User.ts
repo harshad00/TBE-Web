@@ -1,12 +1,17 @@
-import { DATABASE_MODELS } from '@/constant';
+import {
+  DATABASE_MODELS,
+  USER_ROLE,
+  PLATFORM_USAGE,
+} from '@/constant';
 import { UserModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
 
 const UserSchema: Schema<UserModel> = new Schema(
   {
-    name: {
+    userName: {
       type: String,
-      required: [true, 'name is required'],
+      required: [true, 'user name is required'],
+      unique: true,
     },
     email: {
       type: String,
@@ -23,10 +28,26 @@ const UserSchema: Schema<UserModel> = new Schema(
     providerAccountId: {
       type: String,
     },
+    isOnboarded: {
+      type: Boolean,
+      default: false,
+    },
+    profession: {
+      type: String,
+      enum: USER_ROLE,
+    },
+    purpose: {
+      type: [String],
+      enum: PLATFORM_USAGE,
+    },
+    contactNo: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
 
 const User: Model<UserModel> =
   models?.User || model<UserModel>(DATABASE_MODELS.USER, UserSchema);
+
 export default User;

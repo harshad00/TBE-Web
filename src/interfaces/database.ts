@@ -7,14 +7,20 @@ import {
   SkillsType,
   WebinarEnrolledUsersProps,
   UserPointsActionType,
+  UserRoleType,
+  PlatformUsageType,
 } from '.';
 
 export interface UserModel {
-  name: string;
+  userName: string;
   email: string;
   image?: string;
   provider: string;
   providerAccountId?: string;
+  profession?: UserRoleType;
+  purpose?: PlatformUsageType[];
+  contactNo?: string;
+  isOnboarded?: boolean;
 }
 
 export interface ProjectChapter {

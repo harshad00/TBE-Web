@@ -102,6 +102,14 @@ export type NotificationType =
   | 'INTERVIEW PREP'
   | 'UPDATE';
 
+export type UserRoleType = 'STUDENT' | 'WORKING_PROFESSIONAL';
+
+export type PlatformUsageType =
+  | 'LEARNING_TECH'
+  | 'BUILDING_PROJECTS'
+  | 'INTERVIEW_PREP'
+  | 'JOB_SEARCH';
+
 export type FormatDateType = {
   dateAndTime?: string;
   dateFormat?: Intl.DateTimeFormatOptions;

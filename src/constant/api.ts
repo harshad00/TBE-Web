@@ -6,6 +6,8 @@ import {
   RoadmapsType,
   SkillsType,
   UserPointsActionType,
+  UserRoleType,
+  PlatformUsageType,
 } from '@/interfaces';
 
 const PROJECT_SKILLS: SkillsType[] = [
@@ -56,6 +58,15 @@ const NOTIFICATION_TYPE: NotificationType[] = [
   'UPDATE',
 ];
 
+const USER_ROLE: UserRoleType[] = ['STUDENT', 'WORKING_PROFESSIONAL'];
+
+const PLATFORM_USAGE: PlatformUsageType[] = [
+  'LEARNING_TECH',
+  'BUILDING_PROJECTS',
+  'INTERVIEW_PREP',
+  'JOB_SEARCH',
+];
+
 const YOUTUBE_API_PATH = 'https://www.googleapis.com/youtube/v3';
 
 export {
@@ -67,4 +78,6 @@ export {
   YOUTUBE_API_PATH,
   NOTIFICATION_TYPE,
   USER_POINTS_ACTION,
+  USER_ROLE,
+  PLATFORM_USAGE,
 };
