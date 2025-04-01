@@ -600,3 +600,8 @@ export interface LevelProgressCardProps {
   pointsLeftToNextLevel: number;
   percentageProgress: number;
 }
+
+export interface LoginRedirectButtonProps {
+  text?: string;
+  className?: string;
+}

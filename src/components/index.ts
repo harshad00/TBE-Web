@@ -210,6 +210,13 @@ const ActionBanner = dynamic(
   () => import('@/components/common/Banner/ActionBanner')
 );
 
+const LoginRedirectButton = dynamic(
+  () => import('@/components/common/Buttons/LoginRedirectButton')
+);
+
+const LoginCard = dynamic(
+  () => import('@/components/containers/Cards/LoginCard')
+);
 export {
   Navbar,
   LinkText as Link,
@@ -296,4 +303,6 @@ export {
   ActionBanner,
   OutlineCard,
   TabComponent,
+  LoginRedirectButton,
+  LoginCard,
 };
