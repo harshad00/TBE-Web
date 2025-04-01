@@ -1,20 +1,10 @@
 import {
   DATABASE_MODELS,
-  COUNTRY_CODES,
   USER_ROLE,
   PLATFORM_USAGE,
 } from '@/constant';
 import { UserModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
-import { ContactInfo } from '@/interfaces';
-
-const ContactSchema = new Schema<ContactInfo>(
-  {
-    countryCode: { type: String, enum: COUNTRY_CODES },
-    number: { type: String },
-  },
-  { _id: false }
-);
 
 const UserSchema: Schema<UserModel> = new Schema(
   {
@@ -45,14 +35,14 @@ const UserSchema: Schema<UserModel> = new Schema(
     profession: {
       type: String,
       enum: USER_ROLE,
-      required: [true, 'Profession is required'],
     },
     purpose: {
       type: [String],
       enum: PLATFORM_USAGE,
-      required: [true, 'Purpose is required'],
     },
-    contactNo: ContactSchema,
+    contactNo: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

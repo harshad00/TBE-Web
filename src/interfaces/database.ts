@@ -18,10 +18,10 @@ export interface UserModel {
   image?: string;
   provider: string;
   providerAccountId?: string;
-  profession: UserRoleType;
-  purpose: PlatformUsageType[];
-  contactNo?: ContactInfo;
-  isOnboarded: boolean;
+  profession?: UserRoleType;
+  purpose?: PlatformUsageType[];
+  contactNo?: string;
+  isOnboarded?: boolean;
 }
 
 export interface ProjectChapter {
