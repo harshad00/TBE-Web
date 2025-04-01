@@ -18,6 +18,7 @@ export interface UserModel {
   image?: string;
   provider: string;
   providerAccountId?: string;
+  isOnboarded: OnboardingModel;
 }
 
 export interface ProjectChapter {
