@@ -18,15 +18,15 @@ const ContactSchema = new Schema<ContactInfo>(
 
 const OnboardingSchema: Schema<OnboardingModel> = new Schema(
   {
-    role: {
+    profession: {
       type: String,
       enum: USER_ROLE,
-      required: [true, 'Role is required'],
+      required: [true, 'Profession is required'],
     },
-    usage: {
+    purpose: {
       type: [String],
       enum: PLATFORM_USAGE,
-      required: [true, 'Usage is required'],
+      required: [true, 'Purpose is required'],
     },
     contactNo: ContactSchema,
   },
@@ -37,9 +37,9 @@ const OnboardingSchema: Schema<OnboardingModel> = new Schema(
 
 const UserSchema: Schema<UserModel> = new Schema(
   {
-    name: {
+    userName: {
       type: String,
-      required: [true, 'name is required'],
+      required: [true, 'user name is required'],
       unique: true,
     },
     email: {

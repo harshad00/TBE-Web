@@ -13,7 +13,7 @@ import {
 } from '.';
 
 export interface UserModel {
-  name: string;
+  userName: string;
   email: string;
   image?: string;
   provider: string;
@@ -200,9 +200,8 @@ export interface NotificationModel extends Document {
 }
 
 export interface OnboardingModel {
-  username: string;
-  role: UserRoleType;
-  usage: PlatformUsageType[];
+  profession: UserRoleType;
+  purpose: PlatformUsageType[];
   contactNo?: ContactInfo;
 }
 
