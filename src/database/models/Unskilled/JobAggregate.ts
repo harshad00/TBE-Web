@@ -6,24 +6,28 @@ const JobAggregateSchema = new Schema<JobAggregateModel>(
   {
     trendingSkills: [
       {
+        _id: false,
         name: String,
         count: Number,
       },
     ],
     topLocations: [
       {
+        _id: false,
         name: String,
         count: Number,
       },
     ],
     jobDomains: [
       {
+        _id: false,
         name: String,
         count: Number,
       },
     ],
     companyTypes: [
       {
+        _id: false,
         name: String,
         count: Number,
       },

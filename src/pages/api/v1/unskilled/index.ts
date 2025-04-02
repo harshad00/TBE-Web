@@ -2,8 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
 import {
-  fetchJobsAggregationFromDB,
   getLatestJobAggregationFromDB,
+  saveDailyJobsAggregationToDB,
 } from '@/database';
 import { sendAPIResponse } from '@/utils';
 
@@ -43,7 +43,6 @@ const handleGetDailyJobAggregation = async (
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({
         status: true,
-        message: 'Job data aggregated and saved successfully',
         data,
       })
     );
@@ -63,7 +62,7 @@ const handleAggregateJobData = async (
   res: NextApiResponse
 ) => {
   try {
-    const { error, data } = await fetchJobsAggregationFromDB();
+    const { error, data } = await saveDailyJobsAggregationToDB();
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
