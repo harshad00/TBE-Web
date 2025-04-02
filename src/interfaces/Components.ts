@@ -291,6 +291,8 @@ export interface UserLevel {
   level: number;
 }
 
+export type CountryCodeType = string;
+
 export interface InputRadioContainerProps {
   radioItems: RadioButtonOptionsProps[];
   onChange: (itemId: string) => void;

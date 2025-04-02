@@ -226,6 +226,8 @@ const CheckboxButtonContainer = dynamic(
   () => import('@/components/containers/Forms/CheckboxButtonContainer')
 );
 
+const PhoneInput = dynamic(() => import('@/components/common/Form/PhoneInput'));
+
 export {
   Navbar,
   LinkText as Link,
@@ -316,4 +318,5 @@ export {
   LoginCard,
   CheckboxButton,
   CheckboxButtonContainer,
+  PhoneInput,
 };
