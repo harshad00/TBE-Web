@@ -217,6 +217,15 @@ const LoginRedirectButton = dynamic(
 const LoginCard = dynamic(
   () => import('@/components/containers/Cards/LoginCard')
 );
+
+const CheckboxButton = dynamic(
+  () => import('@/components/common/Form/CheckboxButton')
+);
+
+const CheckboxButtonContainer = dynamic(
+  () => import('@/components/containers/Forms/CheckboxButtonContainer')
+);
+
 export {
   Navbar,
   LinkText as Link,
@@ -305,4 +314,6 @@ export {
   TabComponent,
   LoginRedirectButton,
   LoginCard,
+  CheckboxButton,
+  CheckboxButtonContainer,
 };

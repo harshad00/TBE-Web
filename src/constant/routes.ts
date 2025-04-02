@@ -4,6 +4,7 @@ const routes = {
   home: '/',
   // Shiksha
   login: '/login',
+  Onboard: '/onboard',
   shiksha: '/shiksha',
   shikshaExplore: '/shiksha/explore',
   allCourses: {
