@@ -203,7 +203,7 @@ const getLatestJobAggregationFromDB =
         .lean();
 
       if (!latestAggregation) {
-        return { error: 'No job aggregation data found' };
+        return { data: null };
       }
 
       return { data: latestAggregation };

@@ -9,6 +9,7 @@ import {
   UserPointsActionType,
   UserRoleType,
   PlatformUsageType,
+  UnskilledLandingGraphDataProps,
 } from '.';
 
 export interface UserModel {
@@ -247,20 +248,8 @@ export interface GamificationModel {
 }
 
 export interface JobAggregateModel extends Document {
-  trendingSkills: {
-    name: string;
-    count: number;
-  }[];
-  topLocations: {
-    name: string;
-    count: number;
-  }[];
-  jobDomains: {
-    name: string;
-    count: number;
-  }[];
-  companyTypes: {
-    name: string;
-    count: number;
-  }[];
+  trendingSkills: UnskilledLandingGraphDataProps[];
+  topLocations: UnskilledLandingGraphDataProps[];
+  jobDomains: UnskilledLandingGraphDataProps[];
+  companyTypes: UnskilledLandingGraphDataProps[];
 }

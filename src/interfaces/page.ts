@@ -9,7 +9,10 @@ import {
   UserPlaylistModel,
   PlaylistModel,
 } from './database';
-import { GetSEOMetaResponseType } from './global';
+import {
+  GetSEOMetaResponseType,
+  UnskilledLandingGraphDataProps,
+} from './global';
 
 export interface PageProps {
   slug: any;
@@ -64,6 +67,15 @@ export interface WebinarsLandingPageProps extends PageProps {
 
 export interface CertificatePageProps extends PageProps {
   certificate: CertificateModel;
+}
+
+export interface UnskilledLandingPageProps extends PageProps {
+  jobData: {
+    jobDomains: UnskilledLandingGraphDataProps[];
+    trendingSkills: UnskilledLandingGraphDataProps[];
+    companyTypes: UnskilledLandingGraphDataProps[];
+    topLocations: UnskilledLandingGraphDataProps[];
+  };
 }
 
 export interface CardItem {

@@ -119,3 +119,8 @@ export type FormatDateType = {
 export interface UpdateGamificationRecordBody {
   gamificationRecordId: UserPointsActionType;
 }
+
+export interface UnskilledLandingGraphDataProps {
+  name: string;
+  count: number;
+}
