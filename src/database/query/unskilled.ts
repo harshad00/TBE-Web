@@ -123,11 +123,45 @@ const getJobsAggregationFromDB =
         { $limit: 20 },
       ]);
 
+      const companyTypes = await Job.aggregate([
+        {
+          $group: {
+            _id: {
+              $switch: {
+                branches: [
+                  {
+                    case: { $lte: ['$company.emp_count', 50] },
+                    then: 'Startup',
+                  },
+                  {
+                    case: {
+                      $and: [
+                        { $gt: ['$company.emp_count', 50] },
+                        { $lte: ['$company.emp_count', 250] },
+                      ],
+                    },
+                    then: 'Mid-Size',
+                  },
+                  {
+                    case: { $gt: ['$company.emp_count', 250] },
+                    then: 'MNC',
+                  },
+                ],
+                default: 'Unknown',
+              },
+            },
+            totalCompanies: { $sum: 1 },
+          },
+        },
+        { $project: { name: '$_id', count: '$totalCompanies', _id: 0 } },
+      ]);
+
       return {
         data: {
           trendingSkills,
           topLocations,
           jobDomains,
+          companyTypes,
         },
       };
     } catch (error) {

@@ -27,13 +27,11 @@ import JobData from '@/data/unskilled.json';
 import { Fragment } from 'react';
 import { getPreFetchProps } from '@/utils';
 import { OutlineCardProps, PageProps } from '@/interfaces';
-import { routes } from '@/constant';
-
-const tabLabels = ['Skills', 'Locations', 'Domains'];
+import { routes, UNSKILLED_LANDING_GRAPH_TAB_PARAMS } from '@/constant';
 
 const jobMarketPanels = [
   <ResponsiveContainer key={0} width='100%' height={400}>
-    <BarChart data={JobData.trendingSkills} layout='horizontal'>
+    <BarChart data={JobData.jobDomains} layout='horizontal'>
       <CartesianGrid strokeDasharray='3 3' />
       <YAxis type='number' />
       <XAxis dataKey='name' type='category' width={100} />
@@ -43,7 +41,7 @@ const jobMarketPanels = [
   </ResponsiveContainer>,
 
   <ResponsiveContainer key={1} width='100%' height={400}>
-    <BarChart data={JobData.topLocations} layout='horizontal'>
+    <BarChart data={JobData.trendingSkills} layout='horizontal'>
       <CartesianGrid strokeDasharray='3 3' />
       <YAxis type='number' />
       <XAxis dataKey='name' type='category' width={100} />
@@ -52,8 +50,18 @@ const jobMarketPanels = [
     </BarChart>
   </ResponsiveContainer>,
 
-  <ResponsiveContainer key={2} width='100%' height={400}>
-    <BarChart data={JobData.jobDomains} layout='horizontal'>
+  <ResponsiveContainer key={3} width='100%' height={400}>
+    <BarChart data={JobData.companyTypes} layout='horizontal'>
+      <CartesianGrid strokeDasharray='3 3' />
+      <YAxis type='number' />
+      <XAxis dataKey='name' type='category' width={100} />
+      <Tooltip />
+      <Bar dataKey='count' fill='hsl(var(--chart-1))' />
+    </BarChart>
+  </ResponsiveContainer>,
+
+  <ResponsiveContainer key={4} width='100%' height={400}>
+    <BarChart data={JobData.topLocations} layout='horizontal'>
       <CartesianGrid strokeDasharray='3 3' />
       <YAxis type='number' />
       <XAxis dataKey='name' type='category' width={100} />
@@ -141,7 +149,10 @@ const UnskilledLandingPage = ({ seoMeta }: PageProps) => {
             Job Market Insights
           </Text>
 
-          <TabComponent tabLabels={tabLabels} tabPanels={jobMarketPanels} />
+          <TabComponent
+            tabLabels={UNSKILLED_LANDING_GRAPH_TAB_PARAMS}
+            tabPanels={jobMarketPanels}
+          />
 
           <Text level='p' className='text-gray-500 text-sm text-center'>
             Data aggregated from multiple leading job portals and updated daily

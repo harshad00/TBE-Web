@@ -437,6 +437,13 @@ const YOUFOCUS_FEATURES: PrimaryCardProps[] = [
   },
 ];
 
+const UNSKILLED_LANDING_GRAPH_TAB_PARAMS = [
+  'Domains',
+  'Skills',
+  'Companies',
+  'Locations',
+];
+
 export {
   PRODUCTS,
   TESTIMONIALS,
@@ -448,4 +455,5 @@ export {
   INTERVIEW_PREP_SHEETS,
   TBIP_FEATURES,
   YOUFOCUS_FEATURES,
+  UNSKILLED_LANDING_GRAPH_TAB_PARAMS,
 };
