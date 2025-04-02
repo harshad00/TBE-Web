@@ -10,7 +10,6 @@ const UserSchema: Schema<UserModel> = new Schema(
     },
     userName: {
       type: String,
-      unique: true,
     },
     email: {
       type: String,
