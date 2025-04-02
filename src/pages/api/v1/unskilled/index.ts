@@ -28,17 +28,7 @@ const handleGetDailyJobAggregation = async (
   res: NextApiResponse
 ) => {
   try {
-    const { error, data } = await getLatestJobAggregationFromDB();
-
-    if (error) {
-      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
-        sendAPIResponse({
-          status: false,
-          message: 'Failed to aggregate job data',
-          error,
-        })
-      );
-    }
+    const { data } = await getLatestJobAggregationFromDB();
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({
