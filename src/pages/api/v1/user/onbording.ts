@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { UserOnboardInDB } from '@/database';
+import { UserOnboardInDB, getUserByUserNameFromDB } from '@/database';
 import { AddOnboardingPayloadProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -50,8 +50,21 @@ const handleUserOnboarding = async (
       );
     }
 
+    // Check if username is already taken
+    const { error } = await getUserByUserNameFromDB(userName, userId);
+
+    if (error) {
+      return res.status(apiStatusCodes.BAD_REQUEST).json(
+        sendAPIResponse({
+          status: false,
+          error,
+          message: 'Username already exists, please choose another',
+        })
+      );
+    }
+
     // Call the function to update or add onboarding data for the user
-    const { data, error } = await UserOnboardInDB(
+    const { data, error: updateError } = await UserOnboardInDB(
       userId,
       userName,
       isOnboarded,
@@ -60,11 +73,11 @@ const handleUserOnboarding = async (
       contactNo
     );
 
-    if (error) {
+    if (updateError) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
         sendAPIResponse({
           status: false,
-          error,
+          error: updateError,
           message: 'Error while onboarding user',
         })
       );

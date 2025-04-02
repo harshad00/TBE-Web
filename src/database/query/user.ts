@@ -45,6 +45,23 @@ const createUserInDB = async (
   }
 };
 
+const getUserByUserNameFromDB = async (
+  userName: string,
+  userId: string
+): Promise<DatabaseQueryResponseType> => {
+  if (!userName) {
+    return { error: 'Username is required' };
+  }
+
+  const existingUser = await User.findOne({ userName });
+
+  if (existingUser && existingUser._id.toString() !== userId) {
+    return { error: 'Username already taken, please choose a different one' };
+  }
+
+  return { data: 'Username is available' }; // Success case
+};
+
 const UserOnboardInDB = async (
   userId: string,
   userName: string,
@@ -54,13 +71,6 @@ const UserOnboardInDB = async (
   contactNo: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    // Check if the username already exists for another user
-    const existingUserName = await User.findOne({ userName });
-
-    if (existingUserName && existingUserName._id.toString() !== userId) {
-      return { error: 'Username already exists' };
-    }
-
     // Update user by userId
     const user = await User.findByIdAndUpdate(
       userId,
@@ -90,4 +100,5 @@ export {
   getUserByEmailFromDB,
   createUserInDB,
   UserOnboardInDB,
+  getUserByUserNameFromDB,
 };
