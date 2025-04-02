@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '@/middlewares';
 import { apiStatusCodes } from '@/constant';
-import { readJSONFile, UNSKILL_DATA_FILE, writeJSONFile } from '@/utils/server';
-import { getJobsAggregationFromDB } from '@/database';
+import {
+  fetchJobsAggregationFromDB,
+  getLatestJobAggregationFromDB,
+} from '@/database';
 import { sendAPIResponse } from '@/utils';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -10,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (req.method) {
     case 'GET':
-      return handleFetchJobData(req, res);
+      return handleGetDailyJobAggregation(req, res);
     case 'POST':
       return handleAggregateJobData(req, res);
     default:
@@ -21,25 +23,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-const handleFetchJobData = async (
+const handleGetDailyJobAggregation = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
   try {
-    const data = readJSONFile(UNSKILL_DATA_FILE);
-    const today = new Date().toISOString().split('T')[0];
-
-    if (data && data.lastUpdated === today) {
-      return res.status(apiStatusCodes.OKAY).json(
-        sendAPIResponse({
-          status: true,
-          message: 'Job market insights fetched successfully',
-          data,
-        })
-      );
-    }
-
-    const { error, data: unskilledData } = await getJobsAggregationFromDB();
+    const { error, data } = await getLatestJobAggregationFromDB();
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
@@ -51,18 +40,11 @@ const handleFetchJobData = async (
       );
     }
 
-    const aggregatedData = {
-      lastUpdated: today,
-      ...unskilledData,
-    };
-
-    writeJSONFile(UNSKILL_DATA_FILE, aggregatedData);
-
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({
         status: true,
         message: 'Job data aggregated and saved successfully',
-        data: aggregatedData,
+        data,
       })
     );
   } catch (error) {
@@ -81,9 +63,7 @@ const handleAggregateJobData = async (
   res: NextApiResponse
 ) => {
   try {
-    const today = new Date().toISOString().split('T')[0];
-
-    const { error, data } = await getJobsAggregationFromDB();
+    const { error, data } = await fetchJobsAggregationFromDB();
 
     if (error) {
       return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
@@ -95,18 +75,21 @@ const handleAggregateJobData = async (
       );
     }
 
-    const aggregatedData = {
-      lastUpdated: today,
-      ...data,
-    };
-
-    writeJSONFile(UNSKILL_DATA_FILE, aggregatedData);
+    if (error) {
+      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Failed to save job aggregated data to DB',
+          error,
+        })
+      );
+    }
 
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({
         status: true,
         message: 'Job data aggregated and saved successfully',
-        data: aggregatedData,
+        data,
       })
     );
   } catch (error) {
