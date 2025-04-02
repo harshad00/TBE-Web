@@ -241,7 +241,26 @@ export interface UserPointsAction {
 }
 
 export interface GamificationModel {
-  userId: Schema.Types.ObjectId; // Reference to User
+  userId: Schema.Types.ObjectId;
   points: number;
   actions: UserPointsAction[];
+}
+
+export interface JobAggregateModel extends Document {
+  trendingSkills: {
+    name: string;
+    count: number;
+  }[];
+  topLocations: {
+    name: string;
+    count: number;
+  }[];
+  jobDomains: {
+    name: string;
+    count: number;
+  }[];
+  companyTypes: {
+    name: string;
+    count: number;
+  }[];
 }

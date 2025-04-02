@@ -1,8 +1,4 @@
-import {
-  DATABASE_MODELS,
-  USER_ROLE,
-  PLATFORM_USAGE,
-} from '@/constant';
+import { DATABASE_MODELS, USER_ROLE, PLATFORM_USAGE } from '@/constant';
 import { UserModel } from '@/interfaces';
 import { Model, Schema, model, models } from 'mongoose';
 
