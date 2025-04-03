@@ -1,12 +1,12 @@
 import React from 'react';
 import { RadioButtonProps } from '@/interfaces';
 
-const RadioButton: React.FC<RadioButtonProps> = ({
+const RadioButton = ({
   label,
   value,
   isSelected,
   onClick,
-}) => {
+}: RadioButtonProps) => {
   const handleChange = () => {
     if (!isSelected) {
       onClick();

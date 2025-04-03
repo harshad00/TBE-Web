@@ -8,8 +8,8 @@ const CheckboxButtonContainer = ({
 }: CheckboxGroupProps) => {
   const handleClick = (value: string) => {
     const updatedValues = selectedValues.includes(value)
-      ? selectedValues.filter((v) => v !== value) // Remove if already selected
-      : [...selectedValues, value]; // Add if not selected
+      ? selectedValues.filter((v) => v !== value)
+      : [...selectedValues, value];
 
     onChange(updatedValues);
   };
