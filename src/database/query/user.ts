@@ -48,17 +48,21 @@ const createUserInDB = async (
 const getUserByUserNameFromDB = async (
   userName: string
 ): Promise<DatabaseQueryResponseType> => {
-  if (!userName) {
-    return { error: 'Username is required' };
+  try {
+    if (!userName) {
+      return { error: 'Username is required' };
+    }
+
+    const existingUser = await User.findOne({ userName });
+
+    if (existingUser) {
+      return { error: 'Username already taken' };
+    }
+
+    return { data: 'Username is available' };
+  } catch (error) {
+    return { error: 'An error occurred while checking the username' };
   }
-
-  const existingUser = await User.findOne({ userName });
-
-  if (existingUser) {
-    return { error: 'Username already taken, please choose a different one' };
-  }
-
-  return { data: 'Username is available' };
 };
 
 const onboardUserToDB = async (
