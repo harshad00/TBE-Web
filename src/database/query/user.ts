@@ -46,8 +46,7 @@ const createUserInDB = async (
 };
 
 const getUserByUserNameFromDB = async (
-  userName: string,
-  userId: string
+  userName: string
 ): Promise<DatabaseQueryResponseType> => {
   if (!userName) {
     return { error: 'Username is required' };
@@ -55,14 +54,14 @@ const getUserByUserNameFromDB = async (
 
   const existingUser = await User.findOne({ userName });
 
-  if (existingUser && existingUser._id.toString() !== userId) {
+  if (existingUser) {
     return { error: 'Username already taken, please choose a different one' };
   }
 
-  return { data: 'Username is available' }; // Success case
+  return { data: 'Username is available' };
 };
 
-const UserOnboardInDB = async (
+const onboardUserToDB = async (
   userId: string,
   userName: string,
   isOnboarded: boolean,
@@ -71,7 +70,6 @@ const UserOnboardInDB = async (
   contactNo: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    // Update user by userId
     const user = await User.findByIdAndUpdate(
       userId,
       {
@@ -88,10 +86,7 @@ const UserOnboardInDB = async (
 
     return { data: user };
   } catch (error) {
-    return {
-      error:
-        'Failed while updating onboard status, username, profession, purpose, or contact number',
-    };
+    return { error };
   }
 };
 
@@ -99,6 +94,6 @@ export {
   getUserByIdFromDB,
   getUserByEmailFromDB,
   createUserInDB,
-  UserOnboardInDB,
+  onboardUserToDB,
   getUserByUserNameFromDB,
 };
