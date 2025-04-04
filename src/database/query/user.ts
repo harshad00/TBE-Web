@@ -63,6 +63,7 @@ const getUserByUserNameFromDB = async (
   } catch (error) {
     return { error: 'An error occurred while checking the username' };
   }
+};
 
 const onboardUserToDB = async (
   userId: string,
