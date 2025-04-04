@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { UserOnboardInDB, getUserByUserNameFromDB } from '@/database';
+import { onboardUserToDB, getUserByUserNameFromDB } from '@/database';
 import { AddOnboardingPayloadProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -50,8 +50,7 @@ const handleUserOnboarding = async (
       );
     }
 
-    // Check if username is already taken
-    const { error } = await getUserByUserNameFromDB(userName, userId);
+    const { error } = await getUserByUserNameFromDB(userName);
 
     if (error) {
       return res.status(apiStatusCodes.BAD_REQUEST).json(
@@ -63,8 +62,7 @@ const handleUserOnboarding = async (
       );
     }
 
-    // Call the function to update or add onboarding data for the user
-    const { data, error: updateError } = await UserOnboardInDB(
+    const { data, error: updateError } = await onboardUserToDB(
       userId,
       userName,
       isOnboarded,
@@ -74,7 +72,7 @@ const handleUserOnboarding = async (
     );
 
     if (updateError) {
-      return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+      return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
           status: false,
           error: updateError,
@@ -94,7 +92,7 @@ const handleUserOnboarding = async (
     return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
       sendAPIResponse({
         status: false,
-        error: error,
+        error,
         message: 'Error while onboarding user',
       })
     );

@@ -9,6 +9,7 @@ import {
   UserPointsActionType,
   UserRoleType,
   PlatformUsageType,
+  UnskilledLandingGraphDataProps,
 } from '.';
 
 export interface UserModel {
@@ -242,7 +243,14 @@ export interface UserPointsAction {
 }
 
 export interface GamificationModel {
-  userId: Schema.Types.ObjectId; // Reference to User
+  userId: Schema.Types.ObjectId;
   points: number;
   actions: UserPointsAction[];
+}
+
+export interface JobAggregateModel extends Document {
+  trendingSkills: UnskilledLandingGraphDataProps[];
+  topLocations: UnskilledLandingGraphDataProps[];
+  jobDomains: UnskilledLandingGraphDataProps[];
+  companyTypes: UnskilledLandingGraphDataProps[];
 }
