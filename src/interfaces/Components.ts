@@ -298,6 +298,12 @@ export interface InputRadioContainerProps {
   className?: string;
 }
 
+export interface CheckboxGroupProps {
+  options: { label: string; value: string }[];
+  selectedValues: string[];
+  onChange: (values: string[]) => void;
+}
+
 export interface RadioInputFieldProps extends RadioButtonOptionsProps {
   onChange: (itemId: string) => void;
   selected?: boolean;
@@ -548,6 +554,13 @@ export interface ToastProps {
 }
 
 export interface RadioButtonProps {
+  label: string;
+  value: string;
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+export interface CheckboxButtonProps {
   label: string;
   value: string;
   isSelected: boolean;

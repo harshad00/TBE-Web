@@ -4,10 +4,12 @@ import { Model, Schema, model, models } from 'mongoose';
 
 const UserSchema: Schema<UserModel> = new Schema(
   {
+    name: {
+      type: String,
+      required: [true, 'name is required'],
+    },
     userName: {
       type: String,
-      required: [true, 'user name is required'],
-      unique: true,
     },
     email: {
       type: String,
@@ -19,7 +21,6 @@ const UserSchema: Schema<UserModel> = new Schema(
     },
     provider: {
       type: String,
-      required: [true, 'Provider is required'],
     },
     providerAccountId: {
       type: String,
