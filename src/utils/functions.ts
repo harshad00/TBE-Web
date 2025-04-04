@@ -539,11 +539,11 @@ const calculateProgressPercentage = (
   return (progress / nextMinPoints) * 100;
 };
 
-export const isValidPhoneNumber = (number: string) => {
+const isValidPhoneNumber = (number: string) => {
   return /^\d{10}$/.test(number); // Ensures only 10 digits
 };
 
-export const formatPhoneNumber = (countryCode: string, phoneNumber: string) => {
+const formatPhoneNumber = (countryCode: string, phoneNumber: string) => {
   return `${countryCode}${phoneNumber}`;
 };
 
@@ -576,4 +576,6 @@ export {
   calculateUserPointsForAction,
   getUserGamificationLevel,
   calculateProgressPercentage,
+  isValidPhoneNumber,
+  formatPhoneNumber,
 };

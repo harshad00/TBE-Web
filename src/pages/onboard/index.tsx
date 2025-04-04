@@ -1,9 +1,17 @@
+import { OnboardForm, SectionHeaderContainer } from '@/components';
 import React from 'react';
 
 function Onboard() {
   return (
-    <div>
-      <h1>Onboarding Page</h1>
+    <div className=''>
+      <SectionHeaderContainer
+        heading=' WELCOME'
+        focusText='ONBOARDING'
+        headingLevel={4}
+        subtext=''
+        className='p-4'
+      />
+      <OnboardForm />
     </div>
   );
 }

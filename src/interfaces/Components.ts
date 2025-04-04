@@ -291,6 +291,11 @@ export interface UserLevel {
   level: number;
 }
 
+export interface OptionType {
+  label: string;
+  value: string;
+}
+
 export type CountryCodeType = string;
 
 export interface InputRadioContainerProps {

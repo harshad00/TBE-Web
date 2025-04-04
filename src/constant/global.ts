@@ -7,6 +7,7 @@ import {
   UserPointsActionType,
   UserLevel,
   CountryCodeType,
+  OptionType,
 } from '@/interfaces';
 import { routes } from './routes';
 import { envConfig } from './envConfig';
@@ -320,6 +321,18 @@ const USER_LEVELS: UserLevel[] = [
   { name: 'Legend', value: 'LEGEND', minPoints: 10000, level: 10 },
 ];
 
+const USER_OPTIONS: OptionType[] = [
+  { label: 'Learning Tech', value: 'LEARNING_TECH' },
+  { label: 'Building Projects', value: 'BUILDING_PROJECTS' },
+  { label: 'Interview Prep', value: 'INTERVIEW_PREP' },
+  { label: 'Job Search', value: 'JOB_SEARCH' },
+];
+
+const USER_ROLEOPTIONS: OptionType[] = [
+  { label: 'Student', value: 'STUDENT' },
+  { label: 'Working Professional', value: 'WORKING_PROFESSIONAL' },
+];
+
 export const COUNTRY_CODES: CountryCodeType[] = [
   '+1',
   '+7',
@@ -550,4 +563,6 @@ export {
   YOUFOCUS_SKILL_PLAYLISTS,
   POINTS_RULES,
   USER_LEVELS,
+  USER_OPTIONS,
+  USER_ROLEOPTIONS,
 };

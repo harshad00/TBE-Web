@@ -228,6 +228,10 @@ const CheckboxButtonContainer = dynamic(
 
 const PhoneInput = dynamic(() => import('@/components/common/Form/PhoneInput'));
 
+const OnboardForm = dynamic(
+  () => import('@/components/containers/Page/Onboard/OnboardForm')
+);
+
 export {
   Navbar,
   LinkText as Link,
@@ -319,4 +323,5 @@ export {
   CheckboxButton,
   CheckboxButtonContainer,
   PhoneInput,
+  OnboardForm,
 };

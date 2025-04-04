@@ -59,7 +59,7 @@ const getUserByUserNameFromDB = async (
     return { error: 'Username already taken, please choose a different one' };
   }
 
-  return { data: 'Username is available' }; // Success case
+  return { data: 'Username is available' };
 };
 
 const UserOnboardInDB = async (
@@ -71,7 +71,6 @@ const UserOnboardInDB = async (
   contactNo: string
 ): Promise<DatabaseQueryResponseType> => {
   try {
-    // Update user by userId
     const user = await User.findByIdAndUpdate(
       userId,
       {
