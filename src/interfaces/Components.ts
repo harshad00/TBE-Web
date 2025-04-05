@@ -331,6 +331,16 @@ export interface ProjectHeroContainerProps {
   isEnrolled?: boolean;
 }
 
+export interface OnboardFormProps {
+  username: string;
+  selectedRole: string;
+  selectedOptions: string[];
+  phoneNumber: string;
+  countryCode?: string;
+}
+
+export type FormStep = 'username' | 'role' | 'usage' | 'contact';
+
 export interface LevelInfoProps {
   level: number;
   pointsNeeded: number;
@@ -624,4 +634,24 @@ export interface LevelProgressCardProps {
 export interface LoginRedirectButtonProps {
   text?: string;
   className?: string;
+}
+
+export interface ContactStepProps {
+  phoneNumber: string;
+  error?: string;
+  onChange: (value: string) => void;
+}
+
+export interface RoleStepProps {
+  selectedRole: string;
+  error?: string;
+  onChange: (value: string) => void;
+  options: { value: string; label: string }[];
+}
+
+export interface UsageStepProps {
+  selectedOptions: string[];
+  error?: string;
+  onChange: (value: string[]) => void;
+  options: { value: string; label: string }[];
 }

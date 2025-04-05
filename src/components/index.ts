@@ -232,7 +232,9 @@ const OnboardForm = dynamic(
   () => import('@/components/containers/Page/Onboard/OnboardForm')
 );
 
-const OnboardingProgress = dynamic( () => import('@/components/common/ProgressBar/OnboardingProgress')); 
+const OnboardingProgress = dynamic(
+  () => import('@/components/common/ProgressBar/OnboardingProgress')
+);
 
 export {
   Navbar,
@@ -326,5 +328,5 @@ export {
   CheckboxButtonContainer,
   PhoneInput,
   OnboardForm,
-  OnboardingProgress
+  OnboardingProgress,
 };

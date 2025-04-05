@@ -70,6 +70,7 @@ const routes = {
     webinar: '/webinar',
     project: (project: string) => `/projects/${project}`,
     shiksha: '/shiksha',
+    onbording: '/user/onbording',
     myCourses: '/user/shiksha',
     myProjects: '/user/projects',
     mySheets: '/user/interview-prep',

@@ -333,6 +333,13 @@ const USER_ROLEOPTIONS: OptionType[] = [
   { label: 'Working Professional', value: 'WORKING_PROFESSIONAL' },
 ];
 
+const ONBOARDFORM_STEPS = [
+  { key: 'username', label: 'Username' },
+  { key: 'role', label: 'Role' },
+  { key: 'usage', label: 'Usage' },
+  { key: 'contact', label: 'Contact' },
+];
+
 export const COUNTRY_CODES: CountryCodeType[] = [
   '+1',
   '+7',
@@ -565,4 +572,5 @@ export {
   USER_LEVELS,
   USER_OPTIONS,
   USER_ROLEOPTIONS,
+  ONBOARDFORM_STEPS,
 };

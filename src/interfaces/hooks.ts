@@ -5,6 +5,7 @@ export interface User {
   name: string;
   email: string;
   image: string;
+  isOnboarded: boolean;
 }
 
 export interface UseUserReturnType {

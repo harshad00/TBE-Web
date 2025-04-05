@@ -7,7 +7,6 @@ const useUser = (): UseUserReturnType => {
   const [user, setUser] = useState<User>(session?.user as User);
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     if (status === 'loading') {
       setLoading(true);

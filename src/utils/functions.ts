@@ -18,6 +18,8 @@ import {
   UserPlaylistResponseProps,
   PlaylistModel,
   UserPointsActionType,
+  OnboardFormProps,
+  FormStep,
 } from '@/interfaces';
 
 const fetchAPIData = async (url: string) => {
@@ -547,6 +549,68 @@ const formatPhoneNumber = (countryCode: string, phoneNumber: string) => {
   return `${countryCode}${phoneNumber}`;
 };
 
+const handleOnboardFormQuestionChange = (
+  field: keyof OnboardFormProps,
+  value: string | string[],
+  setFormData: React.Dispatch<React.SetStateAction<OnboardFormProps>>
+) => {
+  setFormData((prev) => ({ ...prev, [field]: value }));
+};
+
+const validateInOnboardingCurrentStep = (
+  currentStep: FormStep,
+  formData: OnboardFormProps,
+  setErrors: React.Dispatch<React.SetStateAction<Record<string, string>>>
+) => {
+  const newErrors: Record<string, string> = {};
+
+  if (currentStep === 'username' && !formData.username.trim()) {
+    newErrors.username = 'Username is required';
+  }
+  if (currentStep === 'role' && !formData.selectedRole) {
+    newErrors.selectedRole = 'Please select a role';
+  }
+  if (currentStep === 'usage' && formData.selectedOptions.length === 0) {
+    newErrors.selectedOptions = 'Please select at least one option';
+  }
+  if (currentStep === 'contact' && !formData.phoneNumber.trim()) {
+    newErrors.phoneNumber = 'Phone number is required';
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
+const handleOnboardFormNextQusetion = (
+  currentStep: FormStep,
+  steps: { label: string }[],
+  setCurrentStep: React.Dispatch<React.SetStateAction<FormStep>>,
+  formData: OnboardFormProps,
+  setErrors: React.Dispatch<React.SetStateAction<Record<string, string>>>
+) => {
+  if (validateInOnboardingCurrentStep(currentStep, formData, setErrors)) {
+    const currentIndex = steps.findIndex(
+      (s) => s.label.toLowerCase() === currentStep
+    );
+    if (currentIndex < steps.length - 1) {
+      setCurrentStep(steps[currentIndex + 1].label.toLowerCase() as FormStep);
+    }
+  }
+};
+
+const handleOnboardFormBackQusetion = (
+  currentStep: FormStep,
+  steps: { label: string }[],
+  setCurrentStep: React.Dispatch<React.SetStateAction<FormStep>>
+) => {
+  const currentIndex = steps.findIndex(
+    (s) => s.label.toLowerCase() === currentStep
+  );
+  if (currentIndex > 0) {
+    setCurrentStep(steps[currentIndex - 1].label.toLowerCase() as FormStep);
+  }
+};
+
 export {
   formatDate,
   formatTime,
@@ -578,4 +642,8 @@ export {
   calculateProgressPercentage,
   isValidPhoneNumber,
   formatPhoneNumber,
+  validateInOnboardingCurrentStep,
+  handleOnboardFormQuestionChange,
+  handleOnboardFormNextQusetion,
+  handleOnboardFormBackQusetion,
 };

@@ -1,47 +1,39 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import { Button, Toast, OnboardingProgress } from '@/components';
+
+import UsernameStep from './steps/UsernameStep';
+import RoleStep from './steps/RoleStep';
+import UsageStep from './steps/UsageStep';
+import ContactStep from './steps/ContactStep';
 import {
-  Text,
-  CheckboxButtonContainer,
-  RadioButtonContainer,
-  PhoneInput,
-  Button,
-  Toast,
-} from '@/components';
-import { OnboardingProgress } from '@/components';
+  ONBOARDFORM_STEPS,
+  USER_ROLEOPTIONS,
+  USER_OPTIONS,
+  routes,
+} from '@/constant';
 import {
-  UserCircleIcon,
-  BriefcaseIcon,
-  AcademicCapIcon,
-  PhoneIcon,
-} from '@heroicons/react/24/outline';
-
-const USER_OPTIONS = [
-  { value: 'option1', label: 'Option 1' },
-  { value: 'option2', label: 'Option 2' },
-  { value: 'option3', label: 'Option 3' },
-];
-
-const USER_ROLEOPTIONS = [
-  { value: 'role1', label: 'Role 1' },
-  { value: 'role2', label: 'Role 2' },
-  { value: 'role3', label: 'Role 3' },
-];
-
-type FormStep = 'username' | 'role' | 'usage' | 'contact';
-
-interface FormData {
-  username: string;
-  selectedRole: string;
-  selectedOptions: string[];
-  phoneNumber: string;
-  countryCode: string;
-}
+  handleOnboardFormQuestionChange,
+  validateInOnboardingCurrentStep,
+  handleOnboardFormNextQusetion,
+  handleOnboardFormBackQusetion,
+} from '@/utils';
+import { OnboardFormProps, FormStep } from '@/interfaces';
+import useApi from '@/hooks/useApi';
 
 const OnboardForm = () => {
   const router = useRouter();
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
+
+  // 👇 NEW: Get redirectPath from query
+  const redirectPath = router.query.redirect
+    ? String(router.query.redirect)
+    : '/';
+
   const [currentStep, setCurrentStep] = useState<FormStep>('username');
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<OnboardFormProps>({
     username: '',
     selectedRole: '',
     selectedOptions: [],
@@ -49,64 +41,78 @@ const OnboardForm = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toastType, setToastType] = useState<'success' | 'error'>('success');
 
-  const steps = [
-    { icon: <UserCircleIcon className="h-6 w-6" />, label: 'Username' },
-    { icon: <BriefcaseIcon className="h-6 w-6" />, label: 'Role' },
-    { icon: <AcademicCapIcon className="h-6 w-6" />, label: 'Usage' },
-    { icon: <PhoneIcon className="h-6 w-6" />, label: 'Contact' },
-  ];
+  const steps = ONBOARDFORM_STEPS;
+  const { response, error, loading, makeRequest } = useApi('onboard-user');
 
-  const handleChange = (field: keyof FormData, value: string | string[]) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const validateCurrentStep = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (currentStep === 'username' && !formData.username.trim()) {
-      newErrors.username = 'Username is required';
-    }
-    if (currentStep === 'role' && !formData.selectedRole) {
-      newErrors.selectedRole = 'Please select a role';
-    }
-    if (currentStep === 'usage' && formData.selectedOptions.length === 0) {
-      newErrors.selectedOptions = 'Please select at least one option';
-    }
-    if (currentStep === 'contact' && !formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = 'Phone number is required';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const handleChange = (
+    field: keyof OnboardFormProps,
+    value: string | string[]
+  ) => {
+    handleOnboardFormQuestionChange(field, value, setFormData);
   };
 
   const handleNext = () => {
-    if (validateCurrentStep()) {
-      const currentIndex = steps.findIndex(
-        (s) => s.label.toLowerCase() === currentStep
-      );
-      if (currentIndex < steps.length - 1) {
-        setCurrentStep(steps[currentIndex + 1].label.toLowerCase() as FormStep);
-      }
-    }
+    handleOnboardFormNextQusetion(
+      currentStep,
+      steps,
+      setCurrentStep,
+      formData,
+      setErrors
+    );
   };
 
   const handleBack = () => {
-    const currentIndex = steps.findIndex(
-      (s) => s.label.toLowerCase() === currentStep
-    );
-    if (currentIndex > 0) {
-      setCurrentStep(steps[currentIndex - 1].label.toLowerCase() as FormStep);
-    }
+    handleOnboardFormBackQusetion(currentStep, steps, setCurrentStep);
   };
 
-  const handleSubmit = () => {
-    if (validateCurrentStep()) {
-      setToastMessage('Form submitted successfully!');
-      console.log(formData);
-      
-      // setTimeout(() => router.push('/dashboard'), 1500);
+  const handleSubmit = async () => {
+    if (!userId) {
+      setToastMessage('User ID not found. Please log in.');
+      setToastType('error');
+      setTimeout(() => router.replace('/login?redirect=/onboard'), 1500);
+      return;
+    }
+
+    if (validateInOnboardingCurrentStep(currentStep, formData, setErrors)) {
+      try {
+        const payload = {
+          userName: formData.username,
+          isOnboarded: true,
+          profession: formData.selectedRole,
+          purpose: formData.selectedOptions,
+          contactNo: formData.phoneNumber,
+        };
+
+        const res = await makeRequest({
+          url: `${routes.api.onbording}?userId=${userId}`,
+          method: 'POST',
+          body: payload,
+        });
+
+        if (res?.status) {
+          setToastMessage('User onboarded successfully!');
+          setToastType('success');
+          setTimeout(() => router.replace(redirectPath), 1500); // ✅ Use redirectPath
+        } else {
+          setToastMessage(`${res.message}`);
+          setToastType('error');
+        }
+      } catch (err: any) {
+        console.error('Onboarding error:', err);
+        const errorMsg =
+          err.message || 'Something went wrong during onboarding.';
+        setToastMessage(errorMsg);
+        setToastType('error');
+
+        if (
+          errorMsg.toLowerCase().includes('unauthorized') ||
+          errorMsg.toLowerCase().includes('403')
+        ) {
+          setTimeout(() => router.replace('/login?redirect=/onboard'), 1500);
+        }
+      }
     }
   };
 
@@ -114,80 +120,37 @@ const OnboardForm = () => {
     switch (currentStep) {
       case 'username':
         return (
-          <div className="space-y-4">
-            <label className="block font-medium">
-              Choose Your Username
-              <Text level="span" className="text-primary"> (Required)</Text>
-            </label>
-            <input
-              type="text"
-              value={formData.username}
-              onChange={(e) => handleChange('username', e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              placeholder="Enter your username"
-            />
-            {errors.username && (
-              <Text level="p" variant="ERROR" className="text-red-500">
-                {errors.username}
-              </Text>
-            )}
-          </div>
+          <UsernameStep
+            username={formData.username}
+            error={errors.username}
+            onChange={(value) => handleChange('username', value)}
+          />
         );
       case 'role':
         return (
-          <div className="space-y-4">
-            <label className="block font-medium">
-              What Do You Do?
-              <Text level="span" className="text-primary"> (Required)</Text>
-            </label>
-            <RadioButtonContainer
-              options={USER_ROLEOPTIONS}
-              selectedValue={formData.selectedRole}
-              onChange={(value) => handleChange('selectedRole', value)}
-            />
-            {errors.selectedRole && (
-              <Text level="p" variant="ERROR" className="text-red-500">
-                {errors.selectedRole}
-              </Text>
-            )}
-          </div>
+          <RoleStep
+            selectedRole={formData.selectedRole}
+            error={errors.selectedRole}
+            onChange={(value) => handleChange('selectedRole', value)}
+            options={USER_ROLEOPTIONS}
+          />
         );
       case 'usage':
         return (
-          <div className="space-y-4">
-            <label className="block font-medium">
-              How Would You Use The Platform?
-              <Text level="span" className="text-primary"> (Required)</Text>
-            </label>
-            <CheckboxButtonContainer
-              options={USER_OPTIONS}
-              selectedValues={formData.selectedOptions}
-              onChange={(value) => handleChange('selectedOptions', value)}
-            />
-            {errors.selectedOptions && (
-              <Text level="p" variant="ERROR" className="text-red-500">
-                {errors.selectedOptions}
-              </Text>
-            )}
-          </div>
+          <UsageStep
+            selectedOptions={formData.selectedOptions}
+            error={errors.selectedOptions}
+            onChange={(value) => handleChange('selectedOptions', value)}
+            options={USER_OPTIONS}
+          />
         );
       case 'contact':
         return (
-          <div className="space-y-4">
-            <h1 className="text-2xl font-bold">Hello</h1>
-            <label className="block font-medium">
-              Enter Your Phone Number
-              <Text level="span" className="text-primary"> (Required)</Text>
-            </label>
-            <PhoneInput
-              onNumberChange={(value) => handleChange('phoneNumber', value)}
-            />
-            {errors.phoneNumber && (
-              <Text level="p" variant="ERROR" className="text-red-500">
-                {errors.phoneNumber}
-              </Text>
-            )}
-          </div>
+          <ContactStep
+            phoneNumber={formData.phoneNumber}
+            error={errors.phoneNumber}
+            onChange={(value) => handleChange('phoneNumber', value)}
+          />
         );
       default:
         return null;
@@ -195,7 +158,7 @@ const OnboardForm = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className='w-full max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md'>
       <OnboardingProgress
         steps={steps}
         currentStep={steps.findIndex(
@@ -203,31 +166,31 @@ const OnboardForm = () => {
         )}
       />
 
-      <div className="mt-8">{renderStepContent()}</div>
+      <div className='mt-8'>{renderStepContent()}</div>
 
-      <div className="flex justify-between mt-8">
+      <div className='flex justify-between mt-8'>
         {currentStep !== 'username' && (
           <Button
-            variant="SECONDARY"
-            text="Back"
+            variant='SECONDARY'
+            text='Back'
             onClick={handleBack}
-            className="px-6 py-2"
+            className='px-6 py-2'
           />
         )}
-
         {currentStep === 'contact' ? (
           <Button
-            variant="PRIMARY"
-            text="Submit"
+            variant='PRIMARY'
+            text={loading ? 'Submitting...' : 'Submit'}
             onClick={handleSubmit}
-            className="px-6 py-2"
+            className='px-6 py-2'
+            disabled={loading}
           />
         ) : (
           <Button
-            variant="PRIMARY"
-            text="Next"
+            variant='PRIMARY'
+            text='Next'
             onClick={handleNext}
-            className="px-6 py-2"
+            className='px-6 py-2'
           />
         )}
       </div>
@@ -235,7 +198,7 @@ const OnboardForm = () => {
       {toastMessage && (
         <Toast
           message={toastMessage}
-          type={Object.keys(errors).length > 0 ? 'error' : 'success'}
+          type={toastType}
           onClose={() => setToastMessage(null)}
         />
       )}

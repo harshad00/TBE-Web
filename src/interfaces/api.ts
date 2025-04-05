@@ -206,6 +206,7 @@ export interface CreateUserRequestPayloadProps {
   image?: string;
   provider: string;
   providerAccountId?: string;
+  isOnboarded: boolean;
 }
 export interface AddOnboardingPayloadProps {
   userId: string;

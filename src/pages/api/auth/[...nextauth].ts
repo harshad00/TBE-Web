@@ -12,6 +12,7 @@ const authOptions = {
     }),
   ],
   secret: envConfig.NEXTAUTH_SECRET,
+
   callbacks: {
     async signIn({ user, account }: any) {
       if (!user) return false;
@@ -23,48 +24,47 @@ const authOptions = {
       try {
         await connectDB();
 
-        // Find or create the user in MongoDB
         const { data: existingUser } = await getUserByEmailFromDB(email);
 
         if (!existingUser) {
-          // Create a new user in MongoDB if not found
-
           const { data: result, error } = await createUserInDB({
             name,
             email,
             image: user.image,
             provider: account.provider,
             providerAccountId: account.providerAccountId,
+            isOnboarded: false,
           });
 
-          // Attach the MongoDB _id to the user object
           user.id = result._id.toString();
+          user.isOnboarded = result.isOnboarded ?? false;
         } else {
-          // If the user exists, attach the MongoDB _id to the user object
           user.id = existingUser._id.toString();
+          user.isOnboarded = existingUser.isOnboarded ?? false;
         }
 
-        return true; // Allow the sign in
+        return true;
       } catch (error) {
         console.error('Error signing in:', error);
         return false;
       }
     },
 
-    async session({ session, token }: any) {
-      // Attach the MongoDB user ID to the session object
-      session.user.id = token.sub; // `sub` was set in the jwt callback
-      return session;
-    },
-
     async jwt({ token, user }: any) {
       if (user) {
-        // Attach the MongoDB user ID to the token (if this is the initial sign in)
         token.sub = user.id;
+        token.isOnboarded = user.isOnboarded;
       }
       return token;
     },
+
+    async session({ session, token }: any) {
+      session.user.id = token.sub;
+      session.user.isOnboarded = token.isOnboarded ?? false;
+      return session;
+    },
   },
+
   pages: {
     signIn: routes?.register,
   },
