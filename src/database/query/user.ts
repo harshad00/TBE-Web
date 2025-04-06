@@ -68,7 +68,6 @@ const getUserByUserNameFromDB = async (
 const onboardUserToDB = async (
   userId: string,
   userName: string,
-  isOnboarded: boolean,
   profession: UserRoleType,
   purpose: PlatformUsageType[],
   contactNo: string
@@ -77,11 +76,11 @@ const onboardUserToDB = async (
     const user = await User.findByIdAndUpdate(
       userId,
       {
-        isOnboarded,
         userName,
         profession,
         purpose,
         contactNo,
+        isOnboarded: true,
       },
       { new: true }
     );

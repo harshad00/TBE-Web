@@ -212,7 +212,6 @@ export interface AddOnboardingPayloadProps {
   userName: string;
   profession: UserRoleType;
   purpose: PlatformUsageType[];
-  isOnboarded: boolean;
   contactNo: string;
 }
 export interface CourseEnrollmentRequestProps {
