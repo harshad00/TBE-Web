@@ -6,6 +6,7 @@ import {
   RadioButtonOptionsProps,
   UserPointsActionType,
   UserLevel,
+  UsageOption,
 } from '@/interfaces';
 import { routes } from './routes';
 import { envConfig } from './envConfig';
@@ -319,6 +320,31 @@ const USER_LEVELS: UserLevel[] = [
   { name: 'Legend', value: 'LEGEND', minPoints: 10000, level: 10 },
 ];
 
+const usageOptions: UsageOption[] = [
+  { id: 'tech', label: 'Learning Tech' },
+  { id: 'projects', label: 'Building Projects' },
+  { id: 'interview', label: 'Interview Prep' },
+  { id: 'job', label: 'Job Search' },
+];
+
+const COUNTRY_CODES = [
+  { code: '+91', country: 'INDIA' },
+  { code: '+1', country: 'UNITED STATES' },
+  { code: '+44', country: 'UNITED KINGDOM' },
+  { code: '+81', country: 'JAPAN' },
+  { code: '+49', country: 'GERMANY' },
+  { code: '+33', country: 'FRANCE' },
+  { code: '+61', country: 'AUSTRALIA' },
+  { code: '+86', country: 'CHINA' },
+  { code: '+39', country: 'ITALY' },
+  { code: '+7', country: 'RUSSIA' },
+  { code: '+34', country: 'SPAIN' },
+  { code: '+82', country: 'SOUTH KOREA' },
+  { code: '+31', country: 'NETHERLANDS' },
+  { code: '+47', country: 'NORWAY' },
+  { code: '+46', country: 'SWEDEN' },
+];
+
 export {
   imageMeta,
   products,
@@ -339,4 +365,6 @@ export {
   YOUFOCUS_SKILL_PLAYLISTS,
   POINTS_RULES,
   USER_LEVELS,
+  usageOptions,
+  COUNTRY_CODES,
 };

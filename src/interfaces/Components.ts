@@ -618,3 +618,52 @@ export interface LoginRedirectButtonProps {
   text?: string;
   className?: string;
 }
+
+export interface OnboardingLayoutProps {
+  children: ReactNode;
+  currentStep: number;
+  totalSteps: number;
+  onBack: () => void;
+}
+
+export interface OnboardingProgressBarProps {
+  currentStep: number;
+  totalSteps: number;
+}
+
+export interface StepNavigationProps {
+  currentStep: number;
+  isValid: boolean;
+  isLastStep: boolean;
+  onNext: () => void;
+  onSubmit: () => void;
+}
+
+export interface StepOccupationProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export interface StepPhoneNumberProps {
+  countryCode: string;
+  phoneNumber: string;
+  onChangeCode: (code: string) => void;
+  onChangeNumber: (number: string) => void;
+}
+
+export interface StepUsageProps {
+  selected: string[];
+  onChange: (updated: string[]) => void;
+}
+
+export interface StepUsernameProps {
+  username: string;
+  onChange: (val: string) => void;
+  isChecking: boolean;
+  isAvailable: boolean | null;
+}
+
+export type UsageOption = {
+  id: string;
+  label: string;
+};
