@@ -226,6 +226,32 @@ const CheckboxButtonContainer = dynamic(
   () => import('@/components/containers/Forms/CheckboxButtonContainer')
 );
 
+const OnboardingProgressBar = dynamic(
+  () => import('@/components/containers/Page/onboard/OnboardingProgressBar')
+);
+
+const OnboardingLayout = dynamic(
+  () => import('@/components/containers/Page/onboard/OnboardingLayout')
+);
+
+const StepUsername = dynamic(
+  () => import('@/components/containers/Page/onboard/StepUsername')
+);
+const StepOccupation = dynamic(
+  () => import('@/components/containers/Page/onboard/StepOccupation')
+);
+
+const StepUsage = dynamic(
+  () => import('@/components/containers/Page/onboard/StepUsage')
+);
+const StepPhoneNumber = dynamic(
+  () => import('@/components/containers/Page/onboard/StepPhoneNumber')
+);
+
+const StepNavigation = dynamic(
+  () => import('@/components/containers/Page/onboard/StepNavigation')
+);
+
 export {
   Navbar,
   LinkText as Link,
@@ -316,4 +342,11 @@ export {
   LoginCard,
   CheckboxButton,
   CheckboxButtonContainer,
+  OnboardingProgressBar,
+  StepUsername,
+  StepOccupation,
+  StepUsage,
+  StepPhoneNumber,
+  OnboardingLayout,
+  StepNavigation,
 };
