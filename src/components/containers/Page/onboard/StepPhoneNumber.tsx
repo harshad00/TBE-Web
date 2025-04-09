@@ -27,7 +27,7 @@ const StepPhoneNumber = ({
           list={codeList}
           selectedItem={countryCode}
           onChange={onChangeCode}
-          className=''
+          className='w-24 sm:w-32 '
           aria-label='Country Code'
         />
 

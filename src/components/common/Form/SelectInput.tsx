@@ -14,7 +14,7 @@ const SelectInput = ({
     <Listbox value={selectedItem} onChange={onChange}>
       <div className={clsx('relative w-32', className)}>
         {/* Button */}
-        <Listbox.Button className='flex w-full items-center justify-between rounded-lg border border-grey px-3 py-1 text-sm text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-grey'>
+        <Listbox.Button className='flex w-full items-center justify-between rounded-lg border border-grey px-2 py-1 text-sm text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-grey'>
           <Text level='span' className='truncate'>
             {selectedItem || 'Select'}
           </Text>
