@@ -1,5 +1,5 @@
 import { COUNTRY_CODES } from '@/constant';
-import { InputFieldContainer, SelectInput, FlexContainer } from '@/components';
+import { SelectInput, FlexContainer } from '@/components';
 import { StepPhoneNumberProps } from '@/interfaces';
 
 const StepPhoneNumber = ({
@@ -8,29 +8,25 @@ const StepPhoneNumber = ({
   onChangeCode,
   onChangeNumber,
 }: StepPhoneNumberProps) => {
-  return (
-    <FlexContainer direction='col' className='gap-4 w-full'>
-      <FlexContainer direction='row' className='gap-2 w-full'>
-        <SelectInput
-          list={COUNTRY_CODES.map(
-            (c) => `${c.code} ${c.country.toUpperCase()}`
-          )}
-          selectedItem={`${countryCode} ${COUNTRY_CODES.find(
-            (c) => c.code === countryCode
-          )?.country.toUpperCase()}`}
-          onChange={(value) => {
-            const code = value.split(' ')[0];
-            onChangeCode(code);
-          }}
-        />
+  const selectedCode = `${countryCode}`;
+  const codeList = COUNTRY_CODES.map((c) => c.code);
 
-        <InputFieldContainer
-          type='tel'
-          value={phoneNumber || ''}
-          onChange={onChangeNumber}
-          placeholder='Enter your phone number'
-        />
-      </FlexContainer>
+  return (
+    <FlexContainer className='gap-2 w-full items-center flex-nowrap'>
+      <SelectInput
+        list={codeList}
+        selectedItem={selectedCode}
+        onChange={onChangeCode}
+        className='w-32'
+      />
+
+      <input
+        type='tel'
+        value={phoneNumber || ''}
+        onChange={(e) => onChangeNumber(e.target.value)}
+        placeholder='Enter your phone number'
+        className='w-full px-3 py-1 strong-text border border-grey rounded focus:outline-none focus:border-none focus:ring focus:ring-grey'
+      />
     </FlexContainer>
   );
 };

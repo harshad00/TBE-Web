@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   OnboardingLayout,
   StepUsername,
@@ -7,35 +7,32 @@ import {
   StepPhoneNumber,
   OnboardingProgressBar,
   StepNavigation,
+  Toast,
 } from '@/components';
+import { useApi, useUser } from '@/hooks';
+import { routes } from '@/constant';
 
 const steps = [StepUsername, StepOccupation, StepUsage, StepPhoneNumber];
 
 const OnboardingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
-
   const [formData, setFormData] = useState({
     username: '',
     occupation: '',
     usage: [] as string[],
     phone: '+91',
   });
+  const [isUsernameAvailable, setIsUsernameAvailable] = useState<
+    boolean | null
+  >(null);
+  const [toast, setToast] = useState<{
+    message: string;
+    type?: 'success' | 'error' | 'info' | 'warning';
+  } | null>(null);
 
-  const [isChecking, setIsChecking] = useState(false);
-  const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
-
+  const { user, isAuth, loading: userLoading } = useUser();
+  const { makeRequest, loading: submitting } = useApi('onboarding');
   const { username, occupation, usage, phone } = formData;
-
-  useEffect(() => {
-    if (currentStep === 0 && username.length > 2) {
-      setIsChecking(true);
-      const timer = setTimeout(() => {
-        setIsAvailable(username.toLowerCase() !== 'taken'); // fake check
-        setIsChecking(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [username, currentStep]);
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -49,15 +46,46 @@ const OnboardingPage = () => {
     }
   };
 
-  const handleSubmit = () => {
-    console.log('Submitted Data:', formData);
-    alert('Onboarding Complete! Check console for data.');
+  const handleSubmit = async () => {
+    if (!user?.id) {
+      console.error('User ID not found');
+      return;
+    }
+
+    try {
+      const payload = {
+        userName: formData.username,
+        isOnboarded: true,
+        profession: formData.occupation,
+        purpose: formData.usage,
+        contactNo: formData.phone,
+      };
+
+      const res = await makeRequest({
+        url: `${routes.api.onboard}?userId=${user.id}`,
+        method: 'POST',
+        body: payload,
+      });
+
+      console.log('Submission success:', res);
+      setToast({
+        message: 'Onboarding completed successfully!',
+        type: 'success',
+      });
+      // TODO: redirect or show success notification
+    } catch (err) {
+      console.error('Submission failed:', err);
+      setToast({
+        message: 'Something went wrong. Please try again.',
+        type: 'error',
+      });
+    }
   };
 
   const isStepValid = () => {
     switch (currentStep) {
       case 0:
-        return username.length > 2 && isAvailable;
+        return username.length > 2 && isUsernameAvailable === false;
       case 1:
         return occupation !== '';
       case 2:
@@ -82,8 +110,7 @@ const OnboardingPage = () => {
             onChange={(value) =>
               setFormData((prev) => ({ ...prev, username: value }))
             }
-            isChecking={isChecking}
-            isAvailable={isAvailable}
+            setIsAvailable={setIsUsernameAvailable}
           />
         );
       case 1:
@@ -129,24 +156,35 @@ const OnboardingPage = () => {
   };
 
   return (
-    <OnboardingLayout
-      currentStep={currentStep}
-      totalSteps={steps.length}
-      onBack={handleBack}
-    >
-      <OnboardingProgressBar
+    <>
+      <OnboardingLayout
         currentStep={currentStep}
         totalSteps={steps.length}
-      />
-      {renderStep()}
-      <StepNavigation
-        currentStep={currentStep}
-        isValid={isStepValid()}
-        isLastStep={currentStep === steps.length - 1}
-        onNext={handleNext}
-        onSubmit={handleSubmit}
-      />
-    </OnboardingLayout>
+        onBack={handleBack}
+      >
+        <OnboardingProgressBar
+          currentStep={currentStep}
+          totalSteps={steps.length}
+        />
+        {renderStep()}
+        <StepNavigation
+          currentStep={currentStep}
+          isValid={isStepValid()}
+          isLastStep={currentStep === steps.length - 1}
+          onNext={handleNext}
+          onSubmit={handleSubmit}
+          isSubmitting={submitting}
+        />
+      </OnboardingLayout>
+
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+    </>
   );
 };
 
