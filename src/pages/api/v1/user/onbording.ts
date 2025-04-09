@@ -9,18 +9,69 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
 
   const { method } = req;
-  const { userId } = req.query as { userId: string };
+  const { userId, userName } = req.query as {
+    userId: string;
+    userName: string;
+  };
 
   switch (method) {
+    case 'GET':
+      return getUserByUsername(req, res, userName);
     case 'POST':
       return handleUserOnboarding(req, res, userId);
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
           status: false,
-          message: `Method ${req.method} Not Allowed`,
+          message: `Method ${method} Not Allowed`,
         })
       );
+  }
+};
+
+const getUserByUsername = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  userName: string
+) => {
+  if (!userName) {
+    return res.status(apiStatusCodes.BAD_REQUEST).json(
+      sendAPIResponse({
+        status: false,
+        message: 'Username is required',
+      })
+    );
+  }
+
+  try {
+    const { data, error } = await getUserByUserNameFromDB(userName);
+
+    if (error) {
+      // Username already exists
+      return res.status(apiStatusCodes.OKAY).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Username already taken. Please choose another.',
+        })
+      );
+    }
+
+    // Username is available
+    return res.status(apiStatusCodes.OKAY).json(
+      sendAPIResponse({
+        status: true,
+        data,
+        message: 'Username is available.',
+      })
+    );
+  } catch (error) {
+    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+      sendAPIResponse({
+        status: false,
+        message: 'Error while checking username',
+        error,
+      })
+    );
   }
 };
 
@@ -39,18 +90,6 @@ const handleUserOnboarding = async (
           status: false,
           error: 'Missing required fields',
           message: 'Please provide all required fields',
-        })
-      );
-    }
-
-    const { error } = await getUserByUserNameFromDB(userName);
-
-    if (error) {
-      return res.status(apiStatusCodes.BAD_REQUEST).json(
-        sendAPIResponse({
-          status: false,
-          error,
-          message: 'Username already exists, please choose another',
         })
       );
     }

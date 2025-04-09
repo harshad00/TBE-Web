@@ -209,6 +209,7 @@ export interface SelectInputProps {
   list: any[];
   onChange: (value: string) => void;
   selectedItem: string;
+  className?: string;
 }
 
 export interface InputFieldContainerProps {
@@ -656,14 +657,13 @@ export interface StepUsageProps {
   onChange: (updated: string[]) => void;
 }
 
-export interface StepUsernameProps {
-  username: string;
-  onChange: (val: string) => void;
-  isChecking: boolean;
-  isAvailable: boolean | null;
-}
-
 export type UsageOption = {
   id: string;
   label: string;
+};
+
+export type StepUsernameProps = {
+  username: string;
+  onChange: (value: string) => void;
+  setIsAvailable?: (value: boolean | null) => void;
 };

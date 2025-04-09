@@ -1,5 +1,11 @@
 import { COUNTRY_CODES } from '@/constant';
-import { InputFieldContainer, SelectInput, FlexContainer } from '@/components';
+import {
+  SelectInput,
+  FlexContainer,
+  InputFieldContainer,
+  Text,
+  Section,
+} from '@/components';
 import { StepPhoneNumberProps } from '@/interfaces';
 
 const StepPhoneNumber = ({
@@ -8,30 +14,34 @@ const StepPhoneNumber = ({
   onChangeCode,
   onChangeNumber,
 }: StepPhoneNumberProps) => {
+  const codeList = COUNTRY_CODES.map((c) => c.code);
+
   return (
-    <FlexContainer direction='col' className='gap-4 w-full'>
-      <FlexContainer direction='row' className='gap-2 w-full'>
+    <Section className='w-full'>
+      <Text level='h4' className='heading-4 p-1 mb-2'>
+        3. Your Contact No?
+      </Text>
+
+      <FlexContainer className='gap-2 w-full items-center flex-nowrap'>
         <SelectInput
-          list={COUNTRY_CODES.map(
-            (c) => `${c.code} ${c.country.toUpperCase()}`
-          )}
-          selectedItem={`${countryCode} ${COUNTRY_CODES.find(
-            (c) => c.code === countryCode
-          )?.country.toUpperCase()}`}
-          onChange={(value) => {
-            const code = value.split(' ')[0];
-            onChangeCode(code);
-          }}
+          list={codeList}
+          selectedItem={countryCode}
+          onChange={onChangeCode}
+          className='w-24 sm:w-32 '
+          aria-label='Country Code'
         />
 
         <InputFieldContainer
+          label='Phone Number'
           type='tel'
-          value={phoneNumber || ''}
+          value={phoneNumber}
           onChange={onChangeNumber}
-          placeholder='Enter your phone number'
+          className='w-full'
+          labelClass='sr-only'
+          isOptional={true}
         />
       </FlexContainer>
-    </FlexContainer>
+    </Section>
   );
 };
 
