@@ -30,7 +30,7 @@ const OnboardingPage = () => {
     type?: 'success' | 'error' | 'info' | 'warning';
   } | null>(null);
 
-  const { user, isAuth, loading: userLoading } = useUser();
+  const { user } = useUser();
   const { makeRequest, loading: submitting } = useApi('onboarding');
   const { username, occupation, usage, phone } = formData;
 
@@ -47,10 +47,7 @@ const OnboardingPage = () => {
   };
 
   const handleSubmit = async () => {
-    if (!user?.id) {
-      console.error('User ID not found');
-      return;
-    }
+    if (!user?.id) return;
 
     try {
       const payload = {
@@ -61,20 +58,17 @@ const OnboardingPage = () => {
         contactNo: formData.phone,
       };
 
-      const res = await makeRequest({
+      await makeRequest({
         url: `${routes.api.onboard}?userId=${user.id}`,
         method: 'POST',
         body: payload,
       });
 
-      console.log('Submission success:', res);
       setToast({
         message: 'Onboarding completed successfully!',
         type: 'success',
       });
-      // TODO: redirect or show success notification
-    } catch (err) {
-      console.error('Submission failed:', err);
+    } catch {
       setToast({
         message: 'Something went wrong. Please try again.',
         type: 'error',

@@ -29,7 +29,7 @@ const OnboardingLayout = ({
         )}
         <SectionHeaderContainer
           heading='Welcome to'
-          focusText='The Borig Eduction'
+          focusText='The Boring Education'
           headingLevel={4}
           subtext="Let's get to know you better"
         />

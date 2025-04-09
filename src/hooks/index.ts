@@ -8,7 +8,7 @@ import useUser from './useUser';
 import useSkillPlaylist from './useSkillPlaylist';
 import useScrollPosition from './useScrollPosition';
 import useGamification from './useGamification';
-import useUsernameAvailability from './useUsernameAvailability';
+import useUsername from './useUsername';
 
 export {
   useApi,
@@ -21,5 +21,5 @@ export {
   useSkillPlaylist,
   useScrollPosition,
   useGamification,
-  useUsernameAvailability,
+  useUsername,
 };

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { InputFieldContainer } from '@/components';
-import { useUsernameAvailability } from '@/hooks';
+import { InputFieldContainer, Text } from '@/components';
+import { useUsername } from '@/hooks';
 import { StepUsernameProps } from '@/interfaces';
 
 const StepUsername = ({
@@ -9,7 +9,7 @@ const StepUsername = ({
   onChange,
   setIsAvailable,
 }: StepUsernameProps) => {
-  const { isAvailable, isChecking } = useUsernameAvailability(username);
+  const { isAvailable, isChecking } = useUsername(username);
 
   useEffect(() => {
     setIsAvailable?.(isAvailable);
@@ -17,6 +17,10 @@ const StepUsername = ({
 
   return (
     <div className='space-y-4'>
+      <Text level='h4' className='heading-4'>
+        1. Choose Your Username
+      </Text>
+
       <div className='relative'>
         <InputFieldContainer
           label='Username'
@@ -40,9 +44,9 @@ const StepUsername = ({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className='absolute right-3 top-9 text-sm text-red-500'
+            className='absolute  py-1 text-sm text-red-500'
           >
-            Not available.
+            UserName Not available.
           </motion.div>
         )}
 
@@ -50,9 +54,9 @@ const StepUsername = ({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className='absolute right-3 top-9 text-sm text-green-500'
+            className='absolute  py-1 text-sm text-green-500'
           >
-            Available
+            UserName Available
           </motion.div>
         )}
       </div>

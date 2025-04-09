@@ -1,10 +1,9 @@
-// hooks/useUsernameAvailability.ts
 import { useEffect, useState } from 'react';
 import useApi from './useApi';
 import { APIMakeRquestProps } from '@/interfaces';
 import { routes } from '@/constant';
 
-const useUsernameAvailability = (username: string) => {
+const useUsername = (username: string) => {
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
 
   const {
@@ -35,13 +34,13 @@ const useUsernameAvailability = (username: string) => {
     if (!response) return;
 
     if (response.status === true && response.data) {
-      setIsAvailable(false); // username taken
+      setIsAvailable(false);
     } else {
-      setIsAvailable(true); // username available
+      setIsAvailable(true);
     }
   }, [response]);
 
   return { isAvailable, isChecking, error };
 };
 
-export default useUsernameAvailability;
+export default useUsername;

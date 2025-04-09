@@ -9,11 +9,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB();
 
   const { method } = req;
-  const { userId } = req.query as { userId: string };
+  const { userId, userName } = req.query as {
+    userId: string;
+    userName: string;
+  };
 
   switch (method) {
     case 'GET':
-      return getUserByUserNameOnboarding(req, res);
+      return getUserByUsername(req, res, userName);
     case 'POST':
       return handleUserOnboarding(req, res, userId);
     default:
@@ -26,12 +29,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-const getUserByUserNameOnboarding = async (
+const getUserByUsername = async (
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
+  userName: string
 ) => {
-  const { userName } = req.query as { userName: string };
-
   if (!userName) {
     return res.status(apiStatusCodes.BAD_REQUEST).json(
       sendAPIResponse({
