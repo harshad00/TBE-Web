@@ -37,7 +37,7 @@ const StepPhoneNumber = ({
           value={phoneNumber}
           onChange={onChangeNumber}
           className='w-full'
-          labelClass='sr-only' // screen reader only
+          labelClass='sr-only'
           isOptional={true}
         />
       </FlexContainer>

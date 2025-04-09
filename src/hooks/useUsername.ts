@@ -25,7 +25,7 @@ const useUsername = (username: string) => {
         method: 'GET',
       };
       makeRequest(params);
-    }, 1000); // debounce: 3 seconds after typing
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [username]);
