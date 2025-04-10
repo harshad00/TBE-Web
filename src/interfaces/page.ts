@@ -98,3 +98,16 @@ export type PlaylistPickedPageProps = Pick<
     | 'videos'
     | 'referrerBy'
   >;
+
+export interface CohortRoadmapProps {
+  week: string;
+  title: string;
+  description: string;
+}
+
+export interface CohortUserCategoryProps {
+  key: string;
+  label: string;
+  data: CohortRoadmapProps[];
+  duration: string;
+}

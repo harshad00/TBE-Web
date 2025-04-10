@@ -7,6 +7,7 @@ import {
 } from 'react';
 import {
   CertificateType,
+  CohortRoadmapProps,
   GetSEOMetaResponseType,
   QuestionFrequencyType,
   TopNavbarLinkProps,
@@ -65,6 +66,7 @@ export interface ButtonProps {
   isLoading?: boolean;
   animationClasses?: string;
   icon?: React.ReactNode;
+  isFullWidth?: boolean;
 }
 
 export interface PageLayoutProps {
@@ -670,4 +672,8 @@ export type StepUsernameProps = {
 
 export interface LoginCardProps {
   redirectPath?: string;
+}
+
+export interface CohortJourneySectionProps {
+  weeks: CohortRoadmapProps[];
 }

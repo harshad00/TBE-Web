@@ -3,6 +3,8 @@ import {
   PrimaryCardProps,
   TopNavbarContainerProps,
   PrimaryCardWithCTAProps,
+  CohortRoadmapProps,
+  CohortUserCategoryProps,
 } from '@/interfaces';
 import { cohorts, LINKS, products, STATIC_FILE_PATH } from '../global';
 import { v4 } from 'uuid';
@@ -444,6 +446,156 @@ const UNSKILLED_LANDING_GRAPH_TAB_PARAMS = [
   'Locations',
 ];
 
+const BYI_BEGINNER_ROADMAP: CohortRoadmapProps[] = [
+  {
+    week: 'Week 1',
+    title: 'Introduction to Tech & Tools',
+    description: 'Understand basic tools and workflows.',
+  },
+  {
+    week: 'Week 2',
+    title: 'Project Ideation',
+    description: 'Brainstorm and choose beginner-friendly project ideas.',
+  },
+  {
+    week: 'Week 3',
+    title: 'Team Formation & Basics',
+    description: 'Collaborate, review HTML, CSS, and Git basics.',
+  },
+  {
+    week: 'Week 4',
+    title: 'Frontend Foundations',
+    description: 'Learn and build with React or similar.',
+  },
+  {
+    week: 'Week 5',
+    title: 'Backend Basics',
+    description: 'Start backend with Express or Firebase.',
+  },
+  {
+    week: 'Week 6',
+    title: 'MVP Build',
+    description: 'Build core functionality of your product.',
+  },
+  {
+    week: 'Week 7',
+    title: 'UI Polish',
+    description: 'Refine design and fix bugs.',
+  },
+  {
+    week: 'Week 8',
+    title: 'Demo Day',
+    description: 'Launch and pitch your project.',
+  },
+];
+
+const BYI_INTERMEDIATE_ROADMAP: CohortRoadmapProps[] = [
+  {
+    week: 'Week 1',
+    title: 'Clarity & Goal Setting',
+    description: 'Define your direction and project scope.',
+  },
+  {
+    week: 'Week 2',
+    title: 'Wireframing',
+    description: 'Design user flow and wireframes.',
+  },
+  {
+    week: 'Week 3',
+    title: 'Team Sync & Setup',
+    description: 'Organize team, finalize tech stack.',
+  },
+  {
+    week: 'Week 4',
+    title: 'Frontend Mastery',
+    description: 'Deep dive into components and state.',
+  },
+  {
+    week: 'Week 5',
+    title: 'API + DB Integration',
+    description: 'Build backend, connect APIs.',
+  },
+  {
+    week: 'Week 6',
+    title: 'Feedback Loop',
+    description: 'Test with users and mentors.',
+  },
+  {
+    week: 'Week 7',
+    title: 'Marketing Strategy',
+    description: 'Plan your product launch.',
+  },
+  {
+    week: 'Week 8',
+    title: 'Launch + Demo',
+    description: 'Showcase final version to all.',
+  },
+];
+
+const BYI_SKILLED_ROADMAP: CohortRoadmapProps[] = [
+  {
+    week: 'Week 1',
+    title: 'Tech Audit & Goals',
+    description: 'Audit your skills, pick a real problem.',
+  },
+  {
+    week: 'Week 2',
+    title: 'Advanced Architecture',
+    description: 'Design scalable, production-grade setup.',
+  },
+  {
+    week: 'Week 3',
+    title: 'Phase 1 Development',
+    description: 'Build advanced features with best practices.',
+  },
+  {
+    week: 'Week 4',
+    title: 'CI/CD & Deployment',
+    description: 'Write tests, automate deploys.',
+  },
+  {
+    week: 'Week 5',
+    title: 'Refinements',
+    description: 'Optimize code, improve UX.',
+  },
+  {
+    week: 'Week 6',
+    title: 'Mentor Reviews',
+    description: 'Detailed feedback & improvements.',
+  },
+  {
+    week: 'Week 7',
+    title: 'Go-to-Market Strategy',
+    description: 'Craft strong launch plan.',
+  },
+  {
+    week: 'Week 8',
+    title: 'Public Launch',
+    description: 'Launch & present your project.',
+  },
+];
+
+const BYI_USER_CATEGORIES: CohortUserCategoryProps[] = [
+  {
+    key: 'beginner',
+    label: '🚀 Beginner',
+    data: BYI_BEGINNER_ROADMAP,
+    duration: '4-5 Months',
+  },
+  {
+    key: 'confused',
+    label: '🤔 Confused Learner',
+    data: BYI_INTERMEDIATE_ROADMAP,
+    duration: '2-3 Months',
+  },
+  {
+    key: 'mentorship',
+    label: '🧠 Seeking Mentorship',
+    data: BYI_SKILLED_ROADMAP,
+    duration: '1-2 Months',
+  },
+];
+
 export {
   PRODUCTS,
   TESTIMONIALS,
@@ -456,4 +608,8 @@ export {
   TBIP_FEATURES,
   YOUFOCUS_FEATURES,
   UNSKILLED_LANDING_GRAPH_TAB_PARAMS,
+  BYI_BEGINNER_ROADMAP,
+  BYI_INTERMEDIATE_ROADMAP,
+  BYI_SKILLED_ROADMAP,
+  BYI_USER_CATEGORIES,
 };

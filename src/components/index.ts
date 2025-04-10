@@ -1,4 +1,7 @@
 import dynamic from 'next/dynamic';
+const CohortJourneyContainer = dynamic(
+  () => import('@/components/containers/Page/Cohort/CohortJourneyContainer')
+);
 const TabComponent = dynamic(() => import('@/components/common/Tab'));
 const OutlineCard = dynamic(
   () => import('@/components/containers/Cards/Items/OutlineCard')
@@ -349,4 +352,5 @@ export {
   StepPhoneNumber,
   OnboardingLayout,
   StepNavigation,
+  CohortJourneyContainer,
 };
