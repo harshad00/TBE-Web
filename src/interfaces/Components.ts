@@ -7,6 +7,7 @@ import {
 } from 'react';
 import {
   CertificateType,
+  CohortRoadmapProps,
   GetSEOMetaResponseType,
   QuestionFrequencyType,
   TopNavbarLinkProps,
@@ -65,6 +66,7 @@ export interface ButtonProps {
   isLoading?: boolean;
   animationClasses?: string;
   icon?: React.ReactNode;
+  isFullWidth?: boolean;
 }
 
 export interface PageLayoutProps {
@@ -667,3 +669,7 @@ export type StepUsernameProps = {
   onChange: (value: string) => void;
   setIsAvailable?: (value: boolean | null) => void;
 };
+
+export interface CohortJourneySectionProps {
+  weeks: CohortRoadmapProps[];
+}

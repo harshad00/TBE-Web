@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import {
   AcademicCapIcon,
   RocketLaunchIcon,
@@ -9,7 +10,12 @@ import {
 } from '@heroicons/react/24/outline';
 import { Fragment } from 'react';
 import { getPreFetchProps } from '@/utils';
-import { PageProps, TestimonialCardProps } from '@/interfaces';
+import {
+  CohortRoadmapProps,
+  CohortUserCategoryProps,
+  PageProps,
+  TestimonialCardProps,
+} from '@/interfaces';
 import {
   SEO,
   Image,
@@ -22,8 +28,19 @@ import {
   IconCard,
   HeaderLabel,
   Banner,
+  CohortJourneyContainer,
+  TabComponent,
+  Button,
 } from '@/components';
-import { LINKS, STATIC_FILE_PATH, TESTIMONIALS } from '@/constant';
+import {
+  BYI_BEGINNER_ROADMAP,
+  BYI_INTERMEDIATE_ROADMAP,
+  BYI_SKILLED_ROADMAP,
+  BYI_USER_CATEGORIES,
+  LINKS,
+  STATIC_FILE_PATH,
+  TESTIMONIALS,
+} from '@/constant';
 
 const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
   const projectIdeas = [
@@ -96,6 +113,19 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
     },
   ];
 
+  const [selectedUserCategory, setSelectedUserCategory] =
+    useState<CohortUserCategoryProps>(BYI_USER_CATEGORIES[0]);
+
+  const handleSelectUserCategory = (key: string) => {
+    const selectedCategory = BYI_USER_CATEGORIES.find(
+      (category) => category.key === key
+    );
+
+    if (selectedCategory) {
+      setSelectedUserCategory(selectedCategory);
+    }
+  };
+
   return (
     <Fragment>
       <SEO seoMeta={seoMeta} />
@@ -147,7 +177,7 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
                 <LinkButton
                   href={LINKS.demoBYICohort}
                   buttonProps={{
-                    text: 'Book Free Demo',
+                    text: 'Book A Call',
                     variant: 'GHOST',
                     className: 'w-full sm:w-auto',
                   }}
@@ -207,91 +237,33 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
         </div>
       </Section>
 
-      <Section className='py-12 md:py-20 bg-white'>
-        <div className='mx-auto md:px-4 px-2'>
-          <motion.h2
-            className='text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6'
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <SectionHeaderContainer
-              heading='Your 2-Month'
-              focusText='Builder Journey'
-              headingLevel={3}
-            />
-          </motion.h2>
-          <ol className='relative border-l border-gray-300 ml-4 space-y-8'>
-            {[
-              {
-                week: 'Week 1',
-                title: 'Idea Validation & Team Formation',
-                description:
-                  'Identify your project idea, validate the problem, and form your team.',
-              },
-              {
-                week: 'Week 2',
-                title: 'User Research & Wireframing',
-                description:
-                  'Conduct user research, gather feedback, and design wireframes.',
-              },
-              {
-                week: 'Week 3',
-                title: 'Tech Stack Finalization & Setup',
-                description:
-                  'Choose the right tech stack and set up the development environment.',
-              },
-              {
-                week: 'Week 4',
-                title: 'Build MVP - Phase 1',
-                description:
-                  'Start developing the MVP and implement core features.',
-              },
-              {
-                week: 'Week 5',
-                title: 'Build MVP - Phase 2',
-                description:
-                  'Continue building and refine product features based on feedback.',
-              },
-              {
-                week: 'Week 6',
-                title: 'Product Polishing & Testing',
-                description:
-                  'Polish UI/UX, fix bugs, and perform usability testing.',
-              },
-              {
-                week: 'Week 7',
-                title: 'Marketing & Pre-launch Strategy',
-                description:
-                  'Craft your go-to-market plan and set up launch pages and waitlists.',
-              },
-              {
-                week: 'Week 8',
-                title: 'Launch & Demo Day',
-                description:
-                  'Launch your product publicly and present during demo day!',
-              },
-            ].map((item, index) => (
-              <motion.li
-                key={index}
-                className='mb-8 ml-4'
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className='absolute w-3 h-3 bg-primary rounded-full -left-1.5 border border-white' />
-                <time className='mb-1 text-sm font-medium text-primary'>
-                  {item.week}
-                </time>
-                <h3 className='text-lg font-semibold text-gray-900'>
-                  {item.title}
-                </h3>
-                <p className='text-gray-600'>{item.description}</p>
-              </motion.li>
-            ))}
-          </ol>
-        </div>
+      <Section className='bg-white py-8'>
+        <FlexContainer
+          className='justify-center gap-6 flex-wrap'
+          direction='col'
+        >
+          <Text level='h4' className='heading-4' textCenter={true}>
+            Where Are You in Your Tech Journey?
+          </Text>
+          <FlexContainer className='justify-center gap-2 flex-wrap'>
+            {BYI_USER_CATEGORIES.map(({ label, key }) => {
+              return (
+                <Button
+                  key={key}
+                  onClick={() => handleSelectUserCategory(key)}
+                  className={`md:px-4 md:py-2 px-2 py-1 w-full md:w-fit rounded-full transition-all ${
+                    selectedUserCategory.key === key
+                      ? 'bg-primary text-white'
+                      : 'bg-white text-primary'
+                  }`}
+                  text={label}
+                  variant='GHOST'
+                />
+              );
+            })}
+          </FlexContainer>
+          <CohortJourneyContainer weeks={selectedUserCategory.data} />
+        </FlexContainer>
       </Section>
 
       <Section className='py-12 md:py-20'>
