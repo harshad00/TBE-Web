@@ -111,6 +111,12 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
 
   const [selectedUserCategory, setSelectedUserCategory] =
     useState<CohortUserCategoryProps>(BYI_USER_CATEGORIES[0]);
+  const [teamSize, setTeamSize] = useState(1);
+
+  const handleTeamSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    setTeamSize(value);
+  };
 
   const handleSelectUserCategory = (key: string) => {
     const selectedCategory = BYI_USER_CATEGORIES.find(
@@ -325,9 +331,45 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
             viewport={{ once: true }}
           >
             <FlexContainer direction='col' className='gap-3'>
-              <Text level='h5' className='heading-5'>
-                Bring Your Idea Cohort
-              </Text>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+              >
+                <FlexContainer
+                  className='justify-center gap-2 flex-wrap'
+                  direction='col'
+                >
+                  {BYI_USER_CATEGORIES.map(({ label, key }) => {
+                    return (
+                      <Button
+                        key={key}
+                        onClick={() => handleSelectUserCategory(key)}
+                        className={`w-full md:w-fit rounded-full transition-all ${
+                          selectedUserCategory.key === key
+                            ? 'bg-primary text-white'
+                            : 'bg-white text-primary'
+                        }`}
+                        text={label}
+                        variant='GHOST'
+                      />
+                    );
+                  })}
+                  <FlexContainer direction='col' className='gap-2'>
+                    <Text level='p' className='paragraph'>
+                      Select Number of Team Members
+                    </Text>
+                    <input
+                      type='range'
+                      min={1}
+                      max={4}
+                      value={teamSize}
+                      onChange={handleTeamSizeChange}
+                      className='w-full accent-primary'
+                    />
+                  </FlexContainer>
+                </FlexContainer>
+              </motion.div>
               <FlexContainer direction='col' className='gap-1'>
                 <Text
                   level='h5'
@@ -384,6 +426,8 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
           </motion.div>
         </div>
       </Section>
+
+      <ModernPricing />
 
       <Banner
         title='We Offer 7 Days Money Back Guarantee'
@@ -446,3 +490,138 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
 export const getServerSideProps = getPreFetchProps;
 
 export default BrinYourIdeaLandingPage;
+
+import { CheckIcon } from '@heroicons/react/24/solid';
+
+const plans = [
+  {
+    name: 'Beginner',
+    price: 6000,
+    monthly: true,
+    description: 'The essentials to provide your best work for clients.',
+    features: [
+      '5 products',
+      'Up to 1,000 subscribers',
+      'Basic analytics',
+      '48-hour support response time',
+    ],
+  },
+  {
+    name: 'Startup',
+    price: 29,
+    monthly: true,
+    isPopular: true,
+    description: 'A plan that scales with your rapidly growing business.',
+    features: [
+      '25 products',
+      'Up to 10,000 subscribers',
+      'Advanced analytics',
+      '24-hour support response time',
+      'Marketing automations',
+    ],
+  },
+  {
+    name: 'Enterprise',
+    price: 59,
+    monthly: true,
+    description: 'Dedicated support and infrastructure for your company.',
+    features: [
+      'Unlimited products',
+      'Unlimited subscribers',
+      'Advanced analytics',
+      '1-hour, dedicated support response time',
+      'Marketing automations',
+      'Custom reporting tools',
+    ],
+  },
+];
+
+const ModernPricing = () => {
+  const [billing, setBilling] = useState<'monthly' | 'annually'>('monthly');
+
+  return (
+    <section className='bg-[#0f172a] text-white py-16'>
+      <div className='max-w-5xl mx-auto text-center px-4'>
+        <p className='text-indigo-400 font-semibold mb-2'>Pricing</p>
+        <h2 className='text-4xl font-bold mb-4'>Investment in Your Career</h2>
+        <p className='text-gray-400 max-w-xl mx-auto mb-8'>
+          Choose an affordable plan that’s packed with the best features for
+          engaging your audience, creating customer loyalty, and driving sales.
+        </p>
+        <div className='flex justify-center gap-4 mb-12'>
+          <button
+            onClick={() => setBilling('monthly')}
+            className={`px-4 py-1 rounded-full border ${
+              billing === 'monthly'
+                ? 'bg-indigo-600 text-white'
+                : 'text-gray-300 border-gray-500'
+            }`}
+          >
+            Monthly
+          </button>
+          <button
+            onClick={() => setBilling('annually')}
+            className={`px-4 py-1 rounded-full border ${
+              billing === 'annually'
+                ? 'bg-indigo-600 text-white'
+                : 'text-gray-300 border-gray-500'
+            }`}
+          >
+            Annually
+          </button>
+        </div>
+        <div className='grid md:grid-cols-3 gap-6'>
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className={`rounded-2xl border ${
+                plan.isPopular
+                  ? 'border-indigo-500 bg-[#1e293b]'
+                  : 'border-gray-700 bg-[#0f172a]'
+              } p-6 text-left flex flex-col justify-between`}
+            >
+              <div>
+                <h3 className='text-lg font-semibold mb-1 text-white'>
+                  {plan.name}
+                </h3>
+                <p className='text-sm text-gray-400 mb-4'>{plan.description}</p>
+
+                <div className='flex items-center text-white text-4xl font-bold'>
+                  ${plan.price}
+                  <span className='text-base text-gray-400 font-normal ml-1'>
+                    / Per Member
+                  </span>
+                </div>
+
+                <button
+                  className={`mt-4 w-full rounded-md px-4 py-2 text-sm font-medium ${
+                    plan.isPopular
+                      ? 'bg-indigo-600 text-white hover:bg-indigo-700'
+                      : 'bg-gray-700 text-white hover:bg-gray-600'
+                  } transition`}
+                >
+                  Buy plan
+                </button>
+
+                {plan.isPopular && (
+                  <div className='mt-2 text-xs bg-indigo-500 text-white px-2 py-1 rounded-full w-fit'>
+                    Most popular
+                  </div>
+                )}
+              </div>
+
+              <ul className='mt-6 space-y-2 text-sm text-gray-200'>
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className='flex items-start gap-2'>
+                    <CheckIcon className='w-4 h-4 text-indigo-400 mt-1' />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
