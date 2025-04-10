@@ -1,55 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
-import { Image, Text } from '@/components';
-import { FlexContainer } from '@/components';
-import { Logo, LoginWithGoogleButton } from '@/components';
-import { User, UseUserReturnType } from '@/interfaces';
-
-// Mock useUser hook implementation
-const useUser = (): UseUserReturnType => {
-  const { data: session, status } = useSession();
-  const [user, setUser] = useState<User | null>(null);
-  const [isAuth, setIsAuth] = useState(false);
-  const [isOnboarded, setIsOnboarded] = useState<boolean | undefined>(
-    undefined
-  );
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (status === 'loading') {
-      setLoading(true);
-      return;
-    }
-
-    setLoading(false);
-
-    if (session?.user) {
-      const sessionUser = session.user as User;
-      const onboarded = sessionUser.isOnboarded ?? false;
-      setUser({
-        id: sessionUser.id || '',
-        name: sessionUser.name,
-        email: sessionUser.email,
-        image: sessionUser.image,
-        isOnboarded: onboarded,
-      });
-      setIsAuth(true);
-      setIsOnboarded(onboarded);
-    } else {
-      setUser(null);
-      setIsAuth(false);
-      setIsOnboarded(undefined);
-    }
-  }, [session, status]);
-
-  return { user, isAuth, isOnboarded, loading };
-};
-
-interface LoginCardProps {
-  redirectPath?: string;
-}
+import {
+  Logo,
+  LoginWithGoogleButton,
+  FlexContainer,
+  Image,
+  Text,
+} from '@/components';
+import { useUser } from '@/hooks';
+import { LoginCardProps } from '@/interfaces';
 
 const LoginCard = ({ redirectPath = '/' }: LoginCardProps) => {
   const { status } = useSession();

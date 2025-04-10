@@ -667,3 +667,7 @@ export type StepUsernameProps = {
   onChange: (value: string) => void;
   setIsAvailable?: (value: boolean | null) => void;
 };
+
+export interface LoginCardProps {
+  redirectPath?: string;
+}

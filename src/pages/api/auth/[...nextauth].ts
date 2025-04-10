@@ -58,23 +58,19 @@ const authOptions = {
       // Get user from DB and add isOnboarded status
       try {
         await connectDB();
+
         const { data: user, error } = await getUserByEmailFromDB(
           session.user.email
         );
 
-        if (error) {
-          throw error;
-        }
+        if (error) throw error;
 
-        if (!user) {
-          session.user.isOnboarded = false;
-          return session;
-        }
+        if (!user) return session;
 
-        const isOnboarded = user.isOnboarded ?? false;
-        session.user.isOnboarded = isOnboarded;
+        session.user.isOnboarded = user.isOnboarded;
       } catch (error) {
-        session.user.isOnboarded = false;
+        // Optional: log the error
+        console.error('Error fetching user data:', error);
       }
 
       return session;
