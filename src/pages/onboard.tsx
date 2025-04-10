@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { useRouter } from 'next/router';
 import {
   OnboardingLayout,
   StepUsername,
@@ -34,6 +35,11 @@ const OnboardingPage = () => {
   const { makeRequest, loading: submitting } = useApi('onboarding');
   const { username, occupation, usage, phone } = formData;
 
+  const router = useRouter();
+  const redirectPath = useMemo(() => {
+    return router.query.redirect ? String(router.query.redirect) : '/';
+  }, [router.query.redirect]);
+
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep((prev) => prev + 1);
@@ -68,6 +74,8 @@ const OnboardingPage = () => {
         message: 'Onboarding completed successfully!',
         type: 'success',
       });
+
+      router.replace(redirectPath);
     } catch {
       setToast({
         message: 'Something went wrong. Please try again.',

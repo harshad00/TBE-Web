@@ -54,6 +54,29 @@ const authOptions = {
     async session({ session, token }: any) {
       // Attach the MongoDB user ID to the session object
       session.user.id = token.sub; // `sub` was set in the jwt callback
+
+      // Get user from DB and add isOnboarded status
+      try {
+        await connectDB();
+        const { data: user, error } = await getUserByEmailFromDB(
+          session.user.email
+        );
+
+        if (error) {
+          throw error;
+        }
+
+        if (!user) {
+          session.user.isOnboarded = false;
+          return session;
+        }
+
+        const isOnboarded = user.isOnboarded ?? false;
+        session.user.isOnboarded = isOnboarded;
+      } catch (error) {
+        session.user.isOnboarded = false;
+      }
+
       return session;
     },
 
