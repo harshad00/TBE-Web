@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   AcademicCapIcon,
   RocketLaunchIcon,
@@ -11,7 +11,6 @@ import {
 import { Fragment } from 'react';
 import { getPreFetchProps } from '@/utils';
 import {
-  CohortRoadmapProps,
   CohortUserCategoryProps,
   PageProps,
   TestimonialCardProps,
@@ -29,13 +28,9 @@ import {
   HeaderLabel,
   Banner,
   CohortJourneyContainer,
-  TabComponent,
   Button,
 } from '@/components';
 import {
-  BYI_BEGINNER_ROADMAP,
-  BYI_INTERMEDIATE_ROADMAP,
-  BYI_SKILLED_ROADMAP,
   BYI_USER_CATEGORIES,
   LINKS,
   STATIC_FILE_PATH,
