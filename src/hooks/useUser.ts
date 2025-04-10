@@ -6,9 +6,7 @@ const useUser = (): UseUserReturnType => {
   const { data: session, status } = useSession();
   const [user, setUser] = useState<User | null>(null);
   const [isAuth, setIsAuth] = useState(false);
-  const [isOnboarded, setIsOnboarded] = useState<boolean | undefined>(
-    undefined
-  );
+  const [isOnboarded, setIsOnboarded] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,21 +18,15 @@ const useUser = (): UseUserReturnType => {
     setLoading(false);
 
     if (session?.user) {
-      const sessionUser = session.user as User;
-      const onboarded = sessionUser.isOnboarded ?? false;
-      setUser({
-        id: sessionUser.id || '',
-        name: sessionUser.name,
-        email: sessionUser.email,
-        image: sessionUser.image,
-        isOnboarded: onboarded,
-      });
+      const { id = '', name, email, image, isOnboarded } = session.user as User;
+
+      setUser({ id, name, email, image, isOnboarded });
       setIsAuth(true);
-      setIsOnboarded(onboarded);
+      setIsOnboarded(isOnboarded);
     } else {
       setUser(null);
       setIsAuth(false);
-      setIsOnboarded(undefined);
+      setIsOnboarded(false);
     }
   }, [session, status]);
 

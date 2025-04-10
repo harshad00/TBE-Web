@@ -4,13 +4,13 @@ export interface User {
   name: string;
   email: string;
   image: string;
-  isOnboarded?: boolean;
+  isOnboarded: boolean;
 }
 
 export interface UseUserReturnType {
   user: User | null;
   isAuth: boolean;
-  isOnboarded?: boolean;
+  isOnboarded: boolean;
   loading: boolean;
 }
 

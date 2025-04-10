@@ -52,25 +52,27 @@ const authOptions = {
     },
 
     async session({ session, token }: any) {
-      // Attach the MongoDB user ID to the session object
-      session.user.id = token.sub; // `sub` was set in the jwt callback
+      session.user.id = token.sub;
 
-      // Get user from DB and add isOnboarded status
+      const email = session?.user?.email;
+
+      if (!email) {
+        return session;
+      }
+
       try {
         await connectDB();
 
-        const { data: user, error } = await getUserByEmailFromDB(
-          session.user.email
-        );
+        const { data: user, error } = await getUserByEmailFromDB(email);
 
-        if (error) throw error;
-
-        if (!user) return session;
+        if (error || !user) {
+          console.warn(`User not found or error for email ${email}:`, error);
+          return session;
+        }
 
         session.user.isOnboarded = user.isOnboarded;
       } catch (error) {
-        // Optional: log the error
-        console.error('Error fetching user data:', error);
+        console.error('Unexpected error fetching user in session:', error);
       }
 
       return session;

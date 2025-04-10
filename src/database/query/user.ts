@@ -26,11 +26,22 @@ const getUserByEmailFromDB = async (
   try {
     const user = await User.findOne({ email });
 
-    if (!user) return { error: 'User does not exists' };
+    if (!user) {
+      return {
+        data: null,
+        error: 'User does not exist',
+      };
+    }
 
-    return { data: user };
+    return {
+      data: user,
+      error: null,
+    };
   } catch (error) {
-    return { error: 'Failed while fetching user' };
+    return {
+      data: null,
+      error: 'Failed while fetching user',
+    };
   }
 };
 

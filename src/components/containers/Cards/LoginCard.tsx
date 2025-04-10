@@ -14,7 +14,7 @@ import { LoginCardProps } from '@/interfaces';
 
 const LoginCard = ({ redirectPath = '/' }: LoginCardProps) => {
   const { status } = useSession();
-  const { isOnboarded } = useUser();
+  const { isOnboarded, loading } = useUser();
   const router = useRouter();
 
   const getRedirectPath = () => {
@@ -35,11 +35,13 @@ const LoginCard = ({ redirectPath = '/' }: LoginCardProps) => {
   };
 
   useEffect(() => {
-    if (status === 'authenticated' && isOnboarded !== undefined) {
-      const destination = getRedirectPath();
-      router.replace(destination).catch(console.error);
+    if (status === 'authenticated' && !loading) {
+      if (!isOnboarded) {
+        const destination = getRedirectPath();
+        router.replace(destination).catch(console.error);
+      }
     }
-  }, [status, isOnboarded, router, redirectPath]);
+  }, [status, loading, isOnboarded, router, redirectPath]);
 
   return (
     <FlexContainer className='h-screen md:p-4 bg-gray-100'>
