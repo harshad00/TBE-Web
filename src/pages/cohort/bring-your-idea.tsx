@@ -62,21 +62,21 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
   const whyUs = [
     {
       title: 'Live Mentorship Every Week',
-      description: 'Get mentorship from industry experts every week',
+      description: 'Get Mentorship from Industry Mentors Every Week',
       icon: <AcademicCapIcon className='w-8 h-8 text-primary' />,
     },
     {
       title: 'Join with Your Friends',
-      description: 'Bring up to 4 friends and build together as a team',
+      description: 'Bring up to 4 friends and Build together as a Team',
       icon: <RocketLaunchIcon className='w-8 h-8 text-primary' />,
     },
     {
-      title: 'Hands-on Experience',
-      description: 'Build real projects with modern tech stack',
+      title: 'Learn & Build with Hands-on Learning',
+      description: 'Follow Our Personalised Roadmap and Build Your Idea',
       icon: <LightBulbIcon className='w-8 h-8 text-primary' />,
     },
     {
-      title: 'Idea to Product Launch Journey',
+      title: 'Idea to Product + Launch',
       description:
         'From idea to product launch, we will guide you every step of the way',
       icon: <RocketLaunchIcon className='w-8 h-8 text-primary' />,
@@ -88,13 +88,8 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
     },
     {
       title: 'Free Resources',
-      description: 'Get free resources to help you build your idea',
+      description: 'Get free resources to help you build your projects',
       icon: <LightBulbIcon className='w-8 h-8 text-primary' />,
-    },
-    {
-      title: 'Lifetime Alumni Network',
-      description: 'Join a network of alumni to learn and grow together',
-      icon: <UserGroupIcon className='w-8 h-8 text-primary' />,
     },
     {
       title: '24x7 QnA with Mentors',
@@ -104,6 +99,12 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
     {
       title: '7 Days Money Back Guarantee',
       description: '7-day money back guarantee - no questions asked.',
+      icon: <CheckCircleIcon className='w-8 h-8 text-primary' />,
+    },
+    {
+      title: '50% Cashback on Completion',
+      description:
+        'Complete the program and get 50% cashback on your investment',
       icon: <CheckCircleIcon className='w-8 h-8 text-primary' />,
     },
   ];
@@ -234,7 +235,7 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
 
       <Section className='bg-white py-8'>
         <FlexContainer
-          className='justify-center gap-6 flex-wrap'
+          className='justify-center gap-8 flex-wrap'
           direction='col'
         >
           <Text level='h4' className='heading-4' textCenter={true}>
@@ -257,6 +258,18 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
               );
             })}
           </FlexContainer>
+          <motion.h2
+            className='text-2xl md:text-3xl font-bold text-center'
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <SectionHeaderContainer
+              heading='Your Roadmap'
+              focusText={`in Cohort | ${selectedUserCategory.duration}`}
+              headingLevel={5}
+            />
+          </motion.h2>
           <CohortJourneyContainer weeks={selectedUserCategory.data} />
         </FlexContainer>
       </Section>
@@ -283,6 +296,15 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
         </div>
       </Section>
 
+      <Banner
+        title='Take Back 50% Cashback on Completion'
+        description='Complete the program and get 50% cashback on your investment.'
+        buttonText='Register Now'
+        buttonLink={LINKS.applyBYICohort}
+        imageSrc={`${STATIC_FILE_PATH.svg}/community.svg`}
+        variant='VARIANT_A'
+      />
+
       <Section className='py-12 md:py-20'>
         <div className='md:px-4 px-2'>
           <motion.h2
@@ -293,7 +315,7 @@ const BrinYourIdeaLandingPage = ({ seoMeta }: PageProps) => {
           >
             <SectionHeaderContainer
               heading='Investment in'
-              focusText='Your Future'
+              focusText='Your Career'
             />
           </motion.h2>
           <motion.div

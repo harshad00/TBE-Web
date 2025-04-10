@@ -109,4 +109,5 @@ export interface CohortUserCategoryProps {
   key: string;
   label: string;
   data: CohortRoadmapProps[];
+  duration: string;
 }

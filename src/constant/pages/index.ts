@@ -576,16 +576,23 @@ const BYI_SKILLED_ROADMAP: CohortRoadmapProps[] = [
 ];
 
 const BYI_USER_CATEGORIES: CohortUserCategoryProps[] = [
-  { key: 'beginner', label: '🚀 Beginner', data: BYI_BEGINNER_ROADMAP },
+  {
+    key: 'beginner',
+    label: '🚀 Beginner',
+    data: BYI_BEGINNER_ROADMAP,
+    duration: '4-5 Months',
+  },
   {
     key: 'confused',
     label: '🤔 Confused Learner',
     data: BYI_INTERMEDIATE_ROADMAP,
+    duration: '2-3 Months',
   },
   {
     key: 'mentorship',
     label: '🧠 Seeking Mentorship',
     data: BYI_SKILLED_ROADMAP,
+    duration: '1-2 Months',
   },
 ];
 
