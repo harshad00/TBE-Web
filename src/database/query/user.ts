@@ -93,10 +93,28 @@ const onboardUserToDB = async (
   }
 };
 
+const updateUserNameByIdInDB = async (
+  userId: string,
+  newUserName: string
+): Promise<DatabaseQueryResponseType> => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { userName: newUserName },
+      { new: true }
+    );
+    if (!user) return { error: 'User does not exist' };
+    return { data: user };
+  } catch (error) {
+    return { error: 'Failed to update user' };
+  }
+};
+
 export {
   getUserByIdFromDB,
   getUserByEmailFromDB,
   createUserInDB,
   onboardUserToDB,
   getUserByUserNameFromDB,
+  updateUserNameByIdInDB,
 };

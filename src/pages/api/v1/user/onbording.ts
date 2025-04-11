@@ -2,7 +2,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { apiStatusCodes } from '@/constant';
 import { sendAPIResponse } from '@/utils';
 import { connectDB } from '@/middlewares';
-import { onboardUserToDB, getUserByUserNameFromDB } from '@/database';
+import {
+  onboardUserToDB,
+  getUserByUserNameFromDB,
+  updateUserNameByIdInDB,
+} from '@/database';
 import { AddOnboardingPayloadProps } from '@/interfaces';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -19,6 +23,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return getUserByUsername(req, res, userName);
     case 'POST':
       return handleUserOnboarding(req, res, userId);
+    case 'PATCH':
+      return handleUserUserName(req, res, userId);
     default:
       return res.status(apiStatusCodes.BAD_REQUEST).json(
         sendAPIResponse({
@@ -125,6 +131,57 @@ const handleUserOnboarding = async (
         status: false,
         error,
         message: 'Error while onboarding user',
+      })
+    );
+  }
+};
+
+const handleUserUserName = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  userId: string
+) => {
+  try {
+    const { newUserName } = req.body as { newUserName: string };
+
+    if (!userId || !newUserName) {
+      return res.status(apiStatusCodes.BAD_REQUEST).json(
+        sendAPIResponse({
+          status: false,
+          error: 'Missing required fields',
+          message: 'Please provide all required fields',
+        })
+      );
+    }
+
+    const { data, error: updateUserError } = await updateUserNameByIdInDB(
+      userId,
+      newUserName
+    );
+
+    if (updateUserError) {
+      return res.status(apiStatusCodes.BAD_REQUEST).json(
+        sendAPIResponse({
+          status: false,
+          error: updateUserError,
+          message: 'Error while updating username',
+        })
+      );
+    }
+
+    return res.status(apiStatusCodes.OKAY).json(
+      sendAPIResponse({
+        status: true,
+        data,
+        message: 'Username updated successfully',
+      })
+    );
+  } catch (error) {
+    return res.status(apiStatusCodes.INTERNAL_SERVER_ERROR).json(
+      sendAPIResponse({
+        status: false,
+        error,
+        message: 'Error while updating username',
       })
     );
   }

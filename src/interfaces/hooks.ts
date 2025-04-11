@@ -5,6 +5,11 @@ export interface User {
   name: string;
   email: string;
   image: string;
+  isonboarded: boolean;
+  profession: string;
+  userName: string;
+  contactNo: string;
+  purpose: string[];
 }
 
 export interface UseUserReturnType {

@@ -1,5 +1,9 @@
 import { envConfig, routes } from '@/constant';
-import { createUserInDB, getUserByEmailFromDB } from '@/database/query/user';
+import {
+  createUserInDB,
+  getUserByEmailFromDB,
+  getUserByIdFromDB,
+} from '@/database/query/user';
 import { connectDB } from '@/middlewares';
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
@@ -13,6 +17,7 @@ const authOptions = {
   ],
   secret: envConfig.NEXTAUTH_SECRET,
   callbacks: {
+    // 1. When user signs in
     async signIn({ user, account }: any) {
       if (!user) return false;
 
@@ -23,13 +28,10 @@ const authOptions = {
       try {
         await connectDB();
 
-        // Find or create the user in MongoDB
         const { data: existingUser } = await getUserByEmailFromDB(email);
 
         if (!existingUser) {
-          // Create a new user in MongoDB if not found
-
-          const { data: result, error } = await createUserInDB({
+          const { data: result } = await createUserInDB({
             name,
             email,
             image: user.image,
@@ -37,36 +39,58 @@ const authOptions = {
             providerAccountId: account.providerAccountId,
           });
 
-          // Attach the MongoDB _id to the user object
           user.id = result._id.toString();
         } else {
-          // If the user exists, attach the MongoDB _id to the user object
           user.id = existingUser._id.toString();
         }
 
-        return true; // Allow the sign in
+        return true;
       } catch (error) {
         console.error('Error signing in:', error);
         return false;
       }
     },
 
+    // 2. Called on every session check
     async session({ session, token }: any) {
-      // Attach the MongoDB user ID to the session object
-      session.user.id = token.sub; // `sub` was set in the jwt callback
-      return session;
+      try {
+        if (token?.sub) {
+          await connectDB();
+          const { data: dbUser } = await getUserByIdFromDB(token.sub);
+
+          if (dbUser) {
+            session.user = {
+              id: dbUser._id.toString(),
+              name: dbUser.name,
+              email: dbUser.email,
+              image: dbUser.image,
+              isOnboarded: dbUser.isOnboarded,
+              userName: dbUser.userName,
+              contactNo: dbUser.contactNo,
+              profession: dbUser.profession,
+              purpose: dbUser.purpose,
+            };
+          }
+        }
+        return session;
+      } catch (error) {
+        console.error('Error loading session user:', error);
+        return session;
+      }
     },
 
+    // 3. Called after sign-in to persist user ID in token
     async jwt({ token, user }: any) {
       if (user) {
-        // Attach the MongoDB user ID to the token (if this is the initial sign in)
         token.sub = user.id;
       }
       return token;
     },
   },
+
+  // Custom pages
   pages: {
-    signIn: routes?.register,
+    signIn: routes?.register, // Redirect to your custom sign-in/register page
   },
 };
 

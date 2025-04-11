@@ -254,6 +254,20 @@ const StepPhoneNumber = dynamic(
 const StepNavigation = dynamic(
   () => import('@/components/containers/Page/onboard/StepNavigation')
 );
+const Card = dynamic(() => import('@/components/containers/Page/common/Card'));
+const CardHeader = dynamic(
+  () => import('@/components/containers/Page/common/CardHeader')
+);
+const CardContent = dynamic(
+  () => import('@/components/containers/Page/common/CardContent')
+);
+const CardTitle = dynamic(
+  () => import('@/components/containers/Page/common/CardTitle')
+);
+
+const ProfileCard = dynamic(
+  () => import('@/components/containers/Page/userprofile/ProfileCard')
+);
 
 export {
   Navbar,
@@ -353,4 +367,9 @@ export {
   OnboardingLayout,
   StepNavigation,
   CohortJourneyContainer,
+  Card,
+  CardHeader,
+  CardContent,
+  CardTitle,
+  ProfileCard,
 };

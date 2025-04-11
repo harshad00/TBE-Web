@@ -327,6 +327,14 @@ export interface ProjectHeroContainerProps {
   isEnrolled?: boolean;
 }
 
+export interface ProfileCardProps {
+  userName: string;
+  contactNo: string;
+  profession: string;
+  purpose: string[];
+  image: string;
+}
+
 export interface LevelInfoProps {
   level: number;
   pointsNeeded: number;

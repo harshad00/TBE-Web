@@ -36,6 +36,7 @@ const routes = {
   contactUs: '/contact',
   user: {
     dashboard: '/user/dashboard',
+    profile: '/user/userprofile',
     courses: '/shiksha/my-courses',
     projects: '/projects/my-projects',
     sheets: '/interview-prep/my-sheets',
