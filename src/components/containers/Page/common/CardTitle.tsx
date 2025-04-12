@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Text } from '@/components';
 
 const CardTitle = ({
   children,
@@ -7,7 +8,14 @@ const CardTitle = ({
   children: ReactNode;
   className?: string;
 }) => {
-  return <h2 className={`text-xl font-semibold ${className}`}>{children}</h2>;
+  return (
+    <>
+      <Text level='h2' className={`text-xl font-semibold ${className}`}>
+        {' '}
+        {children}{' '}
+      </Text>
+    </>
+  );
 };
 
 export default CardTitle;

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { FlexContainer } from '@/components';
 
 const CardHeader = ({
   children,
@@ -8,11 +9,13 @@ const CardHeader = ({
   className?: string;
 }) => {
   return (
-    <div
-      className={`p-4 border-b border-gray-200 dark:border-zinc-700 ${className}`}
-    >
-      {children}
-    </div>
+    <>
+      <FlexContainer
+        className={`p-4 border-b border-gray-200 dark:border-zinc-700  ${className}`}
+      >
+        {children}
+      </FlexContainer>
+    </>
   );
 };
 
