@@ -42,6 +42,8 @@ const ProfileCard = ({
     purpose,
     image,
   });
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
 
   useEffect(() => {
     setTempUsername(userName);
@@ -121,7 +123,11 @@ const ProfileCard = ({
                     {field.key === 'userName' && !isEditing && (
                       <Button
                         variant='GHOST'
-                        onClick={() => setIsEditing(true)}
+                        onClick={() => {
+                          setIsEditing(true);
+                          setMessage('');
+                          setMessageType('');
+                        }}
                         text={<PencilIcon className='h-2 w-2' />}
                         className='!p-1'
                       />
@@ -159,7 +165,7 @@ const ProfileCard = ({
                               variant='SUCCESS'
                               onClick={async () => {
                                 try {
-                                  await makeRequest({
+                                  const response = await makeRequest({
                                     method: 'PATCH',
                                     url: `${routes.api.onboard}?userId=${id}`,
                                     body: {
@@ -167,16 +173,24 @@ const ProfileCard = ({
                                     },
                                   });
 
+                                  if (!response.status) {
+                                    setMessage(
+                                      response.message || 'Update failed'
+                                    );
+                                    setMessageType('error');
+                                    return;
+                                  }
+
                                   setProfileData((prev) => ({
                                     ...prev,
                                     userName: tempUsername,
                                   }));
                                   setIsEditing(false);
+                                  setMessage('Username updated successfully!');
+                                  setMessageType('success');
                                 } catch (err) {
-                                  console.error(
-                                    'Failed to update username',
-                                    err
-                                  );
+                                  setMessage('Something went wrong!');
+                                  setMessageType('error');
                                 }
                               }}
                               text={<CheckIcon className='h-2 w-2' />}
@@ -186,6 +200,8 @@ const ProfileCard = ({
                               onClick={() => {
                                 setTempUsername(currentData.userName);
                                 setIsEditing(false);
+                                setMessage('');
+                                setMessageType('');
                               }}
                               text={<XMarkIcon className='h-2 w-2' />}
                             />
@@ -211,14 +227,20 @@ const ProfileCard = ({
               ))}
             </GridContainer>
 
+            {/* Feedback Messages */}
             {loading && (
               <Text level='caption' className='text-primary text-sm'>
                 Saving...
               </Text>
             )}
-            {error && (
-              <Text level='caption' className='text-destructive text-sm'>
-                Error: {error}
+            {message && (
+              <Text
+                level='caption'
+                className={`text-sm ${
+                  messageType === 'success' ? 'text-green-600' : 'text-red-500'
+                }`}
+              >
+                {message}
               </Text>
             )}
           </div>

@@ -154,10 +154,22 @@ const handleUserUserName = async (
       );
     }
 
-    const { data, error: updateUserError } = await updateUserNameByIdInDB(
-      userId,
-      newUserName
-    );
+    // Check if the new username already exists in the database
+    const { data: existingUser, error: usernameError } =
+      await getUserByUserNameFromDB(newUserName);
+
+    if (existingUser) {
+      return res.status(apiStatusCodes.OKAY).json(
+        sendAPIResponse({
+          status: false,
+          message: 'Username already taken. Please choose another.',
+        })
+      );
+    }
+
+    // Update the username in the database
+    const { data: updatedUser, error: updateUserError } =
+      await updateUserNameByIdInDB(userId, newUserName);
 
     if (updateUserError) {
       return res.status(apiStatusCodes.BAD_REQUEST).json(
@@ -172,7 +184,7 @@ const handleUserUserName = async (
     return res.status(apiStatusCodes.OKAY).json(
       sendAPIResponse({
         status: true,
-        data,
+        data: updatedUser,
         message: 'Username updated successfully',
       })
     );
