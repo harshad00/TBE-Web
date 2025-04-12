@@ -158,7 +158,7 @@ const handleUserUserName = async (
     const { data: existingUser, error: usernameError } =
       await getUserByUserNameFromDB(newUserName);
 
-    if (existingUser) {
+    if (!existingUser) {
       return res.status(apiStatusCodes.OKAY).json(
         sendAPIResponse({
           status: false,
